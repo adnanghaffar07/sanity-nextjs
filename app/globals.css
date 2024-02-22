@@ -263,7 +263,7 @@ h5 {
   width: 100%;
   display: flex;
   margin-bottom: 7.5rem;
-  padding-top: 12.5rem;
+  padding: 12.5rem 0 5.625rem;
   background-color: #1D1D25;
 }
 
@@ -302,11 +302,43 @@ h5 {
 .services-item-two {
   padding: 45px 35px 40px;
   border-radius: 20px;
-  background: #292930;
   transition: .3s;
   margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.services-item-two h4 a {
+  transition: .3s;
+}
+
+.services-item-two:hover {
+  background: #292930;
+}
+
+.services-item-two:hover h4 a {
+  color: #f89e52;
+}
+
+.services-icon-two {
+  margin-bottom: 4.375rem;
+  min-height: 67px;
+}
+
+.services-content-two p {
+  margin-bottom: 0;
+  color: #A0A0A0;
+  opacity: 0.7;
+  text-transform: capitalize;
+  transition: .3s;
+  line-height: 1.7;
 }
 
 .services-icon-two img {
   max-width: 66px;
+}
+
+.services-content-two .title {
+  margin-bottom: 0.75rem;
+  color: #fff;
+  font-size: 1.5rem;
 }

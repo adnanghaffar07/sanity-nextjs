@@ -55,7 +55,8 @@ export default async function Home() {
       </div>
       <div className={styles.bannerIntro}>
         <div className={styles.bannerContainer}>
-          <Image
+          <div className={styles.bannerColImgIntroBanner}>
+            <Image
               src="/h2_banner_img.png"
               alt="h2_banner_img"
               className={styles.h2BannerImg}
@@ -63,6 +64,7 @@ export default async function Home() {
               height={519}
               priority
             />
+          </div>
           <div className={styles.bannerContent}>
             <h5 className={styles.bannerSubtitle}>Hi, I am John William</h5>
             <h2 className={styles.bannertitle}> Professional Product <span>Designer</span> Based in USA</h2>
@@ -266,7 +268,7 @@ export default async function Home() {
                       rel="nofollow"
                       href=""
                     >
-                      UI UX Design{" "}
+                      Motion Design{" "}
                     </a>
                   </h4>
                   <p>
@@ -288,7 +290,7 @@ export default async function Home() {
                       rel="nofollow"
                       href=""
                     >
-                      UI UX Design{" "}
+                      Website Design{" "}
                     </a>
                   </h4>
                   <p>
@@ -310,7 +312,7 @@ export default async function Home() {
                       rel="nofollow"
                       href=""
                     >
-                      UI UX Design{" "}
+                      Phototype Design{" "}
                     </a>
                   </h4>
                   <p>
@@ -318,6 +320,17 @@ export default async function Home() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="creativeWorkWrapper">
+        <div className="creativeWorkContainer">
+          <div className="creativeWorkContent">
+            <div className="servicesContent-center">
+              <h5 className="servicesSubtitle">What I Do</h5>
+              <h2 className="servicesTitle"> What Service Do I Provide</h2>
             </div>
           </div>
         </div>
