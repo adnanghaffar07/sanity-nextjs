@@ -73,7 +73,7 @@ export default async function Home() {
                   <a href="#" target="_blank">
                     <Image                      
                       src="/banner_icon01.svg"
-                      alt="Image"
+                      alt="Image" width={29} height={29}
                     />
                   </a>
                 </li>
@@ -81,7 +81,7 @@ export default async function Home() {
                   <a href="#" target="_blank">
                     <Image                      
                       src="/banner_icon02.svg"
-                      alt="Image"
+                      alt="Image" width={29} height={29}
                     />
                   </a>
                 </li>
@@ -89,7 +89,7 @@ export default async function Home() {
                   <a href="#" target="_blank">
                     <Image                      
                       src="/banner_icon03.svg"
-                      alt="Image"
+                      alt="Image" width={29} height={29}
                     />
                   </a>
                 </li>
@@ -97,7 +97,7 @@ export default async function Home() {
                   <a href="#" target="_blank">
                     <Image                      
                       src="/banner_icon04.svg"
-                      alt="Image"
+                      alt="Image" width={29} height={29}
                     />
                   </a>
                 </li>
