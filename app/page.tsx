@@ -148,7 +148,7 @@ export default async function Home() {
             <p>Hello There! I&rsquo;m A Web Designer, And I&rsquo;m Very Passionate And Dedicated To My Work. With 20 Years Experience As A Professional Web Developer, I Have Acquired The Skills And Knowledge Necessary To Make Your Project A Success. I Enjoy Every Step Of The Design Process, From Discussion And Collaboration.</p>
             <div className="aboutActions">
               <a href="" target="_self" rel="nofollow">
-                <span className="arrow"><Image src="/right_arrow.svg" alt="icon" width={66} height={61} width={34} height={16} /></span>
+                <span className="arrow"><Image src="/right_arrow.svg" alt="icon" width={34} height={16} /></span>
                 <span className="text">Available jobs</span>
               </a>
             </div>
