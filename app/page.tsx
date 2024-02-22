@@ -331,20 +331,92 @@ export default async function Home() {
             <div className="creativeWorkContent-center">
               <h5 className="creativeWorkSubtitle">Creative Works</h5>
               <h2 className="creativeWorkTitle">You Will Like These Design Made by Me</h2>
-              <p>Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard.</p>
-              <div className="project-menu-nav">
-                <button className="active">
-                  All Project
-                </button>
-                <button>App Design</button>
-                <button>Web Design</button>
-                <button>Branding App</button>
-              </div>
-              <div className="project-wrapper"></div>
+              <p>Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry&rsquo;s Standard.</p>
             </div>
+            <div className="project-menu-nav">
+              <button className="active">
+                All Project
+              </button>
+              <button>App Design</button>
+              <button>Web Design</button>
+              <button>Branding App</button>
+            </div>
+            <div className="project-wrapper">
+              <div className="project-item-two">
+                <div className="project-thumb-two">
+                  <Image                    
+                    src="/h2_project_img01.jpg"
+                    alt="Icon" width={411} height={503}
+                  />
+                </div>
+                <div className="project-content-two">
+                  <h2 className="title">
+                    <a href="">App Design</a>
+                  </h2>
+                  <span>Gorem Ipsum is simply</span>
+                </div>
+              </div>
+              <div className="project-item-two">
+                <div className="project-thumb-two">
+                  <Image                    
+                    src="/h2_project_img04.jpg"
+                    alt="Icon" width={411} height={503}
+                  />
+                </div>
+                <div className="project-content-two">
+                  <h2 className="title">
+                    <a href="">App Design</a>
+                  </h2>
+                  <span>Gorem Ipsum is simply</span>
+                </div>
+              </div>
+              <div className="project-item-two">
+                <div className="project-thumb-two">
+                  <Image                    
+                    src="/h2_project_img05.jpg"
+                    alt="Icon" width={411} height={503}
+                  />
+                </div>
+                <div className="project-content-two">
+                  <h2 className="title">
+                    <a href="">App Design</a>
+                  </h2>
+                  <span>Gorem Ipsum is simply</span>
+                </div>
+              </div>
+            </div>            
           </div>
         </div>
       </div>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-content-center">
+            <Image
+              src="/secondary_logo.png"
+              alt="Footer Logo"
+              className={styles.footerLogo}
+              width={126}
+              height={41}
+              priority
+            />
+            <p>Agency Is A Full-Service Agency, Busy Designing And Building Beautiful Digital Products, Brands, And Experiences.</p>
+          </div>          
+          <hr />
+          <div className="footer-btm-content">
+            <div className="cpy-right">
+              <p>Copyright &copy; Xolio 2023. All Rights Reserved</p>
+            </div>
+            <div className="social-media-icons">
+              Follow us
+              <a href=""><Image src="/footer_icon01.png" alt="footer_icon01" className="" width={36} height={36} /></a>
+              <a href=""><Image src="/footer_icon02.png" alt="footer_icon01" className="" width={36} height={36} /></a>
+              <a href=""><Image src="/footer_icon03.png" alt="footer_icon01" className="" width={36} height={36} /></a>
+              <a href=""><Image src="/footer_icon04.png" alt="footer_icon01" className="" width={36} height={36} /></a>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* <div className={styles.center}>
         <Image
