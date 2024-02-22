@@ -328,9 +328,19 @@ export default async function Home() {
       <div className="creativeWorkWrapper">
         <div className="creativeWorkContainer">
           <div className="creativeWorkContent">
-            <div className="servicesContent-center">
-              <h5 className="servicesSubtitle">What I Do</h5>
-              <h2 className="servicesTitle"> What Service Do I Provide</h2>
+            <div className="creativeWorkContent-center">
+              <h5 className="creativeWorkSubtitle">Creative Works</h5>
+              <h2 className="creativeWorkTitle">You Will Like These Design Made by Me</h2>
+              <p>Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard.</p>
+              <div className="project-menu-nav">
+                <button className="active">
+                  All Project
+                </button>
+                <button>App Design</button>
+                <button>Web Design</button>
+                <button>Branding App</button>
+              </div>
+              <div className="project-wrapper"></div>
             </div>
           </div>
         </div>
