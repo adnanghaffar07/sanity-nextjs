@@ -1,7 +1,7 @@
 import {defineConfig} from 'sanity';
 import {structureTool} from 'sanity/structure'
 // import project from './sanity/schemas/project-schema';
-// import schemas from './sanity/schemas';
+import schemas from './sanity/schemas';
 // import {visionTool} from '@sanity/vision'
 
 export default defineConfig({
@@ -12,6 +12,6 @@ export default defineConfig({
     apiVersion: "2023-02-21",
     basePath: "/admin",
     plugins: [structureTool()],
-    // schema: { types: schemas }
+    schema: { types: schemas }
   })
   

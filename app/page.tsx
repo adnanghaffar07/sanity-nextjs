@@ -1,9 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-// import { getProjects } from "@/sanity/sanity-utils";
+import { getProjects } from "@/sanity/sanity-utils";
+// import { projectId } from "@/sanity/env";
+// import project from "@/sanity/schemas/project-schema";
+// import { Project } from "@/types/Project";
 
 export default async function Home() {
-  // const projects = await getProjects();
+  const projects = await getProjects();
+
   return (
     <main className={styles.main}>
       <div className={styles.headerDiv}>
@@ -56,18 +60,25 @@ export default async function Home() {
       <div className={styles.bannerIntro}>
         <div className={styles.bannerContainer}>
           <div className={styles.bannerColImgIntroBanner}>
-            <Image
-              src="/h2_banner_img.png"
-              alt="h2_banner_img"
-              className={styles.h2BannerImg}
-              width={359}
-              height={519}
-              priority
-            />
+          {projects.map((project) => (
+              <div key={project.image}>
+                  <img src={project.image}/>
+              </div>
+            ))}            
           </div>
           <div className={styles.bannerContent}>
+          {/* {projects.map((project) => (
+            <div key={project._id}>
+              {project.name}
+            </div>
+          ))} */}
             <h5 className={styles.bannerSubtitle}>Hi, I am John William</h5>
-            <h2 className={styles.bannertitle}> Professional Product <span>Designer</span> Based in USA</h2>
+            {projects.map((project) => (
+              <h2 className={styles.bannertitle} key={project._id}>
+                  {project.name}
+              </h2>
+            ))}
+            
             <div className={styles.bannerActions}>
               <a href="" target="_self" className={styles.btn}>Contact Us<span></span></a>
               <ul className="list-wrap">
@@ -157,8 +168,8 @@ export default async function Home() {
           </div>
           <div className="col-about-img">
             <Image
-              src="/h2_about_img.png"
-              alt="h2_about_img"
+              src="/work_img.png"
+              alt="work_img.png"
               className="img-about-us"
               width={554}
               height={556}
@@ -389,6 +400,336 @@ export default async function Home() {
         </div>
       </div>
 
+      <div className="packagesWrapper">
+        <div className="packagesContainer">
+          <div className="packagesContent">
+            <div className="packagesContent-center">
+              <h5 className="packagesSubtitle">Reasonable package</h5>
+              <h2 className="packagesTitle">The Right Plan for Your Business</h2>
+              <p>Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry&rsquo;s Standard.</p>
+            </div>
+            <ul className="nav nav-tabs" id="myTab" role="tablist">
+              <li className="nav-item">
+                <button
+                  className="nav-link active"
+                >
+                  Monthly
+                </button>
+              </li>
+              <li className="nav-item">
+                <button
+                  className="nav-link "
+                >
+                  Yearly
+                </button>
+              </li>
+            </ul>
+            <div className="pricingPackagesWarpper">
+              <div className="pricing-item default">
+                <div className="pricing-icon">
+                  <img
+                    src="/pricing_icon01.png"
+                    alt="img"
+                  />
+                </div>
+                <div className="pricing-top">
+                  <h2 className="title">Professional</h2>
+                  <p>Do more with Dokan Using Powerful Advanced feat..</p>
+                </div>
+                <div className="pricing-price">
+                  <h2 className="price">
+                    <span>$</span>49<strong>/mo</strong>
+                  </h2>
+                </div>
+                <div className="pricing-list">
+                  <h4 className="title">Everything in Starter</h4>
+                  <ul className="list-wrap">
+                    <li>
+                      <i className="far fa-check" />
+                      WC Product Addon Integration
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Vendor Review
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Store Support
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Seller Verification
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Stripe &amp; Msip
+                    </li>
+                  </ul>
+                </div>
+                <div className="pricing-btn">
+                  <a href="#" target="_blank" rel="nofollow" className="btn">
+                    Choose Plan
+                  </a>
+                </div>
+              </div>
+              <div className="pricing-item active">
+                <div className="pricing-icon">
+                  <img
+                    src="/pricing_icon02.png"
+                    alt="img"
+                  />
+                </div>
+                <div className="pricing-top">
+                  <h2 className="title">Business</h2>
+                  <p>Do more with Dokan Using Powerful Advanced feat..</p>
+                </div>
+                <div className="pricing-price">
+                  <h2 className="price">
+                    <span>$</span>69<strong>/mo</strong>
+                  </h2>
+                </div>
+                <div className="pricing-list">
+                  <h4 className="title">Everything in Starter</h4>
+                  <ul className="list-wrap">
+                    <li>
+                      <i className="far fa-check" />
+                      WC Product Addon Integration
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Vendor Review
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Store Support
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Seller Verification
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Stripe &amp; Msip
+                    </li>
+                  </ul>
+                </div>
+                <div className="pricing-btn">
+                  <a href="#" target="_blank" rel="nofollow" className="btn">
+                    Choose Plan
+                  </a>
+                </div>
+              </div>
+              <div className="pricing-item default">
+                <div className="pricing-icon">
+                  <img
+                    src="/pricing_icon03.png"
+                    alt="img"
+                  />
+                </div>
+                <div className="pricing-top">
+                  <h2 className="title">Enterprise</h2>
+                  <p>Do more with Dokan Using Powerful Advanced feat..</p>
+                </div>
+                <div className="pricing-price">
+                  <h2 className="price">
+                    <span>$</span>89<strong>/mo</strong>
+                  </h2>
+                </div>
+                <div className="pricing-list">
+                  <h4 className="title">Everything in Starter</h4>
+                  <ul className="list-wrap">
+                    <li>
+                      <i className="far fa-check" />
+                      WC Product Addon Integration
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Vendor Review
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Store Support
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Seller Verification
+                    </li>
+                    <li>
+                      <i className="far fa-check" />
+                      Stripe &amp; Msip
+                    </li>
+                  </ul>
+                </div>
+                <div className="pricing-btn">
+                  <a href="#" target="_blank" rel="nofollow" className="btn">
+                    Choose Plan
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="workingStepsWrapper">
+        <div className="workingStepsContainer">
+          <div className="col-img-working-steps">
+            <Image
+              src="/work_img.png"
+              alt="work_img"
+              className="img-working-steps"
+              width={444}
+              height={545}
+              priority
+            />
+          </div>
+          <div className="workingStepsContent">
+            <h5 className="workingStepsSubtitle">Working Steps</h5>
+            <h2 className="workingStepsTitle">My Working Process</h2>
+            <div className="workingStepsList">
+              <div className="workingStepsListItem">
+                <div className="workingStepsListIcon">
+                  <Image
+                    src="/about_icon01.png"
+                    alt="about_icon01"
+                    className="img-about-icon"
+                    width={60}
+                    height={60}
+                    priority
+                  />
+                </div>
+                <div className="workingStepsListContent">
+                  <h3>Concept Creation</h3>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+              </div>
+              <div className="workingStepsListItem">
+                <div className="workingStepsListIcon">
+                  <Image
+                    src="/about_icon02.png"
+                    alt="about_icon02"
+                    className="img-about-icon"
+                    width={60}
+                    height={60}
+                    priority
+                  />
+                </div>
+                <div className="workingStepsListContent">
+                  <h3>Sketch Drawing</h3>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+              </div>
+              <div className="workingStepsListItem">
+                <div className="workingStepsListIcon">
+                  <Image
+                    src="/about_icon03.png"
+                    alt="about_icon03"
+                    className="img-about-icon"
+                    width={60}
+                    height={60}
+                    priority
+                  />
+                </div>
+                <div className="workingStepsListContent">
+                  <h3>Final Design</h3>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+              </div>
+            </div>
+          </div>          
+        </div>        
+      </div>
+
+      <div className="testimonailWrapper">
+        <div className="testimonailContainer">
+          <h5 className="testimonailSubtitle">What Clients Say</h5>
+          <h2 className="testimonailTitle">What People Say About Us</h2>
+          <div className="testimonailItemsWrapper">
+            <div className="testimonial-item-two">
+              <div className="testimonial-content-two">
+                <div className="rating">
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                </div>
+                <p>&#8220;Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry Lorem Ipsum has been the standard dummy text&#8220;</p>
+              </div>
+              <div className="testimonial-info-two">
+                <div className="thumb">
+                  <Image
+                    src="/testimonial_avatar03.png"
+                    alt=""
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div className="content">
+                  <h5 className="title">Zonalos Neko</h5>
+                  <span>CEO Kawasaki Inc.</span>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial-item-two">
+              <div className="testimonial-content-two">
+                <div className="rating">
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                </div>
+                <p>&#8220;Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry Lorem Ipsum has been the standard dummy text&#8220;</p>
+              </div>
+              <div className="testimonial-info-two">
+                <div className="thumb">
+                  <Image
+                    src="/testimonial_avatar03.png"
+                    alt=""
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div className="content">
+                  <h5 className="title">Zonalos Neko</h5>
+                  <span>CEO Kawasaki Inc.</span>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial-item-two">
+              <div className="testimonial-content-two">
+                <div className="rating">
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                </div>
+                <p>&#8220;Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry Lorem Ipsum has been the standard dummy text&#8220;</p>
+              </div>
+              <div className="testimonial-info-two">
+                <div className="thumb">
+                  <Image
+                    src="/testimonial_avatar03.png"
+                    alt=""
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div className="content">
+                  <h5 className="title">Zonalos Neko</h5>
+                  <span>CEO Kawasaki Inc.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-content-center">
@@ -417,69 +758,6 @@ export default async function Home() {
           </div>
         </div>
       </footer>
-
-      {/* <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div> */}
-
-      {/* <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div> */}
     </main>
   );
 }

@@ -1,24 +1,24 @@
-// import { createClient, groq } from "next-sanity"
+import { Project } from "@/types/Project";
+import { createClient, groq } from "next-sanity"
 
-// export async function getProjects() {
-//     const client = createClient ({
+export async function getProjects(): Promise<Project[]> {
+    const client = createClient ({
 
-//         projectId: '2xjwj9rp',
-//         dataset: 'production',
-//         apiVersion: "2023-02-21",
+        projectId: '2xjwj9rp',
+        dataset: 'production',
+        apiVersion: "2023-02-21",
 
-//     });
+    });
 
-//     return client.fetch(
-//         groq`*[_type= "project"]{
-//             _id,
-//             _createAt,
-//             name,
-//             "slug": slug.current,
-//             "image": image.asset->url,
-//             url,
-//             content
-
-//         }`
-//     )
-// }
+    return client.fetch(
+        groq`*[_type == "project"]{
+            _id,
+            _createAt,
+            name,
+            "slug": slug.current,
+            "image": image.asset->url,
+            url,
+            content
+        }`
+    )
+}
