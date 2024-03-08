@@ -24,7 +24,7 @@ export default async function RootLayout({
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
           {children}
-          <div className="lg:max-w[506px] ml-auto mr-auto lg:mt-20 -mb-32 relative z-10 lg:px-0 px-5">
+          <div className="lg:max-w[506px] ml-auto mr-auto -mb-32 relative z-10 lg:px-0 px-5">
             <ProjectDiscussionContainer />
           </div>          
           <FooterContainer />

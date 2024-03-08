@@ -29,7 +29,7 @@ export default function Technologies() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-32 py-8 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
+      <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
           <div className="self-center lg:text-6xl text-3xl xl:w-6/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
             Our Tech Stack In Different Technologies
@@ -47,8 +47,8 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">
-                <div className="lg:pr-20 lg:order-1 order-2 relative">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                <div className="xl:pr-20 lg:order-1 order-2 relative">
                   <img
                     loading="lazy"
                     src="/intersect-left.png"
@@ -87,7 +87,7 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">            
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
                 <div className="text-center">
                   <img
                   loading="lazy"
@@ -127,8 +127,8 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">
-              <div className="lg:pr-20 lg:order-1 order-2 relative">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+              <div className="xl:pr-20 lg:order-1 order-2 relative">
                   <img
                     loading="lazy"
                     src="/intersect-left.png"
@@ -167,7 +167,7 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">            
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
                 <div className="text-center">
                   <img
                   loading="lazy"
@@ -207,8 +207,8 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">
-                <div className="lg:pr-20 lg:order-1 order-2 relative">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                <div className="xl:pr-20 lg:order-1 order-2 relative">
                   <img
                     loading="lazy"
                     src="/intersect-left.png"
@@ -247,7 +247,7 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">            
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
                 <div className="text-center">
                   <img
                   loading="lazy"
@@ -287,8 +287,8 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">
-                <div className="lg:pr-20 lg:order-1 order-2 relative">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                <div className="xl:pr-20 lg:order-1 order-2 relative">
                   <img
                     loading="lazy"
                     src="/intersect-left.png"
@@ -327,7 +327,7 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">            
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
                 <div className="text-center">
                   <img
                   loading="lazy"
@@ -367,8 +367,8 @@ export default function Technologies() {
           />
           <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-32 py-8">
-                <div className="lg:pr-20 lg:order-1 order-2 relative">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                <div className="xl:pr-20 lg:order-1 order-2 relative">
                   <img
                     loading="lazy"
                     src="/intersect-left.png"

@@ -79,10 +79,10 @@ export default async function Home() {
       </div>
       <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-16 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-          <div className="self-center text-6xl max-md:max-w-full max-md:text-4xl">
+          <div className="self-center xl:text-6xl lg:text-5xl text-3xl font-medium max-md:max-w-full">
             Our Top Services
           </div>
-          <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 mt-20 text-xl font-semibold whitespace-nowrap max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
+          <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 xl:mt-12 text-xl font-semibold whitespace-nowrap max-md:flex-wrap mt-10 max-md:max-w-full">
             <div className="text-center py-8 bg-white rounded-2xl shadow-sm max-md:px-5">
               Web Development
             </div>
@@ -115,13 +115,13 @@ export default async function Home() {
           <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0 max-md:">
             <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
               <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
-                <div className="text-6xl font-medium max-md:max-w-full max-md:text-4xl max-md:leading-10">
+                <div className="xl:text-6xl lg:text-5xl text-3xl font-medium max-md:max-w-full">
                 Our Core Expertise
                 </div>
-                <div className="mt-11 lg:text-xl text-base font-light max-md:mt-10 max-md:max-w-full xl:pr-36">
+                <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36">
                   CodeAutomation offers 24/7 assistance from skilled professionals to ensure the quality of your IT projects.CodeAutomation is committed to guaranteeing optimal security and adherence to your business requirements. Our customized solutions and comprehensive support keep your organization running smoothly, from disaster recovery to cybersecurity, managed IT services and e-commerce solutions.
                 </div>
-                <div className="flex items-start self-stretch pr-16 text-base lg:text-3xl font-medium whitespace-nowrap max-w-[616px] text-sky-950 max-md:pr-5 mt-12">
+                <div className="flex items-start self-stretch pr-16 text-base xl:text-3xl lg:text-2xl font-medium whitespace-nowrap max-w-[616px] text-sky-950 max-md:pr-5 mt-12">
                   <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
                     <div className="relative grow self-center">
                       Explore Our Technologies
@@ -148,7 +148,7 @@ export default async function Home() {
         </div>
       </div>
       <div className="flex flex-col self-center w-full mx-auto max-md:max-w-full bg-[#F3F3F3] lg:py-16 py-16 lg:px-10 px-5">
-        <div className="self-center font-medium text-black max-md:text-4xl text-6xl font-medium max-md:text-4xl max-md:leading-10 max-w-[1582px] mx-auto">
+        <div className="self-center font-medium text-black xl:text-6xl lg:text-5xl text-3xl max-w-[1582px] mx-auto">
           Our Work
         </div>
         <div className="lg:mt-8 mt-4 text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
@@ -218,7 +218,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
-            <div className="flex items-center lg:text-3xl text-base font-medium whitespace-nowrap order-2 md:order-1">
+            <div className="flex items-center  text-base xl:text-3xl lg:text-2xl font-medium whitespace-nowrap order-2 md:order-1">
               <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
                     <div className="relative grow self-center">
                       Explore Our Portfolio
@@ -239,14 +239,14 @@ export default async function Home() {
         </div>
       </div>
       <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-        <div className="w-full text-6xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
+        <div className="w-full xl:text-6xl lg:text-5xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
           Why Work With Us
         </div>
         <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
             <div className="flex flex-col max-md:ml-0 max-md:w-full">
               <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                <div className="bg-[#F3F3F3] rounded-md p-3 flex h-100">
+                <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
                   <img
                     loading="lazy"
                     srcSet="/Group-17-1.svg"
@@ -257,12 +257,12 @@ export default async function Home() {
                   <div className="text-lg font-medium leading-6 uppercase">
                     Global Client
                   </div>
-                  <div className="text-7xl font-extrabold max-md:text-4xl flex">
+                  <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                     200
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] lg:-top-6 -top-2 lg:-right-2 -right-1 relative"
+                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
                     />
                   </div>
                 </div>                
@@ -270,7 +270,7 @@ export default async function Home() {
             </div>
             <div className="flex flex-col max-md:ml-0 max-md:w-full">
               <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                <div className="bg-[#F3F3F3] rounded-md p-3">
+                <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
                   <img
                     loading="lazy"
                     srcSet="/Group-22-4.svg"
@@ -281,12 +281,12 @@ export default async function Home() {
                   <div className="text-lg font-medium leading-6 uppercase">
                     Projects
                   </div>
-                  <div className="text-7xl font-extrabold max-md:text-4xl flex">
+                  <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                     350
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] lg:-top-6 -top-2 lg:-right-2 -right-1 relative"
+                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
                     />
                   </div>
                 </div>                              
@@ -294,7 +294,7 @@ export default async function Home() {
             </div>
             <div className="flex flex-col max-md:ml-0 max-md:w-full">
               <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                <div className="bg-[#F3F3F3] rounded-md p-3">
+                <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
                 <img
                   loading="lazy"
                   srcSet="/Group-27-3.svg"
@@ -305,12 +305,12 @@ export default async function Home() {
                   <div className="text-lg font-medium leading-6 uppercase">
                     Apps tested
                   </div>
-                  <div className="text-7xl font-extrabold max-md:text-4xl flex">
+                  <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                     300
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] lg:-top-6 -top-2 lg:-right-2 -right-1 relative"
+                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
                     />
                   </div>
                 </div>
@@ -318,7 +318,7 @@ export default async function Home() {
             </div>
             <div className="flex flex-col max-md:ml-0 max-md:w-full">
               <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                <div className="bg-[#F3F3F3] rounded-md p-3">
+                <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
                   <img
                     loading="lazy"
                     srcSet="/Group-28-2.svg"
@@ -329,12 +329,12 @@ export default async function Home() {
                   <div className="text-lg font-medium leading-6 uppercase">
                     Bugs Resolved
                   </div>
-                  <div className="text-7xl font-extrabold max-md:text-4xl flex">
+                  <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                     150<span className="text-4xl self-end">k</span>
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] lg:-top-6 -top-2 lg:-right-2 -right-1 relative"
+                      className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
                     />
                   </div>
                 </div>
@@ -343,33 +343,27 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="flex overflow-hidden relative flex-col justify-center items-start lg:px-10 md:px-5 w-full font-medium text-black lg:min-h-[1080px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-        <img
-          loading="lazy"
-          srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/eab17cdfecdbecdda0ad9573680507be4c6761ddbf50995db409eace183d8ab6?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
-          className="object-cover absolute inset-0 size-full hidden lg:block"
-        />
+      <div className="flex relative flex-col justify-center items-start lg:px-10 md:px-5 w-full font-medium text-black py-8 max-md:px-5 max-md:mt-10 max-md:max-w-full">        
         <img
             loading="lazy"
             src="/ellipse-1.png"
-            className="lg:aspect-[1.22] absolute left-0 md:top-48 top-16 lg:block hidden"
+            className="lg:aspect-[1.22] absolute left-0 md:top-24 top-16 lg:block hidden"
           />
           <img
             loading="lazy"
             src="/ellipse-1.png"
             className="lg:aspect-[1.22] absolute left-0 md:top-24 top-16 w-24 lg:hidden block"
           />
-        <div className="w-full max-w-[1582px] mx-auto">
+        <div className="w-full max-w-[1582px] mx-auto md:flex">
 
-          
-          <div className="flex relative flex-col lg:mt-80 my-20 lg:mb-11 lg:ml-16 max-w-full w-[813px] max-md:my-10">
-            <div className="text-6xl max-md:max-w-full max-md:text-4xl">
+          <div className="flex relative flex-col md:w-7/12 w-full self-end">
+            <div className="xl:text-6xl lg:text-5xl text-3xl">
               Our Distinctive Way
             </div>
-            <div className="lg:mt-8 mt-4 text-xl font-light max-md:max-w-full lg:pr-32">
+            <div className="lg:mt-8 mt-4 lg:text-xl text-lg font-light max-md:max-w-full lg:pr-32">
               Work with CodeAutomation, where collaboration, creativity, and precision intersect. Our unique approach to project execution  blends cutting-edge technology with a human touch.
             </div>
-            <div className="flex items-start self-stretch pr-16 whitespace-nowrap max-w-[616px] text-sky-950 max-md:pr-5 lg:mt-16 mt-8 lg:text-3xl text-base font-medium">
+            <div className="flex items-start self-stretch pr-16 whitespace-nowrap max-w-[616px] text-sky-950 max-md:pr-5 lg:mt-16 mt-8  text-base xl:text-3xl lg:text-2xl font-medium">
             <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
                       <div className="relative grow self-center">
                       Explore our Services
@@ -382,15 +376,18 @@ export default async function Home() {
                     </a>
             </div>
           </div>
-          <img
-            loading="lazy"
-            srcSet="/img-our-way.jpg"
-            className="object-cover inset-0 w-full lg:hidden block"
-          />
+          <div className="md:w-5/12 w-full">
+            <img
+              loading="lazy"
+              srcSet="/img-our-distinctive-way.jpg"
+              className="object-cover size-full"
+            />
+          </div>
+          
         </div>
       </div>
       <div className="flex flex-col w-full max-w-[1582px] mx-auto pb-32">
-        <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 lg:px-20 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full">
+        <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 lg:px-10 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow px-5 pb-6 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
               <div className="flex z-10 gap-5 justify-between items-start mt-0">
@@ -398,7 +395,7 @@ export default async function Home() {
                   Project Initiation
                 </div>
                 <div className="flex flex-col flex-1 justify-center self-start -mt-10">
-                  <div className="flex justify-center items-center px-4 w-24 h-24 bg-white rounded-full">
+                  <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full">
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e06a953d2b12819c328b7856df7297b2c237c518892fa897eafb85e00ced39e?"
@@ -407,7 +404,7 @@ export default async function Home() {
                   </div>
                 </div>
               </div>
-              <div className="mt-2.5 text-sm font-light leading-4 text-justify text-black">
+              <div className="mt-3 text-sm font-light text-justify text-black">
                 Our team of development, UX design, and analysis experts can
                 assist in creating new product concepts or improving existing
                 performance.
@@ -420,7 +417,7 @@ export default async function Home() {
                 <div className="self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                   Design
                 </div>
-                <div className="flex justify-center items-center self-start px-5 w-24 h-24 bg-white rounded-full max-md:pl-5 -mt-10">
+                <div className="flex justify-center items-center self-start px-5 w-20 h-20 bg-white rounded-full max-md:pl-5 -mt-10">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/5e27351cdef1346bafe3d18f5e0c002c781d6f5cfc694e39225cd3b6a00874e5?"
@@ -428,7 +425,7 @@ export default async function Home() {
                   />
                 </div>
               </div>
-              <div className="mt-2.5 text-sm font-light leading-4 text-justify text-black">
+              <div className="mt-3 text-sm font-light text-justify text-black">
                 Our talented design team creates visually appealing digital user
                 experiences to solve practical issues and enhance key business
                 metrics.
@@ -437,7 +434,7 @@ export default async function Home() {
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-5 mr-6 w-24 h-24 bg-white rounded-full max-md:pr-5 max-md:mr-2.5 -mt-10">
+              <div className="flex z-10 justify-center items-center self-end px-5 mr-6 w-20 h-20 bg-white rounded-full max-md:pr-5 max-md:mr-2.5 -mt-10">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/0fb7a8838ae43aeb6e3fda9b3773993bee23b60d69788543a0e8c918cd4ef36f?"
@@ -448,7 +445,7 @@ export default async function Home() {
                 <div className="text-2xl font-medium leading-6">
                   Development
                 </div>
-                <div className="mt-2.5 text-sm font-light leading-4 text-justify">
+                <div className="mt-3 text-sm font-light text-justify">
                   We create efficient, secure apps for your company, by a
                   product strategy, assembling a skilled team, and starting
                   coding to give your brand a competitive edge.
@@ -459,7 +456,7 @@ export default async function Home() {
         
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-4 mr-5 w-24 h-24 bg-white rounded-full max-md:mr-2.5 -mt-10">
+              <div className="flex z-10 justify-center items-center self-end px-4 mr-5 w-20 h-20 bg-white rounded-full max-md:mr-2.5 -mt-10">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/d6b42f096ae127b6c0db8f6a7b08b39c23b22179ce2b09c3d355129d25549fee?"
@@ -468,7 +465,7 @@ export default async function Home() {
               </div>
               <div className="flex flex-col px-5 text-black">
                 <div className="text-2xl font-medium leading-6">Automate</div>
-                <div className="mt-3.5 text-sm font-light leading-4 text-justify">
+                <div className="mt-3 text-sm font-light text-justify">
                   Product testing, also known as consumer or comparative testing, measures a product&rsquo;s characteristics or capabilities to develop goods that meet specific technical criteria.
                 </div>
               </div>
@@ -476,7 +473,7 @@ export default async function Home() {
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-8 mr-3.5 w-24 h-24 bg-white rounded-full max-md:px-5 max-md:mr-2.5 -mt-10">
+              <div className="flex z-10 justify-center items-center self-end px-8 mr-3.5 w-20 h-20 bg-white rounded-full max-md:px-5 max-md:mr-2.5 -mt-10">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/959a6985ac95c743a93b95368cfb330ff373e0725372de8195d6270929065ba6?"
@@ -485,7 +482,7 @@ export default async function Home() {
               </div>
               <div className="flex flex-col pr-3.5 pl-7 text-black max-md:pl-5">
                 <div className="text-2xl font-medium leading-6">Launch</div>
-                <div className="mt-3.5 text-sm font-light leading-4 text-justify">
+                <div className="mt-3 text-sm font-light text-justify">
                   The final product is launched after client approval, fostering
                   growth for both companies. Our industry continuously improves,
                   and we ensure project safety.
@@ -495,7 +492,7 @@ export default async function Home() {
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-5 mr-6 w-24 h-24 bg-white rounded-full max-md:mr-2.5 -mt-10">
+              <div className="flex z-10 justify-center items-center self-end px-5 mr-6 w-20 h-20 bg-white rounded-full max-md:mr-2.5 -mt-10">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/19a903a5ee526b51ff93d213159f9d2866831e839a1d122133e785207a4f1b59?"
@@ -506,7 +503,7 @@ export default async function Home() {
                 <div className="text-2xl font-medium leading-6">
                   Archives and Artifacts
                 </div>
-                <div className="mt-3 text-sm font-light leading-4 text-justify">
+                <div className="mt-3 text-sm font-light text-justify">
                   You are the project owner, entitled to our as-built
                   documentation, specifications, test scripts, and release
                   scripts for future analysis or development.
@@ -522,10 +519,10 @@ export default async function Home() {
             srcSet="/icon-quote-start.svg"
             className="absolute top-10 -left-2 w-24 h-24 z-20"
         />
-        <div className="w-full text-6xl font-medium text-black max-md:max-w-full max-md:text-4xl text-center">
+        <div className="w-full xl:text-6xl lg:text-5xl text-3xl font-medium text-black max-md:max-w-full text-center">
           Our Testimonials
         </div>
-        <div className="self-center mt-6 text-2xl text-center text-black max-md:max-w-full">
+        <div className="self-center xl:mt-6 mt-3 lg:text-2xl text-xl text-center text-black max-md:max-w-full">
           Discover what our clients are saying about CodeAutomation
         </div>
         <div className="mt-14 max-w-screen-lg mx-auto max-md:mt-10 max-md:max-w-full px-5 md:px-0">
@@ -591,7 +588,7 @@ export default async function Home() {
               </div>
             </div>            
           </div>
-          <div className="flex justify-center lg:text-3xl text-base font-normal whitespace-nowrap lg:mt-36 mt-40">
+          <div className="flex justify-center text-base xl:text-3xl lg:text-2xl font-normal whitespace-nowrap lg:mt-36 mt-40">
             <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
                     <div className="relative grow self-center">
                     Check out Clutch
@@ -617,7 +614,7 @@ export default async function Home() {
             className="aspect-[1.22] absolute right-0 top-80"
           />
         <div className="flex flex-col flex-1 px-5 text-xl max-w-[1582px] relative z-10">
-          <div className="text-6xl font-medium text-black max-md:max-w-full max-md:text-4xl">
+          <div className="xl:text-6xl lg:text-5xl text-3xl font-medium text-black max-md:max-w-full">
             Our FAQs
           </div>
           <ul className="mt-10 flex flex-col gap-4">

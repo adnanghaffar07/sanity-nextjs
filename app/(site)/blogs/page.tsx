@@ -28,7 +28,7 @@ export default function Blogs() {
           />
           <div className="flex flex-col self-center w-full xl:max-w-[1272px] max-w-[991px] max-md:max-w-full relative z-10 mx-auto">
             <div className="lg:px-10 px-5 w-full">
-              <div className="xl:flex gap-10 lg:pt-32 lg:pb-10 pt-8 pb-8">
+              <div className="xl:flex gap-10 lg:pt-16 lg:pb-10 pt-8 pb-8">
                 <div className="xl:w-5/12 w-full rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3] mb-10 xl:mb-0">
                   <div className="w-full xl:min-h-[300px] relative rounded-3xl">
                     <div className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-left-top rounded-3xl xl:block hidden"

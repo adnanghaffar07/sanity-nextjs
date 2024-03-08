@@ -17,7 +17,7 @@ const navItems = [
     name: "Services",
   },
   {
-    path: "/",
+    path: "/lifeatca",
     name: "Life at CA",
   },
   {
@@ -25,7 +25,7 @@ const navItems = [
     name: "Blogs",
   },
   {
-    path: "/",
+    path: "/career",
     name: "Career",
   },
   {

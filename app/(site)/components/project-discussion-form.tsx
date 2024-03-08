@@ -22,7 +22,7 @@ export default function ProjectDiscussionContainer() {
                 <div className="mt-8">
                     <textarea className="border-0 justify-center items-start px-9 py-5 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full" placeholder={'Your Message'} rows={6} cols={6} />
                 </div>
-                <div className="self-center mt-6 text-3xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2">
+                <div className="self-center mt-6  text-base xl:text-3xl lg:text-2xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2">
                     Submit
                 </div>
             </div>
