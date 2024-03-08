@@ -63,7 +63,7 @@ export default function BlogSub() {
                   Mobile strategy is not based on conjecture. It consists of solutions that are not only focused on features and functions but also on how your clients use handheld and mobile devices in their daily lives.
                 </p>
                 <p className='text-xl font-light mb-5'>
-                  Here's how to develop a flexible mobile plan to include in your marketing effort to get the best results.
+                  Here&rsquo;s how to develop a flexible mobile plan to include in your marketing effort to get the best results.
                 </p>
                 <p className='text-xl font-light mb-5'>
                   <strong className='font-semibold'>2. Design mesmerizing experiences</strong><br />
@@ -81,7 +81,7 @@ export default function BlogSub() {
                 </p>
                 <p className='text-xl font-light mb-5'>
                   <strong className='font-semibold'>4. Better Voice assistance for easy search</strong><br />
-                  The ability to speak and express oneself is now the greatest gift "people on earth" have. Tony Zhao, the founder and CEO of the video chat business Agora.io stated in an interview that in-app conversations could raise user interest and engagement to some level. The same holds for your guests.
+                  The ability to speak and express oneself is now the greatest gift &rsquo;people on earth&rsquo; have. Tony Zhao, the founder and CEO of the video chat business Agora.io stated in an interview that in-app conversations could raise user interest and engagement to some level. The same holds for your guests.
                 </p>
                 <p className='text-xl font-light mb-5'>
                   You can quickly implement video calling or a click-to-call feature for audio calls on your application or website. Many click-to-call Software Development Kits are available online for the same. These kids must use a few coding lines and procedures to deliver their needs.

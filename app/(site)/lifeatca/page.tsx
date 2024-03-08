@@ -129,7 +129,7 @@ export default function LifeAtCA() {
         </div>
         <div className=" max-w-[1582px] lg:px-10 px-5">        
           <div className="mb-5 text-center">
-            <p className="text-xl">CodeAutomation is not just a workplace; it's a community. We foster a culture of collaboration, innovation, and inclusivity.</p>
+            <p className="text-xl">CodeAutomation is not just a workplace; it&rsquo;s a community. We foster a culture of collaboration, innovation, and inclusivity.</p>
           </div>
           <div className="mb-5 text-center">
             <img
@@ -139,7 +139,7 @@ export default function LifeAtCA() {
                 />
           </div>
           <div className="mb-5 text-center">
-            <p className="text-xl">We know that building strong relationships within the team is essential. That's why we organize regular team-building activities, events, and outings. From hackathons to charity drives, we find ways to bond while making a positive impact on the community.</p>
+            <p className="text-xl">We know that building strong relationships within the team is essential. That&rsquo;s why we organize regular team-building activities, events, and outings. From hackathons to charity drives, we find ways to bond while making a positive impact on the community.</p>
           </div>
           <div className="mb-5 text-center">
             <img
@@ -149,7 +149,7 @@ export default function LifeAtCA() {
                 />
           </div>
           <div className="mb-5 text-center">
-            <p className="text-xl">We know that building strong relationships within the team is essential. That's why we organize regular team-building activities, events, and outings. From hackathons to charity drives, we find ways to bond while making a positive impact on the community.</p>
+            <p className="text-xl">We know that building strong relationships within the team is essential. That&rsquo;s why we organize regular team-building activities, events, and outings. From hackathons to charity drives, we find ways to bond while making a positive impact on the community.</p>
           </div>
           <div className="mb-16 text-center">
             <img
