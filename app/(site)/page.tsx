@@ -389,13 +389,13 @@ export default async function Home() {
       <div className="flex flex-col w-full max-w-[1582px] mx-auto pb-32">
         <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 lg:px-10 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow px-5 pb-6 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
+            <div className="flex flex-col grow px-5 pb-6 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
               <div className="flex z-10 gap-5 justify-between items-start mt-0">
                 <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                   Project Initiation
                 </div>
-                <div className="flex flex-col flex-1 justify-center self-start -mt-10">
-                  <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full">
+                <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
+                  <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e06a953d2b12819c328b7856df7297b2c237c518892fa897eafb85e00ced39e?"
@@ -412,12 +412,12 @@ export default async function Home() {
             </div>
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow px-7 pb-7 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:pl-5 max-md:mt-10">
+            <div className="flex flex-col grow px-7 pb-7 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:pl-5 max-md:mt-10 relative">
               <div className="flex z-10 gap-5 justify-between items-start mt-0">
                 <div className="self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                   Design
                 </div>
-                <div className="flex justify-center items-center self-start px-5 w-20 h-20 bg-white rounded-full max-md:pl-5 -mt-10">
+                <div className="flex justify-center items-center self-start px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:pl-5 absolute -top-10 right-5">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/5e27351cdef1346bafe3d18f5e0c002c781d6f5cfc694e39225cd3b6a00874e5?"
@@ -433,8 +433,8 @@ export default async function Home() {
             </div>
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-5 mr-6 w-20 h-20 bg-white rounded-full max-md:pr-5 max-md:mr-2.5 -mt-10">
+            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
+              <div className="flex z-10 justify-center items-center self-end px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:pr-5 absolute -top-10 right-5">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/0fb7a8838ae43aeb6e3fda9b3773993bee23b60d69788543a0e8c918cd4ef36f?"
@@ -442,7 +442,7 @@ export default async function Home() {
                 />
               </div>
               <div className="flex flex-col px-7 text-black max-md:px-5">
-                <div className="text-2xl font-medium leading-6">
+                <div className="text-2xl font-medium leading-6 mt-10">
                   Development
                 </div>
                 <div className="mt-3 text-sm font-light text-justify">
@@ -455,8 +455,8 @@ export default async function Home() {
           </div>
         
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-4 mr-5 w-20 h-20 bg-white rounded-full max-md:mr-2.5 -mt-10">
+            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
+              <div className="flex z-10 justify-center items-center self-end px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 absolute -top-10 right-5">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/d6b42f096ae127b6c0db8f6a7b08b39c23b22179ce2b09c3d355129d25549fee?"
@@ -464,7 +464,7 @@ export default async function Home() {
                 />
               </div>
               <div className="flex flex-col px-5 text-black">
-                <div className="text-2xl font-medium leading-6">Automate</div>
+                <div className="text-2xl font-medium leading-6 mt-10">Automate</div>
                 <div className="mt-3 text-sm font-light text-justify">
                   Product testing, also known as consumer or comparative testing, measures a product&rsquo;s characteristics or capabilities to develop goods that meet specific technical criteria.
                 </div>
@@ -472,8 +472,8 @@ export default async function Home() {
             </div>
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-8 mr-3.5 w-20 h-20 bg-white rounded-full max-md:px-5 max-md:mr-2.5 -mt-10">
+            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
+              <div className="flex z-10 justify-center items-center self-end px-8 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:px-5 absolute -top-10 right-5">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/959a6985ac95c743a93b95368cfb330ff373e0725372de8195d6270929065ba6?"
@@ -481,7 +481,7 @@ export default async function Home() {
                 />
               </div>
               <div className="flex flex-col pr-3.5 pl-7 text-black max-md:pl-5">
-                <div className="text-2xl font-medium leading-6">Launch</div>
+                <div className="text-2xl font-medium leading-6 mt-10">Launch</div>
                 <div className="mt-3 text-sm font-light text-justify">
                   The final product is launched after client approval, fostering
                   growth for both companies. Our industry continuously improves,
@@ -491,8 +491,8 @@ export default async function Home() {
             </div>
           </div>
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10">
-              <div className="flex z-10 justify-center items-center self-end px-5 mr-6 w-20 h-20 bg-white rounded-full max-md:mr-2.5 -mt-10">
+            <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
+              <div className="flex z-10 justify-center items-center self-end px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 absolute -top-10 right-5">
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/19a903a5ee526b51ff93d213159f9d2866831e839a1d122133e785207a4f1b59?"
@@ -500,7 +500,7 @@ export default async function Home() {
                 />
               </div>
               <div className="flex flex-col px-7 text-black max-md:px-5">
-                <div className="text-2xl font-medium leading-6">
+                <div className="text-2xl font-medium leading-6 mt-10">
                   Archives and Artifacts
                 </div>
                 <div className="mt-3 text-sm font-light text-justify">
