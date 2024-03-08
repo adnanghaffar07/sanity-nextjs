@@ -1,5 +1,5 @@
 {
-  "name": "qa-portfolio-nextjs-website",
+  "name": "ca-website-nextjs-sanity",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.30.0",
+    "@portabletext/react": "^3.0.11",
     "next": "14.1.0",
-    "next-sanity": "^7.1.4",
+    "next-sanity": "^8.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "sanity": "^3.30.0",
-    "structure": "^2.0.1",
-    "styled-components": "^6.1.8",
-    "vision": "^5.4.4"
+    "react-icons": "^5.0.1",
+    "reacticons": "^0.0.1",
+    "sanity": "^3.30.0"
   },
   "devDependencies": {
     "@types/node": "^20",
