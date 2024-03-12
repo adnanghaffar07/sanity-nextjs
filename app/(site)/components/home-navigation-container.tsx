@@ -44,7 +44,7 @@ export default function HomeNavigationContainer() {
 
   
   return (
-    <div className="flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-5 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent bg-slate-800 xl:h-auto h-[72px]">
+    <div className="flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent bg-slate-800 xl:h-auto h-[72px]">
       <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-white">
         <Link href={`/`} className="hover:underline my-auto">
           <img
@@ -66,7 +66,8 @@ export default function HomeNavigationContainer() {
               {page.title}
             </Link>
           ))} */}
-          <nav className="mx-auto flex gap-10 self-center text-xl text-nowrap">
+        <nav className="mx-auto flex gap-10 self-center text-xl font-light leading-normal">
+
             {navItems.map((item, index) => {
               const isActive = item.path === pathname;
 
@@ -90,7 +91,7 @@ export default function HomeNavigationContainer() {
               );
             })}
           </nav>
-          <a className="flex gap-3 justify-between self-stretch px-6 py-2.5 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5" href="">
+          <a className="flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5" href="">
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/fac08cad98e0659b7b1fba8569319dcbc8cff9340fcddf511cabd61603becea7?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
