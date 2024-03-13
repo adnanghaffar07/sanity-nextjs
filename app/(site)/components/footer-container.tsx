@@ -22,13 +22,11 @@ export default async function FooterContainer() {
                   </div>
                 </div>
                 <div>
-                  <div className=" lg:text-3xl text-base font-medium">
+                  <div className=" lg:text-2xl text-base font-medium">
                     Contact us for business
                   </div>
                   <div className="mt-3.5 leading-8">
                     adnan@codeautomation.ai
-                    <br />
-                    +92-344-7644384
                     <br />
                     +1-850-558-4691
                   </div>
@@ -37,7 +35,7 @@ export default async function FooterContainer() {
             </div>
             <div className="flex flex-col">
               <div className="flex flex-col grow text-white max-md:mt-10">
-                <div className="text-3xl font-medium leading-6">
+                <div className="text-2xl font-medium leading-6">
                   Solutions
                 </div>
                 <div className="mt-6 text-base font-light flex flex-col gap-5">
@@ -52,7 +50,7 @@ export default async function FooterContainer() {
             </div>
             <div className="flex flex-col">
               <div className="flex flex-col text-white max-md:mt-10">
-                <div className="text-3xl font-medium">
+                <div className="text-2xl font-medium">
                   About Us
                 </div>
                 <div className="mt-6 text-base font-light flex flex-col gap-5">
@@ -66,22 +64,22 @@ export default async function FooterContainer() {
             </div>
             <div className="flex flex-col">
               <div className="flex flex-col text-white max-md:mt-10">
-                <div className="text-3xl font-medium leading-6">
+                <div className="text-2xl font-medium leading-6">
                   Address
                 </div>
                 <div className="mt-6 text-lg font-light leading-5">
-                  <span className="text-2xl font-bold">USA:</span> 30 N
+                  <span className="text-1xl font-bold">USA:</span> 30 N
                   Gould St Ste 7596, Sheridan, WY, 82801.
                   <br />
                   <br />
-                  <span className="text-2xl font-bold">Canada:</span> 10
+                  <span className="text-1xl font-bold">Canada:</span> 10
                   Stevens Avenue Ottawa, K1K4M9, Canada.
                 </div>
               </div>
             </div>
         </div>
         <div className="self-stretch mt-9 w-full bg-white min-h-[1px] mx-auto" />
-        <div className="mt-12 text-lg font-light leading-5 text-center text-white max-md:mt-10">        
+        <div className="mt-12 text-md font-light leading-5 text-center text-white max-md:mt-10">        
           {cpyrighttext.map((cpyrighttext) => (
               <div className="cpyrighttext" key={cpyrighttext._id}>
                   {cpyrighttext.name}

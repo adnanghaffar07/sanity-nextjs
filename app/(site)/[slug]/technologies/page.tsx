@@ -358,7 +358,7 @@ export default function Technologies() {
               Work with CodeAutomation, where collaboration, creativity, and precision intersect. Our unique approach to project execution  blends cutting-edge technology with a human touch.
             </div>
             <div className="flex items-start self-stretch pr-16 whitespace-nowrap max-w-[616px] text-sky-950 max-md:pr-5 lg:mt-16 mt-8 lg:text-3xl text-base font-medium">
-            <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
+            <a href="/" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
                       <div className="relative grow self-center">
                       Explore our Services
                       </div>

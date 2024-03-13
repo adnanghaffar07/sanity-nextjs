@@ -47,3 +47,7 @@ body {
   --br-7xl: 26px;
   --br-mini: 15px;
 }
+
+.resize-none {
+  resize: none;
+}

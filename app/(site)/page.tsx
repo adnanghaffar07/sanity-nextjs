@@ -122,7 +122,7 @@ export default async function Home() {
                     CodeAutomation offers 24/7 assistance from skilled professionals to ensure the quality of your IT projects. CodeAutomation is committed to guaranteeing optimal security and adherence to your business requirements. Our customized solutions and comprehensive support keep your organization running smoothly, from disaster recovery to cybersecurity, managed IT services, and e-commerce solutions.<br />
                     Our goal is to support your endeavors. At CodeAutomation, we are proud of our comprehensive knowledge of the full scope of IT services developed over the years.                  </div>
                   <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
-                    <a href="" className="cursor flex overflow-hidden relative gap-2 px-6 py-4 items-center bg-[#F7E022] rounded-lg shadow-md">
+                    <a href="/technologies" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
                       <div className="relative grow self-center">
                         Explore Our Technologies
                       </div>
@@ -221,7 +221,7 @@ export default async function Home() {
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
               <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
-                <a href="" className="cursor flex overflow-hidden relative gap-2 px-6 py-4 items-center  bg-[#F7E022] rounded-lg shadow-md">
+                <a href="/lifeatca" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
                   <div className="relative grow self-center">
                     Explore Our Portfolio
                   </div>
@@ -243,7 +243,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-          <div className="w-full xl:text-6xl lg:text-5xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
+          <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
             Why Work With Us
           </div>
           <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
@@ -261,13 +261,13 @@ export default async function Home() {
                     <div className="text-lg font-medium leading-6 uppercase">
                       Global Client
                     </div>
-                    <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      200
-                      <img
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      200+
+                      {/* <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
                         className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -285,13 +285,13 @@ export default async function Home() {
                     <div className="text-lg font-medium leading-6 uppercase">
                       Projects
                     </div>
-                    <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      350
-                      <img
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      350+
+                      {/* <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
                         className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -309,13 +309,13 @@ export default async function Home() {
                     <div className="text-lg font-medium leading-6 uppercase">
                       Apps tested
                     </div>
-                    <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      300
-                      <img
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      300+
+                      {/* <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
                         className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -333,13 +333,13 @@ export default async function Home() {
                     <div className="text-lg font-medium leading-6 uppercase">
                       Bugs Resolved
                     </div>
-                    <div className="xl:text-7xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      150<span className="text-4xl self-end">k</span>
-                      <img
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      150<span className="text-3xl self-end">k</span>+
+                      {/* <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
                         className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -361,29 +361,28 @@ export default async function Home() {
           <div className="w-full max-w-[1582px] mx-auto md:flex">
 
             <div className="flex relative flex-col md:w-7/12 w-full self-end">
-              <div className="xl:text-6xl lg:text-5xl text-3xl">
+              <div className="xl:text-4xl lg:text-3xl text-3xl">
                 Our Distinctive Way
               </div>
               <div className="lg:mt-8 mt-4 lg:text-xl text-lg font-light max-md:max-w-full lg:pr-32">
-                Work with CodeAutomation, where collaboration, creativity, and precision intersect. Our unique approach to project execution  blends cutting-edge technology with a human touch.
-              </div>
-              <div className="flex items-start self-stretch pr-16 whitespace-nowrap max-w-[616px] text-sky-950 max-md:pr-5 lg:mt-16 mt-8  text-base xl:text-3xl lg:text-2xl font-medium">
-                <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
+                Work with CodeAutomation, where collaboration, creativity, and precision intersect. Our unique approach to project execution blends cutting-edge technology with a human touch. Our specialized experts with top certifications aim to develop innovative options that assist companies in achieving growth goals in the digital era.              </div>
+              <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
+                <a href="" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
                   <div className="relative grow self-center">
-                    Explore our Services
+                    Explore Our Services
                   </div>
                   <img
                     loading="lazy"
                     src="/btn-arrow.svg"
-                    className="aspect-[1.22] lg:w-[38px] w-[20px]"
+                    className="w-[22px] h-[26.8px]" // Adjust the width and height
                   />
                 </a>
               </div>
             </div>
             <div className="md:w-5/12 w-full">
               <img
-                loading="lazy"
-                srcSet="/img-our-distinctive-way.jpg"
+
+                src="/img-our-distinctive-way.jpg"
                 className="object-cover size-full"
               />
             </div>
@@ -523,7 +522,7 @@ export default async function Home() {
             srcSet="/icon-quote-start.svg"
             className="absolute top-10 -left-2 w-24 h-24 z-20"
           />
-          <div className="w-full xl:text-6xl lg:text-5xl text-3xl font-medium text-black max-md:max-w-full text-center">
+          <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full text-center">
             Our Testimonials
           </div>
           <div className="self-center xl:mt-6 mt-3 lg:text-2xl text-xl text-center text-black max-md:max-w-full">
@@ -592,18 +591,19 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center text-base xl:text-3xl lg:text-2xl font-normal whitespace-nowrap lg:mt-36 mt-40">
-              <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-7 py-3 aspect-[6.66] max-md:px-5 items-center bg-[#F7E022] rounded-lg shadow">
+            <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-40">
+              <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-8 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
                 <div className="relative grow self-center">
                   Check out Clutch
                 </div>
                 <img
                   loading="lazy"
                   src="/btn-arrow.svg"
-                  className="aspect-[1.22] lg:w-[38px] w-[20px]"
+                  className="w-[22px] h-[26.8px]"
                 />
               </a>
             </div>
+
           </div>
           <img
             loading="lazy"
@@ -617,8 +617,8 @@ export default async function Home() {
             src="/ellipse-2.png"
             className="aspect-[1.22] absolute right-0 top-80"
           />
-          <div className="flex flex-col flex-1 px-5 text-xl max-w-[1582px] relative z-10">
-            <div className="xl:text-6xl lg:text-5xl text-3xl font-medium text-black max-md:max-w-full">
+          <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10">
+            <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4">
               Our FAQs
             </div>
             <ul className="mt-10 flex flex-col gap-4">
@@ -642,14 +642,8 @@ export default async function Home() {
                   </summary>
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
-                      <p className="mb-2">CodeAutomation boasts a diverse and highly skilled team of developers and testers with expertise in various technologies and programming languages. Our specialization includes but is not limited to:</p>
-                      <ul className="mb-3">
-                        <li className="mb-3"><strong>Programming Languages:</strong> CodeAutomation is proficient in languages such as Java, Python, JavaScript, .NET, PHP, Ruby on Rails, and more. Our developers are not only knowledgeable in these languages but also keep up with the latest advancements to ensure our clients receive cutting-edge solutions.</li>
-                        <li className="mb-3"><strong>Frameworks and Tools:</strong> CodeAutomation leverages popular development frameworks and tools like Angular, Node.js, Vue.js, React Native, React.js, Spring Boot, Django, and others to accelerate development while maintaining code quality.</li>
-                        <li className="mb-3"><strong>Testing Technologies:</strong> Our testing experts are well-versed in various testing technologies and frameworks, including Selenium, Cypress, Playwright, Protractor, Katalon, Postman, Rest Assured, JUnit, JIRA, Appium, and many more, to ensure comprehensive test coverage and automation.</li>
-                        <li className="mb-3"><strong>CRM/CMS implementation and customization:</strong> CodeAutomation is proficient in languages such as Javascript, Aura, LWCs, Apex, Flows, Rest API, Java and more. Our developers are not only knowledgeable in these languages but also keep up with the latest advancements to ensure our clients receive cutting-edge solutions.</li>
-                        <li className="mb-3"><strong>AI/ML languages:</strong> We leverage our clients with AI/ML services and languages are: NumPy, SciPy,  Pandas, PyTorch, matlab, Ruby on rails, Fortran, Golang, R language.</li>
-                      </ul>
+                      <p className="mb-2">CodeAutomations expertise covers a wide range of technologies and programming languages, including but not limited to Java, Python, JavaScript, .NET, PHP, Ruby on Rails, Selenium, Playwright, Katalon, AltUnity, and more. We adapt to the specific needs of each project.</p>
+                
                     </div>
                   </article>
                 </details>
@@ -674,16 +668,8 @@ export default async function Home() {
                   </summary>
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
-                      <p className="mb-2">CodeAutomation&rsquo;s extensive experience spans a broad spectrum of industries and sectors, allowing us to adapt and tailor our services to the unique requirements of each. Some of the industries we have worked with include:</p>
-                      <ul className="mb-3">
-                        <li className="mb-3"><strong>Healthcare:</strong> In the healthcare industry, we&rsquo;ve contributed to the development of innovative software solutions, electronic health records (EHR), telemedicine platforms, and healthcare management systems to improve patient care and optimize workflows.</li>
-                        <li className="mb-3"><strong>Manufacturing and Logistics:</strong> Working with manufacturing and logistics companies, we&rsquo;ve implemented solutions for supply chain management, inventory control, and production optimization. Our aim is to increase operational efficiency and reduce costs.</li>
-                        <li className="mb-3"><strong>Education:</strong> In the education sector, we&rsquo;ve developed e-learning platforms, school management systems, and educational technology solutions. We focus on creating tools that facilitate learning and improve administrative processes.</li>
-                        <li className="mb-3"><strong>Automotive:</strong> CodeAutomation has worked with the automotive industry on projects ranging from software for vehicle diagnostics to manufacturing process optimization. We help automotive companies embrace digital transformation for enhanced performance..</li>
-                        <li className="mb-3"><strong>Energy and Utilities:</strong> We&rsquo;ve collaborated with energy and utility companies to create software solutions for monitoring, control, and optimization. Our work contributes to improving resource management and sustainability practices.</li>
-                        <li className="mb-3"><strong>Government and Public Sector:</strong> CodeAutomation has experience working with government agencies on projects that involve digital transformation, citizen services, and data management. We prioritize security and compliance in these projects.</li>
-                        <li className="mb-3"><strong>Entertainment and Media:</strong> Our involvement in the entertainment and media industry includes developing content management systems, streaming platforms, and digital distribution solutions to enhance user engagement and content delivery.</li>
-                      </ul>
+                      <p className="mb-2">CodeAutomation has experience working with clients across various industries, such as healthcare, finance, e-commerce, Tech, telecommunications, and more. Our diverse portfolio demonstrates our adaptability and versatility.</p>
+                 
                     </div>
                   </article>
                 </details>
@@ -708,7 +694,7 @@ export default async function Home() {
                   </summary>
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
-                      <p className="mb-2">CodeAutomation&rsquo;s highly skilled workforce is strategically located across multiple global offices and remote locations to provide efficient and 24/7 support to our clients. While our main offices are situated in the USA, Canada, and Pakistan, we also have a distributed team of remote professionals collaborating from different parts of the world. This global presence ensures that we can cater to clients from diverse geographical regions and time zones, offering them the benefits of both local expertise and a global talent pool.</p>
+                      <p className="mb-2">CodeAutomation’s talented team of professionals is strategically located across multiple global offices to ensure around-the-clock support and timely project deliveries. Our main offices are in the USA, Canada, and Pakistan, but we also have remote team members collaborating from different parts of the world.</p>
                     </div>
                   </article>
                 </details>
@@ -733,15 +719,8 @@ export default async function Home() {
                   </summary>
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
-                      <p className="mb-2">CodeAutomation&rsquo;s comprehensive suite of testing services is designed to cover every aspect of software quality assurance, including:</p>
-                      <ul className="mb-3">
-                        <li className="mb-3"><strong>Functional Testing:</strong> We rigorously assess software functionality to ensure it meets specified requirements and functions as expected.</li>
-                        <li className="mb-3"><strong>Performance Testing:</strong> Our performance testing evaluates system responsiveness, scalability, and stability under various conditions to optimize application performance.</li>
-                        <li className="mb-3"><strong>Security Testing:</strong> We conduct security assessments to identify vulnerabilities and protect against potential threats, ensuring data integrity and user privacy.</li>
-                        <li className="mb-3"><strong>Automated Testing:</strong> We utilize automation frameworks to increase testing efficiency, reduce human error, and accelerate release cycles.</li>
-                        <li className="mb-3"><strong>Regression Testing:</strong> We perform regression tests to verify that new code changes do not negatively impact existing functionality.</li>
-                      </ul>
-                      <p>Our testing approach is thorough, and we employ a range of testing methodologies, including manual testing, automated testing, and continuous integration and continuous delivery (CI/CD) pipelines, to ensure that your software is reliable and defects-free.</p>
+                      <p className="mb-2">CodeAutomation offers a comprehensive suite of testing services, including functional testing, performance testing, security testing, automated testing, regression testing, and more. Our goal is to ensure your software is reliable and bug-free.</p>
+                
                     </div>
                   </article>
                 </details>
@@ -766,16 +745,8 @@ export default async function Home() {
                   </summary>
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
-                      <p className="mb-2">CodeAutomation&rsquo;s development process is structured and iterative, built around industry best practices. Here&rsquo;s a simplified overview of our typical development lifecycle:</p>
-                      <ul className="mb-3">
-                        <li className="mb-3"><strong>Requirements Gathering:</strong> We work closely with our clients to gather detailed project requirements, ensuring a clear understanding of goals and expectations.</li>
-                        <li className="mb-3"><strong>Design:</strong> Our experienced designers create wireframes and prototypes to visualize the software&rsquo;s user interface and functionality.</li>
-                        <li className="mb-3"><strong>Development:</strong> Our skilled developers write clean, maintainable code using best practices and relevant technologies.</li>
-                        <li className="mb-3"><strong>Testing:</strong> Rigorous testing is conducted at multiple stages, including unit testing, integration testing, and user acceptance testing (UAT).</li>
-                        <li className="mb-3"><strong>Deployment:</strong> We deploy the software to a production environment, ensuring a smooth transition from development to the live environment.</li>
-                        <li className="mb-3"><strong>Maintenance:</strong> Post-launch, we offer ongoing maintenance and support, addressing any issues, implementing updates, and optimizing performance.</li>
-                      </ul>
-                      <p>Throughout the process, CodeAutomation emphasizes transparent communication with our clients, offering regular updates and opportunities for feedback to ensure that the final product aligns with their vision and objectives.</p>
+                      <p className="mb-2">CodeAutomation’s development process follows industry best practices, including requirements gathering, design, development, testing, deployment, and maintenance. We emphasize collaboration and client communication at every stage to ensure project success.</p>
+               
                     </div>
                   </article>
                 </details>
@@ -800,14 +771,8 @@ export default async function Home() {
                   </summary>
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
-                      <p className="mb-2">CodeAutomation boasts a diverse and highly skilled team of developers and testers with expertise in various technologies and programming languages. Our specialization includes but is not limited to:</p>
-                      <ul className="mb-3">
-                        <li className="mb-3"><strong>Programming Languages:</strong> CodeAutomation is proficient in languages such as Java, Python, JavaScript, .NET, PHP, Ruby on Rails, and more. Our developers are not only knowledgeable in these languages but also keep up with the latest advancements to ensure our clients receive cutting-edge solutions.</li>
-                        <li className="mb-3"><strong>Frameworks and Tools:</strong> CodeAutomation leverages popular development frameworks and tools like Angular, Node.js, Vue.js, React Native, React.js, Spring Boot, Django, and others to accelerate development while maintaining code quality.</li>
-                        <li className="mb-3"><strong>Testing Technologies:</strong> Our testing experts are well-versed in various testing technologies and frameworks, including Selenium, Cypress, Playwright, Protractor, Katalon, Postman, Rest Assured, JUnit, JIRA, Appium, and many more, to ensure comprehensive test coverage and automation.</li>
-                        <li className="mb-3"><strong>CRM/CMS implementation and customization:</strong> CodeAutomation is proficient in languages such as Javascript, Aura, LWCs, Apex, Flows, Rest API, Java and more. Our developers are not only knowledgeable in these languages but also keep up with the latest advancements to ensure our clients receive cutting-edge solutions.</li>
-                        <li className="mb-3"><strong>AI/ML languages:</strong> We leverage our clients with AI/ML services and languages are: NumPy, SciPy,  Pandas, PyTorch, matlab, Ruby on rails, Fortran, Golang, R language.</li>
-                      </ul>
+                      <p className="mb-2">CodeAutomation takes data security and client confidentiality seriously. Our team adheres to strict security protocols, and we are open to signing Non-Disclosure Agreements (NDAs) to protect your sensitive information.</p>
+                  
                     </div>
                   </article>
                 </details>
