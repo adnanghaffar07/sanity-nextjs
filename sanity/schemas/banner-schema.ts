@@ -4,8 +4,8 @@ const bannercontent = {
     type: 'document',
     fields: [
         {
-            name: 'name',
-            title: 'Name',
+            name: 'content',
+            title: 'Content',
             type: 'string'
         },
         {

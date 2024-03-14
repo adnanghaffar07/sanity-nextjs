@@ -1,4 +1,4 @@
-const cpyrighttext = {
+const copyrighttext = {
     name: 'cpyrighttext',
     title: 'Copy Right Text',
     type: 'document',
@@ -17,4 +17,4 @@ const cpyrighttext = {
     ]
 };
 
-export default cpyrighttext;
+export default copyrighttext;

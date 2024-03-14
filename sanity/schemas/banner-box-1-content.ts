@@ -3,17 +3,7 @@ const bannerbox1content = {
     title: 'Banner Box 1 Content',
     type: 'document',
     fields: [
-        {
-            name: 'name',
-            title: 'Name',
-            type: 'string'
-        },
-        {
-            name: 'content',
-            title: 'Content',
-            type: 'array',
-            of: [{ type: "block" }]
-        },
+       
         {
             name: 'image1',
             title: 'Image',
@@ -27,6 +17,13 @@ const bannerbox1content = {
                 }
             ]
         },
+        {
+            name: 'content',
+            title: 'Content',
+            type: 'array',
+            of: [{ type: "block" }]
+        },
+    
     ]
 };
 
