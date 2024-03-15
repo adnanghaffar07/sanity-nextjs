@@ -13,7 +13,7 @@ const navItems = [
     name: "Home",
   },
   {
-    path: "/",
+    path: "/services",
     name: "Services",
   },
   {
@@ -44,7 +44,7 @@ export default function HomeNavigationContainer() {
 
   
   return (
-    <div className="flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent bg-slate-800 xl:h-auto h-[72px]">
+    <div className="flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
       <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-white">
         <Link href={`/`} className="hover:underline my-auto">
           <img

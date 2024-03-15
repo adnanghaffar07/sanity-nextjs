@@ -1,166 +1,290 @@
-import Link from "next/link";
-import { AiOutlinePaperClip } from "react-icons/ai";
-import { AiFillFlag } from "react-icons/ai";
-export default function LifeAtCA() {
+import * as React from "react";
+
+
+interface TeamMemberProps {
+  name: string;
+  title: string;
+  imageUrl: string;
+}
+
+const TeamMember: React.FC<TeamMemberProps> = ({ name, title, imageUrl }) => {
+  return (
+    <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
+      <div className="flex flex-col text-2xl font-semibold leading-9 text-center text-black max-md:mt-10">
+        <img src={imageUrl} alt={`${name}'s headshot`} className="w-full aspect-square rounded-full border border-gray-300" />
+        <div className="mt-7">
+          <span className="xl:text-2xl lg:text-1xl text-xl">{name}</span>
+          <br />
+          <span className="xl:text-1xl lg:text-xl text-xl font-light">{title}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const teamMembers = [
+  {
+    name: "Adnan Ghaffar",
+    title: "CEO",
+    imageUrl: "ceo-adnan.png",
+  },
+  {
+    name: "Ambreen Younas",
+    title: "CTO",
+    imageUrl: "/cto-ambreen.png",
+  },
+  {
+    name: "Zoya Ahmed",
+    title: "Senior Project Manager",
+    imageUrl: "/zoya.jpg",
+  },
+  {
+    name: "Farhan Ghaffar",
+    title: "Team Lead Project Management",
+    imageUrl: "/farhan.png",
+  },
+  {
+    name: "Muniba Iqbal",
+    title: "SQA Manager",
+    imageUrl: "/muniba.png",
+  },
+  {
+    name: "Wahib Iftikhar",
+    title: "Project Manager",
+    imageUrl: "/wahib.png",
+  },
+  {
+    name: "Mir Usman",
+    title: "HR Manager",
+    imageUrl: "/mir-usman.png",
+  },
+];
+
+interface ImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+const Image: React.FC<ImageProps> = ({ src, alt, className }) => (
+  <img loading="lazy" src={src} alt={alt} className={className} />
+);
+
+const images = [
+  { src: "/image1.png", alt: "Image 1" },
+  { src: "/image2.png", alt: "Image 2" },
+  { src: "/image3.png", alt: "Image 3" },
+  { src: "/image4.png", alt: "Image 4" },
+  { src: "/image5.png", alt: "Image 5" },
+  { src: "/image6.png", alt: "Image 6" },
+  { src: "/image7.png", alt: "Image 7" },
+  { src: "/image8.png", alt: "Image 8" },
+  { src: "/image9.png", alt: "Image 9" },
+  { src: "/image10.png", alt: "Image 10" },
+  { src: "/image11.png", alt: "Image 11" },
+  { src: "/image12.png", alt: "Image 12" },
+  { src: "/image13.png", alt: "Image 13" },
+  { src: "/image14.png", alt: "Image 14" },
+  { src: "/image15.png", alt: "Image 15" },
+  { src: "/image16.png", alt: "Image 16" },
+  { src: "/image17.png", alt: "Image 17" },
+  { src: "/image18.png", alt: "Image 18" },
+  { src: "/image19.png", alt: "Image 19" },
+];
+
+
+const LifeAtCA: React.FC = () => {
   return (
     <div>
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[750px] max-md:max-w-full  bg-cover bg-no-repeat bg-left-top"
-      style={{
-        backgroundImage: `url(/img-intro-life-at-ca.jpg)`
-        }}
-      >
-        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[600px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 mx-auto">
+
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" width="100%" height="100%" src="/lifeatca.png" alt="lifeatca" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
+        <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
+          <div className="lg:absolute lg:top-[450px]">
+            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
               <h2 className="title capitalize">
-                &quot;Life at CA&quot;
+                “Life at CA”
               </h2>
             </div>
           </div>
         </div>
       </div>
-      <div className="max-w-full mx-auto relative">
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10 max-w-[1582px] lg:px-10 px-5 py-16">
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-adnan-ghaffar.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Adnan Ghaffar
-            </div>
-            <div className="text-xl text-center">
-              CEO
-            </div>
+
+      <div className="flex flex-col p-10 md:p-20 bg-white max-md:px-5">
+        <section className="">
+          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            {teamMembers.slice(0, 4).map((member) => (
+              <TeamMember key={member.name} {...member} />
+            ))}
           </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-ambreen-younas.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Ambreen Younas
-            </div>
-            <div className="text-xl text-center">
-              CTO
-            </div>
+        </section>
+        <section className="mt-5 md:mt-10 mr-2.5 ml-2.5 max-md:mt-5 max-md:mr-2.5 max-md:max-w-full">
+          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            {teamMembers.slice(4).map((member) => (
+              <TeamMember key={member.name} {...member} />
+            ))}
           </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-zoya-ahmed.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Zoya Ahmed
-            </div>
-            <div className="text-xl text-center">
-              Senior Project Manager
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-farhan-ghaffar.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Farhan Ghaffar
-            </div>
-            <div className="text-xl text-center">
-              Team Lead Project Management
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-muniba-iqbal.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Muniba Iqbal
-            </div>
-            <div className="text-xl text-center">
-              SQA Manager
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-wahib-iftikhar.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Wahib Iftikhar
-            </div>
-            <div className="text-xl text-center">
-              Project Manager
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-center">
-              <img
-                loading="lazy"
-                src="/img-mir-usman.jpg"
-                className="w-64 inline-block"
-              />
-            </div>
-            <div className="text-2xl font-semibold text-center">
-              Mir Usman
-            </div>
-            <div className="text-xl text-center">
-              HR Manager
-            </div>
-          </div>
-        </div>
-        <div className=" max-w-[1582px] lg:px-10 px-5">        
-          <div className="mb-5 text-center">
-            <p className="text-xl">CodeAutomation is not just a workplace; it&rsquo;s a community. We foster a culture of collaboration, innovation, and inclusivity.</p>
-          </div>
-          <div className="mb-5 text-center">
-            <img
-                  loading="lazy"
-                  src="/img-life-at-ca-2.jpg"
-                  className="size-full"
-                />
-          </div>
-          <div className="mb-5 text-center">
-            <p className="text-xl">We know that building strong relationships within the team is essential. That&rsquo;s why we organize regular team-building activities, events, and outings. From hackathons to charity drives, we find ways to bond while making a positive impact on the community.</p>
-          </div>
-          <div className="mb-5 text-center">
-            <img
-                  loading="lazy"
-                  src="/img-life-at-ca-3.jpg"
-                  className="size-full"
-                />
-          </div>
-          <div className="mb-5 text-center">
-            <p className="text-xl">We know that building strong relationships within the team is essential. That&rsquo;s why we organize regular team-building activities, events, and outings. From hackathons to charity drives, we find ways to bond while making a positive impact on the community.</p>
-          </div>
-          <div className="mb-16 text-center">
-            <img
-                  loading="lazy"
-                  src="/img-life-at-ca-1.jpg"
-                  className="size-full"
-                />
-          </div>
-          </div>
+        </section>
       </div>
+
+
+      <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
+
+        <p className="self-center text-xl text-center text-black">
+          CodeAutomation is not just a workplace; it&apos;s a community&rsquo; We foster a
+          culture of collaboration&apos; innovation, and inclusivity&rsquo;
+        </p>
+        <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
+          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="flex flex-col w-full md:w-[37%] max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow max-md:mt-6">
+                {images.slice(0, 2).map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    className={`w-full aspect-[1.72] ${index === 1 ? "mt-6" : ""}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {images.slice(2, 5).map((image, index) => (
+              <div
+                key={index}
+                className={`flex flex-col ml-5 w-1/${index === 1 ? "3" : "5"} max-md:ml-0 max-md:w-full`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  className="grow shrink-0 max-w-full aspect-[0.47] w-[264px] max-md:mt-6 hidden md:block"
+                />
+              </div>
+            ))}
+
+          </div>
+        </section>
+        <p className="self-center mt-14 text-xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
+          We know that building strong relationships within the team is essential&rsquo;
+          That&apos;s why we organize regular team-building activities&lsquo; events&lsquo; and
+          outings&rsquo; From hackathons to charity drives&lsquo; we find ways to bond while
+          making a positive impact on the community&rsquo;
+        </p>
+        <section className="mt-7 ml-3.5 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
+          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
+              <Image
+                src={images[5].src}
+                alt={images[5].alt}
+                className="grow w-full aspect-[1.04] max-md:mt-5 max-md:max-w-full"
+              />
+            </div>
+            <div className="flex flex-col ml-5 w-3/5 max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow max-md:mt-5 max-md:max-w-full">
+                <div className="px-0.5 max-md:max-w-full">
+                  <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                    {images.slice(6, 8).map((image, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full"
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          className="grow w-full aspect-[1.54] max-md:mt-9"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="px-0.5 mt-4 max-md:max-w-full">
+                  <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                    {images.slice(8, 10).map((image, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full"
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          className="grow w-full aspect-[1.54] max-md:mt-9"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <p className="mt-10 text-xl leading-7 text-center text-black max-md:mt-14 max-md:mr-2 max-md:max-w-full">
+        We know that building strong relationships within the team is essential&rsquo;
+          That&apos;s why we organize regular team-building activities&lsquo; events&lsquo; and
+          outings&rsquo; From hackathons to charity drives&lsquo; we find ways to bond while
+          making a positive impact on the community&rsquo;
+        </p>
+        <section className="mt-16 ml-3.5 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
+          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="flex flex-col w-[36%] max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow max-md:mt-3.5 max-md:max-w-full">
+                {images.slice(10, 13).map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    className={`w-full aspect-[2.08] max-md:max-w-full ${index > 0 ? "mt-3" : ""
+                      } ${index === 2 ? "mt-3.5" : ""}`}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col ml-5 w-[64%] max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow max-md:mt-3 max-md:max-w-full">
+                <div className="max-md:max-w-full">
+                  <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                    {images.slice(13, 16).map((image, index) => (
+                      <div
+                        key={index}
+                        className={`flex flex-col ${index === 0 ? "w-[33%]" : "ml-5 w-[33%]"
+                          } max-md:ml-0 max-md:w-full`}
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          className="grow w-full aspect-[0.75] max-md:mt-7"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-8 max-md:max-w-full">
+                  <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                    {images.slice(16, 19).map((image, index) => (
+                      <div
+                        key={index}
+                        className={`flex flex-col ${index === 0 ? "w-[33%]" : "ml-5 w-[33%]"
+                          } max-md:ml-0 max-md:w-full`}
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          className="grow w-full aspect-[0.75] max-md:mt-7"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+
     </div>
   );
-}
+};
+
+export default LifeAtCA;
 

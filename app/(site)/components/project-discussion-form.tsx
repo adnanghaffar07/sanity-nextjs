@@ -4,7 +4,7 @@ export default function ProjectDiscussionContainer() {
     return (
         <div className="flex justify-center items-center px-16 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[36px] max-md:px-5 border border-slate-300">
             <div className="flex flex-col mt-3.5 w-full max-w-[746px] max-md:max-w-full">
-                <div className="lg:text-4xl md:text-3xl text-2xl font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl">
+                <div className="lg:text-4xl md:text-3xl text-l font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl">
                     Lets have a Project Discussion
                 </div>                
                 <div className="mt-10">
