@@ -1,14 +1,52 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { AiFillFlag } from "react-icons/ai";
+
+
 export default function Career() {
+
+  type BenefitItemProps = {
+    imageUrl: string;
+    altText: string;
+    title: string;
+  };
+
+  const BenefitItem: React.FC<BenefitItemProps> = ({ imageUrl, altText, title }) => (
+    <div className="flex flex-col items-center text-base font-semibold leading-8 text-center text-black">
+      <img loading="lazy" src={imageUrl} alt={altText} className="self-center w-full aspect-square" />
+      <div className="mt-2.5">{title}</div>
+    </div>
+  );
+
+  const benefits = [
+    { imageUrl: "/time.png", altText: "time", title: "Flexible Timings" },
+    { imageUrl: "/fuel-allowance.png", altText: "fuel", title: "Fuel Allowance" },
+    { imageUrl: "/paid-leaves.png", altText: "Paid Leaves", title: "Paid Leaves" },
+    { imageUrl: "/annual-trip.png", altText: "Annual Trip", title: "Annual Trip" },
+    { imageUrl: "/medical.png", altText: "Medical Coverage", title: "Medical Coverage" },
+    { imageUrl: "/annual-ic.png", altText: "Annual Increment", title: "Annual Increment" },
+    { imageUrl: "/bonuses.png", altText: "Bonuses", title: "Bonuses" },
+  ];
+
+  const benefitsmall = [
+    { imageUrl: "/timing-sm.png", altText: "time", title: "Flexible Timings" },
+    { imageUrl: "/fuel-sm.png", altText: "fuel", title: "Fuel Allowance" },
+    { imageUrl: "/leaves-sm.png", altText: "Paid Leaves", title: "Paid Leaves" },
+    { imageUrl: "/trip-sm.png", altText: "Annual Trip", title: "Annual Trip" },
+    { imageUrl: "/medical-sm.png", altText: "Medical Coverage", title: "Medical Coverage" },
+    { imageUrl: "/increment-sm.png", altText: "Annual Increment", title: "Annual Increment" },
+    { imageUrl: "/bouse-sm.png", altText: "Bonuses", title: "Bonuses" },
+  ];
+
+
+
   return (
     <div>
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[600px] max-md:max-w-full">
-        <video className="absolute top-0 left-0 object-cover absolute inset-0 size-full" width="100%" height="100%" muted autoPlay>
-          <source src="./for-blogs.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/career.png" alt="lifeatca" />
+
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[250px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
@@ -24,7 +62,7 @@ export default function Career() {
       </div>
       <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-          <div className="self-center xl:text-6xl lg:text-5xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
+          <div className="self-center xl:text-5xl lg:text-4xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
             Grow And Collaborate With The Top Professionals In The Field.
           </div>
           <div className="xl:w-9/12 mx-auto text-center">
@@ -34,50 +72,50 @@ export default function Career() {
       </div>
       <div className="max-w-full mx-auto relative">
         <img
-            loading="lazy"
-            src="/intersect-left.png"
-            className="aspect-[1.22] absolute left-0 top-48 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
-                <div className="xl:pr-20 lg:order-1 order-2 relative self-center">
-                  <img
-                    loading="lazy"
-                    src="/intersect-left.png"
-                    className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="xl:text-6xl lg:text-5xl text-3xl mb-3">
-                    Make Your Own Trajectory With Your Own Assistance.
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base">We support and encourage our team members as they pursue their goals. Whether it&rsquo;s a move up or a step sideways into a career you&rsquo;ve always desired, our senior leadership team will regularly work with you to establish your next steps.</p>
-                  </div>
-                </div>
-                <div className="text-center lg:order-2 order-1">
-                  <img
+          loading="lazy"
+          src="/intersect-left.png"
+          className="aspect-[1.22] absolute left-0 top-48 lg:block hidden"
+        />
+        <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+          <div className="lg:px-10 px-5 w-full">
+            <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
+              <div className="xl:pr-20 lg:order-1 order-2 relative self-center">
+                <img
                   loading="lazy"
-                  src="/img-trajectory.png"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
+                  src="/intersect-left.png"
+                  className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
+                />
+                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
+                  Make Your Own Trajectory With Your Own Assistance.
                 </div>
+                <div className="mb-10">
+                  <p className="lg:text-lg text-base text-[#024]">We support and encourage our team members as they pursue their goals. Whether it&rsquo;s a move up or a step sideways into a career you&rsquo;ve always desired, our senior leadership team will regularly work with you to establish your next steps.</p>
+                </div>
+              </div>
+              <div className="text-center lg:order-2 order-1">
+                <img
+                  loading="lazy"
+                  src="/career1.svg"
+                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                />
               </div>
             </div>
           </div>
+        </div>
       </div>
       <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:pt-0 lg:pb-0 py-8 md:px-5 w-full mx-auto relative">
-          <img
-            loading="lazy"
-            src="/ellipse-2.png"
-            className="aspect-[1.22] absolute right-0 -top-36"
-          />
+        <img
+          loading="lazy"
+          src="/ellipse-2.png"
+          className="aspect-[1.22] absolute right-0 -top-36"
+        />
         <div className="flex flex-col w-full max-w-[1582px] mx-auto">
           <div className="text-center">
-            <div className="xl:text-6xl lg:text-5xl text-3xl mb-3">
+            <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
               Open Vacancies
             </div>
             <div className="mb-10">
-              <p className="lg:text-lg text-base">Are you passionate about building your career with opportunities to learn and lead?</p>
+              <p className="lg:text-lg text-base text-[#024]">Are you passionate about building your career with opportunities to learn and lead?</p>
             </div>
           </div>
           <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 lg:gap-16 lg:px-10 px-5 lg:mt-11 w-full max-md:max-w-full">
@@ -86,12 +124,12 @@ export default function Career() {
                 <div className="flex z-10 gap-5 justify-between items-start mt-0">
                   <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                     Java Developer
-                  </div>                
+                  </div>
                   <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/icon-open-vacancies.svg"
+                        src="/Group 983.svg"
                         className="w-full aspect-[1.09]"
                       />
                     </div>
@@ -119,12 +157,12 @@ export default function Career() {
                 <div className="flex z-10 gap-5 justify-between items-start mt-0">
                   <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                     JavaScript Developer
-                  </div>                
+                  </div>
                   <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/icon-open-vacancies.svg"
+                        src="/Group 983.svg"
                         className="w-full aspect-[1.09]"
                       />
                     </div>
@@ -152,12 +190,12 @@ export default function Career() {
                 <div className="flex z-10 gap-5 justify-between items-start mt-0">
                   <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                     Python Developer
-                  </div>                
+                  </div>
                   <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/icon-open-vacancies.svg"
+                        src="/Group 983.svg"
                         className="w-full aspect-[1.09]"
                       />
                     </div>
@@ -185,12 +223,12 @@ export default function Career() {
                 <div className="flex z-10 gap-5 justify-between items-start mt-0">
                   <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
                     PHP Developer
-                  </div>                
+                  </div>
                   <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/icon-open-vacancies.svg"
+                        src="/Group 983.svg"
                         className="w-full aspect-[1.09]"
                       />
                     </div>
@@ -217,13 +255,13 @@ export default function Career() {
               <div className="flex flex-col grow px-5 pb-6 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
                 <div className="flex z-10 gap-5 justify-between items-start mt-0">
                   <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
-                  Flutter Developer
-                  </div>                
+                    Flutter Developer
+                  </div>
                   <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/icon-open-vacancies.svg"
+                        src="/Group 983.svg"
                         className="w-full aspect-[1.09]"
                       />
                     </div>
@@ -250,46 +288,53 @@ export default function Career() {
         </div>
       </div>
       <div className="max-w-full mx-auto relative">
-        <img
+        {/* <img
             loading="lazy"
             src="/intersect-right.png"
             className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">            
-                <div className="text-center">
-                  <img
+          /> */}
+        <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+          <div className="lg:px-10 px-5 w-full">
+            <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
+              <div className="text-center">
+                <img
                   loading="lazy"
-                  src="/img-perks-benefits.jpg"
+                  src="/career2.svg"
                   className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-                <div className="xl:pl-20 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-right.png"
-                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
-                  />                  
-                  <div className="xl:text-6xl lg:text-5xl text-3xl mb-3 text-end">
-                    Perks & Benefits
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base text-end">Get special perks and benefits such as flexible schedules and career advancement chances. Join us and advance your career in code automation today.</p>
-                  </div>
-                  <div className="lg:pl-36 md:text-end">
-                    <img
-                    loading="lazy"
-                    src="/img-logos-perks-benefits.jpg"
-                    className="lg:w-full md:w-3/4 w-full inline-block"
-                    />
-                  </div>
-                </div>
+                />
               </div>
+
+              <div className="xl:pl-20 relative">
+                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-end text-[#024]">
+                  Perks & Benefits
+                </div>
+                <div className="mb-10">
+                  <p className="lg:text-lg text-base text-end text-[#024]">Get special perks and benefits such as flexible schedules and career advancement chances. Join us and advance your career in code automation today.</p>
+                </div>
+                <div className="flex flex-col w-full max-w-[500px] max-md:max-w-full sm:max-w-[500px]">
+                  <div className="flex flex-wrap gap-5 justify-end">
+                    {benefits.map((item, index) => (
+                      <div key={index} className="w-full sm:w-1/3 md:w-1/5">
+                        <BenefitItem
+                          imageUrl={item.imageUrl}
+                          altText={item.altText}
+                          title={item.title}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+
+
+              </div>
+
             </div>
           </div>
+        </div>
       </div>
     </div>
   );
 }
+
 

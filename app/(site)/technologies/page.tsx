@@ -4,13 +4,13 @@ import { getBannerbox1content } from "@/sanity/sanity-utils";
 export default function Technologies() {
   return (
     <div>
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[600px] max-md:max-w-full">
-        <video className="absolute top-0 left-0 object-cover absolute inset-0 size-full" width="100%" height="100%" muted autoPlay>
-          <source src="./for-blogs.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/technologies.png" />
+          
+   
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[250px]">
+          <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
               {/* &quot;Transforming Businesses through{" "}
               <span className="text-yellow-400">Generative AI</span>&quot; */}
@@ -23,7 +23,7 @@ export default function Technologies() {
                 &quot;Technology&quot;
               </h2>
             </div>
-            <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+            <div className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
               We offer only well-recognized and time-tested technologies to bring advancement to any of your business goals.
             </div>
           </div>
@@ -31,11 +31,11 @@ export default function Technologies() {
       </div>
       <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-          <div className="self-center lg:text-6xl text-3xl xl:w-6/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
+          <div className="self-center lg:text-5xl text-3xl xl:w-6/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
             Our Tech Stack In Different Technologies
           </div>
           <div className="xl:w-9/12 mx-auto text-center">
-            <p className="lg:text-xl text-base">Explore the technologies that power our solutions and witness the innovation firsthand! Here, we showcase our proficiency in a wide range of cutting-edge technologies across various domains of software development.</p>
+            <p className="lg:text-xl text-l text-base">Explore the technologies that power our solutions and witness the innovation firsthand! Here, we showcase our proficiency in a wide range of cutting-edge technologies across various domains of software development.</p>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function Technologies() {
                     src="/intersect-left.png"
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3">
+                  <div className="lg:text-5xl text-3xl mb-3">
                     Ai/ML
                   </div>
                   <div className="mb-10">
@@ -101,7 +101,7 @@ export default function Technologies() {
                     src="/intersect-right.png"
                     className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
                   />                  
-                  <div className="lg:text-6xl text-3xl mb-3 text-end">
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
                     CRM/CMS
                   </div>
                   <div className="mb-10">
@@ -134,7 +134,7 @@ export default function Technologies() {
                     src="/intersect-left.png"
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3">
+                  <div className="lg:text-5xl text-3xl mb-3">
                     Frontend
                   </div>
                   <div className="mb-10">
@@ -181,7 +181,7 @@ export default function Technologies() {
                     src="/intersect-right.png"
                     className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3 text-end">
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
                     Backend
                   </div>
                   <div className="mb-10">
@@ -214,7 +214,7 @@ export default function Technologies() {
                     src="/intersect-left.png"
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3">
+                  <div className="lg:text-5xl text-3xl mb-3">
                     Database
                   </div>
                   <div className="mb-10">
@@ -261,7 +261,7 @@ export default function Technologies() {
                     src="/intersect-right.png"
                     className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3 text-end">
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
                     Mobile Technologies
                   </div>
                   <div className="mb-10">
@@ -294,7 +294,7 @@ export default function Technologies() {
                     src="/intersect-left.png"
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3">
+                  <div className="lg:text-5xl text-3xl mb-3">
                     Manual Testing
                   </div>
                   <div className="mb-10">
@@ -341,7 +341,7 @@ export default function Technologies() {
                     src="/intersect-right.png"
                     className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
                   />                  
-                  <div className="lg:text-6xl text-3xl mb-3 text-end">
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
                     Automated Testing
                   </div>
                   <div className="mb-10">
@@ -374,7 +374,7 @@ export default function Technologies() {
                     src="/intersect-left.png"
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
-                  <div className="lg:text-6xl text-3xl mb-3">
+                  <div className="lg:text-5xl text-3xl mb-3">
                     UI/UX Designing
                   </div>
                   <div className="mb-10">
