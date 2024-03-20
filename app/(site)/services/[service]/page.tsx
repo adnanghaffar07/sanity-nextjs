@@ -6,7 +6,7 @@ const page = ({ params }: { params: { service: String } }) => {
   return (
     <>
       <HeroSectionComponent
-        title="“Web development”"
+        title='"Web development"'
         content=" A good web application comes with an elegant design and features
         that serve its purpose elegantly. The expertise of developing 200+
         apps taught out team what it takes to deliver that kind of
@@ -33,7 +33,6 @@ const page = ({ params }: { params: { service: String } }) => {
       />
 
       <ServiceApproachSection
-        key={12}
         title="What We Offer"
         description="CodeAutomation provides a wide range of website development services, including"
         imageUrl="/service-webdev-offer-image.png"
@@ -54,9 +53,9 @@ const page = ({ params }: { params: { service: String } }) => {
           <div className="bg-white w-[354px] md:w-[584px] h-[354px] md:h-[584px] rounded-full"></div>
         </div>
 
-        <div className="ml-10 xl:ml-5 2xl:ml-20 text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1120px]">
+        <h2 className="text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1000px] mx-auto">
           Why Choose CodeAutomation for Web Development
-        </div>
+        </h2>
 
         <div className="flex flex-wrap xl:flex-nowrap gap-10 xl:gap-5 2xl:gap-10 justify-center items-center mt-12 text-black mb-[114px] mx-4">
           <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
@@ -64,7 +63,7 @@ const page = ({ params }: { params: { service: String } }) => {
               01
             </div>
             <div className="flex flex-col pl-4 mt-2">
-              <div className="text-base font-medium leading-6 pt-6">
+              <div className="text-base font-medium leading-6 mt-6">
                 Skilled Team
               </div>
               <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
@@ -78,8 +77,8 @@ const page = ({ params }: { params: { service: String } }) => {
             <div className="z-10 flex justify-center items-center self-end px-3.5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
               02
             </div>
-            <div className="flex flex-col pl-4 mt-2">
-              <div className="text-base font-medium leading-6 pt-6">
+            <div className="flex flex-col pl-4 mt-0">
+              <div className="text-base font-medium leading-6 mt-0">
                 Modern Technology
               </div>
               <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
@@ -93,8 +92,8 @@ const page = ({ params }: { params: { service: String } }) => {
             <div className="z-10 flex justify-center items-center self-end px-4 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
               03
             </div>
-            <div className="flex flex-col pl-4 mt-2">
-              <div className="text-base font-medium leading-6 pt-6">
+            <div className="flex flex-col pl-4 mt-4">
+              <div className="text-base font-medium leading-6">
                 Custom Solutions
               </div>
               <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
@@ -108,8 +107,8 @@ const page = ({ params }: { params: { service: String } }) => {
             <div className="z-10 flex justify-center items-center self-end px-3 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
               04
             </div>
-            <div className="flex flex-col pl-4 mt-2">
-              <div className="text-base font-medium leading-6 pt-6">
+            <div className="flex flex-col pl-4 mt-4">
+              <div className="text-base font-medium leading-6">
                 User-Centric Design
               </div>
               <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
@@ -123,8 +122,8 @@ const page = ({ params }: { params: { service: String } }) => {
             <div className="z-10 flex justify-center items-center self-end px-3.5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
               05
             </div>
-            <div className="flex flex-col pl-4 mt-2">
-              <div className="text-base font-medium leading-6 pt-6">
+            <div className="flex flex-col pl-4 mt-4">
+              <div className="text-base font-medium leading-6">
                 Deadline Adherence
               </div>
               <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">

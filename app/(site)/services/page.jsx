@@ -16,7 +16,7 @@ const servicesArr = [
     imageSrc: "/service-card-ai.png",
     title: "AI/ML Services",
     description:
-      "CodeAutomation offers customized solutions, advanced technology, and seamless integration to optimize data potential and drive success, leveraging AI and AML for optimal results....",
+      "CodeAutomation offers customized solutions, advanced technology, and seamless integration to optimize data potential and drive success, leveraging AI and ML for optimal results....",
     iconSrc: "/service-card-right-arrow.png",
     linkUrl: "ai-ml-services",
   },
@@ -141,7 +141,7 @@ const Services = () => {
   return (
     <>
       <HeroSectionComponent
-        title="“Our Services”"
+        title='"Our Services"'
         content="CodeAutomation.ai provides comprehensive software development,
       testing, and automation solutions to enable digital transformation for
       enterprises globally."
