@@ -39,12 +39,12 @@ export default async function FooterContainer() {
                   Solutions
                 </div>
                 <div className="mt-6 text-base font-light flex flex-col gap-5">
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Software Development</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Web App Development</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Mobile App Development</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">QA Automation Testing</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">QA Manual Testing</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Automate Business</Link>
+                  <Link href={`/services/service`} className="hover:underline my-auto inline-block">Software Development</Link>
+                  <Link href={`/services/service`} className="hover:underline my-auto inline-block">Web App Development</Link>
+                  <Link href={`/services/service`} className="hover:underline my-auto inline-block">Mobile App Development</Link>
+                  <Link href={`/services/service`} className="hover:underline my-auto inline-block">QA Automation Testing</Link>
+                  <Link href={`/services/service`} className="hover:underline my-auto inline-block">QA Manual Testing</Link>
+                  <Link href={`/services/service`} className="hover:underline my-auto inline-block">Automate Business</Link>
                 </div>
               </div>
             </div>
@@ -54,9 +54,9 @@ export default async function FooterContainer() {
                   About Us
                 </div>
                 <div className="mt-6 text-base font-light flex flex-col gap-5">
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Expert Team</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Our Exciting News</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">Contact Us For Jobs</Link>
+                  <Link href={`/lifeatca`} className="hover:underline my-auto inline-block">Expert Team</Link>
+                  <Link href={`/blogs`} className="hover:underline my-auto inline-block">Our Exciting News</Link>
+                  <Link href={`/career`} className="hover:underline my-auto inline-block">Contact Us For Jobs</Link>
                   <Link href={`/`} className="hover:underline my-auto inline-block">hr@codeautomation.ai</Link>
                   <Link href={`/`} className="hover:underline my-auto inline-block">+92 321 0024000</Link>
                 </div>

@@ -24,7 +24,7 @@ const ServiceApproachSection: React.FC<ApproachSectionProps> = ({
       <div className="flex flex-col-reverse xl:flex-row justify-center items-center">
         <div className="flex flex-col">
           <div className="flex z-10 flex-col grow px-5 mt-28 max-md:mt-10 max-md:max-w-full">
-            <h2 className="text-xl md:text-6xl tracking-tight text-black capitalize leading-[61.08px] max-md:max-w-full max-md:text-4xl">
+            <h2 className="text-xl md:text-5xl tracking-tight text-black capitalize leading-[61.08px] max-md:max-w-full max-md:text-4xl">
               {title}
             </h2>
             <p className="mt-5 text-xs md:text-xl font-light leading-7 text-justify text-black max-w-[580px]">

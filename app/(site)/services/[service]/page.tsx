@@ -53,7 +53,7 @@ const page = ({ params }: { params: { service: String } }) => {
           <div className="bg-white w-[354px] md:w-[584px] h-[354px] md:h-[584px] rounded-full"></div>
         </div>
 
-        <h2 className="text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1000px] mx-auto">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1000px] mx-auto">
           Why Choose CodeAutomation for Web Development
         </h2>
 
@@ -97,7 +97,7 @@ const page = ({ params }: { params: { service: String } }) => {
                 Custom Solutions
               </div>
               <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                We don't believe in one-size-fits-all. Your website is built
+                We don&apos;t believe in one-size-fits-all. Your website is built
                 from the ground up to suit your unique needs and objectives.
               </div>
             </div>

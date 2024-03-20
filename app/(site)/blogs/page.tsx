@@ -2,13 +2,13 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 export default function Blogs() {
   return (
     <div>
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[600px] max-md:max-w-full">
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <video className="absolute top-0 left-0 object-cover absolute inset-0 size-full" width="100%" height="100%" muted autoPlay>
           <source src="./for-blogs.mp4" type="video/mp4" />
         </video>
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[250px]">
+          <div className="lg:absolute lg:top-[350px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
               <h2 className="title capitalize">
                 &quot;Our Blogs&quot;
