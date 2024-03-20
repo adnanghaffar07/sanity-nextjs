@@ -57,8 +57,8 @@ export default async function FooterContainer() {
                   <Link href={`/lifeatca`} className="hover:underline my-auto inline-block">Expert Team</Link>
                   <Link href={`/blogs`} className="hover:underline my-auto inline-block">Our Exciting News</Link>
                   <Link href={`/career`} className="hover:underline my-auto inline-block">Contact Us For Jobs</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">hr@codeautomation.ai</Link>
-                  <Link href={`/`} className="hover:underline my-auto inline-block">+92 321 0024000</Link>
+                  <Link href="mailto:hr@codeautomation.ai" className="hover:underline my-auto inline-block">hr@codeautomation.ai</Link>
+                  <Link href="tel:+923210024000" className="hover:underline my-auto inline-block">+92 321 0024000</Link>
                 </div>
               </div>
             </div>
