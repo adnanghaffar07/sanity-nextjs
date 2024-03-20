@@ -53,7 +53,7 @@ const page = ({ params }: { params: { service: String } }) => {
           <div className="bg-white w-[354px] md:w-[584px] h-[354px] md:h-[584px] rounded-full"></div>
         </div>
 
-        <h2 className="text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1000px] mx-auto">
+        <h2 className="text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1000px] mx-10 xl:mx-auto">
           Why Choose CodeAutomation for Web Development
         </h2>
 
