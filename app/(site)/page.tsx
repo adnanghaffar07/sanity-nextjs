@@ -1,10 +1,6 @@
-import { getBannercontent } from "@/sanity/sanity-utils";
-import { getBannerbox1content } from "@/sanity/sanity-utils";
+import React from 'react';
 
-
-export default async function Home() {
-  const bannercontent = await getBannercontent();
-  const bannerbox1content = await getBannerbox1content();
+export default function Home() {
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
@@ -25,10 +21,6 @@ export default async function Home() {
               Explore with us, and let&rsquo;s pioneer the next era of innovation together.
             </div>
           </div>
-
-
-
-
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 text-base mt-10 lg:mt-auto max-md:max-w-full text-center max-w-[1400px]">
             <div className="flex flex-col flex-1 items-center mt-1.5">
               <img
@@ -81,19 +73,22 @@ export default async function Home() {
           <div className="self-center xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
             Our Top Services
           </div>
+
           <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 xl:mt-12 text-xl font-bold whitespace-nowrap max-md:flex-wrap mt-10 max-md:max-w-full">
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              Web Development
-            </div>
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              Software Development
-            </div>
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              QA Automation Testing
-            </div>
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              AI/ML Services
-            </div>
+     
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                Web Development
+              </div>
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                Software Development
+              </div>
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                QA Automation Testing
+              </div>
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                AI/ML Services
+              </div>
+          
           </div>
 
         </div>
@@ -643,7 +638,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomations expertise covers a wide range of technologies and programming languages, including but not limited to Java, Python, JavaScript, .NET, PHP, Ruby on Rails, Selenium, Playwright, Katalon, AltUnity, and more. We adapt to the specific needs of each project.</p>
-                
+
                     </div>
                   </article>
                 </details>
@@ -669,7 +664,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation has experience working with clients across various industries, such as healthcare, finance, e-commerce, Tech, telecommunications, and more. Our diverse portfolio demonstrates our adaptability and versatility.</p>
-                 
+
                     </div>
                   </article>
                 </details>
@@ -720,7 +715,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation offers a comprehensive suite of testing services, including functional testing, performance testing, security testing, automated testing, regression testing, and more. Our goal is to ensure your software is reliable and bug-free.</p>
-                
+
                     </div>
                   </article>
                 </details>
@@ -746,7 +741,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation’s development process follows industry best practices, including requirements gathering, design, development, testing, deployment, and maintenance. We emphasize collaboration and client communication at every stage to ensure project success.</p>
-               
+
                     </div>
                   </article>
                 </details>
@@ -772,7 +767,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation takes data security and client confidentiality seriously. Our team adheres to strict security protocols, and we are open to signing Non-Disclosure Agreements (NDAs) to protect your sensitive information.</p>
-                  
+
                     </div>
                   </article>
                 </details>

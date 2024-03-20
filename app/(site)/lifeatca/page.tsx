@@ -80,9 +80,7 @@ const LifeAtCA = () => {
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[450px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
-         
-                “Life at CA”
-      
+            &quot;Life at CA&quot;
             </div>
           </div>
         </div>
@@ -113,7 +111,7 @@ const LifeAtCA = () => {
 
       <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
       <p className="self-center text-xl text-center text-black">
-          CodeAutomation is not just a workplace; it&apos;s a community&rsquo; We foster a
+          CodeAutomation is not just a workplace; it&apos;s a community, We foster a
           culture of collaboration&apos; innovation, and inclusivity&rsquo;
         </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
