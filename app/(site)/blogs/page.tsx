@@ -1,34 +1,42 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 export default function Blogs() {
   return (
     <>
-      <section className="relative">
-        <div className="bg-[#1E1E1E] w-full h-[380px] sm:h-[752px] opacity-75 absolute z-[1]"></div>
-        <div className="w-full h-[380px] sm:h-[752px] relative z-0">
-          <Image
-            src="/blogs-hero-bg.png"
-            alt="Services Image"
-            layout="fill"
-            objectFit="cover"
-            loading="lazy"
-          />
-        </div>
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white h-[380px] sm:h-[600px] md:h-[620px] lg:h-[704px] max-md:max-w-full">
+        <div className="absolute top-0 left-0 w-full h-full inset-0 bg-[#020C16] opacity-85 z-[2]"></div>
+        <video
+          className="top-0 left-0 object-cover absolute inset-0 size-full z-[1]"
+          width="100%"
+          height="100%"
+          muted
+          autoPlay
+        >
+          <source src="./for-blogs.mp4" type="video/mp4" />
+        </video>
 
-        <div className="mt-[130px] sm:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
+        <div className="mt-[130px] sm:mt-[280px] lg:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight text-center capitalize leading-[48px] text-white">
-            &ldquo;Our Blogs&rdquo;
+            &quot; Our Blogs &quot;
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
             Your gateway to thought-provoking articles that spark curiosity and
             ignite your passions.
           </p>
         </div>
-      </section>
 
-      <div className="max-w-full mx-auto relative">
+        {/* 
+        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
+          <div className="lg:absolute lg:top-[250px]">
+            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
+              <h2 className="capitalize">&quot;Our Blogs&quot;</h2>
+            </div>
+          </div>
+        </div> */}
+      </div>
+
+      <div className="max-w-full  relative">
         <img
           loading="lazy"
           src="/intersect-left.png"
@@ -62,7 +70,7 @@ export default function Blogs() {
                     <hr className="bg-black my-2 h-px w-full border-0" />
                   </div>
                   <div className="">
-                    <p className="font-light text-xs sm:text-base">
+                    <p className="font-light text-xs sm:text-base text-justify">
                       This article discusses the benefits of working with a web
                       design company. It provides tips on why you should work
                       with a web design company, how a website can be the
@@ -76,10 +84,10 @@ export default function Blogs() {
 
               <div className="xl:w-7/12 gap-10 flex flex-col">
                 <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="xl:flex gap-3">
-                    <div className="xl:w-[1682px] relative rounded-3xl">
+                  <div className="md:flex gap-3">
+                    <div className="md:w-[1682px] relative rounded-3xl">
                       <div
-                        className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-[length:105%] bg-center rounded-3xl border border-black xl:block hidden"
+                        className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-[length:105%] bg-center rounded-3xl border border-black md:block hidden"
                         style={{
                           backgroundImage: `url(/finding-the-best.png)`,
                         }}
@@ -87,7 +95,7 @@ export default function Blogs() {
                       <img
                         loading="lazy"
                         src="/blogs-finding-the-best.png"
-                        className="w-full block xl:hidden rounded-3xl"
+                        className="w-full block md:hidden rounded-3xl"
                       />
                     </div>
 
@@ -101,7 +109,7 @@ export default function Blogs() {
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div className="">
-                        <p className="font-light md:text-sm text-xs sm:text-base">
+                        <p className="font-light md:text-sm text-xs sm:text-base text-justify">
                           Nowadays, finding a perfect fit for your
                           company&rsquo;s project is difficult. Here are some
                           tips on hiring a web design and development company
@@ -116,10 +124,10 @@ export default function Blogs() {
                 </div>
 
                 <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="xl:flex gap-0">
-                    <div className="xl:w-[1182px] relative rounded-3xl">
+                  <div className="md:flex gap-0">
+                    <div className="md:w-[1182px] relative rounded-3xl">
                       <div
-                        className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center rounded-3xl xl:block hidden"
+                        className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center rounded-3xl md:block hidden"
                         style={{
                           backgroundImage: `url(/img-sanity-nextjs.jpg)`,
                         }}
@@ -127,7 +135,7 @@ export default function Blogs() {
                       <img
                         loading="lazy"
                         src="/blogs-sanity.png"
-                        className="w-full block xl:hidden rounded-3xl"
+                        className="w-full block md:hidden rounded-3xl"
                       />
                     </div>
                     <div className=" self-center xl:pr-5 xl:pl-5 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
@@ -139,7 +147,7 @@ export default function Blogs() {
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div className="">
-                        <p className="font-light md:text-sm text-xs sm:text-base">
+                        <p className="font-light md:text-sm text-xs sm:text-base text-justify">
                           In this blog, we will put together a detailed guide to
                           help you build a functional and beautiful portfolio
                           using Sanity and Next.js. Thus, this article will
@@ -180,7 +188,7 @@ export default function Blogs() {
                       <hr className="bg-black my-2 h-px w-full border-0" />
                     </div>
                     <div>
-                      <p className="font-light md:text-2xl sm:text-base text-xs">
+                      <p className="font-light md:text-2xl sm:text-base text-xs text-justify">
                         It is uncommon to meet someone who does not use a
                         smartphone or other mobile gadget. We rely on mobile
                         applications to be productive at work, on the go, and

@@ -1,6 +1,7 @@
 import React from "react";
 import HeroSectionComponent from "../components/HeroSectionComponent";
 import Image from "next/image";
+import Link from "next/link";
 
 const recentWorkArr = [
   {
@@ -69,7 +70,10 @@ const page = () => {
               </p>
 
               <div className="w-full flex justify-end">
-                <button className="flex items-center px-4 gap-4 mt-2 sm:mt-10 text-2xl text-black bg-[#F7E022] w-[134px] sm:w-[223px] h-7 sm:h-[55px] rounded-[9px] cursor-pointer shadow-xl">
+                <Link
+                  href={"/case-study/bubble-house"}
+                  className="flex items-center px-4 gap-4 mt-2 sm:mt-10 text-2xl text-black bg-[#F7E022] w-[134px] sm:w-[223px] h-7 sm:h-[55px] rounded-[9px] cursor-pointer shadow-xl"
+                >
                   <p className="flex-auto text-xs sm:text-xl">Learn More</p>
                   <div className="w-4 h-4 sm:w-8 sm:h-8">
                     <Image
@@ -81,7 +85,7 @@ const page = () => {
                       className="shrink-0 aspect-[1.03]"
                     />
                   </div>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
