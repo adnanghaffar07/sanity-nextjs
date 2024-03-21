@@ -7,48 +7,35 @@ import { AiFillFlag } from "react-icons/ai";
 export default function Career() {
 
   type BenefitItemProps = {
-    imageUrl: string;
-    altText: string;
+    imageSrc: string;
+    imageAlt: string;
     title: string;
   };
 
-  const BenefitItem: React.FC<BenefitItemProps> = ({ imageUrl, altText, title }) => (
-    <div className="flex flex-col items-center text-base font-semibold leading-8 text-center text-black">
-      <img loading="lazy" src={imageUrl} alt={altText} className="self-center w-full aspect-square" />
-      <div className="mt-2.5">{title}</div>
+
+  const BenefitItem: React.FC<BenefitItemProps> = ({ imageSrc, imageAlt, title }) => (
+    <div className="flex flex-col">
+      <img src={imageSrc} alt={imageAlt} className="self-center aspect-[1.05] w-[100px]" />
+      <div className="mt-2">{title}</div>
     </div>
   );
-
   const benefits = [
-    { imageUrl: "/time.png", altText: "time", title: "Flexible Timings" },
-    { imageUrl: "/fuel-allowance.png", altText: "fuel", title: "Fuel Allowance" },
-    { imageUrl: "/paid-leaves.png", altText: "Paid Leaves", title: "Paid Leaves" },
-    { imageUrl: "/annual-trip.png", altText: "Annual Trip", title: "Annual Trip" },
-    { imageUrl: "/medical.png", altText: "Medical Coverage", title: "Medical Coverage" },
-    { imageUrl: "/annual-ic.png", altText: "Annual Increment", title: "Annual Increment" },
-    { imageUrl: "/bonuses.png", altText: "Bonuses", title: "Bonuses" },
+    { imageSrc: "/time.png", imageAlt: "time", title: "Flexible Timings" },
+    { imageSrc: "/fuel-allowance.png", imageAlt: "fuel", title: "Fuel Allowance" },
+    { imageSrc: "/paid-leaves.png", imageAlt: "Paid Leaves", title: "Paid Leaves" },
+    { imageSrc: "/annual-trip.png", imageAlt: "Annual Trip", title: "Annual Trip" },
+    { imageSrc: "/medical.png", imageAlt: "Medical Coverage", title: "Medical Coverage" },
+    { imageSrc: "/annual-ic.png", imageAlt: "Annual Increment", title: "Annual Increment" },
+    { imageSrc: "/bonuses.png", imageAlt: "Bonuses", title: "Bonuses" },
   ];
-
-  const benefitsmall = [
-    { imageUrl: "/timing-sm.png", altText: "time", title: "Flexible Timings" },
-    { imageUrl: "/fuel-sm.png", altText: "fuel", title: "Fuel Allowance" },
-    { imageUrl: "/leaves-sm.png", altText: "Paid Leaves", title: "Paid Leaves" },
-    { imageUrl: "/trip-sm.png", altText: "Annual Trip", title: "Annual Trip" },
-    { imageUrl: "/medical-sm.png", altText: "Medical Coverage", title: "Medical Coverage" },
-    { imageUrl: "/increment-sm.png", altText: "Annual Increment", title: "Annual Increment" },
-    { imageUrl: "/bouse-sm.png", altText: "Bonuses", title: "Bonuses" },
-  ];
-
-
 
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/career.png" alt="lifeatca" />
-
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[250px]">
+          <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
               <h2 className="title capitalize">
                 &quot;Be  a part of our next story&quot;
@@ -179,7 +166,7 @@ export default function Career() {
                     <AiFillFlag size={24} />
                     <div className="text-sm">Model Town,<br /> Lahore</div>
                   </div>
-                  <Link href={`/`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
+                  <Link href={`/careerSub`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
                     Read More
                   </Link>
                 </div>
@@ -212,7 +199,7 @@ export default function Career() {
                     <AiFillFlag size={24} />
                     <div className="text-sm">Model Town,<br /> Lahore</div>
                   </div>
-                  <Link href={`/`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
+                  <Link href={`/careerSub`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
                     Read More
                   </Link>
                 </div>
@@ -245,7 +232,7 @@ export default function Career() {
                     <AiFillFlag size={24} />
                     <div className="text-sm">Model Town,<br /> Lahore</div>
                   </div>
-                  <Link href={`/`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
+                  <Link href={`/careerSub`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
                     Read More
                   </Link>
                 </div>
@@ -278,7 +265,7 @@ export default function Career() {
                     <AiFillFlag size={24} />
                     <div className="text-sm">Model Town,<br /> Lahore</div>
                   </div>
-                  <Link href={`/`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
+                  <Link href={`/careerSub`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
                     Read More
                   </Link>
                 </div>
@@ -311,20 +298,12 @@ export default function Career() {
                 <div className="mb-10">
                   <p className="lg:text-lg text-base text-end text-[#024]">Get special perks and benefits such as flexible schedules and career advancement chances. Join us and advance your career in code automation today.</p>
                 </div>
-                <div className="flex flex-col w-full max-w-[500px] max-md:max-w-full sm:max-w-[500px]">
-                  <div className="flex flex-wrap gap-5 justify-end">
-                    {benefits.map((item, index) => (
-                      <div key={index} className="w-full sm:w-1/3 md:w-1/5">
-                        <BenefitItem
-                          imageUrl={item.imageUrl}
-                          altText={item.altText}
-                          title={item.title}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
+                <section className="flex flex-wrap gap-5 justify-center px-4.5 mt-7 text-xs text-center text-md text-black">
+                  {benefits.map((benefit, index) => (
+                    <BenefitItem key={index} {...benefit} />
+                  ))}
+                </section>
 
 
               </div>

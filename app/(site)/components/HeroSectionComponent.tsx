@@ -13,8 +13,8 @@ const HeroSectionComponent = ({
 }: HeroSectionComponentProps) => {
   return (
     <section className="relative">
-      <div className="bg-black w-full h-[380px] sm:h-[752px] opacity-55 absolute z-[1]"></div>
-      <div className="w-full h-[380px] sm:h-[752px] relative z-0">
+      <div className="bg-black w-full h-[380px] sm:h-[700px] opacity-55 absolute z-[1]"></div>
+      <div className="w-full h-[380px] sm:h-[700px] relative z-0">
         <Image
           src={image}
           alt="Services Image"

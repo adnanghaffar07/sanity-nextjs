@@ -149,7 +149,7 @@ const Services = () => {
       />
 
       <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-zinc-100 max-md:px-5 max-md:max-w-full">
-        <h2 className="text-2xl sm:text-6xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
+        <h2 className="text-2xl sm:text-5xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
           Your Partner for all your digital needs
         </h2>
 
@@ -196,7 +196,7 @@ const Services = () => {
           </div>
 
           <div className="flex flex-col justify-center mt-10 md:mt-24 text-right">
-            <h2 className="text-xl sm:text-3xl md:text-5xl 2xl:text-6xl leading-[28px] md:leading-[60px] text-sky-950 z-20">
+            <h2 className="text-xl sm:text-3xl md:text-5xl 2xl:text-5xl leading-[28px] md:leading-[60px] text-sky-950 z-20">
               Trusted Partner To Your <br /> Success And Growth
             </h2>
             <p className="self-end sm:mt-10 xl:mt-10 text-xs sm:text-xl leading-4 sm:leading-7 text-black max-w-[270px] sm:max-w-[570px] z-20">
@@ -246,7 +246,7 @@ const Services = () => {
         </div>
 
         <div className="2xl:container 2xl:mx-auto mt-14 sm:mt-16 md:mt-20 xl:mt-24">
-          <h2 className="ml-10 xl:ml-5 2xl:ml-20 text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1120px]">
+          <h2 className="ml-10 xl:ml-5 2xl:ml-20 text-2xl sm:text-3xl md:text-5xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1120px]">
             Steps we Take to Make Your Project Successful
           </h2>
 
@@ -262,8 +262,8 @@ const Services = () => {
                   Client Goals
                 </div>
                 <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client's goals and vision to
-                  create a design that perfectly aligns with their expectations.
+                  We prioritize understanding the client&apos;s goals and vision to
+                  create a design that perfectly aligns with their expectations&rsquo;
                 </div>
               </div>
             </div>
@@ -277,8 +277,8 @@ const Services = () => {
                   Thorough Research & Analysis
                 </div>
                 <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client's goals and vision to
-                  create a design that perfectly aligns with their expectations.
+                  We prioritize understanding the client&apos;s goals and vision to
+                  create a design that perfectly aligns with their expectations&rsquo;
                 </div>
               </div>
             </div>
@@ -292,7 +292,7 @@ const Services = () => {
                   Concept Development & Iteration
                 </div>
                 <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client's goals and vision to
+                  We prioritize understanding the client&apos;s goals and vision to
                   create a design that perfectly aligns with their expectations.
                 </div>
               </div>
@@ -307,7 +307,7 @@ const Services = () => {
                   Attention to Details & Quality Assurance
                 </div>
                 <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client's goals and vision to
+                  We prioritize understanding the client&apos;s goals and vision to
                   create a design that perfectly aligns with their expectations.
                 </div>
               </div>
@@ -322,7 +322,7 @@ const Services = () => {
                   Timely Delivery & Client Satisfaction
                 </div>
                 <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client's goals and vision to
+                  We prioritize understanding the client&apos;s goals and vision to
                   create a design that perfectly aligns with their expectations.
                 </div>
               </div>

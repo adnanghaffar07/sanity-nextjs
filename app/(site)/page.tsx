@@ -1,10 +1,7 @@
-import { getBannercontent } from "@/sanity/sanity-utils";
-import { getBannerbox1content } from "@/sanity/sanity-utils";
+import Link from 'next/link';
+import React from 'react';
 
-
-export default async function Home() {
-  const bannercontent = await getBannercontent();
-  const bannerbox1content = await getBannerbox1content();
+export default function Home() {
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
@@ -14,7 +11,6 @@ export default async function Home() {
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
 
-          {/* <HeroSlider /> */}
           <div className="lg:absolute lg:top-[250px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
               <h2 className="title capitalize" style={{ lineHeight: "1.3" }}>
@@ -25,10 +21,6 @@ export default async function Home() {
               Explore with us, and let&rsquo;s pioneer the next era of innovation together.
             </div>
           </div>
-
-
-
-
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 text-base mt-10 lg:mt-auto max-md:max-w-full text-center max-w-[1400px]">
             <div className="flex flex-col flex-1 items-center mt-1.5">
               <img
@@ -81,19 +73,22 @@ export default async function Home() {
           <div className="self-center xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
             Our Top Services
           </div>
+
           <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 xl:mt-12 text-xl font-bold whitespace-nowrap max-md:flex-wrap mt-10 max-md:max-w-full">
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              Web Development
-            </div>
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              Software Development
-            </div>
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              QA Automation Testing
-            </div>
-            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              AI/ML Services
-            </div>
+     
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                Web Development
+              </div>
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                Software Development
+              </div>
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                QA Automation Testing
+              </div>
+              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+                AI/ML Services
+              </div>
+          
           </div>
 
         </div>
@@ -122,7 +117,7 @@ export default async function Home() {
                     CodeAutomation offers 24/7 assistance from skilled professionals to ensure the quality of your IT projects. CodeAutomation is committed to guaranteeing optimal security and adherence to your business requirements. Our customized solutions and comprehensive support keep your organization running smoothly, from disaster recovery to cybersecurity, managed IT services, and e-commerce solutions.<br />
                     Our goal is to support your endeavors. At CodeAutomation, we are proud of our comprehensive knowledge of the full scope of IT services developed over the years.                  </div>
                   <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
-                    <a href="/technologies" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
+                    <Link href="/technologies" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
                       <div className="relative grow self-center">
                         Explore Our Technologies
                       </div>
@@ -131,7 +126,7 @@ export default async function Home() {
                         src="/btn-arrow.svg"
                         className="w-[22px] h-[26.8px]" // Adjust the width and height
                       />
-                    </a>
+                    </Link>
                   </div>
 
 
@@ -221,7 +216,7 @@ export default async function Home() {
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
               <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
-                <a href="/lifeatca" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
+                <Link href="/blogs" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
                   <div className="relative grow self-center">
                     Explore Our Portfolio
                   </div>
@@ -230,7 +225,7 @@ export default async function Home() {
                     src="/btn-arrow.svg"
                     className="w-[22px] h-[26.8px]"
                   />
-                </a>
+                </Link>
               </div>
 
 
@@ -367,7 +362,7 @@ export default async function Home() {
               <div className="lg:mt-8 mt-4 lg:text-xl text-lg font-light max-md:max-w-full lg:pr-32">
                 Work with CodeAutomation, where collaboration, creativity, and precision intersect. Our unique approach to project execution blends cutting-edge technology with a human touch. Our specialized experts with top certifications aim to develop innovative options that assist companies in achieving growth goals in the digital era.              </div>
               <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
-                <a href="" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
+                <Link href="/services" className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
                   <div className="relative grow self-center">
                     Explore Our Services
                   </div>
@@ -376,7 +371,7 @@ export default async function Home() {
                     src="/btn-arrow.svg"
                     className="w-[22px] h-[26.8px]" // Adjust the width and height
                   />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="md:w-5/12 w-full">
@@ -592,7 +587,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-40">
-              <a href="" className="cursor flex overflow-hidden relative gap-2.5 px-8 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
+              <Link href="" className="cursor flex overflow-hidden relative gap-2.5 px-8 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
                 <div className="relative grow self-center">
                   Check out Clutch
                 </div>
@@ -601,7 +596,7 @@ export default async function Home() {
                   src="/btn-arrow.svg"
                   className="w-[22px] h-[26.8px]"
                 />
-              </a>
+              </Link>
             </div>
 
           </div>
@@ -643,7 +638,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomations expertise covers a wide range of technologies and programming languages, including but not limited to Java, Python, JavaScript, .NET, PHP, Ruby on Rails, Selenium, Playwright, Katalon, AltUnity, and more. We adapt to the specific needs of each project.</p>
-                
+
                     </div>
                   </article>
                 </details>
@@ -669,7 +664,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation has experience working with clients across various industries, such as healthcare, finance, e-commerce, Tech, telecommunications, and more. Our diverse portfolio demonstrates our adaptability and versatility.</p>
-                 
+
                     </div>
                   </article>
                 </details>
@@ -720,7 +715,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation offers a comprehensive suite of testing services, including functional testing, performance testing, security testing, automated testing, regression testing, and more. Our goal is to ensure your software is reliable and bug-free.</p>
-                
+
                     </div>
                   </article>
                 </details>
@@ -746,7 +741,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation’s development process follows industry best practices, including requirements gathering, design, development, testing, deployment, and maintenance. We emphasize collaboration and client communication at every stage to ensure project success.</p>
-               
+
                     </div>
                   </article>
                 </details>
@@ -772,7 +767,7 @@ export default async function Home() {
                   <article className="px-4 py-4">
                     <div className="w-11/12 text-base">
                       <p className="mb-2">CodeAutomation takes data security and client confidentiality seriously. Our team adheres to strict security protocols, and we are open to signing Non-Disclosure Agreements (NDAs) to protect your sensitive information.</p>
-                  
+
                     </div>
                   </article>
                 </details>

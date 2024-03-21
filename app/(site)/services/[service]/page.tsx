@@ -97,8 +97,9 @@ const page = ({ params }: { params: { service: String } }) => {
                 Custom Solutions
               </div>
               <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                We don't believe in one-size-fits-all. Your website is built
-                from the ground up to suit your unique needs and objectives.
+                We don&apos;t believe in one-size-fits-all. Your website is
+                built from the ground up to suit your unique needs and
+                objectives.
               </div>
             </div>
           </div>

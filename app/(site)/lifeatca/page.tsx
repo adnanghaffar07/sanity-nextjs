@@ -80,9 +80,7 @@ const LifeAtCA = () => {
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[450px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
-         
-                “Life at CA”
-      
+            &quot;Life at CA&quot;
             </div>
           </div>
         </div>
@@ -113,9 +111,8 @@ const LifeAtCA = () => {
 
       <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
       <p className="self-center text-xl text-center text-black">
-          CodeAutomation is not just a workplace; it&apos;s a community&rsquo; We foster a
-          culture of collaboration&apos; innovation, and inclusivity&rsquo;
-        </p>
+          CodeAutomation is not just a workplace; it&apos;s a community. We foster a
+          culture of collaboration, innovation, and inclusivity.        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
           <div className="flex gap-0 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-full md:w-[37%] max-md:ml-0 max-md:w-full">
@@ -147,10 +144,10 @@ const LifeAtCA = () => {
           </div>
         </section>
         <p className="self-center mt-14 text-xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
-          We know that building strong relationships within the team is essential&rsquo;
-          That&apos;s why we organize regular team-building activities&lsquo; events&lsquo; and
-          outings&rsquo; From hackathons to charity drives&lsquo; we find ways to bond while
-          making a positive impact on the community&rsquo;
+          We know that building strong relationships within the team is essential.
+          That&apos;s why we organize regular team-building activities, events, and
+          outings. From hackathons to charity drives, we find ways to bond while
+          making a positive impact on the community.
         </p>
         <section className="mt-7 ml-3.5 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -200,10 +197,10 @@ const LifeAtCA = () => {
           </div>
         </section>
         <p className="mt-10 text-xl leading-7 text-center text-black max-md:mt-14 max-md:mr-2 max-md:max-w-full">
-          We know that building strong relationships within the team is essential&rsquo;
-          That&apos;s why we organize regular team-building activities&lsquo; events&lsquo; and
-          outings&rsquo; From hackathons to charity drives&lsquo; we find ways to bond while
-          making a positive impact on the community&rsquo;
+        We know that building strong relationships within the team is essential.
+          That&apos;s why we organize regular team-building activities, events, and
+          outings. From hackathons to charity drives, we find ways to bond while
+          making a positive impact on the community.
         </p>
         <section className="mt-16 ml-3.5 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
