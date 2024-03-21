@@ -15,6 +15,7 @@ module.exports = {
       },
       boxShadow: {
         caseStudyRecentWorkCard: "0px 1px 3px 0px rgba(0, 0, 0, 0.25)",
+        blogImage: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
       },
     },
   },

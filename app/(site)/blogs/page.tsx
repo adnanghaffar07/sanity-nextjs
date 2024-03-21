@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 export default function Blogs() {
@@ -11,7 +12,7 @@ export default function Blogs() {
             src="/blogs-hero-bg.png"
             alt="Services Image"
             layout="fill"
-            // objectFit="cover"
+            objectFit="cover"
             loading="lazy"
           />
         </div>
@@ -47,18 +48,16 @@ export default function Blogs() {
                   ></div>
                   <img
                     loading="lazy"
-                    src="/why-work-with-web-design.jpg"
-                    className="w-full block xl:hidden"
+                    src="/blogs-why-work-with-web-design.png"
+                    className="w-full block xl:hidden rounded-3xl"
                   />
                 </div>
                 <div className="pb-4 pt-8 px-5">
-                  <div className="lg:text-2xl text-sm sm:text-xl">
-                    20 Feb 2024
-                  </div>
-                  <div className="md:text-2xl font-medium text-base sm:text-xl">
+                  <p className="lg:text-2xl text-sm sm:text-xl">20 Feb 2024</p>
+                  <h3 className="md:text-2xl font-medium text-base sm:text-xl">
                     20 tips Why you should work with a Web design company in
                     2024
-                  </div>
+                  </h3>
                   <div className="">
                     <hr className="bg-black my-2 h-px w-full border-0" />
                   </div>
@@ -77,8 +76,8 @@ export default function Blogs() {
 
               <div className="xl:w-7/12 gap-10 flex flex-col">
                 <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="md:flex gap-3">
-                    <div className="md:w-[282px] relative rounded-3xl">
+                  <div className="xl:flex gap-3">
+                    <div className="xl:w-[1682px] relative rounded-3xl">
                       <div
                         className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-[length:105%] bg-center rounded-3xl border border-black xl:block hidden"
                         style={{
@@ -87,17 +86,17 @@ export default function Blogs() {
                       ></div>
                       <img
                         loading="lazy"
-                        src="/finding-the-best.jpg"
-                        className="w-full block xl:hidden"
+                        src="/blogs-finding-the-best.png"
+                        className="w-full block xl:hidden rounded-3xl"
                       />
                     </div>
 
-                    <div className="md:w-7/12 self-center xl:pr-5 xl:pl-0 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
-                      <div className="text-xs sm:text-lg">21 Feb 2024</div>
-                      <div className="text-base sm:text-xl font-medium">
+                    <div className="self-center xl:pr-5 xl:pl-0 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
+                      <p className="text-xs sm:text-lg">21 Feb 2024</p>
+                      <h3 className="text-base sm:text-xl font-medium">
                         Finding the Best Web Development Company for your
                         Project
-                      </div>
+                      </h3>
                       <div className="">
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
@@ -117,25 +116,25 @@ export default function Blogs() {
                 </div>
 
                 <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="md:flex gap-5">
-                    <div className="md:w-[282px] relative rounded-3xl">
+                  <div className="xl:flex gap-0">
+                    <div className="xl:w-[1182px] relative rounded-3xl">
                       <div
-                        className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-left-top rounded-3xl xl:block hidden"
+                        className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center rounded-3xl xl:block hidden"
                         style={{
                           backgroundImage: `url(/img-sanity-nextjs.jpg)`,
                         }}
                       ></div>
                       <img
                         loading="lazy"
-                        src="/img-sanity-nextjs.jpg"
-                        className="w-full block xl:hidden"
+                        src="/blogs-sanity.png"
+                        className="w-full block xl:hidden rounded-3xl"
                       />
                     </div>
-                    <div className="md:w-7/12 self-center xl:pr-5 xl:pl-5 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
-                      <div className="text-xs sm:text-lg">26 Feb 2024</div>
-                      <div className="text-base sm:text-xl font-medium">
+                    <div className=" self-center xl:pr-5 xl:pl-5 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
+                      <p className="text-xs sm:text-lg">26 Feb 2024</p>
+                      <h3 className="text-base sm:text-xl font-medium">
                         Creating a portfolio website with sanity and next.js
-                      </div>
+                      </h3>
                       <div className="">
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
@@ -154,24 +153,29 @@ export default function Blogs() {
               </div>
             </div>
 
-            <div className="w-full mb-10">
+            <Link href={"/blogs/mobile-strategy"} className="w-full mb-10">
               <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
                 <div className="xl:flex gap-5">
                   <div className="xl:w-7/12">
                     <img
                       loading="lazy"
                       src="/develop-a-successful.jpg"
-                      className="w-full rounded-3xl"
+                      className="w-full rounded-3xl hidden xl:block"
+                    />
+                    <img
+                      loading="lazy"
+                      src="/blogs-develop-a-successful.png"
+                      className="w-full rounded-3xl block xl:hidden"
                     />
                   </div>
                   <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                    <div className="md:text-2xl text-xs sm:text-lg">
+                    <p className="md:text-2xl text-xs sm:text-lg">
                       19 Feb 2024
-                    </div>
-                    <div className="md:text-3xl sm:text-xl text-base font-medium">
+                    </p>
+                    <h3 className="md:text-3xl sm:text-xl text-base font-medium">
                       How to develop a successful mobile strategy for your
                       company
-                    </div>
+                    </h3>
                     <div>
                       <hr className="bg-black my-2 h-px w-full border-0" />
                     </div>
@@ -186,9 +190,9 @@ export default function Blogs() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0">
+            <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0 mt-10">
               <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
                 <AiOutlineArrowLeft size={18} className="text-white" />
               </div>
