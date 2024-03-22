@@ -78,10 +78,12 @@ const LifeAtCA = () => {
         <Image className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/Optimized-lifeatca.png" alt="lifeatca" />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[450px]">
+          <div className="lg:absolute lg:top-[350px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
             &quot;Life at CA&quot;
             </div>
+            <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+           We offer a diverse blend of cultures and endless recreational opportunities, epitomizing innovation, diversity, and boundless possibilities.              </div>
           </div>
         </div>
       </div>
