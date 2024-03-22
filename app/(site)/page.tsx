@@ -80,7 +80,7 @@ export default function Home() {
               Web Development
             </div>
             <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-              Software Development
+              App Development
             </div>
             <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
               QA Automation Testing
@@ -619,7 +619,7 @@ export default function Home() {
             <ul className="mt-10 flex flex-col gap-5">
               <li>
                 <details className="group">
-                  <summary className="flex justify-between items-center flex-grow">
+                  <summary className="flex justify-between items-center ">
                     <div className="w-11/12 text-base">
                       <span className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full flex gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-xl flex flex-grow">What technologies and programming languages does CodeAutomation specialize in for development and testing?</span>
                     </div>
