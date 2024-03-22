@@ -75,20 +75,20 @@ export default function Home() {
           </div>
 
           <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 xl:mt-12 text-xl font-bold whitespace-nowrap max-md:flex-wrap mt-10 max-md:max-w-full">
-     
-              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                Web Development
-              </div>
-              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                Software Development
-              </div>
-              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                QA Automation Testing
-              </div>
-              <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                AI/ML Services
-              </div>
-          
+
+            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+              Web Development
+            </div>
+            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+              Software Development
+            </div>
+            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+              QA Automation Testing
+            </div>
+            <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
+              AI/ML Services
+            </div>
+
           </div>
 
         </div>
@@ -161,7 +161,7 @@ export default function Home() {
                       srcSet="/image-16.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end">
+                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-20 ">
                       <span className="font-bold text-zinc-100">
                         Bubblehouse - E Commerce (NFTs)
                       </span>
@@ -173,7 +173,7 @@ export default function Home() {
                       srcSet="/image-21.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end">
+                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-25">
                       <span className="font-bold text-zinc-100">Vested Finance - Fintech</span>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export default function Home() {
                       srcSet="/image-17.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full">
+                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                       Getdandy - Ai Product
                     </div>
                   </div>
@@ -197,7 +197,7 @@ export default function Home() {
                       srcSet="/image-19.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full">
+                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                       PublicInput - Community Engagement
                     </div>
                   </div>
@@ -207,7 +207,7 @@ export default function Home() {
                       srcSet="/image-20.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full">
+                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                       Tracely - Location Tracking App
                     </div>
                   </div>
@@ -612,11 +612,11 @@ export default function Home() {
             src="/ellipse-2.png"
             className="aspect-[1.22] absolute right-0 top-80"
           />
-          <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10">
+          <div className="flex flex-col items-center xl:ml-8 flex-1 px-5 text-xl relative z-10">
             <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4">
               Our FAQs
             </div>
-            <ul className="mt-10 flex flex-col gap-4">
+            <ul className="mt-10 flex flex-col gap-5">
               <li>
                 <details className="group">
                   <summary className="flex justify-between items-center flex-grow">
