@@ -80,7 +80,7 @@ export default function Home() {
                 Web Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                App Development
+                Software Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
                 QA Automation Testing
@@ -128,6 +128,8 @@ export default function Home() {
                       />
                     </Link>
                   </div>
+
+
                 </div>
               </div>
               <div className="flex flex-col ml-5 w-[42%] max-md:ml-0 max-md:w-full">
