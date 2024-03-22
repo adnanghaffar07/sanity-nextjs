@@ -85,7 +85,7 @@ export default function Technologies() {
               Web Development
             </div>
             <div className="text-center py-8 bg-white rounded-2xl shadow-sm max-md:px-5">
-              Software Development
+              App Development
             </div>
             <div className="text-center py-8 bg-white rounded-2xl shadow-sm max-md:pr-5">
               QA Automation Testing
