@@ -3,8 +3,8 @@ export default function BlogSub() {
   return (
     <>
       <section className="relative">
-        <div className="bg-[#1E1E1E] w-full h-[380px] sm:h-[752px] opacity-50 sm:opacity-75 absolute z-[1]"></div>
-        <div className="w-full h-[380px] sm:h-[752px] relative z-0">
+        <div className="bg-[#1E1E1E] w-full h-[380px] sm:h-[700px] opacity-50 sm:opacity-75 absolute z-[1]"></div>
+        <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           <Image
             src="/blogs-subpage-mobile-hero.png"
             alt="Services Image"
@@ -15,7 +15,7 @@ export default function BlogSub() {
         </div>
 
         <div className="mt-[260px] sm:mt-[410px] max-w-[300px] sm:max-w-[590px] md:max-w-[790px] lg:max-w-[890px] xl:max-w-[1000px] mx-auto absolute inset-0 flex flex-col items-center z-[2]">
-          <h1 className="text-base sm:text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-center capitalize leading-[20px] sm:leading-[48px] text-white">
+          <h1 className="text-base lg:text-4xl text-2xl font-bold tracking-tight text-center capitalize leading-[20px] sm:leading-[48px] text-white">
             &quot;How to develop a successful mobile strategy for your
             company&quot;
           </h1>
@@ -25,7 +25,7 @@ export default function BlogSub() {
       <div className="max-w-full mx-auto relative">
         <div className="flex flex-col self-center w-full xl:max-w-[1300px] relative z-10 mx-auto">
           <div className="lg:px-10 px-5 w-full py-6 sm:py-16">
-            <h3 className="xl:text-6xl lg:text-5xl sm:text-3xl text-xl font-medium mb-4 sm:mb-8">
+            <h3 className="xl:text-5xl lg:text-5xl sm:text-3xl text-xl font-medium mb-4 sm:mb-8">
               Description
             </h3>
 
