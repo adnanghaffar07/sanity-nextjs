@@ -91,7 +91,7 @@ export default function HomeNavigationContainer() {
               );
             })}
           </nav>
-          <a className="flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5" href="">
+          <a className="flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5" href="https://join.skype.com/invite/crU4cXW4bttb">
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/fac08cad98e0659b7b1fba8569319dcbc8cff9340fcddf511cabd61603becea7?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
