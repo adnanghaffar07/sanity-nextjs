@@ -18,9 +18,11 @@ export default async function FooterContainer() {
 
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/fc1f8019eac8de47a48d9eca77aa093028e28965bc5face1f83486f441036b66?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/twitter-new.svg",
       alt: "twitter",
       link: "https://twitter.com/codeautomation",
+      className: "rounded-3xl"
+
 
     },
     {
@@ -29,6 +31,7 @@ export default async function FooterContainer() {
       link: "https://www.linkedin.com/company/codeautomationai/",
 
     },
+  
   ];
 
 
@@ -110,7 +113,7 @@ export default async function FooterContainer() {
                 <section className="grid grid-cols-4 gap-3 ">
                   {socialIcons.map((icon, index) => (
                     <Link key={index} href={icon.link} target="_blank" rel="noopener noreferrer">
-                      <img src={icon.src} alt={icon.alt} className="h-10 w-10" /> {/* Adjust height and width as needed */}
+                      <img src={icon.src} alt={icon.alt} className="h-10 w-10 rounded-3xl" /> {/* Adjust height and width as needed */}
                     </Link>))}
                 </section>
               </div>
