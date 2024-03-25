@@ -7,18 +7,21 @@ import { client } from "../../../sanity/lib/client"
 
 
 async function getData() {
-  const fetchData = await client.fetch(
-    `*[_type == 'careers']`
-  )
-  return fetchData
- 
+  try {
+    const fetchData = await client.fetch(`*[_type == 'careers']`);
+    return fetchData || []; // Return fetchData if truthy, otherwise return an empty array
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return []; // Return an empty array if there's an error
+  }
 }
+
 
 export default async function Career() {
 
   const data = await getData()
   console.log(data)
-
+ 
   type BenefitItemProps = {
     imageSrc: string;
     imageAlt: string;
@@ -119,13 +122,12 @@ export default async function Career() {
             </div>
           </div>
           <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 lg:gap-16 lg:px-10 px-5 lg:mt-11 w-full max-md:max-w-full">
-            {data && data.map((jobpost: any) => (
-              <div key={jobpost._id}>
-                <CareerPost jobpost={jobpost} />
-              </div>
-            ))}
-
-
+        {data.map((jobpost:any) => (
+          <div key={jobpost._id}>
+      <CareerPost jobpost={jobpost} />
+          </div>
+        ))}
+        
           </div>
         </div>
 
@@ -160,8 +162,6 @@ export default async function Career() {
                     <BenefitItem key={index} {...benefit} />
                   ))}
                 </section>
-
-
               </div>
 
             </div>

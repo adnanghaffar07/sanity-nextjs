@@ -3,17 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { AiFillFlag } from "react-icons/ai";
-// import { client } from "../../../sanity/lib/client"
 
-// async function getData() {
-//   const fetchData = await client.fetch(
-//     `*[_type == 'careers']{jobTitleBaner, descJobTitle}`
-//   )
-//   return fetchData
-//}
 
 interface Props {
-  jobpost: any; // Assuming JobPost is the interface defined above
+  jobpost: any; 
 }
 
 
