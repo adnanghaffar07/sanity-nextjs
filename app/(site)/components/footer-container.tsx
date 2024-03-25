@@ -9,24 +9,24 @@ export default async function FooterContainer() {
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/473a7429030026bd2ca2fe152aef53403a1f9b0cbee5a68d3ad32022fad854a7?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "facebook",
-      link: "https://facebook.com",
+      link: "https://www.facebook.com/Codeautomationai/",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/adf696589e4137664b9c3d84b7694e7064769715ccfab4d849d64bbc25c5674e?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Instagram",
-      link: "https://facebook.com",
+      link: "https://www.instagram.com/codeautomation.ai/",
 
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/fc1f8019eac8de47a48d9eca77aa093028e28965bc5face1f83486f441036b66?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "twitter",
-      link: "https://facebook.com",
+      link: "https://twitter.com/codeautomation",
 
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/679d9d2dbbc950158d83a006bad2c7e0bb1376ded77e7aac9361af8cf20181f9?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Linkedin",
-      link: "https://facebook.com",
+      link: "https://www.linkedin.com/company/codeautomationai/",
 
     },
   ];
@@ -38,9 +38,9 @@ export default async function FooterContainer() {
         <div className="w-full max-w-[1582px] lg:px-10 px-5  max-md:max-w-full grid xl:grid-cols-5 md:grid-cols-3 gap-5">
 
           <div className="flex flex-col xl:col-span-2 md:col-span-3 xl:pr-36">
-            <div className="grid xl:grid-cols-1 md:grid-cols-2 gap-6 text-lg font-light text-white max-md:mt-10 text-center">
+            <div className="grid xl:grid-cols-1 md:grid-cols-2 gap-6 text-lg font-light text-white max-md:mt-10 self-start">
               <div>
-                <div className="flex justify-center items-center">
+                <div className="flex self-start">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/ca2c2299539776dc609808e4640dd6fc263794a85ae59f86c06f93cea5e7b09f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
@@ -66,8 +66,8 @@ export default async function FooterContainer() {
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col grow text-white max-md:mt-10 text-center">
-              <div className="text-2xl font-medium leading-6 text-center">
+            <div className="flex flex-col grow text-white max-md:mt-10 flex flex-col items-center xl:ml-8 flex-1 px-5 text-xl relative z-10 self-start">
+              <div className="text-2xl font-medium self-start">
                 Solutions
               </div>
               <div className="mt-6 text-base font-light flex flex-col gap-5">
@@ -80,26 +80,25 @@ export default async function FooterContainer() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col">
-            <div className="flex flex-col text-white max-md:mt-10 text-center">
-              <div className="text-2xl font-medium text-center">
+          <div className="flex flex-col ">
+            <div className="text-white max-md:mt-10  flex flex-col items-center xl:ml-8 flex-1 px-5 text-xl relative z-10 self-start">
+              <div className="text-2xl font-medium self-start">
                 About Us
               </div>
-              <div className="mt-6 text-base font-light flex flex-col gap-5">
+              <div className="mt-6 text-base font-light flex  flex-col gap-5">
                 <Link href={`/lifeatca`} className="hover:underline my-auto inline-block">Expert Team</Link>
                 <Link href={`/blogs`} className="hover:underline my-auto inline-block">Our Exciting News</Link>
                 <Link href={`/career`} className="hover:underline my-auto inline-block">Contact Us For Jobs</Link>
                 <Link href="mailto:hr@codeautomation.ai" className="hover:underline my-auto inline-block">hr@codeautomation.ai</Link>
-                <Link href="tel:+923210024000" className="hover:underline my-auto inline-block">+92 321 0024000</Link>
               </div>
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col text-white max-md:mt-10 text-center">
+            <div className="flex flex-col text-white max-md:mt-10 self-start">
               <div className="text-2xl font-medium leading-6">
                 Address
               </div>
-              <div className="mt-6 text-lg font-light leading-5">
+              <div className="mt-6 text-lg font-light leading-5 self-start">
                 <span className="text-1xl font-bold">USA:</span> 30 N
                 Gould St Ste 7596, Sheridan, WY, 82801.
                 <br />
