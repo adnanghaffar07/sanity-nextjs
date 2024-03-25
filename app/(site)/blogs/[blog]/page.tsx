@@ -8,8 +8,8 @@ export default function BlogSub() {
           <Image
             src="/blogs-subpage-mobile-hero.png"
             alt="Services Image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             loading="lazy"
           />
         </div>

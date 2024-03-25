@@ -15,7 +15,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   iconSrc,
   linkUrl,
 }) => {
-  console.log(linkUrl);
   return (
     <Link
       href={`/services/${linkUrl}`}

@@ -12,6 +12,7 @@ export default function Blogs() {
           height="100%"
           muted
           autoPlay
+          loop
         >
           <source src="./for-blogs.mp4" type="video/mp4" />
         </video>
