@@ -1,7 +1,7 @@
 // 'use client'
 import React, { useState, ChangeEvent } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
-import { client } from "../../../sanity/lib/client"
+import { client } from "../../../../sanity/lib/client"
 
 async function getData() {
   const fetchData = await client.fetch(

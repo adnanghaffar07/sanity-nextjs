@@ -9,24 +9,24 @@ export default async function FooterContainer() {
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/473a7429030026bd2ca2fe152aef53403a1f9b0cbee5a68d3ad32022fad854a7?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "facebook",
-      link: "https://facebook.com",
+      link: "https://www.facebook.com/Codeautomationai/",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/adf696589e4137664b9c3d84b7694e7064769715ccfab4d849d64bbc25c5674e?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Instagram",
-      link: "https://facebook.com",
+      link: "https://www.instagram.com/codeautomation.ai/",
 
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/fc1f8019eac8de47a48d9eca77aa093028e28965bc5face1f83486f441036b66?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "twitter",
-      link: "https://facebook.com",
+      link: "https://twitter.com/codeautomation",
 
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/679d9d2dbbc950158d83a006bad2c7e0bb1376ded77e7aac9361af8cf20181f9?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Linkedin",
-      link: "https://facebook.com",
+      link: "https://www.linkedin.com/company/codeautomationai/",
 
     },
   ];
