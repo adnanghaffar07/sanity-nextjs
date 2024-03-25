@@ -31,7 +31,7 @@ const page = () => {
             </h3>
             <p>
               Bubblehouse is a player in a new market, coming up with
-              tailor-made e-commerce solutions to boost clients' brand loyalty.
+              tailor-made e-commerce solutions to boost clients&apos; brand loyalty.
               Comprehensive VIP customer platform which incorporates tiers,
               collectibles, referrals and other entertaining elements to
               encourage customers and build loyalty over the years and long term
@@ -75,7 +75,7 @@ const page = () => {
             In our cooperation with Bubblehouse we provided backend development,
             integrations setup, and manual testing. The two major goals were to
             develop an amazing e-commerce solution that does not hinder
-            customers' experience and assure the reliability of the application
+            customers&apos; experience and assure the reliability of the application
             by opting for manual and automated testing methods.
           </p>
           <h2 className=" xl:text-4xl lg:text-2xl text-xl font-semibold mb-5">
