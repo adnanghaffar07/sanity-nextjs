@@ -15,7 +15,7 @@ const page = () => {
       </div>
       <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-24 top-[160px] sm:top-[250px] md:top-[600px] xl:top-[850px] 2xl:xl:top-[1100px] z-0 hidden md:block"></div>
 
-      <h3 className="mt-[120px] md:mt-[215px] relative xl:text-6xl lg:text-5xl sm:text-4xl text-xl font-normal mb-6 md:mb-12 ms-4 sm:ms-10 2xl:container 2xl:mx-auto">
+      <h3 className="mt-[120px] md:mt-[215px] relative xl:text-6xl lg:text-5xl sm:text-4xl text-xl font-normal mb-6 md:mb-12 ms-4 sm:ms-10 2xl:container 2xl:mx-auto 2xl:ps-10">
         Bubblehouse{" "}
         <span className="xl:text-3xl lg:text-2xl sm:text-xl text-sm font-light">
           (E-Commerce Store)
