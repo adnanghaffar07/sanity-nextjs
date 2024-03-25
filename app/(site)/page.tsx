@@ -587,7 +587,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-40">
-              <Link href="" className="cursor flex overflow-hidden relative gap-2.5 px-8 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md">
+              <Link href="https://clutch.co/profile/codeautomationai#highlights" target="_blank" rel="noopener noreferrer" className="cursor flex overflow-hidden relative gap-2.5 px-8 py-3 items-center bg-[#F7E022] rounded-lg shadow-md">
                 <div className="relative grow self-center">
                   Check out Clutch
                 </div>
@@ -595,8 +595,10 @@ export default function Home() {
                   loading="lazy"
                   src="/btn-arrow.svg"
                   className="w-[22px] h-[26.8px]"
+                  alt="Arrow icon"
                 />
               </Link>
+
             </div>
 
           </div>
@@ -612,14 +614,14 @@ export default function Home() {
             src="/ellipse-2.png"
             className="aspect-[1.22] absolute right-0 top-80"
           />
-          <div className="flex flex-col items-center xl:ml-8 flex-1 px-5 text-xl relative z-10">
+          <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10">
             <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4">
               Our FAQs
             </div>
-            <ul className="mt-10 flex flex-col gap-5">
+            <ul className="mt-10 flex flex-col gap-4">
               <li>
                 <details className="group">
-                  <summary className="flex justify-between items-center ">
+                  <summary className="flex justify-between items-center flex-grow">
                     <div className="w-11/12 text-base">
                       <span className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full flex gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-xl flex flex-grow">What technologies and programming languages does CodeAutomation specialize in for development and testing?</span>
                     </div>
