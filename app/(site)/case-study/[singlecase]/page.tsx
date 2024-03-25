@@ -41,7 +41,7 @@ const page = () => {
                 </h2>
                 <p className="text-xs sm:text-xl md:text-2xl font-light max-w-[610px] text-justify">
                   Bubblehouse is a player in a new market, coming up with
-                  tailor-made e-commerce solutions to boost clients' brand
+                  tailor-made e-commerce solutions to boost client&rsquo;s brand
                   loyalty. Comprehensive VIP customer platform which
                   incorporates tiers, collectibles, referrals and other
                   entertaining elements to encourage customers and build loyalty
@@ -106,9 +106,9 @@ const page = () => {
                 In our cooperation with Bubblehouse we provided backend
                 development, integrations setup, and manual testing. The two
                 major goals were to develop an amazing e-commerce solution that
-                does not hinder customers' experience and assure the reliability
-                of the application by opting for manual and automated testing
-                methods.
+                does not hinder customers&rsquo; experience and assure the
+                reliability of the application by opting for manual and
+                automated testing methods.
               </p>
 
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
@@ -219,11 +219,11 @@ const page = () => {
                     Shopify Development:{" "}
                   </span>
                   <span>
-                    The cross-department teams collaborated with Bubblehouse's
-                    team to comprehend the purpose of the app and the features
-                    required to be included in the application. Feedback system
-                    was set in place to undoubtedly equal performance with
-                    expected standards of our clients.
+                    The cross-department teams collaborated with
+                    Bubblehouse&rsquo;s team to comprehend the purpose of the
+                    app and the features required to be included in the
+                    application. Feedback system was set in place to undoubtedly
+                    equal performance with expected standards of our clients.
                   </span>
                 </li>
                 <li className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light">
@@ -314,10 +314,10 @@ const page = () => {
                 between our development and QA teams in delivering a robust
                 e-commerce loyalty solution. The seamless integration,
                 comprehensive testing, and effective release management
-                contributed to the project's success, resulting in increased
-                loyalty and lifetime value for Bubblehouse's clients. The
-                utilization of tools like Zephyr played a crucial role in
-                managing and streamlining the testing process.
+                contributed to the project&rsquo;s success, resulting in
+                increased loyalty and lifetime value for Bubblehouse&rsquo;s
+                clients. The utilization of tools like Zephyr played a crucial
+                role in managing and streamlining the testing process.
               </p>
             </div>
           </div>
