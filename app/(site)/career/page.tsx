@@ -1,27 +1,33 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { AiFillFlag } from "react-icons/ai";
 import CareerPost from "../components/CareerPost";
 import { client } from "../../../sanity/lib/client"
+import { useEffect, useState } from "react";
 
 
-async function getData() {
-  try {
-    const fetchData = await client.fetch(`*[_type == 'careers']`);
-    return fetchData || []; // Return fetchData if truthy, otherwise return an empty array
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return []; // Return an empty array if there's an error
-  }
-}
+const Career: React.FC = () => {
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await client.fetch(`*[_type == 'careers']`);
+        setData(result || []);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setData([]);
+      }
+    };
+
+    fetchData();
+  }, []);
 
 
-export default async function Career() {
 
-  const data = await getData()
-  console.log(data)
- 
   type BenefitItemProps = {
     imageSrc: string;
     imageAlt: string;
@@ -122,11 +128,11 @@ export default async function Career() {
             </div>
           </div>
           <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 lg:gap-16 lg:px-10 px-5 lg:mt-11 w-full max-md:max-w-full">
-        {data.map((jobpost:any) => (
-          <div key={jobpost._id}>
-      <CareerPost jobpost={jobpost} />
-          </div>
-        ))}
+          {data.map((jobpost:any) => (
+        <div key={jobpost._id}>
+          <CareerPost jobpost={jobpost} />
+        </div>
+      ))}
         
           </div>
         </div>
@@ -171,5 +177,7 @@ export default async function Career() {
     </div>
   );
 }
+
+export default Career
 
 
