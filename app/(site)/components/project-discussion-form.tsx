@@ -15,26 +15,29 @@ const initialValues = {
 
 export default function ProjectDiscussionContainer() {
     const [state, formspreeHandleSubmit] = useForm("moqgkqrp");
-    const handleCombinedSubmit = (event:any) => {
-        // Call both form submit functions
+    const handleCombinedSubmit = async (event:any): Promise<void> => {
+        // Validate the form using Formik
         handleSubmit(event);
+
+        // If there are errors in Formik validation, return without submitting to Formspree
+        if (Object.keys(errors).length !== 0) {
+            return;
+        }
+
+        // If validation passed, submit to Formspree
         formspreeHandleSubmit(event);
     };
-
 
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues,
         validationSchema: contactSchema,
-
         onSubmit: (values, action) => {
-            console.log(
-                "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
-                values
-            )
-            action.resetForm()
+            console.log("Submitted to Formik:", values);
+            // You can reset the form here if needed
+             action.resetForm();
         }
-    })
-  
+    });
+
     return (
         <div className="flex justify-center items-center px-16 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[36px] max-md:px-5 border border-slate-300">
             <div className="flex flex-col mt-3.5 w-full max-w-[746px] max-md:max-w-full">
