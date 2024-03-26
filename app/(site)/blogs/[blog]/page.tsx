@@ -39,6 +39,7 @@ export default function BlogSub() {
 
               <img
                 loading="lazy"
+                alt="blog image"
                 srcSet="/blog-mobile-image-1.png"
                 className="size-full mb-6 sm:mb-12 shadow-blogImage"
               />
@@ -71,6 +72,7 @@ export default function BlogSub() {
               <img
                 loading="lazy"
                 srcSet="/blog-mobile-image-2.png"
+                alt="blog image"
                 className="size-full mb-7 sm:mb-14 shadow-blogImage"
               />
 

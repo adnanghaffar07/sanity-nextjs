@@ -30,6 +30,7 @@ const page = () => {
                 loading="lazy"
                 srcSet="/casesubpage-bubblehouse.png"
                 width={1080}
+                alt="project image"
                 className="shadow-blogImage"
               />
             </div>
@@ -73,6 +74,7 @@ const page = () => {
           <div>
             <img
               loading="lazy"
+              alt="project image"
               srcSet="/casestudy-bubblehouse-project-1.png"
               className="size-full mb-0 sm:mb-14 shadow-blogImage"
             />

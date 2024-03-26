@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { urlForImage } from "@/sanity/lib/image";
 
 interface ServiceCardProps {
-  imageSrc: string;
+  imageSrc?: string;
   title: string;
   description: string;
-  iconSrc: string;
+  iconSrc: any;
   linkUrl: string;
 }
 
@@ -15,6 +16,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   iconSrc,
   linkUrl,
 }) => {
+  const cardIcon = urlForImage(iconSrc.asset);
+
   return (
     <Link
       href={`/services/${linkUrl}`}
@@ -22,7 +25,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     >
       <div className="z-10 px-3.5 w-14 sm:w-24 h-14 sm:h-24 bg-white rounded-full absolute flex justify-center items-center right-2 sm:right-5 -top-6 sm:-top-14 drop-shadow-serviceCard">
         <img
-          src={imageSrc}
+          src={cardIcon}
+          loading="lazy"
           alt="service-icon"
           className="w-10 sm:w-[54px] h-10 sm:h-[54px] object-contain"
         />
@@ -52,7 +56,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
 
         <img
-          src={iconSrc}
+          src={"/service-card-right-arrow.png"}
           alt="arrow-icon"
           className="z-10 shrink-0 self-end mt-8 aspect-square w-[36px] sm:w-[53px] absolute -right-4 top-5 sm:-right-7"
         />

@@ -4,12 +4,14 @@ interface HeroSectionComponentProps {
   title: string;
   content: string;
   image: string;
+  alt?: string;
 }
 
 const HeroSectionComponent = ({
   title,
   content,
   image,
+  alt = "codeautomation image",
 }: HeroSectionComponentProps) => {
   return (
     <section className="relative">
@@ -17,7 +19,8 @@ const HeroSectionComponent = ({
       <div className="w-full h-[380px] sm:h-[700px] relative z-0">
         <Image
           src={image}
-          alt="Services Image"
+          alt={alt}
+          loading="lazy"
           fill
           style={{ objectFit: "cover" }}
         />

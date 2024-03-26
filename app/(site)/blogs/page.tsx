@@ -41,6 +41,7 @@ export default function Blogs() {
         <img
           loading="lazy"
           src="/intersect-left.png"
+          alt="icon"
           className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
         />
 
@@ -57,6 +58,7 @@ export default function Blogs() {
                   ></div>
                   <img
                     loading="lazy"
+                    alt="blog image"
                     src="/blogs-why-work-with-web-design.png"
                     className="w-full block xl:hidden rounded-3xl"
                   />
@@ -96,6 +98,7 @@ export default function Blogs() {
                       <img
                         loading="lazy"
                         src="/blogs-finding-the-best.png"
+                        alt="blog image"
                         className="w-full block md:hidden rounded-3xl"
                       />
                     </div>
@@ -136,6 +139,7 @@ export default function Blogs() {
                       <img
                         loading="lazy"
                         src="/blogs-sanity.png"
+                        alt="blog image"
                         className="w-full block md:hidden rounded-3xl"
                       />
                     </div>
@@ -169,6 +173,7 @@ export default function Blogs() {
                     <img
                       loading="lazy"
                       src="/develop-a-successful.jpg"
+                      alt="blog image"
                       className="w-full rounded-3xl hidden xl:block"
                     />
                     <img
