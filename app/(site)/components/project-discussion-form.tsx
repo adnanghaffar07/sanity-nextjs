@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useFormik } from "formik"
 import { contactSchema } from "../../schemas/index"
+import { useForm } from '@formspree/react';
 const initialValues = {
     name: "",
     contact_number: "",
@@ -13,6 +14,14 @@ const initialValues = {
 }
 
 export default function ProjectDiscussionContainer() {
+    const [state, formspreeHandleSubmit] = useForm("moqgkqrp");
+    const handleCombinedSubmit = (event:any) => {
+        // Call both form submit functions
+        handleSubmit(event);
+        formspreeHandleSubmit(event);
+    };
+
+
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues,
         validationSchema: contactSchema,
@@ -32,7 +41,9 @@ export default function ProjectDiscussionContainer() {
                 <div className="lg:text-4xl md:text-3xl text-l font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl">
                     Lets have a Project Discussion
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form action="https://formspree.io/f/moqgkqrp"
+                method="POST"
+                onSubmit={handleCombinedSubmit}>
                     <div className="mt-10">
                         <input
                             className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
