@@ -3,6 +3,19 @@ import HeroSectionComponent from "../components/HeroSectionComponent";
 import ServiceCard from "../components/ServiceCard";
 import Image from "next/image";
 
+import { client } from "../../../sanity/lib/client";
+
+export async function getData() {
+  const query = `*[_type == 'services']`;
+  try {
+    const fetchData = await client.fetch(query);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
 const servicesArr = [
   {
     imageSrc: "/service-card-ad.png",
@@ -137,7 +150,9 @@ const growthCardsArr = [
   },
 ];
 
-const Services = () => {
+const Services = async () => {
+  const data = await getData();
+
   return (
     <>
       <HeroSectionComponent
@@ -164,7 +179,19 @@ const Services = () => {
       </section>
 
       <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-[40px] sm:gap-[80px] 2xl:gap-[120px] max-w-[1440px] my-12 sm:my-40 mx-auto">
-        {servicesArr.length &&
+        {data &&
+          data.map((service) => {
+            return (
+              <ServiceCard
+                title={service.serviceTitleBaner}
+                description={service.carddescription}
+                iconSrc={service.cardicon}
+                linkUrl={service.urlPath}
+                key={service._id}
+              />
+            );
+          })}
+        {/* {servicesArr.length &&
           servicesArr.map((card, i) => {
             return (
               <div key={i}>
@@ -177,7 +204,7 @@ const Services = () => {
                 />
               </div>
             );
-          })}
+          })} */}
       </section>
 
       <section className="relative overflow-hidden px-4 xl:px-2 max-w-[1440px] 2xl:mx-auto">
@@ -228,6 +255,7 @@ const Services = () => {
                       <img
                         loading="lazy"
                         src={card.imgSrc}
+                        alt="icon"
                         className="w-full aspect-square"
                       />
                     </div>
@@ -262,8 +290,9 @@ const Services = () => {
                   Client Goals
                 </div>
                 <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client&apos;s goals and vision to
-                  create a design that perfectly aligns with their expectations&rsquo;
+                  We prioritize understanding the client&apos;s goals and vision
+                  to create a design that perfectly aligns with their
+                  expectations&rsquo;
                 </div>
               </div>
             </div>
@@ -277,8 +306,9 @@ const Services = () => {
                   Thorough Research & Analysis
                 </div>
                 <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client&apos;s goals and vision to
-                  create a design that perfectly aligns with their expectations&rsquo;
+                  We prioritize understanding the client&apos;s goals and vision
+                  to create a design that perfectly aligns with their
+                  expectations&rsquo;
                 </div>
               </div>
             </div>
@@ -292,8 +322,9 @@ const Services = () => {
                   Concept Development & Iteration
                 </div>
                 <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client&apos;s goals and vision to
-                  create a design that perfectly aligns with their expectations.
+                  We prioritize understanding the client&apos;s goals and vision
+                  to create a design that perfectly aligns with their
+                  expectations.
                 </div>
               </div>
             </div>
@@ -307,8 +338,9 @@ const Services = () => {
                   Attention to Details & Quality Assurance
                 </div>
                 <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client&apos;s goals and vision to
-                  create a design that perfectly aligns with their expectations.
+                  We prioritize understanding the client&apos;s goals and vision
+                  to create a design that perfectly aligns with their
+                  expectations.
                 </div>
               </div>
             </div>
@@ -322,8 +354,9 @@ const Services = () => {
                   Timely Delivery & Client Satisfaction
                 </div>
                 <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                  We prioritize understanding the client&apos;s goals and vision to
-                  create a design that perfectly aligns with their expectations.
+                  We prioritize understanding the client&apos;s goals and vision
+                  to create a design that perfectly aligns with their
+                  expectations.
                 </div>
               </div>
             </div>

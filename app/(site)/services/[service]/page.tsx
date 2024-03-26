@@ -2,49 +2,57 @@ import React from "react";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
 import ServiceApproachSection from "../../components/ServiceApproachSection";
 
-const page = ({ params }: { params: { service: String } }) => {
+import { client } from "../../../../sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
+
+export async function getData(urlService: any) {
+  console.log("------urlService--------", urlService);
+  const query = `*[_type == 'services' && urlPath == '${urlService}'][0]`;
+  try {
+    const fetchData = await client.fetch(query);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
+const page = async ({ params }: { params: { service: String } }) => {
+  const data = await getData(params.service);
+
+  if (data.length === 0) {
+    return <h2 className="my-[300px] text-3xl text-center">Errors</h2>;
+  }
+
+  const bannerImageUrl = urlForImage(data.bannerimage.asset);
+  const ourApproachImage = urlForImage(data.ourApproachImg.asset);
+  const offerImage = urlForImage(data.offerImg.asset);
+
   return (
     <>
       <HeroSectionComponent
-        title='"Web development"'
-        content=" A good web application comes with an elegant design and features
-        that serve its purpose elegantly. The expertise of developing 200+
-        apps taught out team what it takes to deliver that kind of
-        excellence for their clients."
-        image="/web-dev-hero-image.png"
+        title={`"${data.serviceTitleBaner}"`}
+        content={data.serviceDesceBaner}
+        image={bannerImageUrl}
+        alt={data.bannerimage.alt}
       />
 
       <ServiceApproachSection
         title="Our Approach"
-        description="Our approach to web development is centered around your goals and your audience. We believe that a successful website should look great, function flawlessly, and offer an exceptional user experience."
+        description={data.ourApproach}
         subtitle="Here's how we achieve that"
-        imageUrl="/web-dev-approach-image.png"
-        imageAlt="Web development image"
-        approachSteps={[
-          "Understanding Your Needs",
-          "Strategic Planning",
-          "Custom Design",
-          "Development",
-          "Ongoing Support",
-          "Deployment & Optimization",
-          "Testing & Quality Assurance",
-        ]}
+        imageUrl={ourApproachImage}
+        imageAlt={data.ourApproachImg.alt}
+        approachSteps={data.howWeAchieve}
         columns={true}
       />
 
       <ServiceApproachSection
         title="What We Offer"
-        description="CodeAutomation provides a wide range of website development services, including"
-        imageUrl="/service-webdev-offer-image.png"
-        imageAlt="Web development image"
-        approachSteps={[
-          "Custom Website Development",
-          "Content Management Systems (CMS)",
-          "E-commerce Development",
-          "Responsive Web Design",
-          "Web Application Development",
-          "SEO and Performance Optimization",
-        ]}
+        description={data.whatWeOffer}
+        imageUrl={offerImage}
+        imageAlt={data.offerImg.alt}
+        approachSteps={data.ourOffers}
         columns={false}
       />
 
@@ -54,11 +62,33 @@ const page = ({ params }: { params: { service: String } }) => {
         </div>
 
         <h2 className="text-2xl sm:text-4xl md:text-6xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1000px] mx-10 xl:mx-auto">
-          Why Choose CodeAutomation for Web Development
+          Why Choose CodeAutomation for {data.chooseCA}
         </h2>
 
         <div className="flex flex-wrap xl:flex-nowrap gap-10 xl:gap-5 2xl:gap-10 justify-center items-center mt-12 text-black mb-[114px] mx-4">
-          <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
+          {data.chosseCAFor &&
+            data.chosseCAFor.map((data: any, index: any) => {
+              return (
+                <div
+                  className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]"
+                  key={data._key}
+                >
+                  <div className="z-10 flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
+                    0{index + 1}
+                  </div>
+                  <div className="flex flex-col pl-4 mt-2">
+                    <h3 className="text-base font-medium leading-6 mt-6">
+                      {data.quality}
+                    </h3>
+                    <p className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
+                      {data.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+
+          {/* <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
             <div className="z-10 flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
               01
             </div>
@@ -71,9 +101,9 @@ const page = ({ params }: { params: { service: String } }) => {
                 with a strong track record of delivering outstanding websites.
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
+          {/* <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
             <div className="z-10 flex justify-center items-center self-end px-3.5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
               02
             </div>
@@ -132,7 +162,7 @@ const page = ({ params }: { params: { service: String } }) => {
                 ensuring your website is delivered on schedule.
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
