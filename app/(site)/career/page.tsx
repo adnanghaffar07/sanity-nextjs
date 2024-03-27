@@ -9,6 +9,7 @@ import { client } from "../../../sanity/lib/client"
 import { useEffect, useState } from "react";
 
 
+
 const Career: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
 

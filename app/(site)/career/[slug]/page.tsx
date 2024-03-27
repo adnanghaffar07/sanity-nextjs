@@ -1,30 +1,35 @@
-// 'use client'
-import React, { useState, ChangeEvent } from 'react';
+'use client'
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
 import { client } from "../../../../sanity/lib/client"
+import { useRouter } from 'next/router';
 
-async function getData() {
-  const fetchData = await client.fetch(
-    `*[_type == 'careers']{jobTitleBaner, descJobTitle}`
-  )
-  return fetchData
-}
+const CareerSub: React.FC = () => {
+  const router = useRouter();
+  const [jobPost, setJobPost] = useState<any>(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (router.isReady) { // Check if router is ready before accessing query
+          const { slug } = router.query;
+          const result = await client.fetch(`*[_type == 'careers' && jobTitleBaner == $slug][0]`, { slug });
+          setJobPost(result || null);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setJobPost(null);
+      }
+    };
 
+    fetchData();
+  }, [router.isReady, router.query.slug]);
 
+  if (!router.isReady) {
+    // Handle case when router is not ready yet
+    return <div>Loading...</div>;
+  }
 
-export default async function CareerSub() {
-  const data = await getData()
-  console.log(data)
-
-  // const [fileName, setFileName] = useState<string>('');
-
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     setFileName(file.name);
-  //   }
-  // };
   return (
     <div>
 
@@ -35,14 +40,9 @@ export default async function CareerSub() {
           <div className="lg:absolute lg:top-[350px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
               <h2 className="title capitalize">
-                {data.map((val: any, i: number) => {
-                  return (
-                    <div key={i}>
-                      &quot;{val.jobTitleBaner}&quot;
-                    </div>
-                  )
-                })}
-
+                {jobPost && (
+                  <span>&quot;{jobPost.jobTitleBaner}&quot;</span>
+                )}
               </h2>
             </div>
             <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
@@ -51,8 +51,6 @@ export default async function CareerSub() {
           </div>
         </div>
       </div>
-
-
       <div className="max-w-full mx-auto relative">
         <img
           loading="lazy"
@@ -153,3 +151,4 @@ export default async function CareerSub() {
   );
 }
 
+export default CareerSub;
