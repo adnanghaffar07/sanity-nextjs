@@ -10,6 +10,6 @@ import bannercontent from "./banner-schema";
 import bannerbox1content from "./banner-box-1-content";
 
 
-const schemas = [project, nav, section, page, image, testimonail, footer, copyrighttext, bannercontent, bannerbox1content];
+const schema = [project, nav, section, page, image, testimonail, footer, copyrighttext, bannercontent, bannerbox1content];
 
-export default schemas;
+export default schema;
