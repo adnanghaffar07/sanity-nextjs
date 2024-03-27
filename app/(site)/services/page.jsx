@@ -5,8 +5,8 @@ import Image from "next/image";
 
 import { client } from "../../../sanity/lib/client";
 
-export async function getData() {
-  const query = `*[_type == 'services']`;
+async function getData() {
+  const query = `*[_type == 'services'] | order(_updatedAt desc)`;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];
