@@ -3,33 +3,34 @@ import React, { useState, ChangeEvent, useEffect } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
 import { client } from "../../../../sanity/lib/client"
 import { useRouter } from 'next/router';
+import { urlForImage } from "@/sanity/lib/image";
 
-const CareerSub: React.FC = () => {
-  const router = useRouter();
-  const [jobPost, setJobPost] = useState<any>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (router.isReady) { // Check if router is ready before accessing query
-          const { slug } = router.query;
-          const result = await client.fetch(`*[_type == 'careers' && jobTitleBaner == $slug][0]`, { slug });
-          setJobPost(result || null);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setJobPost(null);
-      }
-    };
+export async function getData(jobTitleBaner: any) {
+  console.log("------urlService--------", jobTitleBaner);
+  const query = `*[_type == 'careers' && urlPath == '${jobTitleBaner}'][0]`;
+  try {
+    const fetchData = await client.fetch(query);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
 
-    fetchData();
-  }, [router.isReady, router.query.slug]);
 
-  if (!router.isReady) {
-    // Handle case when router is not ready yet
-    return <div>Loading...</div>;
+
+
+const page = async ({ params }: { params: { service: String } }) => {
+  const data = await getData(params.service);
+
+  if (data.length === 0) {
+    return <h2 className="my-[300px] text-3xl text-center">Errors</h2>;
   }
 
+  const bannerImageUrl = urlForImage(data.bannerimage.asset);
+  const ourApproachImage = urlForImage(data.ourApproachImg.asset);
+  const offerImage = urlForImage(data.offerImg.asset);
   return (
     <div>
 
@@ -151,4 +152,4 @@ const CareerSub: React.FC = () => {
   );
 }
 
-export default CareerSub;
+export default page;
