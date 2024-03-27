@@ -3,7 +3,7 @@ import React, { useState, ChangeEvent } from "react";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { client } from "../../../../sanity/lib/client";
 
-export async function getData(jobId: string) {
+async function getData(jobId: string) {
   const query = `*[_type == 'careers' && _id == '${jobId}'][0]`;
   try {
     const fetchData = await client.fetch(query);

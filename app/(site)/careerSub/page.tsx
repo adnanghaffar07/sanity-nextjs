@@ -10,9 +10,6 @@
 //   return fetchData
 // }
 
-
-
-
 // export default async function CareerSub() {
 //   const data = await getData()
 //   console.log(data)
@@ -51,7 +48,6 @@
 //           </div>
 //         </div>
 //       </div>
-
 
 //       <div className="max-w-full mx-auto relative">
 //         <img
@@ -130,12 +126,15 @@
 //                 <input
 //                   type="file"
 //                   className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-                // onChange={handleFileChange}
-              //   />
-              //   <AiOutlinePaperClip size={24} /> Upload CV/Resume
-              // </div>
-              {/* {fileName && <p className="text-sm text-gray-500">{fileName}</p>} */}
-            {/* </div>
+// onChange={handleFileChange}
+//   />
+//   <AiOutlinePaperClip size={24} /> Upload CV/Resume
+// </div>
+{
+  /* {fileName && <p className="text-sm text-gray-500">{fileName}</p>} */
+}
+{
+  /* </div>
             <div className=''>
               <button className="self-center text-lg text-center text-black bg-[#F7E022] flex justify-center rounded-xl px-10 py-2 shadow-md shadow-slate-400 cursor-pointer">
                 Submit
@@ -152,4 +151,13 @@
     </div>
   );
 }
- */}
+ */
+}
+
+import React from "react";
+
+const page = () => {
+  return <div>page</div>;
+};
+
+export default page;

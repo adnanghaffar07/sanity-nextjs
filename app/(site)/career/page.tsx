@@ -5,7 +5,7 @@ import { AiFillFlag } from "react-icons/ai";
 import CareerPost from "../components/CareerPost";
 import { client } from "../../../sanity/lib/client";
 
-export async function getData() {
+async function getData() {
   const query = `*[_type == 'careers']`;
   try {
     const fetchData = await client.fetch(query);
