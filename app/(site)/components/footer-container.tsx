@@ -15,6 +15,7 @@ export default async function FooterContainer() {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/adf696589e4137664b9c3d84b7694e7064769715ccfab4d849d64bbc25c5674e?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Instagram",
       link: "https://www.instagram.com/codeautomation.ai/",
+      link: "https://www.instagram.com/codeautomation.ai/",
 
     },
     {
@@ -28,6 +29,7 @@ export default async function FooterContainer() {
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/679d9d2dbbc950158d83a006bad2c7e0bb1376ded77e7aac9361af8cf20181f9?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Linkedin",
+      link: "https://www.linkedin.com/company/codeautomationai/",
       link: "https://www.linkedin.com/company/codeautomationai/",
 
     },
