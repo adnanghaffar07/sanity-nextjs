@@ -23,24 +23,24 @@ const careers = {
         },
 
         {
-            name: 'resposibilities', 
-            title: 'Key Responsibilities',
-            type: 'array', 
-            of: [{type: 'block'}]
-          },
+          name: 'responsibilities', 
+          title: 'Responsibilities',
+          type: 'text'
+        },
+        
 
           {
             name: 'requirements', 
             title: 'Requirements',
             type: 'array', 
-            of: [{type: 'block'}]
+            of: [{type: 'string'}]
           },
           
           {
             name: 'qualification', 
             title: 'Qualification',
             type: 'array', 
-            of: [{type: 'block'}]
+            of: [{type: 'string'}]
           },
 
 

@@ -39,10 +39,9 @@ const CareerPost: React.FC<Props> = ({ jobpost }) => {
             <AiFillFlag size={24} />
             <div className="text-sm">Model Town,<br /> Lahore</div>
           </div>
-          <Link href={`/career/${encodeURIComponent(jobpost.jobTitleBaner)}`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
+          <Link href={`/career/${jobpost._id}`} className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm">
             Read More
           </Link>
-
 
         </div>
       </div>

@@ -1,36 +1,25 @@
-'use client'
-import React, { useState, ChangeEvent, useEffect } from 'react';
+// 'use client'
+import React, { useState, ChangeEvent } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
 import { client } from "../../../../sanity/lib/client"
-import { useRouter } from 'next/router';
-import { urlForImage } from "@/sanity/lib/image";
 
-
-export async function getData(jobTitleBaner: any) {
-  console.log("------urlService--------", jobTitleBaner);
-  const query = `*[_type == 'careers' && urlPath == '${jobTitleBaner}'][0]`;
+export async function getData(jobId: string) {
+  console.log("------jobId--------", jobId);
+  const query = `*[_type == 'careers' && _id == '${jobId}'][0]`;
   try {
     const fetchData = await client.fetch(query);
-    return fetchData || [];
+    return fetchData || []; // Returning null instead of an empty array if no data found
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    return []; // Returning null in case of an error
   }
 }
 
+const Page = async ({ params }: { params: { slug: string } }) => {
+  const data = await getData(params.slug);
+  console.log(params);
 
 
-
-const page = async ({ params }: { params: { service: String } }) => {
-  const data = await getData(params.service);
-
-  if (data.length === 0) {
-    return <h2 className="my-[300px] text-3xl text-center">Errors</h2>;
-  }
-
-  const bannerImageUrl = urlForImage(data.bannerimage.asset);
-  const ourApproachImage = urlForImage(data.ourApproachImg.asset);
-  const offerImage = urlForImage(data.offerImg.asset);
   return (
     <div>
 
@@ -41,9 +30,10 @@ const page = async ({ params }: { params: { service: String } }) => {
           <div className="lg:absolute lg:top-[350px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
               <h2 className="title capitalize">
-                {jobPost && (
-                  <span>&quot;{jobPost.jobTitleBaner}&quot;</span>
-                )}
+                <h2 className="title capitalize">
+                  {data ? `"${data.jobTitleBaner}"` : "Loading..."}
+                </h2>
+
               </h2>
             </div>
             <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
@@ -52,6 +42,8 @@ const page = async ({ params }: { params: { service: String } }) => {
           </div>
         </div>
       </div>
+
+
       <div className="max-w-full mx-auto relative">
         <img
           loading="lazy"
@@ -61,32 +53,28 @@ const page = async ({ params }: { params: { service: String } }) => {
         <div className="flex flex-col self-center w-full xl:max-w-[1582px] relative z-10 mx-auto">
           <div className="lg:px-10 px-5 w-full py-16">
             <div className='xl:text-5xl lg:text-4xl text-2xl font-normal xl:mb-16 mb-8 xl:w-7/12'>
-              Java Developer (Female) Onsite Experience 2 to 3 years
-            </div>
+              {data.descJobTitle}            </div>
             <div className='mb-10'>
               <div className='xl:text-4xl lg:text-2xl text-xl text-[#024] font-semibold mb-5'>
                 Job Description
               </div>
               <div className=''>
-                <p className='xl:text-xl lg:text-xl text-l font-light mb-5'>We are seeking a talented and motivated Java Developer to join our dynamic team. The ideal candidate for this position should have 2 to 3 years of experience in Java development and be passionate about creating high-quality, robust, and efficient software solutions. As part of our team, you will contribute to the design, development, and maintenance of Java-based applications that power our organization&rsquo;s success. Your skills and expertise will play a vital role in shaping our software systems and helping us achieve our goals. </p>
+                <p className='xl:text-xl lg:text-xl text-l font-light mb-5'>
+                  {data.jobDescription}
+                </p>
               </div>
             </div>
             <div className='mb-10'>
               <div className='xl:text-4xl lg:text-2xl text-xl font-semibold mb-5 text-[#024]'>
                 Key Responsibilities
               </div>
+
               <div className=''>
-                <ul className='list-disc xl:text-xl lg:text-xl text-l font-light mb-5 pl-5'>
-                  <li>Collaborate with the development team to design and implement Java-based applications.</li>
-                  <li>Write clean, maintainable, and efficient code.</li>
-                  <li>Debug and resolve software defects and issues.</li>
-                  <li>Perform code reviews and provide constructive feedback.</li>
-                  <li>Work on new feature development and enhancement of existing systems.</li>
-                  <li>Contribute to system documentation and technical specifications.</li>
-                  <li>Stay updated on emerging technologies and industry best practices.</li>
-                  <li>Participate in the full software development lifecycle, from concept to deployment.</li>
-                </ul>
+                <p className='xl:text-xl lg:text-xl text-l font-light mb-5'>
+                {data ? `"${data.responsibilities}"` : "Loading..."} 
+                </p>
               </div>
+
             </div>
             <div className='mb-10'>
               <div className='xl:text-4xl lg:text-2xl text-xl font-semibold mb-5 text-[#024]'>
@@ -152,4 +140,5 @@ const page = async ({ params }: { params: { service: String } }) => {
   );
 }
 
-export default page;
+export default Page
+
