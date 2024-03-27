@@ -5,8 +5,7 @@ import ServiceApproachSection from "../../components/ServiceApproachSection";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-export async function getData(urlService: any) {
-  console.log("------urlService--------", urlService);
+async function getData(urlService: any) {
   const query = `*[_type == 'services' && urlPath == '${urlService}'][0]`;
   try {
     const fetchData = await client.fetch(query);
