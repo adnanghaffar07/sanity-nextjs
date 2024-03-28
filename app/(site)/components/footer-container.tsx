@@ -4,6 +4,14 @@ import Link from "next/link";
 export default async function FooterContainer() {
   const cpyrighttext = await getCpyrighttext();
 
+  const linkUrl = "/software-development"; 
+  const linkUrlWeb = "/web-development"; 
+  const linkUrlApp = "/app-development"; 
+  const linkUrlAutomate = "/qa-automation-testing"; 
+  const linkUrlManual = "/qa-manual-testing"; 
+  const linkUrlBuisness = "/business-automation"; 
+
+
   const socialIcons = [
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/473a7429030026bd2ca2fe152aef53403a1f9b0cbee5a68d3ad32022fad854a7?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
@@ -67,37 +75,37 @@ export default async function FooterContainer() {
               <div className="text-2xl font-medium self-start">Solutions</div>
               <div className="mt-6 text-base font-light flex flex-col gap-5">
                 <Link
-                  href={`/services/service`}
+                  href={`/services/${linkUrl}`}
                   className="hover:underline my-auto inline-block"
                 >
                   Software Development
                 </Link>
                 <Link
-                  href={`/services/service`}
+                  href={`/services/${linkUrlWeb}`}
                   className="hover:underline my-auto inline-block"
                 >
                   Web App Development
                 </Link>
                 <Link
-                  href={`/services/service`}
+                  href={`/services/${linkUrlApp}`}
                   className="hover:underline my-auto inline-block"
                 >
                   Mobile App Development
                 </Link>
                 <Link
-                  href={`/services/service`}
+                  href={`/services/${linkUrlAutomate}`}
                   className="hover:underline my-auto inline-block"
                 >
                   QA Automation Testing
                 </Link>
                 <Link
-                  href={`/services/service`}
+                  href={`/services/${linkUrlManual}`}
                   className="hover:underline my-auto inline-block"
                 >
                   QA Manual Testing
                 </Link>
                 <Link
-                  href={`/services/service`}
+                  href={`/services/${linkUrlBuisness}`}
                   className="hover:underline my-auto inline-block"
                 >
                   Automate Business

@@ -117,7 +117,7 @@ export default function Home() {
                   <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
                     Our Core Expertise
                   </div>
-                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36">
+                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
                     CodeAutomation offers 24/7 assistance from skilled
                     professionals to ensure the quality of your IT projects.
                     CodeAutomation is committed to guaranteeing optimal security
@@ -125,7 +125,7 @@ export default function Home() {
                     solutions and comprehensive support keep your organization
                     running smoothly, from disaster recovery to cybersecurity,
                     managed IT services, and e-commerce solutions.
-                    <br />
+                
                     Our goal is to support your endeavors. At CodeAutomation, we
                     are proud of our comprehensive knowledge of the full scope
                     of IT services developed over the years.{" "}
@@ -237,7 +237,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
               <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
                 <Link
-                  href="/blogs"
+                  href="/case-study"
                   className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
                 >
                   <div className="relative grow self-center">
@@ -380,7 +380,8 @@ export default function Home() {
               <div className="xl:text-4xl lg:text-3xl text-3xl">
                 Our Distinctive Way
               </div>
-              <div className="lg:mt-8 mt-4 lg:text-xl text-lg font-light max-md:max-w-full lg:pr-32">
+              <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
+
                 Work with CodeAutomation, where collaboration, creativity, and
                 precision intersect. Our unique approach to project execution
                 blends cutting-edge technology with a human touch. Our

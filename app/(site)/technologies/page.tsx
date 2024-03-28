@@ -102,7 +102,7 @@ export default function Technologies() {
                     className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
                   />                  
                   <div className="lg:text-5xl text-3xl mb-3 text-end">
-                    CRM/CMS
+                    CMS-Headless
                   </div>
                   <div className="mb-10">
                     <p className="lg:text-lg text-base text-end">CodeAutomation excels in the field of CRM customization and implementation, showcasing a high level of proficiency in tailoring solutions to meet unique business needs.</p>
@@ -135,139 +135,12 @@ export default function Technologies() {
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
                   <div className="lg:text-5xl text-3xl mb-3">
-                    Frontend
+                  Mobile Technologies
                   </div>
                   <div className="mb-10">
-                    <p className="lg:text-lg text-base">Our expertise lies in crafting cutting-edge frontend solutions, leveraging the power of HTML5 and the latest JavaScript frameworks.</p>
+                    <p className="lg:text-lg text-base">At Code Automation, our mobile development services are underpinned by a commitment to reliability and versatility.</p>
                   </div>
                   <div className="lg:pr-36">
-                    <img
-                    loading="lazy"
-                    src="/img-logos-frontend.jpg"
-                    className="lg:w-full md:w-3/4 w-full inline-block"
-                    />
-                  </div>
-                </div>
-                <div className="text-center lg:order-2 order-1">
-                  <img
-                  loading="lazy"
-                  src="/illustration-frontend.jpg"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div className="max-w-full mx-auto relative">
-        <img
-            loading="lazy"
-            src="/intersect-right.png"
-            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
-                <div className="text-center">
-                  <img
-                  loading="lazy"
-                  src="/illustration-backend.jpg"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-                <div className="lg:pl-20 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-right.png"
-                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="lg:text-5xl text-3xl mb-3 text-end">
-                    Backend
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base text-end">Our toolkit includes robust frameworks such as Node.js, Django, and Ruby on Rails, coupled with scalable databases like MongoDB and PostgreSQL.</p>
-                  </div>
-                  <div className="lg:pl-36 md:text-end">
-                    <img
-                    loading="lazy"
-                    src="/img-logos-backend.jpg"
-                    className="lg:w-full md:w-3/4 w-full inline-block"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div className="max-w-full mx-auto relative">
-        <img
-            loading="lazy"
-            src="/intersect-left.png"
-            className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
-                <div className="xl:pr-20 lg:order-1 order-2 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-left.png"
-                    className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="lg:text-5xl text-3xl mb-3">
-                    Database
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base">We leverage relational databases like MySQL and PostgreSQL for structured data, NoSQL databases such as MongoDB for flexible and scalable data storage, and cloud-based solutions.</p>
-                  </div>
-                  <div className="lg:pr-36">
-                    <img
-                    loading="lazy"
-                    src="/img-logos-database.jpg"
-                    className="lg:w-full md:w-3/4 w-full inline-block"
-                    />
-                  </div>
-                </div>
-                <div className="text-center lg:order-2 order-1">
-                  <img
-                  loading="lazy"
-                  src="/illustration-database.jpg"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div className="max-w-full mx-auto relative">
-        <img
-            loading="lazy"
-            src="/intersect-right.png"
-            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
-                <div className="text-center">
-                  <img
-                  loading="lazy"
-                  src="/illustration-mobile-technologies.jpg"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-                <div className="lg:pl-20 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-right.png"
-                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="lg:text-5xl text-3xl mb-3 text-end">
-                    Mobile Technologies
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base text-end">At Code Automation, our mobile development services are underpinned by a commitment to reliability and versatility.</p>
-                  </div>
-                  <div className="lg:pl-36 md:text-end">
                     <img
                     loading="lazy"
                     src="/img-logos-mobile-technologies.jpg"
@@ -275,6 +148,53 @@ export default function Technologies() {
                     />
                   </div>
                 </div>
+                <div className="text-center lg:order-2 order-1">
+                  <img
+                  loading="lazy"
+                  src="/illustration-mobile-technologies.jpg"
+                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div className="max-w-full mx-auto relative">
+        <img
+            loading="lazy"
+            src="/intersect-right.png"
+            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
+          />
+          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+            <div className="lg:px-10 px-5 w-full">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
+                <div className="text-center">
+                  <img
+                  loading="lazy"
+                  src="/illustration-frontend.jpg"
+                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                  />
+                </div>
+                <div className="lg:pl-20 relative">
+                  <img
+                    loading="lazy"
+                    src="/intersect-right.png"
+                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
+                  />
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
+                  Frontend
+                  </div>
+                  <div className="mb-10">
+                    <p className="lg:text-lg text-base text-end">Our expertise lies in crafting cutting-edge frontend solutions, leveraging the power of HTML5 and the latest JavaScript frameworks.</p>
+                  </div>
+                  <div className="lg:pl-36 md:text-end">
+                    <img
+                    loading="lazy"
+                    src="/img-logos-frontend.jpg"
+                    className="lg:w-full md:w-3/4 w-full inline-block"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -295,15 +215,15 @@ export default function Technologies() {
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
                   <div className="lg:text-5xl text-3xl mb-3">
-                    Manual Testing
+                  Backend
                   </div>
                   <div className="mb-10">
-                    <p className="text-lg">Our developers use a meticulous manual testing process and a suite of tools, to ensure the quality and functionality of your website or application.</p>
+                    <p className="lg:text-lg text-base">Our toolkit includes robust frameworks such as Node.js, Django, and Ruby on Rails, coupled with scalable databases like MongoDB and PostgreSQL.</p>
                   </div>
                   <div className="lg:pr-36">
                     <img
                     loading="lazy"
-                    src="/img-logos-manual-testing.jpg"
+                    src="/img-logos-backend.jpg"
                     className="lg:w-full md:w-3/4 w-full inline-block"
                     />
                   </div>
@@ -311,7 +231,7 @@ export default function Technologies() {
                 <div className="text-center lg:order-2 order-1">
                   <img
                   loading="lazy"
-                  src="/illustration-manual-testing.jpg"
+                  src="/illustration-backend.jpg"
                   className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
                   />
                 </div>
@@ -375,15 +295,15 @@ export default function Technologies() {
                     className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                   />
                   <div className="lg:text-5xl text-3xl mb-3">
-                    UI/UX Designing
+                    Manual Testing
                   </div>
                   <div className="mb-10">
-                    <p className="lg:text-lg text-base">For creating impressive designs, our essential tools include Adobe Creative Cloud for versatile graphic design, Sketch for efficient UI/UX, and Figma for collaborative prototyping.</p>
+                    <p className="text-lg">Our developers use a meticulous manual testing process and a suite of tools, to ensure the quality and functionality of your website or application.</p>
                   </div>
                   <div className="lg:pr-36">
                     <img
                     loading="lazy"
-                    src="/img-logos-ui-ux-designing.jpg"
+                    src="/img-logos-manual-testing.jpg"
                     className="lg:w-full md:w-3/4 w-full inline-block"
                     />
                   </div>
@@ -391,9 +311,50 @@ export default function Technologies() {
                 <div className="text-center lg:order-2 order-1">
                   <img
                   loading="lazy"
+                  src="/illustration-manual-testing.jpg"
+                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+      <div className="max-w-full mx-auto relative">
+        <img
+            loading="lazy"
+            src="/intersect-right.png"
+            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
+          />
+          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+            <div className="lg:px-10 px-5 w-full">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">            
+                <div className="text-center">
+                  <img
+                  loading="lazy"
                   src="/illustration-ui-ux-designing.jpg"
                   className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
                   />
+                </div>
+                <div className="lg:pl-20 relative">
+                  <img
+                    loading="lazy"
+                    src="/intersect-right.png"
+                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
+                  />                  
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
+                  UI/UX Designing
+                  </div>
+                  <div className="mb-10">
+                    <p className="lg:text-lg text-base text-end">For creating impressive designs, our essential tools include Adobe Creative Cloud for versatile graphic design, Sketch for efficient UI/UX, and Figma for collaborative prototyping.</p>
+                  </div>
+                  <div className="lg:pl-36 md:text-end">
+                    <img
+                    loading="lazy"
+                    src="/img-logos-ui-ux-designing.jpg"
+                    className="lg:w-full md:w-3/4 w-full inline-block"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
