@@ -1,20 +1,21 @@
 'use client'
-import { useFormik } from "formik";
-import { contactSchema } from "../../schemas/index";
-import { useForm } from '@formspree/react';
 
+import Link from "next/link";
+import { useFormik } from "formik"
+import { contactSchema } from "../../schemas/index"
+import { useForm } from '@formspree/react';
 const initialValues = {
     name: "",
     contact_number: "",
     looking: "",
     email: "",
     message: ""
-};
+
+}
 
 export default function ProjectDiscussionContainer() {
     const [state, formspreeHandleSubmit] = useForm("moqgkqrp");
-
-    const handleCombinedSubmit = async (event:any) => {
+    const handleCombinedSubmit = async (event:any): Promise<void> => {
         // Validate the form using Formik
         handleSubmit(event);
 
@@ -43,7 +44,9 @@ export default function ProjectDiscussionContainer() {
                 <div className="lg:text-4xl md:text-3xl text-l font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl">
                     Lets have a Project Discussion
                 </div>
-                <form action="https://formspree.io/f/moqgkqrp" method="POST" onSubmit={handleCombinedSubmit}>
+                <form action="https://formspree.io/f/moqgkqrp"
+                method="POST"
+                onSubmit={handleCombinedSubmit}>
                     <div className="mt-10">
                         <input
                             className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
@@ -53,7 +56,8 @@ export default function ProjectDiscussionContainer() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        {errors.name && touched.name && (<p className="form-error">{errors.name}</p>)}
+                        {errors.name && touched.name? 
+                        (<p className="form-error">{errors.name}</p>): null}
                     </div>
                     <div className="mt-4">
                         <input
@@ -64,7 +68,8 @@ export default function ProjectDiscussionContainer() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        {errors.contact_number && touched.contact_number && (<p className="form-error">{errors.contact_number}</p>)}
+                        {errors.contact_number && touched.contact_number? 
+                        (<p className="form-error">{errors.contact_number}</p>): null}
                     </div>
                     <div className="mt-4">
                         <input
@@ -75,7 +80,8 @@ export default function ProjectDiscussionContainer() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        {errors.email && touched.email && (<p className="form-error">{errors.email}</p>)}
+                        {errors.email && touched.email? 
+                        (<p className="form-error">{errors.email}</p>): null}
                     </div>
                     <div className="mt-4">
                         <input
@@ -86,7 +92,8 @@ export default function ProjectDiscussionContainer() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        {errors.looking && touched.looking && (<p className="form-error">{errors.looking}</p>)}
+                        {errors.looking && touched.looking? 
+                        (<p className="form-error">{errors.looking}</p>): null}
                     </div>
                     <div className="mt-4">
                         <textarea
@@ -99,13 +106,18 @@ export default function ProjectDiscussionContainer() {
                             rows={4}
                             cols={4}
                         />
-                        {errors.message && touched.message && (<p className="form-error">{errors.message}</p>)}
+                        {errors.message && touched.message? 
+                        (<p className="form-error">{errors.message}</p>): null}
                     </div>
+
+
                     <button type="submit" className="self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 cursor-pointer hover:cursor-pointer">
                         Submit
                     </button>
+
                 </form>
+
             </div>
         </div>
     );
-}
+};
