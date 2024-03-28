@@ -2,6 +2,8 @@
 import React, { useState, ChangeEvent } from "react";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { client } from "../../../../sanity/lib/client";
+import FileInput from "../../components/FileInput";
+
 
 async function getData(jobId: string) {
   const query = `*[_type == 'careers' && _id == '${jobId}'][0]`;
@@ -73,7 +75,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                       return (
                         <li
                           key={index}
-                          className="list-disc xl:text-xl lg:text-xl text-l font-light mb-5"
+                          className="list-disc"
                         >
                           {ele}
                         </li>
@@ -112,22 +114,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   })}
               </ul>
             </div>
-            <div className="mb-5">
-              <div className="cursor-pointer inline-flex gap-2 items-center relative text-[#024]">
-                <input
-                  type="file"
-                  className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-                  // onChange={handleFileChange}
-                />
-                <AiOutlinePaperClip size={24} /> Upload CV/Resume
-              </div>
-              {/* {fileName && <p className="text-sm text-gray-500">{fileName}</p>} */}
-            </div>
-            <div className="">
-              <button className="self-center text-lg text-center text-black bg-[#F7E022] flex justify-center rounded-xl px-10 py-2 shadow-md shadow-slate-400 cursor-pointer">
-                Submit
-              </button>
-            </div>
+            <FileInput />
+         
           </div>
         </div>
         <img
