@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react';
 import Link from "next/link";
 import { useFormik } from "formik"
 import { contactSchema } from "../../schemas/index"
@@ -15,7 +14,6 @@ const initialValues = {
 }
 
 export default function ProjectDiscussionContainer() {
-    const [popupVisible, setPopupVisible] = useState(false); // State to manage popup visibility
     const [state, formspreeHandleSubmit] = useForm("moqgkqrp");
     const handleCombinedSubmit = async (event:any): Promise<void> => {
         // Validate the form using Formik
@@ -28,14 +26,6 @@ export default function ProjectDiscussionContainer() {
 
         // If validation passed, submit to Formspree
         formspreeHandleSubmit(event);
-
-        // Show popup message
-        setPopupVisible(true);
-
-        // Hide popup message after 5 seconds
-        setTimeout(() => {
-            setPopupVisible(false);
-        }, 3000);
     };
 
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
@@ -120,18 +110,14 @@ export default function ProjectDiscussionContainer() {
                         (<p className="form-error">{errors.message}</p>): null}
                     </div>
 
+
                     <button type="submit" className="self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 cursor-pointer hover:cursor-pointer">
                         Submit
                     </button>
+
                 </form>
+
             </div>
-{/* Popup message */}
-{popupVisible && (
-    <div className="popup-message">
-        <div className="loading-line"></div>
-        <p className='message'>Your Message has been successfully submitted!</p>
-    </div>
-)}
         </div>
     );
 };

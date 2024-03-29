@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['cdn.sanity.io'], // Add the CDN domain here
+    domains: ["cdn.sanity.io"],
   },
   // eslint: {
   //   ignoreDuringBuilds: true,
   // },
-
-
- 
 };
 
 export default nextConfig;
