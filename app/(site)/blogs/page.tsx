@@ -5,7 +5,7 @@ export default function Blogs() {
   return (
     <>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white h-[380px] sm:h-[600px] md:h-[620px] lg:h-[704px] max-md:max-w-full">
-        <div className="absolute top-0 left-0 w-full h-full inset-0 bg-[#020C16] opacity-85 z-[2]"></div>
+        <div className="absolute top-0 left-0 w-full h-full inset-0 bg-[#020C16] opacity-75 z-[2]"></div>
         <video
           className="top-0 left-0 object-cover absolute inset-0 size-full z-[1]"
           width="100%"

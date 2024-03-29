@@ -14,12 +14,13 @@ export default async function FooterContainer() {
 
   const socialIcons = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/473a7429030026bd2ca2fe152aef53403a1f9b0cbee5a68d3ad32022fad854a7?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/facebook.svg",
       alt: "facebook",
       link: "https://www.facebook.com/Codeautomationai/",
+
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/adf696589e4137664b9c3d84b7694e7064769715ccfab4d849d64bbc25c5674e?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/instagram.svg",
       alt: "Instagram",
       link: "https://www.instagram.com/codeautomation.ai/",
 
@@ -31,7 +32,7 @@ export default async function FooterContainer() {
       className: "rounded-3xl",
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/679d9d2dbbc950158d83a006bad2c7e0bb1376ded77e7aac9361af8cf20181f9?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/linkedin.svg",
       alt: "Linkedin",
       link: "https://www.linkedin.com/company/codeautomationai/",
 
@@ -156,22 +157,59 @@ export default async function FooterContainer() {
                 Avenue Ottawa, K1K4M9, Canada.
               </div>
               <div className="container mt-20 flex justify-center items-center">
-                <section className="grid grid-cols-4 gap-3 ">
-                  {socialIcons.map((icon, index) => (
-                    <Link
-                      key={index}
-                      href={icon.link}
+              <section className="grid grid-cols-4 gap-3 ">
+                  <Link
+                      key={1}
+                      href="https://www.facebook.com/Codeautomationai/"
                       target="_blank"
                       rel="noopener noreferrer"
-                    >
+                  >
                       <img
-                        src={icon.src}
-                        alt={icon.alt}
-                        className="h-10 w-10 rounded-3xl"
+                        src="/facebook.svg"
+                        alt="Facebook"
+                        className="h-10 w-10 rounded-3xl fill-black text-black transition duration-300 hover:text-black"
                       />{" "}
                       {/* Adjust height and width as needed */}
-                    </Link>
-                  ))}
+                  </Link>
+                  <Link
+                      key={2}
+                      href="https://www.instagram.com/codeautomation.ai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                  >
+                      <img
+                        src="/instagram.svg"
+                        alt="Instagram"
+                        className="h-10 w-10 rounded-3xl fill-black text-black transition duration-300 hover:text-black"
+                      />{" "}
+                      {/* Adjust height and width as needed */}
+                  </Link>
+                  <Link
+                      key={3}
+                      href="https://twitter.com/codeautomation"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                  >
+                      <img
+                        src="/twitter-new.svg"
+                        alt="Twitter"
+                        className="h-10 w-10 rounded-3xl fill-black text-black transition duration-300 hover:text-black"
+                      />{" "}
+                      {/* Adjust height and width as needed */}
+                  </Link>
+                  <Link
+                      key={4}
+                      href="https://www.linkedin.com/company/codeautomationai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                  >
+                      <img
+                        src="/linkedin.svg"
+                        alt="LinkedIn"
+                        className="h-10 w-10 rounded-3xl fill-black text-black transition duration-300 hover:text-black"
+                      />{" "}
+                      {/* Adjust height and width as needed */}
+                  </Link>
                 </section>
               </div>
             </div>

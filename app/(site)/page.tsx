@@ -16,7 +16,7 @@ export default function Home() {
         >
           <source src="./for-blogs.mp4" type="video/mp4" />
         </video>
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-85"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[250px] lg:top-[220px] 2xl:top-[250px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
             <HomePageSlider />
@@ -125,7 +125,7 @@ export default function Home() {
                     solutions and comprehensive support keep your organization
                     running smoothly, from disaster recovery to cybersecurity,
                     managed IT services, and e-commerce solutions.
-                
+
                     Our goal is to support your endeavors. At CodeAutomation, we
                     are proud of our comprehensive knowledge of the full scope
                     of IT services developed over the years.{" "}
@@ -173,25 +173,25 @@ export default function Home() {
             <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
               <div className="flex flex-col w-3/5 max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col grow lg:text-2xl md:text-xl text-base text-zinc-100 max-md:mt-10 max-md:max-w-full gap-10">
-                  <div className="flex overflow-hidden relative flex-col justify-center w-full font-medium shadow-md max-md:max-w-full rounded-3xl">
+                  <div className="flex overflow-hidden relative flex-col justify-center w-full font-medium shadow-md max-md:max-w-full rounded-3xl image-container">
                     <img
                       loading="lazy"
                       srcSet="/image-16.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-20 ">
+                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-20 overlay">
                       <span className="font-bold text-zinc-100">
                         Bubblehouse - E Commerce (NFTs)
                       </span>
                     </div>
                   </div>
-                  <div className="flex overflow-hidden relative flex-col justify-center w-full font-medium shadow-md max-md:max-w-full rounded-3xl">
+                  <div className="flex overflow-hidden relative flex-col justify-center w-full font-medium shadow-md max-md:max-w-full rounded-3xl image-container">
                     <img
                       loading="lazy"
                       srcSet="/image-21.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-25">
+                    <div className="absolute top-0  overlay left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-25">
                       <span className="font-bold text-zinc-100">
                         Vested Finance - Fintech
                       </span>
@@ -201,33 +201,33 @@ export default function Home() {
               </div>
               <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
-                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full">
+                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container">
                     <img
                       loading="lazy"
                       srcSet="/image-17.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                    <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                       Getdandy - Ai Product
                     </div>
                   </div>
-                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full">
+                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container">
                     <img
                       loading="lazy"
                       srcSet="/image-19.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                    <div className="absolute top-0 left-0 w-full overlay h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                       PublicInput - Community Engagement
                     </div>
                   </div>
-                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl shadow-md max-md:max-w-full">
+                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl shadow-md max-md:max-w-full image-container">
                     <img
                       loading="lazy"
                       srcSet="/image-20.jpg"
                       className="size-full rounded-3xl"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                    <div className="absolute top-0 left-0 w-full overlay h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                       Tracely - Location Tracking App
                     </div>
                   </div>
@@ -280,11 +280,7 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       200+
-                      {/* <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                        className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      /> */}
+
                     </div>
                   </div>
                 </div>
@@ -304,11 +300,7 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       350+
-                      {/* <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                        className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      /> */}
+
                     </div>
                   </div>
                 </div>
@@ -328,11 +320,7 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       300+
-                      {/* <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                        className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      /> */}
+
                     </div>
                   </div>
                 </div>
@@ -376,18 +364,17 @@ export default function Home() {
             className="lg:aspect-[1.22] absolute left-0 md:top-24 top-16 w-24 lg:hidden block"
           />
           <div className="w-full max-w-[1582px] mx-auto md:flex">
-            <div className="flex relative flex-col md:w-7/12 w-full self-end">
+            <div className="flex flex-col md:w-7/12 w-full self-center">
               <div className="xl:text-4xl lg:text-3xl text-3xl">
                 Our Distinctive Way
               </div>
               <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
-
                 Work with CodeAutomation, where collaboration, creativity, and
                 precision intersect. Our unique approach to project execution
                 blends cutting-edge technology with a human touch. Our
                 specialized experts with top certifications aim to develop
                 innovative options that assist companies in achieving growth
-                goals in the digital era.{" "}
+                goals in the digital era.
               </div>
               <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
                 <Link
@@ -405,6 +392,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+
             <div className="md:w-5/12 w-full">
               <img
                 src="/img-our-distinctive-way.jpg"
@@ -977,204 +965,7 @@ export default function Home() {
                   </article>
                 </details>
               </li>
-              <li>
-                <details className="group">
-                  <summary className="flex justify-between items-center flex-grow">
-                    <div className="w-11/12 text-base">
-                      <span className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full flex gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-xl flex flex-grow">
-                        Does CodeAutomation offer maintenance and support
-                        services after project completion?
-                      </span>
-                    </div>
-
-                    <div className="w-1/12 justify-center align-center flex">
-                      <svg
-                        className="block group-open:hidden"
-                        width="21"
-                        height="21"
-                        viewBox="0 0 21 21"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20.8704 13.2H13.3104V20.96H8.03043V13.2H0.47043V8.32H8.03043V0.56H13.3104V8.32H20.8704V13.2Z"
-                          fill="#002244"
-                        />
-                      </svg>
-
-                      <svg
-                        className="hidden group-open:block"
-                        width="17"
-                        height="6"
-                        viewBox="0 0 17 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M16.9904 0.36V5.08H0.0304298V0.36H16.9904Z"
-                          fill="#002244"
-                        />
-                      </svg>
-                    </div>
-                  </summary>
-                  <article className="px-4 py-4">
-                    <div className="w-11/12 text-base">
-                      <p className="mb-2">
-                        CodeAutomation boasts a diverse and highly skilled team
-                        of developers and testers with expertise in various
-                        technologies and programming languages. Our
-                        specialization includes but is not limited to:
-                      </p>
-                      <ul className="mb-3">
-                        <li className="mb-3">
-                          <strong>Programming Languages:</strong> CodeAutomation
-                          is proficient in languages such as Java, Python,
-                          JavaScript, .NET, PHP, Ruby on Rails, and more. Our
-                          developers are not only knowledgeable in these
-                          languages but also keep up with the latest
-                          advancements to ensure our clients receive
-                          cutting-edge solutions.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Frameworks and Tools:</strong> CodeAutomation
-                          leverages popular development frameworks and tools
-                          like Angular, Node.js, Vue.js, React Native, React.js,
-                          Spring Boot, Django, and others to accelerate
-                          development while maintaining code quality.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Testing Technologies:</strong> Our testing
-                          experts are well-versed in various testing
-                          technologies and frameworks, including Selenium,
-                          Cypress, Playwright, Protractor, Katalon, Postman,
-                          Rest Assured, JUnit, JIRA, Appium, and many more, to
-                          ensure comprehensive test coverage and automation.
-                        </li>
-                        <li className="mb-3">
-                          <strong>
-                            CRM/CMS implementation and customization:
-                          </strong>{" "}
-                          CodeAutomation is proficient in languages such as
-                          Javascript, Aura, LWCs, Apex, Flows, Rest API, Java
-                          and more. Our developers are not only knowledgeable in
-                          these languages but also keep up with the latest
-                          advancements to ensure our clients receive
-                          cutting-edge solutions.
-                        </li>
-                        <li className="mb-3">
-                          <strong>AI/ML languages:</strong> We leverage our
-                          clients with AI/ML services and languages are: NumPy,
-                          SciPy, Pandas, PyTorch, matlab, Ruby on rails,
-                          Fortran, Golang, R language.
-                        </li>
-                      </ul>
-                    </div>
-                  </article>
-                </details>
-              </li>
-              <li>
-                <details className="group">
-                  <summary className="flex justify-between items-center flex-grow">
-                    <div className="w-11/12 text-base">
-                      <span className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full flex gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-xl flex flex-grow">
-                        What is CodeAutomations pricing model and engagement
-                        process?
-                      </span>
-                    </div>
-
-                    <div className="w-1/12 justify-center align-center flex">
-                      <svg
-                        className="block group-open:hidden"
-                        width="21"
-                        height="21"
-                        viewBox="0 0 21 21"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20.8704 13.2H13.3104V20.96H8.03043V13.2H0.47043V8.32H8.03043V0.56H13.3104V8.32H20.8704V13.2Z"
-                          fill="#002244"
-                        />
-                      </svg>
-
-                      <svg
-                        className="hidden group-open:block"
-                        width="17"
-                        height="6"
-                        viewBox="0 0 17 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M16.9904 0.36V5.08H0.0304298V0.36H16.9904Z"
-                          fill="#002244"
-                        />
-                      </svg>
-                    </div>
-                  </summary>
-                  <article className="px-4 py-4">
-                    <div className="w-11/12 text-base">
-                      <p className="mb-2">
-                        CodeAutomation&rsquo;s pricing model and engagement
-                        process are flexible and tailored to each client&rsquo;s
-                        unique requirements. We understand that every project is
-                        different, and we aim to provide a transparent and
-                        collaborative approach. Here&rsquo;s an overview of our
-                        typical engagement process:
-                      </p>
-                      <ul className="mb-3">
-                        <li className="mb-3">
-                          <strong>Initial Consultation:</strong> We begin with
-                          an in-depth discussion to understand your
-                          project&rsquo;s goals, scope, and specific
-                          requirements.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Project Proposal:</strong> Following the
-                          consultation, we provide a detailed project proposal,
-                          including a breakdown of costs, timelines, and
-                          deliverables.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Agreement:</strong> Upon mutual agreement on
-                          the proposal, we formalize the engagement with a
-                          contract that outlines roles, responsibilities, and
-                          terms.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Development and Testing:</strong> The
-                          development phase begins with regular communication
-                          and updates to inform you of progress.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Testing and Quality Assurance:</strong>{" "}
-                          Rigorous testing and quality assurance processes are
-                          carried out to ensure the final product meets your
-                          expectations.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Deployment and Launch:</strong> We deploy the
-                          software to the production environment, ensuring a
-                          smooth transition to the live environment.
-                        </li>
-                        <li className="mb-3">
-                          <strong>Post-Launch Support:</strong> We provide
-                          ongoing support, maintenance, and updates as needed to
-                          ensure your software remains reliable and up-to-date.
-                        </li>
-                      </ul>
-                      <p>
-                        Our pricing structure can be based on various models,
-                        including fixed-price contracts or hourly rates,
-                        depending on your project&rsquo;s needs and preferences.
-                        We are committed to transparency and work
-                        collaboratively with our clients to ensure a successful
-                        partnership.
-                      </p>
-                    </div>
-                  </article>
-                </details>
-              </li>
+            
             </ul>
           </div>
         </div>

@@ -195,7 +195,7 @@ const Career: React.FC = async () => {
                   Perks & Benefits
                 </div>
                 <div className="mb-10">
-                  <p className="lg:text-lg text-base text-end text-[#024]">
+                  <p className="lg:text-lg text-base text-end text-[#024] text-justify">
                     Get special perks and benefits such as flexible schedules
                     and career advancement chances. Join us and advance your
                     career in code automation today.
