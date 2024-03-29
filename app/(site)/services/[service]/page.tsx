@@ -9,7 +9,7 @@ async function getData(urlService: any) {
     const fetchData = await client.fetch(query);
     return fetchData || [];
   } catch (error) {
-    console.error("Error fetching data:", error);
+    // console.error("Error fetching data:", error);
     return [];
   }
 }
