@@ -1,7 +1,5 @@
 import React from "react";
-import HeroSectionComponent from "../../components/HeroSectionComponent";
 import ServiceApproachSection from "../../components/ServiceApproachSection";
-
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
@@ -20,21 +18,46 @@ const page = async ({ params }: { params: { service: String } }) => {
   const data = await getData(params.service);
 
   if (data.length === 0) {
-    return <h2 className="my-[300px] text-3xl text-center">Errors</h2>;
+    return (
+      <h2 className="my-[300px] text-3xl text-center">Some error occurs.</h2>
+    );
   }
 
-  const bannerImageUrl = urlForImage(data.bannerimage.asset);
   const ourApproachImage = urlForImage(data.ourApproachImg.asset);
   const offerImage = urlForImage(data.offerImg.asset);
 
+  const ref = data.bannervideo.asset._ref;
+  const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
+  const videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
+    client.config().dataset
+  }/${fileId}.${extension}`;
+
   return (
     <>
-      <HeroSectionComponent
-        title={`"${data.serviceTitleBaner}"`}
-        content={data.serviceDesceBaner}
-        image={bannerImageUrl}
-        alt={data.bannerimage.alt}
-      />
+      <section className="relative">
+        <div className="bg-black w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
+        <div className="w-full h-[380px] sm:h-[700px] relative z-0">
+          <video
+            className="top-0 left-0 object-cover absolute inset-0 size-full"
+            width="100%"
+            height="100%"
+            muted
+            autoPlay
+            loop
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        </div>
+
+        <div className="mt-[130px] sm:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
+          <h1 className="text-xl sm:text-5xl font-bold tracking-tight text-center capitalize leading-[48px] text-white">
+            {data.serviceTitleBaner}
+          </h1>
+          <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
+            {data.serviceDesceBaner}
+          </p>
+        </div>
+      </section>
 
       <ServiceApproachSection
         title="Our Approach"
@@ -86,82 +109,6 @@ const page = async ({ params }: { params: { service: String } }) => {
                 </div>
               );
             })}
-
-          {/* <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-            <div className="z-10 flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
-              01
-            </div>
-            <div className="flex flex-col pl-4 mt-2">
-              <div className="text-base font-medium leading-6 mt-6">
-                Skilled Team
-              </div>
-              <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                Our web development team comprises experienced professionals
-                with a strong track record of delivering outstanding websites.
-              </div>
-            </div>
-          </div> */}
-
-          {/* <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-            <div className="z-10 flex justify-center items-center self-end px-3.5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
-              02
-            </div>
-            <div className="flex flex-col pl-4 mt-0">
-              <div className="text-base font-medium leading-6 mt-0">
-                Modern Technology
-              </div>
-              <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                We stay current with the latest web technologies to ensure your
-                site is modern, fast, and secure.
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-            <div className="z-10 flex justify-center items-center self-end px-4 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
-              03
-            </div>
-            <div className="flex flex-col pl-4 mt-4">
-              <div className="text-base font-medium leading-6">
-                Custom Solutions
-              </div>
-              <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                We don&apos;t believe in one-size-fits-all. Your website is
-                built from the ground up to suit your unique needs and
-                objectives.
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-            <div className="z-10 flex justify-center items-center self-end px-3 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
-              04
-            </div>
-            <div className="flex flex-col pl-4 mt-4">
-              <div className="text-base font-medium leading-6">
-                User-Centric Design
-              </div>
-              <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                User experience is a top priority. We design websites that are
-                intuitive and engaging to keep visitors coming back.
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-            <div className="z-10 flex justify-center items-center self-end px-3.5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-4 drop-shadow-serviceCard">
-              05
-            </div>
-            <div className="flex flex-col pl-4 mt-4">
-              <div className="text-base font-medium leading-6">
-                Deadline Adherence
-              </div>
-              <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                We work diligently to meet project timelines and milestones,
-                ensuring your website is delivered on schedule.
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </>

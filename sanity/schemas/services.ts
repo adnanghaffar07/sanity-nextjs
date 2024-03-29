@@ -31,7 +31,15 @@ const services = {
         },
       ],
     },
-
+    {
+      name: "bannervideo",
+      title: "Banner Video",
+      type: "file",
+      options: {
+        accept: "video/mp4",
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
     {
       name: "ourApproach",
       title: "Our Approach",
