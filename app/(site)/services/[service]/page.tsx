@@ -2,6 +2,7 @@ import React from "react";
 import ServiceApproachSection from "../../components/ServiceApproachSection";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import HeroSectionComponent from "../../components/HeroSectionComponent";
 
 async function getData(urlService: any) {
   const query = `*[_type == 'services' && urlPath == '${urlService}'][0]`;
@@ -15,7 +16,7 @@ async function getData(urlService: any) {
 }
 
 const page = async ({ params }: { params: { service: String } }) => {
-  const data = await getData(params.service);
+  const data = await getData(params.service); // use effect
 
   if (data.length === 0) {
     return (
@@ -23,18 +24,19 @@ const page = async ({ params }: { params: { service: String } }) => {
     );
   }
 
+  const bannerImageUrl = urlForImage(data.bannerimage.asset);
   const ourApproachImage = urlForImage(data.ourApproachImg.asset);
   const offerImage = urlForImage(data.offerImg.asset);
 
-  const ref = data.bannervideo.asset._ref;
-  const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
-  const videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
-    client.config().dataset
-  }/${fileId}.${extension}`;
+  // const ref = data.bannervideo.asset._ref;
+  // const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
+  // const videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
+  //   client.config().dataset
+  // }/${fileId}.${extension}`;
 
   return (
     <>
-      <section className="relative">
+      {/* <section className="relative">
         <div className="bg-black w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           <video
@@ -57,7 +59,13 @@ const page = async ({ params }: { params: { service: String } }) => {
             {data.serviceDesceBaner}
           </p>
         </div>
-      </section>
+      </section> */}
+      <HeroSectionComponent
+        title={`"${data.serviceTitleBaner}"`}
+        content={data.serviceDesceBaner}
+        image={bannerImageUrl}
+        alt={data.bannerimage.alt}
+      />
 
       <ServiceApproachSection
         title="Our Approach"
