@@ -58,7 +58,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 Job Description
               </div>
               <div className="">
-                <p className="xl:text-xl lg:text-xl text-l font-light mb-5">
+              <p className="list-disc">
                   {data.jobDescription}
                 </p>
               </div>
@@ -75,7 +75,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                       return (
                         <li
                           key={index}
-                          className="list-disc"
+                          className="list-disc ml-5"
                         >
                           {ele}
                         </li>
@@ -92,7 +92,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 {data.requirements &&
                   data.requirements.map((ele: any, index: any) => {
                     return (
-                      <li key={index} className="list-disc">
+                      <li key={index} className="list-disc ml-5">
                         {ele}
                       </li>
                     );
@@ -107,7 +107,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 {data.qualification &&
                   data.qualification.map((ele: any, index: any) => {
                     return (
-                      <li key={index} className="list-disc">
+                      <li key={index} className="list-disc ml-5">
                         {ele}
                       </li>
                     );
