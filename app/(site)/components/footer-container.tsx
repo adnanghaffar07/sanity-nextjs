@@ -35,7 +35,6 @@ export default async function FooterContainer() {
       src: "/linkedin.svg",
       alt: "Linkedin",
       link: "https://www.linkedin.com/company/codeautomationai/",
-
     },
   ];
 
