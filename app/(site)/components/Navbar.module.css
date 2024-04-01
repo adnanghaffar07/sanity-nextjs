@@ -1,66 +1,202 @@
 .navbar {
-    background-color: #fff;
-    padding: 20px 0;
-  }
-  
-  .navContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    /* Set background color to transparent */
+    z-index: 1000;
+    /* Ensure navbar stays on top of other content */
+}
+
+.navContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .navToggle {
+    padding: 1rem 2rem;
+    /* Adjust padding as needed */
+}
+
+.navToggle {
     display: none;
-    font-size: 1.5rem;
     cursor: pointer;
-  }
-  
-  .navMenu {
+}
+
+.navMenu {
     list-style: none;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-  }
-  
-  .navItem {
-    margin-right: 20px;
-  }
-  
-  .navLink {
-    color: #333;
+    gap: 1rem;
+    /* Adjust gap between menu items */
+}
+
+.navItem {
+    position: relative;
+}
+
+.navLink {
+    color: #fff;
     text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.navLink:hover {
+    color: #ccc;
+    /* Change color on hover */
+}
+
+.fullWidth {
+    width: 100%;
+    left: 0;
+}
+
+.dropdown {
+    position: relative;
+}
+
+
+
+
+
+.dropbtn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    position:absolute; /* Use fixed positioning */
+    background-color: #fff;
+    width: 100vw; /* Cover full width of viewport */
+    left: 0;
+    top: calc(100% + 5px); /* Position below the parent with a small gap */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+  .menulist {
+    display: flex;
+    flex-direction: row-reverse; /* Change flex direction to reverse row */
+    flex-wrap: wrap; /* Allow flex items to wrap onto multiple lines */
   }
   
-  @media screen and (max-width: 768px) {
-    .navToggle {
-      display: block;
-    }
+  .box1, .box2, .box3 {
+    flex-grow: 1;
+    padding: 0 10px; /* Adjust spacing between boxes as needed */
+    max-width: calc(33.33% - 20px); /* Set maximum width for each box */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
   
-    .navMenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
+  
+.dropdownContent a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownContent a:hover {
+    background-color: #f1f1f1;
+    /* Change background color on hover */
+}
+
+.active {
+    display: flex;
+}
+
+.dropdownActive {
+    display: block;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+
+/* 
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: white; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    top: 100%;
+    left: 100px;
+    width: 200px;
+  } */
+
+/* Dropdown item styles */
+/* .dropItem {
+    color: black; 
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropItem:hover {
+    background-color: #f3f3f3;
+  }
+  
+ */
+/* 
+
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items:center
+  }
+  
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    width: 1000%;
+  }
+  
+  .dropdownContent a {
+    color: #333;
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdownContent a:hover {
+    background-color: #f3f3f3;
+  }
+  
+  .dropdown:hover .dropdownContent {
+    display: block;
+  }
+  
+  @media (max-width: 1024px) {
+    .dropdown {
       width: 100%;
-      background-color: #fff;
-      flex-direction: column;
-      padding: 20px;
+      margin-bottom: 8px;
+      align-items:center;
+      justify-content: center;
+      text-align: center;
+    margin-left: 25px;
+      
     }
-  
-    .navMenu.active {
-      display: flex;
-    }
-  
-    .navItem {
-      margin: 10px 0;
-    }
-  }
-  
+  } */
