@@ -4,13 +4,12 @@ import Link from "next/link";
 export default async function FooterContainer() {
   const cpyrighttext = await getCpyrighttext();
 
-  const linkUrl = "/software-development"; 
-  const linkUrlWeb = "/web-development"; 
-  const linkUrlApp = "/app-development"; 
-  const linkUrlAutomate = "/qa-automation-testing"; 
-  const linkUrlManual = "/qa-manual-testing"; 
-  const linkUrlBuisness = "/business-automation"; 
-
+  const linkUrl = "/software-development";
+  const linkUrlWeb = "/web-development";
+  const linkUrlApp = "/app-development";
+  const linkUrlAutomate = "/qa-automation-testing";
+  const linkUrlManual = "/qa-manual-testing";
+  const linkUrlBuisness = "/business-automation";
 
   const socialIcons = [
     {
@@ -22,7 +21,6 @@ export default async function FooterContainer() {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/adf696589e4137664b9c3d84b7694e7064769715ccfab4d849d64bbc25c5674e?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
       alt: "Instagram",
       link: "https://www.instagram.com/codeautomation.ai/",
-
     },
     {
       src: "/twitter-new.svg",
@@ -62,15 +60,25 @@ export default async function FooterContainer() {
                   Contact us for business
                 </div>
                 <div className="mt-3.5 leading-8">
-                  adnan@codeautomation.ai
+                  <a
+                    href="mailto:adnan@codeautomation.ai"
+                    className="hover:underline my-auto inline-block"
+                  >
+                    adnan@codeautomation.ai
+                  </a>
                   <br />
-                  +1-850-558-4691
+                  <a
+                    href="tel:+18505584691"
+                    className="hover:underline my-auto inline-block"
+                  >
+                    +1-850-558-4691
+                  </a>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col grow text-white max-md:mt-10 flex flex-col items-center xl:ml-8 flex-1 px-5 text-xl relative z-10 self-start">
+            <div className="flex flex-col grow text-white max-md:mt-10 items-center xl:ml-8 flex-1 px-5 text-xl relative z-10 self-start">
               <div className="text-2xl font-medium self-start">Solutions</div>
               <div className="mt-6 text-base font-light flex flex-col gap-5">
                 <Link
