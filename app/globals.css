@@ -153,7 +153,7 @@ body {
 .wrapper {
   
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 30px 20px 10px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -172,15 +172,15 @@ body {
 }
 
 .nav-links li {
-  margin: 0 10px;
+  margin: 0px ;
 }
 
 .nav-links li a {
-  color: #fff; /* Change text color as needed */
+  color: #fff;
   text-decoration: none;
   font-size: 20px;
   font-weight: 300;
-  row-gap: 5px;
+
 }
 
 /* Mega Menu Styling */
@@ -194,15 +194,28 @@ body {
   padding: 20px;
   display: none;
   z-index: 999;
+  transition: opacity 0.3s ease; /* Add transition effect */
+  opacity: 0; /* Initially hidden */
 }
 
+.mega-menu:hover .mega-box,
+.mega-box:hover {
+  display: block;
+  opacity: 1; /* Show dropdown and set opacity to 1 when hovered */
+}
+
+/* Add this CSS to prevent the dropdown from disappearing when hovering over it */
+.mega-menu:hover .mega-box,
+.mega-box:hover {
+  display: block;
+}
 .content {
   display: flex; /* Use flexbox */
 }
 
 .content > div {
   flex: 1; /* Each div occupies equal space */
-  margin-right: 20px; /* Add spacing between divs */
+  margin-right: 10px; /* Add spacing between divs */
 }
 
 .content > div:last-child {
@@ -211,13 +224,10 @@ body {
 .linkshead{
   font-size: 18px;
   font-weight: 600;
-  margin-left: 8px;
+  margin-left: 0px;
   
 }
 
-.mega-menu:hover .mega-box {
-  display: block;
-}
 
 .main {
   display: flex;
@@ -261,5 +271,19 @@ body {
 
   .mega-menu:hover .mega-box {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    padding-top: 60px; /* Adjust padding for smaller screens */
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .wrapper {
+    position: relative;
   }
 }
