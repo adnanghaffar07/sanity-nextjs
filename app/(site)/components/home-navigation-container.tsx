@@ -1,24 +1,10 @@
-"use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { FaBars, FaTimes, FaAngleDown } from 'react-icons/fa';
-import styles from './Navbar.module.css'; // Import your CSS file for styling
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
+const NavBar = () => {
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.navContainer}>
+    <nav className="navbar">
+      <div className="wrapper">
         <Link href={`/`} className="hover:underline my-auto">
           <img
             loading="lazy"
@@ -26,61 +12,64 @@ const Navbar = () => {
             className="self-start max-w-full aspect-[5] xl:w-[266px] w-[200px]"
           />
         </Link>
-        <div className={styles.navToggle} onClick={toggleNavbar}>
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </div>
-        <ul className={`${styles.navMenu} ${isOpen ? styles.active : ''}`}>
-          <li className={styles.navItem}>
-            <a href="/features" className={styles.navLink}>Home</a>
-          </li>
-          <li
-            className={`${styles.navItem} ${styles.dropdown} ${isDropdownOpen ? styles.open : ''}`}
-            onMouseEnter={() => setIsDropdownOpen(true)}
-            onMouseLeave={() => setIsDropdownOpen(false)}
-          >
-            <a href="#" className={`${styles.navLink} ${styles.dropbtn}`} onClick={toggleDropdown}>
-              Services <FaAngleDown className={isDropdownOpen ? styles.rotated : ''} />
-            </a>
-            <div className={`${styles.dropdownContent} ${isDropdownOpen ? styles.dropdownActive : ''}`}>
-              <div className={styles.menulist}>
-                <div className={styles.box1}>
-                  <h3>E-Commerce</h3>
-                  <a href="#">Web Development</a>
-                  <a href="#">Mobile Development</a>
-                  <a href="#">QA & Testing</a>
-                  <a href="#">Business Automation</a>
+        <ul className="nav-links">
+          <li><a href="#">Home</a></li>
+          <li className="mega-menu">
+            <a href="#">Services</a>
+            <div className="mega-box">
+              <div className='content'>
+                <div>
+                <Link href={`/`} className="hover:underline my-auto">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/09d382e58784257b38ccca526b1322cf201dacdf4343ff92c6fe39c9ba7a1b1e?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
+            className="self-start max-w-full aspect-[5] xl:w-[266px] w-[200px]"
+          />
+        </Link>
                 </div>
-                <div className={styles.box2}>
-                  <h3>E-Commerce</h3>
-                  <a href="#">Web Development</a>
-                  <a href="#">Mobile Development</a>
-                  <a href="#">QA & Testing</a>
-                  <a href="#">Business Automation</a>
+                <div>
+                  <h2 className='linkshead'>CMS</h2>
+                  <ul className="mega-links">
+                    <li><a href="#">Ecommerce</a></li>
+                    <li><a href="#">Headless CMS</a></li>
+                    <li><a href="#">Headless CMS & Ecommerce</a></li>
+                    <li><a href="#">Headless</a></li>
+                  </ul>
+                  <h2 className='linkshead'>Payment platforms</h2>
+                  <ul className="mega-links">
+                    <li><a href="#">Ecommerce</a></li>
+                    <li><a href="#">Headless CMS</a></li>
+                    <li><a href="#">Headless CMS & Ecommerce</a></li>
+                    <li><a href="#">Headless</a></li>
+                  </ul>
+                  <h2 className='linkshead'>Payment platforms</h2>
+                  <ul className="mega-links">
+                    <li><a href="#">Ecommerce</a></li>
+                    <li><a href="#">Headless CMS</a></li>
+                    <li><a href="#">Headless CMS & Ecommerce</a></li>
+                    <li><a href="#">Headless</a></li>
+                  </ul>
                 </div>
-                <div className={styles.box3}>
-                  <h3>E-Commerce</h3>
-                  <a href="#">Web Development</a>
-                  <a href="#">Mobile Development</a>
-                  <a href="#">QA & Testing</a>
-                  <a href="#">Business Automation</a>
+                <div>
+                <h2 className='linkshead'>Testing</h2>                  <ul className="mega-links">
+                    <li><a href="#">Web developmment</a></li>
+                    <li><a href="#">Mobile development </a></li>
+                    <li><a href="#">Web & Mobile </a></li>
+                    <li><a href="#">Authentication platforms</a></li>
+                    <li><a href="#">RPA</a></li>
+                    <li><a href="#">Voice</a></li>
+                    <li><a href="#">Automation & Integeration</a></li>
+                  </ul>
                 </div>
               </div>
-            </div>
+              </div>
+            
+          </li>
+          <li><a href="#">Life at CA</a></li>
+          <li><a href="#">Blogs</a></li>
+          <li><a href="#">Career</a></li>
+          <li><a href="#">Technologies</a></li>
 
-
-          </li>
-          <li className={styles.navItem}>
-            <a href="/community" className={styles.navLink}>Life at CA</a>
-          </li>
-          <li className={styles.navItem}>
-            <a href="/blog" className={styles.navLink}>Career</a>
-          </li>
-          <li className={styles.navItem}>
-            <a href="/contact" className={styles.navLink}>Blogs</a>
-          </li>
-          <li className={styles.navItem}>
-            <a href="/contact" className={styles.navLink}>Technologies</a>
-          </li>
         </ul>
         <a
           className="flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5"
@@ -98,4 +87,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

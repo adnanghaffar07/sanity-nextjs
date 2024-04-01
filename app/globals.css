@@ -138,68 +138,128 @@ body {
   fill: black; 
 }
 
+
+
+
 .navbar {
-  background-color: #fff;
-  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1000; /* Ensure navbar stays on top of other content */
 }
 
-.navContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
+.wrapper {
+  
   margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
+.logo a {
+  color: white; /* Change text color as needed */
   text-decoration: none;
+  font-size: 20px; /* Adjust font size as needed */
 }
 
-.navToggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.navMenu {
+.nav-links {
+  
   list-style: none;
   display: flex;
-  align-items: center;
 }
 
-.navItem {
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links li a {
+  color: #fff; /* Change text color as needed */
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 300;
+  row-gap: 5px;
+}
+
+/* Mega Menu Styling */
+
+.mega-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* Change background color as needed */
+  padding: 20px;
+  display: none;
+  z-index: 999;
+}
+
+.content {
+  display: flex; /* Use flexbox */
+}
+
+.content > div {
+  flex: 1; /* Each div occupies equal space */
+  margin-right: 20px; /* Add spacing between divs */
+}
+
+.content > div:last-child {
+  margin-right: 0; /* Remove margin from last div to prevent extra spacing */
+}
+.linkshead{
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 8px;
+  
+}
+
+.mega-menu:hover .mega-box {
+  display: block;
+}
+
+.main {
+  display: flex;
+}
+
+.main p {
   margin-right: 20px;
 }
 
-.navLink {
-  color: #333;
-  text-decoration: none;
+.mega-links {
+  list-style: none;
+  padding: 0;
 }
 
-@media screen and (max-width: 768px) {
-  .navToggle {
-    display: block;
-  }
+.mega-links li {
+  margin-bottom: 10px;
+}
 
-  .navMenu {
+.mega-links li a {
+  color: black; /* Change text color as needed */
+  text-decoration: none;
+  font-size: 15px;
+  
+}
+
+/* Responsive Styling (optional) */
+
+@media (max-width: 768px) {
+  .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    flex-direction: column;
-    padding: 20px;
   }
 
-  .navMenu.active {
+  .nav-links.open {
     display: flex;
+    flex-direction: column;
   }
 
-  .navItem {
+  .nav-links li {
     margin: 10px 0;
+  }
+
+  .mega-menu:hover .mega-box {
+    display: none;
   }
 }
