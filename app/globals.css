@@ -137,3 +137,69 @@ body {
 .social-icon-container:hover {
   fill: black; 
 }
+
+.navbar {
+  background-color: #fff;
+  padding: 20px 0;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.navToggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navMenu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  margin-right: 20px;
+}
+
+.navLink {
+  color: #333;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navToggle {
+    display: block;
+  }
+
+  .navMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .navMenu.active {
+    display: flex;
+  }
+
+  .navItem {
+    margin: 10px 0;
+  }
+}
