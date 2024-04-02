@@ -54,17 +54,16 @@ const page = async ({ params }: { params: { service: String } }) => {
     }/${fileId}.${extension}`;
   };
 
-  console.log(
-    "_____first",
+  console.log("_____first", await videoBuiler());
 
-    videoBuiler()
-      .then((url) => {
-        return url;
-      })
-      .then((dat) => {
-        return dat;
-      })
-  );
+  //   videoBuiler()
+  //     .then((url) => {
+  //       return url;
+  //     })
+  //     .then((dat) => {
+  //       return dat;
+  //     })
+  // );
 
   return (
     <>
