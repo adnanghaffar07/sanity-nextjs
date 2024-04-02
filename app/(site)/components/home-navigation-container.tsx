@@ -100,7 +100,7 @@ export default function HomeNavigationContainer() {
                       <li><a href="#">QA Manual Testing </a>
                       <p>Thoroughly evaluated Softwares</p></li>
                     </ul> */}
-                    <Link href="/your-route">
+                    <Link href="/services">
                       <p className="flex gap-3 text-md text-black hover:text-[#0a8ffc] hover:underline">
                         View all
                         <CgArrowLongRight
