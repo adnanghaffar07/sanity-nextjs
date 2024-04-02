@@ -2,10 +2,16 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/router";
-
+import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
+
+
+const linkAI = "/ai-ml-services";
+const linkUrlCMS = "/headless-cms";
+const linkUrlWeb = "/web-development";
+const linkUrlApp = "/app-development";
+const linkUrlManual = "/qa-manual-testing";
 
 const navItems = [
   {
@@ -65,43 +71,63 @@ export default function HomeNavigationContainer() {
 
           <ul className='nav-links self-center mx-auto flex gap-10 self-center'>
             <li><Link href="/" className="hover:underline ">Home</Link></li>
-            <li className="mega-menu my-auto duration-300 ease-in">
+            <li className="mega-menu relative">
               <Link href="/services" className="hover:underline ">Services</Link>
               <div className="mega-box">
                 <div className='content'>
                   <div>
-                    <Link href={`/`} className="hover:underline my-auto">
-                      <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/09d382e58784257b38ccca526b1322cf201dacdf4343ff92c6fe39c9ba7a1b1e?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
-                        className="self-start max-w-full aspect-[5] xl:w-[266px] w-[200px]"
-                      />
+                    <h2 className='linkshead'>Use Cases</h2>
+                    <ul className="mega-links">
+                      <li><Link href={`/services/${linkUrlCMS}`}>Headless CMS</Link>
+                        <p>Customized Headless-CMS</p>
+                      </li>
+                      <li><Link href={`/services/${linkAI}`}>AI & ML Services</Link>
+                        <p>Advanced technology & seamless integration</p>
+                      </li>
+                      <li><Link href={`/services/${linkUrlWeb}`}>Web development</Link>
+                        <p>Dynamic user-friendly website</p></li>
+                      <li><Link href={`/services/${linkUrlApp}`}>Mobile development </Link>
+                        <p>Customized applications</p></li>
+                      <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
+                        <p>Thoroughly evaluated Softwares</p></li>
+
+                    </ul>
+                    {/* <ul className="mega-links">
+                      <li><a href="#">Web development</a>
+                      <p>Dynamic user-friendly website</p></li>
+                      <li><a href="#">Mobile development </a>
+                      <p>Customized applications</p></li>
+                      <li><a href="#">QA Manual Testing </a>
+                      <p>Thoroughly evaluated Softwares</p></li>
+                    </ul> */}
+                    <Link href="/your-route">
+                      <p className="flex gap-3 text-md text-black hover:text-[#0a8ffc] hover:underline">
+                        View all
+                        <CgArrowLongRight
+                          style={{
+                            color: '#5b9ed2',
+                            marginTop: '3px',
+                            height: '25px',
+                            width: '25px'
+                          }}
+                        />
+                      </p>
                     </Link>
-                  </div>
-                  <div>
-                    <h2 className='linkshead'>CMS</h2>
+
+                    {/* <h2 className='linkshead'>Devops</h2>
                     <ul className="mega-links">
-                      <li><a href="#">Ecommerce</a></li>
-                      <li><a href="#">Headless CMS</a></li>
-                      <li><a href="#">Headless CMS & Ecommerce</a></li>
-                      <li><a href="#">Headless</a></li>
-                    </ul>
-                    <h2 className='linkshead'>Payment platforms</h2>
-                    <ul className="mega-links">
-                      <li><a href="#">Headless Ecommerce</a></li>
-                      <li><a href="#">Email Automation</a></li>
-                      <li><a href="#">CRM</a></li>
-                      <li><a href="#">Web analytics</a></li>
-                    </ul>
-                    <h2 className='linkshead'>Devops</h2>
-                    <ul className="mega-links">
+                      <CgArrowLongRight
+                          style={{
+                            color: '#5b9ed2',
+                          }}
+                        />
                       <li><a href="#">Process Integration / Orchestration</a></li>
                       <li><a href="#">Cloud accounting</a></li>
                       <li><a href="#">Devops/ APM</a></li>
                       <li><a href="#">Data Visualization</a></li>
-                    </ul>
+                    </ul> */}
                   </div>
-                  <div>
+                  {/* <div>
                     <h2 className='linkshead'>Testing</h2>
                     <ul className="mega-links">
                       <li><a href="#">Web development</a></li>
@@ -112,9 +138,25 @@ export default function HomeNavigationContainer() {
                       <li><a href="#">Voice</a></li>
                       <li><a href="#">Automation & Integration</a></li>
                     </ul>
+                  </div> */}
+                  <div className="m-auto">
+                    <h2 className='linkshead'>Technologies</h2>
+
+                    <Link href={`/technologies`} className="hover:underline my-auto">
+                      <img
+                        loading="lazy"
+                        src="/img-logos-ai-ml.jpg"
+                        className=""
+                      />
+                      <img
+                        loading="lazy"
+                        src="/img-logos-crm-cms.jpg"
+                        className=""
+                      />
+                    </Link>
                   </div>
                 </div>
-                
+
               </div>
             </li>
             <li><Link href="/lifeatca" className="hover:underline ">Life at CA</Link></li>
