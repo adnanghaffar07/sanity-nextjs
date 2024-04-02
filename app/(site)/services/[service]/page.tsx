@@ -44,17 +44,17 @@ const page = async ({ params }: { params: { service: String } }) => {
     console.error("The bannervideo or its asset property is undefined.");
   }
 
-  const videoBuiler = async () => {
-    const ref = await data.bannervideo.asset._ref;
-    const [, fileId, extension] = await ref.match(/file-(.+)-(.+)/);
-    // console.log("_________url video___________", fileId);
+  // const videoBuiler = async () => {
+  //   const ref = await data.bannervideo.asset._ref;
+  //   const [, fileId, extension] = await ref.match(/file-(.+)-(.+)/);
+  //   // console.log("_________url video___________", fileId);
 
-    return `https://cdn.sanity.io/files/${client.config().projectId}/${
-      client.config().dataset
-    }/${fileId}.${extension}`;
-  };
+  //   return `https://cdn.sanity.io/files/${client.config().projectId}/${
+  //     client.config().dataset
+  //   }/${fileId}.${extension}`;
+  // };
 
-  console.log("_____first", await videoBuiler());
+  // console.log("_____first", await videoBuiler());
 
   //   videoBuiler()
   //     .then((url) => {
