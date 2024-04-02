@@ -24,9 +24,9 @@ const page = async ({ params }: { params: { service: String } }) => {
     );
   }
 
-  const bannerImageUrl = urlForImage(data.bannerimage.asset);
-  const ourApproachImage = urlForImage(data.ourApproachImg.asset);
-  const offerImage = urlForImage(data.offerImg.asset);
+  // const bannerImageUrl = urlForImage(data.bannerimage.asset);
+  // const ourApproachImage = urlForImage(data.ourApproachImg.asset);
+  // const offerImage = urlForImage(data.offerImg.asset);
 
   // const ref = data.bannervideo.asset._ref;
   // const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
@@ -34,42 +34,32 @@ const page = async ({ params }: { params: { service: String } }) => {
   //   client.config().dataset
   // }/${fileId}.${extension}`;
 
-  let videoUrl;
-  if (
-    data.bannervideo &&
-    data.bannervideo.asset &&
-    data.bannervideo.asset._ref
-  ) {
-    const ref = data.bannervideo.asset._ref;
-    const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
-    videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
-      client.config().dataset
-    }/${fileId}.${extension}`;
-    // console.log(videoUrl);
-  } else {
-    console.error("The bannervideo or its asset property is undefined.");
-  }
+  // let videoUrl;
+  // if (
+  //   data.bannervideo &&
+  //   data.bannervideo.asset &&
+  //   data.bannervideo.asset._ref
+  // ) {
+  //   console.log("CHECK ASSEST =>", data.bannervideo.asset);
+  //   const ref = data.bannervideo.asset._ref;
+  //   const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
+  //   videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
+  //     client.config().dataset
+  //   }/${fileId}.${extension}`;
+  //   // console.log(videoUrl);
+  // } else {
+  //   console.error("The bannervideo or its asset property is undefined.");
+  // }
 
-  const videoBuiler = async () => {
-    const ref = await data.bannervideo.asset._ref;
-    const [, fileId, extension] = await ref.match(/file-(.+)-(.+)/);
-    // console.log("_________url video___________", fileId);
-
-    return `https://cdn.sanity.io/files/${client.config().projectId}/${
-      client.config().dataset
-    }/${fileId}.${extension}`;
+  const videoBuilder = async () => {
+    console.log("----data ---", data);
+    const ref = data?.bannervideo?.asset?._ref;
+    const [, fileId, extension] = ref?.match(/file-(.+)-(.+)/);
+    return `https://cdn.sanity.io/files/ld8m6d0z/production/f981cfc75411cc359f42e2aa837411dcb3a9d5de.mp4`;
   };
 
-  console.log("_____first", await videoBuiler());
-
-  //   videoBuiler()
-  //     .then((url) => {
-  //       return url;
-  //     })
-  //     .then((dat) => {
-  //       return dat;
-  //     })
-  // );
+  // console.log("_____first", videoBuiler());
+  const videoUrl = await videoBuilder();
 
   return (
     <>
@@ -97,31 +87,31 @@ const page = async ({ params }: { params: { service: String } }) => {
           </p>
         </div>
       </section>
-      <HeroSectionComponent
+      {/* <HeroSectionComponent
         title={`"${data.serviceTitleBaner}"`}
         content={data.serviceDesceBaner}
         image={bannerImageUrl}
         alt={data.bannerimage.alt}
-      />
+      /> */}
 
-      <ServiceApproachSection
+      {/* <ServiceApproachSection
         title="Our Approach"
         description={data.ourApproach}
         subtitle="Here's how we achieve that"
-        imageUrl={ourApproachImage}
+        // imageUrl={ourApproachImage}
         imageAlt={data.ourApproachImg.alt}
         approachSteps={data.howWeAchieve}
         columns={true}
-      />
+      /> */}
 
-      <ServiceApproachSection
+      {/* <ServiceApproachSection
         title="What We Offer"
         description={data.whatWeOffer}
         imageUrl={offerImage}
         imageAlt={data.offerImg.alt}
         approachSteps={data.ourOffers}
         columns={false}
-      />
+      /> */}
 
       <div className="2xl:container 2xl:mx-auto mt-14 sm:mt-16 md:mt-20 xl:mt-44 relative 2xl:overflow-y-visible 2xl:overflow-x-hidden">
         <div className="bg-[#1D92FB] opacity-15 w-[434px] md:w-[734px] h-[434px] md:h-[734px] rounded-full absolute -left-[360px] md:-left-[570px] top-2 md:-top-72 flex items-center justify-center z-0">
