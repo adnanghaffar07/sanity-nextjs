@@ -3,7 +3,8 @@ import { urlForImage } from "@/sanity/lib/image";
 
 
 async function getData() {
-  const query = `*[_type == 'technologies']`;
+  const query = `*[_type == 'technologies'] | order(_createdAt desc)`;
+  ;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];

@@ -40,25 +40,9 @@ export default function HomeNavigationContainer() {
 
   let pathname = usePathname() || "/";
   const [menuIcon, setIcon] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-
-
   const handleSmallerScreenNavigation = () => {
     setIcon(!menuIcon);
   }
-
-
-  const handleMouseEnter = () => {
-    setShowDropdown(true);
-  }
-
-  const handleMouseLeave = () => {
-    setTimeout(() => {
-      setShowDropdown(false);
-    }, 3000);
-  }
-
-
   return (
     <nav className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
       <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-whit">
@@ -82,10 +66,10 @@ export default function HomeNavigationContainer() {
           <ul className='nav-links self-center mx-auto flex gap-10 self-center'>
             <li><Link href="/" className="hover:underline ">Home</Link></li>
             <li className="mega-menu my-auto duration-300 ease-in">
-              <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><Link href="/services" className={pathname === "/services" ? "hover:underline " : "hover:underline"}>Services</Link></li>
+              <Link href="/services" className="hover:underline ">Services</Link>
               <div className="mega-box">
                 <div className='content'>
-                  <div className="image-box">
+                  <div>
                     <Link href={`/`} className="hover:underline my-auto">
                       <img
                         loading="lazy"
@@ -130,7 +114,7 @@ export default function HomeNavigationContainer() {
                     </ul>
                   </div>
                 </div>
-
+                
               </div>
             </li>
             <li><Link href="/lifeatca" className="hover:underline ">Life at CA</Link></li>
