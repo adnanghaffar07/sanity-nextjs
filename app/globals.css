@@ -138,20 +138,20 @@ body {
   fill: black; 
 }
 
+/* Navbar mega menu */
 
 
-
+/* Navbar Styling */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background-color: transparent;
-  z-index: 1000; /* Ensure navbar stays on top of other content */
+  z-index: 1000;
 }
 
 .wrapper {
-  
   margin: 0 auto;
   padding: 30px 20px 10px 30px;
   display: flex;
@@ -160,19 +160,18 @@ body {
 }
 
 .logo a {
-  color: white; /* Change text color as needed */
+  color: white;
   text-decoration: none;
-  font-size: 20px; /* Adjust font size as needed */
+  font-size: 20px;
 }
 
 .nav-links {
-  
   list-style: none;
   display: flex;
 }
 
 .nav-links li {
-  margin: 0px ;
+  margin: 0px;
 }
 
 .nav-links li a {
@@ -180,54 +179,63 @@ body {
   text-decoration: none;
   font-size: 20px;
   font-weight: 300;
-
 }
 
 /* Mega Menu Styling */
-
 .mega-box {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: #fff; /* Change background color as needed */
+  background-color: #fff;
   padding: 20px;
   display: none;
-  z-index: 999;
-  transition: opacity 0.3s ease; /* Add transition effect */
-  opacity: 0; /* Initially hidden */
+  z-index: 1000;
+}
+
+.mega-menu:hover .mega-box {
+  display: block;
 }
 
 .mega-menu:hover .mega-box,
 .mega-box:hover {
-  display: block;
-  opacity: 1; /* Show dropdown and set opacity to 1 when hovered */
+  animation: showMegaMenu 1s forwards;
 }
 
-/* Add this CSS to prevent the dropdown from disappearing when hovering over it */
-.mega-menu:hover .mega-box,
-.mega-box:hover {
-  display: block;
+@keyframes showMegaMenu {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
 }
+.image-box{
+
+margin: auto;
+
+}
+
 .content {
-  display: flex; /* Use flexbox */
+  display: flex;
 }
 
 .content > div {
-  flex: 1; /* Each div occupies equal space */
-  margin-right: 10px; /* Add spacing between divs */
+  flex: 1;
+  margin-right: 0px;
 }
 
 .content > div:last-child {
-  margin-right: 0; /* Remove margin from last div to prevent extra spacing */
+  margin-right: 0;
 }
-.linkshead{
+
+.linkshead {
   font-size: 18px;
   font-weight: 600;
   margin-left: 0px;
-  
 }
-
 
 .main {
   display: flex;
@@ -247,43 +255,11 @@ body {
 }
 
 .mega-links li a {
-  color: black; /* Change text color as needed */
+  color: black;
   text-decoration: none;
   font-size: 15px;
-  
 }
 
-/* Responsive Styling (optional) */
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
 
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-  }
 
-  .nav-links li {
-    margin: 10px 0;
-  }
-
-  .mega-menu:hover .mega-box {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    padding-top: 60px; /* Adjust padding for smaller screens */
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .wrapper {
-    position: relative;
-  }
-}
