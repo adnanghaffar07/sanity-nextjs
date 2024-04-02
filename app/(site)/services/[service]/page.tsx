@@ -28,47 +28,15 @@ const page = async ({ params }: { params: { service: String } }) => {
   const ourApproachImage = urlForImage(data.ourApproachImg.asset);
   const offerImage = urlForImage(data.offerImg.asset);
 
-  let videoUrl;
-  if (
-    data.bannervideo &&
-    data.bannervideo.asset &&
-    data.bannervideo.asset._ref
-  ) {
-    const ref = data.bannervideo.asset._ref;
-    const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
-    videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
-      client.config().dataset
-    }/${fileId}.${extension}`;
-    // console.log(videoUrl);
-  } else {
-    console.error("The bannervideo or its asset property is undefined.");
-  }
-
-  // const videoBuiler = async () => {
-  //   const ref = await data.bannervideo.asset._ref;
-  //   const [, fileId, extension] = await ref.match(/file-(.+)-(.+)/);
-  //   // console.log("_________url video___________", fileId);
-
-  //   return `https://cdn.sanity.io/files/${client.config().projectId}/${
-  //     client.config().dataset
-  //   }/${fileId}.${extension}`;
-  // };
-
-  // console.log("_____first", await videoBuiler());
-
-  //   videoBuiler()
-  //     .then((url) => {
-  //       return url;
-  //     })
-  //     .then((dat) => {
-  //       return dat;
-  //     })
-  // );
-
+  // const ref = data.bannervideo.asset._ref;
+  // const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
+  // const videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
+  //   client.config().dataset
+  // }/${fileId}.${extension}`;
 
   return (
     <>
-      <section className="relative">
+      {/* <section className="relative">
         <div className="bg-black w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           <video
@@ -91,13 +59,13 @@ const page = async ({ params }: { params: { service: String } }) => {
             {data.serviceDesceBaner}
           </p>
         </div>
-      </section>
-      {/* <HeroSectionComponent
+      </section> */}
+      <HeroSectionComponent
         title={`"${data.serviceTitleBaner}"`}
         content={data.serviceDesceBaner}
         image={bannerImageUrl}
         alt={data.bannerimage.alt}
-      /> */}
+      />
 
       <ServiceApproachSection
         title="Our Approach"
