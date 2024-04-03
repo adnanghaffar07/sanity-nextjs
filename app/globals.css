@@ -188,12 +188,18 @@ body {
   position: absolute;
   top: 100%;
   left: 10px; /* 20px margin away from the most right */
-  width: calc(90vw - 10px); /* Cover 70% of the viewport width minus the 20px margin */
-  max-width: calc(45vw - 10px); /* Set a maximum width to prevent covering entire screen */
-  background-color: #fff;
-  padding: 20px;
+  width: calc(50vw - 10px); /* Cover 70% of the viewport width minus the 20px margin */
+  max-width: calc(40vw - 10px); /* Set a maximum width to prevent covering entire screen */
+  background-color: #ffffff;
+  padding: 25px 20px 20px 20px;
+  border-radius: 16px;
+ 
   display: none;
   z-index: 1000;
+}
+
+.mega-menu{
+  margin-top: 50px;
 }
 
 .mega-menu:hover .mega-box {
@@ -227,7 +233,7 @@ margin: auto;
 
 .content > div {
   flex: 1;
-  margin-right: 0px;
+  margin-right: 10px;
 }
 
 .content > div:last-child {
@@ -235,7 +241,7 @@ margin: auto;
 }
 
 .linkshead {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   margin-left: 0px;
   color: rgb(147, 147, 147);
@@ -253,7 +259,6 @@ margin: auto;
 .mega-links {
   list-style: none;
   padding: 0;
-  margin-bottom: 40px;
 }
 
 .mega-links li {
@@ -263,13 +268,13 @@ margin: auto;
 .mega-links li a {
   color: rgb(0, 0, 0);
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   transition: color 0.3s, transform 0.3s; /* Add smooth transition */
 }
 
 .mega-links li p{
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 100;
   color: rgb(141, 137, 137);
 }
@@ -282,9 +287,13 @@ margin: auto;
 
 .mega-links li:hover a {
   color: #0a8ffc; /* Change color to blue on hover */
-  transform: scale(2.1); /* Increase scale on hover */
+  transform: scale(1.1); /* Increase scale on hover */
 }
-
+.mega-links li .tech-text {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+}
 
 
 
