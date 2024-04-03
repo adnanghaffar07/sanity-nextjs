@@ -76,7 +76,7 @@ export default function HomeNavigationContainer() {
               <div className="mega-box">
                 <div className='content'>
                   <div>
-                    <h2 className='linkshead'>Use Cases</h2>
+                    <h2 className='linkshead'>Services</h2>
                     <ul className="mega-links">
                       <li><Link href={`/services/${linkUrlCMS}`}>Headless CMS</Link>
                         <p>Customized Headless-CMS</p>
