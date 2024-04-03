@@ -118,17 +118,22 @@ export default function Home() {
                     Our Core Expertise
                   </div>
                   <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
-                    CodeAutomation offers 24/7 assistance from skilled
-                    professionals to ensure the quality of your IT projects.
-                    CodeAutomation is committed to guaranteeing optimal security
-                    and adherence to your business requirements. Our customized
-                    solutions and comprehensive support keep your organization
-                    running smoothly, from disaster recovery to cybersecurity,
-                    managed IT services, and e-commerce solutions.
-
-                    Our goal is to support your endeavors. At CodeAutomation, we
-                    are proud of our comprehensive knowledge of the full scope
-                    of IT services developed over the years.{" "}
+                    <p>
+                      Scale up with the team of more than 70 dedicated software
+                      engineers who are perfectly time-zone matched with you and
+                      have knowledge across a diverse variety of more than 100
+                      technologies. Whether you seek automation specialists or
+                      expert mobile and web development professionals,
+                      we&apos;re here to serve your business needs.
+                    </p>
+                    <p>
+                      As your strategic partners, we&apos;re dedicated to
+                      providing your business with outstanding knowledge and a
+                      strong desire to see you succeed. Begin your journey to a
+                      more promising future by empowering your business with
+                      advanced technologies, professional advice, and unmatched
+                      support.
+                    </p>
                   </div>
                   <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
                     <Link
@@ -280,7 +285,6 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       200+
-
                     </div>
                   </div>
                 </div>
@@ -300,7 +304,6 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       350+
-
                     </div>
                   </div>
                 </div>
@@ -320,7 +323,6 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       300+
-
                     </div>
                   </div>
                 </div>
@@ -965,7 +967,6 @@ export default function Home() {
                   </article>
                 </details>
               </li>
-            
             </ul>
           </div>
         </div>
