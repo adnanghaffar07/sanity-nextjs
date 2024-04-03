@@ -2,7 +2,7 @@ import React from "react";
 import ServiceApproachSection from "../../components/ServiceApproachSection";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import HeroSectionComponent from "../../components/HeroSectionComponent";
+// import HeroSectionComponent from "../../components/HeroSectionComponent";
 
 async function getData(urlService: any) {
   const query = `*[_type == 'services' && urlPath == '${urlService}'][0]`;
@@ -10,7 +10,7 @@ async function getData(urlService: any) {
     const fetchData = await client.fetch(query);
     return fetchData || [];
   } catch (error) {
-    // console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error);
     return [];
   }
 }
@@ -25,14 +25,14 @@ const page = async ({ params }: { params: { service: String } }) => {
   }
 
   // const bannerImageUrl = urlForImage(data.bannerimage.asset);
-  // const ourApproachImage = urlForImage(data.ourApproachImg.asset);
-  // const offerImage = urlForImage(data.offerImg.asset);
+  const ourApproachImage = urlForImage(data.ourApproachImg.asset);
+  const offerImage = urlForImage(data.offerImg.asset);
 
-  // const ref = data.bannervideo.asset._ref;
-  // const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
-  // const videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
-  //   client.config().dataset
-  // }/${fileId}.${extension}`;
+  const ref = data.bannervideo.asset._ref;
+  const [, fileId, extension] = ref.match(/file-(.+)-(.+)/);
+  const videoUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${
+    client.config().dataset
+  }/${fileId}.${extension}`;
 
   // let videoUrl;
   // if (
@@ -51,15 +51,15 @@ const page = async ({ params }: { params: { service: String } }) => {
   //   console.error("The bannervideo or its asset property is undefined.");
   // }
 
-  const videoBuilder = async () => {
-    console.log("----data ---", data);
-    const ref = data?.bannervideo?.asset?._ref;
-    const [, fileId, extension] = ref?.match(/file-(.+)-(.+)/);
-    return `https://cdn.sanity.io/files/ld8m6d0z/production/f981cfc75411cc359f42e2aa837411dcb3a9d5de.mp4`;
-  };
+  // const videoBuilder = async () => {
+  //   console.log("----data ---", data);
+  //   const ref = data?.bannervideo?.asset?._ref;
+  //   const [, fileId, extension] = ref?.match(/file-(.+)-(.+)/);
+  //   return `https://cdn.sanity.io/files/ld8m6d0z/production/f981cfc75411cc359f42e2aa837411dcb3a9d5de.mp4`;
+  // };
 
   // console.log("_____first", videoBuiler());
-  const videoUrl = await videoBuilder();
+  // const videoUrl = await videoBuilder();
 
   return (
     <>
