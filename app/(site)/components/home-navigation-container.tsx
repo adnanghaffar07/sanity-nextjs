@@ -7,9 +7,20 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 
 
+const imageFigma = '/figma.png';
+const imageIOS = '/ios.png';
+const imageNum = '/numpy.png';
+const imageFlutter= '/fluttrt.png';
+const imageReact = '/react.png';
+const imageAngular = '/angular.png';
+const imageGo = '/golang.png';
+const imageJmeter= '/jmeter.png';
+const imageJs= '/js.png';
+const imageAnd = '/android.png';
+
 const linkAI = "/ai-ml-services";
 const linkUrlCMS = "/headless-cms";
-const linkUrlWeb = "/web-development";
+const linkUrlSoft = "/software-development";
 const linkUrlApp = "/app-development";
 const linkUrlManual = "/qa-manual-testing";
 
@@ -76,20 +87,21 @@ export default function HomeNavigationContainer() {
               <div className="mega-box">
                 <div className='content'>
                   <div>
-                    <h2 className='linkshead'>Use Cases</h2>
+                    {/* <h2 className='linkshead'>Use Cases</h2> */}
                     <ul className="mega-links">
-                      <li><Link href={`/services/${linkUrlCMS}`}>Headless CMS</Link>
+                    <li><Link href={`/services/${linkUrlCMS}`}>CMS</Link>
+                        <p>Manage Digital Content</p></li>
+                      <li><Link href={`/services/${linkUrlCMS}`}>Headless-CMS</Link>
                         <p>Customized Headless-CMS</p>
                       </li>
                       <li><Link href={`/services/${linkAI}`}>AI & ML Services</Link>
-                        <p>Advanced technology & seamless integration</p>
+                        <p>Informed Decision Making Process</p>
                       </li>
-                      <li><Link href={`/services/${linkUrlWeb}`}>Web development</Link>
-                        <p>Dynamic user-friendly website</p></li>
-                      <li><Link href={`/services/${linkUrlApp}`}>Mobile development </Link>
-                        <p>Customized applications</p></li>
-                      <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
-                        <p>Thoroughly evaluated Softwares</p></li>
+                      <li><Link href={`/services/${linkUrlSoft}`}>Software Development</Link>
+                        <p>Web & Mobile Development Solutions</p></li>
+                     
+                      {/* <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
+                        <p>Thoroughly evaluated Softwares</p></li> */}
 
                     </ul>
                     {/* <ul className="mega-links">
@@ -100,13 +112,14 @@ export default function HomeNavigationContainer() {
                       <li><a href="#">QA Manual Testing </a>
                       <p>Thoroughly evaluated Softwares</p></li>
                     </ul> */}
-                    <Link href="/your-route">
-                      <p className="flex gap-3 text-md text-black hover:text-[#0a8ffc] hover:underline">
+                    <Link href="/services">
+                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
                         View all
                         <CgArrowLongRight
                           style={{
                             color: '#5b9ed2',
-                            marginTop: '3px',
+                            marginTop: '-3px',
+                            marginBottom: '-2px',
                             height: '25px',
                             width: '25px'
                           }}
@@ -139,22 +152,119 @@ export default function HomeNavigationContainer() {
                       <li><a href="#">Automation & Integration</a></li>
                     </ul>
                   </div> */}
-                  <div className="m-auto">
-                    <h2 className='linkshead'>Technologies</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* <h2 className='linkshead'>Technologies</h2> */}
+                    <ul className="mega-links">
+                    <li className="flex items-center">
+                        <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageReact} className="w-7 h-7 mr-2" />
+                            <p className="tech-text">React</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageFigma} className="w-7 h-7 mr-2" />
+                            <p className="tech-text">Figma</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageIOS} className="w-7 h-7 mr-2" />
+                            <p className="tech-text">IOS</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageNum} className="w-6 h-6 mr-2" />
+                            <p className="tech-text">Numpy</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageFlutter} className="w-6 h-6 mr-2" />
+                            <p className="tech-text">Flutter</p>
+                          </div>
+                        </Link>
+                      </li>
+                   
+                    </ul>
 
-                    <Link href={`/technologies`} className="hover:underline my-auto">
-                      <img
-                        loading="lazy"
-                        src="/img-logos-ai-ml.jpg"
-                        className=""
-                      />
-                      <img
-                        loading="lazy"
-                        src="/img-logos-crm-cms.jpg"
-                        className=""
-                      />
+                    <ul className="mega-links">
+                    <li className="flex items-center">
+                    <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageAnd} className="w-7 h-7 mr-2" />
+                            <p className="tech-text">Android</p>
+                          </div>
+                        </Link>
+                      </li>
+                    <li className="flex items-center">
+                    <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageAngular} className="w-6 h-6 mr-2" />
+                            <p className="tech-text">Angular</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageJs} className="w-6 h-6 mr-2" />
+                            <p className="tech-text">JavaScript</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageGo} className="w-7 h-7 mr-2" />
+                            <p className="tech-text">Golang</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li className="flex items-center">
+                      <Link href={'/technologies'}>
+                          <div className="flex items-center">
+                            <img src={imageJmeter} className="w-7 h-7 mr-2" />
+                            <p className="tech-text">Jmeter</p>
+                          </div>
+                        </Link>
+                      </li>
+                  
+                    
+                   
+                    </ul>
+                    <Link href="/technologies">
+                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-6">
+                        View all
+                        <CgArrowLongRight
+                          style={{
+                            color: '#5b9ed2',
+                            marginTop: '-3px',
+                            marginBottom: '-2px',
+                            height: '25px',
+                            width: '25px'
+                          }}
+                        />
+                      </p>
                     </Link>
+             
+                    
                   </div>
+             
+            
+                
+                    
+               
                 </div>
 
               </div>
