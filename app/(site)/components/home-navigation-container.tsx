@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from 'react';
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
@@ -10,19 +10,21 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 const imageFigma = '/figma.png';
 const imageIOS = '/ios.png';
 const imageNum = '/numpy.png';
-const imageFlutter= '/fluttrt.png';
+const imageFlutter = '/fluttrt.png';
 const imageReact = '/react.png';
 const imageAngular = '/angular.png';
 const imageGo = '/golang.png';
-const imageJmeter= '/jmeter.png';
-const imageJs= '/js.png';
+const imageJmeter = '/jmeter.png';
+const imageJs = '/js.png';
 const imageAnd = '/android.png';
 
 const linkAI = "/ai-ml-services";
 const linkUrlCMS = "/headless-cms";
 const linkUrlSoft = "/software-development";
-const linkUrlApp = "/app-development";
-const linkUrlManual = "/qa-manual-testing";
+const linkUrlAuto = "/qa-automation-testing";
+const linkUrlDigital = "/digital-marketing";
+const linkBusiness = "/business-automation";
+const linkRobotic = "/robotic-research"
 
 const navItems = [
   {
@@ -60,6 +62,35 @@ export default function HomeNavigationContainer() {
   const handleSmallerScreenNavigation = () => {
     setIcon(!menuIcon);
   }
+
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [mouseInsideMenu, setMouseInsideMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null); // Specify the type of ref
+
+
+  // Function to hide the mega menu when a link is clicked
+  const hideMenu = () => {
+    setMenuVisible(false);
+  };
+
+  // Function to show the mega menu on hover
+  const showMenu = () => {
+    setMenuVisible(true);
+  };
+
+  const handleMouseEnter = () => {
+    setMouseInsideMenu(true);
+  };
+
+  const handleMouseLeave = (event: React.MouseEvent) => {
+    const isMouseInsideMenu = menuRef.current && menuRef.current.contains(event.relatedTarget as Node);
+    const isMouseOnServiceLink = event.currentTarget.contains(event.relatedTarget as Node);
+    if (!isMouseInsideMenu && !isMouseOnServiceLink && menuVisible) {
+      hideMenu();
+    }
+  };
+  
+
   return (
     <nav className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
       <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-whit">
@@ -83,26 +114,61 @@ export default function HomeNavigationContainer() {
           <ul className='nav-links self-center mx-auto flex gap-10 self-center'>
             <li><Link href="/" className="hover:underline ">Home</Link></li>
             <li className="mega-menu relative">
-              <Link href="/services" className="hover:underline ">Services</Link>
-              <div className="mega-box">
-                <div className='content'>
+            <Link
+                href="javascript:void(0)"
+                className="hover:underline"
+                onMouseEnter={showMenu}
+                onMouseLeave={handleMouseLeave}
+              >
+                Services
+              </Link>
+              <div
+                ref={menuRef}
+                className={`mega-box ${menuVisible ? "visible" : ""}`} onMouseLeave={handleMouseLeave}
+              >
+                  <div className='content'>
                   <div>
-                    {/* <h2 className='linkshead'>Use Cases</h2> */}
                     <ul className="mega-links">
-                    <li><Link href={`/services/${linkUrlCMS}`}>CMS</Link>
-                        <p>Manage Digital Content</p></li>
-                      <li><Link href={`/services/${linkUrlCMS}`}>Headless-CMS</Link>
-                        <p>Customized Headless-CMS</p>
+                      <li>
+                        <Link href={`/services/${linkUrlCMS}`} className="heading" onClick={hideMenu}>
+                          CMS
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkUrlCMS}`} onClick={hideMenu}>
+                            Manage Digital Content
+                          </Link>
+                        </p>
                       </li>
-                      <li><Link href={`/services/${linkAI}`}>AI & ML Services</Link>
-                        <p>Informed Decision Making Process</p>
+                      <li>
+                        <Link href={`/services/${linkUrlCMS}`} className="heading" onClick={hideMenu}>
+                          Headless-CMS
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkUrlCMS}`} onClick={hideMenu}>
+                            Customized Headless-CMS
+                          </Link>
+                        </p>
                       </li>
-                      <li><Link href={`/services/${linkUrlSoft}`}>Software Development</Link>
-                        <p>Web & Mobile Development Solutions</p></li>
-                     
-                      {/* <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
-                        <p>Thoroughly evaluated Softwares</p></li> */}
-
+                      <li>
+                        <Link href={`/services/${linkAI}`} className="heading" onClick={hideMenu}>
+                          AI & ML Services
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkAI}`} onClick={hideMenu}>
+                            Informed Decision Making Process
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link href={`/services/${linkUrlSoft}`} className="heading" onClick={hideMenu}>
+                          Software Development
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkUrlSoft}`} onClick={hideMenu}>
+                            Web & Mobile Development Solutions
+                          </Link>
+                        </p>
+                      </li>
                     </ul>
                     {/* <ul className="mega-links">
                       <li><a href="#">Web development</a>
@@ -113,7 +179,7 @@ export default function HomeNavigationContainer() {
                       <p>Thoroughly evaluated Softwares</p></li>
                     </ul> */}
                     <Link href="/services">
-                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
+                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8" onClick={hideMenu}>
                         View all
                         <CgArrowLongRight
                           style={{
@@ -152,9 +218,28 @@ export default function HomeNavigationContainer() {
                       <li><a href="#">Automation & Integration</a></li>
                     </ul>
                   </div> */}
-                  <div className="grid grid-cols-2 gap-4">
-                    {/* <h2 className='linkshead'>Technologies</h2> */}
+                  {/* <div className="grid grid-cols-2 gap-4"> */}
+                  {/* <h2 className='linkshead'>Technologies</h2> */}
+                  <div>
                     <ul className="mega-links">
+                      <li><Link href={`/services/${linkUrlAuto}`} className="heading" onClick={hideMenu}>QA Automation Testing</Link>
+                        <p> <Link href={`/services/${linkUrlAuto}`} onClick={hideMenu}>Ensure the Highest Quality</Link></p></li>
+                      <li><Link href={`/services/${linkUrlDigital}`} className="heading" onClick={hideMenu}>Digital Marketing</Link>
+                        <p><Link href={`/services/${linkUrlDigital}`} onClick={hideMenu}>Boost your Online Presence</Link></p>
+                      </li>
+                      <li><Link href={`/services/${linkBusiness}`} className="heading" onClick={hideMenu}>Business Automation</Link>
+                        <p><Link href={`/services/${linkBusiness}`} onClick={hideMenu}>Focus on Strategic Initiatives</Link></p>
+                      </li>
+                      <li><Link href={`/services/${linkRobotic}`} className="heading" onClick={hideMenu}>Robotic Research</Link>
+                        <p><Link href={`/services/${linkRobotic}`} onClick={hideMenu}>Tackle the Complex Robotic Challanges</Link></p></li>
+
+                      {/* <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
+                        <p>Thoroughly evaluated Softwares</p></li> */}
+
+                    </ul>
+
+
+                    {/* <ul className="mega-links">
                     <li className="flex items-center">
                         <Link href={'/technologies'}>
                           <div className="flex items-center">
@@ -196,9 +281,9 @@ export default function HomeNavigationContainer() {
                         </Link>
                       </li>
                    
-                    </ul>
+                    </ul> */}
 
-                    <ul className="mega-links">
+                    {/* <ul className="mega-links">
                     <li className="flex items-center">
                     <Link href={'/technologies'}>
                           <div className="flex items-center">
@@ -242,9 +327,9 @@ export default function HomeNavigationContainer() {
                   
                     
                    
-                    </ul>
-                    <Link href="/technologies">
-                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-6">
+                    </ul> */}
+                    {/* <Link href="/services">
+                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
                         View all
                         <CgArrowLongRight
                           style={{
@@ -256,15 +341,15 @@ export default function HomeNavigationContainer() {
                           }}
                         />
                       </p>
-                    </Link>
-             
-                    
+                    </Link> */}
+
+
                   </div>
-             
-            
-                
-                    
-               
+
+
+
+
+
                 </div>
 
               </div>
