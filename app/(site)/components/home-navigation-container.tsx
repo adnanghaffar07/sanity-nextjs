@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from 'react';
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
@@ -63,9 +63,9 @@ export default function HomeNavigationContainer() {
     setIcon(!menuIcon);
   }
 
-
   const [menuVisible, setMenuVisible] = useState(false);
   const [mouseInsideMenu, setMouseInsideMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null); // Specify the type of ref
 
 
   // Function to hide the mega menu when a link is clicked
@@ -82,14 +82,14 @@ export default function HomeNavigationContainer() {
     setMouseInsideMenu(true);
   };
 
-
-
-  const handleMouseLeave = () => {
-    setMouseInsideMenu(false);
-    hideMenu(); // Hide the menu only if the mouse is not inside the mega box
+  const handleMouseLeave = (event: React.MouseEvent) => {
+    const isMouseInsideMenu = menuRef.current && menuRef.current.contains(event.relatedTarget as Node);
+    const isMouseOnServiceLink = event.currentTarget.contains(event.relatedTarget as Node);
+    if (!isMouseInsideMenu && !isMouseOnServiceLink && menuVisible) {
+      hideMenu();
+    }
   };
-
-
+  
 
   return (
     <nav className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
@@ -114,18 +114,19 @@ export default function HomeNavigationContainer() {
           <ul className='nav-links self-center mx-auto flex gap-10 self-center'>
             <li><Link href="/" className="hover:underline ">Home</Link></li>
             <li className="mega-menu relative">
-              <Link
+            <Link
                 href="javascript:void(0)"
                 className="hover:underline"
-                onMouseEnter={showMenu} // Show the menu on hover
+                onMouseEnter={showMenu}
+                onMouseLeave={handleMouseLeave}
               >
                 Services
               </Link>
               <div
-                className={`mega-box ${menuVisible ? "visible" : ""}`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >                <div className='content'>
+                ref={menuRef}
+                className={`mega-box ${menuVisible ? "visible" : ""}`} onMouseLeave={handleMouseLeave}
+              >
+                  <div className='content'>
                   <div>
                     <ul className="mega-links">
                       <li>
