@@ -205,12 +205,12 @@ body {
   content: '';
   position: absolute;
   top: -17px; /* Adjust as per your design */
-  left: 18%; 
+   left: 18%; 
   transform: translateX(-50%);
   border-width: 10px;
   border-style: solid;
   border-color: transparent transparent #ffffff transparent;
-}
+} 
 
 
 .mega-menu:hover .mega-box,
@@ -268,10 +268,12 @@ body {
   transition: color 0.3s, transform 0.3s; /* Add smooth transition */
 }
 
-.mega-links li p{
+.mega-links li p a{
   font-size: 12px;
   font-weight: 100;
+  
   color: rgb(141, 137, 137);
+  cursor: pointer;
 }
 
 .mega-links li h3{
@@ -280,15 +282,20 @@ body {
   color: rgb(141, 137, 137);
 }
 
-.mega-links li:hover a {
+.mega-links li:hover p a {
+  color: #0e0e0e;
+  font-weight: 400;
+  transform: scale(1.1); 
+}
+.mega-links li:hover .heading {
   color: #0a8ffc;
   transform: scale(1.1); 
 }
-.mega-links li .tech-text {
+/* .mega-links li .tech-text {
   color: black;
   font-size: 14px;
   font-weight: 500;
-}
+} */
 
 
 @media screen and (min-width: 2056px) and (max-width: 3056px) {
