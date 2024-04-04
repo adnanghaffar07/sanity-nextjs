@@ -196,9 +196,13 @@ body {
   z-index: 1000;
 }
 
-.mega-menu:hover .mega-box,
+/* .mega-menu:hover .mega-box,
 .mega-box:hover {
   display: block;
+} */
+
+.mega-box.visible {
+  display: block; /* Show the mega menu when the "visible" class is added */
 }
 
 .mega-box::before {
@@ -215,7 +219,7 @@ body {
 
 .mega-menu:hover .mega-box,
 .mega-box:hover {
-  animation: showMegaMenu 1s forwards;
+  animation: showMegaMenu 0.5s forwards;
 }
 
 @keyframes showMegaMenu {

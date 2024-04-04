@@ -10,12 +10,12 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 const imageFigma = '/figma.png';
 const imageIOS = '/ios.png';
 const imageNum = '/numpy.png';
-const imageFlutter= '/fluttrt.png';
+const imageFlutter = '/fluttrt.png';
 const imageReact = '/react.png';
 const imageAngular = '/angular.png';
 const imageGo = '/golang.png';
-const imageJmeter= '/jmeter.png';
-const imageJs= '/js.png';
+const imageJmeter = '/jmeter.png';
+const imageJs = '/js.png';
 const imageAnd = '/android.png';
 
 const linkAI = "/ai-ml-services";
@@ -61,8 +61,36 @@ export default function HomeNavigationContainer() {
   const [menuIcon, setIcon] = useState(false);
   const handleSmallerScreenNavigation = () => {
     setIcon(!menuIcon);
-
   }
+
+
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [mouseInsideMenu, setMouseInsideMenu] = useState(false);
+
+
+  // Function to hide the mega menu when a link is clicked
+  const hideMenu = () => {
+    setMenuVisible(false);
+  };
+
+  // Function to show the mega menu on hover
+  const showMenu = () => {
+    setMenuVisible(true);
+  };
+
+  const handleMouseEnter = () => {
+    setMouseInsideMenu(true);
+  };
+
+
+
+  const handleMouseLeave = () => {
+    setMouseInsideMenu(false);
+    hideMenu(); // Hide the menu only if the mouse is not inside the mega box
+  };
+
+
+
   return (
     <nav className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
       <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-whit">
@@ -86,26 +114,60 @@ export default function HomeNavigationContainer() {
           <ul className='nav-links self-center mx-auto flex gap-10 self-center'>
             <li><Link href="/" className="hover:underline ">Home</Link></li>
             <li className="mega-menu relative">
-            <Link href="javascript:void(0)" className="hover:underline" >Services</Link>
-            <div className="mega-box ">
-                <div className='content'>
+              <Link
+                href="javascript:void(0)"
+                className="hover:underline"
+                onMouseEnter={showMenu} // Show the menu on hover
+              >
+                Services
+              </Link>
+              <div
+                className={`mega-box ${menuVisible ? "visible" : ""}`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >                <div className='content'>
                   <div>
-                    {/* <h2 className='linkshead'>Use Cases</h2> */}
                     <ul className="mega-links">
-                    <li><Link href={`/services/${linkUrlCMS}`} className="heading">CMS</Link>
-                        <p> <Link href={`/services/${linkUrlCMS}`}>Manage Digital Content</Link></p></li>
-                      <li><Link href={`/services/${linkUrlCMS}`}className="heading">Headless-CMS</Link>
-                        <p><Link href={`/services/${linkUrlCMS}`}>Customized Headless-CMS</Link></p>
+                      <li>
+                        <Link href={`/services/${linkUrlCMS}`} className="heading" onClick={hideMenu}>
+                          CMS
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkUrlCMS}`} onClick={hideMenu}>
+                            Manage Digital Content
+                          </Link>
+                        </p>
                       </li>
-                      <li><Link href={`/services/${linkAI}`}className="heading">AI & ML Services</Link>
-                        <p><Link href={`/services/${linkAI}`}>Informed Decision Making Process</Link></p>
+                      <li>
+                        <Link href={`/services/${linkUrlCMS}`} className="heading" onClick={hideMenu}>
+                          Headless-CMS
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkUrlCMS}`} onClick={hideMenu}>
+                            Customized Headless-CMS
+                          </Link>
+                        </p>
                       </li>
-                      <li><Link href={`/services/${linkUrlSoft}`}className="heading">Software Development</Link>
-                        <p><Link href={`/services/${linkUrlSoft}`}>Web & Mobile Development Solutions</Link></p></li>
-                     
-                      {/* <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
-                        <p>Thoroughly evaluated Softwares</p></li> */}
-
+                      <li>
+                        <Link href={`/services/${linkAI}`} className="heading" onClick={hideMenu}>
+                          AI & ML Services
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkAI}`} onClick={hideMenu}>
+                            Informed Decision Making Process
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link href={`/services/${linkUrlSoft}`} className="heading" onClick={hideMenu}>
+                          Software Development
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkUrlSoft}`} onClick={hideMenu}>
+                            Web & Mobile Development Solutions
+                          </Link>
+                        </p>
+                      </li>
                     </ul>
                     {/* <ul className="mega-links">
                       <li><a href="#">Web development</a>
@@ -116,7 +178,7 @@ export default function HomeNavigationContainer() {
                       <p>Thoroughly evaluated Softwares</p></li>
                     </ul> */}
                     <Link href="/services">
-                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
+                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8" onClick={hideMenu}>
                         View all
                         <CgArrowLongRight
                           style={{
@@ -156,20 +218,20 @@ export default function HomeNavigationContainer() {
                     </ul>
                   </div> */}
                   {/* <div className="grid grid-cols-2 gap-4"> */}
-                    {/* <h2 className='linkshead'>Technologies</h2> */}
-                    <div>
+                  {/* <h2 className='linkshead'>Technologies</h2> */}
+                  <div>
                     <ul className="mega-links">
-                    <li><Link href={`/services/${linkUrlAuto}`} className="heading">QA Automation Testing</Link>
-                        <p> <Link href={`/services/${linkUrlAuto}`}>Ensure the Highest Quality</Link></p></li>
-                      <li><Link href={`/services/${linkUrlDigital}`}className="heading">Digital Marketing</Link>
-                        <p><Link href={`/services/${linkUrlDigital}`}>Boost your Online Presence</Link></p>
+                      <li><Link href={`/services/${linkUrlAuto}`} className="heading" onClick={hideMenu}>QA Automation Testing</Link>
+                        <p> <Link href={`/services/${linkUrlAuto}`} onClick={hideMenu}>Ensure the Highest Quality</Link></p></li>
+                      <li><Link href={`/services/${linkUrlDigital}`} className="heading" onClick={hideMenu}>Digital Marketing</Link>
+                        <p><Link href={`/services/${linkUrlDigital}`} onClick={hideMenu}>Boost your Online Presence</Link></p>
                       </li>
-                      <li><Link href={`/services/${linkBusiness}`}className="heading">Business Automation</Link>
-                        <p><Link href={`/services/${linkBusiness}`}>Focus on Strategic Initiatives</Link></p>
+                      <li><Link href={`/services/${linkBusiness}`} className="heading" onClick={hideMenu}>Business Automation</Link>
+                        <p><Link href={`/services/${linkBusiness}`} onClick={hideMenu}>Focus on Strategic Initiatives</Link></p>
                       </li>
-                      <li><Link href={`/services/${linkRobotic}`}className="heading">Robotic Research</Link>
-                        <p><Link href={`/services/${linkRobotic}`}>Tackle the Complex Robotic Challanges</Link></p></li>
-                     
+                      <li><Link href={`/services/${linkRobotic}`} className="heading" onClick={hideMenu}>Robotic Research</Link>
+                        <p><Link href={`/services/${linkRobotic}`} onClick={hideMenu}>Tackle the Complex Robotic Challanges</Link></p></li>
+
                       {/* <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
                         <p>Thoroughly evaluated Softwares</p></li> */}
 
@@ -265,7 +327,7 @@ export default function HomeNavigationContainer() {
                     
                    
                     </ul> */}
-                      {/* <Link href="/services">
+                    {/* <Link href="/services">
                       <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
                         View all
                         <CgArrowLongRight
@@ -279,14 +341,14 @@ export default function HomeNavigationContainer() {
                         />
                       </p>
                     </Link> */}
-             
-                    
+
+
                   </div>
-             
-            
-                
-                    
-               
+
+
+
+
+
                 </div>
 
               </div>
