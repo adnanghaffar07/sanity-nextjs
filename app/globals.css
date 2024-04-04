@@ -185,26 +185,34 @@ body {
 
 /* Mega Menu Styling */
 .mega-box {
-  position: absolute;
-  top: 100%;
-  left: 10px; /* 20px margin away from the most right */
-  width: calc(50vw - 10px); /* Cover 70% of the viewport width minus the 20px margin */
-  max-width: calc(40vw - 10px); /* Set a maximum width to prevent covering entire screen */
+  position: fixed;
+  top: 72px;
+  left: 30%; 
+  width: calc(40% - 20px); 
+  max-width: calc(40% - 20px);
   background-color: #ffffff;
-  padding: 25px 20px 20px 20px;
-  border-radius: 16px;
- 
+  padding: 25px 20px 20px 20px; 
+  border-radius: 12px;
   display: none;
   z-index: 1000;
 }
 
-.mega-menu{
-  margin-top: 50px;
-}
-
-.mega-menu:hover .mega-box {
+.mega-menu:hover .mega-box,
+.mega-box:hover {
   display: block;
 }
+
+.mega-box::before {
+  content: '';
+  position: absolute;
+  top: -17px; /* Adjust as per your design */
+  left: 18%; 
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+}
+
 
 .mega-menu:hover .mega-box,
 .mega-box:hover {
@@ -221,11 +229,7 @@ body {
     visibility: visible;
   }
 }
-.image-box{
 
-margin: auto;
-
-}
 
 .content {
   display: flex;
@@ -238,14 +242,6 @@ margin: auto;
 
 .content > div:last-child {
   margin-right: 0;
-}
-
-.linkshead {
-  font-size: 14px;
-  font-weight: 400;
-  margin-left: 0px;
-  color: rgb(147, 147, 147);
-  margin-bottom: 10px;
 }
 
 .main {
@@ -286,8 +282,8 @@ margin: auto;
 }
 
 .mega-links li:hover a {
-  color: #0a8ffc; /* Change color to blue on hover */
-  transform: scale(1.1); /* Increase scale on hover */
+  color: #0a8ffc;
+  transform: scale(1.1); 
 }
 .mega-links li .tech-text {
   color: black;
@@ -296,4 +292,23 @@ margin: auto;
 }
 
 
-
+@media screen and (min-width: 2056px) and (max-width: 3056px) {
+  .mega-box::before {
+    left: 30%; 
+  }
+}
+@media screen and (min-width: 1824px) and (max-width: 2056px) {
+  .mega-box::before {
+    left: 25%;
+  }
+}
+@media screen and (min-width: 1675px) and (max-width: 1824px) {
+  .mega-box::before {
+    left: 20%; 
+  }
+}
+@media screen and (max-width: 1445px) {
+  .mega-box::before {
+    left: 16%; 
+  }
+}
