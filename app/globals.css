@@ -179,30 +179,48 @@ body {
 .nav-links li a {
   color: #fff;
   text-decoration: none;
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 /* Mega Menu Styling */
 .mega-box {
-  position: absolute;
-  top: 100%;
-  left: 10px; /* 20px margin away from the most right */
-  width: calc(90vw - 10px); /* Cover 70% of the viewport width minus the 20px margin */
-  max-width: calc(45vw - 10px); /* Set a maximum width to prevent covering entire screen */
-  background-color: #fff;
-  padding: 20px;
+  position: fixed;
+  top: 72px;
+  left: 30%; 
+  width: calc(40% - 20px); 
+  max-width: calc(40% - 20px);
+  background-color: #ffffff;
+  padding: 25px 20px 20px 20px; 
+  border-radius: 12px;
   display: none;
   z-index: 1000;
 }
 
-.mega-menu:hover .mega-box {
+/* .mega-menu:hover .mega-box,
+.mega-box:hover {
   display: block;
+} */
+
+.mega-box.visible {
+  display: block; /* Show the mega menu when the "visible" class is added */
 }
+
+.mega-box::before {
+  content: '';
+  position: absolute;
+  top: -17px; /* Adjust as per your design */
+   left: 20%; 
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+} 
+
 
 .mega-menu:hover .mega-box,
 .mega-box:hover {
-  animation: showMegaMenu 1s forwards;
+  animation: showMegaMenu 0.5s forwards;
 }
 
 @keyframes showMegaMenu {
@@ -215,11 +233,7 @@ body {
     visibility: visible;
   }
 }
-.image-box{
 
-margin: auto;
-
-}
 
 .content {
   display: flex;
@@ -227,19 +241,11 @@ margin: auto;
 
 .content > div {
   flex: 1;
-  margin-right: 0px;
+  margin-right: 10px;
 }
 
 .content > div:last-child {
   margin-right: 0;
-}
-
-.linkshead {
-  font-size: 16px;
-  font-weight: 400;
-  margin-left: 0px;
-  color: rgb(147, 147, 147);
-  margin-bottom: 10px;
 }
 
 .main {
@@ -253,7 +259,6 @@ margin: auto;
 .mega-links {
   list-style: none;
   padding: 0;
-  margin-bottom: 40px;
 }
 
 .mega-links li {
@@ -263,15 +268,17 @@ margin: auto;
 .mega-links li a {
   color: rgb(0, 0, 0);
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   transition: color 0.3s, transform 0.3s; /* Add smooth transition */
 }
 
-.mega-links li p{
-  font-size: 13px;
-  font-weight: 100;
+.mega-links li p a{
+  font-size: 12px;
+  font-weight: 300;
+  
   color: rgb(141, 137, 137);
+  cursor: pointer;
 }
 
 .mega-links li h3{
@@ -280,11 +287,39 @@ margin: auto;
   color: rgb(141, 137, 137);
 }
 
-.mega-links li:hover a {
-  color: #0a8ffc; /* Change color to blue on hover */
-  transform: scale(2.1); /* Increase scale on hover */
+.mega-links li:hover p a {
+  color: #0e0e0e;
+  font-weight: 400;
+  transform: scale(1.1); 
 }
+.mega-links li:hover .heading {
+  color: #0a8ffc;
+  transform: scale(1.1); 
+}
+/* .mega-links li .tech-text {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+} */
 
 
-
-
+@media screen and (min-width: 2056px) and (max-width: 3056px) {
+  .mega-box::before {
+    left: 31%; 
+  }
+}
+@media screen and (min-width: 1824px) and (max-width: 2056px) {
+  .mega-box::before {
+    left: 26%;
+  }
+}
+@media screen and (min-width: 1675px) and (max-width: 1824px) {
+  .mega-box::before {
+    left: 20%; 
+  }
+}
+@media screen and (max-width: 1445px) {
+  .mega-box::before {
+    left: 16%; 
+  }
+}
