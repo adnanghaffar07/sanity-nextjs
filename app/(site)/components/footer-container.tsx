@@ -161,6 +161,10 @@ export default async function FooterContainer() {
                 <br />
                 <span className="text-1xl font-bold">Canada:</span> 10 Stevens
                 Avenue Ottawa, K1K4M9, Canada.
+                <br />
+                <br />
+                <span className="text-1xl font-bold">Pakistan:</span> A 1/11 P,
+                Block P Model Town, Lahore, Pakistan
               </div>
               <div className="container mt-20 flex justify-center items-center">
                 <section className="grid grid-cols-4 gap-3 ">
