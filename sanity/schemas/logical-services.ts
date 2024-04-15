@@ -301,6 +301,11 @@ const logicalServices = {
           type: "string",
         },
         {
+          name: "toolsTechDesc",
+          title: "Tools and Tech Desc",
+          type: "text",
+        },
+        {
           name: "toolsTech",
           title: "Tools and Tech",
           type: "array",
@@ -354,6 +359,11 @@ const logicalServices = {
           name: "exampleServiceHeading",
           title: "Example Service Heading",
           type: "string",
+        },
+        {
+          name: "exampleServicedesc",
+          title: "Example Service Desc",
+          type: "text",
         },
         {
           name: "exampleService",
@@ -428,6 +438,19 @@ const logicalServices = {
             },
           ],
         },
+        {
+          name: "projectCycleImg",
+          title: "Project Cycle Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
       ],
     },
 
@@ -463,6 +486,19 @@ const logicalServices = {
                   options: { hotspot: true },
                 },
               ],
+            },
+          ],
+        },
+        {
+          name: "deliveryImg",
+          title: "Delivery Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
             },
           ],
         },
@@ -553,6 +589,65 @@ const logicalServices = {
         {
           name: "callToActionImg",
           title: "Call to Action Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "contactSection",
+      title: "Contact Us Section",
+      type: "object",
+      fields: [
+        {
+          name: "contactUsHeading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "contactEmail",
+          title: "Email",
+          type: "email",
+        },        
+        {
+          name: "contactPhone",
+          title: "Phone Number",
+          type: "string",
+          // validation: (Rule:any) =>
+          //   Rule.custom((value:any) => {
+          //     // Regular expression to match a phone number with optional country code
+          //     const phoneRegex = /^\+?\d{1,3}[- ]?\d{3,}$/;
+          //     if (!phoneRegex.test(value)) {
+          //       return 'Please enter a valid phone number.';
+          //     }
+          //     return true;
+          //   }),
+        },
+        {
+          name: "contactLink",
+          title: "Link",
+          type: "string",
+          // validation: (Rule:any) =>
+          //   Rule.custom((value:any) => {
+          //     // Regular expression to match a URL
+          //     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+          //     if (!urlRegex.test(value)) {
+          //       return 'Please enter a valid URL.';
+          //     }
+          //     return true;
+          //   }),
+        },        
+        
+        {
+          name: "contactImg",
+          title: "Contact Image",
           type: "image",
           options: { hotspot: true },
           fields: [
@@ -731,6 +826,11 @@ const subServiceSchema = {
           type: "string",
         },
         {
+          name: "toolsTechDesc",
+          title: "Tools and Tech Desc",
+          type: "text",
+        },
+        {
           name: "toolsTech",
           title: "Tools and Tech",
           type: "array",
@@ -808,6 +908,19 @@ const subServiceSchema = {
             },
           ],
         },
+        {
+          name: "projectCycleImg",
+          title: "Project Cycle Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
       ],
     },
 
@@ -847,6 +960,19 @@ const subServiceSchema = {
             },
           ],
         },
+        {
+          name: "deliveryImg",
+          title: "Delivery Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
       ],
     },
 
@@ -861,6 +987,11 @@ const subServiceSchema = {
           name: "exampleServiceHeading",
           title: "Example Service Heading",
           type: "string",
+        },
+        {
+          name: "exampleServicedesc",
+          title: "Example Service Desc",
+          type: "text",
         },
         {
           name: "exampleServiceSub",
@@ -995,6 +1126,67 @@ const subServiceSchema = {
         },
       ],
     },
+    {
+      name: "contactSubSection",
+      title: "Contact Us Sub Section",
+      type: "object",
+      fields: [
+        {
+          name: "contactUsHeading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "contactEmail",
+          title: "Email",
+          type: "email",
+        },        
+        {
+          name: "contactPhone",
+          title: "Phone Number",
+          type: "string",
+          // validation: (Rule:any) =>
+          //   Rule.custom((value:any) => {
+          //     // Regular expression to match a phone number with optional country code
+          //     const phoneRegex = /^\+?\d{1,3}[- ]?\d{3,}$/;
+          //     if (!phoneRegex.test(value)) {
+          //       return 'Please enter a valid phone number.';
+          //     }
+          //     return true;
+          //   }),
+        },
+        {
+          name: "contactLink",
+          title: "Link",
+          type: "string",
+          // validation: (Rule:any) =>
+          //   Rule.custom((value:any) => {
+          //     // Regular expression to match a URL
+          //     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+          //     if (!urlRegex.test(value)) {
+          //       return 'Please enter a valid URL.';
+          //     }
+          //     return true;
+          //   }),
+        },        
+        
+        {
+          name: "contactImg",
+          title: "Contact Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+
     {
       name: "webSeoMetadataSub",
       title: "Web SEO Metadata",
