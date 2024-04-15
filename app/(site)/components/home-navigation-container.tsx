@@ -19,6 +19,7 @@ const imageJs = '/js.png';
 const imageAnd = '/android.png';
 
 const linkAI = "/ai-ml-services";
+const linkUrlCMS1 = "/cms";
 const linkUrlCMS = "/headless-cms";
 const linkUrlSoft = "/software-development";
 const linkUrlAuto = "/qa-automation-testing";
@@ -83,7 +84,7 @@ export default function HomeNavigationContainer() {
   };
 
   const handleMouseLeave = (event: React.MouseEvent) => {
-    const isMouseInsideMenu = menuRef.current && menuRef.current.contains(event.relatedTarget as Node);
+    const isMouseInsideMenu = menuRef.current instanceof Node && menuRef.current.contains(event.relatedTarget as Node);
     const isMouseOnServiceLink = event.currentTarget.contains(event.relatedTarget as Node);
     if (!isMouseInsideMenu && !isMouseOnServiceLink && menuVisible) {
       hideMenu();
@@ -130,11 +131,11 @@ export default function HomeNavigationContainer() {
                   <div>
                     <ul className="mega-links">
                       <li>
-                        <Link href={`/services/${linkUrlCMS}`} className="heading" onClick={hideMenu}>
+                        <Link href={`/services/${linkUrlCMS1}`} className="heading" onClick={hideMenu}>
                           CMS
                         </Link>
                         <p>
-                          <Link href={`/services/${linkUrlCMS}`} onClick={hideMenu}>
+                          <Link href={`/services/${linkUrlCMS1}`} onClick={hideMenu}>
                             Manage Digital Content
                           </Link>
                         </p>
