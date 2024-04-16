@@ -159,8 +159,8 @@ export default async function FooterContainer() {
                 Ste 7596, Sheridan, WY, 82801. */}
                 {/* <br /> */}
                 {/* <br /> */}
-                <span className="text-1xl font-bold">Canada:</span> 10 Stevens
-                Avenue Ottawa, K1K4M9, Canada.
+                <span className="text-1xl font-bold">Canada:</span> 25 McArthur
+                Ave. Ottawa, ON K1L 6R3
                 <br />
                 <br />
                 <span className="text-1xl font-bold">Pakistan:</span> A 1/11 P,
