@@ -17,6 +17,7 @@ const imageJs = "/js.png";
 const imageAnd = "/android.png";
 
 const linkAI = "/ai-ml-services";
+const linkUrlCMS1 = "/cms";
 const linkUrlCMS = "/headless-cms";
 const linkUrlSoft = "/software-development";
 const linkUrlAuto = "/qa-automation-testing";
@@ -78,7 +79,8 @@ export default function HomeNavigationContainer() {
 
   const handleMouseLeave = (event: React.MouseEvent) => {
     const isMouseInsideMenu =
-      menuRef.current && menuRef.current.contains(event.relatedTarget as Node);
+      menuRef.current instanceof Node &&
+      menuRef.current.contains(event.relatedTarget as Node);
     const isMouseOnServiceLink = event.currentTarget.contains(
       event.relatedTarget as Node
     );
@@ -133,7 +135,7 @@ export default function HomeNavigationContainer() {
                     <ul className="mega-links">
                       <li>
                         <Link
-                          href={`/services/${linkUrlCMS}`}
+                          href={`/services/${linkUrlCMS1}`}
                           className="heading"
                           onClick={hideMenu}
                         >
