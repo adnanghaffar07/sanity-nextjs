@@ -61,10 +61,10 @@ export default async function FooterContainer() {
                 </div>
                 <div className="mt-3.5 leading-8">
                   <a
-                    href="mailto:adnan@codeautomation.ai"
+                    href="mailto:info@codeautomation.ai"
                     className="hover:underline my-auto inline-block"
                   >
-                    adnan@codeautomation.ai
+                    info@codeautomation.ai
                   </a>
                   <br />
                   <a
@@ -72,6 +72,13 @@ export default async function FooterContainer() {
                     className="hover:underline my-auto inline-block"
                   >
                     +1-850-558-4691
+                  </a>
+                  <br />
+                  <a
+                    href="tel:+13076556139"
+                    className="hover:underline my-auto inline-block"
+                  >
+                    +1-307-655-6139
                   </a>
                 </div>
               </div>
