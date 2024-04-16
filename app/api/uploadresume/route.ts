@@ -1,18 +1,23 @@
 // import { NextResponse, NextRequest } from "next/server";
 import nodemailer from "nodemailer";
+// import fs from "fs";
+// import path from "path";
 
 export async function POST(request: any): Promise<any> {
+  // console.log("______file:::::____", request);
   const completeFormData = await request.formData();
 
   const formTitle = completeFormData.get("title");
-  //   const formFile = completeFormData.get("file");
+  const formFile = completeFormData.get("file");
   const fileBuffer = completeFormData.get("fileBuffer");
   const fileName = completeFormData.get("fileName");
-  console.log("_______first step inside backend");
+
+  // const fileBuffer = fs.readFileSync(path.resolve(formFile.path));
+  // console.log("_______first step inside backend");
   //   const fileType = completeFormData.get("fileType");
   //   const fileData = Buffer.from(fileBuffer, "base64");
 
-  //   console.log("________title__received_____:", formTitle);
+  // console.log("________formFile__received_____:", formFile);
   //   console.log("________fileBuffer__received_____:", fileData);
 
   // const readFile = (file: any) => {
@@ -63,16 +68,17 @@ export async function POST(request: any): Promise<any> {
     attachments: [
       {
         filename: fileName,
-        content: fileBuffer.slice(fileBuffer.indexOf(",") + 1),
+        content: fileBuffer,
+        // content: fileBuffer.slice(fileBuffer.indexOf(",") + 1),
         encoding: "base64",
       },
     ],
   };
 
   try {
-    console.log("_______second step inside backend and final try block");
+    // console.log("_______second step inside backend and final try block");
     const checkResponse = await transporter.sendMail(mailOptions);
-    console.log("_____checkResponse______", checkResponse);
+    // console.log("_____checkResponse______", checkResponse);
     return Response.json(
       { message: "Resume uploaded and email sent successfully" },
       { status: 200 }
@@ -85,9 +91,9 @@ export async function POST(request: any): Promise<any> {
     );
   }
 
-  //   if (formTitle) {
-  //     return Response.json({ message: "Success from B.E." });
-  //   } else {
-  //     return Response.json({ message: "Error from B.E." });
-  //   }
+  // if (formTitle) {
+  //   return Response.json({ message: "Success from B.E." });
+  // } else {
+  //   return Response.json({ message: "Error from B.E." });
+  // }
 }

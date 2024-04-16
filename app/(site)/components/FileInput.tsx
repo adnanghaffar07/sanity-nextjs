@@ -17,6 +17,10 @@ const FileInput: React.FC<propType> = (props) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fieldEmptyErrorMessage, setFieldEmptyErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  // const controller = new AbortController();
+  // const timeout = setTimeout(() => {
+  //   controller.abort();
+  // }, 15000);
 
   const readFileAsBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -33,12 +37,17 @@ const FileInput: React.FC<propType> = (props) => {
   };
 
   const handleFileChange = async (event: any) => {
+    // console.log("___check--", event.target.files);
     const file = event.target.files?.[0];
     if (!file) return;
+    setSuccessMessage("");
     setFileName(file?.name);
-    setFile(event.target.files[0]);
+    setFile(file);
     const fileBufferValue = await readFileAsBase64(file);
-    setFileBuffer(fileBufferValue);
+    const bufferString = fileBufferValue.slice(
+      fileBufferValue.indexOf(",") + 1
+    );
+    setFileBuffer(bufferString);
     setFileType(file.type);
   };
 
@@ -56,9 +65,9 @@ const FileInput: React.FC<propType> = (props) => {
       return;
     }
 
-    if (fileBuffer) {
-      console.log("_______from frontend: file-buffer occured");
-    }
+    // if (fileBuffer) {
+    // console.log("_______from frontend: file-buffer occured");
+    // }
 
     try {
       const formData = new FormData();
@@ -69,20 +78,24 @@ const FileInput: React.FC<propType> = (props) => {
       formData.set("fileType", fileType);
 
       const response = await fetch("/api/uploadresume", {
+        // signal: controller.signal,
         method: "POST",
         // headers: {
-        // "Content-Type": "multipart/form-data",
+        //   "Content-Type": "multipart/form-data",
         // },
         body: formData,
       });
 
       if (response.ok) {
+        // clearTimeout(timeout);
         setSuccessMessage("Resume sent successfully");
         setFileName("");
+        setFile("");
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
       } else {
+        // clearTimeout(timeout);
         setFieldEmptyErrorMessage("Failed to send resume");
       }
     } catch (error) {
@@ -141,6 +154,17 @@ const FileInput: React.FC<propType> = (props) => {
           </div>
         )}
       </div>
+
+      {/* <div className="mt-5 border-2 w-fit rounded-md">
+        {file && (
+          <iframe
+            src={URL.createObjectURL(file)}
+            width="200"
+            height="220"
+            title="Uploaded File"
+          ></iframe>
+        )}
+      </div> */}
 
       {/* { popupVisible && (
        <div className="popup-message">
