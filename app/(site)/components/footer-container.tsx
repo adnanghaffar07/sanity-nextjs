@@ -155,12 +155,16 @@ export default async function FooterContainer() {
             <div className="flex flex-col text-white max-md:mt-10 self-start">
               <div className="text-2xl font-medium leading-6">Address</div>
               <div className="mt-6 text-lg font-light leading-5 self-start">
-                <span className="text-1xl font-bold">USA:</span> 30 N Gould St
-                Ste 7596, Sheridan, WY, 82801.
+                {/* <span className="text-1xl font-bold">USA:</span> 30 N Gould St
+                Ste 7596, Sheridan, WY, 82801. */}
+                {/* <br /> */}
+                {/* <br /> */}
+                <span className="text-1xl font-bold">Canada:</span> 25 McArthur
+                Ave. Ottawa, ON K1L 6R3
                 <br />
                 <br />
-                <span className="text-1xl font-bold">Canada:</span> 10 Stevens
-                Avenue Ottawa, K1K4M9, Canada.
+                <span className="text-1xl font-bold">Pakistan:</span> A 1/11 P,
+                Block P Model Town, Lahore, Pakistan
               </div>
               <div className="container mt-20 flex justify-center items-center">
                 <section className="grid grid-cols-4 gap-3 ">

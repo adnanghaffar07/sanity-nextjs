@@ -43,7 +43,7 @@ const ServiceApproachSection: React.FC<ApproachSectionProps> = ({
                   <div>
                     <div className="w-[26px] md:w-[46px] h-[26px] md:h-[46px] bg-[#1d92fb42] rounded-full absolute -top-0 md:-top-2 -left-4 md:-left-6"></div>
                   </div>
-                  <p className="text-base md:text-xl">{step}</p>
+                  <p className="text-base md:text-l "  style={{ wordSpacing: '0.6px' }}>{step}</p>
                 </div>
               ))}
             </div>
