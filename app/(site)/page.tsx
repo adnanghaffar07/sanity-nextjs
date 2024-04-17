@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import HomePageSlider from "./components/HomePageSlider";
+import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
@@ -550,70 +551,9 @@ export default function Home() {
             Discover what our clients are saying about CodeAutomation
           </div>
           <div className="mt-14 max-w-screen-lg mx-auto max-md:mt-10 max-md:max-w-full px-5 md:px-0">
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-32">
-              <div className="flex flex-col max-md:ml-0 max-md:w-full relative min-h-[255px] md:min-w-[381px] min-w-full">
-                <div className="flex flex-col grow pt-7 md:pr-20 px-10 w-full rounded-2xl backdrop-blur-[6.5px] bg-[#1D92FB] max-md:max-w-full">
-                  <div className="self-end text-3xl font-medium text-white">
-                    Clients Speaking
-                  </div>
-                  <div className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 max-md:max-w-full absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-10 md:h-[260px]">
-                    <div className="text-sm leading-5 text-justify text-black">
-                      Product testing, also known as consumer testing or
-                      comparative testing, is the measurement of a
-                      product&rsquo;s characteristics or capabilities. It aids
-                      in the development of goods that adhere to predetermined
-                      technical criteria.
-                    </div>
-                    <div className="flex gap-3 justify-between mt-8 max-md:mr-1.5">
-                      <div className="flex justify-center items-center px-1 rounded-xl aspect-square h-[68px] w-[68px]">
-                        <img
-                          loading="lazy"
-                          srcSet="/Vector.png"
-                          className="w-full aspect-square"
-                        />
-                      </div>
-                      <div className="grow self-end text-xl font-light whitespace-nowrap text-sky-950 max-md:mt-10">
-                        CEO & Founder Nichols
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col ml-5 max-md:ml-0 max-md:w-full relative min-h-[255px] md:min-w-[381px] min-w-full">
-                <div className="flex flex-col grow pt-7 md:pr-20 px-10 w-full rounded-2xl backdrop-blur-[6.5px] bg-[#1D92FB] max-md:max-w-full">
-                  <div className="self-end text-3xl font-medium text-white">
-                    Clients Speaking
-                  </div>
-                  <div className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 max-md:max-w-full absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-10 md:h-[260px]">
-                    <div className="text-sm leading-5 text-justify text-black">
-                      CodeAutomation.ai tests supported the client&rsquo;s fast
-                      feature deployment processes, saving them hours of manual
-                      and expensive testing with 5-10 minutes of automated
-                      tests. Their team also impressed the client with their
-                      flexibility and excellent workflow.
-                    </div>
-                    <div className="flex gap-3 justify-between mt-4 max-md:mr-1">
-                      <div className="flex justify-center items-center px-1 rounded-xl aspect-square w-[58px] h-[58px]">
-                        <img
-                          loading="lazy"
-                          srcSet="/Vector-2.png"
-                          className="aspect-square"
-                        />
-                      </div>
-                      <div className="flex flex-col flex-1 self-start mt-3 text-sky-950">
-                        <div className="text-3xl font-medium whitespace-nowrap">
-                          Irv Shapiro
-                        </div>
-                        <div className="text-lg font-light leading-6">
-                          Founder & CTO, MakeWithTech
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-40">
+            <Testimonials />
+
+            <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-48">
               <Link
                 href="https://clutch.co/profile/codeautomationai#highlights"
                 target="_blank"
