@@ -1,7 +1,7 @@
 // pages/index.js
 
 import Link from "next/link";
-import { client } from "../../../sanity/lib/client";
+import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 
@@ -109,7 +109,7 @@ export default async function service() {
                             const subService = dataSub.find((item: any) => item._id === subServiceRef._ref);
                             if (subService) {
                                 return (
-                                    <Link href={`/service/${subService.urlPathSub}`} key={subService._id}>
+                                    <Link href={`/services/service/${subService.urlPathSub}`} key={subService._id}>
                                         <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
                                             <img
                                                 src={urlForImage(subService.heroImageSub).toString()}

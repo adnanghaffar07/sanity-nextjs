@@ -1,6 +1,6 @@
 // pages/index.js
 
-import { client } from "../../../../sanity/lib/client";
+import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 async function getData(urlPathSub: string) {
