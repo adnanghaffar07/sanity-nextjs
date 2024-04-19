@@ -612,6 +612,11 @@ const logicalServices = {
           type: "string",
         },
         {
+          name: "contactUsDesc",
+          title: "Desc",
+          type: "string",
+        },
+        {
           name: "contactEmail",
           title: "Email",
           type: "email",
@@ -660,7 +665,11 @@ const logicalServices = {
         },
       ],
     },
-
+    {
+      name: "subServiceHeading",
+      title: "Sub Service Card Section Heading",
+      type: "string",
+    },
 
     {
       name: "subServices",
@@ -742,8 +751,33 @@ const logicalServices = {
         },
       ],
     },
+    // Social Media
+    {
+      name: "socialMedia",
+      title: "Social Media",
+      type: "object",
+      fields: [
+        {
+          name: "socialTitle",
+          title: "Title",
+          type: "string",
+        },
+        {
+          name: "socailDesc",
+          title: "Description",
+          type: "text",
+        },
+        {
+          name: "socialImage",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+      ],
+    },
   ],
 }
+
 
 
 // Define subService schema
@@ -769,6 +803,11 @@ const subServiceSchema = {
           type: "string",
         },
       ],
+    },
+    {
+      name: "serviceCardSub",
+      title: "Sub Service Card",
+      type: "string",
     },
     {
       name: "serviceTitleSub",
@@ -873,6 +912,60 @@ const subServiceSchema = {
         },
       ],
     },
+      // Example Services Section
+      {
+        name: "exampleServicesSubSection",
+        title: "Example Services Section",
+        type: "object",
+        fields: [
+          {
+            name: "exampleServiceHeading",
+            title: "Example Service Heading",
+            type: "string",
+          },
+          {
+            name: "exampleServicedesc",
+            title: "Example Service Desc",
+            type: "text",
+          },
+          {
+            name: "exampleService",
+            title: "Example of Service",
+            type: "array",
+            of: [
+              {
+                type: "object",
+                fields: [
+                  {
+                    name: "heading",
+                    title: "Heading",
+                    type: "string",
+                  },
+                  {
+                    name: "detail",
+                    title: "Detail",
+                    type: "string",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: "exampleServiceImg",
+            title: "Example Service Image",
+            type: "image",
+            options: { hotspot: true },
+            fields: [
+              {
+                name: "alt",
+                title: "Alt",
+                type: "string",
+              },
+            ],
+          },
+        ],
+      },
+  
     // Projecy Cycle
     {
       name: "projectCycleSubSection",
@@ -963,61 +1056,6 @@ const subServiceSchema = {
         {
           name: "deliveryImg",
           title: "Delivery Image",
-          type: "image",
-          options: { hotspot: true },
-          fields: [
-            {
-              name: "alt",
-              title: "Alt",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-
-
-    // Example Services Section
-    {
-      name: "exampleServiceSubSection",
-      title: "Example Sub Services Section",
-      type: "object",
-      fields: [
-        {
-          name: "exampleServiceHeading",
-          title: "Example Service Heading",
-          type: "string",
-        },
-        {
-          name: "exampleServicedesc",
-          title: "Example Service Desc",
-          type: "text",
-        },
-        {
-          name: "exampleServiceSub",
-          title: "Example of Service",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "heading",
-                  title: "Heading",
-                  type: "string",
-                },
-                {
-                  name: "detail",
-                  title: "Detail",
-                  type: "string",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: "exampleServiceImg",
-          title: "Example Service Image",
           type: "image",
           options: { hotspot: true },
           fields: [
@@ -1137,6 +1175,11 @@ const subServiceSchema = {
           type: "string",
         },
         {
+          name: "contactUsDesc",
+          title: "Desc",
+          type: "string",
+        },
+        {
           name: "contactEmail",
           title: "Email",
           type: "email",
@@ -1186,7 +1229,7 @@ const subServiceSchema = {
       ],
     },
 
-
+// Web SEO Meta data
     {
       name: "webSeoMetadataSub",
       title: "Web SEO Metadata",
@@ -1210,8 +1253,80 @@ const subServiceSchema = {
         },
       ],
     },
+      // Open Graph Protocol (OGP)
+      {
+        name: "openGraphProtocolSub",
+        title: "Open Graph Protocol (OGP)",
+        type: "object",
+        fields: [
+          {
+            name: "ogTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "ogDescription",
+            title: "Description",
+            type: "text",
+          },
+          {
+            name: "ogImage",
+            title: "Image",
+            type: "image",
+            options: { hotspot: true },
+          },
+        ],
+      },
+  
+      // Twitter Cards
+      {
+        name: "twitterCardsSub",
+        title: "Twitter Cards",
+        type: "object",
+        fields: [
+          {
+            name: "twitterTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "twitterDescription",
+            title: "Description",
+            type: "text",
+          },
+          {
+            name: "twitterImage",
+            title: "Image",
+            type: "image",
+            options: { hotspot: true },
+          },
+        ],
+      },
+      // Social Media
+      {
+        name: "socialMediaSub",
+        title: "Social Media",
+        type: "object",
+        fields: [
+          {
+            name: "socialTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "socailDesc",
+            title: "Description",
+            type: "text",
+          },
+          {
+            name: "socialImage",
+            title: "Image",
+            type: "image",
+            options: { hotspot: true },
+          },
+        ],
+      },
 
-    // Add more fields for sub-service content if needed
   ],
 };
 

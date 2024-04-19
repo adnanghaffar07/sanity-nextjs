@@ -6,7 +6,7 @@ import Image from "next/image";
 import { client } from "../../../sanity/lib/client";
 
 async function getData() {
-  const query = `*[_type == 'services'] | order(_updatedAt desc)`;
+  const query = `*[_type == 'logicalServices'] | order(_createdAt asc)`;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];
@@ -16,112 +16,7 @@ async function getData() {
   }
 }
 
-const servicesArr = [
-  {
-    imageSrc: "/service-card-ad.png",
-    title: "App Development",
-    description:
-      "Explore the realm of automation and artificial intelligence with our Robotic Research services. Our team of experts delves into cutting....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "app-development",
-  },
-  {
-    imageSrc: "/service-card-ai.png",
-    title: "AI/ML Services",
-    description:
-      "CodeAutomation offers customized solutions, advanced technology, and seamless integration to optimize data potential and drive success, leveraging AI and ML for optimal results....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "ai-ml-services",
-  },
-  {
-    imageSrc: "/service-card-aiheadless-cms.png",
-    title: "Headless - CMS",
-    description:
-      "Transform your content management system with our Customized Headless CMS development solutions.",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "headless-cms",
-  },
-  {
-    imageSrc: "/service-card-sd.png",
-    title: "Software Development",
-    description:
-      "Rely on our Software Development services to build robust, scalable, and custom software solutions that address your unique needs. With expertise in various programming....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "software-development",
-  },
-  {
-    imageSrc: "/service-card-wd.png",
-    title: "Web Development",
-    description:
-      "Leverage the power of data with our Data & Web Scraping services. We help you extract valuable information from websites and various sources.....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "web-development",
-  },
-  {
-    imageSrc: "/service-card-qa.png",
-    title: "QA Automation Testing",
-    description:
-      "Comprehensive and meticulous, our QA Manual Testing services ensure your software is thoroughly evaluated and meets the highest quality standards....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "qa-automation-testing",
-  },
-  {
-    imageSrc: "/service-card-qa-manual.png",
-    title: "QA Manual Testing",
-    description:
-      "Comprehensive and meticulous, our QA Manual Testing services ensure your software is thoroughly evaluated and meets the highest quality standards. Our....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "qa-manual-testing",
-  },
-  {
-    imageSrc: "/service-card-dm.png",
-    title: "Digital Marketing",
-    description:
-      "Boost your online presence and reach your target audience effectively with our Digital Marketing services. Our experienced digital marketers develop comprehensive....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "digital-marketing",
-  },
-  {
-    imageSrc: "/service-card-dws.png",
-    title: "Data & Web Scraping",
-    description:
-      "Leverage the power of data with our Data & Web Scraping services. We help you extract valuable information from websites and various sources, providing you with accurate and....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "data-and-web-scraping",
-  },
-  {
-    imageSrc: "/service-card-ui.png",
-    title: "UI/UX Design",
-    description:
-      "Deliver an exceptional user experience with our UI/UX Design services. Our talented designers combine aesthetics and functionality to create intuitive and visually appealing....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "ui-and-ux-design",
-  },
-  {
-    imageSrc: "/service-card-ba.png",
-    title: "Business Automation",
-    description:
-      "Streamline and optimize your operations with our Business Automation services. We leverage the power of technology to automate repetitive tasks, workflows....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "business-automation",
-  },
-  {
-    imageSrc: "/service-card-rr.png",
-    title: "Robotic Research",
-    description:
-      "Explore the realm of automation and artificial intelligence with our Robotic Research services. Our team of experts delves into cutting-edge technologies like robotic....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "robotic-research",
-  },
-  {
-    imageSrc: "/service-card-crm.png",
-    title: "CRM Integration & Development Services",
-    description:
-      "Boost productivity and customer engagement with our expert CRM integration solutions. Tailored to your business, we automate processes and ensure data flow effortlessly in Salesforce, SugarCRM and Civi....",
-    iconSrc: "/service-card-right-arrow.png",
-    linkUrl: "crm-integration",
-  },
-];
+
 
 const growthCardsArr = [
   {
@@ -183,28 +78,15 @@ const Services = async () => {
           data.map((service) => {
             return (
               <ServiceCard
-                title={service.serviceTitleBaner}
-                description={service.carddescription}
+                title={service.urlPath}
+                description={service.serviceDesc}
                 iconSrc={service.cardicon}
                 linkUrl={service.urlPath}
                 key={service._id}
               />
             );
           })}
-        {/* {servicesArr.length &&
-          servicesArr.map((card, i) => {
-            return (
-              <div key={i}>
-                <ServiceCard
-                  imageSrc={card.imageSrc}
-                  title={card.title}
-                  description={card.description}
-                  iconSrc={card.iconSrc}
-                  linkUrl={card.linkUrl}
-                />
-              </div>
-            );
-          })} */}
+
       </section>
 
       <section className="relative overflow-hidden px-4 xl:px-2 max-w-[1440px] 2xl:mx-auto">
