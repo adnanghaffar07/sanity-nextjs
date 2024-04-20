@@ -237,6 +237,19 @@ const logicalServices = {
       title: "Service Card Title",
       type: "string",
     },
+     {
+      name: "cardIcon",
+      title: "Card Icon",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
     {
       name: "heroImage",
       title: "Hero Image",

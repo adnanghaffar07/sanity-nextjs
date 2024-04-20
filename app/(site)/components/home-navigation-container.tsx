@@ -16,14 +16,14 @@ const imageJmeter = "/jmeter.png";
 const imageJs = "/js.png";
 const imageAnd = "/android.png";
 
-const linkAI = "/ai-ml-services";
-const linkUrlCMS1 = "/cms";
+const linkAI = "/ai-services";
+const linkUrlCMS1 = "/custom-web-cms";
 const linkUrlCMS = "/headless-cms";
-const linkUrlSoft = "/software-development";
-const linkUrlAuto = "/qa-automation-testing";
-const linkUrlDigital = "/digital-marketing";
-const linkBusiness = "/business-automation";
-const linkRobotic = "/robotic-research";
+const linkUrlSoft = "/web-app-development";
+const linkUrlAuto = "/qa-web-testing";
+const linkUrlDigital = "/design-services";
+const linkBusiness = "/business-intelligent-service";
+const linkRobotic = "/rpa-services";
 
 const navItems = [
   {
@@ -278,7 +278,7 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Digital Marketing
+                          Design Services
                         </Link>
                         <p>
                           <Link

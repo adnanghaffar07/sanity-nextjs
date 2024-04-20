@@ -3,6 +3,8 @@ import HeroSectionComponent from "../components/HeroSectionComponent";
 import ServiceCard from "../components/ServiceCard";
 import Image from "next/image";
 import Link from "next/link";
+import { urlForImage } from "@/sanity/lib/image";
+
 
 import { client } from "../../../sanity/lib/client";
 
@@ -85,14 +87,14 @@ const Services = async () => {
             className="flex flex-col relative w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]"
           >
             <div className="z-10 px-3.5 w-14 sm:w-24 h-14 sm:h-24 bg-white rounded-full absolute flex justify-center items-center right-2 sm:right-5 -top-6 sm:-top-14 drop-shadow-serviceCard">
-              {/* {service.cardicon && ( */}
+              {service.cardIcon && (
                 <img
-                  src="/vector-new.png"
+                  src={urlForImage(service.cardIcon).toString()}
                   loading="lazy"
                   alt="service-icon"
                   className="w-10 sm:w-[54px] h-10 sm:h-[54px] object-contain"
                 />
-              {/* )} */}
+              )} 
             </div>
 
             <div
