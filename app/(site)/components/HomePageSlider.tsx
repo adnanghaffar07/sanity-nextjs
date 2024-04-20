@@ -14,9 +14,9 @@ const HomePageSlider = () => {
     autoplay: true,
     autoplaySpeed: 4000,
     dots: false,
+
     arrows: false,
-    pauseOnHover: false,
-  };
+    pauseOnHover: false,  };
 
   return (
     <Slider {...swiperSettings}>

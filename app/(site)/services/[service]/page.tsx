@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import HeroSectionComponent from "../../components/HeroSectionComponent";
 
 
 async function getData(params: string) {

@@ -57,6 +57,7 @@ body {
   color: red;
   margin-left: 2px;
 }
+
 .popup-message {
   position: fixed;
   top: 20px; /* Adjust as needed */
@@ -178,14 +179,14 @@ body {
 .nav-links li a {
   color: #fff;
   text-decoration: none;
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 /* Mega Menu Styling */
 .mega-box {
   position: fixed;
-  top: 72px;
+  top: 68px;
   left: 30%; 
   width: calc(40% - 20px); 
   max-width: calc(40% - 20px);
@@ -208,8 +209,8 @@ body {
 .mega-box::before {
   content: '';
   position: absolute;
-  top: -17px; /* Adjust as per your design */
-   left: 18%; 
+  top: -15px; /* Adjust as per your design */
+   left: 21%; 
   transform: translateX(-50%);
   border-width: 10px;
   border-style: solid;
@@ -274,7 +275,7 @@ body {
 
 .mega-links li p a{
   font-size: 12px;
-  font-weight: 100;
+  font-weight: 300;
   
   color: rgb(141, 137, 137);
   cursor: pointer;
@@ -304,21 +305,21 @@ body {
 
 @media screen and (min-width: 2056px) and (max-width: 3056px) {
   .mega-box::before {
-    left: 30%; 
+    left: 32%; 
   }
 }
 @media screen and (min-width: 1824px) and (max-width: 2056px) {
   .mega-box::before {
-    left: 25%;
+    left: 27%;
   }
 }
 @media screen and (min-width: 1675px) and (max-width: 1824px) {
   .mega-box::before {
-    left: 20%; 
+    left: 21%; 
   }
 }
 @media screen and (max-width: 1445px) {
   .mega-box::before {
-    left: 16%; 
+    left: 17%; 
   }
 }

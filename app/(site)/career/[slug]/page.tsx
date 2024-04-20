@@ -4,7 +4,6 @@ import { AiOutlinePaperClip } from "react-icons/ai";
 import { client } from "../../../../sanity/lib/client";
 import FileInput from "../../components/FileInput";
 
-
 async function getData(jobId: string) {
   const query = `*[_type == 'careers' && _id == '${jobId}'][0]`;
   try {
@@ -58,9 +57,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 Job Description
               </div>
               <div className="">
-                <p className="list-disc">
-                  {data.jobDescription}
-                </p>
+                <p className="list-disc">{data.jobDescription}</p>
               </div>
             </div>
             <div className="mb-10">
@@ -73,10 +70,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   {data.newresponsibilities &&
                     data.newresponsibilities.map((ele: any, index: any) => {
                       return (
-                        <li
-                          key={index}
-                          className="list-disc ml-5"
-                        >
+                        <li key={index} className="list-disc ml-5">
                           {ele}
                         </li>
                       );
@@ -114,8 +108,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   })}
               </ul>
             </div>
-            <FileInput />
-         
+            <FileInput jobPost={data.jobTitleBaner} />
           </div>
         </div>
         <img

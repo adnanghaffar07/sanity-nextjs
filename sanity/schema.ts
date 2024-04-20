@@ -5,9 +5,11 @@ import services from './schemas/services'
 import technologies from './schemas/technologies'
 import newServices from './schemas/new-ServicePage'
 import { logicalServices, subServiceSchema } from './schemas/logical-services'
+import testimonial from "./schemas/testimonail-schema";
+import portfolioSchema from "./schemas/portfolio";
 
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [services, blog, careers, technologies, newServices, logicalServices, subServiceSchema],
+  types: [services, blog, careers, technologies, newServices, logicalServices, subServiceSchema, testimonial, portfolioSchema],
 }
