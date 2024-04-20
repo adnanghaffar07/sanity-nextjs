@@ -233,6 +233,11 @@ const logicalServices = {
       type: "string",
     },
     {
+      name: "serviceCardTitle",
+      title: "Service Card Title",
+      type: "string",
+    },
+    {
       name: "heroImage",
       title: "Hero Image",
       type: "image",

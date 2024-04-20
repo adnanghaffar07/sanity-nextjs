@@ -21,6 +21,7 @@ async function getData(urlPathSub: string) {
 
 const Page = async ({ params }: { params: { slug: string } }) => {
     const data = await getData(params.slug);
+    
 
 
     return (
