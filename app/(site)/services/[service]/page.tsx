@@ -71,7 +71,7 @@ export default async function service({ params }: { params: { service: string } 
 
             {/* Introduction Section */}
 
-            <section className="py-16 bg-gray-100 px-16">
+            <section className="py-16 bg-white px-16">
                 <div className="container mx-auto flex flex-wrap items-center justify-center">
                     <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start">
                         <img
@@ -147,13 +147,18 @@ export default async function service({ params }: { params: { service: string } 
             <section className="py-16 px-16">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-8">
-                        {data.toolsTechSection?.toolsTechHeading}</h2>
+                        {data.toolsTechSection?.toolsTechHeading}
+                    </h2>
                     <p className="text-xl font-light mb-8">
-                        {data.toolsTechSection?.toolsTechDesc}</p>
+                        {data.toolsTechSection?.toolsTechDesc}
+                    </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg">
+                                <div className="bg-white shadow-md p-6 rounded-lg flex items-center justify-center flex-col">
+                                    {tool.image && (
+                                        <img src={urlForImage(tool.image).toString()} alt={tool.heading} className="h-12 mb-4" />
+                                    )}
                                     <h3 className="text-xl font-semibold mb-4">
                                         {tool.heading}
                                     </h3>
@@ -164,70 +169,75 @@ export default async function service({ params }: { params: { service: string } 
                             </div>
                         ))}
                     </div>
+
                 </div>
             </section>
 
 
+
             {/* Example Value of Service (Use Cases) Section */}
             <section className="bg-white py-16 px-16">
-                <div className="container mx-auto flex flex-wrap">
-                    {/* Left side */}
-                    <div className="w-full md:w-1/2 pr-2">
-                        <h2 className="text-3xl font-bold mb-8 text-justify">
-                            {data.exampleServicesSection?.exampleServiceHeading}
-                        </h2>
-                        <p className="text-xl font-light mb-8 text-justify">
-                            {data.exampleServicesSection?.exampleServicedesc}
-                        </p>
-                    </div>
 
+                <div className="container mx-auto" >
+                    <h2 className="text-3xl font-bold mb-8">
+                        {data.exampleServicesSection?.exampleServiceHeading}</h2>
+                    <p className="text-xl font-light mb-8">
+                        {data.exampleServicesSection?.exampleServicedesc}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
+                            <div
 
-                    {/* Right side */}
-                    <div className="w-full md:w-1/2 ">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
-                                <div key={exampleIndex}>
-                                    <div className="bg-gray-100 shadow-md p-3 rounded-lg">
-                                        <h3 className="text-xl font-semibold mb-4">
-                                            {example.heading}
-                                        </h3>
-                                        <p className="text-gray-700">
-                                            {example.detail}
-                                        </p>
-                                    </div>
+                                key={exampleIndex}
+                            >
+                                <div className="bg-gray-100 shadow-md p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4">
+                                        {example.heading}
+                                    </h3>
+                                    <p className="text-gray-700">
+                                        {example.detail}
+                                    </p>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
 
             {/* Typical Project Cycle Stages Section */}
-            <section className="py-16 px-16 bg-gray-100">
-    <div className="container mx-auto flex flex-wrap items-center">
-        {/* Left side (Image) */}
-        <div className="w-full md:w-1/2 pr-8">
-            <img
-                src="/pro-cycle.png"
-                alt="Your Image Alt Text"
-                className="max-w-full h-auto rounded-lg shadow-md"
-            />
-        </div>
+            <section className="py-8 md:py-16 px-16 bg-gray-100">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    {/* Right side (Content) */}
+                    <div className="col-span-1 md:col-span-1">
+                        <div>
+                            <h2 className="text-3xl font-bold mb-8 text-gray-800">{data.projectCycleSection?.projectCycleHaeding}</h2>
+                            <div className="list-disc list-inside">
+                                {data.projectCycleSection?.projectCycle?.map((cycle: any, index: any) => (
+                                    <div key={index} className="flex items-center mb-8 relative">
+                                        <div className="w-8 md:w-12 h-8 md:h-12 rounded-full bg-[#1D92FB] opacity-[0.14] ml-4 md:ml-4 -left-4 md:-left-8 absolute"></div>
+                                        <p className="text-lg md:text-xl font-medium text-gray-700 ml-4 md:ml-4">
+                                            {cycle.detail}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    {/* Left side (Image) */}
+                    <div className="col-span-1 md:col-span-1 flex justify-center">
+                        <div>
+                            <img
+                                src="/cycle.png"
+                                alt="Delivery Image"
+                                className="max-w-full h-auto"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        {/* Right side (Content) */}
-        <div className="w-full md:w-1/2 pl-8">
-            <div>
-                <h2 className="text-3xl font-bold mb-8 text-gray-800">{data.projectCycleSection?.projectCycleHaeding}</h2>
-                <ul className="list-disc list-inside">
-                    {data.projectCycleSection?.projectCycle?.map((cycle: any, index: any) => (
-                        <li key={index} className=" text-xl mb-4 text-gray-700">{cycle.detail}</li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+
+
 
 
 
@@ -235,36 +245,109 @@ export default async function service({ params }: { params: { service: string } 
 
             {/* Service Options Section */}
             <section className="bg-white px-16 py-16">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    {/* Left side (Image) */}
+                    <div>
+                        <img
+                            src="/delivery-s.png"
+                            alt="Delivery Image"
+                            className="max-w-full h-auto"
+                        />
+                    </div>
+                    {/* Right side (Content) */}
+                    <div className="text-right">
+                        <h2 className="text-3xl font-bold mb-8">{data.deliveryOptionSection?.deliveryOptionHaeding}</h2>
+                        <ul className="list-disc list-inside">
+                            {data.deliveryOptionSection?.deliveryOption?.map((cycle: any, index: any) => (
+                                <div key={index} className="flex items-center mb-8 relative justify-end">
+                                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full bg-[#1D92FB] opacity-[0.14] ml-4 md:ml-4 -right-0 md:-right-0 absolute"></div>
+                                    <p className="text-lg md:text-xl font-medium text-gray-700 mr-8 md:mr-8">
+                                        {cycle.detail}
+                                    </p>
+                                </div>
+                            ))}
+                        </ul>
+                    </div>
 
-                <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8">{data.deliveryOptionSection?.deliveryOptionHaeding}</h2>
-                    <ul className="list-disc list-inside">
-                        {data.deliveryOptionSection?.deliveryOption?.map((cycle: any, index: any) => (
-                            <li key={index} className="mb-4">
-                                {cycle.detail}
-                            </li>
-                        ))}
-                    </ul>
                 </div>
-
             </section>
+
 
 
             {/* Special Offers Section */}
             <section className="py-16 px-16">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    {/* Left side (Image) */}
+                    {/* <div className="col-span-1 md:col-span-1 flex justify-center">
+                        <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                            <img
+                                src="/project-cycle.png"
+                                alt="Your Image"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div> */}
+                    {/* Right side (Content) */}
+                    <div className="col-span-1 md:col-span-1">
+                        <h2 className="text-3xl font-bold mb-8">{data.specialOffersSection?.offerHeading}</h2>
 
-                <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8">{data.specialOffersSection?.offerHeading}</h2>
-                    <div className="bg-white shadow-md p-6 rounded-lg">
-                        <p className="text-xl font-semibold mb-4">{data.specialOffersSection?.specialOffer}</p>
+                        <div className="bg-white shadow-md p-6 rounded-lg">
+                            <p className="text-xl font-semibold mb-4">{data.specialOffersSection?.specialOffer}</p>
+                        </div>
                     </div>
+                    {/* <div className="col-span-1 md:col-span-1 flex justify-center">
+                        <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                            <img
+                                src="/project-cycle.png"
+                                alt="Your Image"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div> */}
                 </div>
-
-
             </section>
 
+
+
+            {/* <div className="max-w-full mx-auto relative">
+          <img
+            loading="lazy"
+            src="/intersect-right.png"
+            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
+          />
+          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+            <div className="lg:px-10 px-5 w-full">
+              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                <div className="text-center">
+                  <img
+                    loading="lazy"
+                    src="/project-cycle.png"
+                    className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                  />
+                </div>
+                <div className="lg:pl-20 relative">
+                  <img
+                    loading="lazy"
+                    src="/intersect-right.png"
+                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
+                  />
+                  <div className="lg:text-5xl text-3xl mb-3 text-end">
+                  {data.specialOffersSection?.offerHeading}
+                  </div>
+                  <div className="mb-10">
+                    <p className="lg:text-lg text-base text-end"> {data.specialOffersSection?.specialOffer}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> */}
+
+
+
+
             {/* Summary Message about Service Section */}
-            <section className="bg-gray-200 py-16 px-16">
+            <section className="bg-white py-16 px-16">
 
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-8">{data.summarySection?.summaryHeading}</h2>
@@ -286,7 +369,7 @@ export default async function service({ params }: { params: { service: string } 
 
             {/* Contact Section */}
 
-            <section className="py-16 px-16 bg-gray-200">
+            <section className="py-16 px-16 bg-white">
 
                 <div className="container mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>

@@ -186,7 +186,7 @@ body {
 /* Mega Menu Styling */
 .mega-box {
   position: fixed;
-  top: 68px;
+  top: 65px;
   left: 30%; 
   width: calc(40% - 20px); 
   max-width: calc(40% - 20px);
@@ -217,22 +217,6 @@ body {
   border-color: transparent transparent #ffffff transparent;
 } 
 
-
-.mega-menu:hover .mega-box,
-.mega-box:hover {
-  animation: showMegaMenu 0.5s forwards;
-}
-
-@keyframes showMegaMenu {
-  from {
-    opacity: 0;
-    visibility: hidden;
-  }
-  to {
-    opacity: 1;
-    visibility: visible;
-  }
-}
 
 
 .content {

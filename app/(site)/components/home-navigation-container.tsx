@@ -143,7 +143,7 @@ export default function HomeNavigationContainer() {
                         </Link>
                         <p>
                           <Link
-                            href={`/services/${linkUrlCMS}`}
+                            href={`/services/${linkUrlCMS1}`}
                             onClick={hideMenu}
                           >
                             Manage Digital Content
