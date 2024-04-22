@@ -33,7 +33,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 <img
                     className="top-0 left-0 object-cover absolute inset-0 size-full"
                     src={urlForImage(data.heroImageSub).toString()}
-                    alt="lifeatca"
+                    alt=""
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
                 <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -54,6 +54,39 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
 
             {/* Introduction Section */}
+            <section className="relative overflow-hidden px-4 xl:px-2 max-w-[1440px] 2xl:mx-auto">
+        {/* <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-36 top-[160px] sm:top-[250px] md:top-[600px] xl:top-20 z-10"></div> */}
+
+        <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">
+
+
+          <div className="flex flex-col justify-center mt-10 md:mt-24 text-left">
+            <h2 className="text-xl sm:text-3xl md:text-5xl 2xl:text-5xl leading-[28px] md:leading-[60px] text-sky-950 z-20">
+            {data.introductionSubSection.introHeading}
+            </h2>
+            <p className="self-end sm:mt-10 xl:mt-10 text-xs sm:text-xl leading-4 sm:leading-7 text-black max-w-[270px] sm:max-w-[570px] z-20">
+            {data.introductionSubSection.introDesc}
+            </p>
+          </div>
+
+          <div className="w-[190px] sm:w-[280px] md:w-[420px] lg:w-[570px]">
+            <img
+              src="/business-and-growth.png"
+              alt="Trusted Partner Image"
+              width={570}
+              height={570}
+              loading="lazy"
+              className="w-full aspect-square"
+            />
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
             <section className="py-16 bg-gray-200 px-16">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-8 ">

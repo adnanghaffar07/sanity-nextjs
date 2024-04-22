@@ -173,7 +173,7 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          AI & ML Services
+                          AI Services
                         </Link>
                         <p>
                           <Link href={`/services/${linkAI}`} onClick={hideMenu}>
@@ -260,7 +260,7 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          QA Automation Testing
+                          QA & Testing
                         </Link>
                         <p>
                           {" "}
@@ -290,12 +290,12 @@ export default function HomeNavigationContainer() {
                         </p>
                       </li>
                       <li>
-                        <Link
+                      <Link
                           href={`/services/${linkBusiness}`}
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Business Automation
+                         Business Intelligent Services
                         </Link>
                         <p>
                           <Link

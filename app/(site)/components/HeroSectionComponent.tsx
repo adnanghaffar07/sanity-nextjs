@@ -26,11 +26,11 @@ const HeroSectionComponent = ({
         />
       </div>
 
-      <div className="mt-[130px] sm:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
-        <h1 className="text-xl sm:text-5xl font-bold tracking-tight text-center capitalize leading-[48px] text-white">
+      <div className="mt-[130px] sm:mt-[327px] px-10 sm:px 20 absolute inset-0 flex flex-col z-[2]">
+        <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white">
           {title}
         </h1>
-        <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
+        <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0">
           {content}
         </p>
       </div>

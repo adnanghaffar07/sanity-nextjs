@@ -52,14 +52,34 @@ const Services = async () => {
   const data = await getData();
 
   return (
-    <>
-      <HeroSectionComponent
-        title='"Our Services"'
+    <div>
+
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/bg-services.jpg" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
+        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
+          <div className="lg:absolute lg:top-[300px]">
+            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
+              <h2 className="title capitalize">
+                Our Services
+              </h2>
+            </div>
+            <div className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
+              CodeAutomation.ai provides comprehensive software development,
+              testing, and automation solutions to enable digital transformation for
+              enterprises globally
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <HeroSectionComponent
+        title='Our Services'
         content="CodeAutomation.ai provides comprehensive software development,
       testing, and automation solutions to enable digital transformation for
       enterprises globally."
-        image="/bg-services.png"
-      />
+        image="/bg-services.jpg"
+      /> */}
 
       <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-zinc-100 max-md:px-5 max-md:max-w-full">
         <h2 className="text-2xl sm:text-5xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
@@ -94,20 +114,20 @@ const Services = async () => {
                   alt="service-icon"
                   className="w-10 sm:w-[54px] h-10 sm:h-[54px] object-contain"
                 />
-              )} 
+              )}
             </div>
 
             <div
               className={`flex gap-2.5 ${service.urlPath.length > 22
-                  ? "py-0 sm:py-4"
-                  : " py-5 sm:py-10 "
+                ? "py-0 sm:py-4"
+                : " py-5 sm:py-10 "
                 } pl-5 text-black rounded-lg sm:rounded-3xl shadow-sm backdrop-blur-[6.5px] bg-[#1d92fb42] bg-opacity-30 w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]`}
             >
               <div className="flex flex-col grow shrink-0 w-fit">
                 <h3
                   className={`text-base sm:text-xl font-medium leading-6 ${service.urlPath.length > 22
-                      ? "max-w-[200px] sm:max-w-[250px]"
-                      : ""
+                    ? "max-w-[200px] sm:max-w-[250px]"
+                    : ""
                     }`}
                 >
                   {service.serviceCardTitle}
@@ -135,21 +155,12 @@ const Services = async () => {
 
 
       <section className="relative overflow-hidden px-4 xl:px-2 max-w-[1440px] 2xl:mx-auto">
-        <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-36 top-[160px] sm:top-[250px] md:top-[600px] xl:top-20 z-10"></div>
+        {/* <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-36 top-[160px] sm:top-[250px] md:top-[600px] xl:top-20 z-10"></div> */}
 
-        <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-10 2xl:gap-10">
-          <div className="w-[190px] sm:w-[280px] md:w-[420px] lg:w-[570px]">
-            <Image
-              src="/business-and-growth.png"
-              alt="Trusted Partner Image"
-              width={570}
-              height={570}
-              loading="lazy"
-              className="w-full aspect-square"
-            />
-          </div>
+        <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">
 
-          <div className="flex flex-col justify-center mt-10 md:mt-24 text-right">
+
+          <div className="flex flex-col justify-center mt-10 md:mt-24 text-left">
             <h2 className="text-xl sm:text-3xl md:text-5xl 2xl:text-5xl leading-[28px] md:leading-[60px] text-sky-950 z-20">
               Trusted Partner To Your <br /> Success And Growth
             </h2>
@@ -160,6 +171,17 @@ const Services = async () => {
               level of service and support to its clients. Our team of experts
               is committed to providing.
             </p>
+          </div>
+
+          <div className="w-[190px] sm:w-[280px] md:w-[420px] lg:w-[570px]">
+            <Image
+              src="/business-and-growth.png"
+              alt="Trusted Partner Image"
+              width={570}
+              height={570}
+              loading="lazy"
+              className="w-full aspect-square"
+            />
           </div>
         </div>
       </section>
@@ -290,7 +312,7 @@ const Services = async () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

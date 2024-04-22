@@ -4,12 +4,12 @@ import Link from "next/link";
 export default async function FooterContainer() {
   const cpyrighttext = await getCpyrighttext();
 
-  const linkUrl = "/software-development";
-  const linkUrlWeb = "/web-development";
-  const linkUrlApp = "/app-development";
-  const linkUrlAutomate = "/qa-automation-testing";
-  const linkUrlManual = "/qa-manual-testing";
-  const linkUrlBuisness = "/business-automation";
+  const linkUrl = "/headless-cms";
+  const linkUrlWeb = "/web-app-development";
+  const linkUrlApp = "/mobile-app-development";
+  const linkUrlAutomate = "/qa-web-testing";
+  const linkUrlAI = "/ai-services";
+  const linkUrlBuisness = "/automation-integration";
 
   const socialIcons = [
     {
@@ -92,7 +92,7 @@ export default async function FooterContainer() {
                   href={`/services/${linkUrl}`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Software Development
+                 Headless CMS
                 </Link>
                 <Link
                   href={`/services/${linkUrlWeb}`}
@@ -110,20 +110,20 @@ export default async function FooterContainer() {
                   href={`/services/${linkUrlAutomate}`}
                   className="hover:underline my-auto inline-block"
                 >
-                  QA Automation Testing
+                  QA & Testing
                 </Link>
                 <Link
-                  href={`/services/${linkUrlManual}`}
+                  href={`/services/${linkUrlAI}`}
                   className="hover:underline my-auto inline-block"
                 >
-                  QA Manual Testing
+                  AI Services
                 </Link>
                 <Link
                   href={`/services/${linkUrlBuisness}`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Automate Business
-                </Link>
+                  Automation & Integration
+                                  </Link>
               </div>
             </div>
           </div>
