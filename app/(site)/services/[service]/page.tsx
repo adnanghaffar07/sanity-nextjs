@@ -4,6 +4,7 @@ import Link from "next/link";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
+import Image from "next/image";
 
 
 async function getData(params: string) {
@@ -42,14 +43,12 @@ export default async function service({ params }: { params: { service: string } 
     return (
 
         <div className="bg-gray-100">
-
-
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
                 {data.heroImage && (
                     <img
                         className="top-0 left-0 object-cover absolute inset-0 size-full"
                         src={urlForImage(data.heroImage).toString()}
-                        alt="lifeatca"
+                        alt=""
                     />
                 )}
                 <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
@@ -65,22 +64,20 @@ export default async function service({ params }: { params: { service: string } 
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
             {/* Introduction Section */}
 
-            <section className="py-16 bg-white px-16">
+            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
                 <div className="container mx-auto flex flex-wrap items-center justify-center">
-                    <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start">
-                        <img
-                            src="/genral-s.png"
-                            alt=""
-                            width={570}
-                            height={370}
-                            className="max-w-full h-auto md:max-h-full"
-                        />
+                    <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+                        {data.introductionSection?.introImage && (
+                            <Image
+                                src={urlForImage(data.introductionSection?.introImage).toString()}
+                                alt=""
+                                width={570}
+                                height={370}
+                            />
+                        )}
                     </div>
                     <div className="w-full md:w-1/2 md:justify-end">
                         <div className="max-w-2xl">
@@ -95,29 +92,10 @@ export default async function service({ params }: { params: { service: string } 
                 </div>
             </section>
 
-
-
-
-
-            {/* <section className="py-16 bg-gray-200 px-16">
-                <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8 ">
-                        {data.introductionSection?.introHeading}
-                    </h2>
-                    <div className="max-w-2xl ">
-                        <p className="text-lg text-gray-800 leading-relaxed">
-                            {data.introductionSection?.introDesc}
-                        </p>
-                    </div>
-                </div>
-
-            </section> */}
-
-
             {/* child service cards */}
 
-            <section className="py-16 px-16  bg-white">
-                <div className="container mx-auto">
+            <section className="px-6 md:px-16 py-10 md:py-16  bg-white">
+                <div className="container  mx-auto">
                     <h2 className="text-3xl font-bold mb-8 text-center">{data.subServiceHeading}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.subServices && data.subServices.map((subServiceRef: any) => {
@@ -144,7 +122,7 @@ export default async function service({ params }: { params: { service: string } 
 
 
             {/* Tools & Technology Section */}
-            <section className="py-16 px-16">
+            <section className="px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-8">
                         {data.toolsTechSection?.toolsTechHeading}
@@ -155,10 +133,12 @@ export default async function service({ params }: { params: { service: string } 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex items-center justify-center flex-col">
-                                    {tool.image && (
-                                        <img src={urlForImage(tool.image).toString()} alt={tool.heading} className="h-12 mb-4" />
-                                    )}
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center">
+                                    <div className="flex flex-wrap justify-center gap-1">
+                                        {tool.images && tool.images.map((image: any, imageIndex: any) => (
+                                            <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
+                                        ))}
+                                    </div>
                                     <h3 className="text-xl font-semibold mb-4">
                                         {tool.heading}
                                     </h3>
@@ -173,11 +153,8 @@ export default async function service({ params }: { params: { service: string } 
                 </div>
             </section>
 
-
-
             {/* Example Value of Service (Use Cases) Section */}
-            <section className="bg-white py-16 px-16">
-
+            <section className="bg-white px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto" >
                     <h2 className="text-3xl font-bold mb-8">
                         {data.exampleServicesSection?.exampleServiceHeading}</h2>
@@ -186,7 +163,6 @@ export default async function service({ params }: { params: { service: string } 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
                             <div
-
                                 key={exampleIndex}
                             >
                                 <div className="bg-gray-100 shadow-md p-6 rounded-lg">
@@ -203,19 +179,18 @@ export default async function service({ params }: { params: { service: string } 
                 </div>
             </section>
 
-
             {/* Typical Project Cycle Stages Section */}
-            <section className="py-8 md:py-16 px-16 bg-gray-100">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                     {/* Right side (Content) */}
-                    <div className="col-span-1 md:col-span-1">
+                    <div className="col-span-1 md:col-span-1 ml-4 md:ml-24"> {/* Adjusted margin */}
                         <div>
-                            <h2 className="text-3xl font-bold mb-8 text-gray-800">{data.projectCycleSection?.projectCycleHaeding}</h2>
-                            <div className="list-disc list-inside">
+                            <h2 className="text-2xl font-bold mb-8 text-gray-800">{data.projectCycleSection?.projectCycleHaeding}</h2>
+                            <div className="list-disc list-inside ml-4">
                                 {data.projectCycleSection?.projectCycle?.map((cycle: any, index: any) => (
                                     <div key={index} className="flex items-center mb-8 relative">
                                         <div className="w-8 md:w-12 h-8 md:h-12 rounded-full bg-[#1D92FB] opacity-[0.14] ml-4 md:ml-4 -left-4 md:-left-8 absolute"></div>
-                                        <p className="text-lg md:text-xl font-medium text-gray-700 ml-4 md:ml-4">
+                                        <p className="text-lg md:text-lg font-medium text-gray-700 ml-4 md:ml-4">
                                             {cycle.detail}
                                         </p>
                                     </div>
@@ -226,154 +201,98 @@ export default async function service({ params }: { params: { service: string } 
                     {/* Left side (Image) */}
                     <div className="col-span-1 md:col-span-1 flex justify-center">
                         <div>
-                            <img
-                                src="/cycle.png"
-                                alt="Delivery Image"
-                                className="max-w-full h-auto"
-                            />
+                            {data.projectCycleSection?.projectCycleImg && (
+                                <Image
+                                    src={urlForImage(data.projectCycleSection?.projectCycleImg).toString()}
+                                    alt=""
+                                    width={370}
+                                    height={370}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
             </section>
 
-
-
-
-
-
-
-
             {/* Service Options Section */}
-            <section className="bg-white px-16 py-16">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <section className="bg-white px-6 md:px-16 py-10 md:py-16">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center ">
                     {/* Left side (Image) */}
-                    <div>
-                        <img
-                            src="/delivery-s.png"
-                            alt="Delivery Image"
-                            className="max-w-full h-auto"
-                        />
+                    <div className="col-span-1 md:col-span-1 flex justify-center">
+                        {data.deliveryOptionSection?.deliveryImg && (
+                            <Image
+                                src={urlForImage(data.deliveryOptionSection?.deliveryImg).toString()}
+                                alt="Delivery Image"
+                                width={370}
+                                height={370}
+                            />
+                        )}
                     </div>
                     {/* Right side (Content) */}
-                    <div className="text-right">
-                        <h2 className="text-3xl font-bold mb-8">{data.deliveryOptionSection?.deliveryOptionHaeding}</h2>
+                    <div className="text-right mr-4 md:mr-24">
+                        <h2 className="text-2xl font-bold mb-8">{data.deliveryOptionSection?.deliveryOptionHaeding}</h2>
                         <ul className="list-disc list-inside">
                             {data.deliveryOptionSection?.deliveryOption?.map((cycle: any, index: any) => (
                                 <div key={index} className="flex items-center mb-8 relative justify-end">
-                                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full bg-[#1D92FB] opacity-[0.14] ml-4 md:ml-4 -right-0 md:-right-0 absolute"></div>
-                                    <p className="text-lg md:text-xl font-medium text-gray-700 mr-8 md:mr-8">
+                                    <div className="w-6 md:w-10 h-6 md:h-10 rounded-full bg-[#1D92FB] opacity-[0.14] ml-4 md:ml-4 -left-19 md:-left-19 absolute"></div>
+                                    <p className="text-lg md:text-lg font-medium text-gray-700 mr-8 md:mr-8">
                                         {cycle.detail}
                                     </p>
                                 </div>
                             ))}
                         </ul>
                     </div>
-
                 </div>
             </section>
-
-
 
             {/* Special Offers Section */}
-            <section className="py-16 px-16">
+            <section className="px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     {/* Left side (Image) */}
-                    {/* <div className="col-span-1 md:col-span-1 flex justify-center">
-                        <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
-                            <img
-                                src="/project-cycle.png"
-                                alt="Your Image"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </div> */}
-                    {/* Right side (Content) */}
                     <div className="col-span-1 md:col-span-1">
-                        <h2 className="text-3xl font-bold mb-8">{data.specialOffersSection?.offerHeading}</h2>
-
+                        <h2 className="text-2xl font-bold mb-8">{data.specialOffersSection?.offerHeading}</h2>
                         <div className="bg-white shadow-md p-6 rounded-lg">
-                            <p className="text-xl font-semibold mb-4">{data.specialOffersSection?.specialOffer}</p>
+                            <p className="text-lg font-semibold mb-4">{data.specialOffersSection?.specialOffer}</p>
                         </div>
                     </div>
-                    {/* <div className="col-span-1 md:col-span-1 flex justify-center">
+                    {/* Right side (Content) */}
+                    <div className="col-span-1 md:col-span-1 flex justify-center">
                         <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
-                            <img
-                                src="/project-cycle.png"
-                                alt="Your Image"
-                                className="w-full h-full object-cover"
-                            />
+                            {data.specialOffersSection?.offerImg && (
+                                <Image
+                                    src={urlForImage(data.specialOffersSection?.offerImg).toString()}
+                                    alt="Your Image"
+                                    width={270}
+                                    height={270}
+                                />
+                            )}
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </section>
 
-
-
-            {/* <div className="max-w-full mx-auto relative">
-          <img
-            loading="lazy"
-            src="/intersect-right.png"
-            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
-                <div className="text-center">
-                  <img
-                    loading="lazy"
-                    src="/project-cycle.png"
-                    className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-                <div className="lg:pl-20 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-right.png"
-                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="lg:text-5xl text-3xl mb-3 text-end">
-                  {data.specialOffersSection?.offerHeading}
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base text-end"> {data.specialOffersSection?.specialOffer}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-
-
-
             {/* Summary Message about Service Section */}
-            <section className="bg-white py-16 px-16">
+            <section className="bg-white px-6 md:px-16 py-10 md:py-16">
 
                 <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8">{data.summarySection?.summaryHeading}</h2>
-                    <p className="text-xl text-center">{data.summarySection?.summaryMessage}</p>
+                    <h2 className="text-2xl font-bold mb-8 text-center">{data.summarySection?.summaryHeading}</h2>
+                    <p className="text-lg text-center">{data.summarySection?.summaryMessage}</p>
                 </div>
-
-
             </section>
 
             {/* Call to Action Section */}
-            <section className="py-16 px-16">
+            <section className="px-6 md:px-16 py-10 md:py-16">
 
                 <div className="container mx-auto text-center">
-                    <h2 className="text-3xl font-bold mb-4">{data.callToActionSection?.callToActionHeading}</h2>
+                    <h2 className="text-2xl font-bold mb-4">{data.callToActionSection?.callToActionHeading}</h2>
                     <p className="text-lg mb-8">{data.callToActionSection?.callToAction}</p>
                 </div>
-
             </section>
 
             {/* Contact Section */}
-
-            <section className="py-16 px-16 bg-white">
-
+            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
                 <div className="container mx-auto text-center">
-                    <h2 className="text-3xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>
-
+                    <h2 className="text-2xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>
                     <p className="text-lg text-center">
                         {data.contactSection?.contactUsDesc}
                         {/* To learn more about our services or to schedule a consultation, please email us at{' '}
@@ -392,10 +311,7 @@ export default async function service({ params }: { params: { service: string } 
                         {data.contactSection?.contactLink}
                     </p>
                 </div>
-
             </section>
-
-
         </div>
 
     )

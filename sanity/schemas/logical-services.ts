@@ -1,225 +1,3 @@
-
-// Define logicalServices schema
-// const logicalServices = {
-//   name: "logicalServices",
-//   title: "Logical Services", 
-//   type: "document",
-//   fields: [
-//     {
-//       name: "urlPathGeneral",
-//       title: "URL Path General Page",
-//       type: "string",
-//     },
-//     {
-//       name: "heroImageGeneral",
-//       title: "Hero Image General",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-//     {
-//       name: "serviceTitleBannerGeneral",
-//       title: "Service Banner Title General",
-//       type: "string",
-//     },
-//     {
-//       name: "serviceDescBannerGeneral",
-//       title: "Service Banner Description General",
-//       type: "string",
-//     },
-//     {
-//       name: "introGeneralHeading",
-//       title: "Introduction General Heading",
-//       type: "string",
-//     },
-//     {
-//       name: "introGeneralDesc",
-//       title: "Introduction General Desription",
-//       type: "text",
-//     },
-//     {
-//       name: "introImage",
-//       title: "Intro Image General",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-//     {
-//       name: "toolsTechGeneralHeading",
-//       title: "Tools and Technology General Heading",
-//       type: "string",
-//     },
-//     {
-//       name: "toolsTechGeneral",
-//       title: "Tools and Technology General",
-//       type: "array",
-//       of: [
-//         {
-//           type: "object",
-//           fields: [
-//             {
-//               name: "heading",
-//               title: "Heading",
-//               type: "string",
-//             },
-//             {
-//               name: "detail",
-//               title: "Detail",
-//               type: "string",
-//             },
-//             {
-//               name: "image",
-//               title: "Image",
-//               type: "image",
-//               options: {
-//                 hotspot: true,
-//               },
-//             },
-//           ],
-//         },
-//       ],
-//     },
-
-//     {
-//       name: "techImage",
-//       title: "Tech Image General",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-//     {
-//       name: "exampleServiceHeading",
-//       title: "Example Service Heading",
-//       type: "string",
-//     },
-
-//     {
-//       name: "exampleServicesGeneral",
-//       title: "Example of Service General",
-//       type: "array",
-//       of: [
-//         {
-//           type: "object",
-//           fields: [
-//             {
-//               name: "heading",
-//               title: "Heading",
-//               type: "string",
-//             },
-//             {
-//               name: "detail",
-//               title: "Detail",
-//               type: "string",
-//             },
-//           ],
-//         },
-//       ],
-//     },
-
-//     {
-//       name: "exampleServiceImg",
-//       title: "Example Service Image",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-//     {
-//       name: "offerHeading",
-//       title: "Offer Heading",
-//       type: "string",
-//     },
-//     {
-//       name: "specialOfferGeneral",
-//       title: "Special Offers General",
-//       type: "text",
-//     },
-
-//     {
-//       name: "offerImg",
-//       title: "Offer Image",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-//     {
-//       name: "summaryHeading",
-//       title: "Summary Heading",
-//       type: "string",
-//     },
-//     {
-//       name: "summaryMessageGeneral",
-//       title: "Summary Message About General Service",
-//       type: "text",
-//     },
-//     {
-//       name: "summaryImg",
-//       title: "Summary Image",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-//     {
-//       name: "callToActionHeading",
-//       title: "Call To Action Heading",
-//       type: "string",
-//     },
-//     {
-//       name: "callToActionGeneral",
-//       title: "Call To Action General",
-//       type: "text",
-//     },
-//     {
-//       name: "callToActionImg",
-//       title: "Call to Action Img",
-//       type: "image",
-//       options: { hotspot: true },
-//       fields: [
-//         {
-//           name: "alt",
-//           title: "Alt",
-//           type: "string",
-//         },
-//       ],
-//     },
-
-
-
 const logicalServices = {
   name: "logicalServices",
   title: "Logical Services",
@@ -324,33 +102,41 @@ const logicalServices = {
           type: "text",
         },
         {
-          name: "toolsTech",
-          title: "Tools and Tech",
-          type: "array",
-          of: [
+          "name": "toolsTech",
+          "title": "Tools and Tech",
+          "type": "array",
+          "of": [
             {
-              type: "object",
-              fields: [
+              "type": "object",
+              "fields": [
                 {
-                  name: "heading",
-                  title: "Heading",
-                  type: "string",
+                  "name": "heading",
+                  "title": "Heading",
+                  "type": "string"
                 },
                 {
-                  name: "detail",
-                  title: "Detail",
-                  type: "string",
+                  "name": "detail",
+                  "title": "Detail",
+                  "type": "string"
                 },
                 {
-                  name: "image",
-                  title: "Image",
-                  type: "image",
-                  options: { hotspot: true },
-                },
-              ],
-            },
-          ],
-        },
+                  "name": "images",
+                  "title": "Images",
+                  "type": "array",
+                  "of": [
+                    {
+                      "type": "image",
+                      "options": {
+                        "hotspot": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+,        
         {
           name: "techImage",
           title: "Tech Image",
