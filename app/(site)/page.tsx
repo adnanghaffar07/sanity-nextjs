@@ -30,12 +30,7 @@ export default function Home() {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/789bfcc0ff0740879ffd9bb8daac0f8ec8d0cba214fd374e4e36ffb26087e184?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-[1.12] w-[65px]"
               />
-              {/* {bannerbox1content.map((bannerbox1content) => (
-                <div className="box-content text-wrap leading-[40px] mt-8" key={bannerbox1content._id}>
-                    {bannerbox1content.name}
-                </div>
-              ))} */}
-              {/* {bannerbox1content.content} */}
+              
               <div className="self-stretch lg:mt-11 mt-3 text-wrap">
                 We are trusted by 200 global clients and offer innovative
                 software solutions tailored to specific needs and markets.
@@ -344,11 +339,7 @@ export default function Home() {
                     </div>
                     <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                       150<span className="text-3xl self-end">k</span>+
-                      {/* <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e9ff7ffac79e9fae530070485265b9bf15e638aa9e88607ffd777b210da457c?"
-                        className="self-stretch my-auto aspect-[1.09] fill-black w-[13px] xl:-top-6 lg:-top-2 -top-2 lg:-right-2 -right-1 relative"
-                      /> */}
+                      
                     </div>
                   </div>
                 </div>

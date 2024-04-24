@@ -19,10 +19,6 @@ export default async function Technologies() {
   const data = await getData();
 
 
-  // const techImage = urlForImage(data.techImage.asset);
-  // const techLogoImage = urlForImage(data.techLogos.asset);
-  // console.log(techImage)
-
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">

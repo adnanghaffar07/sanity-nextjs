@@ -307,11 +307,7 @@ export default async function service({ params }: { params: { service: string } 
                     <h2 className="text-2xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>
                     <p className="text-lg text-center">
                         {data.contactSection?.contactUsDesc}
-                        {/* To learn more about our services or to schedule a consultation, please email us at{' '}
-                <a href="mailto:contact@codeautomation.ai" className="text-blue-500 font-bold">
-                    contact@codeautomation.ai
-                </a>{' '}
-                or call us at <span className="font-bold">(123) 456-7890</span>. */}
+                        
                     </p>
                     <p className="text-blue-500 font-bold">
                         {data.contactSection?.contactEmail}

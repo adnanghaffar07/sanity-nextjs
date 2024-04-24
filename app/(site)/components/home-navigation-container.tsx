@@ -199,14 +199,7 @@ export default function HomeNavigationContainer() {
                         </p>
                       </li>
                     </ul>
-                    {/* <ul className="mega-links">
-                      <li><a href="#">Web development</a>
-                      <p>Dynamic user-friendly website</p></li>
-                      <li><a href="#">Mobile development </a>
-                      <p>Customized applications</p></li>
-                      <li><a href="#">QA Manual Testing </a>
-                      <p>Thoroughly evaluated Softwares</p></li>
-                    </ul> */}
+                    
                     <Link href="/services">
                       <p
                         className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8"
@@ -225,33 +218,9 @@ export default function HomeNavigationContainer() {
                       </p>
                     </Link>
 
-                    {/* <h2 className='linkshead'>Devops</h2>
-                    <ul className="mega-links">
-                      <CgArrowLongRight
-                          style={{
-                            color: '#5b9ed2',
-                          }}
-                        />
-                      <li><a href="#">Process Integration / Orchestration</a></li>
-                      <li><a href="#">Cloud accounting</a></li>
-                      <li><a href="#">Devops/ APM</a></li>
-                      <li><a href="#">Data Visualization</a></li>
-                    </ul> */}
+                    
                   </div>
-                  {/* <div>
-                    <h2 className='linkshead'>Testing</h2>
-                    <ul className="mega-links">
-                      <li><a href="#">Web development</a></li>
-                      <li><a href="#">Mobile development </a></li>
-                      <li><a href="#">Web & Mobile </a></li>
-                      <li><a href="#">Authentication platforms</a></li>
-                      <li><a href="#">RPA</a></li>
-                      <li><a href="#">Voice</a></li>
-                      <li><a href="#">Automation & Integration</a></li>
-                    </ul>
-                  </div> */}
-                  {/* <div className="grid grid-cols-2 gap-4"> */}
-                  {/* <h2 className='linkshead'>Technologies</h2> */}
+                  
                   <div>
                     <ul className="mega-links">
                       <li>
@@ -323,114 +292,7 @@ export default function HomeNavigationContainer() {
                           </Link>
                         </p>
                       </li>
-
-                      {/* <li><Link href={`/services/${linkUrlManual}`}>QA Manual Testing </Link>
-                        <p>Thoroughly evaluated Softwares</p></li> */}
                     </ul>
-
-                    {/* <ul className="mega-links">
-                    <li className="flex items-center">
-                        <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageReact} className="w-7 h-7 mr-2" />
-                            <p className="tech-text">React</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageFigma} className="w-7 h-7 mr-2" />
-                            <p className="tech-text">Figma</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageIOS} className="w-7 h-7 mr-2" />
-                            <p className="tech-text">IOS</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageNum} className="w-6 h-6 mr-2" />
-                            <p className="tech-text">Numpy</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageFlutter} className="w-6 h-6 mr-2" />
-                            <p className="tech-text">Flutter</p>
-                          </div>
-                        </Link>
-                      </li>
-                   
-                    </ul> */}
-
-                    {/* <ul className="mega-links">
-                    <li className="flex items-center">
-                    <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageAnd} className="w-7 h-7 mr-2" />
-                            <p className="tech-text">Android</p>
-                          </div>
-                        </Link>
-                      </li>
-                    <li className="flex items-center">
-                    <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageAngular} className="w-6 h-6 mr-2" />
-                            <p className="tech-text">Angular</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageJs} className="w-6 h-6 mr-2" />
-                            <p className="tech-text">JavaScript</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageGo} className="w-7 h-7 mr-2" />
-                            <p className="tech-text">Golang</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li className="flex items-center">
-                      <Link href={'/technologies'}>
-                          <div className="flex items-center">
-                            <img src={imageJmeter} className="w-7 h-7 mr-2" />
-                            <p className="tech-text">Jmeter</p>
-                          </div>
-                        </Link>
-                      </li>
-                  
-                    
-                   
-                    </ul> */}
-                    {/* <Link href="/services">
-                      <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
-                        View all
-                        <CgArrowLongRight
-                          style={{
-                            color: '#5b9ed2',
-                            marginTop: '-3px',
-                            marginBottom: '-2px',
-                            height: '25px',
-                            width: '25px'
-                          }}
-                        />
-                      </p>
-                    </Link> */}
                   </div>
                 </div>
               </div>
