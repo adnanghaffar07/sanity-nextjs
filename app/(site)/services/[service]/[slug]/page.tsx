@@ -56,60 +56,42 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             </div>
 
 
-            {/* Introduction Section */}
-            <section className=" bg-white  relative overflow-hidden px-4 xl:px-2 max-w-[1440px] 2xl:mx-auto">
-        {/* <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-36 top-[160px] sm:top-[250px] md:top-[600px] xl:top-20 z-10"></div> */}
-
-        <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">
-
-
-          <div className="flex flex-col justify-center mt-10 md:mt-24 text-left">
-            <h2 className="text-xl font-bold ml-15 sm:text-3xl md:text-5xl 2xl:text-5xl leading-[28px] md:leading-[60px] text-sky-950 z-20">
-            {data.introductionSubSection.introHeading}
-            </h2>
-            <p className="self-end sm:mt-10 xl:mt-10 text-xs sm:text-xl leading-4 sm:leading-7 text-black max-w-[270px] sm:max-w-[570px] z-20">
-            {data.introductionSubSection.introDesc}
-            </p>
-          </div>
-
-          <div className="w-[190px] sm:w-[280px] md:w-[420px] lg:w-[570px]">
-          {data.introductionSubSection?.introImage && (
+            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+                <div className="container mx-auto flex flex-wrap items-center justify-center">
+                
+                <div className="w-full md:w-1/2 md:justify-end">
+                        <div className="max-w-2xl">
+                            <h2 className="text-2xl font-bold mb-8">
+                                {data.introductionSubSection?.introHeading}
+                            </h2>
+                            <p className="text-lg text-gray-800 leading-relaxed">
+                                {data.introductionSubSection?.introDesc}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+                        {data.introductionSubSection?.introImage && (
                             <Image
                                 src={urlForImage(data.introductionSubSection?.introImage).toString()}
-                                alt="Your Image"
-                                width={400}
-                                height={400}
+                                alt=""
+                                width={570}
+                                height={370}
                             />
-            )}
-          </div>
-        </div>
-      </section>
-
-
-     {/* 
-            <section className="py-16 bg-white px-16">
-                <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8 ">
-                        {data.introductionSubSection.introHeading}
-                    </h2>
-                    <div className="max-w-2xl ">
-                        <p className="text-lg text-gray-800 leading-relaxed">
-                            {data.introductionSubSection.introDesc}
-                        </p>
+                        )}
                     </div>
+                    
                 </div>
-
-
-    </section>    */}
+            </section>
 
 
             {/* Tools & Technology Section */}
             <section className="py-16 px-16">
             
-            <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22"> 
+            <div className="flex flex-col xl:flex-row  items-center justify-center xl:gap-20 2xl:gap-22"> 
              
                 <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8">{data.toolsTechSubSection && data.toolsTechSubSection.toolsTechHeading}</h2>
+                    <h2 className="text-2xl font-bold mb-8">{data.toolsTechSubSection && data.toolsTechSubSection.toolsTechHeading}</h2>
                     <p className="text-xl font-light mb-8">{data.toolsTechSubSection && data.toolsTechSubSection.toolsTechDesc}</p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -143,7 +125,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             {/* Example Value of Service (Use Cases) Section */}
             <section className="py-16 px-16  bg-white">
                 <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8">{data.exampleServicesSubSection && data.exampleServicesSubSection.exampleServiceHeading}</h2>
+                    <h2 className="text-2xl font-bold mb-8">{data.exampleServicesSubSection && data.exampleServicesSubSection.exampleServiceHeading}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.exampleServicesSubSection &&
                             data.exampleServicesSubSection.exampleService &&
@@ -162,7 +144,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <section className=" bg-white py-16 px-16">
             <div className="flex sm:flex-row  xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22"> 
                 <div className="container mx-auto ml-[10%]">
-                    <h2 className="text-3xl font-bold mb-8">{data.projectCycleSubSection && data.projectCycleSubSection.projectCycleHaeding}</h2>
+                    <h2 className="text-2xl font-bold mb-8">{data.projectCycleSubSection && data.projectCycleSubSection.projectCycleHaeding}</h2>
                     <ul>
                         {data.projectCycleSubSection &&
                             data.projectCycleSubSection.projectCycle &&
@@ -195,7 +177,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <div className="flex sm:flex-row xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">
             
             <div className="container mx-auto ml-[10%]">
-                    <h2 className="text-3xl font-bold mb-8">{data.deliveryOptionSubSection && data.deliveryOptionSubSection.deliveryOptionHaeding}</h2>
+                    <h2 className="text-2xl font-bold mb-8">{data.deliveryOptionSubSection && data.deliveryOptionSubSection.deliveryOptionHaeding}</h2>
                     <ul className="list-none">
                         {data.deliveryOptionSubSection &&
                             data.deliveryOptionSubSection.deliveryOption &&
@@ -230,7 +212,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
             <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22"> 
                         <div className="container mx-auto">
-                            <h2 className="text-3xl font-bold mb-8">{data.specialOffersSubSection.offerHeading}</h2>
+                            <h2 className="text-2xl font-bold mb-8">{data.specialOffersSubSection.offerHeading}</h2>
                             <div className="bg-white shadow-md p-6 rounded-lg">
                                 <p className="text-xl font-semibold mb-4">{data.specialOffersSubSection.specialOffer}</p>
                             </div>
@@ -263,7 +245,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <section className="bg-white py-16 px-16">
               
                         <div className="container mx-auto">
-                            <h2 className="text-3xl text-center font-bold mb-8">{data.summarySubSection.summaryHeading}</h2>
+                            <h2 className="text-2xl text-center font-bold mb-8">{data.summarySubSection.summaryHeading}</h2>
                             <p className="text-xl text-center">{data.summarySubSection.summaryMessage}</p>
                         </div>
               
@@ -283,7 +265,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <section className="py-16 px-16 bg-white">
             
                         <div className="container mx-auto text-center">
-                            <h2 className="text-3xl font-bold mb-4">{data.contactSubSection.contactUsHeading}</h2>
+                            <h2 className="text-2xl font-bold mb-4">{data.contactSubSection.contactUsHeading}</h2>
 
                             <p className="text-lg text-center">
                                 {data.contactSubSection.contactUsDesc}
