@@ -674,32 +674,39 @@ const subServiceSchema = {
           type: "text",
         },
         {
-          name: "toolsTech",
-          title: "Tools and Tech",
-          type: "array",
-          of: [
+          "name": "toolsTech",
+          "title": "Tools and Tech",
+          "type": "array",
+          "of": [
             {
-              type: "object",
-              fields: [
+              "type": "object",
+              "fields": [
                 {
-                  name: "heading",
-                  title: "Heading",
-                  type: "string",
+                  "name": "heading",
+                  "title": "Heading",
+                  "type": "string"
                 },
                 {
-                  name: "detail",
-                  title: "Detail",
-                  type: "string",
+                  "name": "detail",
+                  "title": "Detail",
+                  "type": "string"
                 },
                 {
-                  name: "image",
-                  title: "Image",
-                  type: "image",
-                  options: { hotspot: true },
-                },
-              ],
-            },
-          ],
+                  "name": "images",
+                  "title": "Images",
+                  "type": "array",
+                  "of": [
+                    {
+                      "type": "image",
+                      "options": {
+                        "hotspot": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           name: "techImage",
