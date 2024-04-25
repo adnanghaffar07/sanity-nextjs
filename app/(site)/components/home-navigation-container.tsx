@@ -22,7 +22,7 @@ const linkUrlCMS = "/headless-cms";
 const linkUrlSoft = "/web-app-development";
 const linkUrlAuto = "/qa-web-testing";
 const linkUrlDigital = "/design-services";
-const linkBusiness = "/business-intelligent-service";
+const linkMob = "/mobile-app-development";
 const linkRobotic = "/rpa-services";
 
 const navItems = [
@@ -169,16 +169,15 @@ export default function HomeNavigationContainer() {
                       </li>
                       <li>
                         <Link
-                          href={`/services/${linkAI}`}
+                          href={`/services/${linkMob}`}
                           className="heading"
                           onClick={hideMenu}
                         >
-                          AI Services
+                          Mobile App evelopment
                         </Link>
                         <p>
-                          <Link href={`/services/${linkAI}`} onClick={hideMenu}>
-                            Informed Decision Making Process
-                          </Link>
+                          <Link href={`/services/${linkMob}`} onClick={hideMenu}>
+Transform Idea into Market Leading App                          </Link>
                         </p>
                       </li>
                       <li>
@@ -194,7 +193,7 @@ export default function HomeNavigationContainer() {
                             href={`/services/${linkUrlSoft}`}
                             onClick={hideMenu}
                           >
-                            Web & Mobile Development Solutions
+                            Web Development Solutions
                           </Link>
                         </p>
                       </li>
@@ -290,19 +289,16 @@ export default function HomeNavigationContainer() {
                         </p>
                       </li>
                       <li>
-                      <Link
-                          href={`/services/${linkBusiness}`}
+                        <Link
+                          href={`/services/${linkAI}`}
                           className="heading"
                           onClick={hideMenu}
                         >
-                         Business Intelligent Services
+                          AI Services
                         </Link>
                         <p>
-                          <Link
-                            href={`/services/${linkBusiness}`}
-                            onClick={hideMenu}
-                          >
-                            Focus on Strategic Initiatives
+                          <Link href={`/services/${linkAI}`} onClick={hideMenu}>
+                            Informed Decision Making Process
                           </Link>
                         </p>
                       </li>
