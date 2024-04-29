@@ -3,6 +3,7 @@ import React from "react";
 import HomePageSlider from "./components/HomePageSlider";
 import Testimonials from "./components/Testimonials";
 import Faqs from "./components/Faqs";
+import OurWorkSection from "./components/OurWorkSection";
 
 export default function Home() {
   return (
@@ -30,7 +31,12 @@ export default function Home() {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/789bfcc0ff0740879ffd9bb8daac0f8ec8d0cba214fd374e4e36ffb26087e184?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-[1.12] w-[65px]"
               />
-              
+              {/* {bannerbox1content.map((bannerbox1content) => (
+                <div className="box-content text-wrap leading-[40px] mt-8" key={bannerbox1content._id}>
+                    {bannerbox1content.name}
+                </div>
+              ))} */}
+              {/* {bannerbox1content.content} */}
               <div className="self-stretch lg:mt-11 mt-3 text-wrap">
                 We are trusted by 200 global clients and offer innovative
                 software solutions tailored to specific needs and markets.
@@ -162,104 +168,16 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col self-center w-full mx-auto max-md:max-w-full bg-[#F3F3F3] lg:py-16 py-16 lg:px-10 px-5">
-          <div className="self-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
+          <h2 className="self-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
             Our Work
-          </div>
-          <div className="lg:mt-8 mt-4 text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
+          </h2>
+          <p className="lg:mt-8 mt-4 text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
             Explore the tangible results of our dedication and proficiency in
             our portfolio. Each project is a testament to our commitment to
             excellence. Check out our case studies and witness how we&rsquo;ve
             helped businesses like yours succeed.
-          </div>
-          <div className="self-center mt-16 w-full max-md:mt-10 max-w-[1582px] mx-auto">
-            <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
-              <div className="flex flex-col w-3/5 max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col grow lg:text-2xl md:text-xl text-base text-zinc-100 max-md:mt-10 max-md:max-w-full gap-10">
-                  <div className="flex overflow-hidden relative flex-col justify-center w-full font-medium shadow-md max-md:max-w-full rounded-3xl image-container">
-                    <img
-                      loading="lazy"
-                      srcSet="/image-16.jpg"
-                      className="size-full rounded-3xl"
-                    />
-                    <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-20 overlay">
-                      <span className="font-bold text-zinc-100">
-                        Bubblehouse - E Commerce (NFTs)
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex overflow-hidden relative flex-col justify-center w-full font-medium shadow-md max-md:max-w-full rounded-3xl image-container">
-                    <img
-                      loading="lazy"
-                      srcSet="/image-21.jpg"
-                      className="size-full rounded-3xl"
-                    />
-                    <div className="absolute top-0  overlay left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-25">
-                      <span className="font-bold text-zinc-100">
-                        Vested Finance - Fintech
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
-                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container">
-                    <img
-                      loading="lazy"
-                      srcSet="/image-17.jpg"
-                      className="size-full rounded-3xl"
-                    />
-                    <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
-                      Getdandy - Ai Product
-                    </div>
-                  </div>
-                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container">
-                    <img
-                      loading="lazy"
-                      srcSet="/image-19.jpg"
-                      className="size-full rounded-3xl"
-                    />
-                    <div className="absolute top-0 left-0 w-full overlay h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
-                      PublicInput - Community Engagement
-                    </div>
-                  </div>
-                  <div className="flex overflow-hidden relative flex-col justify-center rounded-3xl shadow-md max-md:max-w-full image-container">
-                    <img
-                      loading="lazy"
-                      srcSet="/image-20.jpg"
-                      className="size-full rounded-3xl"
-                    />
-                    <div className="absolute top-0 left-0 w-full overlay h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
-                      Tracely - Location Tracking App
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
-              <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
-                <Link
-                  href="/case-study"
-                  className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
-                >
-                  <div className="relative grow self-center">
-                    Explore Our Portfolio
-                  </div>
-                  <img
-                    loading="lazy"
-                    src="/btn-arrow.svg"
-                    className="w-[22px] h-[26.8px]"
-                  />
-                </Link>
-              </div>
-
-              <div className="flex gap-4 px-5 my-auto order-1 md:order-2 justify-end">
-                <div className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
-                <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
-                <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
-              </div>
-            </div>
-          </div>
+          </p>
+          <OurWorkSection />
         </div>
         <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
           <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
