@@ -88,10 +88,7 @@ const FileInput: React.FC<propType> = (props) => {
     }
 
     setUploading(false);
-    // setPopupVisible(true);
-    // setTimeout(() => {
-    //   setPopupVisible(false);
-    // }, 3000);
+   
   };
 
   return (
@@ -140,12 +137,7 @@ const FileInput: React.FC<propType> = (props) => {
         )}
       </div>
 
-      {/* { popupVisible && (
-       <div className="popup-message">
-       <div className="loading-line"></div>
-       <p className="message">Your File has been submitted!</p>
-       </div>
-       )} */}
+      
     </div>
   );
 };

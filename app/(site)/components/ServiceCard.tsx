@@ -15,7 +15,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   iconSrc,
   linkUrl,
 }) => {
-  // Check if iconSrc is defined before accessing its properties
+  
   const cardIcon = iconSrc ? urlForImage(iconSrc.asset) : "";
 
   return (
@@ -24,7 +24,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       className="flex flex-col relative w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]"
     >
       <div className="z-10 px-3.5 w-14 sm:w-24 h-14 sm:h-24 bg-white rounded-full absolute flex justify-center items-center right-2 sm:right-5 -top-6 sm:-top-14 drop-shadow-serviceCard">
-        {/* Render the icon only if iconSrc is defined */}
+       
         {iconSrc && (
           <img
             src={cardIcon}

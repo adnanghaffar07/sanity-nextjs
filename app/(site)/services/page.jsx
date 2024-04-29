@@ -73,13 +73,7 @@ const Services = async () => {
         </div>
       </div>
 
-      {/* <HeroSectionComponent
-        title='Our Services'
-        content="CodeAutomation.ai provides comprehensive software development,
-      testing, and automation solutions to enable digital transformation for
-      enterprises globally."
-        image="/bg-services.jpg"
-      /> */}
+      
 
       <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-zinc-100 max-md:px-5 max-md:max-w-full">
         <h2 className="text-2xl sm:text-5xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
@@ -155,7 +149,7 @@ const Services = async () => {
 
 
       <section className="relative overflow-hidden px-4 xl:px-2 max-w-[1440px] 2xl:mx-auto">
-        {/* <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-36 top-[160px] sm:top-[250px] md:top-[600px] xl:top-20 z-10"></div> */}
+       
 
         <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">
 
