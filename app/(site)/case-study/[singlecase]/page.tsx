@@ -92,7 +92,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Technologies used:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data.technologiesused?.map((technology: any) => {
                   return (
                     <li
@@ -110,7 +110,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Challenges Faced:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data.chanllangesfaced?.map((challange: any) => {
                   return (
                     <li
@@ -128,7 +128,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Our Approach:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data.ourapproach?.map((approach: any) => {
                   return (
                     <li
@@ -146,7 +146,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Results:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data?.results?.map((result: any) => {
                   return (
                     <li
