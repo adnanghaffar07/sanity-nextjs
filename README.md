@@ -72,13 +72,12 @@ Feel free to check out and contribute to [the Next.js GitHub repository](https:/
 
 The easiest way to deploy your Next.js app is using the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js. For more details on deployment, refer to the [Next.js deployment documentation](https://nextjs.org/docs/deployment).
 
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+>[!TIP]
+>Follow the Instruction will be **higly appreciated**.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the CodeAutomation.
 
 ---
 
