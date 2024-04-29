@@ -3,6 +3,7 @@
 import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
+import {PortableText} from '@portabletext/react'
 
 
 async function getData(urlPathSub: string) {
@@ -77,6 +78,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 <p className="text-lg text-gray-800 leading-relaxed">
                     {data.introductionSubSection?.introDesc}
                 </p>
+                
+                <br/>
+      
+            
             </div>
         </div>
     </div>
