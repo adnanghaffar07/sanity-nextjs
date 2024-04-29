@@ -53,6 +53,7 @@ const navItems = [
 ];
 
 export default function HomeNavigationContainer() {
+  const currentPath = usePathname();
   let pathname = usePathname() || "/";
   const [menuIcon, setIcon] = useState(false);
   
@@ -135,25 +136,46 @@ export default function HomeNavigationContainer() {
         <div className="xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transform translate-x-full xl:transform-none fixed top-0 left-0 h-full transition delay-75 ease-in-out w-full bg-white xl:bg-transparent xl:static js-navigation justify-end">
           <ul className="nav-links self-center mx-auto flex gap-10">
             <li>
-              <Link href="/" className="hover:underline ">
-                Home
+              <Link href="/">
+                <span
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  Home
+                </span>
               </Link>
             </li>
             <li className="mega-menu relative">
               <Link
                 href="javascript:void(0)"
-                className="hover:underline"
                 onMouseEnter={showMenu}
                 onMouseLeave={handleMouseLeave}
               >
-                Services
+                <span
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  Services
+                </span>
               </Link>
               <div
                 ref={menuRef}
                 className={`mega-box ${menuVisible ? "visible" : ""}`}
                 onMouseLeave={handleMouseLeave}
               >
-                <div className="content">
+                <div
+                  className={`content ${
+                    currentPath.startsWith("/case-study/")
+                      ? "bg-gray-200 p-4 rounded-md"
+                      : ""
+                  }`}
+                >
                   <div>
                     <ul className="mega-links">
                       <li>
@@ -199,8 +221,12 @@ export default function HomeNavigationContainer() {
                           Mobile App evelopment
                         </Link>
                         <p>
-                          <Link href={`/services/${linkMob}`} onClick={hideMenu}>
-                            Transform Idea into Market Leading App                          </Link>
+                          <Link
+                            href={`/services/${linkMob}`}
+                            onClick={hideMenu}
+                          >
+                            Transform Idea into Market Leading App{" "}
+                          </Link>
                         </p>
                       </li>
                       <li>
@@ -317,23 +343,55 @@ export default function HomeNavigationContainer() {
               </div>
             </li>
             <li>
-              <Link href="/lifeatca" className="hover:underline ">
-                Life at CA
+              <Link href="/lifeatca">
+                <span
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  Life at CA
+                </span>
               </Link>
             </li>
             <li>
-              <Link href="/blogs" className="hover:underline ">
-                Blogs
+              <Link href="/blogs">
+                <span
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  Blogs
+                </span>
               </Link>
             </li>
             <li>
-              <Link href="/career" className="hover:underline ">
-                Career
+              <Link href="/career">
+                <span
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  Career
+                </span>
               </Link>
             </li>
             <li>
-              <Link href="/technologies" className="hover:underline ">
-                Technologies
+              <Link href="/technologies">
+                <span
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  Technologies
+                </span>
               </Link>
             </li>
           </ul>
