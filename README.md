@@ -140,6 +140,7 @@ To connect your Next.js project to Sanity, you'll need to install the `@sanity/c
 Then, create a new JavaScript file to initialize the Sanity client and connect to your Sanity project:
 
 ## sanityClient.js
+```bash
 
 import sanityClient from '@sanity/client';
 
@@ -150,6 +151,7 @@ const client = sanityClient({
 });
 
 export default client;
+```
 
 Replace `your-project-id` and `your-dataset-name` with your actual Sanity project ID and dataset name.
 
