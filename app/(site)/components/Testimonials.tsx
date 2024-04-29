@@ -38,6 +38,7 @@ const Testimonials = async () => {
                       <img
                         loading="lazy"
                         src={imageUrl}
+                        alt={testimonial.image.alt}
                         className="aspect-square rounded-full w-[62px] h-[62px]"
                       />
                     </div>
