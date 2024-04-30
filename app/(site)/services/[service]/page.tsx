@@ -309,14 +309,17 @@ export default async function service({ params }: { params: { service: string } 
                         {data.contactSection?.contactUsDesc}
                         
                     </p>
+                   
                     <p className="text-blue-500 font-bold">
-                        {data.contactSection?.contactEmail}
+                     <Link href='mailto:info@codeautomation.ai' target="_blank"> {data.contactSection?.contactEmail} </Link>
+                    </p> 
+                  
+
+                    <p className=" text-blue-500 font-bold">
+                    <Link href='tel:+18505584691'>  {data.contactSection?.contactPhone} </Link>
                     </p>
-                    <p className="font-bold">
-                        {data.contactSection?.contactPhone}
-                    </p>
-                    <p className="font-bold">
-                        {data.contactSection?.contactLink}
+                    <p className=" text-blue-500 font-bold">
+                    <Link href='https://codeautomation.ai/' target="_blank">   {data.contactSection?.contactLink} </Link>
                     </p>
                 </div>
             </section>

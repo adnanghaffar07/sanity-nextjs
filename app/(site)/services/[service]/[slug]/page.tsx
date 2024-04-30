@@ -4,6 +4,7 @@ import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import {PortableText} from '@portabletext/react'
+import Link from "next/link";
 
 
 async function getData(urlPathSub: string) {
@@ -269,17 +270,16 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 <div className="container mx-auto text-center">
                     <h2 className="text-2xl font-bold mb-4">{data.contactSubSection?.contactUsHeading}</h2>
                     <p className="text-lg text-center">
-                        {data.contactSubSection?.contactUsDesc}
-                       
+                    {data.contactSubSection?.contactUsDesc}   
                     </p>
                     <p className="text-blue-500 font-bold">
-                        {data.contactSubSection?.contactEmail}
+                    <Link href='mailto:info@codeautomation.ai' target="_blank">{data.contactSubSection?.contactEmail}</Link>  
                     </p>
-                    <p className="font-bold">
-                        {data.contactSubSection?.contactPhone}
+                    <p className=" text-blue-500  font-bold">
+                    <Link href='tel:+18505584691'>{data.contactSubSection?.contactPhone}</Link>   
                     </p>
-                    <p className="font-bold">
-                        {data.contactSubSection?.contactLink}
+                    <p className=" text-blue-500 font-bold">
+                    <Link href='https://codeautomation.ai/' target="_blank">{data.contactSubSection?.contactLink}</Link>
                     </p>
                 </div>
             </section>
