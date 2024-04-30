@@ -116,6 +116,7 @@ const OurWorkSection = async () => {
               loading="lazy"
               src="/btn-arrow.svg"
               className="w-[22px] h-[26.8px]"
+              alt="icon-arrow"
             />
           </Link>
         </div>
