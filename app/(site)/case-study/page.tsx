@@ -205,7 +205,7 @@ const page = async () => {
                     )}
                   </Link>
                   <h2 className="text-sm sm:text-2xl text self-center mt-6">
-                    {recentWork.title}
+                    {recentWork.title} - {recentWork.subtitle}
                   </h2>
                 </div>
               ) : (
