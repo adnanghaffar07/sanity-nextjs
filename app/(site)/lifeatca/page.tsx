@@ -117,7 +117,7 @@ const LifeAtCA = () => {
           culture of collaboration, innovation, and inclusivity.        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
         <Image
-                src="imageBig.png"
+                src="imageBig.jpg"
                 alt=""
                 className="w-full"
               />
