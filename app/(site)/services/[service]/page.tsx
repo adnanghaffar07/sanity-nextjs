@@ -9,8 +9,6 @@ import Image from "next/image";
 
 async function getData(params: string) {
     const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
-
-
     ;
     try {
         const fetchData = await client.fetch(query);
@@ -20,6 +18,7 @@ async function getData(params: string) {
         return [];
     }
 }
+
 
 async function getSubData() {
     const querySub = `*[_type == 'subService'] | order(_createdAt asc)`;
@@ -40,8 +39,118 @@ export default async function service({ params }: { params: { service: string } 
     const data = await getData(params.service);
     const dataSub = await getSubData();
 
-    return (
+     //  GENERAL SERVICES DATA
+    const seoMetaData = {
+        
+         title : data.webSeoMetadata?.title,
+         description: data.webSeoMetadata?.description, 
+         keywords: data.webSeoMetadata?.keywords
+    };
 
+    const twitterData = {
+        title : data.twitterCards?.twitterTitle,
+        description:data.twitterCards?.twitterDescription,
+        image:data.twitterCards?.twitterImage,
+        url:data.twitterCards?.twitterUrl,
+        type: data.twitterCards?.twitterType
+    }
+
+    const facebookData = {
+        title : data.facebookCards?.facebookTitle,
+        description:data.facebookCards?.facebookDescription,
+        image:data.facebookCards?.facebookImage,
+        url:data.facebookCards?.facebookUrl,
+        type: data.facebookCards?.facebookType
+    }
+
+    const linkedInData = {
+        title : data.linkedInCards?.linkedInTitle,
+        description:data.linkedInCards?.linkedInDescription,
+        image:data.linkedInCards?.linkedInImage,
+        url:data.linkedInCards?.linkedInUrl,
+        type: data.linkedInCards?.linkedInType
+    }
+
+
+    const pininterestData = {
+        title : data.pinterestCards?.pinterestTitle,
+        description:data.pinterestCards?.pinterestDescription,
+        url:data.pinterestCards?.pinterestUrl,
+        type: data.pinterestCards?.pinterestType
+    }
+
+    const whatsAppData = {
+        title : data.whatsappCards?.whatsappTitle,
+        description:data.whatsappCards?.whatsappDescription,
+        url:data.whatsappCards?.whatsappUrl,
+        type: data.whatsappCards?.whatsappType
+    }
+
+    const telegramData = {
+        title : data.telegramCards?.telegramTitle,
+        description:data.telegramCards?.telegramDescription,
+        url:data.telegramCards?.telegramUrl,
+        type: data.telegramCards?.telegramType
+    }
+    
+   
+
+    //  GENERAL SUBSERVICES DATA
+    const seoSubMetaData = {
+        
+        title: dataSub.webSeoMetadataSub?.title,
+        description: dataSub.webSeoMetadataSub?.description, 
+        keywords: dataSub.webSeoMetadataSub?.keywords
+   };
+
+   const twitterSubData = {
+       title : dataSub.twitterCardsSub?.twitterTitle,
+       description:dataSub.twitterCardsSub?.twitterDescription,
+       image:dataSub.twitterCardsSub?.twitterImage,
+       url:dataSub.twitterCardsSub?.twitterUrl,
+       type: dataSub.twitterCardsSub?.twitterType
+   }
+
+   const facebookSubData = {
+       title : dataSub.facebookCardsSub?.facebookTitle,
+       description:dataSub.facebookCardsSub?.facebookDescription,
+       image:dataSub.facebookCardsSub?.facebookImage,
+       url:dataSub.facebookCardsSub?.facebookUrl,
+       type: dataSub.facebookCardsSub?.facebookType
+   }
+
+   const linkedInSubData = {
+       title : dataSub.linkedInCardsSub?.linkedInTitle,
+       description:dataSub.linkedInCardsSub?.linkedInDescription,
+       image:dataSub.linkedInCardsSub?.linkedInImage,
+       url:dataSub.linkedInCardsSub?.linkedInUrl,
+       type: dataSub.linkedInCardsSub?.linkedInType
+   }
+
+
+   const pininterestSubData = {
+       title : dataSub.pinterestCardsSub?.pinterestTitle,
+       description:dataSub.pinterestCardsSub?.pinterestDescription,
+       url:dataSub.pinterestCardsSub?.pinterestUrl,
+       type: dataSub.pinterestCardsSub?.pinterestType
+   }
+
+   const whatsAppSubData = {
+       title : dataSub.whatsappCardsSub?.whatsappTitle,
+       description:dataSub.whatsappCardsSub?.whatsappDescription,
+       url:dataSub.whatsappCardsSub?.whatsappUrl,
+       type: dataSub.whatsappCardsSub?.whatsappType
+   }
+
+   const telegramSubData = {
+       title : dataSub.telegramCardsSub?.telegramTitle,
+       description:dataSub.telegramCardsSub?.telegramDescription,
+       url:dataSub.telegramCardsSub?.telegramUrl,
+       type: dataSub.telegramCardsSub?.telegramType
+   }
+
+
+    return (
         <div className="bg-gray-100">
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
                 {data.heroImage && (
@@ -139,7 +248,7 @@ export default async function service({ params }: { params: { service: string } 
                     <h2 className="text-3xl font-bold mb-8">
                         {data.toolsTechSection?.toolsTechHeading}
                     </h2>
-                    <p className="text-xl font-light mb-8">
+                    <p className="text-xl text-center font-light mb-8">
                         {data.toolsTechSection?.toolsTechDesc}
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

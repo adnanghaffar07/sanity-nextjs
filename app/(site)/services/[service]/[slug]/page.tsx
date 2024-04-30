@@ -94,7 +94,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                     <h2 className="text-2xl font-bold mb-8">
                         {data.toolsTechSubSection?.toolsTechHeading}
                     </h2>
-                    <p className="text-xl font-light mb-8">
+                    <p className="text-3xl text-center font-light mb-8">
                         {data.toolsTechSubSection?.toolsTechDesc}
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
