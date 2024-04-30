@@ -100,7 +100,7 @@ const Services = async () => {
             href={`/services/${service.urlPath}`}
             className="flex flex-col relative w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]"
           >
-            <div className="z-10 px-3.5 w-14 sm:w-24 h-14 sm:h-24 bg-white rounded-full absolute flex justify-center items-center right-2 sm:right-5 -top-6 sm:-top-14 drop-shadow-serviceCard">
+            <div className="z-10 px-3.5 w-10 sm:w-20 h-10 sm:h-20 bg-white rounded-full absolute flex justify-center items-center right-2 sm:right-5 -top-6 sm:-top-14 drop-shadow-serviceCard">
               {service.cardIcon && (
                 <img
                   src={urlForImage(service.cardIcon).toString()}
@@ -115,7 +115,7 @@ const Services = async () => {
               className={`flex gap-2.5 ${service.urlPath.length > 22
                 ? "py-0 sm:py-4"
                 : " py-5 sm:py-10 "
-                } pl-5 text-black rounded-lg sm:rounded-3xl shadow-sm backdrop-blur-[6.5px] bg-[#1d92fb42] bg-opacity-30 w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]`}
+                } pl-5 text-black rounded-lg sm:rounded-3xl shadow-lg backdrop-blur-[6.5px] bg-[#D7D7D7] bg-opacity-30 w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]`}
             >
               <div className="flex flex-col grow shrink-0 w-fit">
                 <h3
@@ -169,7 +169,7 @@ const Services = async () => {
 
           <div className="w-[190px] sm:w-[280px] md:w-[420px] lg:w-[570px]">
             <Image
-              src="/business-and-growth.png"
+              src="/business-and growth-1.png"
               alt="Trusted Partner Image"
               width={570}
               height={570}

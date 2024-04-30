@@ -67,42 +67,42 @@ export default async function service({ params }: { params: { service: string } 
             </div>
             {/* Introduction Section */}
             <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-    <div className="container mx-auto flex flex-wrap items-center justify-center">
-        {data.introductionSection?.introImage ? (
-            <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
-                <Image
-                    src={urlForImage(data.introductionSection?.introImage).toString()}
-                    alt=""
-                    width={570}
-                    height={370}
-                />
-            </div>
-        ) : (
-            <div className="w-full  justify-center mb-4">
-                <div className="max-w-2xl">
-                    <h2 className="text-3xl font-bold mb-8 text-center">
-                        {data.introductionSection?.introHeading}
-                    </h2>
-                    <p className="text-lg text-gray-800 leading-relaxed text-center">
-                        {data.introductionSection?.introDesc}
-                    </p>
+                <div className="container mx-auto flex flex-wrap items-center justify-center">
+                    {data.introductionSection?.introImage ? (
+                        <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+                            <Image
+                                src={urlForImage(data.introductionSection?.introImage).toString()}
+                                alt=""
+                                width={570}
+                                height={370}
+                            />
+                        </div>
+                    ) : (
+                        <div className="w-full  justify-center mb-4">
+                            <div className="max-w-2xl">
+                                <h2 className="text-3xl font-bold mb-8 text-center">
+                                    {data.introductionSection?.introHeading}
+                                </h2>
+                                <p className="text-lg text-gray-800 leading-relaxed text-center">
+                                    {data.introductionSection?.introDesc}
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                    {data.introductionSection?.introImage && (
+                        <div className="w-full md:w-1/2 md:justify-end">
+                            <div className="max-w-2xl">
+                                <h2 className="text-3xl font-bold mb-8">
+                                    {data.introductionSection?.introHeading}
+                                </h2>
+                                <p className="text-lg text-gray-800 leading-relaxed">
+                                    {data.introductionSection?.introDesc}
+                                </p>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </div>
-        )}
-        {data.introductionSection?.introImage && (
-            <div className="w-full md:w-1/2 md:justify-end">
-                <div className="max-w-2xl">
-                    <h2 className="text-3xl font-bold mb-8">
-                        {data.introductionSection?.introHeading}
-                    </h2>
-                    <p className="text-lg text-gray-800 leading-relaxed">
-                        {data.introductionSection?.introDesc}
-                    </p>
-                </div>
-            </div>
-        )}
-    </div>
-</section>
+            </section>
 
             {/* child service cards */}
 
@@ -118,8 +118,8 @@ export default async function service({ params }: { params: { service: string } 
                                         <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 " style={{ height: '300px' }}>
                                             <img src={urlForImage(subService.heroImageSub).toString()} alt={subService.serviceCardSub} className="w-full h-40 object-cover" />
                                             <div className="p-6">
-                                                <h3 className="text-xl font-semibold mb-4">{subService.serviceCardSub}</h3>
-                                                <p className="text-gray-700">{subService.serviceDescSub}</p>
+                                                <h3 className="text-xl font-semibold text-center mb-4">{subService.serviceCardSub}</h3>
+                                                <p className="text-gray-700 text-center">{subService.serviceDescSub}</p>
                                             </div>
                                         </div>
                                     </Link>
@@ -302,12 +302,12 @@ export default async function service({ params }: { params: { service: string } 
             </section>
 
             {/* Contact Section */}
-            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+            {/* <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
                 <div className="container mx-auto text-center">
                     <h2 className="text-2xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>
                     <p className="text-lg text-center">
                         {data.contactSection?.contactUsDesc}
-                        
+
                     </p>
                     <p className="text-blue-500 font-bold">
                         {data.contactSection?.contactEmail}
@@ -319,7 +319,7 @@ export default async function service({ params }: { params: { service: string } 
                         {data.contactSection?.contactLink}
                     </p>
                 </div>
-            </section>
+            </section> */}
         </div>
 
     )
