@@ -553,8 +553,186 @@ const logicalServices = {
           type: "image",
           options: { hotspot: true },
         },
+        {
+          name: "twitterUrl",
+          title: "Url",
+          type: "string",
+        },
+        {
+          name: "twitterType",
+          title: "Type",
+          type: "string",
+        },
       ],
     },
+
+     
+   // Facebook Cards
+    {
+      name: "facebookCards",
+      title: "Facebook Cards",
+      type: "object",
+      fields: [
+        {
+          name: "facebookTitle",
+          title: "Title",
+          type: "string",
+        },
+        {
+          name: "facebookDescription",
+          title: "Description",
+          type: "text",
+        },
+        {
+          name: "facebookImage",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+        {
+          name: "facebookUrl",
+          title: "Url",
+          type: "string",
+        },
+        {
+          name: "facebookType",
+          title: "Type",
+          type: "string",
+        },
+      ],
+    },
+
+
+     // LinkedIn Cards
+    {
+      name: "linkedInCards",
+      title: "LinkedIn Cards",
+      type: "object",
+      fields: [
+        {
+          name: "linkedInTitle",
+          title: "Title",
+          type: "string",
+        },
+        {
+          name: "linkedInDescription",
+          title: "Description",
+          type: "text",
+        },
+        {
+          name: "linkedInImage",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+        {
+          name: "linkedInUrl",
+          title: "Url",
+          type: "string",
+        },
+        {
+          name: "linkedInType",
+          title: "Type",
+          type: "string",
+        },
+      ],
+    },
+
+
+      // Pinterest Cards
+      {
+        name: "pinterestCards",
+        title: "Pinterest Cards",
+        type: "object",
+        fields: [
+          {
+            name: "pinterestTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "pinterestDescription",
+            title: "Description",
+            type: "text",
+          },
+          
+          {
+            name: "pinterestUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "pinterestType",
+            title: "Type",
+            type: "string",
+          },
+        ],
+      },
+
+
+      // WhatsApp  Cards
+      {
+        name: "whatsappCards",
+        title: "Whatsapp Cards",
+        type: "object",
+        fields: [
+          {
+            name: "whatsappTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "whatsappDescription",
+            title: "Description",
+            type: "text",
+          },
+          
+          {
+            name: "whatsappUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "whatsappType",
+            title: "Type",
+            type: "string",
+          },
+        ],
+      },
+
+
+       // Telegram  Cards
+       {
+        name: "telegramCards",
+        title: "Telegram Cards",
+        type: "object",
+        fields: [
+          {
+            name: "telegramTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "telegramDescription",
+            title: "Description",
+            type: "text",
+          },
+          
+          {
+            name: "telegramUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "telegramType",
+            title: "Type",
+            type: "string",
+          },
+        ],
+      },
+
+
+
     // Social Media
     {
       name: "socialMedia",
@@ -1114,9 +1292,191 @@ const subServiceSchema = {
             title: "Image",
             type: "image",
             options: { hotspot: true },
+          }, 
+          {
+            name: "twitterUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "twitterType",
+            title: "Type",
+            type: "string",
+          },
+
+
+        ],
+      },
+
+      
+      // Facebook Cards
+    {
+      name: "facebookCardsSub",
+      title: "Facebook Cards",
+      type: "object",
+      fields: [
+        {
+          name: "facebookTitle",
+          title: "Title",
+          type: "string",
+        },
+        {
+          name: "facebookDescription",
+          title: "Description",
+          type: "text",
+        },
+        {
+          name: "facebookImage",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+        {
+          name: "facebookUrl",
+          title: "Url",
+          type: "string",
+        },
+        {
+          name: "facebookType",
+          title: "Type",
+          type: "string",
+        },
+      ],
+    },
+
+
+    // LinkedIn Cards
+    {
+      name: "linkedInCardsSub",
+      title: "LinkedIn Cards",
+      type: "object",
+      fields: [
+        {
+          name: "linkedInTitle",
+          title: "Title",
+          type: "string",
+        },
+        {
+          name: "linkedInDescription",
+          title: "Description",
+          type: "text",
+        },
+        {
+          name: "linkedInImage",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+        {
+          name: "linkedInUrl",
+          title: "Url",
+          type: "string",
+        },
+        {
+          name: "linkedInType",
+          title: "Type",
+          type: "string",
+        },
+      ],
+    },
+
+
+    
+      // Pinterest Cards
+      {
+        name: "pinterestCardsSub",
+        title: "Pinterest Cards",
+        type: "object",
+        fields: [
+          {
+            name: "pinterestTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "pinterestDescription",
+            title: "Description",
+            type: "text",
+          },
+          
+          {
+            name: "pinterestUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "pinterestType",
+            title: "Type",
+            type: "string",
           },
         ],
       },
+
+
+      // WhatsApp  Cards
+      {
+        name: "whatsappCardsSub",
+        title: "Whatsapp Cards",
+        type: "object",
+        fields: [
+          {
+            name: "whatsappTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "whatsappDescription",
+            title: "Description",
+            type: "text",
+          },
+          
+          {
+            name: "whatsappUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "whatsappType",
+            title: "Type",
+            type: "string",
+          },
+        ],
+      },
+
+
+       // Telegram  Cards
+       {
+        name: "telegramCardsSub",
+        title: "Telegram Cards",
+        type: "object",
+        fields: [
+          {
+            name: "telegramTitle",
+            title: "Title",
+            type: "string",
+          },
+          {
+            name: "telegramDescription",
+            title: "Description",
+            type: "text",
+          },
+          
+          {
+            name: "telegramUrl",
+            title: "Url",
+            type: "string",
+          },
+          {
+            name: "telegramType",
+            title: "Type",
+            type: "string",
+          },
+        ],
+      },
+
+
+
+
       // Social Media
       {
         name: "socialMediaSub",

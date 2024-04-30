@@ -85,7 +85,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold mb-4 md:mb-8">
                 Project Scope:
               </h3>
-              <p className="text-xs md:text-xl font-light leading-4 md:leading-8 tracking-[0.72px]">
+              <p className="text-xs md:text-xl font-light leading-4 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
 
@@ -96,7 +96,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data.technologiesused?.map((technology: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={technology._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -114,7 +114,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data.chanllangesfaced?.map((challange: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -132,7 +132,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data.ourapproach?.map((approach: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={approach._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -150,7 +150,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data?.results?.map((result: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={result._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -164,13 +164,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Tools Used for Project & Test Case Management:
               </h3>
-              <p className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light">
+              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.toolsfortest && data.toolsfortest}
               </p>
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Conclusion:
               </h3>
-              <p className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light">
+              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.conclusion && data.conclusion}
               </p>
             </div>
