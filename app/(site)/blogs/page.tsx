@@ -13,7 +13,6 @@ export default function Blogs() {
           muted
           autoPlay
           loop
-         playsInline
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>
