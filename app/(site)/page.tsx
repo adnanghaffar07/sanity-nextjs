@@ -16,11 +16,11 @@ export default function Home() {
           height="100%"
           muted
           autoPlay
-          loop 
+          loop
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>
-        
+
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[250px] lg:top-[220px] 2xl:top-[250px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
@@ -183,92 +183,97 @@ export default function Home() {
           </p>
           <OurWorkSection />
         </div>
-        <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-          <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
-            Why Work With Us
-          </div>
-          <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
-                    <img
-                      loading="lazy"
-                      srcSet="/Group-17-1.svg"
-                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 self-stretch my-auto">
-                    <div className="text-lg font-medium leading-6 uppercase">
-                      Global Client
+        <ScrollAnimation>
+
+          <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
+            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
+              Why Work With Us
+            </div>
+            <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
+              <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
+                <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
+                      <img
+                        loading="lazy"
+                        srcSet="/Group-17-1.svg"
+                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                      />
                     </div>
-                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      200+
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                    <img
-                      loading="lazy"
-                      srcSet="/Group-22-4.svg"
-                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 self-stretch my-auto">
-                    <div className="text-lg font-medium leading-6 uppercase">
-                      Projects
-                    </div>
-                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      350+
+                    <div className="flex flex-col flex-1 self-stretch my-auto">
+                      <div className="text-lg font-medium leading-6 uppercase">
+                        Global Client
+                      </div>
+                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                        200+
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                    <img
-                      loading="lazy"
-                      srcSet="/Group-27-3.svg"
-                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 self-stretch my-auto">
-                    <div className="text-lg font-medium leading-6 uppercase">
-                      Apps tested
+                <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
+                      <img
+                        loading="lazy"
+                        srcSet="/Group-22-4.svg"
+                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                      />
                     </div>
-                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      300+
+                    <div className="flex flex-col flex-1 self-stretch my-auto">
+                      <div className="text-lg font-medium leading-6 uppercase">
+                        Projects
+                      </div>
+                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                        350+
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                    <img
-                      loading="lazy"
-                      srcSet="/Group-28-2.svg"
-                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 self-stretch my-auto">
-                    <div className="text-lg font-medium leading-6 uppercase">
-                      Bugs Resolved
+                <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
+                      <img
+                        loading="lazy"
+                        srcSet="/Group-27-3.svg"
+                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                      />
                     </div>
-                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                      150<span className="text-3xl self-end">k</span>+
-                      
+                    <div className="flex flex-col flex-1 self-stretch my-auto">
+                      <div className="text-lg font-medium leading-6 uppercase">
+                        Apps tested
+                      </div>
+                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                        300+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
+                      <img
+                        loading="lazy"
+                        srcSet="/Group-28-2.svg"
+                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                      />
+                    </div>
+                    <div className="flex flex-col flex-1 self-stretch my-auto">
+                      <div className="text-lg font-medium leading-6 uppercase">
+                        Bugs Resolved
+                      </div>
+                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                        150<span className="text-3xl self-end">k</span>+
+
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+            </div>
         </ScrollAnimation>
+
+
         <div className="flex relative flex-col justify-center items-start lg:px-10 md:px-5 w-full font-medium text-black py-8 max-md:px-5 max-md:mt-10 max-md:max-w-full">
           <img
             loading="lazy"
