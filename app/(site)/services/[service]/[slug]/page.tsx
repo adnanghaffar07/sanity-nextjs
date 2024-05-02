@@ -267,7 +267,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
 
             {/* Contact Section */}
-            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+            {/* <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
                 <div className="container mx-auto text-center">
                     <h2 className="text-2xl font-bold mb-4">{data.contactSubSection?.contactUsHeading}</h2>
                     <p className="text-lg text-center">
@@ -283,7 +283,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                     <Link href='https://codeautomation.ai/' target="_blank">{data.contactSubSection?.contactLink}</Link>
                     </p>
                 </div>
-            </section>
+            </section> */}
 
 
 

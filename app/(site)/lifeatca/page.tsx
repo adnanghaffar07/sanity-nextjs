@@ -116,34 +116,11 @@ const LifeAtCA = () => {
           CodeAutomation is not just a workplace; it&apos;s a community. We foster a
           culture of collaboration, innovation, and inclusivity.        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
-          <div className="flex gap-0 max-md:flex-col max-md:gap-0">
-            <div className="flex flex-col w-full md:w-[37%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow max-md:mt-6">
-                {images.slice(0, 2).map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image.src}
-                    alt={image.alt}
-                    className={`w-full aspect-[1.72] ${index === 1 ? "mt-6" : ""}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {images.slice(2, 5).map((image, index) => (
-              <div
-                key={index}
-                className={`flex flex-col ml-5 w-1/${index === 1 ? "3" : "5"} max-md:ml-0 max-md:w-full`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  className="grow shrink-0 max-w-full aspect-[0.47] w-[284px] max-md:mt-6 hidden md:block"
-                />
-              </div>
-            ))}
-
-          </div>
+        <Image
+                src="imageBig.jpg"
+                alt=""
+                className="w-full"
+              />
         </section>
         <p className="self-center mt-14 text-xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
           We know that building strong relationships within the team is essential.
