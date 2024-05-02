@@ -17,6 +17,7 @@ export default function Home() {
           muted
           autoPlay
           loop
+         
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>

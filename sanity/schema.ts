@@ -11,11 +11,9 @@ import faq from "./schemas/faq";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    services,
     blog,
     careers,
     technologies,
-    newServices,
     logicalServices,
     subServiceSchema,
     testimonial,
