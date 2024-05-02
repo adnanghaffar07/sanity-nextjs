@@ -17,12 +17,9 @@ export default function Home() {
           muted
           autoPlay
           loop
-          playsInline
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>
-
-
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[250px] lg:top-[220px] 2xl:top-[250px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
@@ -118,158 +115,152 @@ export default function Home() {
           src="/ellipse-1.png"
           className="absolute left-0 top-0 w-40 lg:hidden block"
         />
-        <ScrollAnimation>
-          <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
-            <div className="max-md:max-w-full lg:px-10 px-5 relative">
-              <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0 max-md:">
-                <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
-                  <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
-                    <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
-                      Our Core Expertise
-                    </div>
-                    <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
-                      <p>
-                        Scale up with the team of more than 70 dedicated
-                        software engineers who are perfectly time-zone matched
-                        with you and have knowledge across a diverse variety of
-                        more than 100 technologies. Whether you seek automation
-                        specialists or expert mobile and web development
-                        professionals, we&apos;re here to serve your business
-                        needs.
-                      </p>
-                      <p>
-                        As your strategic partners, we&apos;re dedicated to
-                        providing your business with outstanding knowledge and a
-                        strong desire to see you succeed. Begin your journey to
-                        a more promising future by empowering your business with
-                        advanced technologies, professional advice, and
-                        unmatched support.
-                      </p>
-                    </div>
-                    <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
-                      <Link
-                        href="/technologies"
-                        className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
-                      >
-                        <div className="relative grow self-center">
-                          Explore Our Technologies
-                        </div>
-                        <img
-                          loading="lazy"
-                          src="/btn-arrow.svg"
-                          className="w-[22px] h-[26.8px]" // Adjust the width and height
-                        />
-                      </Link>
-                    </div>
+        <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+          <div className="max-md:max-w-full lg:px-10 px-5 relative">
+            <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0 max-md:">
+              <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
+                <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
+                  <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
+                    Our Core Expertise
+                  </div>
+                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
+                    <p>
+                      Scale up with the team of more than 70 dedicated software
+                      engineers who are perfectly time-zone matched with you and
+                      have knowledge across a diverse variety of more than 100
+                      technologies. Whether you seek automation specialists or
+                      expert mobile and web development professionals,
+                      we&apos;re here to serve your business needs.
+                    </p>
+                    <p>
+                      As your strategic partners, we&apos;re dedicated to
+                      providing your business with outstanding knowledge and a
+                      strong desire to see you succeed. Begin your journey to a
+                      more promising future by empowering your business with
+                      advanced technologies, professional advice, and unmatched
+                      support.
+                    </p>
+                  </div>
+                  <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
+                    <Link
+                      href="/technologies"
+                      className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
+                    >
+                      <div className="relative grow self-center">
+                        Explore Our Technologies
+                      </div>
+                      <img
+                        loading="lazy"
+                        src="/btn-arrow.svg"
+                        className="w-[22px] h-[26.8px]" // Adjust the width and height
+                      />
+                    </Link>
                   </div>
                 </div>
-                <div className="flex flex-col ml-5 w-[42%] max-md:ml-0 max-md:w-full">
-                  <div className="flex flex-col grow pr-4 pb-3.5 w-full bg-sky-500 rounded-3xl max-md:mt-10 max-md:max-w-full">
-                    <img
-                      loading="lazy"
-                      srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
-                      className="z-10 mt-0 w-full aspect-[0.78] max-md:max-w-full"
-                    />
-                  </div>
+              </div>
+              <div className="flex flex-col ml-5 w-[42%] max-md:ml-0 max-md:w-full">
+                <div className="flex flex-col grow pr-4 pb-3.5 w-full bg-sky-500 rounded-3xl max-md:mt-10 max-md:max-w-full">
+                  <img
+                    loading="lazy"
+                    srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/73846796fe711256ba598c1f188a0e34c785ed0201b7ea9e6ebc86ca1250f52f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
+                    className="z-10 mt-0 w-full aspect-[0.78] max-md:max-w-full"
+                  />
                 </div>
               </div>
             </div>
           </div>
-        </ScrollAnimation>
-        <ScrollAnimation>
-          <div className="flex flex-col self-center w-full mx-auto max-md:max-w-full bg-[#F3F3F3] lg:py-16 py-16 lg:px-10 px-5">
-            <h2 className="self-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
-              Our Work
-            </h2>
-            <p className="lg:mt-8 mt-4 text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
-              Explore the tangible results of our dedication and proficiency in
-              our portfolio. Each project is a testament to our commitment to
-              excellence. Check out our case studies and witness how we&rsquo;ve
-              helped businesses like yours succeed.
-            </p>
-            <OurWorkSection />
+        </div>
+        <div className="flex flex-col self-center w-full mx-auto max-md:max-w-full bg-[#F3F3F3] lg:py-16 py-16 lg:px-10 px-5">
+          <h2 className="self-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
+            Our Work
+          </h2>
+          <p className="lg:mt-8 mt-4 text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
+            Explore the tangible results of our dedication and proficiency in
+            our portfolio. Each project is a testament to our commitment to
+            excellence. Check out our case studies and witness how we&rsquo;ve
+            helped businesses like yours succeed.
+          </p>
+          <OurWorkSection />
+        </div>
+        <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
+          <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
+            Why Work With Us
           </div>
-        </ScrollAnimation>
-        <ScrollAnimation>
-          <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
-              Why Work With Us
-            </div>
-            <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
-              <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-17-1.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                      />
+          <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
+              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
+                    <img
+                      loading="lazy"
+                      srcSet="/Group-17-1.svg"
+                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 self-stretch my-auto">
+                    <div className="text-lg font-medium leading-6 uppercase">
+                      Global Client
                     </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <div className="text-lg font-medium leading-6 uppercase">
-                        Global Client
-                      </div>
-                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        200+
-                      </div>
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      200+
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-22-4.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                      />
+              </div>
+              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
+                    <img
+                      loading="lazy"
+                      srcSet="/Group-22-4.svg"
+                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 self-stretch my-auto">
+                    <div className="text-lg font-medium leading-6 uppercase">
+                      Projects
                     </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <div className="text-lg font-medium leading-6 uppercase">
-                        Projects
-                      </div>
-                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        350+
-                      </div>
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      350+
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-27-3.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                      />
+              </div>
+              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
+                    <img
+                      loading="lazy"
+                      srcSet="/Group-27-3.svg"
+                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 self-stretch my-auto">
+                    <div className="text-lg font-medium leading-6 uppercase">
+                      Apps tested
                     </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <div className="text-lg font-medium leading-6 uppercase">
-                        Apps tested
-                      </div>
-                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        300+
-                      </div>
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      300+
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-28-2.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                      />
+              </div>
+              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
+                  <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
+                    <img
+                      loading="lazy"
+                      srcSet="/Group-28-2.svg"
+                      className="self-stretch max-w-full aspect-[0.9] w-[68px]"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 self-stretch my-auto">
+                    <div className="text-lg font-medium leading-6 uppercase">
+                      Bugs Resolved
                     </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <div className="text-lg font-medium leading-6 uppercase">
-                        Bugs Resolved
-                      </div>
-                      <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        150<span className="text-3xl self-end">k</span>+
-                      </div>
+                    <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
+                      150<span className="text-3xl self-end">k</span>+
+                      
                     </div>
                   </div>
                 </div>
