@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useRef } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import Image from "next/image";
 
 const imageFigma = "/figma.png";
 const imageIOS = "/ios.png";
@@ -25,38 +26,12 @@ const linkUrlDigital = "/design-services";
 const linkMob = "/mobile-app-development";
 const linkRobotic = "/rpa-services";
 
-const navItems = [
-  {
-    path: "/",
-    name: "Home",
-  },
-  {
-    path: "/services",
-    name: "Services",
-  },
-  {
-    path: "/lifeatca",
-    name: "Life at CA",
-  },
-  {
-    path: "/blogs",
-    name: "Blogs",
-  },
-  {
-    path: "/career",
-    name: "Career",
-  },
-  {
-    path: "/technologies",
-    name: "Technologies",
-  },
-];
 
 export default function HomeNavigationContainer() {
   const currentPath = usePathname();
   let pathname = usePathname() || "/";
   const [menuIcon, setIcon] = useState(false);
-  
+
   const handleToggleMenu = () => {
     setIcon(!menuIcon);
   };
@@ -65,29 +40,43 @@ export default function HomeNavigationContainer() {
   };
 
   const [menuVisible, setMenuVisible] = useState(false);
-  const [mouseInsideMenu, setMouseInsideMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null); // Specify the type of ref
+  const [aboutVisible, setAboutVisible] = useState(false);
 
-  // Function to hide the mega menu when a link is clicked
+  const menuRef = useRef<HTMLDivElement>(null); // Ref for Services mega menu
+  const aboutRef = useRef<HTMLDivElement>(null);
+
   const hideMenu = () => {
     setMenuVisible(false);
+    setAboutVisible(false);
   };
 
-  // Function to show the mega menu on hover
   const showMenu = () => {
     setMenuVisible(true);
+    setAboutVisible(false); // Ensure About Us mega menu is hidden when Services mega menu is shown
+  };
+
+  const aboutShow = () => {
+    setAboutVisible(true);
+    setMenuVisible(false); // Ensure Services mega menu is hidden when About Us mega menu is shown
+  };
+
+  const aboutHide = () => {
+    setAboutVisible(false);
   };
 
 
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
+    setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+
   };
 
   const [menuOpen, setMenuOpen] = useState(true);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuVisible((prevMenuVisible) => !prevMenuVisible);
   };
+
 
   // const handleMouseEnter = () => {
   //   setMouseInsideMenu(true);
@@ -105,7 +94,7 @@ export default function HomeNavigationContainer() {
     }
   };
 
- 
+
 
 
   return (
@@ -138,11 +127,10 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Home
                 </span>
@@ -153,15 +141,29 @@ export default function HomeNavigationContainer() {
                 href="javascript:void(0)"
                 onMouseEnter={showMenu}
                 onMouseLeave={handleMouseLeave}
+
               >
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Services
+                  <svg
+                    className={`w-4 h-4 inline-block ml-1 transform ${menuVisible ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={4}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </span>
               </Link>
               <div
@@ -169,21 +171,26 @@ export default function HomeNavigationContainer() {
                 className={`mega-box ${menuVisible ? "visible" : ""}`}
                 onMouseLeave={handleMouseLeave}
               >
+                <div className="border-b border-gray-200 border-opacity-50 py-3">
+                  <span className="px-4" style={{ fontWeight: "500", fontSize: "17px" }}>Services</span></div>
+
                 <div
-                  className={`content ${
-                    currentPath.startsWith("/case-study/")
-                      ? "bg-gray-200 p-4 rounded-md"
-                      : ""
-                  }`}
+                  className={`content ${currentPath.startsWith("/case-study/")
+                    ? "bg-gray-200 p-4 rounded-md"
+                    : ""
+                    }`}
                 >
-                  <div>
+
+                  <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
+
                         <Link
                           href={`/services/${linkUrlCMS1}`}
                           className="heading"
                           onClick={hideMenu}
                         >
+
                           CMS
                         </Link>
                         <p>
@@ -212,7 +219,7 @@ export default function HomeNavigationContainer() {
                           </Link>
                         </p>
                       </li>
-              
+
                       <li>
                         <Link
                           href={`/services/${linkUrlSoft}`}
@@ -270,7 +277,7 @@ export default function HomeNavigationContainer() {
 
                   </div>
 
-                  <div>
+                  <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
                         <Link
@@ -307,7 +314,7 @@ export default function HomeNavigationContainer() {
                           </Link>
                         </p>
                       </li>
-                      
+
                       <li>
                         <Link
                           href={`/services/${linkAI}`}
@@ -344,27 +351,167 @@ export default function HomeNavigationContainer() {
                 </div>
               </div>
             </li>
-            <li>
-              <Link href="/lifeatca">
+            <li className="mega-menu relative">
+
+
+              <Link href="javascript:void(0)"
+                onMouseEnter={aboutShow}
+                onMouseLeave={aboutHide}>
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
-                  Life at CA
                 </span>
+                About Us
+                <svg
+                  className={`w-4 h-4 inline-block ml-1 transform ${aboutVisible ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={4}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
               </Link>
+              <div
+                ref={aboutRef}
+                className={`mega-box ${aboutVisible ? "visible" : ""}`}
+                onMouseLeave={aboutHide}
+              >
+                <div className="border-b border-gray-200 border-opacity-50 py-3">
+                  <span className="px-4" style={{ fontWeight: "500", fontSize: "17px" }}>About Company</span></div>
+
+                <div
+                  className={`content ${currentPath.startsWith("/case-study/")
+                    ? "bg-gray-200 p-4 rounded-md"
+                    : ""
+                    }`}
+                >
+
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+
+                        <Link
+                          href="/case-study"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+
+                          Case-Studies
+                        </Link>
+                        <p>
+                          <Link
+                          href="/case-study"
+                          onClick={hideMenu}
+                          >
+                            Success Stories                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/blogs"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Blogs                        </Link>
+                        <p>
+                          <Link
+                          href="/blogs"
+                          onClick={hideMenu}
+                          >
+                            Tech Insights                          </Link>
+                        </p>
+                      </li>
+
+                      <li>
+                        <Link
+                          href="/career"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Careers                        </Link>
+                        <p>
+                          <Link
+                          href="/career"
+                          onClick={hideMenu}
+                          >
+                            Join Our Team                          </Link>
+                        </p>
+                      </li>
+
+                    </ul>
+                  </div>
+
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+                        <Link
+                          href="/"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Brochure Downloads                        </Link>
+                        <p>
+                          {" "}
+                          <Link
+                            href="/"
+                            onClick={hideMenu}
+                          >
+                            Resources
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          News                        </Link>
+                        <p>
+                          <Link
+                          href="/"
+                          onClick={hideMenu}
+                          >
+                            Latest Updates                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/lifeatca"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Life at CA                        </Link>
+                        <p>
+                          <Link
+                          href="/lifeatca"
+                          onClick={hideMenu}
+                          >
+
+                            Employee Experiences                          </Link>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </li>
             <li>
               <Link href="/blogs">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Blogs
                 </span>
@@ -373,11 +520,10 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/career">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Career
                 </span>
@@ -386,11 +532,10 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Technologies
                 </span>
@@ -414,156 +559,156 @@ export default function HomeNavigationContainer() {
 
           {/* mobile view */}
           <div
-  className={
-    menuIcon
-      ? "xl:hidden absolute top-0 right-0 bottom-0 left-[-100%]  w-full h-screen bg-white ease-in duration-300"
-      : "xl:hidden absolute top-0 right-0 left-0  w-full h-screen bg-white ease-in duration-300"
-  }
->
-  <div className="xl:hidden">
-    {menuOpen && (
-      <div className="mobile-menu">
-        <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
-        <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/" onClick={handleToggleMenu}>
-              Home
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <div
-              className=""
-              onClick={toggleMenuVisibility}
-              onMouseEnter={() => setMenuVisible(true)}
-              onMouseLeave={() => setMenuVisible(false)}
-            >
-              Services
-            </div>
-            {menuVisible && (
-              <div className="content mt-4 mb-0">
-                <div>
-                  <ul className="mega-links-mb">
-
-                      <li>
-                        <Link
-                          href={`/services/${linkUrlCMS1}`}
-                          className=""
-                          onClick={handleToggleMenu}
-                        >
-                          CMS
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkUrlCMS1}`}
-                            onClick={handleToggleMenu}
-                          >
-                            Manage Digital Content
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkUrlCMS}`}
-                          className="heading"
-                          onClick={handleToggleMenu}
-                        >
-                          Headless-CMS
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkUrlCMS}`}
-                            onClick={handleToggleMenu}
-                          >
-                            Customized Headless-CMS
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkMob}`}
-                          className="heading"
-                          onClick={handleToggleMenu}
-                        >
-                          Mobile App Development
-                        </Link>
-                        <p>
-                          <Link href={`/services/${linkMob}`} onClick={handleToggleMenu}>
-                            Transform Idea into Market Leading App
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkUrlSoft}`}
-                          className="heading"
-                          onClick={handleToggleMenu}
-                        >
-                          Software Development
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkUrlSoft}`}
-                            onClick={handleToggleMenu}
-                          >
-                            Web Development Solutions
-                          </Link>
-                        </p>
-                      </li>
-                    </ul>
-
-                    <Link href="/services">
-                      <p
-                        className="flex gap-3 text-black hover:text-[#0a8ffc] hover:underline mt-4 mb-0"
-                        onClick={handleToggleMenu}
-                                                style={{fontWeight: "600", fontSize: "13px"}}
-
+            className={
+              menuIcon
+                ? "xl:hidden absolute top-0 right-0 bottom-0 left-[-100%]  w-full h-screen bg-white ease-in duration-300"
+                : "xl:hidden absolute top-0 right-0 left-0  w-full h-screen bg-white ease-in duration-300"
+            }
+          >
+            <div className="xl:hidden">
+              {menuOpen && (
+                <div className="mobile-menu">
+                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
+                    <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/" onClick={handleToggleMenu}>
+                        Home
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <div
+                        className=""
+                        onClick={toggleMenuVisibility}
+                        onMouseEnter={() => setMenuVisible(true)}
+                        onMouseLeave={() => setMenuVisible(false)}
                       >
-                        View all
-                        <CgArrowLongRight
-                          style={{
-                            color: "#5b9ed2",
-                            marginTop: "-3px",
-                            marginBottom: "-2px",
-                            height: "22px",
-                            width: "22px",
-                          }}
-                        />
-                      </p>
-                    </Link>
-                  </div>
+                        Services
+                      </div>
+                      {menuVisible && (
+                        <div className="content mt-4 mb-0">
+                          <div>
+                            <ul className="mega-links-mb">
+
+                              <li>
+                                <Link
+                                  href={`/services/${linkUrlCMS1}`}
+                                  className=""
+                                  onClick={handleToggleMenu}
+                                >
+                                  CMS
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkUrlCMS1}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Manage Digital Content
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href={`/services/${linkUrlCMS}`}
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Headless-CMS
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkUrlCMS}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Customized Headless-CMS
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href={`/services/${linkMob}`}
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Mobile App Development
+                                </Link>
+                                <p>
+                                  <Link href={`/services/${linkMob}`} onClick={handleToggleMenu}>
+                                    Transform Idea into Market Leading App
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href={`/services/${linkUrlSoft}`}
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Software Development
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkUrlSoft}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Web Development Solutions
+                                  </Link>
+                                </p>
+                              </li>
+                            </ul>
+
+                            <Link href="/services">
+                              <p
+                                className="flex gap-3 text-black hover:text-[#0a8ffc] hover:underline mt-4 mb-0"
+                                onClick={handleToggleMenu}
+                                style={{ fontWeight: "600", fontSize: "13px" }}
+
+                              >
+                                View all
+                                <CgArrowLongRight
+                                  style={{
+                                    color: "#5b9ed2",
+                                    marginTop: "-3px",
+                                    marginBottom: "-2px",
+                                    height: "22px",
+                                    width: "22px",
+                                  }}
+                                />
+                              </p>
+                            </Link>
+                          </div>
+                        </div>
+
+
+
+
+                      )}
+                    </li>
+
+
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/lifeatca" onClick={handleToggleMenu}>
+                        Life at CA
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/blogs" onClick={handleToggleMenu}>
+                        Blogs
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/career" onClick={handleToggleMenu}>
+                        Career
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/technologies" onClick={handleToggleMenu}>
+                        Technologies
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
-
-                
-          
-          
-        )}
-              </li>
-          
-
-              <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/lifeatca" onClick={handleToggleMenu}>
-              Life at CA
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/blogs" onClick={handleToggleMenu}>
-              Blogs
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/career" onClick={handleToggleMenu}>
-              Career
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/technologies" onClick={handleToggleMenu}>
-              Technologies
-            </Link>
-          </li>
-        </ul>
-      </div>
-    )}
-  </div>
-</div>
+              )}
+            </div>
+          </div>
 
         </div>
       </div>

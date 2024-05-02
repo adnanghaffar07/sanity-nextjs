@@ -185,22 +185,30 @@ body {
 
 .mega-box {
   position: fixed;
-  top: 68px;
-  left: 30%; 
-  width: calc(40% - 20px); 
+  top: 73px;
+  left: 27%;
+  width: calc(40% - 20px);
   max-width: calc(40% - 20px);
   background-color: #ffffff;
-  padding: 25px 20px 20px 20px; 
+  padding: 0px 0px 20px 0px;
   border-radius: 12px;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease; 
+ 
+ transition: all 0.3s ease;
+  box-shadow: #000;
 }
 
 .mega-box.visible {
   opacity: 1;
   visibility: visible;
-  top: calc(10% + 10px);
+  top: calc(8.5% + 10px);
+}
+
+.mega-menu:hover .mega-box,
+.mega-box:hover {
+  opacity: 1;
+  visibility: visible;
 }
 
 
@@ -222,7 +230,7 @@ body {
   display: block; 
 } */
 
-.mega-box::before {
+/* .mega-box::before {
   content: '';
   position: absolute;
   top: -15px;
@@ -231,15 +239,15 @@ body {
   border-width: 10px;
   border-style: solid;
   border-color: transparent transparent #ffffff transparent;
-} 
+}  */
 
 
-.mega-menu:hover .mega-box,
+/* .mega-menu:hover .mega-box,
 .mega-box:hover {
-  animation: showMegaMenu 0.5s forwards;
-}
+  animation: showMegaMenu 0.4s forwards;
+} */
 
-@keyframes showMegaMenu {
+/* @keyframes showMegaMenu {
   from {
     opacity: 0;
     visibility: hidden;
@@ -249,7 +257,7 @@ body {
     visibility: visible;
   }
 }
-
+ */
 
 .content {
   display: flex;
@@ -319,7 +327,7 @@ body {
 } */
 
 
-@media screen and (min-width: 2056px) and (max-width: 3056px) {
+/* @media screen and (min-width: 2056px) and (max-width: 3056px) {
   .mega-box::before {
     left: 32%; 
   }
@@ -338,4 +346,4 @@ body {
   .mega-box::before {
     left: 17%; 
   }
-}
+} */
