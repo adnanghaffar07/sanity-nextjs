@@ -5,6 +5,8 @@ import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
 import Image from "next/image";
+import type { Metadata } from "next";
+import Head from "next/head";
 
 
 async function getData(params: string) {
@@ -38,6 +40,8 @@ async function getSubData() {
 export default async function service({ params }: { params: { service: string } }) {
     const data = await getData(params.service);
     const dataSub = await getSubData();
+
+
 
      //  GENERAL SERVICES DATA
     const seoMetaData = {
@@ -151,6 +155,13 @@ export default async function service({ params }: { params: { service: string } 
 
 
     return (
+       
+       <>
+       <Head>
+        <title>{data.webSeoMetadata?.title}</title>
+        <meta name="description" content={data.webSeoMetadata?.description} />
+      </Head>
+
         <div className="bg-gray-100">
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
                 {data.heroImage && (
@@ -433,6 +444,6 @@ export default async function service({ params }: { params: { service: string } 
                 </div>
             </section>
         </div>
-
+        </>
     )
 }

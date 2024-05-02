@@ -16,9 +16,12 @@ export default function Home() {
           muted
           autoPlay
           loop
+          playsInline
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>
+
+
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[250px] lg:top-[220px] 2xl:top-[250px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
@@ -120,10 +123,10 @@ export default function Home() {
                   <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
                     Our Core Expertise
                   </div>
-                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
+                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                     <p>
-                      Scale up with the team of more than 70 dedicated software
-                      engineers who are perfectly time-zone matched with you and
+                      Scale up with the team of more than 70 dedicated <span className=" highlight  highlight-blue-300  highlight-variant-1  font-extrabold">software engineers</span>
+                      who are perfectly time-zone matched with you and
                       have knowledge across a diverse variety of more than 100
                       technologies. Whether you seek automation specialists or
                       expert mobile and web development professionals,
