@@ -212,23 +212,7 @@ export default function HomeNavigationContainer() {
                           </Link>
                         </p>
                       </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkMob}`}
-                          className="heading"
-                          onClick={hideMenu}
-                        >
-                          Mobile App evelopment
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkMob}`}
-                            onClick={hideMenu}
-                          >
-                            Transform Idea into Market Leading App{" "}
-                          </Link>
-                        </p>
-                      </li>
+              
                       <li>
                         <Link
                           href={`/services/${linkUrlSoft}`}
@@ -243,6 +227,23 @@ export default function HomeNavigationContainer() {
                             onClick={hideMenu}
                           >
                             Web Development Solutions
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlDigital}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Design Services
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkUrlDigital}`}
+                            onClick={hideMenu}
+                          >
+                            Boost your Online Presence
                           </Link>
                         </p>
                       </li>
@@ -277,7 +278,7 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          QA & Testing
+                          QA Testing & Automation
                         </Link>
                         <p>
                           {" "}
@@ -291,21 +292,22 @@ export default function HomeNavigationContainer() {
                       </li>
                       <li>
                         <Link
-                          href={`/services/${linkUrlDigital}`}
+                          href={`/services/${linkMob}`}
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Design Services
+                          Mobile App evelopment
                         </Link>
                         <p>
                           <Link
-                            href={`/services/${linkUrlDigital}`}
+                            href={`/services/${linkMob}`}
                             onClick={hideMenu}
                           >
-                            Boost your Online Presence
+                            Transform Idea into Market Leading App{" "}
                           </Link>
                         </p>
                       </li>
+                      
                       <li>
                         <Link
                           href={`/services/${linkAI}`}

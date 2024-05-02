@@ -183,10 +183,31 @@ body {
   font-weight: 400;
 }
 
-/* Mega Menu Styling */
 .mega-box {
   position: fixed;
-  top: 65px;
+  top: 68px;
+  left: 30%; 
+  width: calc(40% - 20px); 
+  max-width: calc(40% - 20px);
+  background-color: #ffffff;
+  padding: 25px 20px 20px 20px; 
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease; 
+}
+
+.mega-box.visible {
+  opacity: 1;
+  visibility: visible;
+  top: calc(10% + 10px);
+}
+
+
+/* Mega Menu Styling */
+/* .mega-box {
+  position: fixed;
+  top: 68px;
   left: 30%; 
   width: calc(40% - 20px); 
   max-width: calc(40% - 20px);
@@ -197,26 +218,37 @@ body {
   z-index: 1000;
 }
 
-/* .mega-menu:hover .mega-box,
-.mega-box:hover {
-  display: block;
-} */
-
 .mega-box.visible {
-  display: block; /* Show the mega menu when the "visible" class is added */
-}
+  display: block; 
+} */
 
 .mega-box::before {
   content: '';
   position: absolute;
-  top: -15px; /* Adjust as per your design */
-   left: 21%; 
+  top: -15px;
+  left: 21%; 
   transform: translateX(-50%);
   border-width: 10px;
   border-style: solid;
   border-color: transparent transparent #ffffff transparent;
 } 
 
+
+.mega-menu:hover .mega-box,
+.mega-box:hover {
+  animation: showMegaMenu 0.5s forwards;
+}
+
+@keyframes showMegaMenu {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 
 .content {
@@ -245,28 +277,9 @@ body {
   padding: 0;
 }
 
-.mega-links-mb {
-  list-style: none;
-  padding: 0;
-
-}
-
-
 .mega-links li {
   margin-bottom: 15px;
 }
-
-.mega-links-mb li {
-  margin-bottom: 13px;
-}
-.mega-links-mb li a {
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  font-size: 12px;
-    font-weight: 500;
-  transition: color 0.3s, transform 0.3s; /* Add smooth transition */
-}
-
 
 .mega-links li a {
   color: rgb(0, 0, 0);
@@ -275,12 +288,7 @@ body {
   font-weight: 500;
   transition: color 0.3s, transform 0.3s; /* Add smooth transition */
 }
-.mega-links-mb li p a{
-  font-size: 12px;
-  font-weight: 300;
-  color: rgb(141, 137, 137);
-  cursor: pointer;
-}
+
 .mega-links li p a{
   font-size: 12px;
   font-weight: 300;
