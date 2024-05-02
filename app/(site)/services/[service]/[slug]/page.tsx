@@ -27,7 +27,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     const data = await getData(params.slug);
     console.log('Sanity Data',data);
     
-    
 
 
     return (

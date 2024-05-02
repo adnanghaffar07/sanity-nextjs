@@ -19,7 +19,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('tailwindcss-highlights')
-  ],
+  plugins: [],
 };
