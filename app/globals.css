@@ -285,9 +285,28 @@ body {
   padding: 0;
 }
 
+.mega-links-mb {
+  list-style: none;
+  padding: 0;
+
+}
+
+
 .mega-links li {
   margin-bottom: 15px;
 }
+
+.mega-links-mb li {
+  margin-bottom: 13px;
+}
+.mega-links-mb li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 12px;
+    font-weight: 500;
+  transition: color 0.3s, transform 0.3s; /* Add smooth transition */
+}
+
 
 .mega-links li a {
   color: rgb(0, 0, 0);
@@ -296,7 +315,12 @@ body {
   font-weight: 500;
   transition: color 0.3s, transform 0.3s; /* Add smooth transition */
 }
-
+.mega-links-mb li p a{
+  font-size: 12px;
+  font-weight: 300;
+  color: rgb(141, 137, 137);
+  cursor: pointer;
+}
 .mega-links li p a{
   font-size: 12px;
   font-weight: 300;
@@ -320,12 +344,6 @@ body {
   color: #0a8ffc;
   transform: scale(1.1); 
 }
-/* .mega-links li .tech-text {
-  color: black;
-  font-size: 14px;
-  font-weight: 500;
-} */
-
 
 /* @media screen and (min-width: 2056px) and (max-width: 3056px) {
   .mega-box::before {
