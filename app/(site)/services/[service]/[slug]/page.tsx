@@ -76,7 +76,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 <h2 className="text-3xl font-bold mb-8">
                     {data.introductionSubSection?.introHeading}
                 </h2>
-                <p className="text-lg text-gray-800 leading-relaxed">
+                <p className="text-lg text-gray-800 leading-relaxed text-justify">
                     {data.introductionSubSection?.introDesc}
                 </p>
                 
