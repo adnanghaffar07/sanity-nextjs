@@ -275,58 +275,51 @@ export default function Home() {
             </div>
           </div>
         </ScrollAnimation>
-        <div className="flex relative flex-col justify-center items-start lg:px-10 md:px-5 w-full font-medium text-black py-8 max-md:px-5 max-md:mt-10 max-md:max-w-full">
-          <img
-            loading="lazy"
-            src="/ellipse-1.png"
-            className="lg:aspect-[1.22] absolute left-0 md:top-24 top-16 lg:block hidden"
-          />
-          <img
-            loading="lazy"
-            src="/ellipse-1.png"
-            className="lg:aspect-[1.22] absolute left-0 md:top-24 top-16 w-24 lg:hidden block"
-          />
-          <ScrollAnimation>
-            <div className="w-full max-w-[1582px] mx-auto md:flex">
-              <div className="flex flex-col md:w-7/12 w-full self-center">
-                <div className="xl:text-4xl lg:text-3xl text-3xl">
-                  Our Distinctive Way
-                </div>
-                <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 text-justify">
-                  Work with CodeAutomation, where collaboration, creativity, and
-                  precision intersect. Our unique approach to project execution
-                  blends cutting-edge technology with a human touch. Our
-                  specialized experts with top certifications aim to develop
-                  innovative options that assist companies in achieving growth
-                  goals in the digital era.
-                </div>
-                <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
-                  <Link
-                    href="/services"
-                    className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
-                  >
-                    <div className="relative grow self-center">
+        <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+          <div className="max-md:max-w-full lg:px-10 px-5 relative">
+            <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0 max-md:">
+              <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
+                <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
+                  <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
+                    Our Distinctive Way
+                  </div>
+                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
+                    <p>
+                      Work with CodeAutomation, where collaboration, creativity, and
+                      precision intersect. Our unique approach to project execution
+                      blends cutting-edge technology with a human touch. Our
+                      specialized experts with top certifications aim to develop
+                      innovative options that assist companies in achieving growth
+                      goals in the digital era.
+                    </p>
+                  </div>
+                  <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
+                    <Link
+                      href="/services"
+                      className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
+                    >
+                      <div className="relative grow self-center">
                       Explore Our Services
-                    </div>
-                    <img
-                      loading="lazy"
-                      src="/btn-arrow.svg"
-                      className="w-[22px] h-[26.8px]" // Adjust the width and height
-                    />
-                  </Link>
+                      </div>
+                      <img
+                        loading="lazy"
+                        src="/btn-arrow.svg"
+                        className="w-[22px] h-[26.8px]" // Adjust the width and height
+                      />
+                    </Link>
+                  </div>
                 </div>
               </div>
-
               <div className="md:w-5/12 w-full">
-                <img
-                  src="/img-our-distinctive-way.jpg"
-                  className="object-cover size-full"
-                />
-              </div>
+              <img
+                src="/img-our-distinctive-way.jpg"
+                className="object-cover size-full"
+              />
             </div>
-          </ScrollAnimation>
-        </div>
-        <div className="flex flex-col w-full max-w-[1582px] mx-auto pb-32">
+            </div>
+          </div>
+
+
           <ScrollAnimation>
             <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 lg:px-10 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full">
               <div className="flex flex-col  max-md:ml-0 max-md:w-full">
