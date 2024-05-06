@@ -32,14 +32,29 @@ async function getSubData() {
     }
 }
 
+async function getLogoData() {
+    const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+    ;
+    try {
+        const fetchData = await client.fetch(queryLogo);
+        return fetchData || [];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+}
+
+
 
 
 
 export default async function service({ params }: { params: { service: string } }) {
     const data = await getData(params.service);
     const dataSub = await getSubData();
+    const dataLogo = await getLogoData();
 
-    
+
+
 
 
     return (
@@ -148,9 +163,18 @@ export default async function service({ params }: { params: { service: string } 
                             <div key={toolIndex}>
                                 <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center h-full">
                                     <div className="flex flex-wrap justify-center gap-1">
-                                        {tool.images && tool.images.map((image: any, imageIndex: any) => (
-                                            <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
-                                        ))}
+                                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                                            if (logoData) {
+                                                return (
+                                                    <div key={logoIndex} className="">
+                                                        <img src={urlForImage(logoData.image).toString()} alt={logoData.heading} className="h-8 object-cover mb-2" />
+                                                    </div>
+                                                );
+                                            } else {
+                                                return null;
+                                            }
+                                        })}
                                     </div>
                                     <h3 className="text-xl text-center font-semibold mb-4">
                                         {tool.heading}
@@ -162,9 +186,9 @@ export default async function service({ params }: { params: { service: string } 
                             </div>
                         ))}
                     </div>
-
                 </div>
             </section>
+
 
             {/* Example Value of Service (Use Cases) Section */}
             <section className="bg-white px-6 md:px-16 py-10 md:py-16">
