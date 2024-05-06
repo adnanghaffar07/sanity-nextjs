@@ -169,7 +169,6 @@ body {
 
 .nav-links {
   list-style: none;
-  display: flex;
 }
 
 .nav-links li {
