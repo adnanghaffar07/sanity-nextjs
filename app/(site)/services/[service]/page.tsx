@@ -32,14 +32,29 @@ async function getSubData() {
     }
 }
 
+async function getLogoData() {
+    const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+    ;
+    try {
+        const fetchData = await client.fetch(queryLogo);
+        return fetchData || [];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+}
+
+
 
 
 
 export default async function service({ params }: { params: { service: string } }) {
     const data = await getData(params.service);
     const dataSub = await getSubData();
+    const dataLogo = await getLogoData();
 
-    
+
+
 
 
     return (
@@ -146,11 +161,20 @@ export default async function service({ params }: { params: { service: string } 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center" style={{ height: '220px' }}>
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center h-full">
                                     <div className="flex flex-wrap justify-center gap-1">
-                                        {tool.images && tool.images.map((image: any, imageIndex: any) => (
-                                            <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
-                                        ))}
+                                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                                            if (logoData) {
+                                                return (
+                                                    <div key={logoIndex} className="">
+                                                        <img src={urlForImage(logoData.image).toString()} alt={logoData.heading} className="h-8 object-cover mb-2" />
+                                                    </div>
+                                                );
+                                            } else {
+                                                return null;
+                                            }
+                                        })}
                                     </div>
                                     <h3 className="text-xl text-center font-semibold mb-4">
                                         {tool.heading}
@@ -162,27 +186,27 @@ export default async function service({ params }: { params: { service: string } 
                             </div>
                         ))}
                     </div>
-
                 </div>
             </section>
 
+
             {/* Example Value of Service (Use Cases) Section */}
             <section className="bg-white px-6 md:px-16 py-10 md:py-16">
-                <div className="container mx-auto" >
+                <div className="container mx-auto"  >
                     <h2 className="text-3xl font-bold mb-8">
                         {data.exampleServicesSection?.exampleServiceHeading}</h2>
                     <p className="text-xl font-light mb-8">
                         {data.exampleServicesSection?.exampleServicedesc}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" >
                         {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
                             <div
                                 key={exampleIndex}
                             >
-                                <div className="bg-gray-100 shadow-md p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4">
+                                <div className="bg-gray-100 shadow-md p-6 rounded-lg h-full">
+                                    <h3 className="text-xl text-center font-semibold mb-4">
                                         {example.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {example.detail}
                                     </p>
                                 </div>
