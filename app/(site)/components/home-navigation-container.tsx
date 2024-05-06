@@ -65,7 +65,7 @@ export default function HomeNavigationContainer() {
 
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event:any) => {
       if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
         setOpen(false);
       }
@@ -274,7 +274,7 @@ export default function HomeNavigationContainer() {
                           </p>
                         </div>
                       </Link>
-                      <Link class="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-white duration-200 bg-gray-900 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" href="#_" role="button">
+                      <Link className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-white duration-200 bg-gray-900 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" href="#_" role="button">
                         Contact Us
                       </Link>
                     </div>

@@ -161,14 +161,14 @@ export default async function service({ params }: { params: { service: string } 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center" style={{ height: '220px' }}>
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center" style={{ height: '240px' }}>
                                     <div className="flex flex-wrap justify-center gap-1">
                                         {tool.images?.map((logoRef: any, logoIndex: any) => {
                                             const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                                             if (logoData) {
                                                 return (
                                                     <div key={logoIndex} className="">
-                                                        <img src={urlForImage(logoData.image).toString()} alt={logoData.heading} className="w-9 h-9 object-cover mb-2" />
+                                                        <img src={urlForImage(logoData.image).toString()} alt={logoData.heading} className="h-8 object-cover mb-2" />
                                                     </div>
                                                 );
                                             } else {
