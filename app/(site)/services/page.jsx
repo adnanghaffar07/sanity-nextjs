@@ -91,9 +91,8 @@ const Services = async () => {
       {/* Services Card */}
       <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-[40px] sm:gap-[80px] 2xl:gap-[120px] max-w-[1440px] my-12 sm:my-40 mx-auto">
         {data.map((service) => (
-          <ScrollAnimation>
+          <ScrollAnimation key={service._id}>
             <Link
-              key={service._id}
               href={`/services/${service.urlPath}`}
               className="flex flex-col relative w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]"
             >
