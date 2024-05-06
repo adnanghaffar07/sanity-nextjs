@@ -39,6 +39,9 @@ export default async function service({ params }: { params: { service: string } 
     const data = await getData(params.service);
     const dataSub = await getSubData();
 
+    
+
+
     return (
         <div className="bg-gray-100">
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
@@ -143,7 +146,7 @@ export default async function service({ params }: { params: { service: string } 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center" style={{ height: '220px' }}> 
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center" style={{ height: '220px' }}>
                                     <div className="flex flex-wrap justify-center gap-1">
                                         {tool.images && tool.images.map((image: any, imageIndex: any) => (
                                             <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />

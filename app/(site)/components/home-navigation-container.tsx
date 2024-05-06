@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useRef } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import Image from "next/image";
 
 const imageFigma = "/figma.png";
 const imageIOS = "/ios.png";
@@ -25,38 +26,12 @@ const linkUrlDigital = "/design-services";
 const linkMob = "/mobile-app-development";
 const linkRobotic = "/rpa-services";
 
-const navItems = [
-  {
-    path: "/",
-    name: "Home",
-  },
-  {
-    path: "/services",
-    name: "Services",
-  },
-  {
-    path: "/lifeatca",
-    name: "Life at CA",
-  },
-  {
-    path: "/blogs",
-    name: "Blogs",
-  },
-  {
-    path: "/career",
-    name: "Career",
-  },
-  {
-    path: "/technologies",
-    name: "Technologies",
-  },
-];
 
 export default function HomeNavigationContainer() {
   const currentPath = usePathname();
   let pathname = usePathname() || "/";
   const [menuIcon, setIcon] = useState(false);
-  
+
   const handleToggleMenu = () => {
     setIcon(!menuIcon);
   };
@@ -65,29 +40,71 @@ export default function HomeNavigationContainer() {
   };
 
   const [menuVisible, setMenuVisible] = useState(false);
-  const [mouseInsideMenu, setMouseInsideMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null); // Specify the type of ref
+  const [aboutVisible, setAboutVisible] = useState(false);
 
-  // Function to hide the mega menu when a link is clicked
+  const menuRef = useRef<HTMLDivElement>(null); // Ref for Services mega menu
+  const aboutRef = useRef<HTMLDivElement>(null);
+
   const hideMenu = () => {
     setMenuVisible(false);
+    // setAboutVisible(false);
   };
 
-  // Function to show the mega menu on hover
   const showMenu = () => {
     setMenuVisible(true);
+    // setAboutVisible(false); // Ensure About Us mega menu is hidden when Services mega menu is shown
+  };
+
+  const aboutShow = () => {
+    setAboutVisible(true);
+    setMenuVisible(false); // Ensure Services mega menu is hidden when About Us mega menu is shown
+  };
+
+  const aboutHide = () => {
+    setAboutVisible(false);
   };
 
 
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
+    setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+
   };
 
   const [menuOpen, setMenuOpen] = useState(true);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuVisible((prevMenuVisible) => !prevMenuVisible);
   };
+
+
+
+  //////////////////// 
+
+  const [barVisible, setBarVisible] = useState({
+    services: false,
+    about: false,
+  });
+
+  const showBar = (menu: any) => {
+    setBarVisible({ ...barVisible, [menu]: true });
+  };
+
+  const hideBar = (menu: any) => {
+    setBarVisible({ ...barVisible, [menu]: false });
+    setTimeout(() => {
+      setMenuVisible(false);
+      setAboutVisible(false);
+    }, 1000);
+  };
+
+
+
+
+
+
+
+
 
   // const handleMouseEnter = () => {
   //   setMouseInsideMenu(true);
@@ -105,7 +122,7 @@ export default function HomeNavigationContainer() {
     }
   };
 
- 
+
 
 
   return (
@@ -138,11 +155,10 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Home
                 </span>
@@ -151,39 +167,60 @@ export default function HomeNavigationContainer() {
             <li className="mega-menu relative">
               <Link
                 href="javascript:void(0)"
-                onMouseEnter={showMenu}
-                onMouseLeave={handleMouseLeave}
               >
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={` ${barVisible.services ? "text-black" : "text-white"}`}
+                  onMouseEnter={() => showBar("services")}
+                  onMouseLeave={() => hideBar("services")}
+                ></span>
+                <span
+                  className={`  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Services
+                  <svg
+                    className={`w-4 h-4 inline-block ml-1 transform ${barVisible.services ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={4}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </span>
               </Link>
               <div
-                ref={menuRef}
-                className={`mega-box ${menuVisible ? "visible" : ""}`}
-                onMouseLeave={handleMouseLeave}
+
+                className={`mega-box ${barVisible.services ? "visible" : ""}`}
+
               >
+                <div className="border-b border-gray-200 border-opacity-50 py-3">
+                  <span className="px-4" style={{ fontWeight: "500", fontSize: "17px" }}>Services</span></div>
+
                 <div
-                  className={`content ${
-                    currentPath.startsWith("/case-study/")
-                      ? "bg-gray-200 p-4 rounded-md"
-                      : ""
-                  }`}
+                  className={`content ${currentPath.startsWith("/case-study/")
+                    ? " p-4 rounded-md"
+                    : ""
+                    }`}
                 >
-                  <div>
+
+                  <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
+
                         <Link
                           href={`/services/${linkUrlCMS1}`}
                           className="heading"
                           onClick={hideMenu}
                         >
+
                           CMS
                         </Link>
                         <p>
@@ -212,23 +249,7 @@ export default function HomeNavigationContainer() {
                           </Link>
                         </p>
                       </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkMob}`}
-                          className="heading"
-                          onClick={hideMenu}
-                        >
-                          Mobile App evelopment
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkMob}`}
-                            onClick={hideMenu}
-                          >
-                            Transform Idea into Market Leading App{" "}
-                          </Link>
-                        </p>
-                      </li>
+
                       <li>
                         <Link
                           href={`/services/${linkUrlSoft}`}
@@ -243,6 +264,23 @@ export default function HomeNavigationContainer() {
                             onClick={hideMenu}
                           >
                             Web Development Solutions
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlDigital}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Design Services
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkUrlDigital}`}
+                            onClick={hideMenu}
+                          >
+                            Boost your Online Presence
                           </Link>
                         </p>
                       </li>
@@ -269,7 +307,7 @@ export default function HomeNavigationContainer() {
 
                   </div>
 
-                  <div>
+                  <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
                         <Link
@@ -277,7 +315,7 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          QA & Testing
+                          QA Testing & Automation
                         </Link>
                         <p>
                           {" "}
@@ -291,21 +329,22 @@ export default function HomeNavigationContainer() {
                       </li>
                       <li>
                         <Link
-                          href={`/services/${linkUrlDigital}`}
+                          href={`/services/${linkMob}`}
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Design Services
+                          Mobile App evelopment
                         </Link>
                         <p>
                           <Link
-                            href={`/services/${linkUrlDigital}`}
+                            href={`/services/${linkMob}`}
                             onClick={hideMenu}
                           >
-                            Boost your Online Presence
+                            Transform Idea into Market Leading App{" "}
                           </Link>
                         </p>
                       </li>
+
                       <li>
                         <Link
                           href={`/services/${linkAI}`}
@@ -342,27 +381,169 @@ export default function HomeNavigationContainer() {
                 </div>
               </div>
             </li>
-            <li>
-              <Link href="/lifeatca">
-                <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+            <li className="mega-menu relative">
+
+
+              <Link href="javascript:void(0)"
+              > <span
+              className={` ${barVisible.about ? "text-black" : "text-white"}`}
+              onMouseEnter={() => showBar("about")}
+              onMouseLeave={() => hideBar("about")}
+            ></span>
+            <span
+              className={`  ${currentPath.startsWith("/case-study/")
+                ? "text-black"
+                : "text-white"
+                }`}
+            >
+              About Us
+              <svg
+                className={`w-4 h-4 inline-block ml-1 transform ${barVisible.about ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={4}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </span>
+          </Link>
+              <div
+
+                className={`mega-box ${barVisible.about ? "visible" : ""}`}
+              >
+                <div className="border-b border-gray-200 border-opacity-50 py-3">
+                  <span className="px-4" style={{ fontWeight: "500", fontSize: "17px" }}>About Company</span></div>
+
+                <div
+                  className={`content ${currentPath.startsWith("/case-study/")
+                    ? "p-4 rounded-md"
+                    : ""
+                    }`}
                 >
-                  Life at CA
-                </span>
-              </Link>
+
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+
+                        <Link
+                          href="/case-study"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+
+                          Case-Studies
+                        </Link>
+                        <p>
+                          <Link
+                            href="/case-study"
+                            onClick={hideMenu}
+                          >
+                            Success Stories                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/blogs"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Blogs                        </Link>
+                        <p>
+                          <Link
+                            href="/blogs"
+                            onClick={hideMenu}
+                          >
+                            Tech Insights                          </Link>
+                        </p>
+                      </li>
+
+                      <li>
+                        <Link
+                          href="/career"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Careers                        </Link>
+                        <p>
+                          <Link
+                            href="/career"
+                            onClick={hideMenu}
+                          >
+                            Join Our Team                          </Link>
+                        </p>
+                      </li>
+
+                    </ul>
+                  </div>
+
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+                        <Link
+                          href="/"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Brochure Downloads                        </Link>
+                        <p>
+                          {" "}
+                          <Link
+                            href="/"
+                            onClick={hideMenu}
+                          >
+                            Resources
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          News                        </Link>
+                        <p>
+                          <Link
+                            href="/"
+                            onClick={hideMenu}
+                          >
+                            Latest Updates                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/lifeatca"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Life at CA                        </Link>
+                        <p>
+                          <Link
+                            href="/lifeatca"
+                            onClick={hideMenu}
+                          >
+
+                            Employee Experiences                          </Link>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </li>
             <li>
               <Link href="/blogs">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Blogs
                 </span>
@@ -371,11 +552,10 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/career">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Career
                 </span>
@@ -384,11 +564,10 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Technologies
                 </span>
@@ -410,8 +589,8 @@ export default function HomeNavigationContainer() {
             </div>
           </a>
 
-          {/* mobile view */}
-          <div
+         {/* mobile view */}
+         <div
   className={
     menuIcon
       ? "xl:hidden absolute top-0 right-0 bottom-0 left-[-100%]  w-full h-screen bg-white ease-in duration-300"
