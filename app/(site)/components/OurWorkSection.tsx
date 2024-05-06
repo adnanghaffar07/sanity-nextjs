@@ -52,30 +52,7 @@ const OurWorkSection = () =>
 
   
 
-  // function ShowPreviousContainers(endVal:number)
-  // {  
-   
-  //   if(recentArray[recentArray.length-1] != null)
-  //     {
-          
-  //         const lastIndex = endVal;
-  //         const startIndex = endVal-3;
-     
-  //         setStartIndex(lastIndex);
-  //         setEndIndex(startIndex);
-        
-  //       if(startIndex <= recentArray.length && startIndex >= 0 )
-  //        {
-  //          const filterArray = recentArray.filter((item,index)=>
-  //          { 
-  //            return   index >= startIndex && index < lastIndex;
-  //          })  
-  //          console.log(filterArray)
-  //          setRecentArray(filterArray);
-  //        }
-          
-  //     } 
-  //  }
+  
 
   useEffect(()=>{
     async function getData() {
@@ -207,7 +184,7 @@ const OurWorkSection = () =>
         </div>
 
         <div className="flex gap-4 px-5 my-auto order-1 md:order-2 justify-end">
-          <div  onClick={()=>ShowPreviousContainers(endIndex)} className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
+          <div  className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
           <div onClick={()=>ShowNextContainers(endIndex)} className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
           <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
         </div>
