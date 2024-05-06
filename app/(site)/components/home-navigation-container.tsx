@@ -79,7 +79,7 @@ export default function HomeNavigationContainer() {
 
 
 
-  ////////////////////
+  //////////////////// 
 
   const [barVisible, setBarVisible] = useState({
     services: false,
@@ -206,7 +206,7 @@ export default function HomeNavigationContainer() {
 
                 <div
                   className={`content ${currentPath.startsWith("/case-study/")
-                    ? "bg-gray-200 p-4 rounded-md"
+                    ? " p-4 rounded-md"
                     : ""
                     }`}
                 >
@@ -385,35 +385,34 @@ export default function HomeNavigationContainer() {
 
 
               <Link href="javascript:void(0)"
-              ><span
-                className={` ${barVisible.about ? "visible" : ""}`}
-                onMouseEnter={() => showBar("about")}
-                onMouseLeave={() => hideBar("about")}
+              > <span
+              className={` ${barVisible.about ? "text-black" : "text-white"}`}
+              onMouseEnter={() => showBar("about")}
+              onMouseLeave={() => hideBar("about")}
+            ></span>
+            <span
+              className={`  ${currentPath.startsWith("/case-study/")
+                ? "text-black"
+                : "text-white"
+                }`}
+            >
+              About Us
+              <svg
+                className={`w-4 h-4 inline-block ml-1 transform ${barVisible.about ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                  <span
-                    className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                      }`}
-                  >
-                  </span>
-                  About Us
-                </span>
-                <svg
-                  className={`w-4 h-4 inline-block ml-1 transform ${aboutVisible ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={4}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </Link>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={4}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </span>
+          </Link>
               <div
 
                 className={`mega-box ${barVisible.about ? "visible" : ""}`}
@@ -423,7 +422,7 @@ export default function HomeNavigationContainer() {
 
                 <div
                   className={`content ${currentPath.startsWith("/case-study/")
-                    ? "bg-gray-200 p-4 rounded-md"
+                    ? "p-4 rounded-md"
                     : ""
                     }`}
                 >
