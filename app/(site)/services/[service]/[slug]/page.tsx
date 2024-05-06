@@ -106,10 +106,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                                             <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
                                         ))}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4">
+                                    <h3 className="text-xl text-center font-semibold mb-4">
                                         {tool.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {tool.detail}
                                     </p>
                                 </div>
@@ -133,10 +133,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                                 key={exampleIndex}
                             >
                                 <div className="bg-gray-100 shadow-md p-6 rounded-lg h-full">
-                                    <h3 className="text-xl font-semibold mb-4">
+                                    <h3 className="text-xl font-semibold mb-4 text-center">
                                         {example.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {example.detail}
                                     </p>
                                 </div>
