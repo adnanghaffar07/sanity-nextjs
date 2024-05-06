@@ -321,7 +321,7 @@ export default function Home() {
 
 
           <ScrollAnimation>
-            <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 lg:px-10 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full">
+            <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 lg:px-10 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full mb-40">
               <div className="flex flex-col  max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col grow px-5 pb-6 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
                   <div className="flex z-10 gap-5 justify-between items-start mt-0">
