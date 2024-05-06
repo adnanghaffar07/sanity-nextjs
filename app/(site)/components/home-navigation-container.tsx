@@ -406,7 +406,7 @@ export default function HomeNavigationContainer() {
               className="aspect-[0.97] w-[27px]"
             />
             <div className="my-auto text-nowrap text-white">
-              Let&rsquo;s Skype
+              Let's talk:+1-850-558-4691 
             </div>
           </a>
 
