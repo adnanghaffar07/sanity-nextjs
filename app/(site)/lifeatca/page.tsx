@@ -58,17 +58,21 @@ const LifeAtCA = () => {
     { src: "/image6.png", alt: "Image 6" },
     { src: "/image7.png", alt: "Image 7" },
     { src: "/image8.png", alt: "Image 8" },
-    { src: "/image9.png", alt: "Image 9" },
+    // { src: "/image9.png", alt: "Image 9" },
+    { src: "/img23.jpg", alt: "Image 19" },
+
     { src: "/image10.png", alt: "Image 10" },
     { src: "/image11.png", alt: "Image 11" },
     { src: "/image12.png", alt: "Image 12" },
     { src: "/image13.png", alt: "Image 13" },
     { src: "/image14.png", alt: "Image 14" },
-    { src: "/image15.png", alt: "Image 15" },
+    { src: "/image15.jpg", alt: "Image 15" },
     { src: "/image16.png", alt: "Image 16" },
     { src: "/image17.png", alt: "Image 17" },
     { src: "/image18.png", alt: "Image 18" },
     { src: "/image19.png", alt: "Image 19" },
+
+    { src: "/img23.jfif", alt: "Image 19" },
   ];
 
   return (
@@ -116,11 +120,11 @@ const LifeAtCA = () => {
           CodeAutomation is not just a workplace; it&apos;s a community. We foster a
           culture of collaboration, innovation, and inclusivity.        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
-          <Image
-            src="ca-pic.png"
-            alt=""
-            className="w-full"
-          />
+        <Image
+                src="ca-pic.jpg"
+                alt=""
+                className="w-full"
+              />
         </section>
         <p className="self-center mt-14 text-xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
           We know that building strong relationships within the team is essential.
