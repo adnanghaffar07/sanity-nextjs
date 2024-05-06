@@ -62,7 +62,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
     <div className="container mx-auto flex flex-wrap items-center justify-center">
         {data.introductionSubSection?.introImage ? (
-            <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+            <div className="w-full  md:relative md:right-[20px] md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
                 <Image
                     src={urlForImage(data.introductionSubSection?.introImage).toString()}
                     alt={data.introductionSubSection?.introImage.alt || ""}
@@ -100,16 +100,16 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSubSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center">
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center h-full">
                                     <div className="flex flex-wrap justify-center gap-1">
                                         {tool.images && tool.images.map((image: any, imageIndex: any) => (
                                             <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
                                         ))}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4">
+                                    <h3 className="text-xl text-center font-semibold mb-4">
                                         {tool.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {tool.detail}
                                     </p>
                                 </div>
@@ -132,11 +132,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                             <div
                                 key={exampleIndex}
                             >
-                                <div className="bg-gray-100 shadow-md p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4">
+                                <div className="bg-gray-100 shadow-md p-6 rounded-lg h-full">
+                                    <h3 className="text-xl font-semibold mb-4 text-center">
                                         {example.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {example.detail}
                                     </p>
                                 </div>
