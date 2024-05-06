@@ -1,6 +1,11 @@
+"use client";
+
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 async function getData() {
   const query = `*[_type == 'testimonial'] | order(_updatedAt desc)`;
@@ -12,53 +17,81 @@ async function getData() {
     return [];
   }
 }
-const Testimonials = async () => {
-  const data = await getData();
+
+const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getData();
+      setTestimonials(data);
+    }
+    fetchData();
+  }, []);
+
+  const groupedTestimonials = [];
+  for (let i = 0; i < testimonials.length; i += 2) {
+    groupedTestimonials.push(testimonials.slice(i, i + 2));
+  }
+
+  const settings = {
+    fade: true,
+    infinite: true,
+    speed: 3000,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    waitForAnimate: false,
+    arrows: false,
+  };
 
   return (
-    <div className="grid lg:grid-cols-2 grid-cols-1 gap-32">
-      {data &&
-        data.map((testimonial: any) => {
-          const imageUrl = urlForImage(testimonial.image.asset);
-          return (
-            <div
-              className="flex flex-col ml-5 max-md:ml-0 max-md:w-full relative min-h-[255px] sm:min-w-[381px] min-w-full"
-              key={testimonial._id}
-            >
-              <div className="flex flex-col grow pt-7 md:pr-20 px-10 w-full rounded-2xl backdrop-blur-[6.5px] bg-[#1D92FB] max-md:max-w-full">
-                <p className="self-end text-xl sm:text-3xl font-medium text-white">
-                  Clients Speaking
-                </p>
-                <div className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 max-md:max-w-full absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-10 md:h-[260px]">
-                  <div className="text-[12px] sm:text-sm leading-5 text-justify text-black">
-                    {testimonial.content}
-                  </div>
-                  <div className="flex gap-3 justify-between mt-4 max-md:mr-1">
-                    <div className="flex justify-center items-center px-1 rounded-xl aspect-square w-[68px] h-[68px] bg-[#00000033]">
-                      <img
-                        loading="lazy"
-                        src={imageUrl}
-                        alt={testimonial.image.alt}
-                        className="aspect-square rounded-full w-[62px] h-[62px]"
-                      />
+    <Slider {...settings}>
+      {groupedTestimonials.map((pair, index) => (
+        <div key={index}>
+          <div className="flex flex-col lg:flex-row justify-center items-center gap-48 sm:gap-40 pb-36 lg:pb-0 lg:gap-16 w-full mt-10 lg:mt-0 h-[780px] sm:h-[740px] lg:h-[420px]">
+            {pair.map((testimonial: any, i) => (
+              <div
+                className="flex flex-col ml-5 max-md:ml-0 relative min-h-[255px] sm:min-h-[255px] sm:min-w-[381px]"
+                key={testimonial._id}
+              >
+                <div className="flex flex-col grow pt-7 md:pr-20 px-10 rounded-2xl backdrop-blur-[6.5px] bg-[#1D92FB] w-fit">
+                  <p className="self-end text-xl sm:text-3xl font-medium text-white">
+                    Clients Speaking
+                  </p>
+                  <div className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-4 md:h-[270px]">
+                    <div className="text-[12px] sm:text-sm leading-5 text-justify text-black">
+                      {testimonial.content}
                     </div>
-                    <div className="flex flex-col flex-1 self-start mt-3 text-sky-950">
-                      {testimonial.name && (
-                        <div className="text-xl sm:text-3xl font-medium whitespace-nowrap">
-                          {testimonial.name}
+                    <div className="flex gap-3 justify-between mt-4 max-md:mr-1">
+                      <div className="flex justify-center items-center px-1 rounded-xl aspect-square w-[68px] h-[68px] bg-[#00000033]">
+                        <img
+                          loading="lazy"
+                          src={urlForImage(testimonial.image.asset)}
+                          alt={testimonial.image.alt}
+                          className="aspect-square rounded-full w-[62px] h-[62px]"
+                        />
+                      </div>
+                      <div className="flex flex-col flex-1 self-start mt-3 text-sky-950">
+                        {testimonial.name && (
+                          <div className="text-xl sm:text-2xl lg:text-3xl font-medium">
+                            {testimonial.name}
+                          </div>
+                        )}
+                        <div className="text-sm sm:text-base lg:text-lg font-light leading-6">
+                          {testimonial.designation}
                         </div>
-                      )}
-                      <div className="text-sm sm:text-lg font-light leading-6">
-                        {testimonial.designation}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-    </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </Slider>
   );
 };
 
