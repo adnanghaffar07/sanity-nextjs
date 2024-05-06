@@ -44,11 +44,11 @@ const LifeAtCA = () => {
     alt: string;
     className?: string;
   }
-  
+
   const Image: React.FC<ImageProps> = ({ src, alt, className }) => (
     <img loading="lazy" src={src} alt={alt} className={className} />
   );
-  
+
   const images = [
     { src: "/image1.png", alt: "Image 1" },
     { src: "/image2.png", alt: "Image 2" },
@@ -74,7 +74,7 @@ const LifeAtCA = () => {
 
     { src: "/img23.jfif", alt: "Image 19" },
   ];
-  
+
   return (
     <div>
 
@@ -84,10 +84,10 @@ const LifeAtCA = () => {
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[350px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
-            &quot;Life at CA&quot;
+              &quot;Life at CA&quot;
             </div>
             <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-           We offer a diverse blend of cultures and endless recreational opportunities, epitomizing innovation, diversity, and boundless possibilities.              </div>
+              We offer a diverse blend of cultures and endless recreational opportunities, epitomizing innovation, diversity, and boundless possibilities.              </div>
           </div>
         </div>
       </div>
@@ -116,7 +116,7 @@ const LifeAtCA = () => {
 
 
       <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
-      <p className="self-center text-xl text-center text-black">
+        <p className="self-center text-xl text-center text-black">
           CodeAutomation is not just a workplace; it&apos;s a community. We foster a
           culture of collaboration, innovation, and inclusivity.        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
@@ -180,7 +180,7 @@ const LifeAtCA = () => {
           </div>
         </section>
         <p className="mt-10 text-xl leading-7 text-center text-black max-md:mt-14 max-md:mr-2 max-md:max-w-full">
-        We know that building strong relationships within the team is essential.
+          We know that building strong relationships within the team is essential.
           That&apos;s why we organize regular team-building activities, events, and
           outings. From hackathons to charity drives, we find ways to bond while
           making a positive impact on the community.
