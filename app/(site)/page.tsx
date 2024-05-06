@@ -18,6 +18,7 @@ export default function Home() {
           autoPlay
           loop
           playsInline
+          playsInline
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>

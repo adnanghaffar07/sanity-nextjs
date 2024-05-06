@@ -179,10 +179,10 @@ export default async function service({ params }: { params: { service: string } 
                                 key={exampleIndex}
                             >
                                 <div className="bg-gray-100 shadow-md p-6 rounded-lg ">
-                                    <h3 className="text-center text-xl font-semibold mb-4">
+                                    <h3 className="text-xl font-semibold mb-4">
                                         {example.heading}
                                     </h3>
-                                    <p className="text-gray-700 text-center">
+                                    <p className="text-gray-700">
                                         {example.detail}
                                     </p>
                                 </div>
