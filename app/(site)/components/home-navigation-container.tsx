@@ -6,6 +6,7 @@ import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 
+
 const imageFigma = "/figma.png";
 const imageIOS = "/ios.png";
 const imageNum = "/numpy.png";
@@ -576,16 +577,20 @@ export default function HomeNavigationContainer() {
           </ul>
 
           <a
-            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5"
-            href="https://join.skype.com/invite/crU4cXW4bttb"
+            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl  bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
+            href='tel:+1-850-558-4691'
           >
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/fac08cad98e0659b7b1fba8569319dcbc8cff9340fcddf511cabd61603becea7?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
-              className="aspect-[0.97] w-[27px]"
-            />
-            <div className="my-auto text-nowrap text-white">
-              Let&apos;s talk:+1-850-558-4691 
+           
+           <Image
+            src='/phone-icon.png'
+            alt='Phone-Icon'
+            width={30}
+            height={30}
+           >
+           </Image>
+            
+            <div className="my-auto text-nowrap text-black">
+              Let&apos;s talk
             </div>
           </a>
 

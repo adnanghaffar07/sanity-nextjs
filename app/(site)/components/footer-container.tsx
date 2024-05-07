@@ -2,6 +2,7 @@
 import { getCpyrighttext } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 
 
@@ -24,6 +25,12 @@ export default function FooterContainer() {
     
    }
 
+   const currentPath = usePathname();
+
+   useEffect(()=>
+   { 
+      setAddress(true);
+   },[currentPath])
 
 
   const socialIcons = [
