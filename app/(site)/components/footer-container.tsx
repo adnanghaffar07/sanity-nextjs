@@ -2,6 +2,7 @@
 import { getCpyrighttext } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 
 
@@ -24,6 +25,12 @@ export default function FooterContainer() {
     
    }
 
+   const currentPath = usePathname();
+
+   useEffect(()=>
+   { 
+      setAddress(true);
+   },[currentPath])
 
 
   const socialIcons = [
@@ -87,14 +94,14 @@ export default function FooterContainer() {
                     href="tel:+18505584691"
                     className="hover:underline my-auto inline-block"
                   >
-                    +1-850-558-4691
+                    1 850 558 4691
                   </a>
                   <br />
                   <a
                     href="tel:+13076556139"
                     className="hover:underline my-auto inline-block"
                   >
-                    +1-307-655-6139
+                    1 307 655 6139
                   </a>
                 </div>
               </div>
