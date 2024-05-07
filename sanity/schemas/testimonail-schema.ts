@@ -13,7 +13,7 @@ const testimonial = {
       title: "Designation",
       type: "string",
     },
-   
+
     {
       name: "image",
       title: "Image",
@@ -27,10 +27,15 @@ const testimonial = {
         },
       ],
     },
-    
+
     {
       name: "content",
       title: "Content",
+      type: "string",
+    },
+    {
+      name: "link",
+      title: "Link",
       type: "string",
     },
   ],

@@ -26,7 +26,6 @@ const linkUrlDigital = "/design-services";
 const linkMob = "/mobile-app-development";
 const linkRobotic = "/rpa-services";
 
-
 export default function HomeNavigationContainer() {
   const currentPath = usePathname();
   let pathname = usePathname() || "/";
@@ -64,11 +63,9 @@ export default function HomeNavigationContainer() {
     setAboutVisible(false);
   };
 
-
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
     setAboutVisible((prevMenuVisible) => !prevMenuVisible);
-
   };
 
   const [menuOpen, setMenuOpen] = useState(true);
@@ -77,9 +74,7 @@ export default function HomeNavigationContainer() {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
   };
 
-
-
-  //////////////////// 
+  ////////////////////
 
   const [barVisible, setBarVisible] = useState({
     services: false,
@@ -98,14 +93,6 @@ export default function HomeNavigationContainer() {
     }, 1000);
   };
 
-
-
-
-
-
-
-
-
   // const handleMouseEnter = () => {
   //   setMouseInsideMenu(true);
   // };
@@ -121,9 +108,6 @@ export default function HomeNavigationContainer() {
       hideMenu();
     }
   };
-
-
-
 
   return (
     <nav className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
@@ -142,12 +126,18 @@ export default function HomeNavigationContainer() {
           className="w-1/12 xl:hidden items-center flex justify-end"
           onClick={handleSmallerScreenNavigation}
           style={{ zIndex: 1000 }} // Added z-index
-
         >
           {menuIcon ? (
             <AiOutlineClose size={23} className="text-gray-800" />
           ) : (
-            <AiOutlineMenu size={23} className="text-white" />
+            <AiOutlineMenu
+              size={23}
+              className={`hover:underline  ${
+                currentPath.startsWith("/case-study/")
+                  ? "text-gray-800"
+                  : "text-white"
+              }`}
+            />
           )}
         </div>
         <div className="xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transform translate-x-full xl:transform-none fixed top-0 left-0 h-full transition delay-75 ease-in-out w-full bg-white xl:bg-transparent xl:static js-navigation justify-end">
@@ -155,33 +145,37 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Home
                 </span>
               </Link>
             </li>
             <li className="mega-menu relative">
-              <Link
-                href="javascript:void(0)"
-              >
+              <Link href="javascript:void(0)">
                 <span
-                  className={` ${barVisible.services ? "text-black" : "text-white"}`}
+                  className={` ${
+                    barVisible.services ? "text-black" : "text-white"
+                  }`}
                   onMouseEnter={() => showBar("services")}
                   onMouseLeave={() => hideBar("services")}
                 ></span>
                 <span
-                  className={`  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Services
                   <svg
-                    className={`w-4 h-4 inline-block ml-1 transform ${barVisible.services ? 'rotate-180' : ''}`}
+                    className={`w-4 h-4 inline-block ml-1 transform ${
+                      barVisible.services ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -197,30 +191,32 @@ export default function HomeNavigationContainer() {
                 </span>
               </Link>
               <div
-
                 className={`mega-box ${barVisible.services ? "visible" : ""}`}
-
               >
                 <div className="border-b border-gray-200 border-opacity-50 py-3">
-                  <span className="px-4" style={{ fontWeight: "500", fontSize: "17px" }}>Services</span></div>
+                  <span
+                    className="px-4"
+                    style={{ fontWeight: "500", fontSize: "17px" }}
+                  >
+                    Services
+                  </span>
+                </div>
 
                 <div
-                  className={`content ${currentPath.startsWith("/case-study/")
-                    ? " p-4 rounded-md"
-                    : ""
-                    }`}
+                  className={`content ${
+                    currentPath.startsWith("/case-study/")
+                      ? " p-4 rounded-md"
+                      : ""
+                  }`}
                 >
-
                   <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
-
                         <Link
                           href={`/services/${linkUrlCMS1}`}
                           className="heading"
                           onClick={hideMenu}
                         >
-
                           CMS
                         </Link>
                         <p>
@@ -303,8 +299,6 @@ export default function HomeNavigationContainer() {
                         />
                       </p>
                     </Link>
-
-
                   </div>
 
                   <div className="mt-2 px-4">
@@ -382,69 +376,72 @@ export default function HomeNavigationContainer() {
               </div>
             </li>
             <li className="mega-menu relative">
-
-
-              <Link href="javascript:void(0)"
-              > <span
-              className={` ${barVisible.about ? "text-black" : "text-white"}`}
-              onMouseEnter={() => showBar("about")}
-              onMouseLeave={() => hideBar("about")}
-            ></span>
-            <span
-              className={`  ${currentPath.startsWith("/case-study/")
-                ? "text-black"
-                : "text-white"
-                }`}
-            >
-              About Us
-              <svg
-                className={`w-4 h-4 inline-block ml-1 transform ${barVisible.about ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={4}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </span>
-          </Link>
-              <div
-
-                className={`mega-box ${barVisible.about ? "visible" : ""}`}
-              >
+              <Link href="javascript:void(0)">
+                {" "}
+                <span
+                  className={` ${
+                    barVisible.about ? "text-black" : "text-white"
+                  }`}
+                  onMouseEnter={() => showBar("about")}
+                  onMouseLeave={() => hideBar("about")}
+                ></span>
+                <span
+                  className={`  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
+                  About Us
+                  <svg
+                    className={`w-4 h-4 inline-block ml-1 transform ${
+                      barVisible.about ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={4}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </Link>
+              <div className={`mega-box ${barVisible.about ? "visible" : ""}`}>
                 <div className="border-b border-gray-200 border-opacity-50 py-3">
-                  <span className="px-4" style={{ fontWeight: "500", fontSize: "17px" }}>About Company</span></div>
+                  <span
+                    className="px-4"
+                    style={{ fontWeight: "500", fontSize: "17px" }}
+                  >
+                    About Company
+                  </span>
+                </div>
 
                 <div
-                  className={`content ${currentPath.startsWith("/case-study/")
-                    ? "p-4 rounded-md"
-                    : ""
-                    }`}
+                  className={`content ${
+                    currentPath.startsWith("/case-study/")
+                      ? "p-4 rounded-md"
+                      : ""
+                  }`}
                 >
-
                   <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
-
                         <Link
                           href="/case-study"
                           className="heading"
                           onClick={hideMenu}
                         >
-
                           Case-Studies
                         </Link>
                         <p>
-                          <Link
-                            href="/case-study"
-                            onClick={hideMenu}
-                          >
-                            Success Stories                          </Link>
+                          <Link href="/case-study" onClick={hideMenu}>
+                            Success Stories{" "}
+                          </Link>
                         </p>
                       </li>
                       <li>
@@ -453,13 +450,12 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Blogs                        </Link>
+                          Blogs{" "}
+                        </Link>
                         <p>
-                          <Link
-                            href="/blogs"
-                            onClick={hideMenu}
-                          >
-                            Tech Insights                          </Link>
+                          <Link href="/blogs" onClick={hideMenu}>
+                            Tech Insights{" "}
+                          </Link>
                         </p>
                       </li>
 
@@ -469,51 +465,38 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Careers                        </Link>
+                          Careers{" "}
+                        </Link>
                         <p>
-                          <Link
-                            href="/career"
-                            onClick={hideMenu}
-                          >
-                            Join Our Team                          </Link>
+                          <Link href="/career" onClick={hideMenu}>
+                            Join Our Team{" "}
+                          </Link>
                         </p>
                       </li>
-
                     </ul>
                   </div>
 
                   <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
-                        <Link
-                          href="/"
-                          className="heading"
-                          onClick={hideMenu}
-                        >
-                          Brochure Downloads                        </Link>
+                        <Link href="/" className="heading" onClick={hideMenu}>
+                          Brochure Downloads{" "}
+                        </Link>
                         <p>
                           {" "}
-                          <Link
-                            href="/"
-                            onClick={hideMenu}
-                          >
+                          <Link href="/" onClick={hideMenu}>
                             Resources
                           </Link>
                         </p>
                       </li>
                       <li>
-                        <Link
-                          href="/"
-                          className="heading"
-                          onClick={hideMenu}
-                        >
-                          News                        </Link>
+                        <Link href="/" className="heading" onClick={hideMenu}>
+                          News{" "}
+                        </Link>
                         <p>
-                          <Link
-                            href="/"
-                            onClick={hideMenu}
-                          >
-                            Latest Updates                          </Link>
+                          <Link href="/" onClick={hideMenu}>
+                            Latest Updates{" "}
+                          </Link>
                         </p>
                       </li>
                       <li>
@@ -522,14 +505,12 @@ export default function HomeNavigationContainer() {
                           className="heading"
                           onClick={hideMenu}
                         >
-                          Life at CA                        </Link>
+                          Life at CA{" "}
+                        </Link>
                         <p>
-                          <Link
-                            href="/lifeatca"
-                            onClick={hideMenu}
-                          >
-
-                            Employee Experiences                          </Link>
+                          <Link href="/lifeatca" onClick={hideMenu}>
+                            Employee Experiences{" "}
+                          </Link>
                         </p>
                       </li>
                     </ul>
@@ -540,10 +521,11 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/blogs">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Blogs
                 </span>
@@ -552,10 +534,11 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/career">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Career
                 </span>
@@ -564,10 +547,11 @@ export default function HomeNavigationContainer() {
             <li>
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Technologies
                 </span>
@@ -576,172 +560,167 @@ export default function HomeNavigationContainer() {
           </ul>
 
           <a
-            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5"
-            href="https://join.skype.com/invite/crU4cXW4bttb"
+            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl  bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
+            href="tel:+1-850-558-4691"
           >
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/fac08cad98e0659b7b1fba8569319dcbc8cff9340fcddf511cabd61603becea7?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
-              className="aspect-[0.97] w-[27px]"
-            />
-            <div className="my-auto text-nowrap text-white">
-              Let&rsquo;s Skype
-            </div>
+            <Image
+              src="/telephone.png"
+              alt="Phone-Icon"
+              width={30}
+              height={30}
+            ></Image>
+
+            <div className="my-auto text-nowrap text-black">850 558 4691</div>
           </a>
 
-         {/* mobile view */}
-         <div
-  className={
-    menuIcon
-      ? "xl:hidden absolute top-0 right-0 bottom-0 left-[-100%]  w-full h-screen bg-white ease-in duration-300"
-      : "xl:hidden absolute top-0 right-0 left-0  w-full h-screen bg-white ease-in duration-300"
-  }
->
-  <div className="xl:hidden">
-    {menuOpen && (
-      <div className="mobile-menu">
-        <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
-        <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/" onClick={handleToggleMenu}>
-              Home
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <div
-              className=""
-              onClick={toggleMenuVisibility}
-              onMouseEnter={() => setMenuVisible(true)}
-              onMouseLeave={() => setMenuVisible(false)}
-            >
-              Services
-            </div>
-            {menuVisible && (
-              <div className="content mt-4 mb-0">
-                <div>
-                  <ul className="mega-links-mb">
-
-                      <li>
-                        <Link
-                          href={`/services/${linkUrlCMS1}`}
-                          className=""
-                          onClick={handleToggleMenu}
-                        >
-                          CMS
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkUrlCMS1}`}
-                            onClick={handleToggleMenu}
-                          >
-                            Manage Digital Content
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkUrlCMS}`}
-                          className="heading"
-                          onClick={handleToggleMenu}
-                        >
-                          Headless-CMS
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkUrlCMS}`}
-                            onClick={handleToggleMenu}
-                          >
-                            Customized Headless-CMS
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkMob}`}
-                          className="heading"
-                          onClick={handleToggleMenu}
-                        >
-                          Mobile App Development
-                        </Link>
-                        <p>
-                          <Link href={`/services/${linkMob}`} onClick={handleToggleMenu}>
-                            Transform Idea into Market Leading App
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/services/${linkUrlSoft}`}
-                          className="heading"
-                          onClick={handleToggleMenu}
-                        >
-                          Software Development
-                        </Link>
-                        <p>
-                          <Link
-                            href={`/services/${linkUrlSoft}`}
-                            onClick={handleToggleMenu}
-                          >
-                            Web Development Solutions
-                          </Link>
-                        </p>
-                      </li>
-                    </ul>
-
-                    <Link href="/services">
-                      <p
-                        className="flex gap-3 text-black hover:text-[#0a8ffc] hover:underline mt-4 mb-0"
-                        onClick={handleToggleMenu}
-                                                style={{fontWeight: "600", fontSize: "13px"}}
-
+          {/* mobile view */}
+          <div
+            className={
+              menuIcon
+                ? "xl:hidden absolute top-0 right-0 bottom-0 left-[-100%]  w-full h-screen bg-white ease-in duration-300"
+                : "xl:hidden absolute top-0 right-0 left-0  w-full h-screen bg-white ease-in duration-300"
+            }
+          >
+            <div className="xl:hidden">
+              {menuOpen && (
+                <div className="mobile-menu">
+                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
+                    <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/" onClick={handleToggleMenu}>
+                        Home
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <div
+                        className=""
+                        onClick={toggleMenuVisibility}
+                        onMouseEnter={() => setMenuVisible(true)}
+                        onMouseLeave={() => setMenuVisible(false)}
                       >
-                        View all
-                        <CgArrowLongRight
-                          style={{
-                            color: "#5b9ed2",
-                            marginTop: "-3px",
-                            marginBottom: "-2px",
-                            height: "22px",
-                            width: "22px",
-                          }}
-                        />
-                      </p>
-                    </Link>
-                  </div>
+                        Services
+                      </div>
+                      {menuVisible && (
+                        <div className="content mt-4 mb-0">
+                          <div>
+                            <ul className="mega-links-mb">
+                              <li>
+                                <Link
+                                  href={`/services/${linkUrlCMS1}`}
+                                  className=""
+                                  onClick={handleToggleMenu}
+                                >
+                                  CMS
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkUrlCMS1}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Manage Digital Content
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href={`/services/${linkUrlCMS}`}
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Headless-CMS
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkUrlCMS}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Customized Headless-CMS
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href={`/services/${linkMob}`}
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Mobile App Development
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkMob}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Transform Idea into Market Leading App
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href={`/services/${linkUrlSoft}`}
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Software Development
+                                </Link>
+                                <p>
+                                  <Link
+                                    href={`/services/${linkUrlSoft}`}
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Web Development Solutions
+                                  </Link>
+                                </p>
+                              </li>
+                            </ul>
+
+                            <Link href="/services">
+                              <p
+                                className="flex gap-3 text-black hover:text-[#0a8ffc] hover:underline mt-4 mb-0"
+                                onClick={handleToggleMenu}
+                                style={{ fontWeight: "600", fontSize: "13px" }}
+                              >
+                                View all
+                                <CgArrowLongRight
+                                  style={{
+                                    color: "#5b9ed2",
+                                    marginTop: "-3px",
+                                    marginBottom: "-2px",
+                                    height: "22px",
+                                    width: "22px",
+                                  }}
+                                />
+                              </p>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </li>
+
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/lifeatca" onClick={handleToggleMenu}>
+                        Life at CA
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/blogs" onClick={handleToggleMenu}>
+                        Blogs
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/career" onClick={handleToggleMenu}>
+                        Career
+                      </Link>
+                    </li>
+                    <li className="border-b border-gray-200 border-opacity-50 py-4">
+                      <Link href="/technologies" onClick={handleToggleMenu}>
+                        Technologies
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
-
-                
-          
-          
-        )}
-              </li>
-          
-
-              <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/lifeatca" onClick={handleToggleMenu}>
-              Life at CA
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/blogs" onClick={handleToggleMenu}>
-              Blogs
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/career" onClick={handleToggleMenu}>
-              Career
-            </Link>
-          </li>
-          <li className="border-b border-gray-200 border-opacity-50 py-4">
-            <Link href="/technologies" onClick={handleToggleMenu}>
-              Technologies
-            </Link>
-          </li>
-        </ul>
-      </div>
-    )}
-  </div>
-</div>
-
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </nav>
