@@ -130,7 +130,14 @@ export default function HomeNavigationContainer() {
           {menuIcon ? (
             <AiOutlineClose size={23} className="text-gray-800" />
           ) : (
-            <AiOutlineMenu size={23} className="text-white" />
+            <AiOutlineMenu
+              size={23}
+              className={`hover:underline  ${
+                currentPath.startsWith("/case-study/")
+                  ? "text-gray-800"
+                  : "text-white"
+              }`}
+            />
           )}
         </div>
         <div className="xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transform translate-x-full xl:transform-none fixed top-0 left-0 h-full transition delay-75 ease-in-out w-full bg-white xl:bg-transparent xl:static js-navigation justify-end">
