@@ -590,7 +590,7 @@ export default function HomeNavigationContainer() {
            </Image>
             
             <div className="my-auto text-nowrap text-black">
-              Let&apos;s talk
+               850 558 4691
             </div>
           </a>
 
