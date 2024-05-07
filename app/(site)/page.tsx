@@ -129,12 +129,14 @@ export default function Home() {
                     <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                       <p>
                         Scale up with the team of more than 70 dedicated
-                        <span className=" highlight  highlight-blue-300  highlight-variant-1  font-extrabold">software engineers</span> who are perfectly time-zone matched
-                        with you and have knowledge across a diverse variety of
-                        more than 100 technologies. Whether you seek automation
-                        specialists or expert mobile and web development
-                        professionals, we&apos;re here to serve your business
-                        needs.
+                        <span className=" highlight  highlight-blue-300  highlight-variant-1  font-extrabold">
+                          software engineers
+                        </span>{" "}
+                        who are perfectly time-zone matched with you and have
+                        knowledge across a diverse variety of more than 100
+                        technologies. Whether you seek automation specialists or
+                        expert mobile and web development professionals,
+                        we&apos;re here to serve your business needs.
                       </p>
                       <p>
                         As your strategic partners, we&apos;re dedicated to
@@ -190,7 +192,6 @@ export default function Home() {
           </div>
         </ScrollAnimation>
         <ScrollAnimation>
-
           <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
             <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
               Why Work With Us
@@ -269,59 +270,60 @@ export default function Home() {
                       </div>
                       <div className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
                         150<span className="text-3xl self-end">k</span>+
-
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            </div>
+          </div>
         </ScrollAnimation>
         <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
-          <div className="max-md:max-w-full lg:px-10 px-5 relative">
-            <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0 max-md:">
-              <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
-                <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
-                  <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
-                    Our Distinctive Way
-                  </div>
-                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
-                    <p>
-                      Work with CodeAutomation, where collaboration, creativity, and
-                      precision intersect. Our unique approach to project execution
-                      blends cutting-edge technology with a human touch. Our
-                      specialized experts with top certifications aim to develop
-                      innovative options that assist companies in achieving growth
-                      goals in the digital era.
-                    </p>
-                  </div>
-                  <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
-                    <Link
-                      href="/services"
-                      className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
-                    >
-                      <div className="relative grow self-center">
-                      Explore Our Services
-                      </div>
-                      <img
-                        loading="lazy"
-                        src="/btn-arrow.svg"
-                        className="w-[22px] h-[26.8px]" // Adjust the width and height
-                      />
-                    </Link>
+          <ScrollAnimation>
+            <div className="max-md:max-w-full lg:px-10 px-5 relative">
+              <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0 max-md:">
+                <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
+                  <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
+                    <div className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
+                      Our Distinctive Way
+                    </div>
+                    <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
+                      <p>
+                        Work with CodeAutomation, where collaboration,
+                        creativity, and precision intersect. Our unique approach
+                        to project execution blends cutting-edge technology with
+                        a human touch. Our specialized experts with top
+                        certifications aim to develop innovative options that
+                        assist companies in achieving growth goals in the
+                        digital era.
+                      </p>
+                    </div>
+                    <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px]  max-md:pr-5 mt-12">
+                      <Link
+                        href="/services"
+                        className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
+                      >
+                        <div className="relative grow self-center">
+                          Explore Our Services
+                        </div>
+                        <img
+                          loading="lazy"
+                          src="/btn-arrow.svg"
+                          className="w-[22px] h-[26.8px]" // Adjust the width and height
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </div>
+                <div className="md:w-5/12 w-full">
+                  <img
+                    src="/img-our-distinctive-way.jpg"
+                    className="object-cover size-full"
+                  />
+                </div>
               </div>
-              <div className="md:w-5/12 w-full">
-              <img
-                src="/img-our-distinctive-way.jpg"
-                className="object-cover size-full"
-              />
             </div>
-            </div>
-          </div>
-
+          </ScrollAnimation>
 
           <ScrollAnimation>
             <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 lg:px-10 px-10 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full mb-40">

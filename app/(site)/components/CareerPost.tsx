@@ -13,8 +13,8 @@ interface Props {
 const CareerPost: React.FC<Props> = ({ jobpost }) => {
 
   return (
-    <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-      <div className="flex flex-col grow px-5 pb-6 mx-auto w-full bg-[#1d92fb42] rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
+    <div className="flex flex-col  max-md:ml-0 max-md:w-full h-full">
+      <div className="flex flex-col p-5 text-black mx-auto rounded-lg sm:rounded-3xl shadow-lg backdrop-blur-[6.5px] bg-[#D7D7D7] bg-opacity-30 w-[368px] h-full">
         <div className="flex z-10 gap-5 justify-between items-start mt-0">
           <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
             {jobpost.jobTitleBaner}

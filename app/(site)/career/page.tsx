@@ -126,7 +126,7 @@ const Career: React.FC = async () => {
                   Make Your Own Trajectory With Your Own Assistance.
                 </div>
                 <div className="mb-10">
-                  <p className="lg:text-lg text-base text-[#024]">
+                  <p className="lg:text-lg text-base text-[#024] text-justify">
                     We support and encourage our team members as they pursue
                     their goals. Whether it&rsquo;s a move up or a step sideways
                     into a career you&rsquo;ve always desired, our senior
@@ -189,25 +189,32 @@ const Career: React.FC = async () => {
                   className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
                 />
               </div>
-
-              <div className="xl:pl-20 relative">
-                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-end text-[#024]">
+              <div className="xl:pl-20 relative text-right">
+                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
                   Perks & Benefits
                 </div>
                 <div className="mb-10">
-                <p className="lg:text-lg text-base text-end text-[#024] text-justify">
-                    Get special perks and benefits such as flexible schedules
-                    and career advancement chances. Join us and advance your
-                    career in code automation today.
+                  <p className="lg:text-lg text-base text-[#024] text-right">
+                    Get special perks and benefits such as flexible schedules and career advancement chances. Join us and advance your career in code automation today.
                   </p>
                 </div>
 
-                <section className="flex flex-wrap gap-5 justify-center px-4.5 mt-7 text-xs text-center text-md text-black">
-                  {benefits.map((benefit, index) => (
-                    <BenefitItem key={index} {...benefit} />
-                  ))}
+                <section className="flex flex-wrap gap-5 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
+                  <div className="grid grid-cols-3 gap-4 sm:gap-5 sm:justify-center">
+                    {benefits.slice(0, 3).map((benefit, index) => (
+                      <BenefitItem key={index} {...benefit} />
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
+                    {benefits.slice(3, 8).map((benefit, index) => (
+                      <BenefitItem key={index + 3} {...benefit} />
+                    ))}
+                  </div>
                 </section>
+
+
               </div>
+
             </div>
           </div>
         </div>
