@@ -115,9 +115,9 @@ const Services = async () => {
               className={`flex gap-2.5 ${service.urlPath.length > 22
                 ? "py-0 sm:py-4"
                 : " py-5 sm:py-10 "
-                } pl-5 text-black rounded-lg sm:rounded-3xl shadow-lg backdrop-blur-[6.5px] bg-[#D7D7D7] bg-opacity-30 w-[276px] sm:w-[348px] h-[143px] sm:h-[175px]`}
+                } p-5 text-black rounded-lg sm:rounded-3xl shadow-lg backdrop-blur-[6.5px] bg-[#D7D7D7] bg-opacity-30 w-[276px] sm:w-[348px] h-full`}
             >
-              <div className="flex flex-col grow shrink-0 w-fit">
+              <div className="flex flex-col grow shrink-0 w-fit h-12">
                 <h3
                   className={`text-base sm:text-xl font-medium leading-6 ${service.urlPath.length > 22
                     ? "max-w-[200px] sm:max-w-[250px]"
