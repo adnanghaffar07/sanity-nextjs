@@ -23,18 +23,16 @@ const page = async () => {
   return (
     <>
       <HeroSectionComponent
-        title="“Case Study”"
+        title="Case Study"
         content="Explore our case studies to discover how we turn challenges into
   success stories through technology solutions."
         image="/case-study-hero-image.png"
       />
 
-      <section className="2xl:container 2xl:mx-auto w-full relative overflow-hidden">
-        <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[500px] -top-64 flex items-center justify-center z-0">
-          <div className="bg-white w-[640px] h-[640px] rounded-full"></div>
+      <section className="mx-auto w-full relative overflow-hidden">
+        <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[550px] sm:-left-[400px] -top-80 sm:-top-64 flex items-center justify-center z-0">
+          <div className="bg-white w-[610px] h-[610px] rounded-full"></div>
         </div>
-
-        <div className="bg-[#1D92FB] opacity-15 w-[95px] md:w-[207px] h-[95px] md:h-[207px] rounded-full absolute -right-10 md:-right-24 top-[300px] sm:top-[460px] md:top-[650px] xl:top-64 z-0"></div>
 
         <h2 className="self-center text-2xl sm:text-3xl md:text-6xl tracking-tight text-center text-black capitalize leading-[61.08px] max-md:max-w-full mt-10 sm:mt-20">
           Checkout our projects
@@ -43,9 +41,13 @@ const page = async () => {
         {topArray &&
           topArray.map((item: any, index: any) => {
             return index % 2 === 0 ? (
-              <div className="mt-4 sm:mt-24 mx-5 sm:mx-10" key={item._key}>
-                <div className="flex flex-col xl:flex-row gap-5 justify-center items-center mx-auto">
-                  <div className="w-full sm:w-[480px] md:w-[580px] lg:w-[680px] xl:w-[778px] z-[1]">
+              <div
+                className="mt-4 sm:mt-24 mx-5 sm:mx-10 relative"
+                key={item._key}
+              >
+                <div className="bg-[#1D92FB] opacity-15 w-[120px] sm:w-[207px] h-[120px] sm:h-[207px] rounded-full absolute -right-20 sm:-right-20 md:-right-28 top-[220px] sm:top-[350px] md:top-[440px] lg:top-[600px] xl:top-20 z-0"></div>
+                <div className="flex flex-col xl:flex-row gap-5 max-w-[1624px] justify-between items-center mx-auto">
+                  <div className="w-full sm:w-[600px] md:w-[720px] lg:w-[980px] xl:w-[778px] z-[1]">
                     {item?.cardimage?.asset && (
                       <Image
                         src={urlForImage(item.cardimage.asset)}
@@ -108,10 +110,13 @@ const page = async () => {
                 </div>
               </div>
             ) : (
-              <div className="mt-16 sm:mt-40 mx-5 sm:mx-10" key={item._key}>
-                <div className="flex flex-col xl:flex-row-reverse gap-5 justify-center items-center mx-auto relative">
-                  <div className="bg-[#1D92FB] opacity-15 w-[95px] md:w-[207px] h-[95px] md:h-[207px] rounded-full absolute -left-20 md:-left-40 top-[160px] sm:top-[250px] md:top-[400px] xl:top-12 z-0"></div>
-                  <div className="w-full sm:w-[480px] md:w-[580px] lg:w-[680px] xl:w-[778px] z-[1]">
+              <div
+                className="mt-16 sm:mt-40 mx-5 sm:mx-10 relative"
+                key={item._key}
+              >
+                <div className="bg-[#1D92FB] opacity-15 w-[120px] sm:w-[207px] h-[120px] sm:h-[207px] rounded-full absolute -left-20 sm:-left-36 top-[160px] sm:top-[320px] md:top-[450px] lg:top-[600px] xl:top-12 z-0"></div>
+                <div className="flex flex-col xl:flex-row-reverse gap-5 justify-between max-w-[1624px] items-center mx-auto relative">
+                  <div className="w-full sm:w-[600px] md:w-[720px] lg:w-[980px] xl:w-[778px]z-[1]">
                     {item?.cardimage?.asset && (
                       <Image
                         src={urlForImage(item.cardimage.asset)}
@@ -200,7 +205,7 @@ const page = async () => {
                         width={512}
                         height={288}
                         loading="lazy"
-                        className="shadow-caseStudyRecentWorkCard rounded-lg sm:rounded-[26px] w-full h-full "
+                        className="shadow-caseStudyRecentWorkCard rounded-lg sm:rounded-[26px] w-full h-full xl:h-[256px] "
                       />
                     )}
                   </Link>
@@ -221,7 +226,7 @@ const page = async () => {
                         width={512}
                         height={288}
                         loading="lazy"
-                        className="shadow-caseStudyRecentWorkCard rounded-lg sm:rounded-[26px] w-full h-full "
+                        className="shadow-caseStudyRecentWorkCard rounded-lg sm:rounded-[26px] w-full h-full xl:h-[256px]"
                       />
                     )}
                   </div>
