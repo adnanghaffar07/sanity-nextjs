@@ -22,7 +22,7 @@ export default async function Technologies() {
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/technologies.png" />
+        <img className="absolute top-0 left-0 object-cover  inset-0 size-full" src="/technologies.png" />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
