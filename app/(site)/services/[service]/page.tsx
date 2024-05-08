@@ -99,7 +99,7 @@ export default async function service({ params }: { params: { service: string } 
                                 <h2 className="text-3xl font-bold mb-8 text-center">
                                     {data.introductionSection?.introHeading}
                                 </h2>
-                                <p className="text-lg text-gray-800 leading-relaxed text-center">
+                                <p className="text-lg text-gray-800 leading-relaxed text-center ">
                                     {data.introductionSection?.introDesc}
                                 </p>
                             </div>
@@ -111,7 +111,7 @@ export default async function service({ params }: { params: { service: string } 
                                 <h2 className="text-3xl font-bold mb-8">
                                     {data.introductionSection?.introHeading}
                                 </h2>
-                                <p className="text-lg text-gray-800 leading-relaxed">
+                                <p className="text-lg text-gray-800 text-justify">
                                     {data.introductionSection?.introDesc}
                                 </p>
                             </div>

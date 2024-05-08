@@ -20,14 +20,13 @@ export default function Blogs() {
 
         <div className="mt-[130px] sm:mt-[280px] lg:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight text-center capitalize leading-[48px] text-white">
-            &quot; Our Blogs &quot;
+            Our Blogs
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
             Your gateway to thought-provoking articles that spark curiosity and
             ignite your passions.
           </p>
         </div>
-
       </div>
 
       <div className="max-w-full  relative">

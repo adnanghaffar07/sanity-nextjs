@@ -1,12 +1,21 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useState, useRef } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
-import { IonIcon } from '@ionic/react';
-import { searchOutline, bookOutline, lockClosedOutline, peopleOutline } from 'ionicons/icons';
-import Link from "next/link";
+
+const imageFigma = "/figma.png";
+const imageIOS = "/ios.png";
+const imageNum = "/numpy.png";
+const imageFlutter = "/fluttrt.png";
+const imageReact = "/react.png";
+const imageAngular = "/angular.png";
+const imageGo = "/golang.png";
+const imageJmeter = "/jmeter.png";
+const imageJs = "/js.png";
+const imageAnd = "/android.png";
 
 const linkAI = "/ai-services";
 const linkUrlCMS1 = "/custom-web-cms";
@@ -17,13 +26,10 @@ const linkUrlDigital = "/design-services";
 const linkMob = "/mobile-app-development";
 const linkRobotic = "/rpa-services";
 
-
 export default function HomeNavigationContainer() {
   const currentPath = usePathname();
   let pathname = usePathname() || "/";
-
   const [menuIcon, setIcon] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(true);
 
   const handleToggleMenu = () => {
     setIcon(!menuIcon);
@@ -35,60 +41,76 @@ export default function HomeNavigationContainer() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
 
+  const menuRef = useRef<HTMLDivElement>(null); // Ref for Services mega menu
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  const hideMenu = () => {
+    setMenuVisible(false);
+    // setAboutVisible(false);
+  };
+
+  const showMenu = () => {
+    setMenuVisible(true);
+    // setAboutVisible(false); // Ensure About Us mega menu is hidden when Services mega menu is shown
+  };
+
+  const aboutShow = () => {
+    setAboutVisible(true);
+    setMenuVisible(false); // Ensure Services mega menu is hidden when About Us mega menu is shown
+  };
+
+  const aboutHide = () => {
+    setAboutVisible(false);
+  };
+
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
     setAboutVisible((prevMenuVisible) => !prevMenuVisible);
-
   };
 
-
-
-
-  const [open, setOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   const toggleMenu = () => {
-    setOpen(!open);
-    // Close the About Us menu when the Services menu is opened
-    if (!open && aboutOpen) {
-      setAboutOpen(false);
-    }
+    setMenuVisible((prevMenuVisible) => !prevMenuVisible);
   };
 
-  const toggleAbout = () => {
-    setAboutOpen(!aboutOpen);
-    // Close the Services menu when the About Us menu is opened
-    if (!aboutOpen && open) {
-      setOpen(false);
-    }
+  ////////////////////
+
+  const [barVisible, setBarVisible] = useState({
+    services: false,
+    about: false,
+  });
+
+  const showBar = (menu: any) => {
+    setBarVisible({ ...barVisible, [menu]: true });
   };
 
+  const hideBar = (menu: any) => {
+    setBarVisible({ ...barVisible, [menu]: false });
+    setTimeout(() => {
+      setMenuVisible(false);
+      setAboutVisible(false);
+    }, 1000);
+  };
 
-  useEffect(() => {
-    const handleClickOutside = (event:any) => {
-      if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-        setOpen(false);
-      }
-      if (aboutOpen && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-        setAboutOpen(false);
-      }
-      if (open || aboutOpen) {
-        setOpen(false);
-        setAboutOpen(false);
-      }
-    };
+  // const handleMouseEnter = () => {
+  //   setMouseInsideMenu(true);
+  // };
 
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [open, aboutOpen]);
-
+  const handleMouseLeave = (event: React.MouseEvent) => {
+    const isMouseInsideMenu =
+      menuRef.current instanceof Node &&
+      menuRef.current.contains(event.relatedTarget as Node);
+    const isMouseOnServiceLink = event.currentTarget.contains(
+      event.relatedTarget as Node
+    );
+    if (!isMouseInsideMenu && !isMouseOnServiceLink && menuVisible) {
+      hideMenu();
+    }
+  };
 
   return (
-
-    <div className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
+    <nav className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
       <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-whit">
         <div className="relative" style={{ zIndex: 1000 }}>
           <Link href={`/`} className="hover:underline my-auto">
@@ -99,400 +121,459 @@ export default function HomeNavigationContainer() {
             />
           </Link>
         </div>
+
         <div
           className="w-1/12 xl:hidden items-center flex justify-end"
           onClick={handleSmallerScreenNavigation}
           style={{ zIndex: 1000 }} // Added z-index
-
         >
           {menuIcon ? (
             <AiOutlineClose size={23} className="text-gray-800" />
           ) : (
-            <AiOutlineMenu size={23} className="text-white" />
+            <AiOutlineMenu
+              size={23}
+              className={`hover:underline  ${
+                currentPath.startsWith("/case-study/")
+                  ? "text-gray-800"
+                  : "text-white"
+              }`}
+            />
           )}
         </div>
         <div className="xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transform translate-x-full xl:transform-none fixed top-0 left-0 h-full transition delay-75 ease-in-out w-full bg-white xl:bg-transparent xl:static js-navigation justify-end">
-          <ul className=" nav-links relative lg:mx-auto">
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+          <ul className="nav-links self-center mx-auto flex gap-10">
+            <li>
               <Link href="/">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Home
                 </span>
               </Link>
-
             </li>
-            <li onClick={toggleMenu} className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
-              <Link
-                href="javascript:void(0)">
+            <li className="mega-menu relative">
+              <Link href="javascript:void(0)">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={` ${
+                    barVisible.services ? "text-black" : "text-white"
+                  }`}
+                  onMouseEnter={() => showBar("services")}
+                  onMouseLeave={() => hideBar("services")}
+                ></span>
+                <span
+                  className={`  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Services
+                  <svg
+                    className={`w-4 h-4 inline-block ml-1 transform ${
+                      barVisible.services ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={4}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </span>
-
               </Link>
-              <svg fill="white" viewBox="0 0 20 20" className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${open ? 'rotate-180' : 'rotate-0'}`}>
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
-              </svg>
-            </li>
-            <div className="absolute z-10 w-screen max-w-5xl px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0" style={{ display: open ? 'block' : 'none' }}>
-              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
-                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                    <div className="grid grid-cols-1 gap-8">
-                      <Link href={`/services/${linkUrlCMS1}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            CMS
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Manage Digital Content
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href={`/services/${linkUrlCMS}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Headless-CMS</p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Customized Headless-CMS
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href={`/services/${linkUrlSoft}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Software Development
+              <div
+                className={`mega-box ${barVisible.services ? "visible" : ""}`}
+              >
+                <div className="border-b border-gray-200 border-opacity-50 py-3">
+                  <span
+                    className="px-4"
+                    style={{ fontWeight: "500", fontSize: "17px" }}
+                  >
+                    Services
+                  </span>
+                </div>
 
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Web Development Solutions
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href={`/services/${linkUrlDigital}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Design Services
-
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Boost your Online Presence
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href="/services">
-                        <p
-                          className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8"
+                <div
+                  className={`content ${
+                    currentPath.startsWith("/case-study/")
+                      ? " p-4 rounded-md"
+                      : ""
+                  }`}
+                >
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlCMS1}`}
+                          className="heading"
+                          onClick={hideMenu}
                         >
-                          View all
-                          <CgArrowLongRight
-                            style={{
-                              color: "#5b9ed2",
-                              marginTop: "-3px",
-                              marginBottom: "-2px",
-                              height: "25px",
-                              width: "25px",
-                            }}
-                          />
+                          CMS
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkUrlCMS1}`}
+                            onClick={hideMenu}
+                          >
+                            Manage Digital Content
+                          </Link>
                         </p>
-                      </Link>
-                    </div>
-                    <div className="grid grid-cols-1 gap-8">
-                      <Link href={`/services/${linkUrlAuto}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            QA Testing & Automation
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                      </li>
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlCMS}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Headless-CMS
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkUrlCMS}`}
+                            onClick={hideMenu}
+                          >
+                            Customized Headless-CMS
+                          </Link>
+                        </p>
+                      </li>
+
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlSoft}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Software Development
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkUrlSoft}`}
+                            onClick={hideMenu}
+                          >
+                            Web Development Solutions
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlDigital}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Design Services
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkUrlDigital}`}
+                            onClick={hideMenu}
+                          >
+                            Boost your Online Presence
+                          </Link>
+                        </p>
+                      </li>
+                    </ul>
+
+                    <Link href="/services">
+                      <p
+                        className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8"
+                        onClick={hideMenu}
+                      >
+                        View all
+                        <CgArrowLongRight
+                          style={{
+                            color: "#5b9ed2",
+                            marginTop: "-3px",
+                            marginBottom: "-2px",
+                            height: "25px",
+                            width: "25px",
+                          }}
+                        />
+                      </p>
+                    </Link>
+                  </div>
+
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+                        <Link
+                          href={`/services/${linkUrlAuto}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          QA Testing & Automation
+                        </Link>
+                        <p>
+                          {" "}
+                          <Link
+                            href={`/services/${linkUrlAuto}`}
+                            onClick={hideMenu}
+                          >
                             Ensure the Highest Quality
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href={`/services/${linkMob}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Mobile App evelopment
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/services/${linkMob}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Mobile App evelopment
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkMob}`}
+                            onClick={hideMenu}
+                          >
+                            Transform Idea into Market Leading App{" "}
+                          </Link>
+                        </p>
+                      </li>
 
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Transform Idea into Market Leading App
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href={`/services/${linkAI}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            AI Services
-
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                      <li>
+                        <Link
+                          href={`/services/${linkAI}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          AI Services
+                        </Link>
+                        <p>
+                          <Link href={`/services/${linkAI}`} onClick={hideMenu}>
                             Informed Decision Making Process
-                          </p>
-                        </div>
-                      </Link>
-                      <Link href={`/services/${linkRobotic}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                        <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Robotic Research
-
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/services/${linkRobotic}`}
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Robotic Research
+                        </Link>
+                        <p>
+                          <Link
+                            href={`/services/${linkRobotic}`}
+                            onClick={hideMenu}
+                          >
                             Tackle the Complex Robotic Challanges
-                          </p>
-                        </div>
-                      </Link>
-                      <Link className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-white duration-200 bg-gray-900 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" href="#_" role="button">
-                        Contact Us
-                      </Link>
-                    </div>
-                    <div className="grid grid-cols-1 gap-3 p-2 lg:p-0 bg-gray-50 rounded-2xl">
-                      <div className="grid items-start h-1/2 gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-                        <h3 className="text-base font-medium text-black">
-                          Getting started
-                        </h3>
-                        <div className="space-y-3">
-                          <a href="#_" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Identify Service Categories
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Map Out the Journey
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Design the Layout
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            User Interface (UI) Design
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Development and Integration                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Content Management                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Testing and Quality Assurance                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Launch and Promotion                          </a>
-                        </div>
-                      </div>
-                    </div>
+                          </Link>
+                        </p>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-            </div>
-            {/* About us */}
-
-            <li onClick={toggleAbout} className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
-              <Link
-                href="javascript:void(0)">
+            </li>
+            <li className="mega-menu relative">
+              <Link href="javascript:void(0)">
+                {" "}
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={` ${
+                    barVisible.about ? "text-black" : "text-white"
+                  }`}
+                  onMouseEnter={() => showBar("about")}
+                  onMouseLeave={() => hideBar("about")}
+                ></span>
+                <span
+                  className={`  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   About Us
+                  <svg
+                    className={`w-4 h-4 inline-block ml-1 transform ${
+                      barVisible.about ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={4}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </span>
               </Link>
-              <svg fill="white" viewBox="0 0 20 20" className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${aboutOpen ? 'rotate-180' : 'rotate-0'}`}>
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
-              </svg>
-            </li>
-            <div className="absolute z-10 w-screen max-w-3xl px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0" style={{ display: aboutOpen ? 'block' : 'none' }}>
-              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
-                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                    <div className="grid grid-cols-1">
-                      <Link href="/case-study" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Case-Studies
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Success Stories                          </p>
-                        </div>
-                      </Link>
-                      <Link href="/blogs" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Blogs                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Tech Insights</p>
-                        </div>
-                      </Link>
-                      <Link href="/career" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Careers
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Join our Team                         </p>
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="grid grid-cols-1">
-                      <Link href="/" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Brochure Downloads
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Resources                         </p>
-                        </div>
-                      </Link>
-                      <Link href="/" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                           News                         </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                           Latest Updates</p>
-                        </div>
-                      </Link>
-                      <Link href="/lifeatca" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                        <div className="">
-                          <IonIcon icon={searchOutline} className="text-black size-6 md hydrated" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Life At CA
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Employee Experiences                        </p>
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="grid grid-cols-1 gap-3 p-2 lg:p-0 bg-gray-50 rounded-2xl">
-                      <div className="grid items-start h-full gap-6 px-5 py-2 sm:gap-8 sm:p-8">
-                        <h3 className="text-base font-medium text-black">
-                          Getting started
-                        </h3>
-                        <div className="space-y-2">
-                          <a href="#_" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Explore design work
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Register
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Adding users
-                          </a>
-                          <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Video Tutorials
-                          </a>
-                          {/* <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Libraries and SDKs
-                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Adding Plugins
-                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Dashboard templates
-                          </a> */}
-                        </div>
-                      </div>
-                    </div>
+              <div className={`mega-box ${barVisible.about ? "visible" : ""}`}>
+                <div className="border-b border-gray-200 border-opacity-50 py-3">
+                  <span
+                    className="px-4"
+                    style={{ fontWeight: "500", fontSize: "17px" }}
+                  >
+                    About Company
+                  </span>
+                </div>
+
+                <div
+                  className={`content ${
+                    currentPath.startsWith("/case-study/")
+                      ? "p-4 rounded-md"
+                      : ""
+                  }`}
+                >
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+                        <Link
+                          href="/case-study"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Case-Studies
+                        </Link>
+                        <p>
+                          <Link href="/case-study" onClick={hideMenu}>
+                            Success Stories{" "}
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/blogs"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Blogs{" "}
+                        </Link>
+                        <p>
+                          <Link href="/blogs" onClick={hideMenu}>
+                            Tech Insights{" "}
+                          </Link>
+                        </p>
+                      </li>
+
+                      <li>
+                        <Link
+                          href="/career"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Careers{" "}
+                        </Link>
+                        <p>
+                          <Link href="/career" onClick={hideMenu}>
+                            Join Our Team{" "}
+                          </Link>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="mt-2 px-4">
+                    <ul className="mega-links">
+                      <li>
+                        <Link href="/" className="heading" onClick={hideMenu}>
+                          Brochure Downloads{" "}
+                        </Link>
+                        <p>
+                          {" "}
+                          <Link href="/" onClick={hideMenu}>
+                            Resources
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link href="/" className="heading" onClick={hideMenu}>
+                          News{" "}
+                        </Link>
+                        <p>
+                          <Link href="/" onClick={hideMenu}>
+                            Latest Updates{" "}
+                          </Link>
+                        </p>
+                      </li>
+                      <li>
+                        <Link
+                          href="/lifeatca"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
+                          Life at CA{" "}
+                        </Link>
+                        <p>
+                          <Link href="/lifeatca" onClick={hideMenu}>
+                            Employee Experiences{" "}
+                          </Link>
+                        </p>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            </li>
+            <li>
               <Link href="/blogs">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Blogs
                 </span>
               </Link>
             </li>
-
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            <li>
               <Link href="/career">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Career
                 </span>
-              </Link>            </li>
-
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+              </Link>
+            </li>
+            <li>
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className={`hover:underline  ${
+                    currentPath.startsWith("/case-study/")
+                      ? "text-black"
+                      : "text-white"
+                  }`}
                 >
                   Technologies
                 </span>
-              </Link>            </li>
+              </Link>
+            </li>
           </ul>
+
           <a
-            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-sky-500 rounded-full shadow-sm max-md:px-5"
-            href="https://join.skype.com/invite/crU4cXW4bttb"
+            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl  bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
+            href="tel:+1-850-558-4691"
           >
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/fac08cad98e0659b7b1fba8569319dcbc8cff9340fcddf511cabd61603becea7?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
-              className="aspect-[0.97] w-[27px]"
-            />
-            <div className="my-auto text-nowrap text-white">
-              Let&rsquo;s Skype
-            </div>
+            <Image
+              src="/telephone.png"
+              alt="Phone-Icon"
+              width={30}
+              height={30}
+            ></Image>
+
+            <div className="my-auto text-nowrap text-black">850 558 4691</div>
           </a>
 
+          {/* mobile view */}
           <div
             className={
               menuIcon
@@ -522,7 +603,6 @@ export default function HomeNavigationContainer() {
                         <div className="content mt-4 mb-0">
                           <div>
                             <ul className="mega-links-mb">
-
                               <li>
                                 <Link
                                   href={`/services/${linkUrlCMS1}`}
@@ -566,7 +646,10 @@ export default function HomeNavigationContainer() {
                                   Mobile App Development
                                 </Link>
                                 <p>
-                                  <Link href={`/services/${linkMob}`} onClick={handleToggleMenu}>
+                                  <Link
+                                    href={`/services/${linkMob}`}
+                                    onClick={handleToggleMenu}
+                                  >
                                     Transform Idea into Market Leading App
                                   </Link>
                                 </p>
@@ -595,7 +678,6 @@ export default function HomeNavigationContainer() {
                                 className="flex gap-3 text-black hover:text-[#0a8ffc] hover:underline mt-4 mb-0"
                                 onClick={handleToggleMenu}
                                 style={{ fontWeight: "600", fontSize: "13px" }}
-
                               >
                                 View all
                                 <CgArrowLongRight
@@ -611,13 +693,8 @@ export default function HomeNavigationContainer() {
                             </Link>
                           </div>
                         </div>
-
-
-
-
                       )}
                     </li>
-
 
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
                       <Link href="/lifeatca" onClick={handleToggleMenu}>
@@ -644,11 +721,8 @@ export default function HomeNavigationContainer() {
               )}
             </div>
           </div>
-
-
-
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
