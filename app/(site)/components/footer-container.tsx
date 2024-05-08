@@ -1,15 +1,12 @@
-'use client'
+"use client";
 import { getCpyrighttext } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-
-
-
 export default function FooterContainer() {
   // const cpyrighttext = await getCpyrighttext();
-      
+
   const linkUrl = "/headless-cms";
   const linkUrlWeb = "/web-app-development";
   const linkUrlApp = "/mobile-app-development";
@@ -17,21 +14,17 @@ export default function FooterContainer() {
   const linkUrlAI = "/ai-services";
   const linkUrlBuisness = "/automation-integration";
 
-  
-   const [showAddress,setAddress] = useState(true);
+  const [showAddress, setAddress] = useState(true);
 
-   const handleClick = ()=>{
+  const handleClick = () => {
     setAddress(!showAddress);
-    
-   }
+  };
 
-   const currentPath = usePathname();
+  const currentPath = usePathname();
 
-   useEffect(()=>
-   { 
-      setAddress(true);
-   },[currentPath])
-
+  useEffect(() => {
+    setAddress(true);
+  }, [currentPath]);
 
   const socialIcons = [
     {
@@ -57,7 +50,6 @@ export default function FooterContainer() {
     },
   ];
 
-  
   return (
     <div>
       <div className="flex flex-col items-center py-12 w-full bg-[#1D92FB] max-md:max-w-full pt-60">
@@ -94,14 +86,14 @@ export default function FooterContainer() {
                     href="tel:+18505584691"
                     className="hover:underline my-auto inline-block"
                   >
-                    1 850 558 4691
+                    850 558 4691
                   </a>
                   <br />
                   <a
                     href="tel:+13076556139"
                     className="hover:underline my-auto inline-block"
                   >
-                    1 307 655 6139
+                    307 655 6139
                   </a>
                 </div>
               </div>
@@ -115,7 +107,7 @@ export default function FooterContainer() {
                   href={`/services/${linkUrl}`}
                   className="hover:underline my-auto inline-block"
                 >
-                 Headless CMS
+                  Headless CMS
                 </Link>
                 <Link
                   href={`/services/${linkUrlWeb}`}
@@ -146,7 +138,7 @@ export default function FooterContainer() {
                   className="hover:underline my-auto inline-block"
                 >
                   Automation & Integration
-                                  </Link>
+                </Link>
               </div>
             </div>
           </div>
@@ -187,19 +179,25 @@ export default function FooterContainer() {
               <div className="mt-6 text-lg font-light leading-5 self-start">
                 <span className="text-1xl font-bold">USA:</span> 30 N Gould St
                 Ste 7596, Sheridan, WY, 82801.
-                <br /> 
-               <br />
+                <br />
+                <br />
                 <span className="text-1xl font-bold">Canada:</span> 25 McArthur
                 Ave. Ottawa, ON K1L 6R3
                 <br />
                 <br />
-               
-                {showAddress ? <span className=" cursor-pointer font-semibold" onClick={handleClick} >More</span> : 
-               <span className="text-1xl "> 
-               <span className=" font-bold"> Pakistan:</span> A 1/11 P, Block P Model Town, Lahore, Pakistan  </span>
-              }
-               
-
+                {showAddress ? (
+                  <span
+                    className=" cursor-pointer font-semibold"
+                    onClick={handleClick}
+                  >
+                    More
+                  </span>
+                ) : (
+                  <span className="text-1xl ">
+                    <span className=" font-bold"> Pakistan:</span> A 1/11 P,
+                    Block P Model Town, Lahore, Pakistan{" "}
+                  </span>
+                )}
               </div>
               <div className="container mt-20 flex justify-center items-center">
                 <section className="grid grid-cols-4 gap-3 ">
@@ -230,7 +228,6 @@ export default function FooterContainer() {
               {cpyrighttext.name}
             </div>
           ))} */}
-
           Copyright @2024 - by Codeautomation.ai
         </div>
       </div>

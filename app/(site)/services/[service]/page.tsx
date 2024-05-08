@@ -197,7 +197,7 @@ export default async function service({ params }: { params: { service: string } 
                         {data.exampleServicesSection?.exampleServiceHeading}</h2>
                     <p className="text-xl font-light mb-8">
                         {data.exampleServicesSection?.exampleServicedesc}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-2">
                         {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
                             <div
                                 key={exampleIndex}
