@@ -4,7 +4,6 @@ import { urlForImage } from "@/sanity/lib/image";
 
 async function getData() {
   const query = `*[_type == 'technologies'] | order(_createdAt desc)`;
-  ;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];
@@ -14,10 +13,21 @@ async function getData() {
   }
 }
 
+async function getLogoData() {
+  const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+  try {
+    const fetchData = await client.fetch(queryLogo);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
 
 export default async function Technologies() {
   const data = await getData();
-
+  const dataLogo = await getLogoData();
+  console.log(dataLogo);
 
   return (
     <div>
@@ -48,99 +58,127 @@ export default async function Technologies() {
         </div>
       </div>
 
-
-
-
       {data.map((technology: any, index: any) => (
-         index % 2 === 0 ? (
-        <div key={index} className="max-w-full mx-auto relative">
-          <img
-            loading="lazy"
-            src="/intersect-left.png"
-            className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
-                <div className="xl:pr-20 lg:order-1 order-2 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-left.png"
-                    className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="lg:text-5xl text-3xl mb-3">
-                    {technology.techname}
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base">  {technology.techDesc}</p>
-                  </div>
-                  <div className="lg:pr-36">
+        index % 2 === 0 ? (
+          <div key={index} className="max-w-full mx-auto relative">
+            <img
+              loading="lazy"
+              src="/intersect-left.png"
+              className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
+            />
+            <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+              <div className="lg:px-10 px-5 w-full">
+                <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                  <div className="xl:pr-20 lg:order-1 order-2 relative">
                     <img
                       loading="lazy"
-                      src={urlForImage(technology.techLogos).toString()}
-                      className="lg:w-full md:w-3/4 w-full inline-block"
+                      src="/intersect-left.png"
+                      className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
+                    />
+                    <div className="lg:text-5xl text-3xl mb-3">
+                      {technology.techname}
+                    </div>
+                    <div className="mb-10">
+                      <p className="lg:text-lg text-base">  {technology.techDesc}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-3 justify-start px-4.5 mt-7 text-xs text-center text-md text-black">
+                      <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
+                        {Array.isArray(technology.techLogos) && technology.techLogos.map((techLogo: any, techLogoIndex: any) => (
+                          techLogo.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                            if (logoData) {
+                              return (
+                                <div key={`${techLogoIndex}-${logoIndex}`} className=" p-1 justify-center">
+                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 object-cover mb-2" />
+                                  <p className="text-center">{logoData.heading}</p>
+
+                                </div>
+
+                              );
+                            } else {
+                              return null;
+                            }
+                          })
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className="text-center lg:order-2 order-1">
+                    <img
+                      loading="lazy"
+                      src={urlForImage(technology.techImage).toString()}
+                      className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
                     />
                   </div>
-                </div>
-                <div className="text-center lg:order-2 order-1">
-                  <img
-                    loading="lazy"
-                    src={urlForImage(technology.techImage).toString()}
-                    className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
                 </div>
               </div>
             </div>
           </div>
-        </div>
         ) : (
 
           <div key={index} className="max-w-full mx-auto relative">
-          <img
-            loading="lazy"
-            src="/intersect-right.png"
-            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
-          />
-          <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-            <div className="lg:px-10 px-5 w-full">
-              <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
-                <div className="text-center">
-                  <img
-                    loading="lazy"
-                    src={urlForImage(technology.techImage).toString()}
-                    className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  />
-                </div>
-                <div className="lg:pl-20 relative">
-                  <img
-                    loading="lazy"
-                    src="/intersect-right.png"
-                    className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
-                  />
-                  <div className="lg:text-5xl text-3xl mb-3 text-end">
-                  {technology.techname}
-                  </div>
-                  <div className="mb-10">
-                    <p className="lg:text-lg text-base text-end"> {technology.techDesc}</p>
-                  </div>
-                  <div className="lg:pl-36 md:text-end">
+            <img
+              loading="lazy"
+              src="/intersect-right.png"
+              className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
+            />
+            <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+              <div className="lg:px-10 px-5 w-full">
+                <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                  <div className="text-center">
                     <img
                       loading="lazy"
-                      src={urlForImage(technology.techLogos).toString()}
-                      className="lg:w-full md:w-3/4 w-full inline-block"
+                      src={urlForImage(technology.techImage).toString()}
+                      className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
                     />
+                  </div>
+                  <div className="lg:pl-20 relative">
+                    <img
+                      loading="lazy"
+                      src="/intersect-right.png"
+                      className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
+                    />
+                    <div className="lg:text-5xl text-3xl mb-3 text-end">
+                      {technology.techname}
+                    </div>
+                    <div className="mb-10">
+                      <p className="lg:text-lg text-base text-end"> {technology.techDesc}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-3 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
+                      <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
+                        {Array.isArray(technology.techLogos) && technology.techLogos.map((techLogo: any, techLogoIndex: any) => (
+                          techLogo.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                            if (logoData) {
+                              return (
+                                <div key={`${techLogoIndex}-${logoIndex}`} className=" p-1 justify-center">
+                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 w-14 mr-2" />
+                                  <p className="text-center ml-2">{logoData.heading}</p>
+
+                                </div>
+
+                              );
+                            } else {
+                              return null;
+                            }
+                          })
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
- )
+        )
       ))}
 
 
 
-      
+
     </div>
   );
 }
