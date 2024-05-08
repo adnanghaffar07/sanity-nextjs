@@ -3,7 +3,7 @@
 import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
-import {PortableText} from '@portabletext/react'
+import { PortableText } from '@portabletext/react'
 import Link from "next/link";
 
 
@@ -19,14 +19,28 @@ async function getData(urlPathSub: string) {
     }
 }
 
+async function getLogoData() {
+    const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+    ;
+    try {
+        const fetchData = await client.fetch(queryLogo);
+        return fetchData || [];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+}
 
 
 
 
 const Page = async ({ params }: { params: { slug: string } }) => {
     const data = await getData(params.slug);
-    console.log('Sanity Data',data);
-    
+    console.log('Sanity Data', data);
+    const dataLogo = await getLogoData();
+    console.log('Sanity Data', dataLogo);
+
+
 
 
     return (
@@ -60,68 +74,76 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
             {/* Introduction Section */}
             <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-    <div className="container mx-auto flex flex-wrap items-center justify-center">
-        {data.introductionSubSection?.introImage ? (
-            <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
-                <Image
-                    src={urlForImage(data.introductionSubSection?.introImage).toString()}
-                    alt={data.introductionSubSection?.introImage.alt || ""}
-                    width={570}
-                    height={370}
-                />
-            </div>
-        ) : null}
-        <div className={data.introductionSubSection?.introImage ? "w-full md:w-1/2 md:justify-end" : "w-full"}>
-            <div className="max-w-2xl">
-                <h2 className="text-3xl font-bold mb-8">
-                    {data.introductionSubSection?.introHeading}
-                </h2>
-                <p className="text-lg text-gray-800 leading-relaxed">
-                    {data.introductionSubSection?.introDesc}
-                </p>
-                
-                <br/>
-      
-            
-            </div>
-        </div>
-    </div>
-</section>
+                <div className="container mx-auto flex flex-wrap items-center justify-center">
+                    {data.introductionSubSection?.introImage ? (
+                        <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+                            <Image
+                                src={urlForImage(data.introductionSubSection?.introImage).toString()}
+                                alt={data.introductionSubSection?.introImage.alt || ""}
+                                width={570}
+                                height={370}
+                            />
+                        </div>
+                    ) : null}
+                    <div className={data.introductionSubSection?.introImage ? "w-full md:w-1/2 md:justify-end" : "w-full"}>
+                        <div className="max-w-2xl">
+                            <h2 className="text-3xl font-bold mb-8">
+                                {data.introductionSubSection?.introHeading}
+                            </h2>
+                            <p className="text-lg text-gray-800 leading-relaxed">
+                                {data.introductionSubSection?.introDesc}
+                            </p>
+
+                            <br />
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Tools & Technology Section */}
-            <section className="px-6 md:px-16 py-10 md:py-16">
+            {/* <section className="px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto">
-                    <h2 className="text-2xl font-bold mb-8">
+                    <h2 className="text-3xl font-bold mb-8">
                         {data.toolsTechSubSection?.toolsTechHeading}
                     </h2>
-                    <p className="text-3xl text-center font-light mb-8">
+                    <p className="text-xl font-light mb-8">
                         {data.toolsTechSubSection?.toolsTechDesc}
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSubSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center">
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center h-full">
                                     <div className="flex flex-wrap justify-center gap-1">
-                                        {tool.images && tool.images.map((image: any, imageIndex: any) => (
-                                            <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
-                                        ))}
+                                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                                            if (logoData) {
+                                                return (
+                                                    <div key={logoIndex} className="">
+                                                        <img src={urlForImage(logoData.image).toString()} alt={logoData.heading} className="h-8 object-cover mb-2" />
+                                                    </div>
+                                                );
+                                            } else {
+                                                return null;
+                                            }
+                                        })}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4">
+                                    <h3 className="text-xl text-center font-semibold mb-4">
                                         {tool.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {tool.detail}
                                     </p>
                                 </div>
                             </div>
                         ))}
                     </div>
-
                 </div>
-            </section>
+            </section> */}
 
-             {/* Example Value of Service (Use Cases) Section */}
-             <section className="bg-white px-6 md:px-16 py-10 md:py-16">
+            {/* Example Value of Service (Use Cases) Section */}
+            <section className="bg-white px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto" >
                     <h2 className="text-2xl font-bold mb-8">
                         {data.exampleServicesSubSection?.exampleServiceHeading}</h2>
@@ -148,8 +170,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
 
 
-             {/* Typical Project Cycle Stages Section */}
-             <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+            {/* Typical Project Cycle Stages Section */}
+            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                     {/* Right side (Content) */}
                     <div className="col-span-1 md:col-span-1 ml-4 md:ml-24"> {/* Adjusted margin */}
@@ -217,8 +239,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
 
 
-              {/* Special Offers Section */}
-              <section className="px-6 md:px-16 py-10 md:py-16">
+            {/* Special Offers Section */}
+            <section className="px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     {/* Left side (Image) */}
                     <div className="col-span-1 md:col-span-1">
@@ -255,14 +277,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
 
 
-        {/* Call to Action Section */}
-        <section className="px-6 md:px-16 py-10 md:py-16">
+            {/* Call to Action Section */}
+            <section className="px-6 md:px-16 py-10 md:py-16">
 
-        <div className="container mx-auto text-center">
-        <h2 className="text-2xl font-bold mb-4">{data.callToActionSubSection?.callToActionHeading}</h2>
-        <p className="text-lg mb-8">{data.callToActionSubSection?.callToAction}</p>
-        </div>
-        </section>
+                <div className="container mx-auto text-center">
+                    <h2 className="text-2xl font-bold mb-4">{data.callToActionSubSection?.callToActionHeading}</h2>
+                    <p className="text-lg mb-8">{data.callToActionSubSection?.callToAction}</p>
+                </div>
+            </section>
 
 
             {/* Contact Section */}
