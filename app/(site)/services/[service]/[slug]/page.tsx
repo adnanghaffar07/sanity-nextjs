@@ -103,7 +103,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 </section>
 
             {/* Tools & Technology Section */}
-            {/* <section className="px-6 md:px-16 py-10 md:py-16">
+            <section className="px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-8">
                         {data.toolsTechSubSection?.toolsTechHeading}
@@ -140,7 +140,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                         ))}
                     </div>
                 </div>
-            </section> */}
+            </section>
 
             {/* Example Value of Service (Use Cases) Section */}
             <section className="bg-white px-6 md:px-16 py-10 md:py-16">

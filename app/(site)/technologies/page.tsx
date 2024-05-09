@@ -89,7 +89,7 @@ export default async function Technologies() {
                             if (logoData) {
                               return (
                                 <div key={`${techLogoIndex}-${logoIndex}`} className=" p-1 justify-center">
-                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 object-cover mb-2" />
+                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 object-cover mb-2 mx-auto" />
                                   <p className="text-center">{logoData.heading}</p>
 
                                 </div>
@@ -147,18 +147,16 @@ export default async function Technologies() {
                       <p className="lg:text-lg text-base text-end"> {technology.techDesc}</p>
                     </div>
                     <div className="flex flex-wrap gap-3 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
-                      <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
+                      <div className="grid grid-cols-4 gap-4 sm:gap-5 justify-end">
                         {Array.isArray(technology.techLogos) && technology.techLogos.map((techLogo: any, techLogoIndex: any) => (
                           techLogo.images?.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                             if (logoData) {
                               return (
-                                <div key={`${techLogoIndex}-${logoIndex}`} className=" p-1 justify-center">
-                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 w-14 mr-2" />
-                                  <p className="text-center ml-2">{logoData.heading}</p>
-
+                                <div key={`${techLogoIndex}-${logoIndex}`} className="p-1">
+                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 object-cover mb-2 mx-auto" />
+                                  <p className="text-center">{logoData.heading}</p>
                                 </div>
-
                               );
                             } else {
                               return null;
@@ -167,6 +165,7 @@ export default async function Technologies() {
                         ))}
                       </div>
                     </div>
+
 
                   </div>
                 </div>
