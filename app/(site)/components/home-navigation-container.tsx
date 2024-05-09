@@ -479,23 +479,23 @@ export default function HomeNavigationContainer() {
                   <div className="mt-2 px-4">
                     <ul className="mega-links">
                       <li>
-                        <Link href="/" className="heading" onClick={hideMenu}>
+                        <Link href="javascript:void(0)" className="heading" onClick={hideMenu}>
                           Brochure Downloads{" "}
                         </Link>
                         <p>
                           {" "}
-                          <Link href="/" onClick={hideMenu}>
-                            Resources
+                          <Link href="javascript:void(0)" onClick={hideMenu}>
+                           (Coming Soon)
                           </Link>
                         </p>
                       </li>
                       <li>
-                        <Link href="/" className="heading" onClick={hideMenu}>
+                        <Link href="javascript:void(0)" className="heading" onClick={hideMenu}>
                           News{" "}
                         </Link>
                         <p>
-                          <Link href="/" onClick={hideMenu}>
-                            Latest Updates{" "}
+                          <Link href="javascript:void(0)" onClick={hideMenu}>
+                          (Coming Soon)
                           </Link>
                         </p>
                       </li>
