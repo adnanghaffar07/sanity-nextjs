@@ -7,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const linkAI = "/ai-services";
+const linkML = "/ml-services";
+const devops = "/ai-devops";
 const linkUrlCMS1 = "/custom-web-cms";
 const linkUrlCMS = "/headless-cms";
 const linkUrlSoft = "/web-app-development";
@@ -14,6 +16,7 @@ const linkUrlAuto = "/qa-web-testing";
 const linkUrlDigital = "/design-services";
 const linkMob = "/mobile-app-development";
 const linkRobotic = "/rpa-services";
+const linkIntegrate = "/automation-integration";
 
 
 export default function HomeNavigationContainer() {
@@ -63,7 +66,7 @@ export default function HomeNavigationContainer() {
 
 
   useEffect(() => {
-    const handleClickOutside = (event:any) => {
+    const handleClickOutside = (event: any) => {
       if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
         setOpen(false);
       }
@@ -147,10 +150,10 @@ export default function HomeNavigationContainer() {
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-8">
                       <Link href={`/services/${linkUrlCMS1}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-codepen.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>                        
-                          <div className="ml-4">
+                        <div className="">
+                          <Image src='/logo-codepen.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
+                        <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             CMS
                           </p>
@@ -160,9 +163,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href={`/services/${linkUrlCMS}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-buffer.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-buffer.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Headless-CMS</p>
@@ -172,9 +175,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href={`/services/${linkUrlSoft}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-javascript.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-javascript.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Software Development
@@ -186,9 +189,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href={`/services/${linkUrlDigital}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-figma.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-figma.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Design Services
@@ -218,9 +221,9 @@ export default function HomeNavigationContainer() {
                     </div>
                     <div className="grid grid-cols-1 gap-8">
                       <Link href={`/services/${linkUrlAuto}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-apple-ar.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-apple-ar.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             QA Testing & Automation
@@ -231,9 +234,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href={`/services/${linkMob}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-react.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-react.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Mobile App development
@@ -245,9 +248,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href={`/services/${linkAI}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-web-component.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-web-component.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             AI Services
@@ -259,9 +262,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href={`/services/${linkRobotic}`} className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/logo-ionitron.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/logo-ionitron.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Robotic Research
@@ -279,29 +282,28 @@ export default function HomeNavigationContainer() {
                     <div className="grid grid-cols-1 gap-3 p-2 lg:p-0 bg-gray-50 rounded-2xl">
                       <div className="grid items-start h-1/2 gap-6 px-5 py-6 sm:gap-8 sm:p-8">
                         <h3 className="text-base font-medium text-black">
-                          Getting started
-                        </h3>
+                          Hot Topics                        </h3>
                         <div className="space-y-3">
-                          <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Identify Service Categories
+                          <Link href={`/services/${linkAI}`} className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            ChatBox & AI
                           </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Map Out the Journey
+                          <Link href={`/services/${linkUrlCMS}`} className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            Headless CMS
                           </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Design the Layout
-                          </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                          <Link href={`/services/${linkIntegrate}`} className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            Integration & Automation                          </Link>
+                          <Link href={`/services/${linkUrlDigital}`} className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
                             User Interface (UI) Design
                           </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Development and Integration                          </Link>
-                          <Link href="javascript:void(0)" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Content Management                          </Link>
-                          <Link href="javascript:void(0)" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Testing and Quality Assurance                          </Link>
-                          <Link href="javascript:void(0)" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Launch and Promotion                          </Link>
+                          <Link href={`/services/${linkUrlAuto}`} className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            QA and Testing                          </Link>
+                          <Link href={`/services/${linkMob}`} className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            Mobile Application                         </Link>
+
+                          <Link href={`/services/${linkML}`} className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            ML Services                          </Link>
+                          <Link href={`/services/${devops}`} className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
+                            Devops Services                        </Link>
                         </div>
                       </div>
                     </div>
@@ -333,9 +335,9 @@ export default function HomeNavigationContainer() {
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-6">
                       <Link href="/case-study" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/library.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/library.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Case-Studies
@@ -345,9 +347,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href="/blogs" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/newspaper.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/newspaper.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Blogs                          </p>
@@ -356,9 +358,9 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href="/career" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/briefcase.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/briefcase.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Careers
@@ -370,9 +372,9 @@ export default function HomeNavigationContainer() {
                     </div>
                     <div className="grid grid-cols-1 gap-6">
                       <Link href="javascript:void(0)" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/grid.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/grid.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Brochure Downloads
@@ -382,20 +384,20 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link href="javascript:void(0)" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/reader.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/reader.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                           News                         </p>
+                            News                         </p>
                           <p className="mt-1 text-sm text-gray-500">
-                           (Coming Soon) </p>
+                            (Coming Soon) </p>
                         </div>
                       </Link>
                       <Link href="/lifeatca" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
-                      <div className="">
-                        <Image src='/images.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
-                        </div>   
+                        <div className="">
+                          <Image src='/images.svg' alt="" height={12} width={12} className="text-black size-6 md hydrated" />
+                        </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
                             Life At CA
@@ -411,7 +413,7 @@ export default function HomeNavigationContainer() {
                           Getting started
                         </h3> */}
                         <div className="">
-                        <img src='/menu-img.jpg' alt="" className="object-cover h-full width-full rounded-2xl" />
+                          <img src='/menu-img.jpg' alt="" className="object-cover h-full width-full rounded-2xl" />
 
 
 
