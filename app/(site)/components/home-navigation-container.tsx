@@ -421,8 +421,15 @@ export default function HomeNavigationContainer() {
                           {/* <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
                             Explore design work
                           </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Contact Team
+                        </p>
+                      </li>
+                      <li>
+                        <Link href="/" className="heading" onClick={hideMenu}>
+                          News{" "}
+                        </Link>
+                        <p>
+                          <Link href="/" onClick={hideMenu}>
+                            Latest Updates{" "}
                           </Link>
                           <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
                             Register

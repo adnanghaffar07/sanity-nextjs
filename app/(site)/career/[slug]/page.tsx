@@ -49,8 +49,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         />
         <div className="flex flex-col self-center w-full xl:max-w-[1582px] relative z-10 mx-auto">
           <div className="lg:px-10 px-5 w-full py-16">
-            <div className="xl:text-5xl lg:text-4xl text-2xl font-normal xl:mb-16 mb-8 xl:w-7/12">
-              {data.descJobTitle}{" "}
+            <div className="xl:text-5xl lg:text-4xl text-2xl flex flex-col gap-5  font-normal xl:mb-16 mb-8 xl:w-7/12">
+              <span>{data.descJobTitle}</span>
+              <span>{data.yearsofExperience}</span>
             </div>
             <div className="mb-10">
               <div className="xl:text-4xl lg:text-2xl text-xl text-[#024] font-semibold mb-5">

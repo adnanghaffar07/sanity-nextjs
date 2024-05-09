@@ -16,6 +16,12 @@ const careers = {
     },
 
     {
+      name: "yearsofExperience",
+      title: "Years of Experience",
+      type: "string",
+    },
+
+    {
       name: "jobDescription",
       title: "Job Description",
       type: "string",

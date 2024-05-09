@@ -1,7 +1,6 @@
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-
 async function getData() {
   const query = `*[_type == 'technologies'] | order(_createdAt desc)`;
   try {
@@ -32,17 +31,19 @@ export default async function Technologies() {
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <img className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/technologies.png" />
+        <img
+          className="absolute top-0 left-0 object-cover  inset-0 size-full"
+          src="/technologies.png"
+        />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
-              <h2 className="title capitalize">
-                &quot;Technology&quot;
-              </h2>
+              <h2 className="title capitalize">&quot;Technology&quot;</h2>
             </div>
             <div className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
-              We offer only well-recognized and time-tested technologies to bring advancement to any of your business goals.
+              We offer only well-recognized and time-tested technologies to
+              bring advancement to any of your business goals.
             </div>
           </div>
         </div>
@@ -53,7 +54,12 @@ export default async function Technologies() {
             Our Tech Stack In Different Technologies
           </div>
           <div className="xl:w-9/12 mx-auto text-center">
-            <p className="lg:text-xl text-l text-base">Explore the technologies that power our solutions and witness the innovation firsthand! Here, we showcase our proficiency in a wide range of cutting-edge technologies across various domains of software development.</p>
+            <p className="lg:text-xl text-l text-base">
+              Explore the technologies that power our solutions and witness the
+              innovation firsthand! Here, we showcase our proficiency in a wide
+              range of cutting-edge technologies across various domains of
+              software development.
+            </p>
           </div>
         </div>
       </div>
@@ -117,7 +123,6 @@ export default async function Technologies() {
             </div>
           </div>
         ) : (
-
           <div key={index} className="max-w-full mx-auto relative">
             <img
               loading="lazy"
@@ -181,4 +186,3 @@ export default async function Technologies() {
     </div>
   );
 }
-
