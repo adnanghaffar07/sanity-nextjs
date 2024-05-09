@@ -9,8 +9,6 @@ import Image from "next/image";
 
 async function getData(params: string) {
     const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
-
-
     ;
     try {
         const fetchData = await client.fetch(query);
@@ -20,6 +18,7 @@ async function getData(params: string) {
         return [];
     }
 }
+
 
 async function getSubData() {
     const querySub = `*[_type == 'subService'] | order(_createdAt asc)`;
@@ -33,15 +32,32 @@ async function getSubData() {
     }
 }
 
+async function getLogoData() {
+    const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+    ;
+    try {
+        const fetchData = await client.fetch(queryLogo);
+        return fetchData || [];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+}
+
+
 
 
 
 export default async function service({ params }: { params: { service: string } }) {
     const data = await getData(params.service);
     const dataSub = await getSubData();
+    const dataLogo = await getLogoData();
+
+
+
+
 
     return (
-
         <div className="bg-gray-100">
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
                 {data.heroImage && (
@@ -79,11 +95,11 @@ export default async function service({ params }: { params: { service: string } 
                         </div>
                     ) : (
                         <div className="w-full  justify-center mb-4">
-                            <div className="">
+                            <div className="max-w-2xl">
                                 <h2 className="text-3xl font-bold mb-8 text-center">
                                     {data.introductionSection?.introHeading}
                                 </h2>
-                                <p className="text-lg text-gray-800 leading-relaxed text-center">
+                                <p className="text-lg text-gray-800 leading-relaxed text-center ">
                                     {data.introductionSection?.introDesc}
                                 </p>
                             </div>
@@ -95,7 +111,7 @@ export default async function service({ params }: { params: { service: string } 
                                 <h2 className="text-3xl font-bold mb-8">
                                     {data.introductionSection?.introHeading}
                                 </h2>
-                                <p className="text-lg text-gray-800 leading-relaxed">
+                                <p className="text-lg text-gray-800 text-justify">
                                     {data.introductionSection?.introDesc}
                                 </p>
                             </div>
@@ -115,11 +131,11 @@ export default async function service({ params }: { params: { service: string } 
                             if (subService) {
                                 return (
                                     <Link href={`/services/service/${subService.urlPathSub}`} key={subService._id}>
-                                        <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
+                                        <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 " style={{ height: '300px' }}>
                                             <img src={urlForImage(subService.heroImageSub).toString()} alt={subService.serviceCardSub} className="w-full h-40 object-cover" />
                                             <div className="p-6">
-                                                <h3 className="text-xl font-semibold mb-4">{subService.serviceCardSub}</h3>
-                                                <p className="text-gray-700">{subService.serviceDescSub}</p>
+                                                <h3 className="text-xl font-semibold text-center mb-4">{subService.serviceCardSub}</h3>
+                                                <p className="text-gray-700 text-center">{subService.serviceDescSub}</p>
                                             </div>
                                         </div>
                                     </Link>
@@ -145,25 +161,34 @@ export default async function service({ params }: { params: { service: string } 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data.toolsTechSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                             <div key={toolIndex}>
-                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center">
+                                <div className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center justify-center h-full">
                                     <div className="flex flex-wrap justify-center gap-1">
-                                        {tool.images && tool.images.map((image: any, imageIndex: any) => (
-                                            <img key={imageIndex} src={urlForImage(image).toString()} alt={tool.heading} className="h-12 mb-4" />
-                                        ))}
+                                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                                            if (logoData) {
+                                                return (
+                                                    <div key={logoIndex} className="">
+                                                        <img src={urlForImage(logoData.image).toString()} alt={logoData.heading} className="h-8 object-cover mb-2" />
+                                                    </div>
+                                                );
+                                            } else {
+                                                return null;
+                                            }
+                                        })}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4">
+                                    <h3 className="text-xl text-center font-semibold mb-4">
                                         {tool.heading}
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {tool.detail}
                                     </p>
                                 </div>
                             </div>
                         ))}
                     </div>
-
                 </div>
             </section>
+
 
             {/* Example Value of Service (Use Cases) Section */}
             <section className="bg-white px-6 md:px-16 py-10 md:py-16">
@@ -172,16 +197,17 @@ export default async function service({ params }: { params: { service: string } 
                         {data.exampleServicesSection?.exampleServiceHeading}</h2>
                     <p className="text-xl font-light mb-8">
                         {data.exampleServicesSection?.exampleServicedesc}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                         {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
                             <div
                                 key={exampleIndex}
                             >
-                                <div className="bg-gray-100 shadow-md p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4">
+                                <div className="bg-gray-100 shadow-md p-6 rounded-lg h-full">
+                                    <h3 className="text-xl text-center font-semibold mb-4">
                                         {example.heading}
+                                        
                                     </h3>
-                                    <p className="text-gray-700">
+                                    <p className="text-gray-700 text-center">
                                         {example.detail}
                                     </p>
                                 </div>
@@ -302,28 +328,27 @@ export default async function service({ params }: { params: { service: string } 
             </section>
 
             {/* Contact Section */}
-            <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+            {/* <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
                 <div className="container mx-auto text-center">
                     <h2 className="text-2xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>
                     <p className="text-lg text-center">
                         {data.contactSection?.contactUsDesc}
-                        {/* To learn more about our services or to schedule a consultation, please email us at{' '}
-                <a href="mailto:contact@codeautomation.ai" className="text-blue-500 font-bold">
-                    contact@codeautomation.ai
-                </a>{' '}
-                or call us at <span className="font-bold">(123) 456-7890</span>. */}
+
                     </p>
+                   
                     <p className="text-blue-500 font-bold">
-                        {data.contactSection?.contactEmail}
+                     <Link href='mailto:info@codeautomation.ai' target="_blank"> {data.contactSection?.contactEmail} </Link>
+                    </p> 
+                  
+
+                    <p className=" text-blue-500 font-bold">
+                    <Link href='tel:+18505584691'>  {data.contactSection?.contactPhone} </Link>
                     </p>
-                    <p className="font-bold">
-                        {data.contactSection?.contactPhone}
-                    </p>
-                    <p className="font-bold">
-                        {data.contactSection?.contactLink}
+                    <p className=" text-blue-500 font-bold">
+                    <Link href='https://codeautomation.ai/' target="_blank">   {data.contactSection?.contactLink} </Link>
                     </p>
                 </div>
-            </section>
+            </section> */}
         </div>
 
     )

@@ -1,8 +1,11 @@
+"use client";
 import { getCpyrighttext } from "@/sanity/sanity-utils";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-export default async function FooterContainer() {
-  const cpyrighttext = await getCpyrighttext();
+export default function FooterContainer() {
+  // const cpyrighttext = await getCpyrighttext();
 
   const linkUrl = "/headless-cms";
   const linkUrlWeb = "/web-app-development";
@@ -10,6 +13,18 @@ export default async function FooterContainer() {
   const linkUrlAutomate = "/qa-web-testing";
   const linkUrlAI = "/ai-services";
   const linkUrlBuisness = "/automation-integration";
+
+  const [showAddress, setAddress] = useState(true);
+
+  const handleClick = () => {
+    setAddress(!showAddress);
+  };
+
+  const currentPath = usePathname();
+
+  useEffect(() => {
+    setAddress(true);
+  }, [currentPath]);
 
   const socialIcons = [
     {
@@ -71,14 +86,14 @@ export default async function FooterContainer() {
                     href="tel:+18505584691"
                     className="hover:underline my-auto inline-block"
                   >
-                    +1-850-558-4691
+                   <span className=" font-bold">USA:</span> 850.558.4691
                   </a>
                   <br />
                   <a
                     href="tel:+13076556139"
                     className="hover:underline my-auto inline-block"
                   >
-                    +1-307-655-6139
+                   <span className=" font-bold">USA:</span> 307.655.6139
                   </a>
                 </div>
               </div>
@@ -92,7 +107,7 @@ export default async function FooterContainer() {
                   href={`/services/${linkUrl}`}
                   className="hover:underline my-auto inline-block"
                 >
-                 Headless CMS
+                  Headless CMS
                 </Link>
                 <Link
                   href={`/services/${linkUrlWeb}`}
@@ -123,7 +138,7 @@ export default async function FooterContainer() {
                   className="hover:underline my-auto inline-block"
                 >
                   Automation & Integration
-                                  </Link>
+                </Link>
               </div>
             </div>
           </div>
@@ -164,14 +179,25 @@ export default async function FooterContainer() {
               <div className="mt-6 text-lg font-light leading-5 self-start">
                 <span className="text-1xl font-bold">USA:</span> 30 N Gould St
                 Ste 7596, Sheridan, WY, 82801.
-                <br /> 
-               <br />
+                <br />
+                <br />
                 <span className="text-1xl font-bold">Canada:</span> 25 McArthur
                 Ave. Ottawa, ON K1L 6R3
                 <br />
                 <br />
-                <span className="text-1xl font-bold">Pakistan:</span> A 1/11 P,
-                Block P Model Town, Lahore, Pakistan
+                {showAddress ? (
+                  <span
+                    className=" cursor-pointer font-semibold"
+                    onClick={handleClick}
+                  >
+                    More
+                  </span>
+                ) : (
+                  <span className="text-1xl ">
+                    <span className=" font-bold"> Pakistan:</span> A 1/11 P,
+                    Block P Model Town, Lahore, Pakistan{" "}
+                  </span>
+                )}
               </div>
               <div className="container mt-20 flex justify-center items-center">
                 <section className="grid grid-cols-4 gap-3 ">
@@ -197,11 +223,12 @@ export default async function FooterContainer() {
         </div>
         <div className="self-stretch mt-7 w-full bg-white min-h-[1px] mx-auto" />
         <div className="mt-12 text-md font-light leading-5 text-center text-white max-md:mt-10">
-          {cpyrighttext.map((cpyrighttext) => (
+          {/* {cpyrighttext.map((cpyrighttext) => (
             <div className="cpyrighttext" key={cpyrighttext._id}>
               {cpyrighttext.name}
             </div>
-          ))}
+          ))} */}
+          Copyright @2024 - by Codeautomation.ai
         </div>
       </div>
     </div>

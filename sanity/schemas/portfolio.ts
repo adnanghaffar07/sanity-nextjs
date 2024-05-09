@@ -19,6 +19,11 @@ const portfolioSchema = {
       type: "string",
     },
     {
+      name: "group",
+      title: "Group",
+      type: "string",
+    },
+    {
       name: "cardimage",
       title: "Card Image",
       type: "image",

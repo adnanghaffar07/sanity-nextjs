@@ -32,7 +32,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           ({data?.subtitle && data.subtitle})
         </span>
       </h3>
-      <div className="flex flex-col self-center w-full xl:max-w-[1300px] relative z-10 mx-auto">
+      <div className="flex flex-col self-center w-full xl:max-w-[1380px] relative z-10 mx-auto">
         <div className="lg:px-10 px-4">
           <div>
             <div className="flex justify-center mb-6 sm:mb-24 ">
@@ -41,17 +41,17 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   loading="lazy"
                   src={urlForImage(data.primaryimage.asset)}
                   width={1080}
-                  className="shadow-blogImage"
+                  className="shadow-blogImage w-full"
                   alt={data.primaryimage.alt}
                 />
               )}
             </div>
-            <div className="flex flex-col xl:flex-row justify-center items-center gap-6 md:gap-10 lg:gap-24">
+            <div className="flex flex-col xl:flex-row justify-between items-center gap-6 md:gap-10 lg:gap-36">
               <div>
                 <h2 className="text-xl sm:text-3xl md:text-6xl mb-4">
                   The Brief
                 </h2>
-                <p className="text-xs sm:text-xl md:text-2xl font-light max-w-[610px] text-justify">
+                <p className="text-xs sm:text-xl md:text-2xl font-light xl:max-w-[610px] text-justify">
                   {data.briefdescription && data.briefdescription}
                 </p>
               </div>
@@ -81,22 +81,22 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 className="size-full mb-0 sm:mb-14 shadow-blogImage"
               />
             )}
-            <div className="max-w-[1020px] my-10 md:my-20 text-justify mx-auto">
+            <div className="w-full my-10 md:my-20 text-justify mx-auto">
               <h3 className="text-xl md:text-4xl font-semibold mb-4 md:mb-8">
                 Project Scope:
               </h3>
-              <p className="text-xs md:text-xl font-light leading-4 md:leading-8 tracking-[0.72px]">
+              <p className="text-xs md:text-xl font-light leading-4 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
 
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Technologies used:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data.technologiesused?.map((technology: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={technology._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -110,11 +110,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Challenges Faced:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data.chanllangesfaced?.map((challange: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -128,11 +128,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Our Approach:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data.ourapproach?.map((approach: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={approach._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -146,11 +146,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Results:
               </h3>
-              <ul className="list-disc list-inside">
+              <ul>
                 {data?.results?.map((result: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light"
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={result._key}
                     >
                       <span className="text-xs md:text-xl font-bold">
@@ -164,13 +164,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Tools Used for Project & Test Case Management:
               </h3>
-              <p className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light">
+              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.toolsfortest && data.toolsfortest}
               </p>
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Conclusion:
               </h3>
-              <p className="text-xs md:text-xl leading-4 md:leading-8 tracking-[0.72px] font-light">
+              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.conclusion && data.conclusion}
               </p>
             </div>

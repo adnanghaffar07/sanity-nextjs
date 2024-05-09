@@ -13,28 +13,20 @@ export default function Blogs() {
           muted
           autoPlay
           loop
+          playsInline
         >
           <source src="/for-blogs.mp4" type="video/mp4" />
         </video>
 
         <div className="mt-[130px] sm:mt-[280px] lg:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight text-center capitalize leading-[48px] text-white">
-            &quot; Our Blogs &quot;
+            Our Blogs
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
             Your gateway to thought-provoking articles that spark curiosity and
             ignite your passions.
           </p>
         </div>
-
-        {/* 
-        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[250px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="capitalize">&quot;Our Blogs&quot;</h2>
-            </div>
-          </div>
-        </div> */}
       </div>
 
       <div className="max-w-full  relative">

@@ -44,11 +44,11 @@ const LifeAtCA = () => {
     alt: string;
     className?: string;
   }
-  
+
   const Image: React.FC<ImageProps> = ({ src, alt, className }) => (
     <img loading="lazy" src={src} alt={alt} className={className} />
   );
-  
+
   const images = [
     { src: "/image1.png", alt: "Image 1" },
     { src: "/image2.png", alt: "Image 2" },
@@ -58,19 +58,23 @@ const LifeAtCA = () => {
     { src: "/image6.png", alt: "Image 6" },
     { src: "/image7.png", alt: "Image 7" },
     { src: "/image8.png", alt: "Image 8" },
-    { src: "/image9.png", alt: "Image 9" },
+    // { src: "/image9.png", alt: "Image 9" },
+    { src: "/img23.jpg", alt: "Image 19" },
+
     { src: "/image10.png", alt: "Image 10" },
     { src: "/image11.png", alt: "Image 11" },
     { src: "/image12.png", alt: "Image 12" },
     { src: "/image13.png", alt: "Image 13" },
     { src: "/image14.png", alt: "Image 14" },
-    { src: "/image15.png", alt: "Image 15" },
+    { src: "/image15.jpg", alt: "Image 15" },
     { src: "/image16.png", alt: "Image 16" },
     { src: "/image17.png", alt: "Image 17" },
     { src: "/image18.png", alt: "Image 18" },
     { src: "/image19.png", alt: "Image 19" },
+
+    { src: "/img23.jfif", alt: "Image 19" },
   ];
-  
+
   return (
     <div>
 
@@ -80,10 +84,10 @@ const LifeAtCA = () => {
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[350px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
-            &quot;Life at CA&quot;
+              &quot;Life at CA&quot;
             </div>
             <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-           We offer a diverse blend of cultures and endless recreational opportunities, epitomizing innovation, diversity, and boundless possibilities.              </div>
+              We offer a diverse blend of cultures and endless recreational opportunities, epitomizing innovation, diversity, and boundless possibilities.              </div>
           </div>
         </div>
       </div>
@@ -112,38 +116,15 @@ const LifeAtCA = () => {
 
 
       <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
-      <p className="self-center text-xl text-center text-black">
+        <p className="self-center text-xl text-center text-black">
           CodeAutomation is not just a workplace; it&apos;s a community. We foster a
           culture of collaboration, innovation, and inclusivity.        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
-          <div className="flex gap-0 max-md:flex-col max-md:gap-0">
-            <div className="flex flex-col w-full md:w-[37%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow max-md:mt-6">
-                {images.slice(0, 2).map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image.src}
-                    alt={image.alt}
-                    className={`w-full aspect-[1.72] ${index === 1 ? "mt-6" : ""}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {images.slice(2, 5).map((image, index) => (
-              <div
-                key={index}
-                className={`flex flex-col ml-5 w-1/${index === 1 ? "3" : "5"} max-md:ml-0 max-md:w-full`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  className="grow shrink-0 max-w-full aspect-[0.47] w-[284px] max-md:mt-6 hidden md:block"
-                />
-              </div>
-            ))}
-
-          </div>
+        <Image
+                src="ca-pic.jpg"
+                alt=""
+                className="w-full"
+              />
         </section>
         <p className="self-center mt-14 text-xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
           We know that building strong relationships within the team is essential.
@@ -199,7 +180,7 @@ const LifeAtCA = () => {
           </div>
         </section>
         <p className="mt-10 text-xl leading-7 text-center text-black max-md:mt-14 max-md:mr-2 max-md:max-w-full">
-        We know that building strong relationships within the team is essential.
+          We know that building strong relationships within the team is essential.
           That&apos;s why we organize regular team-building activities, events, and
           outings. From hackathons to charity drives, we find ways to bond while
           making a positive impact on the community.
