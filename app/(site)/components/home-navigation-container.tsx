@@ -267,7 +267,7 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                            Robotic Research
+                          RPA Services
 
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
