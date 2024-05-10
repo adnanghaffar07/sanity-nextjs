@@ -867,17 +867,10 @@ const subServiceSchema = {
                   "type": "string"
                 },
                 {
-                  "name": "images",
-                  "title": "Images",
-                  "type": "array",
-                  "of": [
-                    {
-                      "type": "image",
-                      "options": {
-                        "hotspot": true
-                      }
-                    }
-                  ]
+                  name: "images",
+                  title: "Images",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
                 }
               ]
             }
