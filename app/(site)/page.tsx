@@ -128,8 +128,8 @@ export default function Home() {
                     </div>
                     <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                       <p>
-                        Scale up with the team of more than 70 dedicated
-                        <span className=" highlight  highlight-blue-300  highlight-variant-1  font-extrabold">
+                        Scale up with the team of more than 70 dedicated 
+                        <span className="font-extrabold ml-1">
                           software engineers
                         </span>{" "}
                         who are perfectly time-zone matched with you and have

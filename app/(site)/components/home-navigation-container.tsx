@@ -480,7 +480,7 @@ export default function HomeNavigationContainer() {
                     <ul className="mega-links">
                       <li>
                         <Link
-                          href="/brochure"
+                          href="javascript:void(0)"
                           className="heading"
                           onClick={hideMenu}
                         >
