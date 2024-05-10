@@ -7,7 +7,7 @@ import PartnershipForm from "./PartnershipForm";
 
 const FormDisplay = () => {
   const currentPath = usePathname();
-  return currentPath !== "/partnership" ? (
+  return currentPath !== "/partnership-program" ? (
     <ProjectDiscussionContainer />
   ) : (
     <PartnershipForm />

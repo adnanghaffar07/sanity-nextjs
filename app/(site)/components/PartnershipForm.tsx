@@ -1,14 +1,195 @@
 "use client";
 import { useState } from "react";
 import { useFormik } from "formik";
-import { contactSchema } from "../../schemas/index";
+import { partnershipSchema } from "../../schemas/index";
 
 const initialValues = {
   name: "",
+  purpose: "",
   contact_number: "",
-  looking: "",
   email: "",
-  message: "",
+  country: "",
+  city: "",
+  program: "",
+};
+
+interface CitiesData {
+  [key: string]: string[];
+}
+
+const citiesData: CitiesData = {
+  usa: [
+    "Albuquerque",
+    "Anaheim",
+    "Anchorage",
+    "Arlington",
+    "Atlanta",
+    "Aurora",
+    "Austin",
+    "Bakersfield",
+    "Baltimore",
+    "Baton Rouge",
+    "Birmingham",
+    "Boston",
+    "Buffalo",
+    "Charlotte",
+    "Chicago",
+    "Cincinnati",
+    "Cleveland",
+    "Colorado Springs",
+    "Columbus",
+    "Corpus Christi",
+    "Dallas",
+    "Denver",
+    "Detroit",
+    "El Paso",
+    "Fort Worth",
+    "Fresno",
+    "Honolulu",
+    "Houston",
+    "Indianapolis",
+    "Jacksonville",
+    "Kansas City",
+    "Las Vegas",
+    "Lexington",
+    "Lincoln",
+    "Long Beach",
+    "Los Angeles",
+    "Louisville",
+    "Memphis",
+    "Mesa",
+    "Miami",
+    "Milwaukee",
+    "Minneapolis",
+    "Nashville",
+    "New Orleans",
+    "New York",
+    "Oakland",
+    "Oklahoma City",
+    "Omaha",
+    "Orlando",
+    "Philadelphia",
+    "Phoenix",
+    "Pittsburgh",
+    "Portland",
+    "Raleigh",
+    "Riverside",
+    "Sacramento",
+    "Saint Louis",
+    "Saint Paul",
+    "Salt Lake City",
+    "San Antonio",
+    "San Diego",
+    "San Francisco",
+    "San Jose",
+    "Santa Ana",
+    "Seattle",
+    "Tampa",
+    "Toledo",
+    "Tucson",
+    "Tulsa",
+    "Virginia Beach",
+    "Washington",
+    "Wichita",
+  ],
+  canada: [
+    "Calgary",
+    "Edmonton",
+    "Toronto",
+    "Vancouver",
+    "Ottawa",
+    "Montreal",
+    "Winnipeg",
+    "Mississauga",
+    "Brampton",
+    "Hamilton",
+    "London",
+    "Markham",
+    "Vaughan",
+    "Surrey",
+    "Kitchener",
+    "Windsor",
+    "Richmond",
+    "Regina",
+    "Burnaby",
+    "Oshawa",
+    "Saskatoon",
+    "Kelowna",
+    "Barrie",
+    "Sherbrooke",
+    "Guelph",
+  ],
+  newzealand: [
+    "Auckland",
+    "Christchurch",
+    "Wellington",
+    "Hamilton",
+    "Tauranga",
+    "Dunedin",
+    "Palmerston North",
+    "Napier",
+    "Hastings",
+    "Nelson",
+    "Rotorua",
+    "New Plymouth",
+    "Whangarei",
+    "Invercargill",
+    "Whanganui",
+  ],
+  uk: [
+    "Aberdeen",
+    "Belfast",
+    "Birmingham",
+    "Bradford",
+    "Bristol",
+    "Cardiff",
+    "Coventry",
+    "Edinburgh",
+    "Glasgow",
+    "Leeds",
+    "Leicester",
+    "Liverpool",
+    "London",
+    "Manchester",
+    "Newcastle upon Tyne",
+    "Nottingham",
+    "Plymouth",
+    "Sheffield",
+    "Southampton",
+    "Stoke-on-Trent",
+    "Sunderland",
+    "Swansea",
+    "Wakefield",
+    "Wolverhampton",
+    "York",
+    "Cambridge",
+    "Oxford",
+    "Reading",
+    "Aberdeen",
+    "Dundee",
+  ],
+  australia: [
+    "Adelaide",
+    "Brisbane",
+    "Canberra",
+    "Darwin",
+    "Gold Coast",
+    "Hobart",
+    "Melbourne",
+    "Newcastle",
+    "Perth",
+    "Sunshine Coast",
+    "Sydney",
+    "Geelong",
+    "Wollongong",
+    "Townsville",
+    "Cairns",
+    "Toowoomba",
+    "Ballarat",
+    "Bendigo",
+    "Albury-Wodonga",
+    "Mackay",
+  ],
 };
 
 const PartnershipForm = () => {
@@ -16,15 +197,34 @@ const PartnershipForm = () => {
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [cityName, setCityName] = useState("");
+  const [updatedCitiesArr, setUpdatedCitiesArr] = useState<string[]>([]);
 
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: contactSchema,
-      onSubmit: (values, action) => {
-        action.resetForm();
-      },
-    });
+  const {
+    values,
+    errors,
+    handleBlur,
+    touched,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: partnershipSchema,
+    onSubmit: (values, action) => {
+      action.resetForm();
+    },
+  });
+
+  const handleCitiesArray = (value: string) => {
+    const regex = new RegExp(value, "i");
+    const newCitiesArray = citiesData[values.country].filter((city) =>
+      regex.test(city)
+    );
+    setUpdatedCitiesArr(newCitiesArray);
+  };
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
@@ -33,59 +233,66 @@ const PartnershipForm = () => {
 
     if (
       !values.name.length ||
-      !values.email.length ||
+      !values.purpose.length ||
       !values.contact_number.length ||
-      !values.looking.length ||
-      !values.message.length
+      !values.email.length ||
+      !values.country.length ||
+      !values.city.length ||
+      !values.program.length
     ) {
       return;
     }
     if (
       errors.name ||
-      errors.message ||
+      errors.purpose ||
       errors.contact_number ||
       errors.email ||
-      errors.looking
+      errors.country ||
+      errors.city ||
+      errors.program
     ) {
       return;
     }
+    console.log("_______new form values ::::", values);
 
-    try {
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("number", values.contact_number);
-      formData.append("looking", values.looking);
-      formData.append("message", values.message);
-      setUploading(true);
-      setMessage("Submitting form...");
+    // try {
+    //   const formData = new FormData();
+    //   formData.append("name", values.name);
+    //   formData.append("purpose", values.purpose);
+    //   formData.append("number", values.contact_number);
+    //   formData.append("email", values.email);
+    //   formData.append("country", values.country);
+    //   formData.append("city", values.city);
+    //   formData.append("program", values.program);
+    //   setUploading(true);
+    //   setMessage("Submitting form...");
 
-      setMessageSuccess("w-[10%]");
-      const response = await fetch("/api/projectdiscussionform", {
-        method: "POST",
-        body: formData,
-      });
+    //   setMessageSuccess("w-[10%]");
+    //   const response = await fetch("/api/partnershipform", {
+    //     method: "POST",
+    //     body: formData,
+    //   });
 
-      if (response.ok) {
-        setBgColor("bg-green-500");
-        setMessage("Your Message has been successfully submitted!");
-        setMessageSuccess("w-[100%]");
-      } else {
-        setBgColor("bg-red-500");
-        setMessage("Message not submitted!");
-        setMessageSuccess("w-[100%]");
-      }
-    } catch (error) {
-      setBgColor("bg-red-500");
-      setMessage("Message not submitted!");
-      setMessageSuccess("w-[100%]");
-      console.error("Error:", error);
-    } finally {
-      setUploading(false);
-      setTimeout(() => {
-        setMessage("");
-      }, 5000);
-    }
+    //   if (response.ok) {
+    //     setBgColor("bg-green-500");
+    //     setMessage("Your Message has been successfully submitted!");
+    //     setMessageSuccess("w-[100%]");
+    //   } else {
+    //     setBgColor("bg-red-500");
+    //     setMessage("Message not submitted!");
+    //     setMessageSuccess("w-[100%]");
+    //   }
+    // } catch (error) {
+    //   setBgColor("bg-red-500");
+    //   setMessage("Message not submitted!");
+    //   setMessageSuccess("w-[100%]");
+    //   console.error("Error:", error);
+    // } finally {
+    //   setUploading(false);
+    //   setTimeout(() => {
+    //     setMessage("");
+    //   }, 5000);
+    // }
   };
 
   return (
@@ -108,11 +315,12 @@ const PartnershipForm = () => {
               <p className="form-error">{errors.name}</p>
             ) : null}
           </div>
+
           <div className="mt-4">
             <select
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black pl-4"
               name="purpose"
-              //   value={values.dropdown}
+              value={values.purpose}
               onChange={handleChange}
               onBlur={handleBlur}
             >
@@ -122,10 +330,11 @@ const PartnershipForm = () => {
               <option value="self">Self</option>
               <option value="company">Company</option>
             </select>
-            {/* {errors.dropdown && touched.dropdown ? (
-      <p className="form-error">{errors.dropdown}</p>
-    ) : null} */}
+            {errors.purpose && touched.purpose ? (
+              <p className="form-error">{errors.purpose}</p>
+            ) : null}
           </div>
+
           <div className="mt-4">
             <input
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
@@ -139,6 +348,7 @@ const PartnershipForm = () => {
               <p className="form-error">{errors.contact_number}</p>
             ) : null}
           </div>
+
           <div className="mt-4">
             <input
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
@@ -157,8 +367,14 @@ const PartnershipForm = () => {
             <select
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
               name="country"
-              //   value={values.dropdown}
-              onChange={handleChange}
+              value={values.country}
+              onChange={(e) => {
+                handleChange(e);
+                // setFieldValue(values.city, "");
+                // setTimeout(() => {
+                //   setFieldValue("city", "");
+                // }, 0);
+              }}
               onBlur={handleBlur}
             >
               <option value="" disabled selected>
@@ -171,48 +387,84 @@ const PartnershipForm = () => {
               <option value="australia">Australia</option>
               <option value="other">Other</option>
             </select>
-            {/* {errors.dropdown && touched.dropdown ? (
-      <p className="form-error">{errors.dropdown}</p>
-    ) : null} */}
+            {errors.country && touched.country ? (
+              <p className="form-error">{errors.country}</p>
+            ) : null}
           </div>
 
-          <div className="mt-4">
-            <select
+          <div className="mt-4 relative z-10">
+            <input
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
+              placeholder="City / State"
               name="city"
-              //   value={values.dropdown}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="" disabled selected>
-                City / State
-              </option>
-              <option value="self">Option 1</option>
-              <option value="company">Option 2</option>
-            </select>
-            {/* {errors.dropdown && touched.dropdown ? (
-      <p className="form-error">{errors.dropdown}</p>
-    ) : null} */}
+              onChange={(e) => {
+                handleChange(e);
+                setCityName(e.target.value);
+                handleCitiesArray(e.target.value);
+              }}
+              onFocus={() => {
+                setIsOpen(true);
+                setIsAnimating(false);
+              }}
+              onBlur={(e) => {
+                handleBlur(e);
+                setIsAnimating(true);
+
+                setTimeout(() => {
+                  setIsAnimating(false);
+                  setIsOpen(false);
+                }, 700);
+              }}
+            />
+            {(isOpen || isAnimating) && (
+              <div
+                className={`absolute top-full w-full mt-2 border-2 border-gray-300 max-h-[300px] flex-col flex justify-center items-start whitespace-nowrap rounded-xl shadow-lg max-md:px-5 text-black placeholder-black text-base bg-zinc-100 overflow-auto z-dropdown ${
+                  isAnimating ? "animate-slide-up" : "animate-slide-down"
+                }`}
+                style={{
+                  scrollbarWidth: "initial",
+                  scrollbarColor: "#1D92FB #f1f1f1",
+                }}
+              >
+                <ul className="w-full">
+                  {values.country ? (
+                    updatedCitiesArr.map((city: string, index: number) => (
+                      <li className="hover:bg-white px-7 py-2 cursor-pointer transition-colors duration-200">
+                        {city}
+                      </li>
+                    ))
+                  ) : (
+                    <li className="hover:bg-white px-7 py-2 cursor-pointer transition-colors duration-200">
+                      Please select a country first
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {errors.city && touched.city ? (
+              <p className="form-error">{errors.city}</p>
+            ) : null}
           </div>
 
           <div className="mt-4">
             <select
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
               name="program"
-              //   value={values.dropdown}
+              value={values.program}
               onChange={handleChange}
               onBlur={handleBlur}
             >
               <option value="" disabled selected>
                 I am interested in
               </option>
-              <option value="self">Reseller Program</option>
-              <option value="self">Affiliate Program</option>
-              <option value="self">White Label Program</option>
+              <option value="Reseller Program">Reseller Program</option>
+              <option value="Affiliate Program">Affiliate Program</option>
+              <option value="White Label Program">White Label Program</option>
             </select>
-            {/* {errors.dropdown && touched.dropdown ? (
-      <p className="form-error">{errors.dropdown}</p>
-    ) : null} */}
+            {errors.program && touched.program ? (
+              <p className="form-error">{errors.program}</p>
+            ) : null}
           </div>
 
           <button

@@ -86,14 +86,14 @@ export default function FooterContainer() {
                     href="tel:+18505584691"
                     className="hover:underline my-auto inline-block"
                   >
-                   <span className=" font-bold">USA:</span> 850.558.4691
+                    <span className=" font-bold">USA:</span> 850.558.4691
                   </a>
                   <br />
                   <a
                     href="tel:+13076556139"
                     className="hover:underline my-auto inline-block"
                   >
-                   <span className=" font-bold">USA:</span> 307.655.6139
+                    <span className=" font-bold">USA:</span> 307.655.6139
                   </a>
                 </div>
               </div>
@@ -138,6 +138,12 @@ export default function FooterContainer() {
                   className="hover:underline my-auto inline-block"
                 >
                   Automation & Integration
+                </Link>
+                <Link
+                  href={"/partnership-program"}
+                  className="hover:underline my-auto inline-block"
+                >
+                  Partnership Programs
                 </Link>
               </div>
             </div>
