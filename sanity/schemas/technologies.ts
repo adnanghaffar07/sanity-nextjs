@@ -16,20 +16,29 @@ const technologies = {
       },
   
       {
-        name: "techLogos",
-        title: "Technology Logos Image",
-        type: "image",
-        options: { hotspot: true },
-        fields: [
+        "name": "techLogos",
+        "title": "Technology Logo",
+        "type": "array",
+        "of": [
           {
-            name: "alt",
-            title: "Alt",
-            type: "string",
-          },
-        ],
+            "type": "object",
+            "fields": [
+              {
+                "name": "heading",
+                "title": "Heading",
+                "type": "string"
+              },
+              {
+                name: "images",
+                title: "Images",
+                type: "array",
+                of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+              }
+            ]
+          }
+            ] 
       },
       
-
       {
         name: "techImage",
         title: "Technology Image",

@@ -18,6 +18,21 @@ async function getData(urlPathSub: string) {
   }
 }
 
+async function getLogoData() {
+    const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+    ;
+    try {
+        const fetchData = await client.fetch(queryLogo);
+        return fetchData || [];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+}
+
+
+
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
   console.log("Sanity Data", data);
