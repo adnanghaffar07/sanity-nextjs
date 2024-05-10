@@ -1,60 +1,44 @@
-'use client';
+"use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { number } from "yup";
 
+const OurWorkSection = () => {
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(2);
+  const [dataArray, setDataArray] = useState<any[]>([]);
+  const [recentArray, setRecentArray] = useState<any[]>([]);
+  const [topArray, settopArray] = useState<any[]>([]);
 
+  function ShowNextContainers(endVal: number) {
+    if (
+      recentArray[endVal] != null &&
+      recentArray[endVal] != recentArray[recentArray.length - 1]
+    ) {
+      const startIndexCopy = endVal;
+      const endIndexCopy = endVal + 3;
 
-const OurWorkSection = () => 
-{
-  const [startIndex, setStartIndex]=useState(0);
-  const [endIndex, setEndIndex]=useState(2);
-  const [dataArray, setDataArray]=useState<any[]>([]);
-  const [recentArray, setRecentArray]=useState<any[]>([]);
-  const [topArray, settopArray]=useState<any[]>([]);
+      setStartIndex(startIndexCopy);
+      setEndIndex(endIndexCopy);
 
+      if (startIndexCopy < recentArray.length) {
+        const filterArray = recentArray.filter((item, index) => {
+          return index >= startIndexCopy && index < endIndexCopy;
+        });
 
-  function ShowNextContainers(endVal:number)
-  {
-      if(recentArray[endVal] != null && recentArray[endVal] != recentArray[recentArray.length-1])
-        {  
-          const startIndexCopy = endVal;
-          const endIndexCopy = endVal+3;
-        
-          setStartIndex(startIndexCopy);
-          setEndIndex(endIndexCopy);
-            
-            console.log(recentArray[recentArray.length-1]);
-          
-          if(startIndexCopy < recentArray.length)
-            {
-              const filterArray = recentArray.filter((item,index)=>
-              { 
-                return   index >= startIndexCopy && index < endIndexCopy;
-              })  
-              
-              console.log(filterArray)
-              setRecentArray(filterArray);
-            }     
-                
-        }
-        else
-            { 
-              const lastElement = recentArray.filter((item,index)=>
-                { 
-                  return   index == recentArray.length-1
-                })  
-                setRecentArray(lastElement)
-            }
+        setRecentArray(filterArray);
+      }
+    } else {
+      const lastElement = recentArray.filter((item, index) => {
+        return index == recentArray.length - 1;
+      });
+      setRecentArray(lastElement);
     }
+  }
 
-  
-
-  
-
-  useEffect(()=>{
+  useEffect(() => {
     async function getData() {
       const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
       try {
@@ -65,18 +49,19 @@ const OurWorkSection = () =>
         return [];
       }
     }
-    async function data(){
+    async function data() {
       const data = await getData();
       setDataArray(data);
-      const recentArr = await data.filter((item: any) => item.group === "recent");
+      const recentArr = await data.filter(
+        (item: any) => item.group === "recent"
+      );
       setRecentArray(recentArr);
       const topArray = await data.filter((item: any) => item.group === "top");
-      settopArray(topArray)
-    };
+      settopArray(topArray);
+    }
     data();
-      
-    },[])
-  
+  }, []);
+
   return (
     <div className="self-center mt-16 w-full max-md:mt-10 max-w-[1582px] mx-auto">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
@@ -125,12 +110,10 @@ const OurWorkSection = () =>
         <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
           <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
             {recentArray &&
-              recentArray.map((item: any, index: any) =>
-               {
-                 const newIndex = index +  startIndex
-                 if(newIndex < endIndex)
-                  {
-                return (
+              recentArray.map((item: any, index: any) => {
+                const newIndex = index + startIndex;
+                if (newIndex < endIndex) {
+                  return (
                     <div
                       className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container h-auto"
                       key={item._key}
@@ -159,8 +142,7 @@ const OurWorkSection = () =>
                     </div>
                   );
                 }
-              } )}
-            
+              })}
           </div>
         </div>
       </div>
@@ -184,8 +166,11 @@ const OurWorkSection = () =>
         </div>
 
         <div className="flex gap-4 px-5 my-auto order-1 md:order-2 justify-end">
-          <div  className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
-          <div onClick={()=>ShowNextContainers(endIndex)} className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
+          <div className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
+          <div
+            onClick={() => ShowNextContainers(endIndex)}
+            className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]"
+          />
           <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
         </div>
       </div>
