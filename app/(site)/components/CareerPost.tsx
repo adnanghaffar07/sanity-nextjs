@@ -11,7 +11,6 @@ interface Props {
 
 
 const CareerPost: React.FC<Props> = ({ jobpost }) => {
-
   return (
     <div className="flex flex-col  max-md:ml-0 max-md:w-full h-full">
       <div className="flex flex-col p-5 text-black mx-auto rounded-lg sm:rounded-3xl shadow-lg backdrop-blur-[6.5px] bg-[#D7D7D7] bg-opacity-30 w-[368px] h-full">
