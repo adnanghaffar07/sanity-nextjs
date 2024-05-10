@@ -67,12 +67,12 @@ export default function HomeNavigationContainer() {
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-      if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-        setOpen(false);
-      }
-      if (aboutOpen && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-        setAboutOpen(false);
-      }
+      // if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
+      //   setOpen(false);
+      // }
+      // if (aboutOpen && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
+      //   setAboutOpen(false);
+      // }
       if (open || aboutOpen) {
         setOpen(false);
         setAboutOpen(false);

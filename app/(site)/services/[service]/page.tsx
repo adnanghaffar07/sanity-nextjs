@@ -126,11 +126,11 @@ export default async function service({ params }: { params: { service: string } 
                 <div className="container  mx-auto">
                     <h2 className="text-3xl font-bold mb-8 text-center">{data.subServiceHeading}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {data.subServices && data.subServices.map((subServiceRef: any) => {
-                            const subService = dataSub.find((item: any) => item._id === subServiceRef._ref);
+                        {data.subServices && data.subServices.map((subServiceRef:any) => {
+                            const subService = dataSub.find((item :any) => item._id === subServiceRef._ref);
                             if (subService) {
                                 return (
-                                    <Link href={`/services/service/${subService.urlPathSub}`} key={subService._id}>
+                                    <Link href={`/services/${params.service}/${subService.urlPathSub}`} key={subService._id}>
                                         <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 " style={{ height: '300px' }}>
                                             <img src={urlForImage(subService.heroImageSub).toString()} alt={subService.serviceCardSub} className="w-full h-40 object-cover" />
                                             <div className="p-6">
@@ -152,10 +152,10 @@ export default async function service({ params }: { params: { service: string } 
             {/* Tools & Technology Section */}
             <section className="px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto">
-                    <h2 className="text-3xl font-bold mb-8">
+                    <h2 className="text-3xl font-bold mb-8 text-center">
                         {data.toolsTechSection?.toolsTechHeading}
                     </h2>
-                    <p className="text-xl font-light mb-8">
+                    <p className="text-xl font-light mb-8 text-center">
                         {data.toolsTechSection?.toolsTechDesc}
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -193,9 +193,9 @@ export default async function service({ params }: { params: { service: string } 
             {/* Example Value of Service (Use Cases) Section */}
             <section className="bg-white px-6 md:px-16 py-10 md:py-16">
                 <div className="container mx-auto" >
-                    <h2 className="text-3xl font-bold mb-8">
+                    <h2 className="text-3xl font-bold mb-8 text-center">
                         {data.exampleServicesSection?.exampleServiceHeading}</h2>
-                    <p className="text-xl font-light mb-8">
+                    <p className="text-xl font-light mb-8 text-center">
                         {data.exampleServicesSection?.exampleServicedesc}</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                         {data.exampleServicesSection?.exampleService?.map((example: any, exampleIndex: any) => (
