@@ -74,7 +74,7 @@ const Career: React.FC = async () => {
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <img
           className="top-0 left-0 object-cover absolute inset-0 size-full"
-          src="/career.png"
+          src="/career.jpg"
           alt="lifeatca"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
@@ -195,7 +195,9 @@ const Career: React.FC = async () => {
                 </div>
                 <div className="mb-10">
                   <p className="lg:text-lg text-base text-[#024] text-right">
-                    Get special perks and benefits such as flexible schedules and career advancement chances. Join us and advance your career in code automation today.
+                    Get special perks and benefits such as flexible schedules
+                    and career advancement chances. Join us and advance your
+                    career in code automation today.
                   </p>
                 </div>
 
@@ -211,10 +213,7 @@ const Career: React.FC = async () => {
                     ))}
                   </div>
                 </section>
-
-
               </div>
-
             </div>
           </div>
         </div>

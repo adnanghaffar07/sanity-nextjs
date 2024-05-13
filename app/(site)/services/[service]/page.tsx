@@ -87,7 +87,7 @@ export default async function service({
           ) : (
             <div className="w-full  justify-center mb-4">
               <div className="max-w-2xl">
-                <h2 className="text-3xl font-bold mb-8 text-center">
+                <h2 className="text-2xl font-bold mb-8 text-center">
                   {data.introductionSection?.introHeading}
                 </h2>
                 <p className="text-lg text-gray-800 leading-relaxed text-center ">
@@ -99,7 +99,7 @@ export default async function service({
           {data.introductionSection?.introImage && (
             <div className="w-full md:w-1/2 md:justify-end">
               <div className="max-w-2xl">
-                <h2 className="text-3xl font-bold mb-8">
+                <h2 className="text-2xl font-bold mb-8">
                   {data.introductionSection?.introHeading}
                 </h2>
                 <p className="text-lg text-gray-800 text-justify">
@@ -115,7 +115,7 @@ export default async function service({
 
       <section className="px-6 md:px-16 py-10 md:py-16  bg-white">
         <div className="container  mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">
+          <h2 className="text-2xl font-bold mb-8 text-center">
             {data.subServiceHeading}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -162,7 +162,7 @@ export default async function service({
 
       <section className="px-6 md:px-16 py-10 md:py-16">
         <div className="container mx-auto">
-          <h2 className="text-3xl text-center font-bold mb-8">
+          <h2 className="text-2xl text-center font-bold mb-8">
             {data.toolsTechSection?.toolsTechHeading}
           </h2>
 
@@ -223,7 +223,7 @@ export default async function service({
       {/* Example Value of Service (Use Cases) Section */}
       <section className="bg-white px-6 md:px-16 py-10 md:py-16">
         <div className="container mx-auto">
-          <h2 className="text-3xl  text-center font-bold mb-8">
+          <h2 className="text-2xl  text-center font-bold mb-8">
             {data.exampleServicesSection?.exampleServiceHeading}
           </h2>
 
@@ -233,29 +233,32 @@ export default async function service({
             </p>
           )}
 
-         <div
+          <div
             className={
               data.exampleServicesSection?.exampleService != null
                 ? "flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
                 : "hidden"
             }
             style={{
-              marginTop: data.exampleServicesSection?.exampleService ? "0" : "0",
-              marginBottom: data.exampleServicesSection?.exampleServicesSection ? "0" : "0",
+              marginTop: data.exampleServicesSection?.exampleService
+                ? "0"
+                : "0",
+              marginBottom: data.exampleServicesSection?.exampleServicesSection
+                ? "0"
+                : "0",
             }}
           >
-
             {data.exampleServicesSection?.exampleService?.map(
               (example: any, exampleIndex: any) => (
                 <div key={exampleIndex}>
                   <div className="bg-gray-100 shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
-                  <div className="flex flex-col  justify-center">
-                    <h3 className="text-xl text-center font-semibold mb-4">
-                      {example.heading}
-                    </h3>
-                    <p className="text-gray-700 text-center">
-                      {example.detail}
-                    </p>
+                    <div className="flex flex-col  justify-center">
+                      <h3 className="text-2xl text-center font-semibold mb-4">
+                        {example.heading}
+                      </h3>
+                      <p className="text-gray-700 text-center">
+                        {example.detail}
+                      </p>
                     </div>
                   </div>
                 </div>
