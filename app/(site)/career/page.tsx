@@ -164,7 +164,8 @@ const Career: React.FC = async () => {
               </p>
             </div>
           </div>
-          <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 lg:gap-16 lg:px-10 px-5 lg:mt-11 w-full max-md:max-w-full">
+          {/* <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 lg:gap-16 lg:px-10 px-5 lg:mt-11 w-full max-md:max-w-full"> */}
+          < div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40">
             {data.map((jobpost: any) => (
               <div key={jobpost._id}>
                 <CareerPost jobpost={jobpost} />
