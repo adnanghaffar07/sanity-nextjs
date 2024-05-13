@@ -24,8 +24,8 @@ module.exports = {
         dropdown: "-1",
       },
       animation: {
-        "slide-down": "slideDown 0.7s ease forwards",
-        "slide-up": "slideUp 0.7s ease forwards",
+        "slide-down": "slideDown 0.5s ease forwards",
+        "slide-up": "slideUp 0.5s ease forwards",
       },
       keyframes: {
         slideDown: {

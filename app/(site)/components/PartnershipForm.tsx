@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { partnershipSchema } from "../../schemas/index";
 
@@ -199,8 +199,10 @@ const PartnershipForm = () => {
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [country, setCountry] = useState("");
   const [cityName, setCityName] = useState("");
   const [updatedCitiesArr, setUpdatedCitiesArr] = useState<string[]>([]);
+  console.log("__updatedCitiesArr::", updatedCitiesArr);
 
   const {
     values,
@@ -218,13 +220,22 @@ const PartnershipForm = () => {
     },
   });
 
-  const handleCitiesArray = (value: string) => {
-    const regex = new RegExp(value, "i");
-    const newCitiesArray = citiesData[values.country].filter((city) =>
-      regex.test(city)
-    );
-    setUpdatedCitiesArr(newCitiesArray);
-  };
+  useEffect(() => {
+    const handleCitiesArray = () => {
+      if (cityName === "") {
+        console.log("__cityname::", cityName);
+        console.log("__country::", country);
+        setUpdatedCitiesArr(citiesData[country]);
+        return;
+      }
+      const regex = new RegExp(cityName, "i");
+      const newCitiesArray = citiesData[country].filter((city) =>
+        regex.test(city)
+      );
+      setUpdatedCitiesArr(newCitiesArray);
+    };
+    handleCitiesArray();
+  }, [cityName, country]);
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
@@ -253,7 +264,7 @@ const PartnershipForm = () => {
     ) {
       return;
     }
-    console.log("_______new form values ::::", values);
+    // console.log("_______new form values ::::", values);
 
     // try {
     //   const formData = new FormData();
@@ -370,6 +381,9 @@ const PartnershipForm = () => {
               value={values.country}
               onChange={(e) => {
                 handleChange(e);
+                setCountry(e.target.value);
+                setCityName("");
+                // handleCitiesArray();
                 // setFieldValue(values.city, "");
                 // setTimeout(() => {
                 //   setFieldValue("city", "");
@@ -397,52 +411,61 @@ const PartnershipForm = () => {
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder="City / State"
               name="city"
+              value={values.city}
               onChange={(e) => {
                 handleChange(e);
                 setCityName(e.target.value);
-                handleCitiesArray(e.target.value);
+                // handleCitiesArray();
               }}
               onFocus={() => {
                 setIsOpen(true);
                 setIsAnimating(false);
+                // handleCitiesArray();
               }}
               onBlur={(e) => {
                 handleBlur(e);
                 setIsAnimating(true);
 
-                setTimeout(() => {
-                  setIsAnimating(false);
-                  setIsOpen(false);
-                }, 700);
+                // setTimeout(() => {
+                //   setIsAnimating(false);
+                //   setIsOpen(false);
+                // }, 700);
               }}
             />
             {(isOpen || isAnimating) && (
               <div
-                className={`absolute top-full w-full mt-2 border-2 border-gray-300 max-h-[300px] flex-col flex justify-center items-start whitespace-nowrap rounded-xl shadow-lg max-md:px-5 text-black placeholder-black text-base bg-zinc-100 overflow-auto z-dropdown ${
-                  isAnimating ? "animate-slide-up" : "animate-slide-down"
-                }`}
+                className={`absolute top-0 mt-16 w-full border-2 border-gray-300 flex-col flex justify-center items-start whitespace-nowrap rounded-xl shadow-lg max-md:px-5 text-black placeholder-black text-base bg-zinc-100 overflow-auto z-dropdown pt-80 max-h-[300px] 
+              ${isAnimating ? "animate-slide-up" : "animate-slide-down"}
+              `}
                 style={{
                   scrollbarWidth: "initial",
                   scrollbarColor: "#1D92FB #f1f1f1",
                 }}
               >
                 <ul className="w-full">
-                  {values.country ? (
-                    updatedCitiesArr.map((city: string, index: number) => (
-                      <li className="hover:bg-white px-7 py-2 cursor-pointer transition-colors duration-200">
-                        {city}
-                      </li>
-                    ))
+                  {country.length !== 0 ? (
+                    updatedCitiesArr?.map((city: string, index: number) => {
+                      console.log("cities", "--", index, "--", city);
+                      return (
+                        <li
+                          className="hover:bg-white px-7 py-2 cursor-pointer transition-colors duration-200"
+                          key={`${country}-${city}`}
+                          onClick={() => setFieldValue(values.city, city)}
+                        >
+                          {city}
+                        </li>
+                      );
+                    })
                   ) : (
-                    <li className="hover:bg-white px-7 py-2 cursor-pointer transition-colors duration-200">
-                      Please select a country first
+                    <li className="hover:bg-white px-7 py-2 transition-colors duration-200">
+                      Please select a country
                     </li>
                   )}
                 </ul>
               </div>
             )}
 
-            {errors.city && touched.city ? (
+            {errors.city && touched.city && !isOpen && !isAnimating ? (
               <p className="form-error">{errors.city}</p>
             ) : null}
           </div>
