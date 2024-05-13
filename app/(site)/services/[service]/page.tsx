@@ -127,7 +127,7 @@ export default async function service({
                 if (subService) {
                   return (
                     <Link
-                      href={`/services/service/${subService.urlPathSub}`}
+                      href={`/services/${params.service}/${subService.urlPathSub}`}
                       key={subService._id}
                     >
                       <div
