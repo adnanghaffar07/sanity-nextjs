@@ -23,13 +23,12 @@ const page = async () => {
   return (
     <>
       <HeroSectionComponent
-        title="Case Study"
-        content="Explore our case studies to discover how we turn challenges into
-  success stories through technology solutions."
+        title="Case Studies"
+        content="Explore our case study on code automation, showcasing how innovative strategies significantly enhance efficiency, reduce costs, and accelerate development in software projects."
         image="/case-study-hero-image.jpg"
       />
 
-      <section className="mx-auto w-full relative overflow-hidden">
+      {/* <section className="mx-auto w-full relative overflow-hidden">
         <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[550px] sm:-left-[400px] -top-80 sm:-top-64 flex items-center justify-center z-0">
           <div className="bg-white w-[610px] h-[610px] rounded-full"></div>
         </div>
@@ -180,9 +179,23 @@ const page = async () => {
               </div>
             );
           })}
+      </section> */}
+
+      <section className=" h-full flex flex-col  justify-center gap-4 bg-[#F3F3F3]">
+        <div className="self-stretch text-5xl mt-20 text-center text-black capitalize leading-[60px] max-md:text-4xl max-md:leading-[51px]">
+          CodeAutomation
+          <br />
+          Case Studies in Real World Application
+        </div>
+
+        <div className="text-xl font-light tracking-wide leading-7 text-center text-black">
+          Case studies are essential because they offer detailed insights and
+          practical examples of how theories work in real-world scenarios,
+          helping to improve strategies and decision-making.
+        </div>
       </section>
 
-      <section className="mb-40 xl:container xl:mx-auto flex flex-col">
+      {/* <section className="mb-40 xl:container xl:mx-auto flex flex-col">
         <h2 className="mt-16 sm:mt-36 text-2xl sm:text-6xl capitalize leading-8 sm:leading-[61px] text-sky-950 mb-9 sm:mb-16 ml-20">
           Our Recent Work
         </h2>
@@ -257,7 +270,224 @@ const page = async () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <div className=" flex md:flex-row  justify-center mt-10 mb-10  gap-2">
+        {/* Filter Section    */}
+
+        <section className=" mx-auto w-full  text-white bg-sky-500 max-w-[380px] min-h-[1301px]">
+          <h1>Filter Case Studies</h1>
+
+          <div className=" flex flex-col  justify-center gap-40">
+            <div className="mt-20">
+              <h1>Use Cases</h1>
+              <br></br>
+              <ul>
+                <li>
+                  <input type="checkbox" />
+                  <span> App Development</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Web Development</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> QA Testing</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Shopify Development</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> CRM Implementation</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> CRM Customization</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h1> Industries</h1>
+              <br></br>
+              <ul>
+                <li>
+                  <input type="checkbox" />
+                  <span> Travel & Hospitality</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Communication</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Finance</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Technology</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> AI & ML</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Automation</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Agency</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Education Technology</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/*  Case Study Grid Section    */}
+
+        <section className=" mx-auto">
+          <div className=" grid grid-cols-2 gap-2 ">
+            <div className="relative">
+              <div className=" flex flex-col  items-center gap-5">
+                <Image
+                  width={404}
+                  height={268}
+                  className="w-full aspect-[1.52] max-w-[304px]"
+                  src="/HouseArrest.png"
+                  alt="card"
+                ></Image>
+
+                <div className="bg-red-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:bottom-36 sm:left-52   rounded-[32px_22px_26px_18px] ">
+                  <span className=" text-white text-sm  ">E-CELL</span>
+                </div>
+              </div>
+
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                PublicInput helps reduce your burdens by helping you to get
+                public engagement and communicate with your audience.
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className=" flex flex-col items-center gap-5">
+                <Image
+                  width={404}
+                  height={268}
+                  className="w-full aspect-[1.52] max-w-[304px]"
+                  src="/PublicInput.png"
+                  alt="card"
+                ></Image>
+
+                <div className="bg-yellow-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:bottom-36 sm:left-52   rounded-[32px_22px_26px_18px] ">
+                  <span className=" text-white  text-sm ">Public Input</span>
+                </div>
+              </div>
+
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                PublicInput helps reduce your burdens by helping you to get
+                public engagement and communicate with your audience.
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className=" flex flex-col items-center gap-5">
+                <Image
+                  width={404}
+                  height={268}
+                  className="w-full aspect-[1.52] max-w-[304px]"
+                  src="/VestedFinance.png"
+                  alt="card"
+                ></Image>
+
+                <div className="bg-red-500 min-w-[102px] py-2 text-center min-h-[40px]  sm:absolute sm:bottom-36 sm:left-52  rounded-[32px_22px_26px_18px] ">
+                  <span className=" text-white  text-sm ">Public Input</span>
+                </div>
+              </div>
+
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                Vested finance is a fast, secure, and tailored platform that
+                gives you option to invest in either full or fractional shares.
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className=" flex flex-col  items-center gap-5">
+                <Image
+                  width={304}
+                  height={168}
+                  className="w-full aspect-[1.52] max-w-[304px]"
+                  src="/InnRoad.png"
+                  alt="card"
+                ></Image>
+
+                <div className="bg-lime-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:bottom-36 sm:left-52  rounded-[32px_22px_26px_18px] ">
+                  <span className=" text-white text-sm ">InnRoad</span>
+                </div>
+
+                <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                  InnRoad is a hotel management solution to manage your business
+                  by providing various options including online booking,
+                  property management and lots more.
+                </span>
+              </div>
+            </div>
+
+            <div className=" flex flex-col  items-center gap-5">
+              <Image
+                width={304}
+                height={168}
+                className="w-full aspect-[1.52] max-w-[304px]"
+                src="/Dandy.png"
+                alt="card"
+              ></Image>
+              <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                Dandy is an AI and ML-based software that provides options to
+                remove bad reviews, replies to the reviews, and getting customer
+                information using QR codes.
+              </span>
+            </div>
+
+            <div className=" flex flex-col  items-center gap-5">
+              <Image
+                width={304}
+                height={168}
+                className="w-full aspect-[1.52] max-w-[304px]"
+                src="/Tracely.png"
+                alt="card"
+              ></Image>
+              <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                Tracely is a location tracking app designed to help people keep
+                track of their family and friends, chat with them or enjoy their
+                newsfeed updates.
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/*  Vertical Line  */}
+      </div>
+
+      <br></br>
     </>
   );
 };

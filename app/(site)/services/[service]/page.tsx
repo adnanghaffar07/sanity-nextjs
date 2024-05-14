@@ -119,17 +119,13 @@ export default async function service({
             {data.subServiceHeading}
           </h2>
           {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
-          < div className="flex flex-col  sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
-            
+          <div
+            className="flex flex-col  sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
             style={{
               marginTop: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
               marginBottom: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
             }}
-          
-          
           >
-          
-
             {data.subServices &&
               data.subServices.map((subServiceRef: any) => {
                 const subService = dataSub.find(
@@ -148,7 +144,7 @@ export default async function service({
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
                           alt={subService.serviceCardSub}
-                          className="w-full h-40 "
+                          className="w-full h-40 object-cover"
                         />
                         <div className="p-6">
                           <h3 className="text-xl font-semibold text-center mb-4">
