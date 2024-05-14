@@ -164,7 +164,6 @@ const Career: React.FC = async () => {
               </p>
             </div>
           </div>
-          {/* <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 lg:gap-16 lg:px-10 px-5 lg:mt-11 w-full max-md:max-w-full"> */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40">
             {data.map((jobpost: any) => (
               <div key={jobpost._id}>
@@ -175,11 +174,6 @@ const Career: React.FC = async () => {
         </div>
       </div>
       <div className="max-w-full mx-auto relative">
-        {/* <img
-            loading="lazy"
-            src="/intersect-right.png"
-            className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
-          /> */}
         <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
           <div className="lg:px-10 px-5 w-full">
             <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
