@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { partnershipSchema } from "../../schemas/index";
+import Select from "react-select";
 
 const initialValues = {
   name: "",
@@ -13,196 +14,214 @@ const initialValues = {
   program: "",
 };
 
-interface CitiesData {
-  [key: string]: string[];
-}
+// const citiesData = {
+//   usa: [
+//     "Albuquerque",
+//     "Anaheim",
+//     "Anchorage",
+//     "Arlington",
+//     "Atlanta",
+//     "Aurora",
+//     "Austin",
+//     "Bakersfield",
+//     "Baltimore",
+//     "Baton Rouge",
+//     "Birmingham",
+//     "Boston",
+//     "Buffalo",
+//     "Charlotte",
+//     "Chicago",
+//     "Cincinnati",
+//     "Cleveland",
+//     "Colorado Springs",
+//     "Columbus",
+//     "Corpus Christi",
+//     "Dallas",
+//     "Denver",
+//     "Detroit",
+//     "El Paso",
+//     "Fort Worth",
+//     "Fresno",
+//     "Honolulu",
+//     "Houston",
+//     "Indianapolis",
+//     "Jacksonville",
+//     "Kansas City",
+//     "Las Vegas",
+//     "Lexington",
+//     "Lincoln",
+//     "Long Beach",
+//     "Los Angeles",
+//     "Louisville",
+//     "Memphis",
+//     "Mesa",
+//     "Miami",
+//     "Milwaukee",
+//     "Minneapolis",
+//     "Nashville",
+//     "New Orleans",
+//     "New York",
+//     "Oakland",
+//     "Oklahoma City",
+//     "Omaha",
+//     "Orlando",
+//     "Philadelphia",
+//     "Phoenix",
+//     "Pittsburgh",
+//     "Portland",
+//     "Raleigh",
+//     "Riverside",
+//     "Sacramento",
+//     "Saint Louis",
+//     "Saint Paul",
+//     "Salt Lake City",
+//     "San Antonio",
+//     "San Diego",
+//     "San Francisco",
+//     "San Jose",
+//     "Santa Ana",
+//     "Seattle",
+//     "Tampa",
+//     "Toledo",
+//     "Tucson",
+//     "Tulsa",
+//     "Virginia Beach",
+//     "Washington",
+//     "Wichita",
+//   ],
+//   canada: [
+//     "Calgary",
+//     "Edmonton",
+//     "Toronto",
+//     "Vancouver",
+//     "Ottawa",
+//     "Montreal",
+//     "Winnipeg",
+//     "Mississauga",
+//     "Brampton",
+//     "Hamilton",
+//     "London",
+//     "Markham",
+//     "Vaughan",
+//     "Surrey",
+//     "Kitchener",
+//     "Windsor",
+//     "Richmond",
+//     "Regina",
+//     "Burnaby",
+//     "Oshawa",
+//     "Saskatoon",
+//     "Kelowna",
+//     "Barrie",
+//     "Sherbrooke",
+//     "Guelph",
+//   ],
+//   newzealand: [
+//     "Auckland",
+//     "Christchurch",
+//     "Wellington",
+//     "Hamilton",
+//     "Tauranga",
+//     "Dunedin",
+//     "Palmerston North",
+//     "Napier",
+//     "Hastings",
+//     "Nelson",
+//     "Rotorua",
+//     "New Plymouth",
+//     "Whangarei",
+//     "Invercargill",
+//     "Whanganui",
+//   ],
+//   uk: [
+//     "Aberdeen",
+//     "Belfast",
+//     "Birmingham",
+//     "Bradford",
+//     "Bristol",
+//     "Cardiff",
+//     "Coventry",
+//     "Edinburgh",
+//     "Glasgow",
+//     "Leeds",
+//     "Leicester",
+//     "Liverpool",
+//     "London",
+//     "Manchester",
+//     "Newcastle upon Tyne",
+//     "Nottingham",
+//     "Plymouth",
+//     "Sheffield",
+//     "Southampton",
+//     "Stoke-on-Trent",
+//     "Sunderland",
+//     "Swansea",
+//     "Wakefield",
+//     "Wolverhampton",
+//     "York",
+//     "Cambridge",
+//     "Oxford",
+//     "Reading",
+//     "Aberdeen",
+//     "Dundee",
+//   ],
+//   australia: [
+//     "Adelaide",
+//     "Brisbane",
+//     "Canberra",
+//     "Darwin",
+//     "Gold Coast",
+//     "Hobart",
+//     "Melbourne",
+//     "Newcastle",
+//     "Perth",
+//     "Sunshine Coast",
+//     "Sydney",
+//     "Geelong",
+//     "Wollongong",
+//     "Townsville",
+//     "Cairns",
+//     "Toowoomba",
+//     "Ballarat",
+//     "Bendigo",
+//     "Albury-Wodonga",
+//     "Mackay",
+//   ],
+// };
 
-const citiesData: CitiesData = {
-  usa: [
-    "Albuquerque",
-    "Anaheim",
-    "Anchorage",
-    "Arlington",
-    "Atlanta",
-    "Aurora",
-    "Austin",
-    "Bakersfield",
-    "Baltimore",
-    "Baton Rouge",
-    "Birmingham",
-    "Boston",
-    "Buffalo",
-    "Charlotte",
-    "Chicago",
-    "Cincinnati",
-    "Cleveland",
-    "Colorado Springs",
-    "Columbus",
-    "Corpus Christi",
-    "Dallas",
-    "Denver",
-    "Detroit",
-    "El Paso",
-    "Fort Worth",
-    "Fresno",
-    "Honolulu",
-    "Houston",
-    "Indianapolis",
-    "Jacksonville",
-    "Kansas City",
-    "Las Vegas",
-    "Lexington",
-    "Lincoln",
-    "Long Beach",
-    "Los Angeles",
-    "Louisville",
-    "Memphis",
-    "Mesa",
-    "Miami",
-    "Milwaukee",
-    "Minneapolis",
-    "Nashville",
-    "New Orleans",
-    "New York",
-    "Oakland",
-    "Oklahoma City",
-    "Omaha",
-    "Orlando",
-    "Philadelphia",
-    "Phoenix",
-    "Pittsburgh",
-    "Portland",
-    "Raleigh",
-    "Riverside",
-    "Sacramento",
-    "Saint Louis",
-    "Saint Paul",
-    "Salt Lake City",
-    "San Antonio",
-    "San Diego",
-    "San Francisco",
-    "San Jose",
-    "Santa Ana",
-    "Seattle",
-    "Tampa",
-    "Toledo",
-    "Tucson",
-    "Tulsa",
-    "Virginia Beach",
-    "Washington",
-    "Wichita",
-  ],
-  canada: [
-    "Calgary",
-    "Edmonton",
-    "Toronto",
-    "Vancouver",
-    "Ottawa",
-    "Montreal",
-    "Winnipeg",
-    "Mississauga",
-    "Brampton",
-    "Hamilton",
-    "London",
-    "Markham",
-    "Vaughan",
-    "Surrey",
-    "Kitchener",
-    "Windsor",
-    "Richmond",
-    "Regina",
-    "Burnaby",
-    "Oshawa",
-    "Saskatoon",
-    "Kelowna",
-    "Barrie",
-    "Sherbrooke",
-    "Guelph",
-  ],
-  newzealand: [
-    "Auckland",
-    "Christchurch",
-    "Wellington",
-    "Hamilton",
-    "Tauranga",
-    "Dunedin",
-    "Palmerston North",
-    "Napier",
-    "Hastings",
-    "Nelson",
-    "Rotorua",
-    "New Plymouth",
-    "Whangarei",
-    "Invercargill",
-    "Whanganui",
-  ],
-  uk: [
-    "Aberdeen",
-    "Belfast",
-    "Birmingham",
-    "Bradford",
-    "Bristol",
-    "Cardiff",
-    "Coventry",
-    "Edinburgh",
-    "Glasgow",
-    "Leeds",
-    "Leicester",
-    "Liverpool",
-    "London",
-    "Manchester",
-    "Newcastle upon Tyne",
-    "Nottingham",
-    "Plymouth",
-    "Sheffield",
-    "Southampton",
-    "Stoke-on-Trent",
-    "Sunderland",
-    "Swansea",
-    "Wakefield",
-    "Wolverhampton",
-    "York",
-    "Cambridge",
-    "Oxford",
-    "Reading",
-    "Aberdeen",
-    "Dundee",
-  ],
-  australia: [
-    "Adelaide",
-    "Brisbane",
-    "Canberra",
-    "Darwin",
-    "Gold Coast",
-    "Hobart",
-    "Melbourne",
-    "Newcastle",
-    "Perth",
-    "Sunshine Coast",
-    "Sydney",
-    "Geelong",
-    "Wollongong",
-    "Townsville",
-    "Cairns",
-    "Toowoomba",
-    "Ballarat",
-    "Bendigo",
-    "Albury-Wodonga",
-    "Mackay",
-  ],
-};
+const purposeOptions = [
+  { value: "Self", label: "Self" },
+  { value: "Company", label: "Company" },
+];
+
+const countryOptions = [
+  { value: "USA", label: "USA" },
+  { value: "Canada", label: "Canada" },
+  { value: "New Zealand", label: "New Zealand" },
+  { value: "UK", label: "UK" },
+  { value: "Australia", label: "Australia" },
+  { value: "Other", label: "Other" },
+];
+
+const programOptions = [
+  { value: "Reseller Program", label: "Reseller Program" },
+  { value: "Affiliate Program", label: "Affiliate Program" },
+  { value: "White Label Program", label: "White Label Program" },
+];
+
+const cityOptions = [
+  { value: "A", label: "A" },
+  { value: "B", label: "B" },
+];
 
 const PartnershipForm = () => {
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
-  const [isOpen, setIsOpen] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [country, setCountry] = useState("");
   const [cityName, setCityName] = useState("");
   const [updatedCitiesArr, setUpdatedCitiesArr] = useState<string[]>([]);
-  console.log("__updatedCitiesArr::", updatedCitiesArr);
 
   const {
     values,
@@ -212,6 +231,7 @@ const PartnershipForm = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
+    setFieldTouched,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: partnershipSchema,
@@ -219,23 +239,6 @@ const PartnershipForm = () => {
       action.resetForm();
     },
   });
-
-  useEffect(() => {
-    const handleCitiesArray = () => {
-      if (cityName === "") {
-        console.log("__cityname::", cityName);
-        console.log("__country::", country);
-        setUpdatedCitiesArr(citiesData[country]);
-        return;
-      }
-      const regex = new RegExp(cityName, "i");
-      const newCitiesArray = citiesData[country].filter((city) =>
-        regex.test(city)
-      );
-      setUpdatedCitiesArr(newCitiesArray);
-    };
-    handleCitiesArray();
-  }, [cityName, country]);
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
@@ -264,7 +267,8 @@ const PartnershipForm = () => {
     ) {
       return;
     }
-    // console.log("_______new form values ::::", values);
+
+    console.log("_______new form values ::::", values);
 
     // try {
     //   const formData = new FormData();
@@ -328,19 +332,65 @@ const PartnershipForm = () => {
           </div>
 
           <div className="mt-4">
-            <select
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black pl-4"
+            <Select
+              // className="basic-single"
+              placeholder="Self/Company"
+              // classNamePrefix="select"
+              // isDisabled={false}
+              // isLoading={false}
+              isClearable={true}
+              // isRtl={false}
+              isSearchable={false}
               name="purpose"
-              value={values.purpose}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="" disabled selected>
-                Self/Company
-              </option>
-              <option value="self">Self</option>
-              <option value="company">Company</option>
-            </select>
+              value={purposeOptions.find(
+                (option) => option.value === values.purpose
+              )}
+              onChange={(selectedOption) => {
+                setFieldValue("purpose", selectedOption?.value);
+                setFieldTouched("purpose", true, false);
+              }}
+              // onBlur={(e) => {
+              //   const { value } = e.target;
+              //   if (values.purpose === "") {
+              //     // if (!value) {
+              //     setFieldTouched("purpose", true, false);
+              //   }
+              // }}
+              options={purposeOptions}
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#f3f4f6",
+                  border: "2px solid #e5e7eb",
+                  boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.1)",
+                  // "&:focus": {
+                  //   border: "2px solid black",
+                  //   boxShadow: "0px 0px 4px rgba(29, 146, 251, 0.5)",
+                  // },
+                  "&:hover": {
+                    border: "2px solid black",
+                  },
+                  // justifyContent: "center",
+                  // alignItems: "start",
+                  paddingLeft: "16px",
+                  paddingRight: "16px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  // whiteSpace: "nowrap",
+                  borderRadius: "0.75rem",
+                  // width: "100%",
+                  color: "#000",
+                  fontSize: "0.875rem",
+                  placeholderColor: "#000",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  fontSize: "14px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                }),
+              }}
+            />
             {errors.purpose && touched.purpose ? (
               <p className="form-error">{errors.purpose}</p>
             ) : null}
@@ -375,7 +425,7 @@ const PartnershipForm = () => {
           </div>
 
           <div className="mt-4">
-            <select
+            {/* <select
               className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
               name="country"
               value={values.country}
@@ -394,97 +444,159 @@ const PartnershipForm = () => {
               <option value="" disabled selected>
                 I am located in : Country
               </option>
-              <option value="usa">USA</option>
-              <option value="canada">Canada</option>
-              <option value="newzealand">New Zealand</option>
-              <option value="uk">UK</option>
-              <option value="australia">Australia</option>
-              <option value="other">Other</option>
-            </select>
+              
+            </select> */}
+
+            <Select
+              placeholder="I am located in : Country"
+              isClearable={true}
+              isSearchable={false}
+              name="country"
+              value={countryOptions.find(
+                (option) => option.value === values.country
+              )}
+              onChange={(selectedOption) => {
+                setFieldValue("country", selectedOption?.value);
+                setFieldTouched("country", true, false);
+              }}
+              // onBlur={(e) => {
+              //   const { value } = e.target;
+              //   if (values.purpose === "") {
+              //     // if (!value) {
+              //     setFieldTouched("purpose", true, false);
+              //   }
+              // }}
+              options={countryOptions}
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#f3f4f6",
+                  border: "2px solid #e5e7eb",
+                  boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.1)",
+                  "&:hover": {
+                    border: "2px solid black",
+                  },
+                  paddingLeft: "16px",
+                  paddingRight: "16px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  borderRadius: "0.75rem",
+                  color: "#000",
+                  fontSize: "0.875rem",
+                  placeholderColor: "#000",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  fontSize: "14px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                }),
+              }}
+            />
             {errors.country && touched.country ? (
               <p className="form-error">{errors.country}</p>
             ) : null}
           </div>
 
-          <div className="mt-4 relative z-10">
-            <input
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
+          <div className="mt-4">
+            <Select
               placeholder="City / State"
+              // isLoading={false}
+              isClearable={true}
+              isSearchable={true}
               name="city"
-              value={values.city}
-              onChange={(e) => {
-                handleChange(e);
-                setCityName(e.target.value);
-                // handleCitiesArray();
+              value={cityOptions.find((option) => option.value === values.city)}
+              onChange={(selectedOption) => {
+                setFieldValue("city", selectedOption?.value);
+                setFieldTouched("city", true, false);
               }}
-              onFocus={() => {
-                setIsOpen(true);
-                setIsAnimating(false);
-                // handleCitiesArray();
-              }}
-              onBlur={(e) => {
-                handleBlur(e);
-                setIsAnimating(true);
-
-                // setTimeout(() => {
-                //   setIsAnimating(false);
-                //   setIsOpen(false);
-                // }, 700);
+              // onBlur={(e) => {
+              //   const { value } = e.target;
+              //   if (values.purpose === "") {
+              //     // if (!value) {
+              //     setFieldTouched("purpose", true, false);
+              //   }
+              // }}
+              options={cityOptions}
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#f3f4f6",
+                  border: "2px solid #e5e7eb",
+                  boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.1)",
+                  "&:hover": {
+                    border: "2px solid black",
+                  },
+                  paddingLeft: "16px",
+                  paddingRight: "16px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  borderRadius: "0.75rem",
+                  color: "#000",
+                  fontSize: "0.875rem",
+                  placeholderColor: "#000",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  fontSize: "14px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                }),
               }}
             />
-            {(isOpen || isAnimating) && (
-              <div
-                className={`absolute top-0 mt-16 w-full border-2 border-gray-300 flex-col flex justify-center items-start whitespace-nowrap rounded-xl shadow-lg max-md:px-5 text-black placeholder-black text-base bg-zinc-100 overflow-auto z-dropdown pt-80 max-h-[300px] 
-              ${isAnimating ? "animate-slide-up" : "animate-slide-down"}
-              `}
-                style={{
-                  scrollbarWidth: "initial",
-                  scrollbarColor: "#1D92FB #f1f1f1",
-                }}
-              >
-                <ul className="w-full">
-                  {country.length !== 0 ? (
-                    updatedCitiesArr?.map((city: string, index: number) => {
-                      console.log("cities", "--", index, "--", city);
-                      return (
-                        <li
-                          className="hover:bg-white px-7 py-2 cursor-pointer transition-colors duration-200"
-                          key={`${country}-${city}`}
-                          onClick={() => setFieldValue(values.city, city)}
-                        >
-                          {city}
-                        </li>
-                      );
-                    })
-                  ) : (
-                    <li className="hover:bg-white px-7 py-2 transition-colors duration-200">
-                      Please select a country
-                    </li>
-                  )}
-                </ul>
-              </div>
-            )}
 
-            {errors.city && touched.city && !isOpen && !isAnimating ? (
+            {errors.city && touched.city ? (
               <p className="form-error">{errors.city}</p>
             ) : null}
           </div>
 
           <div className="mt-4">
-            <select
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black"
+            <Select
+              placeholder="I am interested in"
+              isClearable={true}
+              isSearchable={false}
               name="program"
-              value={values.program}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="" disabled selected>
-                I am interested in
-              </option>
-              <option value="Reseller Program">Reseller Program</option>
-              <option value="Affiliate Program">Affiliate Program</option>
-              <option value="White Label Program">White Label Program</option>
-            </select>
+              value={programOptions.find(
+                (option) => option.value === values.program
+              )}
+              onChange={(selectedOption) => {
+                setFieldValue("program", selectedOption?.value);
+                setFieldTouched("program", true, false);
+              }}
+              // onBlur={(e) => {
+              //   const { value } = e.target;
+              //   if (values.purpose === "") {
+              //     // if (!value) {
+              //     setFieldTouched("purpose", true, false);
+              //   }
+              // }}
+              options={programOptions}
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#f3f4f6",
+                  border: "2px solid #e5e7eb",
+                  boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.1)",
+                  "&:hover": {
+                    border: "2px solid black",
+                  },
+                  paddingLeft: "16px",
+                  paddingRight: "16px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  borderRadius: "0.75rem",
+                  color: "#000",
+                  fontSize: "0.875rem",
+                  placeholderColor: "#000",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  fontSize: "14px",
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                }),
+              }}
+            />
             {errors.program && touched.program ? (
               <p className="form-error">{errors.program}</p>
             ) : null}
