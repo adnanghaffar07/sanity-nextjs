@@ -145,8 +145,8 @@ export default async function service({
                       key={subService._id}
                     >
                       <div
-                        className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 "
-                        style={{ height: "300px" }}
+                        className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full"
+
                       >
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
