@@ -5,6 +5,7 @@ import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
+import LoginLogoutButton from "./LoginLogoutButton";
 
 const linkAI = "/ai-services";
 const linkML = "/ml-services";
@@ -20,6 +21,7 @@ const linkIntegrate = "/automation-integration";
 
 
 export default function HomeNavigationContainer() {
+
   const currentPath = usePathname();
   let pathname = usePathname() || "/";
 
@@ -267,7 +269,7 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                          RPA Services
+                            RPA Services
 
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
@@ -414,44 +416,6 @@ export default function HomeNavigationContainer() {
                         </h3> */}
                         <div className="">
                           <img src='/menu-img.jpg' alt="" className="object-cover h-full width-full rounded-2xl" />
-
-
-
-
-
-
-                          {/* <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Explore design work
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href="javascript:void(0)"
-                          className="heading"
-                          onClick={hideMenu}
-                        >
-                          News{" "}
-                        </Link>
-                        <p>
-                          <Link href="javascript:void(0)" onClick={hideMenu}>
-                            (Coming Soon)
-                          </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Register
-                          </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Video Tutorials
-                          </Link> */}
-                          {/* <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Libraries and SDKs
-                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Adding Plugins
-                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Dashboard templates
-                          </a> */}
                         </div>
                       </div>
                     </div>
@@ -495,8 +459,11 @@ export default function HomeNavigationContainer() {
                 >
                   Technologies
                 </span>
-              </Link>            </li>
+              </Link>
+            </li>
           </ul>
+          {/* <LoginLogoutButton /> */}
+
           <Link
             className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl  bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
             href="tel:+1-850-558-4691"

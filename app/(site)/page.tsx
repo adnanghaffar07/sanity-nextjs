@@ -5,8 +5,16 @@ import Testimonials from "./components/Testimonials";
 import Faqs from "./components/Faqs";
 import OurWorkSection from "./components/OurWorkSection";
 import ScrollAnimation from "./components/ScrollAnimation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const { isAuthenticated } = getKindeServerSession()
+
+if(await isAuthenticated()){
+  redirect("")
+}
+
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">

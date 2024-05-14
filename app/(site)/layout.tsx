@@ -4,6 +4,7 @@ import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import FooterContainer from "./components/footer-container";
 import ProjectDiscussionContainer from "./components/project-discussion-form";
+import LoginLogoutButton from "./components/LoginLogoutButton";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default async function RootLayout({
           {children}
           <div className="lg:max-w[506px] ml-auto mr-auto -mb-32 relative z-10 lg:px-0 px-5">
             <ProjectDiscussionContainer />
-          </div>          
+          </div>
           <FooterContainer />
         </div>
       </body>

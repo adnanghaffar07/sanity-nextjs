@@ -51,8 +51,12 @@ const logicalServices = {
       title: "Service Description",
       type: "string",
     },
-
-
+    {
+      name: "pdfFile",
+      title: "Brochure",
+      type: "file",
+    },
+   
     // Introduction Section
     {
       name: "introductionSection",
@@ -69,6 +73,13 @@ const logicalServices = {
           title: "Intro Description",
           type: "text",
         },
+        {
+          name: 'pdfFile',
+          title: 'PDF File',
+          type: 'file',
+          options: {
+            accept: '.pdf', // Allow only PDF files
+        }},
         {
           name: "introImage",
           title: "Intro Image",
@@ -1490,6 +1501,26 @@ const subServiceSchema = {
 
   ],
 };
+// const PDf = {
+
+//   title: 'Manuscript',
+//   name: 'manuscript',
+//   type: 'file',
+//   fields: [
+//     {
+//       name: 'description',
+//       type: 'string',
+//       title: 'Description'
+//     },
+//     {
+//       name: 'author',
+//       type: 'reference',
+//       title: 'Author',
+//       to: {type: 'person'}
+//     }
+//   ]
+// }
+
 
 // Technology Logos
 const techLogos = {
@@ -1511,4 +1542,4 @@ const techLogos = {
   ]
 };
 
-export { logicalServices, subServiceSchema, techLogos };
+export { logicalServices, subServiceSchema, techLogos, };

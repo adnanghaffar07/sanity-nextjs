@@ -20,5 +20,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     portfolioSchema,
     faq,
     techLogos
+  
   ],
 };
