@@ -156,7 +156,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </h2>
 
           {data.exampleServicesSubSection?.exampleServicedesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.exampleServicesSubSection?.exampleServicedesc}
             </p>
           )}

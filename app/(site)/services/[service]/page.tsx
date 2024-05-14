@@ -179,7 +179,7 @@ export default async function service({
 
           {/* Render paragraph if there's content */}
           {data.toolsTechSection?.toolsTechDesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.toolsTechSection?.toolsTechDesc}
             </p>
           )}
@@ -239,7 +239,7 @@ export default async function service({
           </h2>
 
           {data.exampleServicesSection?.exampleServicedesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.exampleServicesSection?.exampleServicedesc}
             </p>
           )}
