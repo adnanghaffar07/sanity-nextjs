@@ -24,6 +24,7 @@ export default async function RootLayout({
       <body>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
+          <LoginLogoutButton/>
           {children}
           <div className="lg:max-w[506px] ml-auto mr-auto -mb-32 relative z-10 lg:px-0 px-5">
             <ProjectDiscussionContainer />

@@ -13,6 +13,7 @@ const LoginLogoutButton = async () => {
             {(await isAuthenticated()) ? (
                 <>
                     <LogoutLink>
+                        
                         <button className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-gray-400 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" role="button">
                             Log Out
                         </button>
@@ -20,12 +21,12 @@ const LoginLogoutButton = async () => {
                 </>
             ) : (
                 <>
-                    <LoginLink postLoginRedirectURL="/dashboard">
+                    <LoginLink>
                         <button className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-gray-400 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" role="button">
                             Sign In
                         </button>
                     </LoginLink>
-                    <RegisterLink postLoginRedirectURL="/dashboard">
+                    <RegisterLink>
                         <button className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-gray-400 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" role="button">
                             Sign Up
                         </button>
