@@ -148,7 +148,7 @@ export default async function service({
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
                           alt={subService.serviceCardSub}
-                          className="w-full h-40 "
+                          className="w-full h-40  object-cover"
                         />
                         <div className="p-6">
                           <h3 className="text-xl font-semibold text-center mb-4">
