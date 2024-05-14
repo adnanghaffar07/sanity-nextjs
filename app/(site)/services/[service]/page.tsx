@@ -90,6 +90,7 @@ export default async function service({
             <div className="w-full  justify-center mb-4">
               <div className="max-w-2xl">
                 <h2 className="text-2xl font-bold mb-8 text-center">
+                <h2 className="text-2xl font-bold mb-8 text-center">
                   {data.introductionSection?.introHeading}
                 </h2>
                 <p className="text-lg text-gray-800 leading-relaxed text-center ">
@@ -150,7 +151,7 @@ export default async function service({
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
                           alt={subService.serviceCardSub}
-                          className="w-full h-40 "
+                          className="w-full h-40  object-cover"
                         />
                         <div className="p-6">
                           <h3 className="text-xl font-semibold text-center mb-4">
@@ -181,7 +182,7 @@ export default async function service({
 
           {/* Render paragraph if there's content */}
           {data.toolsTechSection?.toolsTechDesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.toolsTechSection?.toolsTechDesc}
             </p>
           )}
@@ -241,7 +242,7 @@ export default async function service({
           </h2>
 
           {data.exampleServicesSection?.exampleServicedesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.exampleServicesSection?.exampleServicedesc}
             </p>
           )}

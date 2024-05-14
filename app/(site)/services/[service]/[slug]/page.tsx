@@ -84,7 +84,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             }
           >
             <div className="max-w-2xl">
-              <h2 className="text-3xl font-bold mb-8">
+              <h2 className="text-2xl font-bold mb-8">
                 {data.introductionSubSection?.introHeading}
               </h2>
               <p className="text-lg text-gray-800 leading-relaxed text-justify">
@@ -151,12 +151,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {/* Example Value of Service (Use Cases) Section */}
       <section className="bg-white px-6 md:px-16 py-10 md:py-16">
         <div className="container mx-auto">
-          <h2 className="text-3xl  text-center font-bold mb-8">
+          <h2 className="text-2xl  text-center font-bold mb-8">
             {data.exampleServicesSubSection?.exampleServiceHeading}
           </h2>
 
           {data.exampleServicesSubSection?.exampleServicedesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.exampleServicesSubSection?.exampleServicedesc}
             </p>
           )}
