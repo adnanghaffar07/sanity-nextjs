@@ -70,6 +70,7 @@ const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
   };
 
   return (
+    <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
     <div className="container mx-auto flex flex-wrap items-center justify-center">
       {sectionData.introductionSection?.introImage ? (
         <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
@@ -91,7 +92,7 @@ const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
             </p>
           </div>
           {sectionData.pdfFile && (
-            <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl">
+            <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black">
               <button onClick={handleDownload}>Download Brochure</button>
             </div>
           )}
@@ -108,13 +109,14 @@ const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
             </p>
           </div>
           {sectionData.pdfFile && (
-            <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl">
+            <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black">
               <button onClick={handleDownload}>Download Brochure</button>
             </div>
           )}
         </div>
       )}
     </div>
+    </section>
   );
 };
 
