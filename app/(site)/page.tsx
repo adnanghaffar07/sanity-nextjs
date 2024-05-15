@@ -129,7 +129,7 @@ export default function Home() {
                     <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                       <p>
                         Scale up with the team of more than 70 dedicated
-                        <span className=" highlight  highlight-blue-300  highlight-variant-1  font-extrabold">
+                        <span className="font-extrabold ml-1">
                           software engineers
                         </span>{" "}
                         who are perfectly time-zone matched with you and have
@@ -193,7 +193,7 @@ export default function Home() {
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
+            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16 text-center">
               Why Work With Us
             </div>
             <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
@@ -510,7 +510,7 @@ export default function Home() {
               className="aspect-[1.22] absolute right-0 top-80"
             />
             <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10 xl:container xl:mx-auto">
-              <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4">
+              <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
               </div>
               <Faqs />

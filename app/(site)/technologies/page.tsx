@@ -2,7 +2,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 async function getData() {
-  const query = `*[_type == 'technologies'] | order(_createdAt desc)`;
+  const query = `*[_type == 'technologies'] | order(_updatedAt desc)`;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];
@@ -32,7 +32,7 @@ export default async function Technologies() {
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <img
           className="absolute top-0 left-0 object-cover  inset-0 size-full"
-          src="/technologies.png"
+          src="/technologies.jpg"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">

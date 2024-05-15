@@ -168,7 +168,7 @@ export default function FooterContainer() {
                   href={`/career`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Contact Us For Jobs
+                  Career
                 </Link>
                 <Link
                   href="mailto:hr@codeautomation.ai"
@@ -184,7 +184,7 @@ export default function FooterContainer() {
               <div className="text-2xl font-medium leading-6">Address</div>
               <div className="mt-6 text-lg font-light leading-5 self-start">
                 <span className="text-1xl font-bold">USA:</span> 30 N Gould St
-                Ste 7596, Sheridan, WY, 82801.
+                Ste 7596, Sheridan, WY, 82801
                 <br />
                 <br />
                 <span className="text-1xl font-bold">Canada:</span> 25 McArthur
@@ -201,7 +201,7 @@ export default function FooterContainer() {
                 ) : (
                   <span className="text-1xl ">
                     <span className=" font-bold"> Pakistan:</span> A 1/11 P,
-                    Block P Model Town, Lahore, Pakistan{" "}
+                    Block P Model Town, Lahore{" "}
                   </span>
                 )}
               </div>

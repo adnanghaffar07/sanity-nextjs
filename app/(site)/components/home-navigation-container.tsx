@@ -67,12 +67,12 @@ export default function HomeNavigationContainer() {
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-      if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-        setOpen(false);
-      }
-      if (aboutOpen && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-        setAboutOpen(false);
-      }
+      // if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
+      //   setOpen(false);
+      // }
+      // if (aboutOpen && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
+      //   setAboutOpen(false);
+      // }
       if (open || aboutOpen) {
         setOpen(false);
         setAboutOpen(false);
@@ -267,7 +267,7 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                            Robotic Research
+                          RPA Services
 
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
@@ -426,12 +426,16 @@ export default function HomeNavigationContainer() {
                         </p>
                       </li>
                       <li>
-                        <Link href="/" className="heading" onClick={hideMenu}>
+                        <Link
+                          href="javascript:void(0)"
+                          className="heading"
+                          onClick={hideMenu}
+                        >
                           News{" "}
                         </Link>
                         <p>
-                          <Link href="/" onClick={hideMenu}>
-                            Latest Updates{" "}
+                          <Link href="javascript:void(0)" onClick={hideMenu}>
+                            (Coming Soon)
                           </Link>
                           <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
                             Register
