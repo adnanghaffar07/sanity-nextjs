@@ -143,7 +143,7 @@ export default function FooterContainer() {
                   href={"/partnership-program"}
                   className="hover:underline my-auto inline-block"
                 >
-                  Partnership Programs
+                  Partner with Us
                 </Link>
               </div>
             </div>
