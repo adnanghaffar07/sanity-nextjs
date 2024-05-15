@@ -597,7 +597,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/partnership-icon.svg"
-                            alt=""
+                            alt="partnership"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -608,7 +608,7 @@ export default function HomeNavigationContainer() {
                             Partner with Us
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                            Grow Together{" "}
+                            Grow Together
                           </p>
                         </div>
                       </Link>

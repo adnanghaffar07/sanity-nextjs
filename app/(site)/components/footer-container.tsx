@@ -139,12 +139,6 @@ export default function FooterContainer() {
                 >
                   Automation & Integration
                 </Link>
-                <Link
-                  href={"/partnership-program"}
-                  className="hover:underline my-auto inline-block"
-                >
-                  Partner with Us
-                </Link>
               </div>
             </div>
           </div>
@@ -175,6 +169,12 @@ export default function FooterContainer() {
                   className="hover:underline my-auto inline-block"
                 >
                   hr@codeautomation.ai
+                </Link>
+                <Link
+                  href={"/partnership-program"}
+                  className="hover:underline my-auto inline-block"
+                >
+                  Partner with Us
                 </Link>
               </div>
             </div>
