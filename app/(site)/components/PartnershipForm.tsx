@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { partnershipSchema } from "../../schemas/index";
 import Select from "react-select";
-import AsyncSelect from "react-select/async";
 import { City } from "country-state-city";
 
 const initialValues = {
@@ -41,12 +40,7 @@ const PartnershipForm = () => {
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
-  // const [country, setCountry] = useState("");
-  // const [cityName, setCityName] = useState("");
   const [updatedCitiesArr, setUpdatedCitiesArr] = useState<any>([]);
-  // const [cityOptions, setCityOptions] = useState<any>([]);
-  // const [page, setPage] = useState(1);
-  // const PAGE_SIZE = 50;
 
   const {
     values,
@@ -56,7 +50,6 @@ const PartnershipForm = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
-    setFieldTouched,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: partnershipSchema,
@@ -81,7 +74,6 @@ const PartnershipForm = () => {
     setFieldValue("country", null);
     setFieldValue("city", null);
     setFieldValue("program", null);
-    // console.log("_______new form values ::::", values);
 
     try {
       const formData = new FormData();
@@ -123,22 +115,7 @@ const PartnershipForm = () => {
     }
   };
 
-  // const loadCities = (inputValue: string) => {
-  //   return new Promise<{label: string, value: string}[]>(resolve => {
-  //     const citiesData = City.getCitiesOfCountry("US");
-  //     const filteredCities = citiesData?.filter(city =>
-  //       city.name.toLowerCase().includes(inputValue.toLowerCase())
-  //     );
-  //     const options = filteredCities?.map(city => ({
-  //       label: city.name,
-  //       value: city.name
-  //     }));
-  //     resolve(options!);
-  //   });
-  // };
-
   const handleCityData = () => {
-    // console.log("____handleCityData__called__cityname:::", values.country);
     const selectedCountry = countryOptions.filter(
       (country) => country.label == values.country
     );
@@ -146,27 +123,12 @@ const PartnershipForm = () => {
     if (countryCodeValue) {
       try {
         const citiesData = City.getCitiesOfCountry(countryCodeValue);
-        // setUpdatedCitiesArr(citiesData);
-        // const startIndex = (page - 1) * PAGE_SIZE;
-        // const endIndex = page * PAGE_SIZE;
-        // const currentBatch = citiesData?.slice(startIndex, endIndex);
-        // console.log(
-        //   "-------------check",
-        //   currentBatch?.map((c) => c.name)
-        // );
         setUpdatedCitiesArr(
           citiesData?.map((city) => ({
             label: city.name,
             value: city.name,
           }))
         );
-        // setCityOptions(currentBatch);
-        // console.log("____new_sliced_array", updatedCitiesArr);
-        //   // console.log("_______countries data:::", citiesData);
-        //   const filteredCities = citiesData?.filter((city) =>
-        //     city.name.toLowerCase().includes("lond".toLowerCase())
-        //   );
-        //   console.log("_____filtered cities", filteredCities);
       } catch (error) {
         console.error("Error fetching cities:", error);
       }
@@ -178,9 +140,9 @@ const PartnershipForm = () => {
   return (
     <div className="flex justify-center items-center px-16 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[36px] max-md:px-5 border border-slate-300">
       <div className="flex flex-col mt-3.5 w-full max-w-[746px] max-md:max-w-full">
-        <div className="lg:text-4xl md:text-3xl text-l font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl w-[240px] sm:w-[420px] lg:w-[570px]">
+        <h2 className="lg:text-4xl md:text-3xl text-l font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl w-full sm:w-[500px] lg:w-[570px]">
           Become a Partner
-        </div>
+        </h2>
         <form onSubmit={handleCombinedSubmit}>
           <div className="mt-10">
             <input
@@ -226,13 +188,8 @@ const PartnershipForm = () => {
 
           <div className="mt-4">
             <Select
-              // className="basic-single"
               placeholder="Self/Company"
-              // classNamePrefix="select"
-              // isDisabled={false}
-              // isLoading={false}
               isClearable={true}
-              // isRtl={false}
               isSearchable={false}
               name="purpose"
               value={purposeOptions.find(
@@ -240,15 +197,7 @@ const PartnershipForm = () => {
               )}
               onChange={(selectedOption) => {
                 setFieldValue("purpose", selectedOption?.value);
-                // setFieldTouched("purpose", true, false);
               }}
-              // onBlur={(e) => {
-              //   const { value } = e.target;
-              //   if (values.purpose === "") {
-              //     // if (!value) {
-              //     setFieldTouched("purpose", true, false);
-              //   }
-              // }}
               options={purposeOptions}
               styles={{
                 control: (provided) => ({
@@ -256,25 +205,20 @@ const PartnershipForm = () => {
                   backgroundColor: "#f3f4f6",
                   border: "2px solid #e5e7eb",
                   boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.1)",
-                  // "&:focus": {
-                  //   border: "2px solid black",
-                  //   boxShadow: "0px 0px 4px rgba(29, 146, 251, 0.5)",
-                  // },
                   "&:hover": {
                     border: "2px solid black",
                   },
-                  // justifyContent: "center",
-                  // alignItems: "start",
                   paddingLeft: "16px",
                   paddingRight: "16px",
                   paddingTop: "4px",
                   paddingBottom: "4px",
-                  // whiteSpace: "nowrap",
                   borderRadius: "0.75rem",
-                  // width: "100%",
                   color: "#000",
                   fontSize: "0.875rem",
-                  placeholderColor: "#000",
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "#000",
                 }),
                 option: (provided, state) => ({
                   ...provided,
@@ -284,9 +228,6 @@ const PartnershipForm = () => {
                 }),
               }}
             />
-            {/* {errors.purpose && touched.purpose ? (
-              <p className="form-error">{errors.purpose}</p>
-            ) : null} */}
           </div>
 
           <div className="mt-4">
@@ -300,16 +241,11 @@ const PartnershipForm = () => {
               )}
               onChange={(selectedOption) => {
                 setFieldValue("country", selectedOption?.value);
-                // setFieldTouched("country", true, false);
                 handleCityData();
+                if (selectedOption?.value === "Other") {
+                  setUpdatedCitiesArr([]);
+                }
               }}
-              // onBlur={(e) => {
-              //   const { value } = e.target;
-              //   if (values.purpose === "") {
-              //     // if (!value) {
-              //     setFieldTouched("purpose", true, false);
-              //   }
-              // }}
               options={countryOptions}
               styles={{
                 control: (provided) => ({
@@ -327,7 +263,10 @@ const PartnershipForm = () => {
                   borderRadius: "0.75rem",
                   color: "#000",
                   fontSize: "0.875rem",
-                  placeholderColor: "#000",
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "#000",
                 }),
                 option: (provided, state) => ({
                   ...provided,
@@ -337,9 +276,6 @@ const PartnershipForm = () => {
                 }),
               }}
             />
-            {/* {errors.country && touched.country ? (
-              <p className="form-error">{errors.country}</p>
-            ) : null} */}
           </div>
 
           <div className="mt-4">
@@ -355,7 +291,6 @@ const PartnershipForm = () => {
             ) : (
               <Select
                 placeholder="City / State"
-                // isLoading={false}
                 isClearable={true}
                 isSearchable={true}
                 name="city"
@@ -364,21 +299,10 @@ const PartnershipForm = () => {
                 )}
                 onChange={(selectedOption) => {
                   setFieldValue("city", selectedOption?.value);
-                  // setFieldTouched("city", true, false);
                   handleCityData();
                 }}
                 onFocus={handleCityData}
-                // onBlur={(e) => {
-                //   const { value } = e.target;
-                //   if (values.purpose === "") {
-                //     // if (!value) {
-                //     setFieldTouched("purpose", true, false);
-                //   }
-                // }}
                 options={updatedCitiesArr}
-                // loadOptions={loadCities}
-                // cacheOptions
-                // defaultOptions
                 styles={{
                   control: (provided) => ({
                     ...provided,
@@ -390,12 +314,15 @@ const PartnershipForm = () => {
                     },
                     paddingLeft: "16px",
                     paddingRight: "16px",
-                    paddingTop: "4px",
-                    paddingBottom: "4px",
+                    paddingTop: "2px",
+                    paddingBottom: "2px",
                     borderRadius: "0.75rem",
                     color: "#000",
                     fontSize: "0.875rem",
-                    placeholderColor: "#000",
+                  }),
+                  placeholder: (provided) => ({
+                    ...provided,
+                    color: "#000",
                   }),
                   option: (provided, state) => ({
                     ...provided,
@@ -419,15 +346,7 @@ const PartnershipForm = () => {
               )}
               onChange={(selectedOption) => {
                 setFieldValue("program", selectedOption?.value);
-                // setFieldTouched("program", true, false);
               }}
-              // onBlur={(e) => {
-              //   const { value } = e.target;
-              //   if (values.purpose === "") {
-              //     // if (!value) {
-              //     setFieldTouched("purpose", true, false);
-              //   }
-              // }}
               options={programOptions}
               styles={{
                 control: (provided) => ({
@@ -445,7 +364,10 @@ const PartnershipForm = () => {
                   borderRadius: "0.75rem",
                   color: "#000",
                   fontSize: "0.875rem",
-                  placeholderColor: "#000",
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "#000",
                 }),
                 option: (provided, state) => ({
                   ...provided,
@@ -455,9 +377,6 @@ const PartnershipForm = () => {
                 }),
               }}
             />
-            {/* {errors.program && touched.program ? (
-              <p className="form-error">{errors.program}</p>
-            ) : null} */}
           </div>
 
           <button

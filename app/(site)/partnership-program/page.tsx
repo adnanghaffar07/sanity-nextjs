@@ -54,19 +54,19 @@ const page = () => {
         </div>
       </section>
 
-      <section className="max-md:pl-5 mt-16 sm:mt-28 relative overflow-hidden">
+      <section className="mt-16 sm:mt-28 relative overflow-hidden">
         <img
           loading="lazy"
           src="/partnership-program-eclipse.png"
           alt="eclipse icon"
-          className="absolute bottom-[400px] md:bottom-[550px] xl:bottom-0 w-[645px] z-0"
+          className="absolute bottom-0 w-[645px] z-0"
         />
 
         <div className="flex gap-16 xl:gap-10 2xl:gap-16 flex-col-reverse xl:flex-row justify-center items-center mx-1 sm:mx-10">
           <div className="flex flex-col max-md:ml-0 max-md:w-full">
-            <article className="flex flex-col grow max-md:mt-10 max-md:max-w-full z-10">
-              <div className="flex flex-col pr-10 pl-20 text-neutral-900 max-md:px-5 max-md:max-w-full mb-4">
-                <h2 className="text-3xl sm:text-4xl leading-8 sm:leading-6 max-md:max-w-full font-medium">
+            <article className="flex flex-col grow max-md:mt-10 max-md:max-w-full z-10 px-4 sm:px-0">
+              <div className="flex flex-col pl-0 sm:pl-20 text-neutral-900 max-md:max-w-full mb-4 mt-1">
+                <h2 className="text-2xl sm:text-4xl leading-8 sm:leading-6 max-md:max-w-full font-medium text-center sm:text-left">
                   Available partnership program
                 </h2>
                 <p className="mt-8 text-base leading-6 max-w-[666px] text-justify">
@@ -82,17 +82,17 @@ const page = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 sm:items-start mt-8 xl:mt-3 max-md:flex-wrap items-center">
-                <Image
+              <div className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap justify-center">
+                <img
                   loading="lazy"
                   src="/affiliate-program.png"
-                  alt="Affiliate Program icon"
+                  alt="Reseller Program icon"
                   width={67}
                   height={67}
                 />
                 <div className="flex flex-col grow shrink-0 mt-1.5 basis-0 max-w-[666px]">
-                  <div className="flex gap-5 font-bold text-black max-md:flex-wrap max-md:max-w-full items-center">
-                    <h3 className="flex-auto text-lg leading-7">
+                  <div className="flex flex-col sm:flex-row gap-5 font-bold text-black max-md:flex-wrap max-md:max-w-full items-center justify-center">
+                    <h3 className="flex-auto text-lg leading-7 text-center sm:text-left">
                       Affiliate Program
                     </h3>
                     <button className="text-xs text-center border-2 border-black border-solid rounded-[50px] w-[126px] h-[28px]">
@@ -113,8 +113,8 @@ const page = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap">
-                <Image
+              <div className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap justify-center">
+                <img
                   loading="lazy"
                   src="/reseller-program.png"
                   alt="Reseller Program icon"
@@ -122,8 +122,8 @@ const page = () => {
                   height={67}
                 />
                 <div className="flex flex-col grow shrink-0 mt-1.5 basis-0 max-w-[666px]">
-                  <div className="flex gap-5 font-bold text-black max-md:flex-wrap max-md:max-w-full items-center">
-                    <h3 className="flex-auto text-lg leading-7">
+                  <div className="flex flex-col sm:flex-row gap-5 font-bold text-black max-md:flex-wrap max-md:max-w-full items-center justify-center">
+                    <h3 className="flex-auto text-lg leading-7 text-center sm:text-left">
                       Reseller Program
                     </h3>
                     <button className="text-xs text-center border-2 border-black border-solid rounded-[50px] w-[126px] h-[28px]">
@@ -143,17 +143,18 @@ const page = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap">
-                <Image
+              <div className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap justify-center">
+                <img
                   loading="lazy"
                   src="/white-label.png"
                   alt="Reseller Program icon"
                   width={67}
                   height={67}
+                  className="w-[67px] h-auto"
                 />
                 <div className="flex flex-col grow shrink-0 mt-1.5 basis-0 max-w-[666px]">
-                  <div className="flex gap-5 font-bold text-black max-md:flex-wrap max-md:max-w-full items-center">
-                    <h3 className="flex-auto text-lg leading-7">
+                  <div className="flex flex-col sm:flex-row gap-5 font-bold text-black max-md:flex-wrap max-md:max-w-full items-center justify-center">
+                    <h3 className="flex-auto text-lg leading-7 text-center sm:text-left">
                       White Label Partnership
                     </h3>
                     <button className="text-xs text-center border-2 border-black border-solid rounded-[50px] w-[126px] h-[28px]">
@@ -172,9 +173,9 @@ const page = () => {
             </article>
           </div>
 
-          <div className="flex flex-col items-center ml-0 sm:ml-5 w-[470px]">
-            <div className="bg-[#0A8FFC] rounded-[57px] w-[300px] md:w-[481px] h-[330px] md:h-[529px] relative">
-              <div className="max-md:mt-10 w-[290px] md:w-[471px] h-[320px] md:h-[520px] absolute -top-14 sm:-top-3">
+          <div className="flex flex-col items-center ml-0 w-[470px] mt-4 sm:mt-3 md:mt-8">
+            <div className="bg-[#0A8FFC] rounded-[57px] w-[280px] md:w-[481px] h-[330px] md:h-[529px] relative">
+              <div className="max-md:mt-10 w-[270px] md:w-[471px] h-[320px] md:h-[520px] absolute -top-12 md:-top-8">
                 <Image
                   loading="lazy"
                   src="/partnership-program-image.png"
@@ -182,6 +183,7 @@ const page = () => {
                   className="self-stretch my-auto rounded-[57px]"
                   fill
                   style={{ objectFit: "cover" }}
+                  sizes="(min-width: 768px) 471px, 270px"
                 />
               </div>
             </div>
@@ -190,7 +192,7 @@ const page = () => {
       </section>
 
       <section className="flex justify-center mt-24">
-        <div className="flex gap-5 flex-col lg:flex-row max-md:gap-0 max-w-[1280px] items-center justify-center">
+        <div className="flex gap-5 flex-col lg:flex-row max-w-[1280px] items-center justify-center">
           <figure className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
             <img
               loading="lazy"
@@ -199,12 +201,12 @@ const page = () => {
               className="grow w-full aspect-[0.99] max-md:mt-10 max-md:max-w-full"
             />
           </figure>
-          <div className="flex flex-col ml-5 w-[55%] max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col self-stretch px-5 my-auto max-md:mt-10 max-md:max-w-full">
-              <h2 className="text-5xl text-black leading-[58px] max-md:max-w-full max-md:text-4xl">
+          <div className="flex flex-col ml-0 sm:ml-5 w-[80%] sm:w-[55%]">
+            <div className="flex flex-col self-stretch px-0 sm:px-5 my-auto max-md:mt-10 max-md:max-w-full">
+              <h2 className="text-3xl text-black leading-[58px] sm:text-4xl md:text-5xl">
                 Reseller Partner
               </h2>
-              <ul className="mt-14 text-2xl leading-[50px] text-slate-600 max-md:mt-10 max-md:max-w-full list-decimal">
+              <ul className="mt-14 text-xl sm:text-2xl leading-[50px] text-slate-600 max-md:mt-10 list-decimal">
                 <li>25% commission first year</li>
                 <li>
                   10% second year providing new clients project revenue grows by
@@ -229,14 +231,22 @@ const page = () => {
           className="absolute bottom-0 w-[320px] z-0"
         />
 
-        <div className="flex justify-center">
-          <div className="flex gap-5 flex-col-reverse lg:flex-row max-md:gap-0 max-w-[1280px] items-center justify-center">
-            <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-              <article className="flex flex-col grow mt-2 max-md:mt-8 max-md:max-w-full">
-                <h2 className="text-5xl text-black leading-[58px] max-md:max-w-full max-md:text-4xl">
+        <div className="flex items-center justify-center">
+          <div className="max-w-[1280px] flex gap-5 flex-col lg:flex-row-reverse items-center justify-center">
+            <figure className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
+              <img
+                loading="lazy"
+                src="Affiliate-Partner-image_1.png"
+                alt="Affiliate-Partner"
+                className="grow w-full aspect-[0.99] max-md:mt-10 max-md:max-w-full"
+              />
+            </figure>
+            <div className="flex flex-col ml-0 sm:ml-5 w-[80%] sm:w-[55%]">
+              <div className="flex flex-col self-stretch px-0 sm:px-5 my-auto max-md:mt-10 max-md:max-w-full">
+                <h2 className="text-3xl text-black leading-[58px] sm:text-4xl md:text-5xl">
                   Affiliate Partner
                 </h2>
-                <ul className="mt-12 text-2xl leading-[50px] text-slate-600 max-md:mt-10 max-md:max-w-full z-10 list-decimal">
+                <ul className="mt-14 text-xl sm:text-2xl leading-[50px] text-slate-600 max-md:mt-10 list-decimal">
                   <li>12% of revenue in first year</li>
                   <li>
                     3% of revenue in second and third year - if new revenue
@@ -256,15 +266,7 @@ const page = () => {
                     day needs and handle invoicing
                   </li>
                 </ul>
-              </article>
-            </div>
-            <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-              <img
-                loading="lazy"
-                src="/Affiliate-Partner-image_1.png"
-                alt="Affiliate partner image"
-                className="w-full aspect-[0.98] max-md:mt-6 max-md:max-w-full"
-              />
+              </div>
             </div>
           </div>
         </div>
@@ -277,19 +279,20 @@ const page = () => {
           alt="eclipse icon"
           className="absolute bottom-0 right-0 w-[420px] z-0"
         />
-        <div className="flex  justify-center">
-          <div className="flex flex-col lg:flex-row gap-5 max-md:flex-col max-md:gap-0 max-w-[1280px] justify-center items-center">
-            <figure className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+
+        <div className="flex items-center justify-center">
+          <div className="max-w-[1280px] flex gap-5 flex-col lg:flex-row items-center justify-center">
+            <figure className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
               <img
                 loading="lazy"
-                src="/White-label-image.png"
-                alt="White Label Reseller Partner"
-                className="w-full aspect-[1.06] max-md:mt-3.5 max-md:max-w-full"
+                src="White-label-image.png"
+                alt="White-label-image"
+                className="grow w-full aspect-[0.99] max-md:mt-10 max-md:max-w-full"
               />
             </figure>
-            <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow px-5 max-md:mt-3.5 max-md:max-w-full">
-                <h2 className="text-5xl text-black leading-[58px] max-md:max-w-full max-md:text-4xl">
+            <div className="flex flex-col ml-0 sm:ml-5 w-[80%] sm:w-[55%]">
+              <div className="flex flex-col self-stretch px-0 sm:px-5 my-auto max-md:mt-10 max-md:max-w-full">
+                <h2 className="text-3xl text-black leading-[58px] sm:text-4xl md:text-5xl">
                   White Label Reseller Partner
                 </h2>
                 <ol className="mt-12 text-2xl leading-[50px] text-slate-600 max-md:mt-10 max-md:max-w-full z-10 list-decimal">
@@ -313,15 +316,15 @@ const page = () => {
         </div>
       </section>
 
-      <section className="flex justify-center text-2xl leading-8 text-center bg-[#EFEEEE] pb-36 -mb-16">
+      <section className="flex justify-center leading-8 text-center bg-[#EFEEEE] pb-36 -mb-16">
         <div className="max-w-[1280px]">
-          <h2 className="text-5xl my-20">Our Services</h2>
+          <h2 className="text-3xl sm:text-5xl my-20">Our Services</h2>
           <div className="text-slate-600 max-w-[1280px]">
             <div className="flex justify-center gap-x-8 gap-y-14 flex-wrap px-5 w-full max-md:flex-wrap max-md:max-w-full">
               {services.map((service: any, index: any) => {
                 return (
                   <p
-                    className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2"
+                    className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl sm:text-2xl"
                     key={index}
                   >
                     {service}
