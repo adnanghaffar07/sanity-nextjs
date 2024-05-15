@@ -25,7 +25,7 @@ const page = async () => {
       <HeroSectionComponent
         title="Case Studies"
         content="Explore our case study on code automation, showcasing how innovative strategies significantly enhance efficiency, reduce costs, and accelerate development in software projects."
-        image="/case-study-hero-image.jpg"
+        image="/CaseStudyHero.png"
       />
 
       {/* <section className="mx-auto w-full relative overflow-hidden">
@@ -366,19 +366,19 @@ const page = async () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" grid grid-cols-2 gap-2 ">
+          <div className=" md:grid md:grid-cols-2 sm:grid sm:grid-col-1 gap-2 ">
             <div className="relative">
-              <div className=" flex flex-col  items-center gap-5">
+              <div className="flex flex-col items-center gap-5">
                 <Image
                   width={404}
                   height={268}
-                  className="w-full aspect-[1.52] max-w-[304px]"
+                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                   src="/HouseArrest.png"
                   alt="card"
                 ></Image>
 
-                <div className="bg-red-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:bottom-36 sm:left-52   rounded-[32px_22px_26px_18px] ">
-                  <span className=" text-white text-sm  ">E-CELL</span>
+                <div className="bg-red-500 py-2 text-center min-h-[40px]  min-w-[102px] absolute left-[10rem]  sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
+                  <span className="text-white text-sm">E-CELL</span>
                 </div>
               </div>
 
@@ -393,12 +393,12 @@ const page = async () => {
                 <Image
                   width={404}
                   height={268}
-                  className="w-full aspect-[1.52] max-w-[304px]"
+                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                   src="/PublicInput.png"
                   alt="card"
                 ></Image>
 
-                <div className="bg-yellow-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:bottom-36 sm:left-52   rounded-[32px_22px_26px_18px] ">
+                <div className="bg-yellow-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:min-w-[70px] sm:bottom-[7rem]  sm:left-[10rem]   rounded-[32px_22px_26px_18px] ">
                   <span className=" text-white  text-sm ">Public Input</span>
                 </div>
               </div>
@@ -414,12 +414,12 @@ const page = async () => {
                 <Image
                   width={404}
                   height={268}
-                  className="w-full aspect-[1.52] max-w-[304px]"
+                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                   src="/VestedFinance.png"
                   alt="card"
                 ></Image>
 
-                <div className="bg-red-500 min-w-[102px] py-2 text-center min-h-[40px]  sm:absolute sm:bottom-36 sm:left-52  rounded-[32px_22px_26px_18px] ">
+                <div className="bg-red-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:min-w-[70px] sm:bottom-[7rem]  sm:left-[10rem]  rounded-[32px_22px_26px_18px] ">
                   <span className=" text-white  text-sm ">Public Input</span>
                 </div>
               </div>
@@ -435,12 +435,12 @@ const page = async () => {
                 <Image
                   width={304}
                   height={168}
-                  className="w-full aspect-[1.52] max-w-[304px]"
+                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                   src="/InnRoad.png"
                   alt="card"
                 ></Image>
 
-                <div className="bg-lime-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:bottom-36 sm:left-52  rounded-[32px_22px_26px_18px] ">
+                <div className="bg-lime-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:min-w-[70px] sm:bottom-[7rem]  sm:left-[10rem]  rounded-[32px_22px_26px_18px] ">
                   <span className=" text-white text-sm ">InnRoad</span>
                 </div>
 
@@ -456,7 +456,7 @@ const page = async () => {
               <Image
                 width={304}
                 height={168}
-                className="w-full aspect-[1.52] max-w-[304px]"
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                 src="/Dandy.png"
                 alt="card"
               ></Image>
@@ -471,7 +471,7 @@ const page = async () => {
               <Image
                 width={304}
                 height={168}
-                className="w-full aspect-[1.52] max-w-[304px]"
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                 src="/Tracely.png"
                 alt="card"
               ></Image>
