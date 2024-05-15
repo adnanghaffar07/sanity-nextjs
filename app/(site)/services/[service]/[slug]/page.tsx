@@ -19,19 +19,15 @@ async function getData(urlPathSub: string) {
 }
 
 async function getLogoData() {
-    const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
-    ;
-    try {
-        const fetchData = await client.fetch(queryLogo);
-        return fetchData || [];
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-    }
+  const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+  try {
+    const fetchData = await client.fetch(queryLogo);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
 }
-
-
-
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
@@ -125,7 +121,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex}>
                   <div className="bg-white shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
-                    < div className="flex flex-row justify-center"  >
+                    <div className="flex flex-row justify-center">
                       {tool.images &&
                         tool.images.map((image: any, imageIndex: any) => (
                           <img
@@ -161,29 +157,33 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             </p>
           )}
 
-         <div
+          <div
             className={
               data.exampleServicesSubSection?.exampleService != null
                 ? "flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
                 : "hidden"
             }
             style={{
-              marginTop: data.exampleServicesSubSection?.exampleService ? "0" : "0",
-              marginBottom: data.exampleServicesSubSection?.exampleServicesSection ? "0" : "0",
+              marginTop: data.exampleServicesSubSection?.exampleService
+                ? "0"
+                : "0",
+              marginBottom: data.exampleServicesSubSection
+                ?.exampleServicesSection
+                ? "0"
+                : "0",
             }}
           >
-
             {data.exampleServicesSubSection?.exampleService?.map(
               (example: any, exampleIndex: any) => (
                 <div key={exampleIndex}>
                   <div className="bg-gray-100 shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
-                  <div className="flex flex-col  justify-center">
-                    <h3 className="text-xl text-center font-semibold mb-4">
-                      {example.heading}
-                    </h3>
-                    <p className="text-gray-700 text-center">
-                      {example.detail}
-                    </p>
+                    <div className="flex flex-col  justify-center">
+                      <h3 className="text-xl text-center font-semibold mb-4">
+                        {example.heading}
+                      </h3>
+                      <p className="text-gray-700 text-center">
+                        {example.detail}
+                      </p>
                     </div>
                   </div>
                 </div>
