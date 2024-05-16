@@ -40,10 +40,7 @@ async function getLogoData() {
   }
 }
 
-export default async function service({
-  params,
-}: {
-  params: { service: string };
+export default async function service({ params,}: {params: { service: string };
 }) {
   const data = await getData(params.service);
   const dataSub = await getSubData();

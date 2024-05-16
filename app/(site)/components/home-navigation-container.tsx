@@ -342,7 +342,8 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                            RPA Services
+                          RPA Services
+
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
                             Tackle the Complex Robotic Challanges
@@ -621,11 +622,12 @@ export default function HomeNavigationContainer() {
                           Getting started
                         </h3> */}
                         <div className="">
-                          <img
-                            src="/menu-img.jpg"
-                            alt=""
-                            className="object-cover h-full width-full rounded-2xl"
-                          />
+                          <img src='/menu-img.jpg' alt="" className="object-cover h-full width-full rounded-2xl" />
+
+
+
+
+
 
                           {/* <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
                             Explore design work
@@ -706,8 +708,7 @@ export default function HomeNavigationContainer() {
                 >
                   Technologies
                 </span>
-              </Link>{" "}
-            </li>
+              </Link>            </li>
           </ul>
           {/* <LoginLogoutButton /> */}
 
