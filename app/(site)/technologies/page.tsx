@@ -26,7 +26,6 @@ async function getLogoData() {
 export default async function Technologies() {
   const data = await getData();
   const dataLogo = await getLogoData();
-  console.log(dataLogo);
 
   return (
     <div>
