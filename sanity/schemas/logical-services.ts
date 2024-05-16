@@ -74,13 +74,6 @@ const logicalServices = {
           type: "text",
         },
         {
-          name: 'pdfFile',
-          title: 'PDF File',
-          type: 'file',
-          options: {
-            accept: '.pdf', // Allow only PDF files
-        }},
-        {
           name: "introImage",
           title: "Intro Image",
           type: "image",
@@ -804,6 +797,11 @@ const subServiceSchema = {
       name: "serviceDescSub",
       title: "Sub Service Description",
       type: "string",
+    },
+    {
+      name: "pdfFile",
+      title: "Brochure",
+      type: "file",
     },
 
 
