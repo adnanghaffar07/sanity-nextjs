@@ -275,11 +275,11 @@ const page = async () => {
       <div className=" flex md:flex-row  justify-center mt-10 mb-10  gap-2">
         {/* Filter Section    */}
 
-        <section className=" mx-auto w-full  text-white bg-sky-500 max-w-[380px] min-h-[1301px]">
+        <section className=" md:w-auto sm:w-auto  text-white mx-auto  bg-sky-500 max-w-[480px] min-h-[1301px]">
           <h1>Filter Case Studies</h1>
 
-          <div className=" flex flex-col  justify-center gap-40">
-            <div className="mt-20">
+          <div className=" flex flex-col   gap-40">
+            <div className="mt-20 ml-2">
               <h1>Use Cases</h1>
               <br></br>
               <ul>
@@ -315,7 +315,7 @@ const page = async () => {
               </ul>
             </div>
 
-            <div>
+            <div className="mt-20 ml-2">
               <h1> Industries</h1>
               <br></br>
               <ul>
@@ -360,6 +360,20 @@ const page = async () => {
                 </li>
               </ul>
             </div>
+
+            <div className="flex flex-row items-center ml-1 gap-4">
+              <div className="bg-neutral-900  ">
+                <div className="text-lg tracking-wide leading-7 text-white max-w-[150px]">
+                  Reset
+                </div>
+              </div>
+
+              <div className="bg-white  text-white">
+                <div className="text-lg tracking-wide leading-7 text-sky-500 max-w-[49px]">
+                  Apply
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -377,14 +391,18 @@ const page = async () => {
                   alt="card"
                 ></Image>
 
-                <div className="bg-red-500 py-2 text-center min-h-[40px]  min-w-[102px] absolute left-[10rem]  sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
-                  <span className="text-white text-sm">E-CELL</span>
+                <div className="bg-yellow-300 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
+                  <img
+                    loading="lazy"
+                    srcSet="PublicInputLogo.png"
+                    className="w-full aspect-[3.13]"
+                  />
                 </div>
-              </div>
 
-              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                PublicInput helps reduce your burdens by helping you to get
-                public engagement and communicate with your audience.
+                <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                  PublicInput helps reduce your burdens by helping you to get
+                  public engagement and communicate with your audience.
+                </div>
               </div>
             </div>
 
@@ -398,19 +416,23 @@ const page = async () => {
                   alt="card"
                 ></Image>
 
-                <div className="bg-yellow-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:min-w-[70px] sm:bottom-[7rem]  sm:left-[10rem]   rounded-[32px_22px_26px_18px] ">
-                  <span className=" text-white  text-sm ">Public Input</span>
+                <div className="bg-yellow-300 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
+                  <img
+                    loading="lazy"
+                    srcSet="PublicInputLogo.png"
+                    className="w-full aspect-[3.13]"
+                  />
                 </div>
-              </div>
 
-              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                PublicInput helps reduce your burdens by helping you to get
-                public engagement and communicate with your audience.
+                <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                  PublicInput helps reduce your burdens by helping you to get
+                  public engagement and communicate with your audience.
+                </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className=" flex flex-col items-center gap-5">
+              <div className="flex flex-col items-center gap-5">
                 <Image
                   width={404}
                   height={268}
@@ -419,29 +441,34 @@ const page = async () => {
                   alt="card"
                 ></Image>
 
-                <div className="bg-red-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:min-w-[70px] sm:bottom-[7rem]  sm:left-[10rem]  rounded-[32px_22px_26px_18px] ">
-                  <span className=" text-white  text-sm ">Public Input</span>
+                <div className="flex justify-center items-center px-10 py-2 bg-sky-950 max-w-[121px] rounded-[32px_22px_26px_18px]">
+                  <img
+                    loading="lazy"
+                    srcSet="VestedFinanceLogo.png"
+                    className="w-full aspect-[1.14] fill-sky-950"
+                  />
                 </div>
-              </div>
 
-              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                Vested finance is a fast, secure, and tailored platform that
-                gives you option to invest in either full or fractional shares.
+                <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                  Vested finance is a fast, secure, and tailored platform that
+                  gives you option to invest in either full or fractional
+                  shares.
+                </div>
               </div>
             </div>
 
             <div className="relative">
               <div className=" flex flex-col  items-center gap-5">
                 <Image
-                  width={304}
-                  height={168}
+                  width={404}
+                  height={268}
                   className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                   src="/InnRoad.png"
                   alt="card"
                 ></Image>
 
-                <div className="bg-lime-500 min-w-[102px] py-2 text-center min-h-[40px] sm:absolute sm:min-w-[70px] sm:bottom-[7rem]  sm:left-[10rem]  rounded-[32px_22px_26px_18px] ">
-                  <span className=" text-white text-sm ">InnRoad</span>
+                <div className=" bg-lime-500 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
+                  innRoad
                 </div>
 
                 <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
@@ -452,34 +479,56 @@ const page = async () => {
               </div>
             </div>
 
-            <div className=" flex flex-col  items-center gap-5">
-              <Image
-                width={304}
-                height={168}
-                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                src="/Dandy.png"
-                alt="card"
-              ></Image>
-              <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                Dandy is an AI and ML-based software that provides options to
-                remove bad reviews, replies to the reviews, and getting customer
-                information using QR codes.
-              </span>
+            <div className="relative">
+              <div className=" flex flex-col  items-center gap-5">
+                <Image
+                  width={404}
+                  height={268}
+                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                  src="/Dandy.png"
+                  alt="card"
+                ></Image>
+
+                <div className="bg-orange-400 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
+                  <img
+                    loading="lazy"
+                    srcSet="/GetDandyLogo.png"
+                    className="w-full aspect-[3.33] max-w-[92px]"
+                  />
+                </div>
+
+                <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                  Dandy is an AI and ML-based software that provides options to
+                  remove bad reviews, replies to the reviews, and getting
+                  customer information using QR codes.
+                </span>
+              </div>
             </div>
 
-            <div className=" flex flex-col  items-center gap-5">
-              <Image
-                width={304}
-                height={168}
-                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                src="/Tracely.png"
-                alt="card"
-              ></Image>
-              <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                Tracely is a location tracking app designed to help people keep
-                track of their family and friends, chat with them or enjoy their
-                newsfeed updates.
-              </span>
+            <div className="relative">
+              <div className=" flex flex-col  items-center gap-5">
+                <Image
+                  width={404}
+                  height={268}
+                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                  src="/Tracely.png"
+                  alt="card"
+                ></Image>
+
+                <div className="bg-orange-400 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
+                  <img
+                    loading="lazy"
+                    srcSet="/GetDandyLogo.png"
+                    className="w-full aspect-[3.33] max-w-[92px]"
+                  />
+                </div>
+
+                <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                  Tracely is a location tracking app designed to help people
+                  keep track of their family and friends, chat with them or
+                  enjoy their newsfeed updates.
+                </span>
+              </div>
             </div>
           </div>
         </section>
