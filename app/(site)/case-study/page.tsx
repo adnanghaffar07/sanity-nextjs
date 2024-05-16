@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import { CgLaptop } from "react-icons/cg";
 
 async function getData() {
   const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
@@ -20,6 +21,16 @@ const page = async () => {
   const data = await getData();
   const recentArray = await data.filter((item: any) => item.group === "recent");
   const topArray = await data.filter((item: any) => item.group === "top");
+
+    console.log("Card items",data)
+
+ 
+  // const cardItems = data?.cardItemsList?.map((item:any)=>
+  //  {
+  //       console.log("Card Title",item.cardTitle)
+  //       console.log("Button Color",item.buttonColor)
+  //   })
+
   return (
     <>
       <HeroSectionComponent
@@ -382,152 +393,138 @@ const page = async () => {
         <section className=" mx-auto">
           <div className=" md:grid md:grid-cols-2 sm:grid sm:grid-col-1 gap-2 ">
             <div className="relative">
-              <div className="flex flex-col items-center gap-5">
-                <Image
-                  width={404}
-                  height={268}
-                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                  src="/HouseArrest.png"
-                  alt="card"
-                ></Image>
+              <Image
+                width={404}
+                height={268}
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                src="/HouseArrest.png"
+                alt="card"
+              ></Image>
 
-                <div className="bg-yellow-300 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
-                  <img
-                    loading="lazy"
-                    srcSet="PublicInputLogo.png"
-                    className="w-full aspect-[3.13]"
-                  />
-                </div>
+              <div className="bg-red-500 py-2 text-center  md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem]  rounded-[32px_22px_26px_18px]">
+                <img
+                  loading="lazy"
+                  srcSet="PublicInputLogo.png"
+                  className="w-full aspect-[3.13]"
+                />
+              </div>
 
-                <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                  PublicInput helps reduce your burdens by helping you to get
-                  public engagement and communicate with your audience.
-                </div>
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                PublicInput helps reduce your burdens by helping you to get
+                public engagement and communicate with your audience.
               </div>
             </div>
 
             <div className="relative">
-              <div className=" flex flex-col items-center gap-5">
-                <Image
-                  width={404}
-                  height={268}
-                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                  src="/PublicInput.png"
-                  alt="card"
-                ></Image>
+              <Image
+                width={404}
+                height={268}
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                src="/PublicInput.png"
+                alt="card"
+              ></Image>
 
-                <div className="bg-yellow-300 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
-                  <img
-                    loading="lazy"
-                    srcSet="PublicInputLogo.png"
-                    className="w-full aspect-[3.13]"
-                  />
-                </div>
+              <div className="bg-yellow-300 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem]  rounded-[32px_22px_26px_18px]">
+                <img
+                  loading="lazy"
+                  srcSet="PublicInputLogo.png"
+                  className="w-full aspect-[3.13]"
+                />
+              </div>
 
-                <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                  PublicInput helps reduce your burdens by helping you to get
-                  public engagement and communicate with your audience.
-                </div>
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                PublicInput helps reduce your burdens by helping you to get
+                public engagement and communicate with your audience.
               </div>
             </div>
 
             <div className="relative">
-              <div className="flex flex-col items-center gap-5">
-                <Image
-                  width={404}
-                  height={268}
-                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                  src="/VestedFinance.png"
-                  alt="card"
-                ></Image>
+              <Image
+                width={404}
+                height={268}
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                src="/VestedFinance.png"
+                alt="card"
+              ></Image>
 
-                <div className="flex justify-center items-center px-10 py-2 bg-sky-950 max-w-[121px] rounded-[32px_22px_26px_18px]">
-                  <img
-                    loading="lazy"
-                    srcSet="VestedFinanceLogo.png"
-                    className="w-full aspect-[1.14] fill-sky-950"
-                  />
-                </div>
+              <div className="bg-yellow-300 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem]  rounded-[32px_22px_26px_18px]">
+                <img
+                  loading="lazy"
+                  srcSet="PublicInputLogo.png"
+                  className="w-full aspect-[3.13]"
+                />
+              </div>
 
-                <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                  Vested finance is a fast, secure, and tailored platform that
-                  gives you option to invest in either full or fractional
-                  shares.
-                </div>
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                Vested finance is a fast, secure, and tailored platform that
+                gives you option to invest in either full or fractional shares.
               </div>
             </div>
 
             <div className="relative">
-              <div className=" flex flex-col  items-center gap-5">
-                <Image
-                  width={404}
-                  height={268}
-                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                  src="/InnRoad.png"
-                  alt="card"
-                ></Image>
+              <Image
+                width={404}
+                height={268}
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                src="/InnRoad.png"
+                alt="card"
+              ></Image>
 
-                <div className=" bg-lime-500 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
-                  innRoad
-                </div>
+              <div className="py-2 text-center text-white md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem] bg-lime-500 rounded-[32px_22px_26px_18px]">
+                innRoad
+              </div>
 
-                <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                  InnRoad is a hotel management solution to manage your business
-                  by providing various options including online booking,
-                  property management and lots more.
-                </span>
+              <div className="text-base font-light  leading-6 max-w-[317px] text-sky-950">
+                InnRoad is a hotel management solution to manage your business
+                by providing various options including online booking, property
+                management and lots more.
               </div>
             </div>
 
             <div className="relative">
-              <div className=" flex flex-col  items-center gap-5">
-                <Image
-                  width={404}
-                  height={268}
-                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                  src="/Dandy.png"
-                  alt="card"
-                ></Image>
+              <Image
+                width={404}
+                height={268}
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                src="/Dandy.png"
+                alt="card"
+              ></Image>
 
-                <div className="bg-orange-400 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
-                  <img
-                    loading="lazy"
-                    srcSet="/GetDandyLogo.png"
-                    className="w-full aspect-[3.33] max-w-[92px]"
-                  />
-                </div>
+              <div className="bg-orange-400 py-2 text-center  md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem]  rounded-[32px_22px_26px_18px]">
+                <img
+                  loading="lazy"
+                  srcSet="GetDandyLogo.png"
+                  className="w-full aspect-[3.13]"
+                />
+              </div>
 
-                <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                  Dandy is an AI and ML-based software that provides options to
-                  remove bad reviews, replies to the reviews, and getting
-                  customer information using QR codes.
-                </span>
+              <div className="text-base font-light  tracking-wide leading-6 max-w-[317px] text-sky-950">
+                Dandy is an AI and ML-based software that provides options to
+                remove bad reviews and replies to the reviews
               </div>
             </div>
 
             <div className="relative">
-              <div className=" flex flex-col  items-center gap-5">
-                <Image
-                  width={404}
-                  height={268}
-                  className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                  src="/Tracely.png"
-                  alt="card"
-                ></Image>
+              <Image
+                width={404}
+                height={268}
+                className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                src="/HouseArrest.png"
+                alt="card"
+              ></Image>
 
-                <div className="bg-orange-400 py-2 text-center min-h-[40px]  min-w-[102px]  md:absolute md:left-[13rem] md:bottom-[6rem] sm:absolute sm:min-w-[70px] sm:bottom-[7rem] sm:left-[10rem] rounded-[32px_22px_26px_18px]">
-                  <img
-                    loading="lazy"
-                    srcSet="/GetDandyLogo.png"
-                    className="w-full aspect-[3.33] max-w-[92px]"
-                  />
-                </div>
+              <div className="bg-blue-200 py-2 text-center  md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem]  rounded-[32px_22px_26px_18px]">
+                <img
+                  loading="lazy"
+                  srcSet="PublicInputLogo.png"
+                  className="w-full aspect-[3.13]"
+                />
+              </div>
 
-                <span className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                  Tracely is a location tracking app designed to help people
-                  keep track of their family and friends, chat with them or
-                  enjoy their newsfeed updates.
-                </span>
+              <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                Tracely is a location tracking app designed to help people keep
+                track of their family and friends, chat with them or enjoy their
+                newsfeed updates.
               </div>
             </div>
           </div>

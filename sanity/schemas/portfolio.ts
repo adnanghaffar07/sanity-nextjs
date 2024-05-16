@@ -193,6 +193,7 @@ const portfolioSchema = {
         },
       ],
     },
+
     {
       name: "toolsfortest",
       title: "Tools For Test",
@@ -202,6 +203,64 @@ const portfolioSchema = {
       name: "conclusion",
       title: "Conclusion",
       type: "string",
+    },
+
+    {
+      name: "cardItemsList",
+      title: "Card Items List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "cardTitle",
+              title: "Card Title",
+              type: "string",
+            },
+            {
+              name: "cardImage",
+              title: "Card Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+            {
+              name: "buttonColor",
+              title: "Button Color",
+              type: "string",
+            },
+            {
+              name: "buttonLogo",
+              title: "Button Logo",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+            {
+              name: "cardDescription",
+              title: "Card Description",
+              type: "string",
+            },
+          ],
+        },
+      ],
     },
 
     // {
