@@ -22,14 +22,11 @@ const page = async () => {
   const recentArray = await data.filter((item: any) => item.group === "recent");
   const topArray = await data.filter((item: any) => item.group === "top");
 
-    console.log("Card items",data)
+    // console.log("Card items",data[0].cardItemsList[0].cardTitle)
 
- 
-  // const cardItems = data?.cardItemsList?.map((item:any)=>
-  //  {
-  //       console.log("Card Title",item.cardTitle)
-  //       console.log("Button Color",item.buttonColor)
-  //   })
+    
+
+    
 
   return (
     <>
@@ -283,15 +280,15 @@ const page = async () => {
         </div>
       </section> */}
 
-      <div className=" flex md:flex-row  justify-center mt-10 mb-10  gap-2">
+      <div className=" flex md:flex-row  justify-center mt-10 mb-10">
         {/* Filter Section    */}
 
-        <section className=" md:w-auto sm:w-auto  text-white mx-auto  bg-sky-500 max-w-[480px] min-h-[1301px]">
+        <section className="md:w-auto sm:w-auto  text-white mx-auto  bg-sky-500 max-w-[480px] min-h-[1301px]">
           <h1>Filter Case Studies</h1>
 
-          <div className=" flex flex-col   gap-40">
+          <div className=" flex flex-col gap-40">
             <div className="mt-20 ml-2">
-              <h1>Use Cases</h1>
+              <h1>Technologies</h1>
               <br></br>
               <ul>
                 <li>
@@ -352,11 +349,6 @@ const page = async () => {
 
                 <li>
                   <input type="checkbox" />
-                  <span> AI & ML</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
                   <span> Automation</span>
                 </li>
 
@@ -372,7 +364,7 @@ const page = async () => {
               </ul>
             </div>
 
-            <div className="flex flex-row items-center ml-1 gap-4">
+            <div className="flex flex-row items-center ml-1 gap-2">
               <div className="bg-neutral-900  ">
                 <div className="text-lg tracking-wide leading-7 text-white max-w-[150px]">
                   Reset
@@ -390,7 +382,7 @@ const page = async () => {
 
         {/*  Case Study Grid Section    */}
 
-        <section className=" mx-auto">
+        {/* <section className=" mx-auto">
           <div className=" md:grid md:grid-cols-2 sm:grid sm:grid-col-1 gap-2 ">
             <div className="relative">
               <Image
@@ -509,14 +501,14 @@ const page = async () => {
                 width={404}
                 height={268}
                 className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                src="/HouseArrest.png"
+                src="/Tracely.png"
                 alt="card"
               ></Image>
 
               <div className="bg-blue-200 py-2 text-center  md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem]  rounded-[32px_22px_26px_18px]">
                 <img
                   loading="lazy"
-                  srcSet="PublicInputLogo.png"
+                  srcSet="GetDandyLogo.png"
                   className="w-full aspect-[3.13]"
                 />
               </div>
@@ -528,7 +520,53 @@ const page = async () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+
+          
+      
+
+        <section className=" mx-auto">
+          <div className=" md:grid md:grid-cols-2 md: gap-10 sm:grid sm:grid-col-1  ">
+            { 
+                data[0].cardItemsList.map((item:any,index:any)=>{
+                  return (
+                      <div className="relative">
+                    { 
+                   <Link href='/career'> 
+                    <Image
+                    width={404}
+                    height={268}
+                    className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                    src={urlForImage(item.cardImage).toString()}
+                    alt="card" >
+                    </Image>
+                    </Link>
+                    }
+
+                    { <div className={`bg-${item.buttonColor}-500 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem] rounded-tl-[32px] rounded-tr-[22px] rounded-bl-[26px] rounded-br-[18px]`}>
+
+                      <img
+                        loading="lazy"
+                        srcSet={urlForImage(item.buttonLogo).toString()}
+                        className="w-full aspect-[3.13]"
+                      />
+                    </div> }
+                     
+                    <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                    {item.cardDescription}
+                  </div>
+                </div>
+            )
+              })
+            }
+
+            
+            </div>    
+            </section>
+
+
+
+
 
         {/*  Vertical Line  */}
       </div>
