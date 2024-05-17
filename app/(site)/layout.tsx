@@ -4,6 +4,7 @@ import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import FooterContainer from "./components/footer-container";
 import FormDisplay from "./components/FormDisplay";
+import ScrollToTop from "./components/ScrollToTop";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
             <FormDisplay />
           </div>
           <FooterContainer />
+          <ScrollToTop />
         </div>
       </body>
     </html>
