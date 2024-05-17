@@ -147,34 +147,40 @@ export default function FooterContainer() {
               <div className="text-2xl font-medium self-start">About Us</div>
               <div className="mt-6 text-base font-light flex  flex-col gap-5">
                 <Link
-                  href={`/lifeatca`}
+                  href={`/case-study`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Expert Team
+                  Case Studies
                 </Link>
                 <Link
                   href={`/blogs`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Our Exciting News
+                 Blogs
                 </Link>
                 <Link
                   href={`/career`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Career
+                  Careers
                 </Link>
                 <Link
-                  href="mailto:hr@codeautomation.ai"
+                  href={`/lifeatca`}
                   className="hover:underline my-auto inline-block"
                 >
-                  hr@codeautomation.ai
+                  Life at CA - Careers
                 </Link>
                 <Link
                   href={"/partnership-program"}
                   className="hover:underline my-auto inline-block"
                 >
                   Partner with Us
+                </Link>
+                <Link
+                  href="mailto:hr@codeautomation.ai"
+                  className="hover:underline my-auto inline-block"
+                >
+                  hr@codeautomation.ai
                 </Link>
               </div>
             </div>
