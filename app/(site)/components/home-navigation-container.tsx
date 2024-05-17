@@ -111,7 +111,7 @@ export default function HomeNavigationContainer() {
               <Link href="/">
                 <span
                   className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
+                    currentPath.startsWith("/brochure")
                       ? "text-black"
                       : "text-white"
                   }`}
@@ -127,7 +127,7 @@ export default function HomeNavigationContainer() {
               <Link href="javascript:void(0)">
                 <span
                   className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
+                    currentPath.startsWith("/brochure")
                       ? "text-black"
                       : "text-white"
                   }`}
@@ -136,7 +136,7 @@ export default function HomeNavigationContainer() {
                 </span>
               </Link>
               <svg
-                fill="white"
+                fill="black"
                 viewBox="0 0 20 20"
                 className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
                   open ? "rotate-180" : "rotate-0"
@@ -429,7 +429,7 @@ export default function HomeNavigationContainer() {
               <Link href="javascript:void(0)">
                 <span
                   className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
+                    currentPath.startsWith("/brochure")
                       ? "text-black"
                       : "text-white"
                   }`}
@@ -438,7 +438,7 @@ export default function HomeNavigationContainer() {
                 </span>
               </Link>
               <svg
-                fill="white"
+                fill="black"
                 viewBox="0 0 20 20"
                 className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
                   aboutOpen ? "rotate-180" : "rotate-0"
@@ -673,7 +673,7 @@ export default function HomeNavigationContainer() {
               <Link href="/blogs">
                 <span
                   className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
+                    currentPath.startsWith("/brochure")
                       ? "text-black"
                       : "text-white"
                   }`}
@@ -687,7 +687,7 @@ export default function HomeNavigationContainer() {
               <Link href="/career">
                 <span
                   className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
+                    currentPath.startsWith("/brochure")
                       ? "text-black"
                       : "text-white"
                   }`}
@@ -701,7 +701,7 @@ export default function HomeNavigationContainer() {
               <Link href="/technologies">
                 <span
                   className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
+                    currentPath.startsWith("/brochure")
                       ? "text-black"
                       : "text-white"
                   }`}

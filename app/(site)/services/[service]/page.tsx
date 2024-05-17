@@ -125,11 +125,7 @@ export default async function service({ params,}: {params: { service: string };
               marginTop: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
               marginBottom: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
             }}
-          
-          
           >
-          
-
             {data.subServices &&
               data.subServices.map((subServiceRef: any) => {
                 const subService = dataSub.find(
