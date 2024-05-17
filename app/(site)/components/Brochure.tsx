@@ -21,6 +21,7 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
 
   const handleDownload = async (service: any) => {
     try {
+      console.log("Attempting to download PDF...");
       if (!service.pdfFile) {
         console.error("Error: PDF file data is undefined");
         return;
@@ -31,14 +32,15 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
       const pdfUrl = assetData?.url;
   
       if (pdfUrl) {
-        // Check if user is authenticated
+        console.log("PDF URL:", pdfUrl);
+        console.log("User authenticated:", isAuthenticated);
         if (isAuthenticated) {
-          // If user is authenticated, start download immediately
+          console.log("User is authenticated. Starting download...");
           startDownload(pdfUrl, assetData);
         } else {
-          // If user is not authenticated, redirect to login page
+          console.log("User is not authenticated. Redirecting to login page...");
           const currentUrl = encodeURIComponent(window.location.href);
-          window.location.href = `/api/auth/login?redirectUrl=${currentUrl}`;
+          window.location.href = "/api/auth/login?post_login_redirect_url=/brochure";
         }
       } else {
         console.error("Error: PDF URL is undefined");
@@ -47,6 +49,7 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
       console.error("Error downloading PDF:", error);
     }
   };
+  
   
   const startDownload = (pdfUrl: string, assetData: any) => {
     fetch(pdfUrl)

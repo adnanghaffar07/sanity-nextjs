@@ -29,11 +29,11 @@ const Services = async () => {
   const data = await getData();
   const dataSub = await getSubData();
   return (
-    <>
+    <section className='px-6 md:px-16 py-10 md:py-16 '>
       <h1 className="text-4xl font-bold mb-8 text-center mt-28">Brochure Downloads</h1>
       <Brochure data={data} dataSub={dataSub} />
      
-    </>
+    </section>
   );
 };
 

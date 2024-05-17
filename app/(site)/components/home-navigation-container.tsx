@@ -3,9 +3,10 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import LoginLogoutButton from "./LoginLogoutButton";
 
 const linkAI = "/ai-services";
 const linkML = "/ml-services";
@@ -20,12 +21,21 @@ const linkRobotic = "/rpa-services";
 const linkIntegrate = "/automation-integration";
 
 export default function HomeNavigationContainer() {
-
+  const { getUser, isAuthenticated } = useKindeBrowserClient()
+  const [userDetails, setUserDetails] = useState<any>(null);
   const currentPath = usePathname();
   let pathname = usePathname() || "/";
-
   const [menuIcon, setIcon] = useState(false);
   const [menuOpen, setMenuOpen] = useState(true);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const currentUrl = encodeURIComponent(window.location.href);
+
+
+
 
   const handleToggleMenu = () => {
     setIcon(!menuIcon);
@@ -33,18 +43,10 @@ export default function HomeNavigationContainer() {
   const handleSmallerScreenNavigation = () => {
     setIcon(!menuIcon);
   };
-
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [aboutVisible, setAboutVisible] = useState(false);
-
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
     setAboutVisible((prevMenuVisible) => !prevMenuVisible);
   };
-
-  const [open, setOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
-
   const toggleMenu = () => {
     setOpen(!open);
     // Close the About Us menu when the Services menu is opened
@@ -52,7 +54,6 @@ export default function HomeNavigationContainer() {
       setAboutOpen(false);
     }
   };
-
   const toggleAbout = () => {
     setAboutOpen(!aboutOpen);
     // Close the Services menu when the About Us menu is opened
@@ -60,6 +61,33 @@ export default function HomeNavigationContainer() {
       setOpen(false);
     }
   };
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (isAuthenticated) {
+        const user = await getUser();
+        setUserDetails(user);
+      }
+    };
+
+    fetchUserDetails();
+  }, [isAuthenticated]);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (isAuthenticated) {
+        const user = await getUser();
+        console.log("User details:", user); // Log the user details fetched by getUser()
+        setUserDetails(user);
+      }
+    };
+
+    console.log("Fetching user details...");
+    fetchUserDetails();
+  }, [isAuthenticated]);
+
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -110,11 +138,10 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/brochure")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Home
                 </span>
@@ -126,21 +153,19 @@ export default function HomeNavigationContainer() {
             >
               <Link href="javascript:void(0)">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/brochure")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Services
                 </span>
               </Link>
               <svg
-                fill="black"
+                fill="white"
                 viewBox="0 0 20 20"
-                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
-                  open ? "rotate-180" : "rotate-0"
-                }`}
+                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${open ? "rotate-180" : "rotate-0"
+                  }`}
               >
                 <path
                   fillRule="evenodd"
@@ -342,8 +367,7 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                          RPA Services
-
+                            RPA Services
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
                             Tackle the Complex Robotic Challanges
@@ -428,21 +452,19 @@ export default function HomeNavigationContainer() {
             >
               <Link href="javascript:void(0)">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/brochure")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   About Us
                 </span>
               </Link>
               <svg
-                fill="black"
+                fill="white"
                 viewBox="0 0 20 20"
-                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
-                  aboutOpen ? "rotate-180" : "rotate-0"
-                }`}
+                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${aboutOpen ? "rotate-180" : "rotate-0"
+                  }`}
               >
                 <path
                   fillRule="evenodd"
@@ -622,12 +644,11 @@ export default function HomeNavigationContainer() {
                           Getting started
                         </h3> */}
                         <div className="">
-                          <img src='/menu-img.jpg' alt="" className="object-cover h-full width-full rounded-2xl" />
-
-
-
-
-
+                          <img
+                            src="/menu-img.jpg"
+                            alt=""
+                            className="object-cover h-full width-full rounded-2xl"
+                          />
 
                           {/* <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
                             Explore design work
@@ -672,11 +693,10 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/blogs">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/brochure")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Blogs
                 </span>
@@ -686,11 +706,10 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/career">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/brochure")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Career
                 </span>
@@ -700,18 +719,74 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/brochure")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   Technologies
                 </span>
-              </Link>            </li>
-          </ul>
-          {/* <LoginLogoutButton /> */}
+              </Link>{" "}
+            </li>
 
+          </ul>
+          <div>
+
+            {(isAuthenticated) ? (
+              <>
+
+                {userDetails && userDetails.picture && (
+                  <img
+                    src={userDetails.picture}
+                    alt="Profile"
+                    className="h-10 w-10 object-cover rounded-full cursor-pointer"
+                    onClick={toggleDropdown}
+                  />
+                )}
+                {isDropdownOpen && (
+                  <div className="absolute mt-2 right-24 w-50 bg-white rounded-2xl shadow-lg">
+                    <div className="">
+                      <div className="flex flex-row px-4 py-2"> 
+                      <img
+                        src={userDetails.picture}
+                        alt="Profile"
+                        className="h-10 w-10 mt-2 object-cover rounded-full cursor-pointer"
+                        onClick={toggleDropdown}
+                      /> 
+                      <p className=" px-4 mt-4 text-gray-800 cursor-pointer">
+                          {userDetails?.given_name} {userDetails?.family_name}
+                         
+                        </p>
+                       
+                        </div>
+
+                        <p className=" px-4 text-gray-500 w-18 text-sm cursor-pointer break">
+                          {userDetails?.email}
+                        </p>
+                      <hr className="my-2" />
+                      <p className="px-4 py-2 text-gray-800 cursor-pointer">
+                         Account Details
+                        </p>
+                      <LogoutLink postLogoutRedirectURL={`/api/auth/login?post_login_redirect_url=${currentUrl}`}>
+                        <p className="px-4 py-2 mb-2 text-gray-800 cursor-pointer">
+                          Sign Out
+                        </p>
+                      </LogoutLink>
+                    </div>
+                  </div>
+                )}
+
+              </>
+            ) : (
+              <div>
+                <LoginLink postLoginRedirectURL={`/api/auth/login?post_login_redirect_url=${currentUrl}`}>
+                  <button className="inline-flex items-center justify-center mb-1 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-gray-400 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" role="button">
+                    Sign In
+                  </button>
+                </LoginLink>
+              </div>
+            )}
+          </div>
           <Link
             className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl  bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
             href="tel:+1-850-558-4691"
