@@ -22,11 +22,7 @@ const page = async () => {
   const recentArray = await data.filter((item: any) => item.group === "recent");
   const topArray = await data.filter((item: any) => item.group === "top");
 
-    // console.log("Card items",data[0].cardItemsList[0].cardTitle)
-
-    
-
-    
+  // console.log("Card items",data[0].cardItemsList[0].cardTitle)
 
   return (
     <>
@@ -522,51 +518,43 @@ const page = async () => {
           </div>
         </section> */}
 
-          
-      
-
         <section className=" mx-auto">
           <div className=" md:grid md:grid-cols-2 md: gap-10 sm:grid sm:grid-col-1  ">
-            { 
-                data[0].cardItemsList.map((item:any,index:any)=>{
-                  return (
-                      <div className="relative">
-                    { 
-                   <Link href='/career'> 
-                    <Image
-                    width={404}
-                    height={268}
-                    className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                    src={urlForImage(item.cardImage).toString()}
-                    alt="card" >
-                    </Image>
+            {data[0].cardItemsList.map((item: any, index: any) => {
+              return (
+                <div className="relative">
+                  {
+                    <Link href="/career">
+                      <Image
+                        width={404}
+                        height={268}
+                        className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                        src={urlForImage(item.cardImage).toString()}
+                        alt="card"
+                      ></Image>
                     </Link>
-                    }
+                  }
 
-                    { <div className={`bg-${item.buttonColor}-500 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem] rounded-tl-[32px] rounded-tr-[22px] rounded-bl-[26px] rounded-br-[18px]`}>
-
+                  {
+                    <div
+                      className={`bg-${item.buttonColor}-500 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem] rounded-tl-[32px] rounded-tr-[22px] rounded-bl-[26px] rounded-br-[18px]`}
+                    >
                       <img
                         loading="lazy"
                         srcSet={urlForImage(item.buttonLogo).toString()}
                         className="w-full aspect-[3.13]"
                       />
-                    </div> }
-                     
-                    <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
+                    </div>
+                  }
+
+                  <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
                     {item.cardDescription}
                   </div>
                 </div>
-            )
-              })
-            }
-
-            
-            </div>    
-            </section>
-
-
-
-
+              );
+            })}
+          </div>
+        </section>
 
         {/*  Vertical Line  */}
       </div>
