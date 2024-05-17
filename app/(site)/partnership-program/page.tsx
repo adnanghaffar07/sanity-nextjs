@@ -88,11 +88,8 @@ const page = async () => {
                 {data?.availableProgramSection?.programs?.map(
                   (program: any) => {
                     return (
-                      <ScrollAnimation>
-                        <div
-                          className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap justify-center"
-                          key={program._key}
-                        >
+                      <ScrollAnimation key={program._key}>
+                        <div className="flex flex-col sm:flex-row gap-4 sm:items-start items-center mt-10 xl:mt-3 max-md:flex-wrap justify-center">
                           {program?.icon?.asset && (
                             <img
                               loading="lazy"
