@@ -6,18 +6,7 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-// async function getData() {
-//   const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
-//   try {
-//     const fetchData = await client.fetch(query);
-//     return fetchData || [];
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return [];
-//   }
-// }
-
-const page = () => {
+const Page = () => {
   const [initialCards, SetInitialCards] = useState<any[]>([""]);
   const [isFiltered, SetIsFiltered] = useState<boolean>(false);
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
@@ -344,9 +333,11 @@ const page = () => {
 
         <section className=" mx-auto">
           <div className=" md:grid md:grid-cols-2 md: gap-10 sm:grid sm:grid-col-1  ">
-            {initialCards.map((item: any, index: any) => {
+            {initialCards.map((item: any, index: any) => { 
+                     
               return (
-                <div className="relative">
+               
+                <div key={index}>
                   {item?.cardImage && (
                     <Link href="/career">
                       <Image
@@ -359,7 +350,7 @@ const page = () => {
                     </Link>
                   )}
 
-                  {
+                  {/* {
                     <div
                       className={`bg-${item.buttonColor}-500 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem] rounded-tl-[32px] rounded-tr-[22px] rounded-bl-[26px] rounded-br-[18px]`}
                     >
@@ -371,7 +362,7 @@ const page = () => {
                         />
                       )}
                     </div>
-                  }
+                  } */}
 
                   <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
                     {item.cardDescription}
@@ -390,4 +381,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

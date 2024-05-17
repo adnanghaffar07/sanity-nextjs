@@ -57,7 +57,7 @@ const OurWorkSection = () =>
                         <img
                           loading="lazy"
                           src={urlForImage(item.cardimage.asset)}
-                          className="size-full rounded-3xl"
+                          className="fixed-size rounded-3xl"
                           alt={item.cardimage.alt}
                         />
                       )}
@@ -89,7 +89,8 @@ const OurWorkSection = () =>
           <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
             {recentArray &&
               recentArray.map((item: any, index: any) =>
-               {
+               { 
+                 if(index < 2)
                   {
                 return (
                     <div
@@ -100,7 +101,7 @@ const OurWorkSection = () =>
                         <img
                           loading="lazy"
                           src={urlForImage(item.cardimage.asset)}
-                          className="size-full rounded-3xl"
+                          className="fixed-size rounded-3xl"
                           alt={item.cardimage.alt}
                         />
                       )}
@@ -125,6 +126,14 @@ const OurWorkSection = () =>
           </div>
         </div>
       </div>
+
+    <style jsx>{`
+  .fixed-size {
+    width: 600px;
+    height: auto; /* Adjust height as needed */
+    object-fit: cover;
+  }
+`}</style>   
 
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
         <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
