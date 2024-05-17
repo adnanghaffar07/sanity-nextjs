@@ -218,6 +218,13 @@ const portfolioSchema = {
               title: "Card Title",
               type: "string",
             },
+             
+            {
+               name:"group",
+               title:"Group",
+               type:"string"
+            },
+
             {
               name: "cardImage",
               title: "Card Image",

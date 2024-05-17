@@ -15,43 +15,6 @@ const OurWorkSection = () =>
   const [recentArray, setRecentArray]=useState<any[]>([]);
   const [topArray, settopArray]=useState<any[]>([]);
 
-
-  function ShowNextContainers(endVal:number)
-  {
-      if(recentArray[endVal] != null && recentArray[endVal] != recentArray[recentArray.length-1])
-        {  
-          const startIndexCopy = endVal;
-          const endIndexCopy = endVal+3;
-        
-          setStartIndex(startIndexCopy);
-          setEndIndex(endIndexCopy);
-            
-            console.log(recentArray[recentArray.length-1]);
-          
-          if(startIndexCopy < recentArray.length)
-            {
-              const filterArray = recentArray.filter((item,index)=>
-              { 
-                return   index >= startIndexCopy && index < endIndexCopy;
-              })  
-              
-              console.log(filterArray)
-              setRecentArray(filterArray);
-            }     
-                
-        }
-        else
-            { 
-              const lastElement = recentArray.filter((item,index)=>
-                { 
-                  return   index == recentArray.length-1
-                })  
-                setRecentArray(lastElement)
-            }
-    }
-
-  
-
   
 
   useEffect(()=>{
@@ -127,8 +90,6 @@ const OurWorkSection = () =>
             {recentArray &&
               recentArray.map((item: any, index: any) =>
                {
-                 const newIndex = index +  startIndex
-                 if(newIndex < endIndex)
                   {
                 return (
                     <div
@@ -185,7 +146,7 @@ const OurWorkSection = () =>
 
         <div className="flex gap-4 px-5 my-auto order-1 md:order-2 justify-end">
           <div  className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
-          <div onClick={()=>ShowNextContainers(endIndex)} className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
+          <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
           <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
         </div>
       </div>
