@@ -477,7 +477,7 @@ export default function Home() {
               <Testimonials />
 
               <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-48">
-                <Link
+                {/* <Link
                   href="https://clutch.co/profile/codeautomationai#highlights"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -492,6 +492,30 @@ export default function Home() {
                     className="w-[22px] h-[26.8px]"
                     alt="Arrow icon"
                   />
+                </Link> */}
+
+                <Link
+                  href="https://clutch.co/profile/codeautomationai#highlights"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex bg-blue-300 py-2 px-4 rounded-lg gap-3 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
+                >
+                  <div className="text-center flex flex-col gap-2">
+                    <p className="text-sm text-gray-600">REVIEWED ON</p>
+                    <img
+                      src="/clutch-icon.svg"
+                      alt="clutch-icon"
+                      className="w-24"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <img
+                      src="/rating-stars1.svg"
+                      alt="ratings"
+                      className="w-32 bg-red-600"
+                    />
+                    <p className="text-sm text-gray-600">8 REVIEWS</p>
+                  </div>
                 </Link>
               </div>
             </div>
