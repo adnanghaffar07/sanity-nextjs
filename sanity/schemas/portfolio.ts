@@ -43,6 +43,8 @@ const portfolioSchema = {
       title: "Card Description",
       type: "string",
     },
+
+     
     {
       name: "primaryimage",
       title: "Primary Image",
@@ -222,6 +224,12 @@ const portfolioSchema = {
             {
                name:"group",
                title:"Group",
+               type:"string"
+            },
+
+            {
+               name:'url',
+               title:"URL",
                type:"string"
             },
 

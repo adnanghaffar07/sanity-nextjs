@@ -8,11 +8,8 @@ import { urlForImage } from "@/sanity/lib/image";
 
 const Page = () => {
   const [initialCards, SetInitialCards] = useState<any[]>([""]);
-  const [isFiltered, SetIsFiltered] = useState<boolean>(false);
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
-  const [isChecked, SetIsChecked] = useState<boolean>(false);
-  const [checkedCount, SetCheckedCount] = useState<number>(0);
 
   useEffect(() => {
     async function getData() {
@@ -25,35 +22,39 @@ const Page = () => {
         return [];
       }
     }
+
     const dataFun = async () => {
       const data = await getData();
       const recentArray = await data.filter(
         (item: any) => item.group === "recent"
       );
       const topArray = await data.filter((item: any) => item.group === "top");
+
       const caseStudyData = data.filter(
         (item: any) => item.title == "CaseStudyInfo"
       );
-      const initalArray = caseStudyData[0].cardItemsList;
-      console.log("Initial Array", initalArray);
-      SetInitialCards(initalArray);
-      SetOriginalCards(initalArray);
-      
+
+      if (caseStudyData && caseStudyData[0].cardItemsList) {
+        const initalArray = caseStudyData[0].cardItemsList;
+        console.log("Initial Array", initalArray);
+        SetInitialCards(initalArray);
+        SetOriginalCards(initalArray);
+      } else {
+        console.error("No CaseStudyInfo found or cardItemsList is missing");
+      }
     };
     dataFun();
   }, []);
 
-  function DisplaySelectedFilters()
-  {
-    console.log("SELECTED FILTERS LENGTH",selectedFilters.length);
-    console.log('SELECTED FILTERS DATA',selectedFilters) 
-    
-    // if(selectedFilters.length != 0)
-    // {
-    //   //SetInitialCards(selectedFilters[0])
-    // }
-    
-  
+  function DisplaySelectedFilters() {
+    console.log("SELECTED FILTERS LENGTH", selectedFilters.length);
+    console.log("SELECTED FILTERS DATA", selectedFilters);
+
+    const flatArray = selectedFilters.flat();
+
+    console.log("FLAT ARRAY:", flatArray);
+
+    SetInitialCards(flatArray);
   }
 
   function ResetFilters() {
@@ -73,17 +74,15 @@ const Page = () => {
         (item: any, index: any) => item.group === option && item.group !== null
       );
 
-       console.log("Tech Group", techGroup);
+      console.log("Tech Group", techGroup);
 
-       SetSelectedFilters([...selectedFilters, techGroup]);
-      
-    } 
-
-    else {
-    
+      SetSelectedFilters([...selectedFilters, techGroup]);
+    } else {
       //Remove the unselect element from the list
-      }
-
+      const removeElememt = originalCards.filter(
+        (item: any, index: any) => item.group !== option && item.group !== null
+      );
+    }
     console.log("Selected Filters Info:", selectedFilters);
   }
 
@@ -231,7 +230,7 @@ const Page = () => {
               return (
                 <div key={index}>
                   {item?.cardImage && (
-                    <Link href="/career">
+                    <Link href={`/case-study/${item?.url}`}>
                       <Image
                         width={404}
                         height={268}
@@ -241,20 +240,6 @@ const Page = () => {
                       ></Image>
                     </Link>
                   )}
-
-                  {/* {
-                    <div
-                      className={`bg-${item.buttonColor}-500 py-2 text-center md:absolute md:bottom-[6rem] md:right-0 sm:absolute sm:bottom-[6rem] sm:right-[6rem] rounded-tl-[32px] rounded-tr-[22px] rounded-bl-[26px] rounded-br-[18px]`}
-                    >
-                      {item?.buttonLogo && (
-                        <img
-                          loading="lazy"
-                          srcSet={urlForImage(item.buttonLogo).toString()}
-                          className="w-full aspect-[3.13]"
-                        />
-                      )}
-                    </div>
-                  } */}
 
                   <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
                     {item.cardDescription}
