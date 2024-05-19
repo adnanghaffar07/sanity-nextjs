@@ -138,7 +138,7 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/") || currentPath.startsWith("/brochure")
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -153,7 +153,7 @@ export default function HomeNavigationContainer() {
             >
               <Link href="javascript:void(0)">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/") || currentPath.startsWith("/brochure")
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -452,7 +452,7 @@ export default function HomeNavigationContainer() {
             >
               <Link href="javascript:void(0)">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/") || currentPath.startsWith("/brochure")
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -693,7 +693,7 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/blogs">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/") || currentPath.startsWith("/brochure")
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -706,7 +706,7 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/career">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/") || currentPath.startsWith("/brochure")
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -719,7 +719,7 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/") || currentPath.startsWith("/brochure")
                     ? "text-black"
                     : "text-white"
                     }`}
