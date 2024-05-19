@@ -217,7 +217,7 @@ export default function HomeNavigationContainer() {
                             Software Development
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                            Web Development Solutions
+                           Desktop & Web Development Solutions
                           </p>
                         </div>
                       </Link>
