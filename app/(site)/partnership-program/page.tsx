@@ -104,9 +104,9 @@ const page = async () => {
                               <h3 className="flex-auto text-lg leading-7 text-center sm:text-left">
                                 {program.title}
                               </h3>
-                              <button className="text-xs text-center border-2 border-black border-solid rounded-[50px] w-[126px] h-[28px]">
+                              {/* <button className="text-xs text-center border-2 border-black border-solid rounded-[50px] w-[126px] h-[28px]">
                                 Learn more
-                              </button>
+                              </button> */}
                             </div>
                             <p className="mt-3 text-sm leading-6 text-slate-600 max-w-[666px] text-justify">
                               {program.description}
