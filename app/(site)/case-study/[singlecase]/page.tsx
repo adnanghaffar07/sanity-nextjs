@@ -1,5 +1,6 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
+
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
   const query = `*[_type == 'portfolio' && slug == '${urlService}'][0]`;
@@ -15,6 +16,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
 
   return (
+      
     <div className="max-w-full relative overflow-hidden">
       <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[480px] top-[620px] hidden md:flex items-center justify-center z-0">
         <div className="bg-white w-[600px] h-[600px] rounded-full"></div>

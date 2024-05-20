@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import { revalidatePath } from "next/cache";
 
 const Page = () => {
   const [initialCards, SetInitialCards] = useState<any[]>([""]);
@@ -55,6 +56,7 @@ const Page = () => {
     console.log("FLAT ARRAY:", flatArray);
 
     SetInitialCards(flatArray);
+    
   }
 
   function ResetFilters() {
@@ -76,12 +78,29 @@ const Page = () => {
 
       console.log("Tech Group", techGroup);
 
+      SetInitialCards(techGroup);
+
       SetSelectedFilters([...selectedFilters, techGroup]);
-    } else {
+
+      //DisplaySelectedFilters();
+    } 
+    else 
+    {
       //Remove the unselect element from the list
-      const removeElememt = originalCards.filter(
-        (item: any, index: any) => item.group !== option && item.group !== null
-      );
+      
+      console.log('Option',option)
+       
+        
+        const removeElement = originalCards.filter((item: any, index: any) => {
+          console.log("Item.Group", item.group);
+          console.log("Option", option);
+          return item.group != option && item.group !== null
+        });
+        
+        SetSelectedFilters(removeElement)
+            
+      console.log("Remove Element:",removeElement);
+
     }
     console.log("Selected Filters Info:", selectedFilters);
   }
@@ -111,11 +130,11 @@ const Page = () => {
       <div className=" flex md:flex-row  justify-center mt-10 mb-10">
         {/* Filter Section    */}
 
-        <section className="md:w-auto sm:w-auto  text-white mx-auto  bg-sky-500 max-w-[480px] min-h-[1301px]">
+        <section className="md:w-auto sm:w-auto  text-white   bg-sky-500 max-w-[480px] min-h-[1301px]">
           <h1>Filter Case Studies</h1>
           <div className=" flex flex-col gap-40">
             <div className="mt-20 ml-2">
-              <h1>Technologies</h1>
+              <h1>Project Type</h1>
               <br></br>
               <ul>
                 <li>
@@ -225,7 +244,7 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-2 md: gap-10 sm:grid sm:grid-col-1  ">
+          <div className=" md:grid md:grid-cols-3 md: gap-10 sm:grid sm:grid-col-1  ">
             {initialCards.map((item: any, index: any) => {
               return (
                 <div key={index}>
