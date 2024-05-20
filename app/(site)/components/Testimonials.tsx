@@ -58,7 +58,7 @@ const Testimonials = () => {
       >
         {groupedTestimonials.map((pair, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full flex items-center justify-center bg-[#F3F3F3] text-2xl rounded-3xl">
+            <div className="relative w-full h-full flex items-center justify-center bg-[#F3F3F3] text-2xl rounded-3xl pt-10 sm:pt-0 pb-10 sm:pb-0">
               <div className="flex flex-col lg:flex-row justify-center items-center gap-64 sm:gap-40 pb-36 lg:pb-0 lg:gap-16 w-full mt-10 lg:mt-0 h-[780px] sm:h-[740px] lg:h-[420px]">
                 {pair.map((testimonial: any) => (
                   <div
