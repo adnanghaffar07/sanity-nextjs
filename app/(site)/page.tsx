@@ -40,9 +40,9 @@ export default function Home() {
                 </div>
               ))} */}
               {/* {bannerbox1content.content} */}
-              <div className="self-stretch lg:mt-11 mt-3 text-wrap">
+              <div className="self-stretch lg:mt-11 mt-3 text-wrap text-justify">
                 We are trusted by 200 global clients and offer innovative
-                software solutions tailored to specific needs and markets.
+                software solutions tailored to specific needs and markets
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center mt-1">
@@ -51,21 +51,19 @@ export default function Home() {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/dd11565216251ba7edf5d297e866d2f669890e35a17a2a5f0451e15e47a8f1e0?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-square w-[58px]"
               />
-              <div className="self-stretch lg:mt-11 mt-3">
-                We&rsquo;ve completed over 350 projects, demonstrating our
-                expertise in providing creative software products around the
-                world.
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
+              Completed 350+ projects, showcasing expertise in providing creative software products globally
               </div>
             </div>
-            <div className="flex flex-col flex-1 items-center">
+            <div className="flex flex-col flex-1 items-center text-justify">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4dba27be0f0ef0e7f2222766f9380cd600d6c52ecf6d4faf7f8c09b0bf153bd?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-square w-[58px]"
               />
-              <div className="lg:mt-11 mt-3  text-wrap">
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
                 We professionally assessed 300 apps to assure high-quality and
-                reliable software solutions for our clients.
+                reliable software solutions for our clients
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center">
@@ -74,9 +72,9 @@ export default function Home() {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d94d3acf8211d9d93fa767bd062c760909c92d44aa2ffe4184b9e68836f0611?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-[0.89] w-[52px]"
               />
-              <div className="lg:mt-11 mt-3  text-wrap">
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
                 Over 150k bugs have been addressed, ensuring that our
-                clients&rsquo; software solutions are reliable and trustworthy.
+                clients&rsquo; software solutions are reliable and trustworthy
               </div>
             </div>
           </div>
@@ -94,7 +92,7 @@ export default function Home() {
                 Web Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                App Development
+               Mobile App Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
                 QA Automation Testing
