@@ -101,7 +101,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </h2>
 
           {data.toolsTechSubSection?.toolsTechDesc && (
-            <p className="text-3xl text-center font-light mb-8">
+            <p className="text-lg text-center font-light mb-8">
               {data.toolsTechSubSection?.toolsTechDesc}
             </p>
           )}
