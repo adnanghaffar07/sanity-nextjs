@@ -744,7 +744,7 @@ export default function HomeNavigationContainer() {
                   />
                 )}
                 {isDropdownOpen && (
-                  <div className="absolute mt-2 right-24 w-50 bg-white rounded-2xl shadow-lg">
+                  <div className="absolute mt-2 w-50 bg-white rounded-2xl shadow-lg">
                     <div className="">
                       <div className="flex flex-row px-4 py-2"> 
                       <img
