@@ -15,7 +15,7 @@ export default function Blogs() {
           loop
           playsInline
         >
-          <source src="/for-blogs.mp4" type="video/mp4" />
+          <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
 
         <div className="mt-[130px] sm:mt-[280px] lg:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">

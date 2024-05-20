@@ -19,7 +19,7 @@ export default function Home() {
           loop
           playsInline
         >
-          <source src="/for-blogs.mp4" type="video/mp4" />
+          <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
@@ -52,7 +52,8 @@ export default function Home() {
                 className="self-center aspect-square w-[58px]"
               />
               <div className="lg:mt-11 mt-3  text-wrap text-justify">
-              Completed 350+ projects, showcasing expertise in providing creative software products globally
+                Completed 350+ projects, showcasing expertise in providing
+                creative software products globally
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center text-justify">
@@ -92,7 +93,7 @@ export default function Home() {
                 Web Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-               Mobile App Development
+                Mobile App Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
                 QA Automation Testing
