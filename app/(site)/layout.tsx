@@ -5,6 +5,8 @@ import HomeNavigationContainer from "./components/home-navigation-container";
 import FooterContainer from "./components/footer-container";
 import FormDisplay from "./components/FormDisplay";
 import ScrollToTop from "./components/ScrollToTop";
+import { GoogleTagManager } from '@next/third-parties/google'
+
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export default async function RootLayout({
   // get all og our pages
   return (
     <html lang="en">
+       <GoogleTagManager gtmId="GTM-MJG35754" />
       <body>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
