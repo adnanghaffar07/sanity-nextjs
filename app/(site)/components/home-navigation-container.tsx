@@ -6,17 +6,17 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
 
-const linkAI = "/ai-services";
-const linkML = "/ml-services";
-const devops = "/ai-devops";
-const linkUrlCMS1 = "/custom-web-cms";
-const linkUrlCMS = "/headless-cms";
-const linkUrlSoft = "/web-app-development";
-const linkUrlAuto = "/qa-web-testing";
-const linkUrlDigital = "/design-services";
-const linkMob = "/mobile-app-development";
-const linkRobotic = "/rpa-services";
-const linkIntegrate = "/automation-integration";
+const linkAI = "ai-services";
+const linkML = "ml-services";
+const devops = "ai-devops";
+const linkUrlCMS1 = "custom-web-cms";
+const linkUrlCMS = "headless-cms";
+const linkUrlSoft = "web-app-development";
+const linkUrlAuto = "qa-web-testing";
+const linkUrlDigital = "design-services";
+const linkMob = "mobile-app-development";
+const linkRobotic = "rpa-services";
+const linkIntegrate = "automation-integration";
 
 export default function HomeNavigationContainer() {
   const currentPath = usePathname();
@@ -122,9 +122,9 @@ export default function HomeNavigationContainer() {
               onClick={toggleMenu}
               className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
             >
-              <Link href="javascript:void(0)">
+              <button>
                 <span
-                  className={`hover:underline  ${
+                  className={`text-lg hover:underline  ${
                     currentPath.startsWith("/case-study/")
                       ? "text-black"
                       : "text-white"
@@ -132,7 +132,7 @@ export default function HomeNavigationContainer() {
                 >
                   Services
                 </span>
-              </Link>
+              </button>
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
@@ -217,7 +217,7 @@ export default function HomeNavigationContainer() {
                             Software Development
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                           Desktop and Web Development Solutions
+                            Desktop and Web Development Solutions
                           </p>
                         </div>
                       </Link>
@@ -423,9 +423,9 @@ export default function HomeNavigationContainer() {
               onClick={toggleAbout}
               className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
             >
-              <Link href="javascript:void(0)">
+              <button>
                 <span
-                  className={`hover:underline  ${
+                  className={`text-lg hover:underline  ${
                     currentPath.startsWith("/case-study/")
                       ? "text-black"
                       : "text-white"
@@ -433,7 +433,7 @@ export default function HomeNavigationContainer() {
                 >
                   About Us
                 </span>
-              </Link>
+              </button>
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
@@ -478,7 +478,6 @@ export default function HomeNavigationContainer() {
                           </p>
                         </div>
                       </Link>
-                  
                       <Link
                         href="/career"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -500,7 +499,8 @@ export default function HomeNavigationContainer() {
                             Join our Team{" "}
                           </p>
                         </div>
-                      </Link>   <Link
+                      </Link>{" "}
+                      <Link
                         href="/lifeatca"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -546,10 +546,7 @@ export default function HomeNavigationContainer() {
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 gap-6">
-                      <Link
-                        href="javascript:void(0)"
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
+                      <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
                             src="/grid.svg"
@@ -563,15 +560,12 @@ export default function HomeNavigationContainer() {
                           <p className="text-base font-medium text-black">
                             Brochure Downloads
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm text-gray-500 text-start">
                             (Coming Soon){" "}
                           </p>
                         </div>
-                      </Link>
-                      <Link
-                        href="javascript:void(0)"
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
+                      </button>
+                      <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
                             src="/reader.svg"
@@ -582,14 +576,14 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
+                          <p className="text-base font-medium text-black text-start">
                             News{" "}
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
                             (Coming Soon){" "}
                           </p>
                         </div>
-                      </Link>
+                      </button>
                       <Link
                         href="/blogs"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
