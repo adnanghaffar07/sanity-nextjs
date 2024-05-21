@@ -49,43 +49,34 @@ const Page = () => {
     dataFun();
   }, []);
 
-  
   function GetFilteredData(option: any) {
-    if (selectedFilters.includes(option)) 
-    {
+    if (selectedFilters.includes(option)) {
       let filters = selectedFilters.filter((el) => el !== option);
       SetSelectedFilters(filters);
-    }  
-    
-    else 
-    {
+    } else {
       SetSelectedFilters([...selectedFilters, option]);
     }
-    console.log("Selected Filters:",selectedFilters);
-     console.log(selectedFilters.length)
+    console.log("Selected Filters:", selectedFilters);
+    console.log(selectedFilters.length);
   }
 
   useEffect(() => {
     FilterItems();
   }, [selectedFilters]);
 
-  function FilterItems() 
-  {
+  function FilterItems() {
     if (selectedFilters.length > 0) {
       let tempItems = selectedFilters.map((selectedCategory) => {
         let temp = originalCards.filter((item) => {
-          console.log("Item.Group",item.group)
-          console.log("SelectedCategory",selectedCategory)
+          console.log("Item.Group", item.group);
+          console.log("SelectedCategory", selectedCategory);
           return item.group === selectedCategory;
-
         });
         return temp;
       });
-      console.log("Filtered Items:",tempItems);
+      console.log("Filtered Items:", tempItems);
       setFilteredItems(tempItems.flat());
-    } 
-    else 
-    {
+    } else {
       setFilteredItems(originalCards);
     }
   }

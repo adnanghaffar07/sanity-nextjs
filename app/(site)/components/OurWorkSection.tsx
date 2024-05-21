@@ -47,7 +47,7 @@ const OurWorkSection = () => {
                   return (
                     <>
                       <div
-                        className="flex overflow-hidden  relative flex-col justify-center rounded-3xl w-full   max-md:max-w-full image-container h-auto"
+                        className="flex overflow-hidden  relative flex-col justify-center rounded-3xl w-full shadow-md  shadow-blue-400 max-md:max-w-full image-container h-auto"
                         key={item._key}
                       >
                         {item?.cardimage?.asset && (
@@ -91,7 +91,7 @@ const OurWorkSection = () => {
                   return (
                     <>
                       <div
-                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full   max-md:max-w-full image-container h-auto"
+                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md  shadow-blue-400   max-md:max-w-full image-container h-auto"
                         key={item._key}
                       >
                         {item?.cardimage?.asset && (
