@@ -478,28 +478,7 @@ export default function HomeNavigationContainer() {
                           </p>
                         </div>
                       </Link>
-                      <Link
-                        href="/blogs"
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/newspaper.svg"
-                            alt=""
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Blogs{" "}
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Tech Insights
-                          </p>
-                        </div>
-                      </Link>
+                  
                       <Link
                         href="/career"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -519,6 +498,49 @@ export default function HomeNavigationContainer() {
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
                             Join our Team{" "}
+                          </p>
+                        </div>
+                      </Link>   <Link
+                        href="/lifeatca"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/images.svg"
+                            alt=""
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">
+                            Life At CA
+                          </p>
+                          <p className="mt-1 text-sm text-gray-500">
+                            Employee Experiences{" "}
+                          </p>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/partnership-program"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/partnership-icon.svg"
+                            alt="partnership"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">
+                            Partner with Us
+                          </p>
+                          <p className="mt-1 text-sm text-gray-500">
+                            Grow Together
                           </p>
                         </div>
                       </Link>
@@ -569,12 +591,12 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link
-                        href="/lifeatca"
+                        href="/blogs"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
                           <Image
-                            src="/images.svg"
+                            src="/newspaper.svg"
                             alt=""
                             height={12}
                             width={12}
@@ -583,32 +605,10 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                            Life At CA
+                            Blogs{" "}
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                            Employee Experiences{" "}
-                          </p>
-                        </div>
-                      </Link>
-                      <Link
-                        href="/partnership-program"
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/partnership-icon.svg"
-                            alt="partnership"
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Partner with Us
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Grow Together
+                            Tech Insights
                           </p>
                         </div>
                       </Link>
