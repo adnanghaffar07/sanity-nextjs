@@ -8,9 +8,10 @@ import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
 
 const Page = () => {
-  const [initialCards, SetInitialCards] = useState<any[]>([""]);
+  // const [initialCards, SetInitialCards] = useState<any[]>([""]);
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
+  const [filteredItems, setFilteredItems] = useState<any[]>([]);
 
   useEffect(() => {
     async function getData() {
@@ -38,8 +39,9 @@ const Page = () => {
       if (caseStudyData && caseStudyData[0].cardItemsList) {
         const initalArray = caseStudyData[0].cardItemsList;
         console.log("Initial Array", initalArray);
-        SetInitialCards(initalArray);
+        setFilteredItems(initalArray);
         SetOriginalCards(initalArray);
+        // SetOriginalCards(initalArray);
       } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
       }
@@ -47,62 +49,45 @@ const Page = () => {
     dataFun();
   }, []);
 
-  function DisplaySelectedFilters() {
-    console.log("SELECTED FILTERS LENGTH", selectedFilters.length);
-    console.log("SELECTED FILTERS DATA", selectedFilters);
-
-    const flatArray = selectedFilters.flat();
-
-    console.log("FLAT ARRAY:", flatArray);
-
-    SetInitialCards(flatArray);
+  
+  function GetFilteredData(option: any) {
+    if (selectedFilters.includes(option)) 
+    {
+      let filters = selectedFilters.filter((el) => el !== option);
+      SetSelectedFilters(filters);
+    }  
     
+    else 
+    {
+      SetSelectedFilters([...selectedFilters, option]);
+    }
+    console.log("Selected Filters:",selectedFilters);
+     console.log(selectedFilters.length)
   }
 
-  function ResetFilters() {
-    document
-      .querySelectorAll("input")
-      .forEach((item) => (item.checked = false));
-    SetInitialCards(originalCards);
-    SetSelectedFilters([]);
-  }
+  useEffect(() => {
+    FilterItems();
+  }, [selectedFilters]);
 
-  function GetFilteredData(option: any, event: any) {
-    console.log(event.target.checked);
+  function FilterItems() 
+  {
+    if (selectedFilters.length > 0) {
+      let tempItems = selectedFilters.map((selectedCategory) => {
+        let temp = originalCards.filter((item) => {
+          console.log("Item.Group",item.group)
+          console.log("SelectedCategory",selectedCategory)
+          return item.group === selectedCategory;
 
-    if (event.target.checked) {
-      // If the checkbox is checked, show the filtered Cards Information
-      const techGroup = originalCards.filter(
-        (item: any, index: any) => item.group === option && item.group !== null
-      );
-
-      console.log("Tech Group", techGroup);
-
-      SetInitialCards(techGroup);
-
-      SetSelectedFilters([...selectedFilters, techGroup]);
-
-      //DisplaySelectedFilters();
+        });
+        return temp;
+      });
+      console.log("Filtered Items:",tempItems);
+      setFilteredItems(tempItems.flat());
     } 
     else 
     {
-      //Remove the unselect element from the list
-      
-      console.log('Option',option)
-       
-        
-        const removeElement = originalCards.filter((item: any, index: any) => {
-          console.log("Item.Group", item.group);
-          console.log("Option", option);
-          return item.group != option && item.group !== null
-        });
-        
-        SetSelectedFilters(removeElement)
-            
-      console.log("Remove Element:",removeElement);
-
+      setFilteredItems(originalCards);
     }
-    console.log("Selected Filters Info:", selectedFilters);
   }
 
   return (
@@ -141,7 +126,7 @@ const Page = () => {
                   <input
                     type="checkbox"
                     id="app"
-                    onChange={(event) => GetFilteredData("app", event)}
+                    onChange={(event) => GetFilteredData("app")}
                   />
                   <span>App Development</span>
                 </li>
@@ -150,7 +135,7 @@ const Page = () => {
                   <input
                     type="checkbox"
                     id="web"
-                    onChange={(event) => GetFilteredData("web", event)}
+                    onChange={(event) => GetFilteredData("web")}
                   />
                   <span> Web Development</span>
                 </li>
@@ -159,7 +144,7 @@ const Page = () => {
                   <input
                     type="checkbox"
                     id="qa"
-                    onClick={(event) => GetFilteredData("qa", event)}
+                    onClick={(event) => GetFilteredData("qa")}
                   />
                   <span> QA Testing</span>
                 </li>
@@ -221,23 +206,6 @@ const Page = () => {
                 </li>
               </ul>
             </div>
-
-            <div className="flex flex-row items-center ml-1 gap-2">
-              <button
-                onClick={() => ResetFilters()}
-                type="button"
-                className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-              >
-                Reset
-              </button>
-              <button
-                type="button"
-                onClick={() => DisplaySelectedFilters()}
-                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-              >
-                Apply
-              </button>
-            </div>
           </div>
         </section>
 
@@ -245,7 +213,7 @@ const Page = () => {
 
         <section className=" mx-auto">
           <div className=" md:grid md:grid-cols-3 md: gap-10 sm:grid sm:grid-col-1  ">
-            {initialCards.map((item: any, index: any) => {
+            {filteredItems.map((item: any, index: any) => {
               return (
                 <div key={index}>
                   {item?.cardImage && (

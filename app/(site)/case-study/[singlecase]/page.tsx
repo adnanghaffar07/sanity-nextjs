@@ -1,5 +1,6 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
+import HeroSectionComponent from "../../components/HeroSectionComponent";
 
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
@@ -16,8 +17,23 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
 
   return (
-      
     <div className="max-w-full relative overflow-hidden">
+     
+     
+      <section className="relative">
+      <div className=" w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
+      <div className="w-full h-[380px] sm:h-[700px] relative z-0">
+               <img
+                  loading="lazy"
+                  src={urlForImage(data.cardimage.asset)}
+                  style={{ objectFit: "cover" }}
+                  alt={data.cardimage.alt}
+                />
+      </div>
+
+     
+    </section>
+
       <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[480px] top-[620px] hidden md:flex items-center justify-center z-0">
         <div className="bg-white w-[600px] h-[600px] rounded-full"></div>
       </div>
@@ -28,22 +44,16 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         <div className="bg-white w-[600px] h-[600px] rounded-full"></div>
       </div>
       <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-24 top-[160px] sm:top-[250px] md:top-[600px] xl:top-[850px] 2xl:xl:top-[1100px] z-0 hidden md:block"></div>
-      <h3 className="mt-[120px] md:mt-[215px] relative xl:text-6xl lg:text-5xl sm:text-4xl text-xl font-normal mb-6 md:mb-12 ms-4 sm:ms-10 2xl:container 2xl:mx-auto 2xl:ps-10">
-        {data?.title && data.title}{" "}
-        <span className="xl:text-3xl lg:text-2xl sm:text-xl text-sm font-light">
-          ({data?.subtitle && data.subtitle})
-        </span>
-      </h3>
+      
       <div className="flex flex-col self-center w-full xl:max-w-[1380px] relative z-10 mx-auto">
         <div className="lg:px-10 px-4">
           <div>
-            <div className="flex justify-center mb-6 sm:mb-24 ">
+            <div className="flex  justify-center mb-6 sm:mb-24 ">
               {data?.primaryimage?.asset && (
                 <img
                   loading="lazy"
                   src={urlForImage(data.primaryimage.asset)}
-                  width={1080}
-                  className="shadow-blogImage w-full"
+                  className="top-0 left-0 object-cover  inset-0 size-full"
                   alt={data.primaryimage.alt}
                 />
               )}
@@ -180,6 +190,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         </div>
       </div>
     </div>
+    
   );
 };
 export default page;

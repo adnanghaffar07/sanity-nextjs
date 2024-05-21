@@ -38,16 +38,16 @@ const OurWorkSection = () => {
 
   return (
     <div className="self-center mt-16 w-full max-md:mt-10 max-w-[1582px] mx-auto">
-      <div className="flex gap-40 max-md:flex-col max-md:gap-0 max-md:">
-        <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col  grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
+      <div className="flex gap-40 max-md:flex-col  max-md:gap-0 max-md:">
+        <div className="flex flex-col  mx-12   w-2/5 max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100  max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
             {topArray &&
               topArray.map((item: any, index: any) => {
                 if (index < 2) {
                   return (
                     <>
                       <div
-                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container h-auto"
+                        className="flex overflow-hidden  relative flex-col justify-center rounded-3xl w-full   max-md:max-w-full image-container h-auto"
                         key={item._key}
                       >
                         {item?.cardimage?.asset && (
@@ -60,19 +60,19 @@ const OurWorkSection = () => {
                         )}
 
                         <div className="text-wrap mt-4 ml-2">
-                          <p className=" text-black  font-semibold text-[15px] ">
+                          <p className=" text-black font-light text-[15px] ">
                             {item?.carddescription}
                           </p>
                         </div>
                         {item.slug ? (
                           <Link
                             href={`/case-study/${item.slug}`}
-                            className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
+                            className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-2xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
                           >
                             {item.title} - {item.subtitle}
                           </Link>
                         ) : (
-                          <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                          <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-2xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
                             {item.title} - {item.subtitle}
                           </div>
                         )}
@@ -91,7 +91,7 @@ const OurWorkSection = () => {
                   return (
                     <>
                       <div
-                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container h-auto"
+                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full   max-md:max-w-full image-container h-auto"
                         key={item._key}
                       >
                         {item?.cardimage?.asset && (
@@ -104,7 +104,7 @@ const OurWorkSection = () => {
                         )}
 
                         <div className="text-wrap mt-4 ml-2">
-                          <p className=" text-black  font-semibold text-[15px] ">
+                          <p className=" text-black font-light text-[15px] ">
                             {item?.carddescription}
                           </p>
                         </div>
