@@ -68,6 +68,13 @@ export default function ProjectDiscussionContainer() {
       });
 
       if (response.ok) {
+        // Push event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "formSubmission",
+          form: "contactForm",
+        });
+
         setBgColor("bg-green-500");
         setMessage("Your Message has been successfully submitted!");
         setMessageSuccess("w-[100%]");
