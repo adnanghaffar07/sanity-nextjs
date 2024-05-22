@@ -2,7 +2,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 async function getData() {
-  const query = `*[_type == 'technologies'] | order(_createdAt desc)`;
+  const query = `*[_type == 'technologies'] | order(_updatedAt desc)`;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];
@@ -26,14 +26,13 @@ async function getLogoData() {
 export default async function Technologies() {
   const data = await getData();
   const dataLogo = await getLogoData();
-  console.log(dataLogo);
 
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <img
           className="absolute top-0 left-0 object-cover  inset-0 size-full"
-          src="/technologies.png"
+          src="/technologies.jpg"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -64,7 +63,7 @@ export default async function Technologies() {
         </div>
       </div>
 
-      {data.map((technology: any, index: any) => (
+      {data.map((technology: any, index: any) =>
         index % 2 === 0 ? (
           <div key={index} className="max-w-full mx-auto relative">
             <img
@@ -85,31 +84,48 @@ export default async function Technologies() {
                       {technology.techname}
                     </div>
                     <div className="mb-10">
-                      <p className="lg:text-lg text-base">  {technology.techDesc}</p>
+                      <p className="lg:text-lg text-base">
+                        {" "}
+                        {technology.techDesc}
+                      </p>
                     </div>
                     <div className="flex flex-wrap gap-3 justify-start px-4.5 mt-7 text-xs text-center text-md text-black">
                       <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
-                        {Array.isArray(technology.techLogos) && technology.techLogos.map((techLogo: any, techLogoIndex: any) => (
-                          techLogo.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
-                            if (logoData) {
-                              return (
-                                <div key={`${techLogoIndex}-${logoIndex}`} className=" p-1 justify-center">
-                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 object-cover mb-2 mx-auto" />
-                                  <p className="text-center">{logoData.heading}</p>
-
-                                </div>
-
-                              );
-                            } else {
-                              return null;
-                            }
-                          })
-                        ))}
+                        {Array.isArray(technology.techLogos) &&
+                          technology.techLogos.map(
+                            (techLogo: any, techLogoIndex: any) =>
+                              techLogo.images?.map(
+                                (logoRef: any, logoIndex: any) => {
+                                  const logoData = dataLogo.find(
+                                    (logo: any) => logo._id === logoRef._ref
+                                  );
+                                  if (logoData) {
+                                    return (
+                                      <div
+                                        key={`${techLogoIndex}-${logoIndex}`}
+                                        className=" p-1 justify-center"
+                                      >
+                                        <img
+                                          src={urlForImage(
+                                            logoData.image
+                                          ).toString()}
+                                          alt={technology.techname}
+                                          className="h-14 object-cover mb-2 mx-auto"
+                                        />
+                                        <p className="text-center">
+                                          {logoData.heading}
+                                        </p>
+                                      </div>
+                                    );
+                                  } else {
+                                    return null;
+                                  }
+                                }
+                              )
+                          )}
                       </div>
                     </div>
                   </div>
-
 
                   <div className="text-center lg:order-2 order-1">
                     <img
@@ -149,40 +165,54 @@ export default async function Technologies() {
                       {technology.techname}
                     </div>
                     <div className="mb-10">
-                      <p className="lg:text-lg text-base text-end"> {technology.techDesc}</p>
+                      <p className="lg:text-lg text-base text-end">
+                        {" "}
+                        {technology.techDesc}
+                      </p>
                     </div>
                     <div className="flex flex-wrap gap-3 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
                       <div className="grid grid-cols-4 gap-4 sm:gap-5 justify-end">
-                        {Array.isArray(technology.techLogos) && technology.techLogos.map((techLogo: any, techLogoIndex: any) => (
-                          techLogo.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
-                            if (logoData) {
-                              return (
-                                <div key={`${techLogoIndex}-${logoIndex}`} className="p-1">
-                                  <img src={urlForImage(logoData.image).toString()} alt={technology.techname} className="h-14 object-cover mb-2 mx-auto" />
-                                  <p className="text-center">{logoData.heading}</p>
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })
-                        ))}
+                        {Array.isArray(technology.techLogos) &&
+                          technology.techLogos.map(
+                            (techLogo: any, techLogoIndex: any) =>
+                              techLogo.images?.map(
+                                (logoRef: any, logoIndex: any) => {
+                                  const logoData = dataLogo.find(
+                                    (logo: any) => logo._id === logoRef._ref
+                                  );
+                                  if (logoData) {
+                                    return (
+                                      <div
+                                        key={`${techLogoIndex}-${logoIndex}`}
+                                        className="p-1"
+                                      >
+                                        <img
+                                          src={urlForImage(
+                                            logoData.image
+                                          ).toString()}
+                                          alt={technology.techname}
+                                          className="h-14 object-cover mb-2 mx-auto"
+                                        />
+                                        <p className="text-center">
+                                          {logoData.heading}
+                                        </p>
+                                      </div>
+                                    );
+                                  } else {
+                                    return null;
+                                  }
+                                }
+                              )
+                          )}
                       </div>
                     </div>
-
-
                   </div>
                 </div>
               </div>
             </div>
           </div>
         )
-      ))}
-
-
-
-
+      )}
     </div>
   );
 }

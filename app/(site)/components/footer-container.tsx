@@ -86,14 +86,14 @@ export default function FooterContainer() {
                     href="tel:+18505584691"
                     className="hover:underline my-auto inline-block"
                   >
-                   <span className=" font-bold">USA:</span> 850.558.4691
+                    <span className=" font-bold">USA:</span> 850.558.4691
                   </a>
                   <br />
                   <a
                     href="tel:+13076556139"
                     className="hover:underline my-auto inline-block"
                   >
-                   <span className=" font-bold">USA:</span> 307.655.6139
+                    <span className=" font-bold">USA:</span> 307.655.6139
                   </a>
                 </div>
               </div>
@@ -147,22 +147,34 @@ export default function FooterContainer() {
               <div className="text-2xl font-medium self-start">About Us</div>
               <div className="mt-6 text-base font-light flex  flex-col gap-5">
                 <Link
-                  href={`/lifeatca`}
+                  href={`/case-study`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Expert Team
+                  Case Studies
                 </Link>
                 <Link
                   href={`/blogs`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Our Exciting News
+                 Blogs
                 </Link>
                 <Link
                   href={`/career`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Contact Us For Jobs
+                  Careers
+                </Link>
+                <Link
+                  href={`/lifeatca`}
+                  className="hover:underline my-auto inline-block"
+                >
+                  Life at CA - Careers
+                </Link>
+                <Link
+                  href={"/partnership-program"}
+                  className="hover:underline my-auto inline-block"
+                >
+                  Partner with Us
                 </Link>
                 <Link
                   href="mailto:hr@codeautomation.ai"
@@ -178,7 +190,7 @@ export default function FooterContainer() {
               <div className="text-2xl font-medium leading-6">Address</div>
               <div className="mt-6 text-lg font-light leading-5 self-start">
                 <span className="text-1xl font-bold">USA:</span> 30 N Gould St
-                Ste 7596, Sheridan, WY, 82801.
+                Ste 7596, Sheridan, WY, 82801
                 <br />
                 <br />
                 <span className="text-1xl font-bold">Canada:</span> 25 McArthur
@@ -195,7 +207,7 @@ export default function FooterContainer() {
                 ) : (
                   <span className="text-1xl ">
                     <span className=" font-bold"> Pakistan:</span> A 1/11 P,
-                    Block P Model Town, Lahore, Pakistan{" "}
+                    Block P Model Town, Lahore{" "}
                   </span>
                 )}
               </div>

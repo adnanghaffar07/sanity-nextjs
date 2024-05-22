@@ -23,10 +23,10 @@ const page = async () => {
   return (
     <>
       <HeroSectionComponent
-        title="Case Study"
+        title="Case Studies"
         content="Explore our case studies to discover how we turn challenges into
   success stories through technology solutions."
-        image="/case-study-hero-image.png"
+        image="/case-study-hero-image.jpg"
       />
 
       <section className="mx-auto w-full relative overflow-hidden">
