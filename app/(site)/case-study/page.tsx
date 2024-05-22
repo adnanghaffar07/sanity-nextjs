@@ -9,9 +9,19 @@ import { revalidatePath } from "next/cache";
 
 const Page = () => {
   // const [initialCards, SetInitialCards] = useState<any[]>([""]);
+  
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
+  
+
+  const [currentPage, setCurrentPage] = useState(0);
+  
+  const itemsPerPage = 6;
+
+   var totalPages =  0;
+
+  
 
   useEffect(() => {
     async function getData() {
@@ -39,8 +49,14 @@ const Page = () => {
       if (caseStudyData && caseStudyData[0].cardItemsList) {
         const initalArray = caseStudyData[0].cardItemsList;
         console.log("Initial Array", initalArray);
+       
+       
         setFilteredItems(initalArray);
         SetOriginalCards(initalArray);
+       
+
+        totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+       
         // SetOriginalCards(initalArray);
       } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
@@ -60,16 +76,26 @@ const Page = () => {
     console.log(selectedFilters.length);
   }
 
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+
   useEffect(() => {
     FilterItems();
   }, [selectedFilters]);
+
+
+  
+
 
   function FilterItems() {
     if (selectedFilters.length > 0) {
       let tempItems = selectedFilters.map((selectedCategory) => {
         let temp = originalCards.filter((item) => {
-          console.log("Item.Group", item.group);
-          console.log("SelectedCategory", selectedCategory);
           return item.group === selectedCategory;
         });
         return temp;
@@ -106,11 +132,22 @@ const Page = () => {
       <div className=" flex md:flex-row  justify-center mt-10 mb-10">
         {/* Filter Section    */}
 
-        <section className="md:w-auto sm:w-auto  text-white   bg-sky-500 max-w-[480px] min-h-[1301px]">
-          <h1>Filter Case Studies</h1>
-          <div className=" flex flex-col gap-40">
+        <section className=" md:w-[20%] sm:w-auto   py-24 px-10  text-white   bg-sky-500  max-w-[480px]">
+          
+          <div className=" flex flex-row gap-2">
+          <Image 
+          src= '/FilterIcon.png'
+          width={27}
+          height={22}
+          alt="filterIcon"
+          >
+          </Image>
+          <h1 className=" text-center">Filter Case Studies</h1>
+          </div>
+
+          <div className=" flex flex-col gap-20">
             <div className="mt-20 ml-2">
-              <h1>Project Type</h1>
+              <h1>Project Types</h1>
               <br></br>
               <ul>
                 <li>
@@ -200,10 +237,12 @@ const Page = () => {
           </div>
         </section>
 
+       
+
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3 md: gap-10 sm:grid sm:grid-col-1  ">
+          <div className=" md:grid md:grid-cols-3 md: gap-10 sm:grid sm:grid-col-1">
             {filteredItems.map((item: any, index: any) => {
               return (
                 <div key={index}>
@@ -219,17 +258,36 @@ const Page = () => {
                     </Link>
                   )}
 
+        
+
                   <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
                     {item.cardDescription}
                   </div>
                 </div>
-              );
-            })}
+              )})
+            }
           </div>
         </section>
+       
 
-        {/*  Vertical Line  */}
+        
+
+
       </div>
+       
+      {/* <section>
+        <div className="flex flex-row justify-center mb-0 ">
+        <button type="button" onClick={handlePrevPage} disabled={currentPage === 0} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Prev
+        </button>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages - 1} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Next
+        </button>
+       </div>
+       </section> */}
+      
+
+      
 
       <br></br>
     </>

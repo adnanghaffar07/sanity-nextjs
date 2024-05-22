@@ -21,17 +21,18 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
      
      
       <section className="relative">
+
       <div className=" w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
       <div className="w-full h-[380px] sm:h-[700px] relative z-0">
+               {data?.cardimage?.asset &&  (
                <img
                   loading="lazy"
                   src={urlForImage(data.cardimage.asset)}
                   style={{ objectFit: "cover" }}
                   alt={data.cardimage.alt}
                 />
-      </div>
-
-     
+               )}
+      </div>  
     </section>
 
       <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[480px] top-[620px] hidden md:flex items-center justify-center z-0">
@@ -67,18 +68,19 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   {data.briefdescription && data.briefdescription}
                 </p>
               </div>
-              <div className="flex flex-col gap-6 md:gap-14 mb-10 md:mb-24">
+              <div className="flex flex-col gap-6 md:gap-10 mb-10 mt-20 md:mb-24">
                 {data.briefitemsarray?.map((item: any) => {
                   return (
                     <div className="relative" key={item._key}>
                       <div className="w-[42px] md:w-[78px] h-[42px] md:h-[78px] rounded-full bg-[#1D92FB] opacity-[0.14] absolute -left-4 md:-left-10 md:-top-2"></div>
-                      <p className="text-[#707070] text-sm md:text-2xl font-medium">
+                      <p className="text-[#707070] text-sm md:text-xl font-medium">
                         {item.heading}
                       </p>
-                      <p className="text-lg md:text-3xl font-medium ">
+                      <p className="text-lg md:text-xl font-medium ">
                         {item.value}
                       </p>
                     </div>
+                    
                   );
                 })}
               </div>
@@ -102,23 +104,18 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </p>
 
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
-                Technologies used:
+                Tools & Technologies Used:
               </h3>
-              <ul>
-                {data.technologiesused?.map((technology: any) => {
-                  return (
-                    <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                      key={technology._key}
-                    >
-                      <span className="text-xs md:text-xl font-bold">
-                        {technology.heading}:{" "}
-                      </span>
-                      <span>{technology.description}</span>
-                    </li>
-                  );
-                })}
-              </ul>
+           
+              {data.toolsandtechnologies.asset && (
+              <img
+                loading="lazy"
+                src={urlForImage(data.toolsandtechnologies.asset)}
+                alt={data.secondaryimage.alt}
+                className=" mb-0 sm:mb-14 mx-auto w-[50%] "
+              />
+            )}
+            
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Challenges Faced:
               </h3>
@@ -129,9 +126,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
-                      <span className="text-xs md:text-xl font-bold">
-                        {challange.heading}:{" "}
-                      </span>
                       <span>{challange.description}</span>
                     </li>
                   );
@@ -174,8 +168,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 })}
               </ul>
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
-                Tools Used for Project & Test Case Management:
+                Operating System:
               </h3>
+              
+              <p className= "text-xs md:text-xl leading-4 md:leading-8 font-light">{data?.operatingsystem && data.operatingsystem}</p>
+              
               <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.toolsfortest && data.toolsfortest}
               </p>

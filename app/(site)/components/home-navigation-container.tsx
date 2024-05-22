@@ -116,11 +116,8 @@ export default function HomeNavigationContainer() {
           <ul className=" nav-links relative lg:mx-auto">
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
-                <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Home
                 </span>
@@ -131,7 +128,7 @@ export default function HomeNavigationContainer() {
               <Link
                 href="javascript:void(0)">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
+                  className={`hover:underline  ${currentPath.startsWith("/case-study/house-arrest/")
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -316,11 +313,8 @@ export default function HomeNavigationContainer() {
             <li onClick={toggleAbout} className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link
                 href="javascript:void(0)">
-                <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+               <span
+                  className="hover:underline text-white"
                 >
                   About Us
                 </span>
@@ -462,11 +456,8 @@ export default function HomeNavigationContainer() {
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/blogs">
-                <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Blogs
                 </span>
@@ -475,11 +466,8 @@ export default function HomeNavigationContainer() {
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/career">
-                <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Career
                 </span>
@@ -488,10 +476,7 @@ export default function HomeNavigationContainer() {
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/technologies">
                 <span
-                  className={`hover:underline  ${currentPath.startsWith("/case-study/")
-                    ? "text-black"
-                    : "text-white"
-                    }`}
+                  className="hover:underline text-white"
                 >
                   Technologies
                 </span>

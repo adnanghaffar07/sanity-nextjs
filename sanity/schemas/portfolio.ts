@@ -25,7 +25,7 @@ const portfolioSchema = {
     },
     {
       name: "cardimage",
-      title: "Card Image",
+      title: "Hero Image",
       type: "image",
       options: {
         hotspot: true,
@@ -107,6 +107,31 @@ const portfolioSchema = {
       title: "Project Scope Content",
       type: "string",
     },
+
+    {
+      name: "operatingsystem",
+      title: "Operating System",
+      type: "string",
+    },
+    
+    {
+      name: "toolsandtechnologies",
+      title: "Tools & Technologies Used",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+
+
+
     {
       name: "technologiesused",
       title: "Technologies Used",
