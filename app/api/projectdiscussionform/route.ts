@@ -22,7 +22,8 @@ export async function POST(request: any): Promise<any> {
 
   const mailOptions = {
     from: "nouman@codeautomation.dev",
-    to: "adnan@codeautomation.dev",
+    to: "umaid@codeautomation.dev",
+    // to: "adnan@codeautomation.dev",
     subject: `${name} contacted to discuss project`,
     html: `
     <!DOCTYPE html>
