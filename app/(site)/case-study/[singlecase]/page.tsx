@@ -20,19 +20,19 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
     <div className="max-w-full">
       <section>
         {data?.cardimage?.asset && (
-            <img
-              loading="lazy"
-              src={urlForImage(data.cardimage.asset)}
-              style={{ objectFit: "cover" }}
-              alt={data.cardimage.alt}
-            />
-          )}
+          <img
+            loading="lazy"
+            src={urlForImage(data.cardimage.asset)}
+            style={{ objectFit: "cover" }}
+            alt={data.cardimage.alt}
+          />
+        )}
       </section>
       <div className="flex flex-col self-center w-full xl:max-w-[1380px]   mx-auto">
         <div className="lg:px-10 px-4">
           <div>
             <div className="flex flex-col xl:flex-row justify-between items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
-              <div >
+              <div>
                 <h2 className="text-xl sm:text-3xl md:text-6xl mb-4">
                   Introduction
                 </h2>
@@ -80,13 +80,14 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
               <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-[60px] sm:gap-[30px] 2xl:gap-[130px] max-w-[1440px] sm:my-40">
                 {data.toolsandtechlist?.map((item: any) => {
-                return (
-                  <img
-                  loading="lazy"
-                  src={urlForImage(item.techImage?.asset)}
-                  alt={item.techImage?.alt}
-                  className="mb-0"
-                />
+                  return (
+                    <img
+                      key={item._key}
+                      loading="lazy"
+                      src={urlForImage(item.techImage?.asset)}
+                      alt={item.techImage?.alt}
+                      className="mb-0"
+                    />
                   );
                 })}
               </div>
