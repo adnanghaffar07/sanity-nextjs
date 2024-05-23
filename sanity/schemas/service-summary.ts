@@ -62,6 +62,7 @@ const serviceSummary = {
             ],
         },
 
+        // Detail Section
 
         {
             name: 'detailSection',
@@ -97,6 +98,11 @@ const serviceSummary = {
                                     type: 'text',
                                 },
                                 {
+                                    name: 'benefits',
+                                    title: 'Key Benefits Heading',
+                                    type: 'string',
+                                },
+                                {
                                     name: 'keyBenefits',
                                     title: 'Key Benefits',
                                     type: 'array',
@@ -114,12 +120,17 @@ const serviceSummary = {
         },
 
 
-        // Tools and Technology Section
+        // Project Mangement Section
         {
-            name: "toolsTechSection",
-            title: "Tools and Technology Section",
+            name: "projectManagement",
+            title: "Project Mangement",
             type: "object",
             fields: [
+                {
+                    name: 'projectHeading',
+                    title: 'Heading',
+                    type: 'string',
+                },
 
                 {
                     "name": "toolsTech",
@@ -166,25 +177,6 @@ const serviceSummary = {
             ],
         },
 
-        // Example Section
-        {
-            name: "exampleSection",
-            title: "Example Section",
-            type: "object",
-            fields: [
-                {
-                    name: "heading",
-                    title: "Example Heading",
-                    type: "string",
-                },
-                {
-                    name: "exampledesc",
-                    title: "Example Desc",
-                    type: "text",
-                },
-            ],
-        },
-
         // Project cycle
         {
             name: "projectCycleSection",
@@ -198,19 +190,12 @@ const serviceSummary = {
                 },
 
                 {
-                    name: "projectCycle",
-                    title: "Project Cycle stages",
-                    type: "array",
+                    name: 'projectLifeCycle',
+                    title: 'Project LifeCycle',
+                    type: 'array',
                     of: [
                         {
-                            type: "object",
-                            fields: [
-                                {
-                                    name: "detail",
-                                    title: "Detail",
-                                    type: "string",
-                                },
-                            ],
+                            type: 'string',
                         },
                     ],
                 },
@@ -230,50 +215,6 @@ const serviceSummary = {
             ],
         },
 
-        // Service Delivery Options
-        {
-            name: "deliveryOptionSection",
-            title: "Delivery Option Section",
-            type: "object",
-            fields: [
-                {
-                    name: "deliveryOptionHaeding",
-                    title: "Delivery Option Heading",
-                    type: "string",
-                },
-
-                {
-                    name: "deliveryOption",
-                    title: "Service Delivery Options",
-                    type: "array",
-                    of: [
-                        {
-                            type: "object",
-                            fields: [
-                                {
-                                    name: "detail",
-                                    title: "Detail",
-                                    type: "string",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "deliveryImg",
-                    title: "Delivery Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
         // Summary Section
         {
             name: "summarySection",
@@ -336,7 +277,7 @@ const serviceSummary = {
                     ],
                 },
             ],
-        },  
+        },
         // Special Offers Section
         {
             name: "specialOffersSection",
@@ -395,43 +336,42 @@ const serviceSummary = {
         },
 
         // Open Graph Protocol (OGP)
-    
+
         {
-            name: 'OpenGraphMeta',
-            title: 'Open Graph Meta',
+            name: 'facebool',
+            title: 'Facebook Meta',
             type: 'object',
             fields: [
-              {
-                name: 'ogTitle',
-                title: 'OG Title',
-                type: 'string',
-              },
-              {
-                name: 'ogDescription',
-                title: 'OG Description',
-                type: 'text',
-              },
-              {
-                name: 'ogUrl',
-                title: 'OG URL',
-                type: 'url',
-              },
-              {
-                name: 'ogImage',
-                title: 'OG Image',
-                type: 'image',
-                options: {
-                  hotspot: true,
+                {
+                    name: 'title',
+                    title: 'Title',
+                    type: 'string',
                 },
-              },
-              {
-                name: 'ogType',
-                title: 'OG Type',
-                type: 'string',
-                description: 'Type of the webpage for Open Graph meta tag',
-              },
+                {
+                    name: 'description',
+                    title: 'Description',
+                    type: 'text',
+                },
+                {
+                    name: 'url',
+                    title: 'URL',
+                    type: 'url',
+                },
+                {
+                    name: 'image',
+                    title: 'Image',
+                    type: 'image',
+                    options: {
+                        hotspot: true,
+                    },
+                },
+                {
+                    name: 'type',
+                    title: 'Type',
+                    type: 'string',
+                },
             ],
-          },
+        },
 
         // Twitter Cards
         {
@@ -439,74 +379,31 @@ const serviceSummary = {
             title: 'Twitter Meta',
             type: 'object',
             fields: [
-              {
-                name: 'title',
-                title: 'Twitter Title',
-                type: 'string',
-              },
-              {
-                name: 'description',
-                title: 'Description',
-                type: 'text',
-              },
-              {
-                name: 'url',
-                title: 'URL',
-                type: 'url',
-              },
-              {
-                name: 'image',
-                title: 'Image',
-                type: 'image',
-                options: {
-                  hotspot: true,
-                },
-              },
-              {
-                name: 'type',
-                title: 'Type',
-                type: 'string',
-              },
-            ],
-          },
-
-
-
-        // Facebook Cards
-        {
-            name: "facebookCards",
-            title: "Facebook Cards",
-            type: "object",
-            fields: [
                 {
-                    name: "facebookTitle",
-                    title: "Title",
-                    type: "string",
+                    name: 'title',
+                    title: 'Twitter Title',
+                    type: 'string',
                 },
                 {
-                    name: "facebookDescription",
-                    title: "Description",
-                    type: "text",
+                    name: 'description',
+                    title: 'Description',
+                    type: 'text',
                 },
                 {
-                    name: "facebookImage",
-                    title: "Image",
-                    type: "image",
-                    options: { hotspot: true },
+                    name: 'url',
+                    title: 'URL',
+                    type: 'url',
                 },
                 {
-                    name: "facebookUrl",
-                    title: "Url",
-                    type: "string",
-                },
-                {
-                    name: "facebookType",
-                    title: "Type",
-                    type: "string",
+                    name: 'image',
+                    title: 'Image',
+                    type: 'image',
+                    options: {
+                        hotspot: true,
+                    },
                 },
             ],
         },
-
 
         // LinkedIn Cards
         {
@@ -535,11 +432,6 @@ const serviceSummary = {
                     title: "Url",
                     type: "string",
                 },
-                {
-                    name: "linkedInType",
-                    title: "Type",
-                    type: "string",
-                },
             ],
         },
 
@@ -564,11 +456,6 @@ const serviceSummary = {
                 {
                     name: "pinterestUrl",
                     title: "Url",
-                    type: "string",
-                },
-                {
-                    name: "pinterestType",
-                    title: "Type",
                     type: "string",
                 },
             ],
@@ -597,11 +484,6 @@ const serviceSummary = {
                     title: "Url",
                     type: "string",
                 },
-                {
-                    name: "whatsappType",
-                    title: "Type",
-                    type: "string",
-                },
             ],
         },
 
@@ -627,38 +509,6 @@ const serviceSummary = {
                     name: "telegramUrl",
                     title: "Url",
                     type: "string",
-                },
-                {
-                    name: "telegramType",
-                    title: "Type",
-                    type: "string",
-                },
-            ],
-        },
-
-
-
-        // Social Media
-        {
-            name: "socialMedia",
-            title: "Social Media",
-            type: "object",
-            fields: [
-                {
-                    name: "socialTitle",
-                    title: "Title",
-                    type: "string",
-                },
-                {
-                    name: "socailDesc",
-                    title: "Description",
-                    type: "text",
-                },
-                {
-                    name: "socialImage",
-                    title: "Image",
-                    type: "image",
-                    options: { hotspot: true },
                 },
             ],
         },
