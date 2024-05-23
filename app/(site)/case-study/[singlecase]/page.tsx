@@ -17,58 +17,30 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
 
   return (
-    <div className="max-w-full relative overflow-hidden">
-     
-     
-      <section className="relative">
-
-      <div className=" w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
-      <div className="w-full h-[380px] sm:h-[700px] relative z-0">
-               {data?.cardimage?.asset &&  (
-               <img
-                  loading="lazy"
-                  src={urlForImage(data.cardimage.asset)}
-                  style={{ objectFit: "cover" }}
-                  alt={data.cardimage.alt}
-                />
-               )}
-      </div>  
-    </section>
-
-      <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[480px] top-[620px] hidden md:flex items-center justify-center z-0">
-        <div className="bg-white w-[600px] h-[600px] rounded-full"></div>
-      </div>
-      <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[360px] top-[2800px] md:flex items-center justify-center z-0 hidden">
-        <div className="bg-white w-[600px] h-[600px] rounded-full"></div>
-      </div>
-      <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -right-[600px] md:-right-[360px] top-[3900px] md:flex items-center justify-center z-0 hidden">
-        <div className="bg-white w-[600px] h-[600px] rounded-full"></div>
-      </div>
-      <div className="bg-[#1D92FB] opacity-15 w-[207px] h-[207px] rounded-full absolute -right-24 top-[160px] sm:top-[250px] md:top-[600px] xl:top-[850px] 2xl:xl:top-[1100px] z-0 hidden md:block"></div>
-      
-      <div className="flex flex-col self-center w-full xl:max-w-[1380px] relative z-10 mx-auto">
+    <div className="max-w-full">
+      <section>
+        {data?.cardimage?.asset && (
+            <img
+              loading="lazy"
+              src={urlForImage(data.cardimage.asset)}
+              style={{ objectFit: "cover" }}
+              alt={data.cardimage.alt}
+            />
+          )}
+      </section>
+      <div className="flex flex-col self-center w-full xl:max-w-[1380px]   mx-auto">
         <div className="lg:px-10 px-4">
           <div>
-            <div className="flex  justify-center mb-6 sm:mb-24 ">
-              {data?.primaryimage?.asset && (
-                <img
-                  loading="lazy"
-                  src={urlForImage(data.primaryimage.asset)}
-                  className="top-0 left-0 object-cover  inset-0 size-full"
-                  alt={data.primaryimage.alt}
-                />
-              )}
-            </div>
-            <div className="flex flex-col xl:flex-row justify-between items-center gap-6 md:gap-10 lg:gap-36">
-              <div>
+            <div className="flex flex-col xl:flex-row justify-between items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
+              <div >
                 <h2 className="text-xl sm:text-3xl md:text-6xl mb-4">
-                  The Brief
+                  Introduction
                 </h2>
                 <p className="text-xs sm:text-xl md:text-2xl font-light xl:max-w-[610px] text-justify">
                   {data.briefdescription && data.briefdescription}
                 </p>
               </div>
-              <div className="flex flex-col gap-6 md:gap-10 mb-10 mt-20 md:mb-24">
+              <div className="flex flex-col gap-6 md:gap-10 mb-10 mt-10 md:mb-24">
                 {data.briefitemsarray?.map((item: any) => {
                   return (
                     <div className="relative" key={item._key}>
@@ -80,7 +52,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                         {item.value}
                       </p>
                     </div>
-                    
                   );
                 })}
               </div>
@@ -106,16 +77,20 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Tools & Technologies Used:
               </h3>
-           
-              {data.toolsandtechnologies.asset && (
-              <img
-                loading="lazy"
-                src={urlForImage(data.toolsandtechnologies.asset)}
-                alt={data.secondaryimage.alt}
-                className=" mb-0 sm:mb-14 mx-auto w-[50%] "
-              />
-            )}
-            
+
+              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-[60px] sm:gap-[30px] 2xl:gap-[130px] max-w-[1440px] sm:my-40">
+                {data.toolsandtechlist?.map((item: any) => {
+                return (
+                  <img
+                  loading="lazy"
+                  src={urlForImage(item.techImage?.asset)}
+                  alt={item.techImage?.alt}
+                  className="mb-0"
+                />
+                  );
+                })}
+              </div>
+
               <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
                 Challenges Faced:
               </h3>
@@ -167,12 +142,15 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   );
                 })}
               </ul>
-              <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
-                Operating System:
-              </h3>
-              
-              <p className= "text-xs md:text-xl leading-4 md:leading-8 font-light">{data?.operatingsystem && data.operatingsystem}</p>
-              
+              {data?.title == "House Arrest" && (
+                <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
+                  Operating System:
+                </h3>
+              )}
+              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
+                {data?.operatingsystem && data.operatingsystem}
+              </p>
+
               <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.toolsfortest && data.toolsfortest}
               </p>
@@ -187,7 +165,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         </div>
       </div>
     </div>
-    
   );
 };
 export default page;

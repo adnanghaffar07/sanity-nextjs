@@ -102,6 +102,46 @@ const portfolioSchema = {
         },
       ],
     },
+
+    
+    {
+      name: "toolsandtechlist",
+      title: "Tools And Tech List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+           
+            {
+              name: "techImage",
+              title: "Tech Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            }
+
+
+          ],
+        },
+      ],
+    },
+
+
+
     {
       name: "projectscopecontent",
       title: "Project Scope Content",
@@ -130,6 +170,8 @@ const portfolioSchema = {
       ],
     },
 
+
+    
 
 
     {

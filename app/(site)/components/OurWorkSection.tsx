@@ -59,8 +59,8 @@ const OurWorkSection = () => {
                           />
                         )}
 
-                        <div className="text-wrap mt-4 ml-2">
-                          <p className=" text-black font-light text-[15px] ">
+                        <div className="text-wrap mt-4 p-[10px] ml-2">
+                          <p className=" text-black font-light text-xl ">
                             {item?.carddescription}
                           </p>
                         </div>
@@ -103,8 +103,8 @@ const OurWorkSection = () => {
                           />
                         )}
 
-                        <div className="text-wrap mt-4 ml-2">
-                          <p className=" text-black font-light text-[15px] ">
+                        <div className="text-wrap mt-4 p-[10px] ml-2">
+                          <p className=" text-black font-light text-xl ">
                             {item?.carddescription}
                           </p>
                         </div>

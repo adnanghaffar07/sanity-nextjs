@@ -167,10 +167,13 @@ const Page = () => {
                 </li>
 
                 <li>
-                  <input type="checkbox" />
-                  <span> Shopify Development</span>
+                  <input
+                    type="checkbox"
+                    onClick={(event) => GetFilteredData("shopify")}
+                  />
+                  <span> Ecommerce</span>
                 </li>
-
+                {/*
                 <li>
                   <input type="checkbox" />
                   <span> CRM Implementation</span>
@@ -179,11 +182,11 @@ const Page = () => {
                 <li>
                   <input type="checkbox" />
                   <span> CRM Customization</span>
-                </li>
+                </li> */}
               </ul>
             </div>
 
-            <div className="mt-20 ml-2">
+            {/* <div className="mt-20 ml-2">
               <h1> Industries</h1>
               <br></br>
               <ul>
@@ -222,14 +225,14 @@ const Page = () => {
                   <span> Education Technology</span>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </section>
 
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3 md: gap-10 sm:grid sm:grid-col-1">
+          <div className=" md:grid md:grid-cols-3  md: gap-10 sm:grid sm:grid-col-1">
             {filteredItems.map((item: any, index: any) => {
               return (
                 <div key={index}>
