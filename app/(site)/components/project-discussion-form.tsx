@@ -36,14 +36,12 @@ export default function ProjectDiscussionContainer() {
       !values.name.length ||
       !values.email.length ||
       !values.contact_number.length ||
-      !values.looking.length ||
-      !values.message.length
+      !values.looking.length
     ) {
       return;
     }
     if (
       errors.name ||
-      errors.message ||
       errors.contact_number ||
       errors.email ||
       errors.looking
@@ -68,6 +66,13 @@ export default function ProjectDiscussionContainer() {
       });
 
       if (response.ok) {
+        // Push event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "formSubmission",
+          form: "contactForm",
+        });
+
         setBgColor("bg-green-500");
         setMessage("Your Message has been successfully submitted!");
         setMessageSuccess("w-[100%]");
@@ -85,7 +90,7 @@ export default function ProjectDiscussionContainer() {
       setUploading(false);
       setTimeout(() => {
         setMessage("");
-      }, 5000);
+      }, 8000);
     }
   };
 
@@ -159,9 +164,6 @@ export default function ProjectDiscussionContainer() {
               rows={4}
               cols={4}
             />
-            {errors.message && touched.message ? (
-              <p className="form-error">{errors.message}</p>
-            ) : null}
           </div>
 
           <button

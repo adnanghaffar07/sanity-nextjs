@@ -19,7 +19,7 @@ export default function Home() {
           loop
           playsInline
         >
-          <source src="/for-blogs.mp4" type="video/mp4" />
+          <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
@@ -40,9 +40,9 @@ export default function Home() {
                 </div>
               ))} */}
               {/* {bannerbox1content.content} */}
-              <div className="self-stretch lg:mt-11 mt-3 text-wrap">
+              <div className="self-stretch lg:mt-11 mt-3 text-wrap text-justify">
                 We are trusted by 200 global clients and offer innovative
-                software solutions tailored to specific needs and markets.
+                software solutions tailored to specific needs and markets
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center mt-1">
@@ -51,21 +51,20 @@ export default function Home() {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/dd11565216251ba7edf5d297e866d2f669890e35a17a2a5f0451e15e47a8f1e0?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-square w-[58px]"
               />
-              <div className="self-stretch lg:mt-11 mt-3">
-                We&rsquo;ve completed over 350 projects, demonstrating our
-                expertise in providing creative software products around the
-                world.
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
+                Completed 350+ projects, showcasing expertise in providing
+                creative software products globally
               </div>
             </div>
-            <div className="flex flex-col flex-1 items-center">
+            <div className="flex flex-col flex-1 items-center text-justify">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4dba27be0f0ef0e7f2222766f9380cd600d6c52ecf6d4faf7f8c09b0bf153bd?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-square w-[58px]"
               />
-              <div className="lg:mt-11 mt-3  text-wrap">
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
                 We professionally assessed 300 apps to assure high-quality and
-                reliable software solutions for our clients.
+                reliable software solutions for our clients
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center">
@@ -74,9 +73,9 @@ export default function Home() {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d94d3acf8211d9d93fa767bd062c760909c92d44aa2ffe4184b9e68836f0611?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-[0.89] w-[52px]"
               />
-              <div className="lg:mt-11 mt-3  text-wrap">
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
                 Over 150k bugs have been addressed, ensuring that our
-                clients&rsquo; software solutions are reliable and trustworthy.
+                clients&rsquo; software solutions are reliable and trustworthy
               </div>
             </div>
           </div>
@@ -94,7 +93,7 @@ export default function Home() {
                 Web Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                App Development
+                Mobile App Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
                 QA Automation Testing
@@ -128,7 +127,7 @@ export default function Home() {
                     </div>
                     <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                       <p>
-                        Scale up with the team of more than 70 dedicated 
+                        Scale up with the team of more than 70 dedicated
                         <span className="font-extrabold ml-1">
                           software engineers
                         </span>{" "}
@@ -193,7 +192,7 @@ export default function Home() {
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16">
+            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16 text-center">
               Why Work With Us
             </div>
             <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
@@ -477,7 +476,7 @@ export default function Home() {
               <Testimonials />
 
               <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-48">
-                <Link
+                {/* <Link
                   href="https://clutch.co/profile/codeautomationai#highlights"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -492,6 +491,30 @@ export default function Home() {
                     className="w-[22px] h-[26.8px]"
                     alt="Arrow icon"
                   />
+                </Link> */}
+
+                <Link
+                  href="https://clutch.co/profile/codeautomationai#highlights"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex bg-blue-300 py-2 px-4 rounded-lg gap-3 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
+                >
+                  <div className="text-center flex flex-col gap-2">
+                    <p className="text-sm text-gray-600">REVIEWED ON</p>
+                    <img
+                      src="/clutch-icon.svg"
+                      alt="clutch-icon"
+                      className="w-24"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <img
+                      src="/rating-stars1.svg"
+                      alt="ratings"
+                      className="w-32 bg-red-600"
+                    />
+                    <p className="text-sm text-gray-600">8 REVIEWS</p>
+                  </div>
                 </Link>
               </div>
             </div>
@@ -510,7 +533,7 @@ export default function Home() {
               className="aspect-[1.22] absolute right-0 top-80"
             />
             <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10 xl:container xl:mx-auto">
-              <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4">
+              <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
               </div>
               <Faqs />

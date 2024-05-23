@@ -103,25 +103,19 @@ const OurWorkSection = () => {
                           />
                         )}
 
-                        <div className="text-wrap mt-4 p-[10px] ml-2">
-                          <p className=" text-black font-light text-xl ">
-                            {item?.carddescription}
-                          </p>
+                      {item.slug ? (
+                        <Link
+                          href={`/case-study/${item.slug}`}
+                          className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
+                        >
+                          {item.title} - {item.subtitle}
+                        </Link>
+                      ) : (
+                        <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                          {item.title} - {item.subtitle}
                         </div>
-                        {item.slug ? (
-                          <Link
-                            href={`/case-study/${item.slug}`}
-                            className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
-                          >
-                            {item.title} - {item.subtitle}
-                          </Link>
-                        ) : (
-                          <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
-                            {item.title} - {item.subtitle}
-                          </div>
-                        )}
-                      </div>
-                    </>
+                      )}
+                    </div>
                   );
                 }
               })}
@@ -166,3 +160,4 @@ const OurWorkSection = () => {
 };
 
 export default OurWorkSection;
+

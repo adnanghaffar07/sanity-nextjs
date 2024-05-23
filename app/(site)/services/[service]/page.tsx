@@ -138,13 +138,13 @@ export default async function service({
                       key={subService._id}
                     >
                       <div
-                        className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 "
-                        style={{ height: "300px" }}
+                        className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full"
+                     
                       >
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
                           alt={subService.serviceCardSub}
-                          className="w-full h-40 object-cover"
+                          className="w-full h-40 "
                         />
                         <div className="p-6">
                           <h3 className="text-xl font-semibold text-center mb-4">
@@ -175,7 +175,7 @@ export default async function service({
 
           {/* Render paragraph if there's content */}
           {data.toolsTechSection?.toolsTechDesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.toolsTechSection?.toolsTechDesc}
             </p>
           )}
@@ -235,7 +235,7 @@ export default async function service({
           </h2>
 
           {data.exampleServicesSection?.exampleServicedesc && (
-            <p className="text-xl font-light mb-8">
+            <p className="text-xl text-center font-light mb-8">
               {data.exampleServicesSection?.exampleServicedesc}
             </p>
           )}
