@@ -9,19 +9,16 @@ import { revalidatePath } from "next/cache";
 
 const Page = () => {
   // const [initialCards, SetInitialCards] = useState<any[]>([""]);
-  
+
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
-  
 
   const [currentPage, setCurrentPage] = useState(0);
-  
+
   const itemsPerPage = 6;
 
-   var totalPages =  0;
-
-  
+  var totalPages = 0;
 
   useEffect(() => {
     async function getData() {
@@ -49,14 +46,12 @@ const Page = () => {
       if (caseStudyData && caseStudyData[0].cardItemsList) {
         const initalArray = caseStudyData[0].cardItemsList;
         console.log("Initial Array", initalArray);
-       
-       
+
         setFilteredItems(initalArray);
         SetOriginalCards(initalArray);
-       
 
         totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-       
+
         // SetOriginalCards(initalArray);
       } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
@@ -87,10 +82,6 @@ const Page = () => {
   useEffect(() => {
     FilterItems();
   }, [selectedFilters]);
-
-
-  
-
 
   function FilterItems() {
     if (selectedFilters.length > 0) {
@@ -133,16 +124,14 @@ const Page = () => {
         {/* Filter Section    */}
 
         <section className=" md:w-[20%] sm:w-auto   py-24 px-10  text-white   bg-sky-500  max-w-[480px]">
-          
           <div className=" flex flex-row gap-2">
-          <Image 
-          src= '/FilterIcon.png'
-          width={27}
-          height={22}
-          alt="filterIcon"
-          >
-          </Image>
-          <h1 className=" text-center">Filter Case Studies</h1>
+            <Image
+              src="/FilterIcon.png"
+              width={27}
+              height={22}
+              alt="filterIcon"
+            ></Image>
+            <h1 className=" text-center">Filter Case Studies</h1>
           </div>
 
           <div className=" flex flex-col gap-20">
@@ -237,8 +226,6 @@ const Page = () => {
           </div>
         </section>
 
-       
-
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
@@ -258,23 +245,16 @@ const Page = () => {
                     </Link>
                   )}
 
-        
-
                   <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
                     {item.cardDescription}
                   </div>
                 </div>
-              )})
-            }
+              );
+            })}
           </div>
         </section>
-       
-
-        
-
-
       </div>
-       
+
       {/* <section>
         <div className="flex flex-row justify-center mb-0 ">
         <button type="button" onClick={handlePrevPage} disabled={currentPage === 0} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -285,9 +265,6 @@ const Page = () => {
         </button>
        </div>
        </section> */}
-      
-
-      
 
       <br></br>
     </>
