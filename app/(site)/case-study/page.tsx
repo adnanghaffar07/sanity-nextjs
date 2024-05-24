@@ -7,7 +7,6 @@ import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
 
-
 const Page = () => {
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
@@ -16,7 +15,7 @@ const Page = () => {
 
   var itemsPerPage = 6;
   var startIndex = 0;
-  var endIndex = startIndex + itemsPerPage
+  var endIndex = startIndex + itemsPerPage;
   var totalPages = 0;
 
   useEffect(() => {
@@ -61,7 +60,6 @@ const Page = () => {
     } else {
       SetSelectedFilters([...selectedFilters, option]);
     }
-   
   }
 
   const handleNextPage = () => {
@@ -72,19 +70,18 @@ const Page = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
   };
 
-   // FOR FILTIRATION
+  // FOR FILTIRATION
   useEffect(() => {
     FilterItems();
   }, [selectedFilters]);
 
   // FOR PAGINATION
-  useEffect(()=>{
-    startIndex = currentPage*itemsPerPage;
-    endIndex = startIndex+itemsPerPage
+  useEffect(() => {
+    startIndex = currentPage * itemsPerPage;
+    endIndex = startIndex + itemsPerPage;
     const newFilteredItems = originalCards.slice(startIndex, endIndex);
     setFilteredItems(newFilteredItems);
-  },[currentPage])
-
+  }, [currentPage]);
 
   function FilterItems() {
     if (selectedFilters.length > 0) {
@@ -102,27 +99,41 @@ const Page = () => {
 
   return (
     <>
-      <HeroSectionComponent
-        title="Case Studies"
-        content="Explore our case study on code automation, showcasing how innovative strategies significantly enhance efficiency, reduce costs, and accelerate development in software projects."
-        image="/CaseStudyHero.png"
-      />
+      <section className="relative">
+      <div className=" w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
+      <div className="w-full h-[380px] sm:h-[700px] relative z-0">
+        <Image
+          src='/CaseStudyHero.png'
+          alt='CaseStudyHero'
+          loading="lazy"
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+
+      <div className="mt-[130px] sm:mt-[327px] items-center absolute inset-0 flex flex-col z-[2]">
+        <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
+        Case Studies
+        </h1>
+        <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
+        Explore our case study on code automation, showcasing how innovative strategies significantly enhance efficiency, reduce costs, and accelerate development in software projects.
+        </p>
+      </div>
+    </section>
 
       <section className=" h-full flex flex-col  justify-center gap-4 bg-[#F3F3F3]">
         <div className="self-stretch text-5xl mt-20 text-center text-black capitalize leading-[60px] max-md:text-4xl max-md:leading-[51px]">
-          CodeAutomation
-          <br />
-          Case Studies in Real World Application
+          Real World Application Case studies
         </div>
 
-        <div className="text-xl font-light tracking-wide leading-7 text-center text-black">
+        <span className="lg:text-xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
           Case studies are essential because they offer detailed insights and
           practical examples of how theories work in real-world scenarios,
           helping to improve strategies and decision-making.
-        </div>
+        </span>
       </section>
 
-      <div className=" flex md:flex-row  justify-center mt-10 mb-10">
+      <div className=" flex md:flex-row  sm:px-4  justify-center mt-10 mb-10">
         {/* Filter Section    */}
 
         <section className=" md:w-[20%] sm:w-auto   py-24 px-10  text-white   bg-sky-500  max-w-[480px]">
@@ -147,7 +158,7 @@ const Page = () => {
                     id="app"
                     onChange={(event) => GetFilteredData("app")}
                   />
-                  <span>App Development</span>
+                  <span> Mobile Development</span>
                 </li>
 
                 <li>
@@ -165,7 +176,7 @@ const Page = () => {
                     id="qa"
                     onClick={(event) => GetFilteredData("qa")}
                   />
-                  <span> QA Testing</span>
+                  <span> QA Testing & Automation</span>
                 </li>
 
                 <li>
@@ -234,52 +245,65 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3  md: gap-10 sm:grid sm:grid-col-1">
-            {filteredItems.slice(startIndex,endIndex).map((item: any, index: any) => {
-              return (
-                <div key={index}>
-                  {item?.cardImage && (
-                    <Link href={`/case-study/${item?.url}`}>
-                      <Image
-                        width={404}
-                        height={268}
-                        className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
-                        src={urlForImage(item.cardImage).toString()}
-                        alt="card"
-                      ></Image>
-                    </Link>
-                  )}
+          <div className=" md:grid md:grid-cols-3  md:gap-10 sm:grid  sm:grid-col-1">
+            {filteredItems
+              .slice(startIndex, endIndex)
+              .map((item: any, index: any) => {
+                return (
+                  <div key={index}>
+                    {item?.cardImage && (
+                      <Link href={`/case-study/${item?.url}`}>
+                        <Image
+                          width={404}
+                          height={268}
+                          className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                          src={urlForImage(item.cardImage).toString()}
+                          alt="card"
+                        ></Image>
+                      </Link>
+                    )}
 
-                  <div className="text-base font-light tracking-wide leading-6 max-w-[317px] text-sky-950">
-                    {item.cardDescription}
+                    <div className="text-base font-light md:px-5 md:text-justify  tracking-wide leading-6 max-w-[317px] text-sky-950">
+                      {item.cardDescription}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </section>
       </div>
 
-      { <section>
-        <div className="flex flex-row justify-center mb-0 ">
-        <button type="button" onClick={handlePrevPage} disabled={currentPage === 0} className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <Image
-        src = '/backwardArrow.png'
-         width={50}
-         height={50}
-         alt = 'backward'
-        />
-        </button>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages - 1} className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <Image
-        src = '/forwardArrow.png'
-         width={50}
-         height={50}
-         alt = 'backward'
-        />
-        </button>
-       </div>
-       </section> }
+      {
+        <section>
+          <div className="flex flex-row justify-center mb-0 ">
+            <button
+              type="button"
+              onClick={handlePrevPage}
+              disabled={currentPage === 0}
+              className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <Image
+                src="/backwardArrow.png"
+                width={50}
+                height={50}
+                alt="backward"
+              />
+            </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages - 1}
+              className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <Image
+                src="/forwardArrow.png"
+                width={50}
+                height={50}
+                alt="backward"
+              />
+            </button>
+          </div>
+        </section>
+      }
 
       <br></br>
     </>

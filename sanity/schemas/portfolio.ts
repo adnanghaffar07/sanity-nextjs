@@ -23,8 +23,9 @@ const portfolioSchema = {
       title: "Group",
       type: "string",
     },
+
     {
-      name: "cardimage",
+      name: "heroimage",
       title: "Hero Image",
       type: "image",
       options: {
@@ -38,13 +39,29 @@ const portfolioSchema = {
         },
       ],
     },
+
+    {
+      name: "cardimage",
+      title: "Card Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+
     {
       name: "carddescription",
       title: "Card Description",
       type: "string",
     },
 
-     
     {
       name: "primaryimage",
       title: "Primary Image",
@@ -103,7 +120,6 @@ const portfolioSchema = {
       ],
     },
 
-    
     {
       name: "toolsandtechlist",
       title: "Tools And Tech List",
@@ -117,7 +133,7 @@ const portfolioSchema = {
               title: "Heading",
               type: "string",
             },
-           
+
             {
               name: "techImage",
               title: "Tech Image",
@@ -132,15 +148,11 @@ const portfolioSchema = {
                   type: "string",
                 },
               ],
-            }
-
-
+            },
           ],
         },
       ],
     },
-
-
 
     {
       name: "projectscopecontent",
@@ -153,7 +165,7 @@ const portfolioSchema = {
       title: "Operating System",
       type: "string",
     },
-    
+
     {
       name: "toolsandtechnologies",
       title: "Tools & Technologies Used",
@@ -169,10 +181,6 @@ const portfolioSchema = {
         },
       ],
     },
-
-
-    
-
 
     {
       name: "technologiesused",
@@ -287,17 +295,17 @@ const portfolioSchema = {
               title: "Card Title",
               type: "string",
             },
-             
+
             {
-               name:"group",
-               title:"Group",
-               type:"string"
+              name: "group",
+              title: "Group",
+              type: "string",
             },
 
             {
-               name:'url',
-               title:"URL",
-               type:"string"
+              name: "url",
+              title: "URL",
+              type: "string",
             },
 
             {

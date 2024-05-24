@@ -137,13 +137,13 @@ const OurWorkSection = () => {
         }
       `}</style>
 
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap ml-12 mt-10">
         <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
           <Link
             href="/case-study"
             className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
           >
-            <div className="relative grow self-center">
+            <div className="relative grow  self-center">
               Explore Our Portfolio
             </div>
             <img

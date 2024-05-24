@@ -143,14 +143,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   );
                 })}
               </ul>
-              {data?.title == "House Arrest" && (
-                <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
-                  Operating System:
-                </h3>
-              )}
-              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
-                {data?.operatingsystem && data.operatingsystem}
-              </p>
 
               <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
                 {data?.toolsfortest && data.toolsfortest}
