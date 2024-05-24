@@ -7,17 +7,16 @@ import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
 
-const Page = () => {
-  // const [initialCards, SetInitialCards] = useState<any[]>([""]);
 
+const Page = () => {
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
-
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 6;
-
+  var itemsPerPage = 6;
+  var startIndex = 0;
+  var endIndex = startIndex + itemsPerPage
   var totalPages = 0;
 
   useEffect(() => {
@@ -45,14 +44,9 @@ const Page = () => {
 
       if (caseStudyData && caseStudyData[0].cardItemsList) {
         const initalArray = caseStudyData[0].cardItemsList;
-        console.log("Initial Array", initalArray);
-
         setFilteredItems(initalArray);
         SetOriginalCards(initalArray);
-
-        totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-
-        // SetOriginalCards(initalArray);
+        totalPages = Math.ceil(originalCards.length / itemsPerPage);
       } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
       }
@@ -67,21 +61,30 @@ const Page = () => {
     } else {
       SetSelectedFilters([...selectedFilters, option]);
     }
-    console.log("Selected Filters:", selectedFilters);
-    console.log(selectedFilters.length);
+   
   }
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
+    setCurrentPage((prevPage) => Math.max(prevPage + 1, totalPages - 1));
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
   };
 
+   // FOR FILTIRATION
   useEffect(() => {
     FilterItems();
   }, [selectedFilters]);
+
+  // FOR PAGINATION
+  useEffect(()=>{
+    startIndex = currentPage*itemsPerPage;
+    endIndex = startIndex+itemsPerPage
+    const newFilteredItems = originalCards.slice(startIndex, endIndex);
+    setFilteredItems(newFilteredItems);
+  },[currentPage])
+
 
   function FilterItems() {
     if (selectedFilters.length > 0) {
@@ -91,7 +94,6 @@ const Page = () => {
         });
         return temp;
       });
-      console.log("Filtered Items:", tempItems);
       setFilteredItems(tempItems.flat());
     } else {
       setFilteredItems(originalCards);
@@ -233,7 +235,7 @@ const Page = () => {
 
         <section className=" mx-auto">
           <div className=" md:grid md:grid-cols-3  md: gap-10 sm:grid sm:grid-col-1">
-            {filteredItems.map((item: any, index: any) => {
+            {filteredItems.slice(startIndex,endIndex).map((item: any, index: any) => {
               return (
                 <div key={index}>
                   {item?.cardImage && (
@@ -258,16 +260,26 @@ const Page = () => {
         </section>
       </div>
 
-      {/* <section>
+      { <section>
         <div className="flex flex-row justify-center mb-0 ">
-        <button type="button" onClick={handlePrevPage} disabled={currentPage === 0} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Prev
+        <button type="button" onClick={handlePrevPage} disabled={currentPage === 0} className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <Image
+        src = '/backwardArrow.png'
+         width={50}
+         height={50}
+         alt = 'backward'
+        />
         </button>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages - 1} className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Next
+        <button onClick={handleNextPage} disabled={currentPage === totalPages - 1} className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <Image
+        src = '/forwardArrow.png'
+         width={50}
+         height={50}
+         alt = 'backward'
+        />
         </button>
        </div>
-       </section> */}
+       </section> }
 
       <br></br>
     </>
