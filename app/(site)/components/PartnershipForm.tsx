@@ -111,7 +111,7 @@ const PartnershipForm = () => {
       setUploading(false);
       setTimeout(() => {
         setMessage("");
-      }, 5000);
+      }, 8000);
     }
   };
 
