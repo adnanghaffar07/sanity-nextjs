@@ -103,7 +103,7 @@ const Page = () => {
       <div className=" w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
       <div className="w-full h-[380px] sm:h-[700px] relative z-0">
         <Image
-          src='/CaseStudyHero.png'
+          src='/CaseStudyHero.jpg'
           alt='CaseStudyHero'
           loading="lazy"
           fill
@@ -245,7 +245,7 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3  md:gap-10 sm:grid  sm:grid-col-1">
+          <div className=" md:grid md:grid-cols-3   md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
               .map((item: any, index: any) => {
@@ -256,7 +256,7 @@ const Page = () => {
                         <Image
                           width={404}
                           height={268}
-                          className="w-full aspect-[1.52] md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                          className="w-full aspect-[1.52] ring-2 ring-yellow-500 rounded-lg shadow-2xl hover:shadow-blue-800  md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                           src={urlForImage(item.cardImage).toString()}
                           alt="card"
                         ></Image>
