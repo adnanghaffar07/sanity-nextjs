@@ -58,8 +58,8 @@ const Testimonials = () => {
       >
         {groupedTestimonials.map((pair, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full flex items-center justify-center bg-[#F3F3F3] text-2xl rounded-3xl pt-10 sm:pt-0 pb-10 sm:pb-0">
-              <div className="flex flex-col lg:flex-row justify-center items-center gap-64 sm:gap-40 pb-36 lg:pb-0 lg:gap-16 w-full mt-10 lg:mt-0 h-[780px] sm:h-[740px] lg:h-[420px]">
+            <div className="relative w-full h-full flex items-center justify-center bg-[#F3F3F3] text-2xl rounded-3xl my-20 sm:my-4 lg:my-0">
+              <div className="flex flex-col lg:flex-row justify-center items-center gap-52 sm:gap-40 lg:gap-16 w-full h-[780px] sm:h-[740px] lg:h-[400px] pb-16">
                 {pair.map((testimonial: any) => (
                   <div
                     className="flex flex-col ml-5 max-md:ml-0 relative min-h-[255px] sm:min-h-[255px] sm:min-w-[381px]"
@@ -79,7 +79,7 @@ const Testimonials = () => {
                             {testimonial.content}
                           </div>
                           <div className="flex gap-3 justify-between mt-4 max-md:mr-1">
-                            <div className="flex justify-center items-center px-1 rounded-xl aspect-square w-[68px] h-[68px] bg-[#00000033]">
+                            <div className="flex justify-center items-start px-1 rounded-xl aspect-square w-[68px] h-[68px] bg-[#00000033]">
                               <img
                                 loading="lazy"
                                 src={urlForImage(testimonial.image.asset)}
@@ -87,7 +87,7 @@ const Testimonials = () => {
                                 className="aspect-square rounded-full w-[62px] h-[62px]"
                               />
                             </div>
-                            <div className="flex flex-col flex-1 self-start mt-3 text-sky-950">
+                            <div className="flex flex-col flex-1 self-start text-sky-950">
                               {testimonial.name && (
                                 <div className="text-xl sm:text-2xl lg:text-3xl font-medium">
                                   {testimonial.name}
@@ -113,7 +113,7 @@ const Testimonials = () => {
                                 className="aspect-square rounded-full w-[62px] h-[62px]"
                               />
                             </div>
-                            <div className="flex flex-col flex-1 self-start mt-3 text-sky-950">
+                            <div className="flex flex-col flex-1 self-start text-sky-950">
                               {testimonial.name && (
                                 <div className="text-xl sm:text-2xl lg:text-3xl font-medium">
                                   {testimonial.name}
