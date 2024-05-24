@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import { contactSchema } from "../../schemas/index";
+import { usePathname } from "next/navigation";
 
 const initialValues = {
   name: "",
@@ -13,6 +14,7 @@ const initialValues = {
 };
 
 export default function ProjectDiscussionContainer() {
+  const currentPath = usePathname();
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
@@ -26,6 +28,8 @@ export default function ProjectDiscussionContainer() {
         action.resetForm();
       },
     });
+
+  const pageName = currentPath.split("/").pop();
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
@@ -49,6 +53,14 @@ export default function ProjectDiscussionContainer() {
       return;
     }
 
+    const actuallPageName =
+      pageName === ""
+        ? "Home"
+        : pageName
+            ?.split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
     try {
       const formData = new FormData();
       formData.append("name", values.name);
@@ -56,6 +68,7 @@ export default function ProjectDiscussionContainer() {
       formData.append("number", values.contact_number);
       formData.append("looking", values.looking);
       formData.append("message", values.message);
+      formData.append("pagename", actuallPageName || "Home");
       setUploading(true);
       setMessage("Submitting form...");
 

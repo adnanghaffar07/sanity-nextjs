@@ -460,23 +460,24 @@ export default function Home() {
             </div>
           </ScrollAnimation>
         </div>
-        <div className="flex flex-col px-5 bg-[#F3F3F3] lg:py-16 py-16 relative overflow-hidden">
+
+        <div className="flex flex-col bg-[#F3F3F3] py-16 relative overflow-hidden">
           <img
             loading="lazy"
             srcSet="/icon-quote-start.svg"
             className="absolute top-10 -left-2 w-24 h-24 z-20"
           />
           <ScrollAnimation>
-            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full text-center">
+            <div className="w-full xl:text-4xl text-3xl font-medium text-black text-center">
               Our Testimonials
             </div>
-            <div className="self-center xl:mt-6 mt-3 lg:text-2xl text-xl text-center text-black max-md:max-w-full">
+            <div className="self-center md:mt-6 mt-3 lg:text-2xl text-xl text-center text-black">
               Discover what our clients are saying about CodeAutomation
             </div>
-            <div className="mt-14 max-w-screen-lg mx-auto max-md:mt-10 max-md:max-w-full px-5 md:px-0">
+            <div className="mx-auto">
               <Testimonials />
 
-              <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-48">
+              <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap mt-4">
                 {/* <Link
                   href="https://clutch.co/profile/codeautomationai#highlights"
                   target="_blank"
@@ -498,23 +499,24 @@ export default function Home() {
                   href="https://clutch.co/profile/codeautomationai#highlights"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex bg-blue-300 py-2 px-4 rounded-lg gap-3 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
+                  className="flex bg-white py-1 px-2 rounded-lg gap-2 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
                 >
-                  <div className="text-center flex flex-col gap-2">
-                    <p className="text-sm text-gray-600">REVIEWED ON</p>
+                  <div className="text-center flex flex-col gap-1">
+                    <p className="text-xs text-gray-400">REVIEWED ON</p>
                     <img
                       src="/clutch-icon.svg"
                       alt="clutch-icon"
-                      className="w-24"
+                      className="w-20"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <img
-                      src="/rating-stars1.svg"
+                      src="/rating-stars.svg"
+                      // src="/rating-stars1.svg"
                       alt="ratings"
-                      className="w-32 bg-red-600"
+                      className="w-24 bg-red-600"
                     />
-                    <p className="text-sm text-gray-600">8 REVIEWS</p>
+                    <p className="text-xs text-gray-400">8 REVIEWS</p>
                   </div>
                 </Link>
               </div>
@@ -526,6 +528,7 @@ export default function Home() {
             className="absolute bottom-10 -right-3 w-24 h-24 z-20"
           />
         </div>
+
         <ScrollAnimation>
           <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:py-16 py-8 md:px-5 w-full mx-auto relative">
             <img
