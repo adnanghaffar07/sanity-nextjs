@@ -40,7 +40,7 @@ const OurWorkSection = () => {
     <div>
       <div className="flex flex-col mt-[5%] gap-20">
         <div className="flex flex-row  mx-auto  max-md:ml-0 max-md:w-full">
-          <div className="flex flex-row  grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-20">
+          <div className="flex md:flex-row flex-col  grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-20">
             {topArray &&
               topArray.map((item: any, index: any) => {
                 if (index < 2) {
@@ -84,7 +84,7 @@ const OurWorkSection = () => {
           </div>
         </div>
         <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-          <div className="flex flex-row grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-10">
+          <div className="flex md:flex-row flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-10">
             {recentArray &&
               recentArray.map((item: any, index: any) => {
                 if (index < 2) {

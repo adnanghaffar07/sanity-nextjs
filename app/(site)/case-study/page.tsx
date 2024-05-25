@@ -258,7 +258,7 @@ const Page = () => {
                         <Image
                           width={404}
                           height={268}
-                          className="w-full aspect-[1.52] ring-2 ring-yellow-500 rounded-lg shadow-2xl hover:shadow-blue-800  md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                          className="w-full aspect-[1.52]  p-2  ring-2  ring-yellow-500 rounded-tr-3xl rounded-bl-3xl shadow-2xl hover:shadow-blue-800  md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                           src={urlForImage(item.cardImage).toString()}
                           alt="card"
                         ></Image>
