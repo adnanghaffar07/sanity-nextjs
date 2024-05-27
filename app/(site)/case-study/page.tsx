@@ -247,7 +247,7 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3 m-[50px]  md:gap-10 sm:grid  sm:grid-col-1">
+          <div className=" md:grid md:grid-cols-3 m-[50px]   md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
               .map((item: any, index: any) => {
