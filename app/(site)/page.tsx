@@ -1,9 +1,13 @@
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
-import Testimonials from "./components/Testimonials";
-import Faqs from "./components/Faqs";
-import OurWorkSection from "./components/OurWorkSection";
+// import Testimonials from "./components/Testimonials";
+const Testimonials = React.lazy(() => import("./components/Testimonials"));
+// import OurWorkSection from "./components/OurWorkSection";
+const OurWorkSection = React.lazy(() => import("./components/OurWorkSection"));
+// import Faqs from "./components/Faqs";
+const Faqs = React.lazy(() => import("./components/Faqs"));
+
 import ScrollAnimation from "./components/ScrollAnimation";
 
 export default function Home() {
@@ -188,7 +192,9 @@ export default function Home() {
               excellence. Check out our case studies and witness how we&rsquo;ve
               helped businesses like yours succeed.
             </p>
-            <OurWorkSection />
+            <Suspense fallback={<div>Loading...</div>}>
+              <OurWorkSection />
+            </Suspense>
           </div>
         </ScrollAnimation>
         <ScrollAnimation>
@@ -200,7 +206,7 @@ export default function Home() {
               <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
                 <div className="flex flex-col max-md:ml-0 max-md:w-full">
                   <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
+                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex-col justify-center flex h-100">
                       <img
                         loading="lazy"
                         srcSet="/Group-17-1.svg"
@@ -475,7 +481,9 @@ export default function Home() {
               Discover what our clients are saying about CodeAutomation
             </div>
             <div className="mx-auto">
-              <Testimonials />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Testimonials />
+              </Suspense>
 
               <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap mt-4">
                 {/* <Link
@@ -540,7 +548,9 @@ export default function Home() {
               <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
               </div>
-              <Faqs />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Faqs />
+              </Suspense>
             </div>
           </div>
         </ScrollAnimation>
