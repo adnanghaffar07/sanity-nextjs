@@ -104,7 +104,7 @@ const Page = () => {
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           <Image
             src="/CaseStudyHero.jpg"
-            alt="CaseStudyHero"
+            alt="CaseStudyHero.jpg"
             loading="lazy"
             fill
             style={{ objectFit: "cover" }}
