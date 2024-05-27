@@ -195,8 +195,19 @@ const serviceSummary = {
                     type: 'array',
                     of: [
                         {
-                            type: 'string',
-                        },
+                            "type": "object",
+                            "fields": [
+                                {
+                                    "name": "heading",
+                                    "title": "Heading",
+                                    "type": "string"
+                                },
+                                {
+                                    "name": "detail",
+                                    "title": "Detail",
+                                    "type": "string"
+                                },
+                            ]}
                     ],
                 },
                 {

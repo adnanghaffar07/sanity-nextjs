@@ -64,9 +64,9 @@ export default async function ServiceSummary() {
       />
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center">
-          <div className="w-full md:w-1/2 md:pr-8">
-            <div className="max-w-2xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="">
+            <div className="">
               <h2 className="text-2xl font-bold mb-8 text-center md:text-left "> {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introHeading}
               </h2>
@@ -76,23 +76,16 @@ export default async function ServiceSummary() {
 
             </div>
           </div>
-          <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center"> {/* Adjusted margin and flex styles for smaller screens */}
+          {/* <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center"> 
             <Image
               src={urlForImage(data.introductionSection?.introImage).toString()}
               alt=""
               width={570}
               height={370}
             />
-          </div>
+          </div> */}
         </div>
       </div>
-
-
-
-
-
-
-
       {/* Detail Section */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,22 +146,27 @@ export default async function ServiceSummary() {
       {/* Project Cycle Section */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">{data.projectCycleSection?.projectCycleHaeding}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-16">{data.projectCycleSection?.projectCycleHaeding}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-14">
             {data.projectCycleSection?.projectLifeCycle.map((step: any, index: any) => (
-              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 transform hover:scale-105">
-                <div className="flex items-center border border-gray-400 justify-center bg-gray-200 rounded-t-lg py-4">
+              <div key={index} className="bg-[#EDECEC] rounded-3xl shadow-sm relative">
+                <div className="z-10 flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-8 drop-shadow-serviceCard">
                   <span className="text-gray-800 font-bold text-lg">{index + 1}</span>
                 </div>
-                <div className="p-6">
-                  {/* <h3 className="text-lg font-semibold text-gray-800">{step}</h3> */}
-                  <h4 className="text-gray-700 font-semibold text-center">{step}</h4>
+                <div className="p-6 h-full">
+                  <div className="text-base font-medium text-lg leading-6 pt-6 text-center">
+                    {step.heading}
+                  </div>
+                  <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify">
+                    {step.detail}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
+
       <img
         loading="lazy"
         src="/affiliate-partner-eclipse.png"
@@ -209,7 +207,7 @@ export default async function ServiceSummary() {
           <div className="text-center">
             <h2 className="text-2xl md:text-2xl font-bold text-gray-800 mb-6">{data.callToActionSection?.callToActionHeading}</h2>
             <p className="text-lg text-gray-700 mb-8">{data.callToActionSection?.callToAction}</p>
-            <Link className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            <Link className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
               href="tel:+1-850-558-4691"
               role="button"
             >
@@ -226,12 +224,12 @@ export default async function ServiceSummary() {
             <h2 className="text-2xl font-bold text-gray-800 mb-6">{data.specialOffersSection?.offerHeading}</h2>
             <p className="text-lg text-gray-700 mb-8">{data.specialOffersSection?.specialOffer}</p>
             <div className="flex justify-center">
-              <Link className="bg-yellow-400 cursor-pointer text-white font-bold py-3 px-6 rounded-lg shadow-lg mr-4 transition duration-300 ease-in-out transform hover:scale-105"
+              <Link className="bg-gradient-to-r ml-3 from-pink-500 to-purple-500 cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500"
                 href="tel:+1-850-558-4691"
                 role="button"
               > Claim Offer</Link>
-              {/* <div className="bg-gray-800 text-white cursor-pointer font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Learn More</div> */}
             </div>
+
           </div>
         </div>
       </div>
