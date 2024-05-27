@@ -28,7 +28,6 @@ export default async function ServiceSummary() {
   const data = await getData()
   const dataLogo = await getLogoData();
 
-  console.log(data)
 
   return (
     <div className="">
