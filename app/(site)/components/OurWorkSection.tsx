@@ -37,17 +37,17 @@ const OurWorkSection = () => {
   }, []);
 
   return (
-    <div className="self-center mt-16 w-full max-md:mt-10 max-w-[1582px] mx-auto">
-      <div className="flex gap-40 max-md:flex-col  max-md:gap-0 max-md:">
-        <div className="flex flex-col  mx-12   w-2/5 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100  max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
+    <div>
+      <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+        <div className="max-md:max-w-full relative">
+          <div className="flex md:flex-row flex-col  grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-20">
             {topArray &&
               topArray.map((item: any, index: any) => {
                 if (index < 2) {
                   return (
                     <>
                       <div
-                        className="flex overflow-hidden  relative flex-col justify-center rounded-3xl w-full shadow-md  shadow-blue-400 max-md:max-w-full image-container h-auto"
+                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md shadow-blue-700 max-md:max-w-full image-container h-auto"
                         key={item._key}
                       >
                         {item?.cardimage?.asset && (
@@ -59,8 +59,8 @@ const OurWorkSection = () => {
                           />
                         )}
 
-                        <div className="text-wrap mt-4 ml-2">
-                          <p className=" text-black font-light text-[15px] ">
+                        <div className="text-wrap mt-4 p-[10px] ml-2">
+                          <p className=" text-black font-light text-xl ">
                             {item?.carddescription}
                           </p>
                         </div>
@@ -83,15 +83,15 @@ const OurWorkSection = () => {
               })}
           </div>
         </div>
-        <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
+        <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+          <div className="max-md:max-w-full flex md:flex-row flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-10">
             {recentArray &&
               recentArray.map((item: any, index: any) => {
                 if (index < 2) {
                   return (
                     <>
                       <div
-                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md  shadow-blue-400   max-md:max-w-full image-container h-auto"
+                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md shadow-blue-700  max-md:max-w-full image-container h-auto"
                         key={item._key}
                       >
                         {item?.cardimage?.asset && (
@@ -104,7 +104,7 @@ const OurWorkSection = () => {
                         )}
 
                         <div className="text-wrap mt-4 ml-2">
-                          <p className=" text-black font-light text-[15px] ">
+                          <p className=" text-black  font-light p-[10px] text-xl ">
                             {item?.carddescription}
                           </p>
                         </div>
@@ -131,19 +131,19 @@ const OurWorkSection = () => {
 
       <style jsx>{`
         .fixed-size {
-          width: 600px;
+          width: auto;
           height: auto; /* Adjust height as needed */
           object-fit: cover;
         }
       `}</style>
 
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
+<div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
         <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
           <Link
             href="/case-study"
             className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
           >
-            <div className="relative grow self-center">
+            <div className="relative grow  self-center">
               Explore Our Portfolio
             </div>
             <img
@@ -166,4 +166,3 @@ const OurWorkSection = () => {
 };
 
 export default OurWorkSection;
-

@@ -215,7 +215,7 @@ const Services = async () => {
 
         <div className="2xl:container 2xl:mx-auto mt-14 sm:mt-16 md:mt-20 xl:mt-24">
           <ScrollAnimation>
-            <h2 className="ml-10 xl:ml-5 2xl:ml-20 text-2xl sm:text-3xl md:text-5xl capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1120px]">
+            <h2 className="mx-auto text-2xl sm:text-3xl md:text-5xl text-center capitalize leading-[28px] sm:leading-[61px] text-sky-950 max-w-[1120px]">
               Steps we Take to Make Your Project Successful
             </h2>
           </ScrollAnimation>

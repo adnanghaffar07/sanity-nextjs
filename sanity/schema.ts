@@ -13,6 +13,7 @@ import testimonial from "./schemas/testimonail-schema";
 import portfolioSchema from "./schemas/portfolio";
 import faq from "./schemas/faq";
 import partnershipSchema from "./schemas/partnership";
+import serviceSummary from "./schemas/service-summary";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -26,5 +27,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faq,
     techLogos,
     partnershipSchema,
+    serviceSummary
   ],
 };

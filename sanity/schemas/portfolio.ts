@@ -23,6 +23,23 @@ const portfolioSchema = {
       title: "Group",
       type: "string",
     },
+
+    {
+      name: "heroimage",
+      title: "Hero Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+
     {
       name: "cardimage",
       title: "Card Image",
@@ -38,11 +55,13 @@ const portfolioSchema = {
         },
       ],
     },
+
     {
       name: "carddescription",
       title: "Card Description",
       type: "string",
     },
+
     {
       name: "primaryimage",
       title: "Primary Image",
@@ -100,11 +119,69 @@ const portfolioSchema = {
         },
       ],
     },
+
+    {
+      name: "toolsandtechlist",
+      title: "Tools And Tech List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+
+            {
+              name: "techImage",
+              title: "Tech Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
     {
       name: "projectscopecontent",
       title: "Project Scope Content",
       type: "string",
     },
+
+    {
+      name: "operatingsystem",
+      title: "Operating System",
+      type: "string",
+    },
+
+    {
+      name: "toolsandtechnologies",
+      title: "Tools & Technologies Used",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+
     {
       name: "technologiesused",
       title: "Technologies Used",
@@ -193,6 +270,7 @@ const portfolioSchema = {
         },
       ],
     },
+
     {
       name: "toolsfortest",
       title: "Tools For Test",
@@ -202,6 +280,77 @@ const portfolioSchema = {
       name: "conclusion",
       title: "Conclusion",
       type: "string",
+    },
+
+    {
+      name: "cardItemsList",
+      title: "Card Items List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "cardTitle",
+              title: "Card Title",
+              type: "string",
+            },
+
+            {
+              name: "group",
+              title: "Group",
+              type: "string",
+            },
+
+            {
+              name: "url",
+              title: "URL",
+              type: "string",
+            },
+
+            {
+              name: "cardImage",
+              title: "Card Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+            {
+              name: "buttonColor",
+              title: "Button Color",
+              type: "string",
+            },
+            {
+              name: "buttonLogo",
+              title: "Button Logo",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+            {
+              name: "cardDescription",
+              title: "Card Description",
+              type: "string",
+            },
+          ],
+        },
+      ],
     },
 
     // {
