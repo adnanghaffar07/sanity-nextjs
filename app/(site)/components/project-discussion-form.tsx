@@ -58,7 +58,6 @@ export default function ProjectDiscussionContainer() {
   const pageName = currentPath.split("/").pop();
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
-    console.log("_____recapthca value", recaptchaValue);
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");

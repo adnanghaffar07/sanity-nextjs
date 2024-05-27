@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { partnershipSchema } from "../../schemas/index";
 import Select from "react-select";
 import { City } from "country-state-city";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const initialValues = {
   name: "",
@@ -36,6 +37,10 @@ const programOptions = [
 ];
 
 const PartnershipForm = () => {
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const [errorRecaptcha, setErrorRecaptcha] = useState("");
+  const [recaptchaValue, setRecaptchaValue] = useState("");
+
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
@@ -50,18 +55,38 @@ const PartnershipForm = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
+    resetForm,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: partnershipSchema,
     onSubmit: (values, action) => {
-      action.resetForm();
+      // action.resetForm();
     },
   });
+
+  const onRecaptchaChange = (value: any) => {
+    if (!value) {
+      setErrorRecaptcha("Please verify the above checkbox");
+    } else {
+      setRecaptchaValue(value);
+      setErrorRecaptcha("");
+    }
+  };
+
+  const onRecaptchaExpired = () => {
+    setRecaptchaValue("");
+    setErrorRecaptcha("Please verify again the above checkbox.");
+  };
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
+
+    if (!recaptchaValue) {
+      setErrorRecaptcha("Please verify the above checkbox");
+      return;
+    }
 
     if (!values.name.length || !values.email.length) {
       return;
@@ -97,6 +122,11 @@ const PartnershipForm = () => {
         setBgColor("bg-green-500");
         setMessage("Your Message has been successfully submitted!");
         setMessageSuccess("w-[100%]");
+
+        resetForm();
+        recaptchaRef?.current?.reset();
+        setRecaptchaValue("");
+        setErrorRecaptcha("");
       } else {
         setBgColor("bg-red-500");
         setMessage("Message not submitted!");
@@ -335,7 +365,7 @@ const PartnershipForm = () => {
             )}
           </div>
 
-          <div className="mt-4">
+          <div className="my-4">
             <Select
               placeholder="I am interested in"
               isClearable={true}
@@ -378,6 +408,14 @@ const PartnershipForm = () => {
               }}
             />
           </div>
+
+          <ReCAPTCHA
+            sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
+            ref={recaptchaRef}
+            onChange={onRecaptchaChange}
+            onExpired={onRecaptchaExpired}
+          />
+          {errorRecaptcha && <div className="form-error">{errorRecaptcha}</div>}
 
           <button
             type="submit"
