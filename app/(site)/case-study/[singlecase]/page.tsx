@@ -58,7 +58,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             </div>
           </div>
           <div>
-            {data.secondaryimage.asset && (
+            {data?.secondaryimage?.asset && (
               <img
                 loading="lazy"
                 src={urlForImage(data.secondaryimage.asset)}
