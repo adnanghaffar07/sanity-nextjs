@@ -456,13 +456,14 @@ export default function HomeNavigationContainer() {
                 <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-6">
+                  
                       <Link
-                        href="/case-study"
+                        href="/service-summary"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
                           <Image
-                            src="/library.svg"
+                            src="/documents-sharp.svg"
                             alt=""
                             height={12}
                             width={12}
@@ -471,10 +472,10 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">
-                            Case-Studies
+                            Service Summary
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                            Success Stories{" "}
+                          Service Essence
                           </p>
                         </div>
                       </Link>
@@ -545,7 +546,30 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                     </div>
+                  
                     <div className="grid grid-cols-1 gap-6">
+                    <Link
+                        href="/case-study"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/library.svg"
+                            alt=""
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">
+                            Case-Studies
+                          </p>
+                          <p className="mt-1 text-sm text-gray-500">
+                            Success Stories{" "}
+                          </p>
+                        </div>
+                      </Link>
                       <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image

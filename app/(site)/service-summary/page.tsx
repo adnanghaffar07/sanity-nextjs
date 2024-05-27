@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import Link from "next/link";
 
 async function getData() {
   const query = `*[_type == 'serviceSummary'][0]`;
@@ -53,26 +55,55 @@ export default async function ServiceSummary() {
       </div>
 
       {/* Introduction Section */}
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-800">{data.introductionSection.introHeading}</h2>
-            <p className="mt-4 text-xl text-gray-600">{data.introductionSection.introDesc}</p>
+      <img
+        loading="lazy"
+        src="/affiliate-partner-eclipse.png"
+        alt="eclipse icon"
+        className="absolute w-[270px] z-0"
+
+      />
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center">
+          <div className="w-full md:w-1/2 md:pr-8">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold mb-8 text-center md:text-left "> {/* Adjusted text alignment for larger screens */}
+                {data.introductionSection?.introHeading}
+              </h2>
+              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center"> {/* Adjusted text alignment for larger screens */}
+                {data.introductionSection?.introDesc}
+              </p>
+
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center"> {/* Adjusted margin and flex styles for smaller screens */}
+            <Image
+              src={urlForImage(data.introductionSection?.introImage).toString()}
+              alt=""
+              width={570}
+              height={370}
+            />
           </div>
         </div>
       </div>
 
+
+
+
+
+
+
       {/* Detail Section */}
-      <div className="bg-white py-12">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.detailSection.heading}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">{data.detailSection.heading}</h2>
+          <div className="flex flex-wrap gap-8 justify-center">
             {data.detailSection?.detailInd?.map((detail: any, index: any) => (
-              <div key={index} className="bg-gray-100 rounded-lg shadow-md p-6">
+              <div key={index} className="bg-white rounded-lg shadow-xl p-6 mb-6 w-full max-w-xl border border-gray-700">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">{detail.title}</h3>
                 <p className="text-gray-600 mb-4">{detail.smDescription}</p>
                 <p className="text-gray-700 mb-4">{detail.description}</p>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">{detail.benefits}</h4>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Key Benefits:</h4>
                 <ul className="list-disc pl-6">
                   {detail.keyBenefits.map((benefit: any, index: any) => (
                     <li key={index} className="text-gray-700">{benefit}</li>
@@ -85,88 +116,126 @@ export default async function ServiceSummary() {
       </div>
 
       {/* Project Management Section */}
-      <div className="py-12 bg-gray-100">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.projectManagement?.projectHeading}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.projectManagement?.toolsTech?.map(
-              (tool: any, toolIndex: any) => (
-                <div key={toolIndex}>
-                  <div className="bg-white shadow-md p-6 rounded-lg flex flex-col h-full">
-                    <div className="flex flex-row justify-center">
-                      {tool.images?.map((logoRef: any, logoIndex: any) => {
-                        const logoData = dataLogo.find(
-                          (logo: any) => logo._id === logoRef._ref
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">{data.projectManagement?.projectHeading}</h2>
+          <div className="flex flex-wrap justify-center">
+            {data.projectManagement?.toolsTech?.map((tool: any, toolIndex: any) => (
+              <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
+                <div className="bg-white border border-[#0a8ffc] shadow-md p-6 rounded-lg flex flex-col h-full">
+                  <div className="flex flex-row justify-center mb-4">
+                    {tool.images?.map((logoRef: any, logoIndex: any) => {
+                      const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                      if (logoData) {
+                        return (
+                          <div key={logoIndex} className="mr-2">
+                            <img
+                              src={urlForImage(logoData.image).toString()}
+                              alt={logoData.heading}
+                              className="h-8 object-cover"
+                            />
+                          </div>
                         );
-                        if (logoData) {
-                          return (
-                            <div key={logoIndex} className="">
-                              <img
-                                src={urlForImage(logoData.image).toString()}
-                                alt={logoData.heading}
-                                className="h-8 object-cover mb-2"
-                              />
-                            </div>
-                          );
-                        } else {
-                          return null;
-                        }
-                      })}
-                    </div>
-                    <h3 className="text-xl text-center font-semibold mb-4">
-                      {tool.heading}
-                    </h3>
-                    <p className="text-gray-700 text-center">{tool.detail}</p>
+                      } else {
+                        return null;
+                      }
+                    })}
                   </div>
+                  <h3 className="text-xl text-center font-semibold mb-4">{tool.heading}</h3>
+                  <p className="text-gray-700 text-center">{tool.detail}</p>
                 </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Project Cycle Section */}
-      <div className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.projectCycleSection?.projectCycleHaeding}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.projectCycleSection?.projectLifeCycle.map((step: any, index: any) => (
-              <div key={index} className="bg-gray-100 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">Step {index + 1}</h3>
-                <p className="text-gray-600">{step}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
+      {/* Project Cycle Section */}
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">{data.projectCycleSection?.projectCycleHaeding}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {data.projectCycleSection?.projectLifeCycle.map((step: any, index: any) => (
+              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 transform hover:scale-105">
+                <div className="flex items-center border border-gray-400 justify-center bg-gray-200 rounded-t-lg py-4">
+                  <span className="text-gray-800 font-bold text-lg">{index + 1}</span>
+                </div>
+                <div className="p-6">
+                  {/* <h3 className="text-lg font-semibold text-gray-800">{step}</h3> */}
+                  <h4 className="text-gray-700 font-semibold text-center">{step}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <img
+        loading="lazy"
+        src="/affiliate-partner-eclipse.png"
+        alt="eclipse icon"
+        className="absolute w-[300px] z-0"
+
+      />
       {/* Summary Section */}
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center">
+          <div className="w-full md:w-1/2 md:pr-8">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold mb-8 text-center md:text-left "> {/* Adjusted text alignment for larger screens */}
+                {data.summarySection?.summaryHeading}
+              </h2>
+              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center"> {/* Adjusted text alignment for larger screens */}
+                {data.summarySection?.summaryMessage}
+              </p>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center"> {/* Adjusted margin and flex styles for smaller screens */}
+            <Image
+              src={urlForImage(data.summarySection?.summaryImg).toString()}
+              alt=""
+              width={470}
+              height={250}
+            />
+          </div>
+        </div>
+      </div>
+
+
+
+
+      {/* Call to Action Section */}
       <div className="py-12 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.summarySection?.summaryHeading}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div className="text-gray-600">
-              <p className="text-lg">{data.summarySection?.summaryMessage}</p>
+          <div className="text-center">
+            <h2 className="text-2xl md:text-2xl font-bold text-gray-800 mb-6">{data.callToActionSection?.callToActionHeading}</h2>
+            <p className="text-lg text-gray-700 mb-8">{data.callToActionSection?.callToAction}</p>
+            <Link className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+              href="tel:+1-850-558-4691"
+              role="button"
+            >
+
+              Get Started Now</Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Special Offer Section */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">{data.specialOffersSection?.offerHeading}</h2>
+            <p className="text-lg text-gray-700 mb-8">{data.specialOffersSection?.specialOffer}</p>
+            <div className="flex justify-center">
+              <Link className="bg-yellow-400 cursor-pointer text-white font-bold py-3 px-6 rounded-lg shadow-lg mr-4 transition duration-300 ease-in-out transform hover:scale-105"
+                href="tel:+1-850-558-4691"
+                role="button"
+              > Claim Offer</Link>
+              {/* <div className="bg-gray-800 text-white cursor-pointer font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Learn More</div> */}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="py-12 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.callToActionSection?.callToActionHeading}</h2>
-          <p className="text-lg text-gray-600 mb-6">{data.callToActionSection?.callToAction}</p>
-        </div>
-      </div>
-
-      {/* Special Offer Section */}
-      <div className="py-12 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.specialOffersSection?.offerHeading}</h2>
-          <p className="text-lg text-gray-600 mb-6">{data.specialOffersSection?.specialOffer}</p>
-        </div>
-      </div>
     </div>
   );
 }
