@@ -107,12 +107,8 @@ export default function HomeNavigationContainer() {
           <ul className=" nav-links relative lg:mx-auto">
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
-                <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Home
                 </span>
@@ -120,15 +116,11 @@ export default function HomeNavigationContainer() {
             </li>
             <li
               onClick={toggleMenu}
-              className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
+              className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
             >
               <button>
-                <span
-                  className={`text-lg hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Services
                 </span>
@@ -419,17 +411,11 @@ export default function HomeNavigationContainer() {
             </div>
             {/* About us */}
 
-            <li
-              onClick={toggleAbout}
-              className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
-            >
-              <button>
+            <li onClick={toggleAbout} className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+             
+               <button>
                 <span
-                  className={`text-lg hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className="hover:underline text-white"
                 >
                   About Us
                 </span>
@@ -685,12 +671,8 @@ export default function HomeNavigationContainer() {
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/blogs">
-                <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Blogs
                 </span>
@@ -699,29 +681,21 @@ export default function HomeNavigationContainer() {
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/career">
-                <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Career
-                </span>
+                </span> 
               </Link>{" "}
             </li>
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/technologies">
-                <span
-                  className={`hover:underline  ${
-                    currentPath.startsWith("/case-study/")
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+              <span
+                  className="hover:underline text-white"
                 >
                   Technologies
-                </span>
+                </span> 
               </Link>{" "}
             </li>
           </ul>

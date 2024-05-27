@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import { contactSchema } from "../../schemas/index";
+import { usePathname } from "next/navigation";
 
 const initialValues = {
   name: "",
@@ -13,6 +14,7 @@ const initialValues = {
 };
 
 export default function ProjectDiscussionContainer() {
+  const currentPath = usePathname();
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
@@ -27,6 +29,8 @@ export default function ProjectDiscussionContainer() {
       },
     });
 
+  const pageName = currentPath.split("/").pop();
+
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
     setMessage("");
@@ -36,20 +40,26 @@ export default function ProjectDiscussionContainer() {
       !values.name.length ||
       !values.email.length ||
       !values.contact_number.length ||
-      !values.looking.length ||
-      !values.message.length
+      !values.looking.length
     ) {
       return;
     }
     if (
       errors.name ||
-      errors.message ||
       errors.contact_number ||
       errors.email ||
       errors.looking
     ) {
       return;
     }
+
+    const actuallPageName =
+      pageName === ""
+        ? "Home"
+        : pageName
+            ?.split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
 
     try {
       const formData = new FormData();
@@ -58,6 +68,7 @@ export default function ProjectDiscussionContainer() {
       formData.append("number", values.contact_number);
       formData.append("looking", values.looking);
       formData.append("message", values.message);
+      formData.append("pagename", actuallPageName || "Home");
       setUploading(true);
       setMessage("Submitting form...");
 
@@ -92,7 +103,7 @@ export default function ProjectDiscussionContainer() {
       setUploading(false);
       setTimeout(() => {
         setMessage("");
-      }, 5000);
+      }, 8000);
     }
   };
 
@@ -166,9 +177,6 @@ export default function ProjectDiscussionContainer() {
               rows={4}
               cols={4}
             />
-            {errors.message && touched.message ? (
-              <p className="form-error">{errors.message}</p>
-            ) : null}
           </div>
 
           <button

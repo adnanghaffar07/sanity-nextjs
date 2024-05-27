@@ -1,265 +1,315 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import HeroSectionComponent from "../components/HeroSectionComponent";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import { revalidatePath } from "next/cache";
 
-async function getData() {
-  const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
-  try {
-    const fetchData = await client.fetch(query);
-    return fetchData || [];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
+const Page = () => {
+  const [originalCards, SetOriginalCards] = useState<any[]>([""]);
+  const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
+  const [filteredItems, setFilteredItems] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  var itemsPerPage = 6;
+  var startIndex = 0;
+  var endIndex = startIndex + itemsPerPage;
+  var totalPages = 0;
+
+  useEffect(() => {
+    async function getData() {
+      const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
+      try {
+        const fetchData = await client.fetch(query);
+        return fetchData || [];
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+      }
+    }
+
+    const dataFun = async () => {
+      const data = await getData();
+      const recentArray = await data.filter(
+        (item: any) => item.group === "recent"
+      );
+      const topArray = await data.filter((item: any) => item.group === "top");
+
+      const caseStudyData = data.filter(
+        (item: any) => item.title == "CaseStudyInfo"
+      );
+
+      if (caseStudyData && caseStudyData[0].cardItemsList) {
+        const initalArray = caseStudyData[0].cardItemsList;
+        setFilteredItems(initalArray);
+        SetOriginalCards(initalArray);
+        totalPages = Math.ceil(originalCards.length / itemsPerPage);
+      } else {
+        console.error("No CaseStudyInfo found or cardItemsList is missing");
+      }
+    };
+    dataFun();
+  }, []);
+
+  function GetFilteredData(option: any) {
+    if (selectedFilters.includes(option)) {
+      let filters = selectedFilters.filter((el) => el !== option);
+      SetSelectedFilters(filters);
+    } else {
+      SetSelectedFilters([...selectedFilters, option]);
+    }
   }
-}
 
-const page = async () => {
-  const data = await getData();
-  const recentArray = await data.filter((item: any) => item.group === "recent");
-  const topArray = await data.filter((item: any) => item.group === "top");
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage + 1, totalPages - 1));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+
+  // FOR FILTIRATION
+  useEffect(() => {
+    FilterItems();
+  }, [selectedFilters]);
+
+  // FOR PAGINATION
+  useEffect(() => {
+    startIndex = currentPage * itemsPerPage;
+    endIndex = startIndex + itemsPerPage;
+    const newFilteredItems = originalCards.slice(startIndex, endIndex);
+    setFilteredItems(newFilteredItems);
+  }, [currentPage]);
+
+  function FilterItems() {
+    if (selectedFilters.length > 0) {
+      let tempItems = selectedFilters.map((selectedCategory) => {
+        let temp = originalCards.filter((item) => {
+          return item.group === selectedCategory;
+        });
+        return temp;
+      });
+      setFilteredItems(tempItems.flat());
+    } else {
+      setFilteredItems(originalCards);
+    }
+  }
+
   return (
     <>
-      <HeroSectionComponent
-        title="Case Studies"
-        content="Explore our case studies to discover how we turn challenges into
-  success stories through technology solutions."
-        image="/case-study-hero-image.jpg"
-      />
-
-      <section className="mx-auto w-full relative overflow-hidden">
-        <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[550px] sm:-left-[400px] -top-80 sm:-top-64 flex items-center justify-center z-0">
-          <div className="bg-white w-[610px] h-[610px] rounded-full"></div>
+      <section className="relative">
+        <div className=" w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
+        <div className="w-full h-[380px] sm:h-[700px] relative z-0">
+          <Image
+            src="/CaseStudyHero.jpg"
+            alt="CaseStudyHero.jpg"
+            loading="lazy"
+            fill
+            style={{ objectFit: "cover" }}
+          />
         </div>
 
-        <h2 className="self-center text-2xl sm:text-3xl md:text-6xl tracking-tight text-center text-black capitalize leading-[61.08px] max-md:max-w-full mt-10 sm:mt-20">
-          Checkout our projects
-        </h2>
-
-        {topArray &&
-          topArray.map((item: any, index: any) => {
-            return index % 2 === 0 ? (
-              <div
-                className="mt-4 sm:mt-24 mx-5 sm:mx-10 relative"
-                key={item._key}
-              >
-                <div className="bg-[#1D92FB] opacity-15 w-[120px] sm:w-[207px] h-[120px] sm:h-[207px] rounded-full absolute -right-20 sm:-right-20 md:-right-28 top-[220px] sm:top-[350px] md:top-[440px] lg:top-[600px] xl:top-20 z-0"></div>
-                <div className="flex flex-col xl:flex-row gap-5 max-w-[1624px] justify-between items-center mx-auto">
-                  <div className="w-full sm:w-[600px] md:w-[720px] lg:w-[980px] xl:w-[778px] z-[1]">
-                    {item?.cardimage?.asset && (
-                      <Image
-                        src={urlForImage(item.cardimage.asset)}
-                        alt={item.cardimage.alt}
-                        width={800}
-                        height={533}
-                        loading="lazy"
-                        className="grow w-full z-[1]"
-                      />
-                    )}
-                  </div>
-
-                  <div className="flex flex-col items-center mt-0 md:mt-10">
-                    <h2 className="self-stretch text-2xl sm:text-3xl md:text-6xl tracking-tight text-right capitalize leading-[61.08px] text-sky-950">
-                      {item.title}
-                    </h2>
-                    <p className="mt-0 sm:mt-3 text-xs sm:text-xl leading-[16px] sm:leading-7 text-right text-black max-w-[290px] sm:max-w-[490px]">
-                      {item.carddescription}
-                    </p>
-
-                    <div className="w-full flex justify-end">
-                      {item.slug ? (
-                        <Link
-                          href={`/case-study/${item.slug}`}
-                          className="flex items-center px-4 gap-4 mt-2 sm:mt-10 text-2xl text-black bg-[#F7E022] w-[134px] sm:w-[223px] h-7 sm:h-[55px] rounded-[9px] cursor-pointer shadow-xl"
-                        >
-                          <p className="flex-auto text-xs sm:text-xl">
-                            Learn More
-                          </p>
-                          <div className="w-4 h-4 sm:w-8 sm:h-8">
-                            <Image
-                              src="/case-study-more-button-icon.png"
-                              alt="Learn More Icon"
-                              width={31}
-                              height={32}
-                              loading="lazy"
-                              className="shrink-0 aspect-[1.03]"
-                            />
-                          </div>
-                        </Link>
-                      ) : (
-                        <button className="flex items-center px-4 gap-4 mt-2 sm:mt-10 text-2xl text-black bg-[#F7E022] w-[134px] sm:w-[223px] h-7 sm:h-[55px] rounded-[9px] cursor-pointer shadow-xl">
-                          <p className="flex-auto text-xs sm:text-xl">
-                            Learn More
-                          </p>
-                          <div className="w-4 h-4 sm:w-8 sm:h-8">
-                            <Image
-                              src="/case-study-more-button-icon.png"
-                              alt="Learn More Icon"
-                              width={31}
-                              height={32}
-                              loading="lazy"
-                              className="shrink-0 aspect-[1.03]"
-                            />
-                          </div>
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div
-                className="mt-16 sm:mt-40 mx-5 sm:mx-10 relative"
-                key={item._key}
-              >
-                <div className="bg-[#1D92FB] opacity-15 w-[120px] sm:w-[207px] h-[120px] sm:h-[207px] rounded-full absolute -left-20 sm:-left-36 top-[160px] sm:top-[320px] md:top-[450px] lg:top-[600px] xl:top-12 z-0"></div>
-                <div className="flex flex-col xl:flex-row-reverse gap-5 justify-between max-w-[1624px] items-center mx-auto relative">
-                  <div className="w-full sm:w-[600px] md:w-[720px] lg:w-[980px] xl:w-[778px]z-[1]">
-                    {item?.cardimage?.asset && (
-                      <Image
-                        src={urlForImage(item.cardimage.asset)}
-                        alt={item.cardimage.alt}
-                        width={800}
-                        height={533}
-                        loading="lazy"
-                        className="grow w-full z-[1]"
-                      />
-                    )}
-                  </div>
-
-                  <div className="flex flex-col items-center mt-0 md:mt-10">
-                    <h2 className="self-stretch text-2xl sm:text-3xl md:text-6xl tracking-tight text-left capitalize leading-[61.08px] text-sky-950">
-                      {item.title}
-                    </h2>
-                    <p className="mt-0 sm:mt-3 text-xs sm:text-xl leading-[16px] sm:leading-7 text-left text-black max-w-[290px] sm:max-w-[490px]">
-                      {item.carddescription}
-                    </p>
-
-                    <div className="w-full flex justify-start">
-                      {item.slug ? (
-                        <Link
-                          href={`/case-study/${item.slug}`}
-                          className="flex items-center px-4 gap-4 mt-2 sm:mt-10 text-2xl text-black bg-[#F7E022] w-[134px] sm:w-[223px] h-7 sm:h-[55px] rounded-[9px] cursor-pointer shadow-xl"
-                        >
-                          <p className="flex-auto text-xs sm:text-xl">
-                            Learn More
-                          </p>
-                          <div className="w-4 h-4 sm:w-8 sm:h-8">
-                            <Image
-                              src="/case-study-more-button-icon.png"
-                              alt="Learn More Icon"
-                              width={31}
-                              height={32}
-                              loading="lazy"
-                              className="shrink-0 aspect-[1.03]"
-                            />
-                          </div>
-                        </Link>
-                      ) : (
-                        <button className="flex items-center px-4 gap-4 mt-2 sm:mt-10 text-2xl text-black bg-[#F7E022] w-[134px] sm:w-[223px] h-7 sm:h-[55px] rounded-[9px] cursor-pointer shadow-xl">
-                          <p className="flex-auto text-xs sm:text-xl">
-                            Learn More
-                          </p>
-                          <div className="w-4 h-4 sm:w-8 sm:h-8">
-                            <Image
-                              src="/case-study-more-button-icon.png"
-                              alt="Learn More Icon"
-                              width={31}
-                              height={32}
-                              loading="lazy"
-                              className="shrink-0 aspect-[1.03]"
-                            />
-                          </div>
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <div className="mt-[130px] sm:mt-[327px] items-center absolute inset-0 flex flex-col z-[2]">
+          <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
+            Case Studies
+          </h1>
+          <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
+            Explore our case study on code automation, showcasing how innovative
+            strategies significantly enhance efficiency, reduce costs, and
+            accelerate development in software projects.
+          </p>
+        </div>
       </section>
 
-      <section className="mb-40 xl:container xl:mx-auto flex flex-col">
-        <h2 className="mt-16 sm:mt-36 text-2xl sm:text-6xl capitalize leading-8 sm:leading-[61px] text-sky-950 mb-9 sm:mb-16 ml-20">
-          Our Recent Work
-        </h2>
-        <div className="flex justify-center items-center flex-col xl:flex-row flex-wrap gap-x-24 gap-y-14 relative">
-          {recentArray &&
-            recentArray.map((recentWork: any) => {
-              return recentWork.slug ? (
-                <div
-                  className="flex flex-col pb-3 lg:pb-9 text-2xl font-medium leading-6 text-black rounded-lg sm:rounded-3xl bg-zinc-100 shadow-lg"
-                  key={recentWork._key}
-                >
-                  <Link
-                    href={`/case-study/${recentWork.slug}`}
-                    className="w-[274px] sm:w-[512px] "
-                  >
-                    {recentWork?.cardimage?.asset && (
-                      <Image
-                        src={urlForImage(recentWork.cardimage.asset)}
-                        alt={recentWork.cardimage.alt}
-                        width={512}
-                        height={288}
-                        loading="lazy"
-                        className="shadow-caseStudyRecentWorkCard rounded-lg sm:rounded-[26px] w-full h-full xl:h-[256px] "
-                      />
-                    )}
-                  </Link>
-                  <h2 className="text-sm sm:text-2xl text self-center mt-6">
-                    {recentWork.title} - {recentWork.subtitle}
-                  </h2>
-                </div>
-              ) : (
-                <div
-                  className="flex flex-col pb-3 lg:pb-9 text-2xl font-medium leading-6 text-black rounded-lg sm:rounded-3xl bg-zinc-100 shadow-lg"
-                  key={recentWork._key}
-                >
-                  <div className="w-[274px] sm:w-[512px] ">
-                    {recentWork?.cardimage?.asset && (
-                      <Image
-                        src={urlForImage(recentWork.cardimage.asset)}
-                        alt={recentWork.cardimage.alt}
-                        width={512}
-                        height={288}
-                        loading="lazy"
-                        className="shadow-caseStudyRecentWorkCard rounded-lg sm:rounded-[26px] w-full h-full xl:h-[256px]"
-                      />
-                    )}
-                  </div>
-                  <h2 className="text-sm sm:text-2xl text self-center mt-6">
-                    {recentWork.title} - {recentWork.subtitle}
-                  </h2>
-                </div>
-              );
-            })}
-          <div className="absolute -bottom-24 right-10 lg:right-64 xl:right-16 2xl:right-52">
-            <div className="flex gap-4">
-              <button>
-                <Image
-                  src="/recentProject-left-arrow.png"
-                  alt="left-arrow-key"
-                  width={36}
-                  height={36}
-                />
-              </button>
-              <button>
-                <Image
-                  src="/recentProject-right-arrow.png"
-                  alt="right-arrow-key"
-                  width={36}
-                  height={36}
-                />
-              </button>
-            </div>
+      <section className=" h-full flex flex-col  justify-center gap-4 bg-[#F3F3F3]">
+        <div className="self-stretch text-5xl mt-20 text-center text-black capitalize leading-[60px] max-md:text-4xl max-md:leading-[51px]">
+          Real World Application Case studies
+        </div>
+
+        <span className="lg:text-xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+          Case studies are essential because they offer detailed insights and
+          practical examples of how theories work in real-world scenarios,
+          helping to improve strategies and decision-making.
+        </span>
+      </section>
+
+      <div className=" flex md:flex-row  sm:px-4  justify-center mt-10 mb-10">
+        {/* Filter Section    */}
+
+        <section className=" md:w-[20%] sm:w-auto   py-24 px-10  text-white   bg-sky-500  max-w-[480px]">
+          <div className=" flex flex-row gap-2">
+            <Image
+              src="/FilterIcon.png"
+              width={27}
+              height={22}
+              alt="filterIcon"
+            ></Image>
+            <h1 className=" text-center">Filter Case Studies</h1>
           </div>
-        </div>
-      </section>
+
+          <div className=" flex flex-col gap-20">
+            <div className="mt-20 ml-2">
+              <h1>Project Types</h1>
+              <br></br>
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    id="app"
+                    onChange={(event) => GetFilteredData("app")}
+                  />
+                  <span> Mobile Development</span>
+                </li>
+
+                <li>
+                  <input
+                    type="checkbox"
+                    id="web"
+                    onChange={(event) => GetFilteredData("web")}
+                  />
+                  <span> Web Development</span>
+                </li>
+
+                <li>
+                  <input
+                    type="checkbox"
+                    id="qa"
+                    onClick={(event) => GetFilteredData("qa")}
+                  />
+                  <span> QA Testing & Automation</span>
+                </li>
+
+                <li>
+                  <input
+                    type="checkbox"
+                    onClick={(event) => GetFilteredData("shopify")}
+                  />
+                  <span> Ecommerce</span>
+                </li>
+                {/*
+                <li>
+                  <input type="checkbox" />
+                  <span> CRM Implementation</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> CRM Customization</span>
+                </li> */}
+              </ul>
+            </div>
+
+            {/* <div className="mt-20 ml-2">
+              <h1> Industries</h1>
+              <br></br>
+              <ul>
+                <li>
+                  <input type="checkbox" />
+                  <span> Travel & Hospitality</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Communication</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Finance</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Technology</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Automation</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Agency</span>
+                </li>
+
+                <li>
+                  <input type="checkbox" />
+                  <span> Education Technology</span>
+                </li>
+              </ul>
+            </div> */}
+          </div>
+        </section>
+
+        {/*  Case Study Grid Section    */}
+
+        <section className=" mx-auto">
+          <div className=" md:grid md:grid-cols-3 m-[50px]   md:gap-10 sm:grid  sm:grid-col-1">
+            {filteredItems
+              .slice(startIndex, endIndex)
+              .map((item: any, index: any) => {
+                return (
+                  <div key={index}>
+                    {item?.cardImage && (
+                      <Link href={`/case-study/${item?.url}`}>
+                        <Image
+                          width={404}
+                          height={268}
+                          className="w-full aspect-[1.52]  p-2  ring-2  ring-yellow-500 rounded-tr-3xl rounded-bl-3xl shadow-2xl hover:shadow-blue-800  md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                          src={urlForImage(item.cardImage).toString()}
+                          alt="card"
+                        ></Image>
+                      </Link>
+                    )}
+
+                    <div className="text-base font-light md:px-5 md:text-justify  tracking-wide leading-6 max-w-[317px] text-sky-950">
+                      {item.cardDescription}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </section>
+      </div>
+
+      {
+        <section>
+          <div className="flex flex-row justify-center mb-0 ">
+            <button
+              type="button"
+              onClick={handlePrevPage}
+              disabled={currentPage === 0}
+              className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              <Image
+                src="/backwardArrow.png"
+                width={50}
+                height={50}
+                alt="backward"
+              />
+            </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages - 1}
+              className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              <Image
+                src="/forwardArrow.png"
+                width={50}
+                height={50}
+                alt="backward"
+              />
+            </button>
+          </div>
+        </section>
+      }
+
+      <br></br>
     </>
   );
 };
 
-export default page;
+export default Page;
