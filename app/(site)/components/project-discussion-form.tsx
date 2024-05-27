@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { contactSchema } from "../../schemas/index";
 import { usePathname } from "next/navigation";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const initialValues = {
   name: "",
@@ -14,28 +15,58 @@ const initialValues = {
 };
 
 export default function ProjectDiscussionContainer() {
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const [errorRecaptcha, setErrorRecaptcha] = useState("");
+  const [recaptchaValue, setRecaptchaValue] = useState("");
+
   const currentPath = usePathname();
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
 
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: contactSchema,
-      onSubmit: (values, action) => {
-        action.resetForm();
-      },
-    });
+  const {
+    values,
+    errors,
+    handleBlur,
+    touched,
+    handleChange,
+    handleSubmit,
+    resetForm,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: contactSchema,
+    onSubmit: (values, action) => {
+      // action.resetForm();
+    },
+  });
+
+  const onRecaptchaChange = (value: any) => {
+    if (!value) {
+      setErrorRecaptcha("Please verify the above checkbox");
+    } else {
+      setRecaptchaValue(value);
+      setErrorRecaptcha("");
+    }
+  };
+
+  const onRecaptchaExpired = () => {
+    setRecaptchaValue("");
+    setErrorRecaptcha("Please verify again the above checkbox.");
+  };
 
   const pageName = currentPath.split("/").pop();
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
+    console.log("_____recapthca value", recaptchaValue);
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
 
+    if (!recaptchaValue) {
+      setErrorRecaptcha("Please verify the above checkbox");
+      return;
+    }
     if (
       !values.name.length ||
       !values.email.length ||
@@ -89,6 +120,10 @@ export default function ProjectDiscussionContainer() {
         setBgColor("bg-green-500");
         setMessage("Your Message has been successfully submitted!");
         setMessageSuccess("w-[100%]");
+        resetForm();
+        recaptchaRef?.current?.reset();
+        setRecaptchaValue("");
+        setErrorRecaptcha("");
       } else {
         setBgColor("bg-red-500");
         setMessage("Message not submitted!");
@@ -178,6 +213,14 @@ export default function ProjectDiscussionContainer() {
               cols={4}
             />
           </div>
+
+          <ReCAPTCHA
+            sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
+            ref={recaptchaRef}
+            onChange={onRecaptchaChange}
+            onExpired={onRecaptchaExpired}
+          />
+          {errorRecaptcha && <div className="form-error">{errorRecaptcha}</div>}
 
           <button
             type="submit"
