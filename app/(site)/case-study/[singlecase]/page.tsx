@@ -33,14 +33,14 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           <div>
             <div className="flex flex-col xl:flex-row justify-between items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
               <div>
-                <h2 className="text-xl sm:text-3xl md:text-6xl mb-4">
+                <h2 className="text-xl sm:text-3xl font-semibold md:text-3xl mb-4">
                   Introduction
                 </h2>
-                <p className="text-xs sm:text-xl md:text-2xl font-light xl:max-w-[610px] text-justify">
+                <p className="text-xs sm:text-xl font-light md:text-lg xl:max-w-[610px] text-justify">
                   {data.briefdescription && data.briefdescription}
                 </p>
               </div>
-              <div className="flex flex-col gap-6 md:gap-10 mb-10 mt-10 md:mb-24">
+              <div className="flex flex-col gap-6 md:gap-10 mb-20 mt-20 md:mb-24">
                 {data.briefitemsarray?.map((item: any) => {
                   return (
                     <div className="relative" key={item._key}>
@@ -67,18 +67,18 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               />
             )}
             <div className="w-full my-10 md:my-20 text-justify mx-auto">
-              <h3 className="text-xl md:text-4xl font-semibold mb-4 md:mb-8">
+              <h3 className="text-xl md:text-3xl font-semibold mb-4 md:mb-8">
                 Project Scope:
               </h3>
-              <p className="text-xs md:text-xl font-light leading-4 md:leading-8 ">
+              <p className="text-xs md:text-lg font-light leading-4 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
 
-              <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
+              <h3 className="text-lg md:text-3xl font-semibold my-4 md:my-8">
                 Tools & Technologies Used:
               </h3>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-[60px] sm:gap-[30px] 2xl:gap-[130px] max-w-[1440px] sm:my-40">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center sm:mt-0 sm:mb-0  gap-[60px] sm:gap-[30px] 2xl:gap-[50px] max-w-[1440px] sm:my-40">
                 {data.toolsandtechlist?.map((item: any) => {
                   return (
                     <img
@@ -92,22 +92,22 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 })}
               </div>
 
-              <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
+              <h3 className="text-xl md:text-3xl font-semibold my-4 md:my-8">
                 Challenges Faced:
               </h3>
               <ul>
                 {data.chanllangesfaced?.map((challange: any) => {
                   return (
                     <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                      className="text-xs md:text-lg leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
-                      <span>{challange.description}</span>
+                      <span className="font-light md:text-lg">{challange.description}</span>
                     </li>
                   );
                 })}
               </ul>
-              <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
+              <h3 className="text-xl md:text-3xl font-semibold my-4 md:my-8">
                 Our Approach:
               </h3>
               <ul>
@@ -117,15 +117,15 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={approach._key}
                     >
-                      <span className="text-xs md:text-xl font-bold">
+                      <span className="text-xs md:text-lg font-bold">
                         {approach.heading}:{" "}
                       </span>
-                      <span>{approach.description}</span>
+                      <span className="font-light md:text-lg">{approach.description}</span>
                     </li>
                   );
                 })}
               </ul>
-              <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
+              <h3 className="text-xl md:text-3xl font-semibold my-4 md:my-8">
                 Results:
               </h3>
               <ul>
@@ -135,22 +135,22 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={result._key}
                     >
-                      <span className="text-xs md:text-xl font-bold">
+                      <span className="text-xs md:text-lg font-bold">
                         {result.heading}:{" "}
                       </span>
-                      <span>{result.description}</span>
+                      <span className="font-light md:text-lg">{result.description}</span>
                     </li>
                   );
                 })}
               </ul>
 
-              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
+              <p className="text-xs md:text-lg leading-4 md:leading-8 font-light">
                 {data?.toolsfortest && data.toolsfortest}
               </p>
-              <h3 className="text-xl md:text-4xl font-semibold my-4 md:my-8">
+              <h3 className="text-xl md:text-3xl font-semibold my-4 md:my-8">
                 Conclusion:
               </h3>
-              <p className="text-xs md:text-xl leading-4 md:leading-8 font-light">
+              <p className="text-xs md:text-lg leading-4 md:leading-8 font-light">
                 {data?.conclusion && data.conclusion}
               </p>
             </div>
