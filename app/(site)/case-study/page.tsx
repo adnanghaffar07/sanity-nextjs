@@ -104,7 +104,7 @@ const Page = () => {
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           <Image
             src="/CaseStudyHero.jpg"
-            alt="CaseStudyHero"
+            alt="CaseStudyHero.jpg"
             loading="lazy"
             fill
             style={{ objectFit: "cover" }}
@@ -282,7 +282,7 @@ const Page = () => {
               type="button"
               onClick={handlePrevPage}
               disabled={currentPage === 0}
-              className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
             >
               <Image
                 src="/backwardArrow.png"
@@ -294,7 +294,7 @@ const Page = () => {
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages - 1}
-              className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
             >
               <Image
                 src="/forwardArrow.png"

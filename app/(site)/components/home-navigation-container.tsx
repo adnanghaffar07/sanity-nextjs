@@ -116,7 +116,7 @@ export default function HomeNavigationContainer() {
             </li>
             <li
               onClick={toggleMenu}
-              className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
+              className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
             >
               <button>
               <span
@@ -411,7 +411,7 @@ export default function HomeNavigationContainer() {
             </div>
             {/* About us */}
 
-            <li onClick={toggleAbout} className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            <li onClick={toggleAbout} className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
              
                <button>
                 <span
