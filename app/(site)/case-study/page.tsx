@@ -265,7 +265,7 @@ const Page = () => {
                       </Link>
                     )}
 
-                    <div className="text-base font-light md:px-5 md:text-justify  tracking-wide leading-6 max-w-[317px] text-sky-950">
+                    <div className="text-base font-light md:px-5  tracking-wide leading-6 max-w-[317px] text-sky-950">
                       {item.cardDescription}
                     </div>
                   </div>
