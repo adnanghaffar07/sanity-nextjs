@@ -5,9 +5,6 @@ import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import { GoogleTagManager } from "@next/third-parties/google";
 
-// import FooterContainer from "./components/footer-container";
-// import FormDisplay from "./components/FormDisplay";
-// import ScrollToTop from "./components/ScrollToTop";
 const FooterContainer = React.lazy(
   () => import("./components/footer-container")
 );
