@@ -138,13 +138,14 @@ const Page = () => {
       <div className=" flex md:flex-row  sm:px-4  justify-center mt-10 mb-10">
         {/* Filter Section    */}
 
-        <section className=" md:w-[20%] sm:w-auto   py-24 px-10  text-white   bg-sky-500  max-w-[480px]">
+        <section className=" md:w-[20%] sm:w-auto py-24 px-10  text-white  bg-[#1D92FB]  max-w-[480px]">
           <div className=" flex flex-row gap-2">
             <Image
               src="/FilterIcon.png"
               width={27}
-              height={22}
+              height={24}
               alt="filterIcon"
+              className="h-[20px] sm:h-[24px]"
             ></Image>
             <h1 className=" text-center">Filter Case Studies</h1>
           </div>
