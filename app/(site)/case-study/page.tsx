@@ -116,7 +116,7 @@ const Page = () => {
             Case Studies
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
-            Explore our case study on code automation, showcasing how innovative
+            Explore our case study on CodeAutomation, showcasing how innovative
             strategies significantly enhance efficiency, reduce costs, and
             accelerate development in software projects.
           </p>
