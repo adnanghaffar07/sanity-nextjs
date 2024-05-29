@@ -12,32 +12,6 @@ const OurWorkSection = () => {
   const [recentArray, setRecentArray] = useState<any[]>([]);
   const [topArray, settopArray] = useState<any[]>([]);
 
-  function ShowNextContainers(endVal: number) {
-    if (
-      recentArray[endVal] != null &&
-      recentArray[endVal] != recentArray[recentArray.length - 1]
-    ) {
-      const startIndexCopy = endVal;
-      const endIndexCopy = endVal + 3;
-
-      setStartIndex(startIndexCopy);
-      setEndIndex(endIndexCopy);
-
-      if (startIndexCopy < recentArray.length) {
-        const filterArray = recentArray.filter((item, index) => {
-          return index >= startIndexCopy && index < endIndexCopy;
-        });
-
-        setRecentArray(filterArray);
-      }
-    } else {
-      const lastElement = recentArray.filter((item, index) => {
-        return index == recentArray.length - 1;
-      });
-      setRecentArray(lastElement);
-    }
-  }
-
   useEffect(() => {
     async function getData() {
       const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
@@ -63,83 +37,91 @@ const OurWorkSection = () => {
   }, []);
 
   return (
-    <div className="self-center mt-16 w-full max-md:mt-10 max-w-[1582px] mx-auto">
-      <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
-        <div className="flex flex-col w-3/5 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow lg:text-2xl md:text-xl text-base text-zinc-100 max-md:mt-10 max-md:max-w-full gap-10">
+    <div>
+      <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+        <div className="max-md:max-w-full relative">
+          <div className="flex md:flex-row flex-col  grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-20">
             {topArray &&
               topArray.map((item: any, index: any) => {
                 if (index < 2) {
                   return (
-                    <div
-                      className="flex overflow-hidden relative flex-col justify-center w-full font-medium  max-md:max-w-full rounded-3xl image-container h-full"
-                      key={item._key}
-                    >
-                      {item?.cardimage?.asset && (
-                        <img
-                          loading="lazy"
-                          src={urlForImage(item.cardimage.asset)}
-                          className="size-full rounded-3xl"
-                          alt={item.cardimage.alt}
-                        />
-                      )}
+                    <>
+                      <div
+                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md shadow-blue-700 max-md:max-w-full image-container h-auto"
+                        key={item._key}
+                      >
+                        {item?.cardimage?.asset && (
+                          <img
+                            loading="lazy"
+                            src={urlForImage(item.cardimage.asset)}
+                            className="fixed-size rounded-3xl"
+                            alt={item.cardimage.alt}
+                          />
+                        )}
 
-                      {item.slug ? (
-                        <Link
-                          href={`/case-study/${item.slug}`}
-                          className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-20 overlay"
-                        >
-                          <span className="font-bold text-zinc-100">
-                            {item.title} - {item.subtitle}
-                          </span>
-                        </Link>
-                      ) : (
-                        <div className="absolute top-0 left-0 w-full h-full px-8 pb-7 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:px-5 max-md:max-w-full flex items-end transition-opacity duration-300 hover:bg-opacity-20 overlay">
-                          <span className="font-bold text-zinc-100">
-                            {item.title} - {item.subtitle}
-                          </span>
+                        <div className="text-wrap mt-4 p-[10px] ml-2">
+                          <p className=" text-black font-light text-xl ">
+                            {item?.carddescription}
+                          </p>
                         </div>
-                      )}
-                    </div>
+                        {item.slug ? (
+                          <Link
+                            href={`/case-study/${item.slug}`}
+                            className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-2xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
+                          >
+                            {item.title} - {item.subtitle}
+                          </Link>
+                        ) : (
+                          <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-2xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                            {item.title} - {item.subtitle}
+                          </div>
+                        )}
+                      </div>
+                    </>
                   );
                 }
               })}
           </div>
         </div>
-
-        <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-5 gap-10">
+        <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+          <div className="max-md:max-w-full flex md:flex-row flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-10">
             {recentArray &&
               recentArray.map((item: any, index: any) => {
-                const newIndex = index + startIndex;
-                if (newIndex < endIndex) {
+                if (index < 2) {
                   return (
-                    <div
-                      className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md max-md:max-w-full image-container h-auto"
-                      key={item._key}
-                    >
-                      {item?.cardimage?.asset && (
-                        <img
-                          loading="lazy"
-                          src={urlForImage(item.cardimage.asset)}
-                          className="size-full rounded-3xl"
-                          alt={item.cardimage.alt}
-                        />
-                      )}
+                    <>
+                      <div
+                        className="flex overflow-hidden relative flex-col justify-center rounded-3xl w-full shadow-md shadow-blue-700  max-md:max-w-full image-container h-auto"
+                        key={item._key}
+                      >
+                        {item?.cardimage?.asset && (
+                          <img
+                            loading="lazy"
+                            src={urlForImage(item.cardimage.asset)}
+                            className="fixed-size rounded-3xl"
+                            alt={item.cardimage.alt}
+                          />
+                        )}
 
-                      {item.slug ? (
-                        <Link
-                          href={`/case-study/${item.slug}`}
-                          className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
-                        >
-                          {item.title} - {item.subtitle}
-                        </Link>
-                      ) : (
-                        <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
-                          {item.title} - {item.subtitle}
+                        <div className="text-wrap mt-4 ml-2">
+                          <p className=" text-black  font-light p-[10px] text-xl ">
+                            {item?.carddescription}
+                          </p>
                         </div>
-                      )}
-                    </div>
+                        {item.slug ? (
+                          <Link
+                            href={`/case-study/${item.slug}`}
+                            className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
+                          >
+                            {item.title} - {item.subtitle}
+                          </Link>
+                        ) : (
+                          <div className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25">
+                            {item.title} - {item.subtitle}
+                          </div>
+                        )}
+                      </div>
+                    </>
                   );
                 }
               })}
@@ -147,13 +129,21 @@ const OurWorkSection = () => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 justify-between max-md:flex-wrap mt-10">
+      <style jsx>{`
+        .fixed-size {
+          width: auto;
+          height: auto; /* Adjust height as needed */
+          object-fit: cover;
+        }
+      `}</style>
+
+<div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
         <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
           <Link
             href="/case-study"
             className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
           >
-            <div className="relative grow self-center">
+            <div className="relative grow  self-center">
               Explore Our Portfolio
             </div>
             <img
@@ -167,10 +157,7 @@ const OurWorkSection = () => {
 
         <div className="flex gap-4 px-5 my-auto order-1 md:order-2 justify-end">
           <div className="rounded-2xl bg-sky-950 lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
-          <div
-            onClick={() => ShowNextContainers(endIndex)}
-            className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]"
-          />
+          <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
           <div className="bg-sky-800 rounded-2xl lg:h-[21px] md:h-[11px] lg:w-[108px] w-[54px]" />
         </div>
       </div>

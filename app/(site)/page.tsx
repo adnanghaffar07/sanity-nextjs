@@ -1,9 +1,13 @@
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
-import Testimonials from "./components/Testimonials";
-import Faqs from "./components/Faqs";
-import OurWorkSection from "./components/OurWorkSection";
+// import Testimonials from "./components/Testimonials";
+const Testimonials = React.lazy(() => import("./components/Testimonials"));
+// import OurWorkSection from "./components/OurWorkSection";
+const OurWorkSection = React.lazy(() => import("./components/OurWorkSection"));
+// import Faqs from "./components/Faqs";
+const Faqs = React.lazy(() => import("./components/Faqs"));
+
 import ScrollAnimation from "./components/ScrollAnimation";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
@@ -26,8 +30,9 @@ if(await isAuthenticated()){
           autoPlay
           loop
           playsInline
+          preload="auto"
         >
-          <source src="/for-blogs.mp4" type="video/mp4" />
+          <source src="/hero-sec-video.webm" type="video/mp4" />
         </video>
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
@@ -48,9 +53,9 @@ if(await isAuthenticated()){
                 </div>
               ))} */}
               {/* {bannerbox1content.content} */}
-              <div className="self-stretch lg:mt-11 mt-3 text-wrap">
+              <div className="self-stretch lg:mt-11 mt-3 text-wrap text-justify">
                 We are trusted by 200 global clients and offer innovative
-                software solutions tailored to specific needs and markets.
+                software solutions tailored to specific needs and markets
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center mt-1">
@@ -59,21 +64,20 @@ if(await isAuthenticated()){
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/dd11565216251ba7edf5d297e866d2f669890e35a17a2a5f0451e15e47a8f1e0?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-square w-[58px]"
               />
-              <div className="self-stretch lg:mt-11 mt-3">
-                We&rsquo;ve completed over 350 projects, demonstrating our
-                expertise in providing creative software products around the
-                world.
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
+                Completed 350+ projects, showcasing expertise in providing
+                creative software products globally
               </div>
             </div>
-            <div className="flex flex-col flex-1 items-center">
+            <div className="flex flex-col flex-1 items-center text-justify">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4dba27be0f0ef0e7f2222766f9380cd600d6c52ecf6d4faf7f8c09b0bf153bd?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-square w-[58px]"
               />
-              <div className="lg:mt-11 mt-3  text-wrap">
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
                 We professionally assessed 300 apps to assure high-quality and
-                reliable software solutions for our clients.
+                reliable software solutions for our clients
               </div>
             </div>
             <div className="flex flex-col flex-1 items-center">
@@ -82,9 +86,9 @@ if(await isAuthenticated()){
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d94d3acf8211d9d93fa767bd062c760909c92d44aa2ffe4184b9e68836f0611?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
                 className="self-center aspect-[0.89] w-[52px]"
               />
-              <div className="lg:mt-11 mt-3  text-wrap">
+              <div className="lg:mt-11 mt-3  text-wrap text-justify">
                 Over 150k bugs have been addressed, ensuring that our
-                clients&rsquo; software solutions are reliable and trustworthy.
+                clients&rsquo; software solutions are reliable and trustworthy
               </div>
             </div>
           </div>
@@ -102,7 +106,7 @@ if(await isAuthenticated()){
                 Web Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                App Development
+                Mobile App Development
               </div>
               <div className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
                 QA Automation Testing
@@ -196,7 +200,9 @@ if(await isAuthenticated()){
               excellence. Check out our case studies and witness how we&rsquo;ve
               helped businesses like yours succeed.
             </p>
-            <OurWorkSection />
+            <Suspense fallback={<div>Loading...</div>}>
+              <OurWorkSection />
+            </Suspense>
           </div>
         </ScrollAnimation>
         <ScrollAnimation>
@@ -208,7 +214,7 @@ if(await isAuthenticated()){
               <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
                 <div className="flex flex-col max-md:ml-0 max-md:w-full">
                   <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center flex h-100">
+                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex-col justify-center flex h-100">
                       <img
                         loading="lazy"
                         srcSet="/Group-17-1.svg"
@@ -468,24 +474,27 @@ if(await isAuthenticated()){
             </div>
           </ScrollAnimation>
         </div>
-        <div className="flex flex-col px-5 bg-[#F3F3F3] lg:py-16 py-16 relative overflow-hidden">
+
+        <div className="flex flex-col bg-[#F3F3F3] py-16 relative overflow-hidden">
           <img
             loading="lazy"
             srcSet="/icon-quote-start.svg"
             className="absolute top-10 -left-2 w-24 h-24 z-20"
           />
           <ScrollAnimation>
-            <div className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full text-center">
+            <div className="w-full xl:text-4xl text-3xl font-medium text-black text-center">
               Our Testimonials
             </div>
-            <div className="self-center xl:mt-6 mt-3 lg:text-2xl text-xl text-center text-black max-md:max-w-full">
+            <div className="self-center md:mt-6 mt-3 lg:text-2xl text-xl text-center text-black">
               Discover what our clients are saying about CodeAutomation
             </div>
-            <div className="mt-14 max-w-screen-lg mx-auto max-md:mt-10 max-md:max-w-full px-5 md:px-0">
-              <Testimonials />
+            <div className="mx-auto">
+              <Suspense fallback={<div>Loading...</div>}>
+                <Testimonials />
+              </Suspense>
 
-              <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap lg:mt-36 mt-48">
-                <Link
+              <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap mt-4">
+                {/* <Link
                   href="https://clutch.co/profile/codeautomationai#highlights"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -500,6 +509,31 @@ if(await isAuthenticated()){
                     className="w-[22px] h-[26.8px]"
                     alt="Arrow icon"
                   />
+                </Link> */}
+
+                <Link
+                  href="https://clutch.co/profile/codeautomationai#highlights"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex bg-white py-1 px-2 rounded-lg gap-2 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
+                >
+                  <div className="text-center flex flex-col gap-1">
+                    <p className="text-xs text-gray-400">REVIEWED ON</p>
+                    <img
+                      src="/clutch-icon.svg"
+                      alt="clutch-icon"
+                      className="w-20"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <img
+                      src="/rating-stars.svg"
+                      // src="/rating-stars1.svg"
+                      alt="ratings"
+                      className="w-24 bg-red-600"
+                    />
+                    <p className="text-xs text-gray-400">8 REVIEWS</p>
+                  </div>
                 </Link>
               </div>
             </div>
@@ -510,6 +544,7 @@ if(await isAuthenticated()){
             className="absolute bottom-10 -right-3 w-24 h-24 z-20"
           />
         </div>
+
         <ScrollAnimation>
           <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:py-16 py-8 md:px-5 w-full mx-auto relative">
             <img
@@ -521,7 +556,9 @@ if(await isAuthenticated()){
               <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
               </div>
-              <Faqs />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Faqs />
+              </Suspense>
             </div>
           </div>
         </ScrollAnimation>

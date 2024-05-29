@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { contactSchema } from "../../schemas/index";
+import { usePathname } from "next/navigation";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const initialValues = {
   name: "",
@@ -13,43 +15,81 @@ const initialValues = {
 };
 
 export default function ProjectDiscussionContainer() {
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const [errorRecaptcha, setErrorRecaptcha] = useState("");
+  const [recaptchaValue, setRecaptchaValue] = useState("");
+
+  const currentPath = usePathname();
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
 
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: contactSchema,
-      onSubmit: (values, action) => {
-        action.resetForm();
-      },
-    });
+  const {
+    values,
+    errors,
+    handleBlur,
+    touched,
+    handleChange,
+    handleSubmit,
+    resetForm,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: contactSchema,
+    onSubmit: (values, action) => {
+      // action.resetForm();
+    },
+  });
+
+  const onRecaptchaChange = (value: any) => {
+    if (!value) {
+      setErrorRecaptcha("Please verify the above checkbox");
+    } else {
+      setRecaptchaValue(value);
+      setErrorRecaptcha("");
+    }
+  };
+
+  const onRecaptchaExpired = () => {
+    setRecaptchaValue("");
+    setErrorRecaptcha("Please verify again the above checkbox.");
+  };
+
+  const pageName = currentPath.split("/").pop();
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
 
+    if (!recaptchaValue) {
+      setErrorRecaptcha("Please verify the above checkbox");
+      return;
+    }
     if (
       !values.name.length ||
       !values.email.length ||
       !values.contact_number.length ||
-      !values.looking.length ||
-      !values.message.length
+      !values.looking.length
     ) {
       return;
     }
     if (
       errors.name ||
-      errors.message ||
       errors.contact_number ||
       errors.email ||
       errors.looking
     ) {
       return;
     }
+
+    const actuallPageName =
+      pageName === ""
+        ? "Home"
+        : pageName
+            ?.split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
 
     try {
       const formData = new FormData();
@@ -58,6 +98,7 @@ export default function ProjectDiscussionContainer() {
       formData.append("number", values.contact_number);
       formData.append("looking", values.looking);
       formData.append("message", values.message);
+      formData.append("pagename", actuallPageName || "Home");
       setUploading(true);
       setMessage("Submitting form...");
 
@@ -68,9 +109,20 @@ export default function ProjectDiscussionContainer() {
       });
 
       if (response.ok) {
+        // Push event to dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "formSubmission",
+          form: "contactForm",
+        });
+
         setBgColor("bg-green-500");
         setMessage("Your Message has been successfully submitted!");
         setMessageSuccess("w-[100%]");
+        resetForm();
+        recaptchaRef?.current?.reset();
+        setRecaptchaValue("");
+        setErrorRecaptcha("");
       } else {
         setBgColor("bg-red-500");
         setMessage("Message not submitted!");
@@ -85,7 +137,7 @@ export default function ProjectDiscussionContainer() {
       setUploading(false);
       setTimeout(() => {
         setMessage("");
-      }, 5000);
+      }, 8000);
     }
   };
 
@@ -159,10 +211,15 @@ export default function ProjectDiscussionContainer() {
               rows={4}
               cols={4}
             />
-            {errors.message && touched.message ? (
-              <p className="form-error">{errors.message}</p>
-            ) : null}
           </div>
+
+          <ReCAPTCHA
+            sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
+            ref={recaptchaRef}
+            onChange={onRecaptchaChange}
+            onExpired={onRecaptchaExpired}
+          />
+          {errorRecaptcha && <div className="form-error">{errorRecaptcha}</div>}
 
           <button
             type="submit"
