@@ -116,7 +116,7 @@ const Page = () => {
             Case Studies
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
-            Explore our case study on code automation, showcasing how innovative
+            Explore our case study on CodeAutomation, showcasing how innovative
             strategies significantly enhance efficiency, reduce costs, and
             accelerate development in software projects.
           </p>
@@ -138,13 +138,14 @@ const Page = () => {
       <div className=" flex md:flex-row  sm:px-4  justify-center mt-10 mb-10">
         {/* Filter Section    */}
 
-        <section className=" md:w-[20%] sm:w-auto   py-24 px-10  text-white   bg-sky-500  max-w-[480px]">
+        <section className=" md:w-[20%] sm:w-auto py-24 px-10  text-white  bg-[#1D92FB]  max-w-[480px]">
           <div className=" flex flex-row gap-2">
             <Image
               src="/FilterIcon.png"
               width={27}
-              height={22}
+              height={24}
               alt="filterIcon"
+              className="h-[20px] sm:h-[24px]"
             ></Image>
             <h1 className=" text-center">Filter Case Studies</h1>
           </div>
@@ -265,7 +266,7 @@ const Page = () => {
                       </Link>
                     )}
 
-                    <div className="text-base font-light md:px-5 md:text-justify  tracking-wide leading-6 max-w-[317px] text-sky-950">
+                    <div className="text-base font-light md:px-5  tracking-wide leading-6 max-w-[317px] text-sky-950">
                       {item.cardDescription}
                     </div>
                   </div>
