@@ -18,13 +18,14 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
   return (
     <div className="max-w-full">
-      <section className=" bg-black">
+      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  lg:min-h-[700px] max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
-          <div style={{ paddingTop: '10px' }}>
+          <div style={{ paddingTop: '8px' }}>
           <img
             loading="lazy"
             src={urlForImage(data.cardimage.asset)}
             style={{ objectFit: "cover", display:"block" }}
+            className="lg:min-h-[700px]"
             alt={data.cardimage.alt}
           />
           </div>
