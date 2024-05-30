@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import { GoogleTagManager } from "@next/third-parties/google";
+import GreetingPopup from "./components/GreetingPopup";
 
 const FooterContainer = React.lazy(
   () => import("./components/footer-container")
@@ -43,6 +44,7 @@ export default async function RootLayout({
           <Suspense fallback={<div>Loading scroll-to-top...</div>}>
             <ScrollToTop />
           </Suspense>
+          <GreetingPopup />
         </div>
       </body>
     </html>
