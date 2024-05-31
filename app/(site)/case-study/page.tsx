@@ -12,6 +12,7 @@ const Page = () => {
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   var itemsPerPage = 6;
   var startIndex = 0;
@@ -63,11 +64,18 @@ const Page = () => {
   }
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage + 1, totalPages - 1));
+    setCurrentPage((prevPage) => prevPage + 1);
+    console.log('Current Page',currentPage);
+    console.log('Total Page',totalPages);
+    totalPages == 0 ? setIsDisabled(true) : setIsDisabled(false);
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+    console.log('Current Page',currentPage);
+    console.log('Total Page',totalPages);
+
+    currentPage == 1 ? setIsDisabled(false) : setIsDisabled(true);
   };
 
   // FOR FILTIRATION
@@ -79,8 +87,10 @@ const Page = () => {
   useEffect(() => {
     startIndex = currentPage * itemsPerPage;
     endIndex = startIndex + itemsPerPage;
-    const newFilteredItems = originalCards.slice(startIndex, endIndex);
-    setFilteredItems(newFilteredItems);
+    if (originalCards.slice(startIndex, endIndex).length > 0) {
+      const newFilteredItems = originalCards.slice(startIndex, endIndex);
+      setFilteredItems(newFilteredItems);
+    }
   }, [currentPage]);
 
   function FilterItems() {
@@ -248,18 +258,18 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3 m-[50px]   md:gap-10 sm:grid  sm:grid-col-1">
+          <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-4 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
               .map((item: any, index: any) => {
                 return (
-                  <div key={index}>
+                  <div key={index} className=" ring-2 p-2  sm:ring-2   sm:shadow-2xl sm: hover:shadow-blue-800 sm: ring-yellow-500 sm: rounded-tr-3xl sm: rounded-bl-3xl">
                     {item?.cardImage && (
                       <Link href={`/case-study/${item?.url}`}>
                         <Image
                           width={404}
                           height={268}
-                          className="w-full aspect-[1.52]  p-2  ring-2  ring-yellow-500 rounded-tr-3xl rounded-bl-3xl shadow-2xl hover:shadow-blue-800  md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
+                          className="w-full aspect-[1.52]  p-2   md:max-w-[304px] sm:max-w-[204px] sm:mb-2"
                           src={urlForImage(item.cardImage).toString()}
                           alt="card"
                         ></Image>
@@ -277,34 +287,61 @@ const Page = () => {
       </div>
 
       {
-        <section>
-          <div className="flex flex-row justify-center mb-0 ">
+        <section className=" mx-auto">
+          <div className="inline-flex mt-2  xs:mt-0">
+          
+          
+           
             <button
-              type="button"
               onClick={handlePrevPage}
-              disabled={currentPage === 0}
-              className="text-white bg-white-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+              disabled={currentPage == 0}
+              className="flex items-center justify-center  disabled:cursor-not-allowed  px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-yellow-700  bg-green-800 rounded-s  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              <Image
-                src="/backwardArrow.png"
-                width={50}
-                height={50}
-                alt="backward"
-              />
+              <svg
+                className="w-3.5 h-3.5 me-2 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5H1m0 0 4 4M1 5l4-4"
+                />
+              </svg>
+              Prev
             </button>
             <button
               onClick={handleNextPage}
-              disabled={currentPage === totalPages - 1}
-              className="text-white  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+              disabled={isDisabled}
+              className="flex items-center  disabled:cursor-not-allowed justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-blue-700 bg-blue-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              <Image
-                src="/forwardArrow.png"
-                width={50}
-                height={50}
-                alt="backward"
-              />
+              Next
+              <svg
+                className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 5h12m0 0L9 1m4 4L9 9"
+                />
+              </svg>
             </button>
           </div>
+          
+         
+
+
+
         </section>
       }
 
