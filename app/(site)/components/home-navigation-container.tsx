@@ -531,6 +531,28 @@ export default function HomeNavigationContainer() {
                           </p>
                         </div>
                       </Link>
+                      <Link
+                        href="/value-blueprints"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/cash.svg"
+                            alt="cash"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">
+                            Value BluePrints
+                          </p>
+                          <p className="mt-1 text-sm text-gray-500">
+                          Efficient Deployment
+                          </p>
+                        </div>
+                      </Link>
                     </div>
                   
                     <div className="grid grid-cols-1 gap-6">
