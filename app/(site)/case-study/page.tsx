@@ -295,7 +295,7 @@ const Page = () => {
             <button
               onClick={handlePrevPage}
               disabled={currentPage == 0}
-              className="flex items-center justify-center  disabled:cursor-not-allowed  px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-yellow-700  bg-green-800 rounded-s  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="flex items-center justify-center  disabled:cursor-not-allowed  px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-yellow-700  bg-green-800 "
             >
               <svg
                 className="w-3.5 h-3.5 me-2 rtl:rotate-180"
@@ -317,7 +317,7 @@ const Page = () => {
             <button
               onClick={handleNextPage}
               disabled={isDisabled}
-              className="flex items-center  disabled:cursor-not-allowed justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-blue-700 bg-blue-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="flex items-center  disabled:cursor-not-allowed justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-blue-700 bg-blue-800 border-0 border-s "
             >
               Next
               <svg
