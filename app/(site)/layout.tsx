@@ -10,6 +10,7 @@ const FooterContainer = React.lazy(
 );
 const FormDisplay = React.lazy(() => import("./components/FormDisplay"));
 const ScrollToTop = React.lazy(() => import("./components/ScrollToTop"));
+const GreetingPopup = React.lazy(() => import("./components/GreetingPopup"));
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -42,6 +43,9 @@ export default async function RootLayout({
           </Suspense>
           <Suspense fallback={<div>Loading scroll-to-top...</div>}>
             <ScrollToTop />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <GreetingPopup />
           </Suspense>
         </div>
       </body>
