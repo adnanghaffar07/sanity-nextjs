@@ -1,8 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+
 import HeroSectionComponent from "../components/HeroSectionComponent";
 import Image from "next/image";
 import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
+
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
@@ -65,15 +68,15 @@ const Page = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
-    console.log('Current Page',currentPage);
-    console.log('Total Page',totalPages);
+    console.log("Current Page", currentPage);
+    console.log("Total Page", totalPages);
     totalPages == 0 ? setIsDisabled(true) : setIsDisabled(false);
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-    console.log('Current Page',currentPage);
-    console.log('Total Page',totalPages);
+    console.log("Current Page", currentPage);
+    console.log("Total Page", totalPages);
 
     currentPage == 1 ? setIsDisabled(false) : setIsDisabled(true);
   };
@@ -257,13 +260,16 @@ const Page = () => {
 
         {/*  Case Study Grid Section    */}
 
-        <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-4 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
+        <section className=" mx-auto" id="gridSection">
+          <div className=" md:grid md:grid-cols-3 m-[50px]   grid grid-col-1 gap-7 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
               .map((item: any, index: any) => {
                 return (
-                  <div key={index} className=" ring-2 p-2  sm:ring-2   sm:shadow-2xl sm: hover:shadow-blue-800 sm: ring-yellow-500 sm: rounded-tr-3xl sm: rounded-bl-3xl">
+                  <div
+                    key={index}
+                    className=" ring-2 p-2  sm:ring-2 hover:scale-110 hover:transition duration-300  sm:shadow-2xl sm: hover:shadow-blue-800 sm: ring-yellow-500 sm: rounded-tr-3xl sm: rounded-bl-3xl"
+                  >
                     {item?.cardImage && (
                       <Link href={`/case-study/${item?.url}`}>
                         <Image
@@ -287,11 +293,16 @@ const Page = () => {
       </div>
 
       {
-        <section className=" mx-auto">
+        
+        <section className=" mx-auto" >
           <div className="inline-flex mt-2  xs:mt-0">
-          
-          
            
+          <ScrollLink to="gridSection" 
+             spy={true}
+             smooth={true}
+             offset={-70}
+             duration={500}
+          >
             <button
               onClick={handlePrevPage}
               disabled={currentPage == 0}
@@ -314,6 +325,14 @@ const Page = () => {
               </svg>
               Prev
             </button>
+            </ScrollLink>
+            
+            <ScrollLink to="gridSection" 
+             spy={true}
+             smooth={true}
+             offset={-70}
+             duration={500}
+           >
             <button
               onClick={handleNextPage}
               disabled={isDisabled}
@@ -336,12 +355,8 @@ const Page = () => {
                 />
               </svg>
             </button>
+            </ScrollLink>
           </div>
-          
-         
-
-
-
         </section>
       }
 
