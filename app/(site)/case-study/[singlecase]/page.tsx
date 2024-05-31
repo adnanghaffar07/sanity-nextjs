@@ -1,6 +1,7 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
+import Image from "next/image";
 
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
@@ -18,14 +19,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
   return (
     <div className="max-w-full">
-      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  lg:min-h-[700px] max-md:max-w-full ">
+      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
-          <div style={{ paddingTop: '8px' }}>
+          <div style={{ paddingTop: '8px', backgroundColor:"black" }}>
           <img
             loading="lazy"
             src={urlForImage(data.cardimage.asset)}
             style={{ objectFit: "cover", display:"block" }}
-            className="lg:min-h-[700px]"
             alt={data.cardimage.alt}
           />
           </div>
@@ -85,7 +85,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 Tools & Technologies Used:
               </h3>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-44 sm:mt-0 sm:mb-0  sm:gap-[100px] 2xl:gap-[130px] max-w-[1440px] sm:my-40">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-44 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
                 {data.toolsandtechlist?.map((item: any) => {
                   return (
                     <img
