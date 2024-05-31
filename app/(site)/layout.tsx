@@ -4,13 +4,13 @@ import React, { Suspense } from "react";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import { GoogleTagManager } from "@next/third-parties/google";
-import GreetingPopup from "./components/GreetingPopup";
 
 const FooterContainer = React.lazy(
   () => import("./components/footer-container")
 );
 const FormDisplay = React.lazy(() => import("./components/FormDisplay"));
 const ScrollToTop = React.lazy(() => import("./components/ScrollToTop"));
+const GreetingPopup = React.lazy(() => import("./components/GreetingPopup"));
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -44,7 +44,9 @@ export default async function RootLayout({
           <Suspense fallback={<div>Loading scroll-to-top...</div>}>
             <ScrollToTop />
           </Suspense>
-          <GreetingPopup />
+          <Suspense fallback={<div>Loading...</div>}>
+            <GreetingPopup />
+          </Suspense>
         </div>
       </body>
     </html>
