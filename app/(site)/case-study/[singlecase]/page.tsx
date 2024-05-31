@@ -21,13 +21,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
     <div className="max-w-full">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
-          <div style={{ paddingTop: '8px', backgroundColor:"black" }}>
-          <img
-            loading="lazy"
-            src={urlForImage(data.cardimage.asset)}
-            style={{ objectFit: "cover", display:"block" }}
-            alt={data.cardimage.alt}
-          />
+          <div style={{ paddingTop: "8px", backgroundColor: "black" }}>
+            <img
+              loading="lazy"
+              src={urlForImage(data.cardimage.asset)}
+              style={{ objectFit: "cover", display: "block" }}
+              alt={data.cardimage.alt}
+            />
           </div>
         ) : (
           data?.cardimage?.asset && (
@@ -43,13 +43,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       <div className="flex flex-col self-center w-full xl:max-w-[1380px]   mx-auto">
         <div className="lg:px-10 px-4">
           <div className="flex flex-col xl:flex-row justify-center items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
-            <div className=" mr-32">
+            <div>
               <h2 className="text-3xl font-semibold   mb-4">Introduction</h2>
               <p className="text-lg font-light   xl:max-w-[610px] text-justify">
                 {data.briefdescription && data.briefdescription}
               </p>
             </div>
-            <div className="flex flex-col  gap-6 md:gap-10 mb-20 mr-40 mt-20 md:mb-24">
+            <div className="flex flex-col   gap-6 md:gap-10 mb-20  mt-20 md:mb-24">
               {data.briefitemsarray?.map((item: any) => {
                 return (
                   <div className="relative" key={item._key}>
@@ -85,7 +85,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 Tools & Technologies Used:
               </h3>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-44 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
+              <div className="flex flex-col sm:flex-row  items-center sm:flex-wrap justify-center sm:gap-24  gap-10 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
                 {data.toolsandtechlist?.map((item: any) => {
                   return (
                     <img
@@ -93,7 +93,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       loading="lazy"
                       src={urlForImage(item.techImage?.asset)}
                       alt={item.techImage?.alt}
-                      className="mb-0"
+                      className="mb-0  sm:w-auto w-52"
                     />
                   );
                 })}
