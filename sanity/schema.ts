@@ -14,6 +14,7 @@ import portfolioSchema from "./schemas/portfolio";
 import faq from "./schemas/faq";
 import partnershipSchema from "./schemas/partnership";
 import serviceSummary from "./schemas/service-summary";
+import valueBlueprints from "./schemas/value-bueprints";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,6 +28,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faq,
     techLogos,
     partnershipSchema,
-    serviceSummary
+    serviceSummary, 
+    valueBlueprints
   ],
 };
