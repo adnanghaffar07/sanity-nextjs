@@ -23,8 +23,7 @@ export async function POST(request: any): Promise<any> {
 
   const mailOptions = {
     from: "umaid@codeautomation.dev",
-    to: ["umaid@codeautomation.ai"],
-    // to: ["adnan@codeautomation.dev", "jason@codeautomation.dev"],
+    to: ["adnan@codeautomation.dev", "jason@codeautomation.dev"],
     subject: `CA Website Greeting Popup form - ${pageName} page`,
     html: `
     <!DOCTYPE html>
