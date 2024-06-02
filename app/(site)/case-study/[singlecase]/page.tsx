@@ -2,6 +2,7 @@ import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
 import Image from "next/image";
+import HouseArrestBanner from "../../components/HouseArrestBanners";
 
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
@@ -16,18 +17,12 @@ async function getData(urlService: string) {
 }
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
-
   return (
     <div className="max-w-full">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
           <div style={{ paddingTop: "8px", backgroundColor: "black" }}>
-            <img
-              loading="lazy"
-              src={urlForImage(data.cardimage.asset)}
-              style={{ objectFit: "cover", display: "block" }}
-              alt={data.cardimage.alt}
-            />
+            <HouseArrestBanner/>
           </div>
         ) : (
           data?.cardimage?.asset && (
