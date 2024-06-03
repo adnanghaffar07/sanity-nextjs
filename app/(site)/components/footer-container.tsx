@@ -147,7 +147,7 @@ export default function FooterContainer() {
               <div className="text-2xl font-medium self-start">About Us</div>
               <div className="mt-6 text-base font-light flex  flex-col gap-5">
                 <Link
-                  href={`/case-study`}
+                  href={`/case-studies`}
                   className="hover:underline my-auto inline-block"
                 >
                   Case Studies
