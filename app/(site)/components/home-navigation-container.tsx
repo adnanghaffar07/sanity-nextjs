@@ -37,7 +37,11 @@ export default function HomeNavigationContainer() {
 
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
-    setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+    // setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+  };
+  const toggleAboutVisibility = () => {
+   
+    setAboutVisible((prevAboutVisible) => !prevAboutVisible);
   };
 
   const [open, setOpen] = useState(false);
@@ -721,8 +725,8 @@ export default function HomeNavigationContainer() {
           >
             <div className="xl:hidden">
               {menuOpen && (
-                <div className="mobile-menu">
-                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
+                <div className="mobile-menu"  >
+                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6"    >
                     <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
                       <Link href="/" onClick={handleToggleMenu}>
                         Home
@@ -732,8 +736,6 @@ export default function HomeNavigationContainer() {
                       <div
                         className=""
                         onClick={toggleMenuVisibility}
-                        onMouseEnter={() => setMenuVisible(true)}
-                        onMouseLeave={() => setMenuVisible(false)}
                       >
                         Services
                       </div>
@@ -835,9 +837,105 @@ export default function HomeNavigationContainer() {
                     </li>
 
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <Link href="/lifeatca" onClick={handleToggleMenu}>
-                        Life at CA
-                      </Link>
+                      <div
+                        className=""
+                        onClick={toggleAboutVisibility}
+                      >
+                        About Us
+                      </div>
+                      {aboutVisible && (
+                        <div className="content mt-4 mb-0">
+                          <div>
+                            <ul className="mega-links-mb">
+                              <li>
+                                <Link
+                                  href="/service-summary"
+                                  className=""
+                                  onClick={handleToggleMenu}
+                                >
+                                  Service Summary
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/service-summary"
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Service Essence
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/lifeatca"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Life At CA
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/lifeatca"
+                                    onClick={handleToggleMenu}
+                                  >
+                                   Employee Experiences
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/partnership-program"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Partner with Us
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/partnership-program"
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Grow Together
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/value-blueprints"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Value BluePrints
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/value-blueprints"
+                                    onClick={handleToggleMenu}
+                                  >
+                                   Efficient Deployment
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/case-study"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Case-Studies
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/case-study"
+                                    onClick={handleToggleMenu}
+                                  >
+                                  Success Stories
+                                  </Link>
+                                </p>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
                       <Link href="/blogs" onClick={handleToggleMenu}>
