@@ -126,7 +126,7 @@ const Page = () => {
 
         <div className="mt-[130px] sm:mt-[327px] items-center absolute inset-0 flex flex-col z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
-            Case Studies
+           Our Case Studies
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
             Explore our case study on CodeAutomation, showcasing how innovative
@@ -261,7 +261,8 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto" id="gridSection">
-          <div className=" md:grid md:grid-cols-3 m-[50px]   grid grid-col-1 gap-7 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
+         
+          <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-7 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
               .map((item: any, index: any) => {
