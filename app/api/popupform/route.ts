@@ -7,7 +7,7 @@ export async function POST(request: any): Promise<any> {
   const email = completeFormData.get("email");
   const number = completeFormData.get("number");
   const looking = completeFormData.get("looking");
-  const message = completeFormData.get("message");
+  const subscribe = completeFormData.get("subscribe");
   const pageName = completeFormData.get("pagename");
 
   const transporter = nodemailer.createTransport({
@@ -24,7 +24,7 @@ export async function POST(request: any): Promise<any> {
   const mailOptions = {
     from: "umaid@codeautomation.dev",
     to: ["adnan@codeautomation.dev", "jason@codeautomation.dev"],
-    subject: `CA Website Contact form - ${pageName} page`,
+    subject: `CA Website Greeting Popup form - ${pageName} page`,
     html: `
     <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +47,7 @@ export async function POST(request: any): Promise<any> {
   <tr><th>Email</th><td>${email}</td></tr>
   <tr><th>Contact Number</th><td>${number}</td></tr>
   <tr><th>Looking For</th><td>${looking}</td></tr>
-  <tr><th>Message</th><td>${message}</td></tr>
+  <tr><th>Subscribed for Newsletter</th><td>${subscribe}</td></tr>
 </table>
 </body>
 </html>

@@ -1,11 +1,8 @@
 import Link from "next/link";
 import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
-// import Testimonials from "./components/Testimonials";
 const Testimonials = React.lazy(() => import("./components/Testimonials"));
-// import OurWorkSection from "./components/OurWorkSection";
 const OurWorkSection = React.lazy(() => import("./components/OurWorkSection"));
-// import Faqs from "./components/Faqs";
 const Faqs = React.lazy(() => import("./components/Faqs"));
 
 import ScrollAnimation from "./components/ScrollAnimation";
@@ -192,7 +189,7 @@ export default function Home() {
               excellence. Check out our case studies and witness how we&rsquo;ve
               helped businesses like yours succeed.
             </p>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div>Loading Our Work Section...</div>}>
               <OurWorkSection />
             </Suspense>
           </div>
@@ -481,7 +478,7 @@ export default function Home() {
               Discover what our clients are saying about CodeAutomation
             </div>
             <div className="mx-auto">
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div>Loading Testimonials Section...</div>}>
                 <Testimonials />
               </Suspense>
 
@@ -548,7 +545,7 @@ export default function Home() {
               <div className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
               </div>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div>Loading FAQs Section...</div>}>
                 <Faqs />
               </Suspense>
             </div>
