@@ -185,7 +185,7 @@ const GreetingPopup: React.FC = () => {
               loading="lazy"
               src={urlForImage(data?.image?.asset)}
               className="object-cover"
-              alt="popup image"
+              alt={data?.image?.alt}
             />
           )}
         </div>
@@ -203,7 +203,7 @@ const GreetingPopup: React.FC = () => {
                 loading="lazy"
                 src={urlForImage(data?.image?.asset)}
                 className="object-cover"
-                alt="popup image"
+                alt={data?.image?.alt}
               />
             )}
           </div>
@@ -214,7 +214,7 @@ const GreetingPopup: React.FC = () => {
                 loading="lazy"
                 src={urlForImage(data?.icon?.asset)}
                 className="w-[120px] md:w-[174px] hidden sm:block"
-                alt="popup icon"
+                alt={data?.icon?.alt}
               />
             )}
             <div className="text-xl md:text-2xl text-center text-black mt-2 sm:mt-0">
