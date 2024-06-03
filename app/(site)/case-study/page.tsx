@@ -1,8 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+
 import HeroSectionComponent from "../components/HeroSectionComponent";
 import Image from "next/image";
 import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
+
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
@@ -65,15 +68,15 @@ const Page = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
-    console.log('Current Page',currentPage);
-    console.log('Total Page',totalPages);
+    console.log("Current Page", currentPage);
+    console.log("Total Page", totalPages);
     totalPages == 0 ? setIsDisabled(true) : setIsDisabled(false);
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-    console.log('Current Page',currentPage);
-    console.log('Total Page',totalPages);
+    console.log("Current Page", currentPage);
+    console.log("Total Page", totalPages);
 
     currentPage == 1 ? setIsDisabled(false) : setIsDisabled(true);
   };
@@ -123,7 +126,7 @@ const Page = () => {
 
         <div className="mt-[130px] sm:mt-[327px] items-center absolute inset-0 flex flex-col z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
-            Case Studies
+           Our Case Studies
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
             Explore our case study on CodeAutomation, showcasing how innovative
@@ -257,13 +260,17 @@ const Page = () => {
 
         {/*  Case Study Grid Section    */}
 
-        <section className=" mx-auto">
-          <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-4 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
+        <section className=" mx-auto" id="gridSection">
+         
+          <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-7 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
               .map((item: any, index: any) => {
                 return (
-                  <div key={index} className=" ring-2 p-2  sm:ring-2   sm:shadow-2xl sm: hover:shadow-blue-800 sm: ring-yellow-500 sm: rounded-tr-3xl sm: rounded-bl-3xl">
+                  <div
+                    key={index}
+                    className=" ring-2 p-2  sm:ring-2 hover:scale-110 hover:transition duration-300  sm:shadow-2xl sm: hover:shadow-blue-800 sm: ring-yellow-500 sm: rounded-tr-3xl sm: rounded-bl-3xl"
+                  >
                     {item?.cardImage && (
                       <Link href={`/case-study/${item?.url}`}>
                         <Image
@@ -289,59 +296,68 @@ const Page = () => {
       {
         <section className=" mx-auto">
           <div className="inline-flex mt-2  xs:mt-0">
-          
-          
-           
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage == 0}
-              className="flex items-center justify-center  disabled:cursor-not-allowed  px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-yellow-700  bg-green-800 "
+            <ScrollLink
+              to="gridSection"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
             >
-              <svg
-                className="w-3.5 h-3.5 me-2 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage == 0}
+                className="flex items-center justify-center  disabled:cursor-not-allowed  px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-yellow-700  bg-green-800 "
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 5H1m0 0 4 4M1 5l4-4"
-                />
-              </svg>
-              Prev
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={isDisabled}
-              className="flex items-center  disabled:cursor-not-allowed justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-blue-700 bg-blue-800 border-0 border-s "
+                <svg
+                  className="w-3.5 h-3.5 me-2 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 5H1m0 0 4 4M1 5l4-4"
+                  />
+                </svg>
+                Prev
+              </button>
+            </ScrollLink>
+
+            <ScrollLink
+              to="gridSection"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
             >
-              Next
-              <svg
-                className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
+              <button
+                onClick={handleNextPage}
+                disabled={isDisabled}
+                className="flex items-center  disabled:cursor-not-allowed justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-blue-700 bg-blue-800 border-0 border-s "
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </button>
+                Next
+                <svg
+                  className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </button>
+            </ScrollLink>
           </div>
-          
-         
-
-
-
         </section>
       }
 
