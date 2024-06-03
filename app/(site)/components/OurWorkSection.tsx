@@ -140,7 +140,7 @@ const OurWorkSection = () => {
 <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
         <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
           <Link
-            href="/case-study"
+            href="/case-studies"
             className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
           >
             <div className="relative grow  self-center">

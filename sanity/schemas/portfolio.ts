@@ -13,6 +13,54 @@ const portfolioSchema = {
       title: "Sub Title",
       type: "string",
     },
+
+    {
+      name: "introductionheading",
+      title: "Introduction",
+      type: "string",
+    },
+
+    {
+      name: "projectscopeheading",
+      title: "Project Scope",
+      type: "string",
+    },
+
+    {
+      name: "toolsandtechusedheading",
+      title: "Tools & Technologies Used",
+      type: "string",
+    },
+
+   
+    {
+      name: "challengesfacedheading",
+      title: "Challenges Faced",
+      type: "string",
+    },
+
+    {
+      name: "ourapproachheading",
+      title: "Our Approach",
+      type: "string",
+    },
+   
+    {
+      name: "resultsheading",
+      title: "Results",
+      type: "string",
+    },
+   
+
+    {
+      name: "conclusionheading",
+      title: "Conclusion",
+      type: "string",
+    },
+   
+   
+
+
     {
       name: "slug",
       title: "Slug",
@@ -166,21 +214,7 @@ const portfolioSchema = {
       type: "string",
     },
 
-    {
-      name: "toolsandtechnologies",
-      title: "Tools & Technologies Used",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          title: "Alt",
-          type: "string",
-        },
-      ],
-    },
+    
 
     {
       name: "technologiesused",

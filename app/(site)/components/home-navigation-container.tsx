@@ -111,11 +111,7 @@ export default function HomeNavigationContainer() {
           <ul className=" nav-links relative lg:mx-auto">
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Home
-                </span>
+                <span className="hover:underline text-white">Home</span>
               </Link>
             </li>
             <li
@@ -123,11 +119,7 @@ export default function HomeNavigationContainer() {
               className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
             >
               <button>
-              <span
-                  className="hover:underline text-white"
-                >
-                  Services
-                </span>
+                <span className="hover:underline text-white">Services</span>
               </button>
               <svg
                 fill="white"
@@ -415,14 +407,12 @@ export default function HomeNavigationContainer() {
             </div>
             {/* About us */}
 
-            <li onClick={toggleAbout} className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
-             
-               <button>
-                <span
-                  className="hover:underline text-white"
-                >
-                  About Us
-                </span>
+            <li
+              onClick={toggleAbout}
+              className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
+            >
+              <button>
+                <span className="hover:underline text-white">About Us</span>
               </button>
               <svg
                 fill="white"
@@ -446,7 +436,6 @@ export default function HomeNavigationContainer() {
                 <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-6">
-                  
                       <Link
                         href="/service-summary"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -465,7 +454,7 @@ export default function HomeNavigationContainer() {
                             Service Summary
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                          Service Essence
+                            Service Essence
                           </p>
                         </div>
                       </Link>
@@ -553,15 +542,15 @@ export default function HomeNavigationContainer() {
                             Value BluePrints
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                          Efficient Deployment
+                            Efficient Deployment
                           </p>
                         </div>
                       </Link>
                     </div>
-                  
+
                     <div className="grid grid-cols-1 gap-6">
-                    <Link
-                        href="/case-study"
+                      <Link
+                        href="/case-studies"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
@@ -697,31 +686,19 @@ export default function HomeNavigationContainer() {
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/blogs">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Blogs
-                </span>
+                <span className="hover:underline text-white">Blogs</span>
               </Link>
             </li>
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/career">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Career
-                </span> 
+                <span className="hover:underline text-white">Career</span>
               </Link>{" "}
             </li>
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/technologies">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Technologies
-                </span> 
+                <span className="hover:underline text-white">Technologies</span>
               </Link>{" "}
             </li>
           </ul>
