@@ -35,6 +35,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   console.log("Sanity Data", data);
 
+  console.log("Tech Imagwes",data.toolsTechSubSection?.toolsTech)
+
   return (
     <div className="bg-gray-100">
       {/* Hero Section */}

@@ -174,7 +174,7 @@ const Page = () => {
                     id="app"
                     onChange={(event) => GetFilteredData("app")}
                   />
-                  <span> Mobile Development</span>
+                  <span> Mobile App Development</span>
                 </li>
 
                 <li>
@@ -183,7 +183,7 @@ const Page = () => {
                     id="web"
                     onChange={(event) => GetFilteredData("web")}
                   />
-                  <span> Web Development</span>
+                  <span> Web App Development</span>
                 </li>
 
                 <li>
