@@ -33,6 +33,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
   console.log("Sanity Data", data);
 
+  console.log("Tech Imagwes",data.toolsTechSubSection?.toolsTech)
+
   return (
     <div className="bg-gray-100">
       {/* Hero Section */}
@@ -123,10 +125,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   <div className="bg-white shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-row justify-center">
                       {tool.images &&
-                        tool.images.map((image: any, imageIndex: any) => (
+                        tool.images?.map((image: any, imageIndex: any) => (
                           <img
                             key={imageIndex}
-                            src={urlForImage(image).toString()}
+                            src={urlForImage(image?.asset).toString()}
                             alt={tool.heading}
                             className="h-12 mb-4"
                           />

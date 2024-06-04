@@ -10,7 +10,7 @@ const HouseArrestBanner = () => {
     <>
       <Swiper
         grabCursor={true}
-        autoplay={{ delay: 1000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         speed={1000}
         modules={[Pagination, Autoplay]}
         className="w-full h-full"

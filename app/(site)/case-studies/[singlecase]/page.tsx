@@ -30,6 +30,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               loading="lazy"
               src={urlForImage(data.cardimage.asset)}
               style={{ objectFit: "cover" }}
+              className=" sm:h-[700px]  h-auto"
               alt={data.cardimage.alt}
             />
           )
@@ -37,7 +38,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       </section>
       <div className="flex flex-col self-center w-full xl:max-w-[1380px]   mx-auto">
         <div className="lg:px-10 px-4">
-          <div className="flex flex-col xl:flex-row justify-center items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
+          <div className="flex flex-col xl:flex-row justify-center items-center mt-0  gap-6 md:gap-10 lg:gap-36">
             <div>
               <h2 className="text-3xl font-semibold   mb-4">
                 {data?.introductionheading}
@@ -84,7 +85,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data?.toolsandtechusedheading}:
               </h3>
 
-              {data?.toolsandtechlist && data.toolsandtechlist ? (
+              {data?.toolsandtechlist ? (
                 <div className="flex flex-col sm:flex-row  items-center sm:flex-wrap justify-center sm:gap-24  gap-10 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
                   {data.toolsandtechlist?.map((item: any) => {
                     return (
