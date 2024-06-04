@@ -16,14 +16,28 @@ const HomePageSlider = () => {
     dots: false,
 
     arrows: false,
-    pauseOnHover: false,  };
+    pauseOnHover: false,
+  };
 
   return (
     <Slider {...swiperSettings}>
       <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
           <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-            &quot;Transforming Businesses Through Generative AI&quot;
+            Scale Up Your Business with 70+ Skilled Engineers           </h2>
+        </div>
+        <div
+          className="lg:text-2xl text-base text-center mt-5 xl:mt-5 max-md:max-w-full"
+          style={{ lineHeight: "1.3" }}
+        >
+          Get opportunity to work with dedicated and diligent professional Software Engineers.
+        </div>
+      </div>
+
+      <div>
+        <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
+          <h2 className="title capitalize" style={{ lineHeight: "1" }}>
+            Transforming Businesses Through Generative AI
           </h2>
         </div>
         <div
@@ -38,7 +52,7 @@ const HomePageSlider = () => {
       <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
           <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-            &quot;Connecting Visions, Building Innovation&quot;
+            Connecting Visions, Building Innovation
           </h2>
         </div>
         <div
@@ -54,7 +68,7 @@ const HomePageSlider = () => {
       <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
           <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-            &quot;Imagine, Code, Automate&quot;
+            Imagine, Code, Automate
           </h2>
         </div>
         <div
