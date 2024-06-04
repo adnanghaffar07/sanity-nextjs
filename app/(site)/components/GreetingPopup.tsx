@@ -4,6 +4,20 @@ import { useFormik } from "formik";
 import { popupSchema } from "../../schemas/index";
 import { usePathname } from "next/navigation";
 
+import { client } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
+
+async function getData() {
+  const query = `*[_type == 'popup'] | order(_updatedAt desc)`;
+  try {
+    const fetchData = await client.fetch(query);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
 const initialValues = {
   name: "",
   email: "",
@@ -13,6 +27,7 @@ const initialValues = {
 };
 
 const GreetingPopup: React.FC = () => {
+  const [data, setData] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -116,6 +131,12 @@ const GreetingPopup: React.FC = () => {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const fetchedData = await getData();
+      setData(fetchedData[0]);
+    }
+    fetchData();
+
     const hasVisited = localStorage.getItem("hasVisited");
     if (!hasVisited) {
       const timer = setTimeout(() => {
@@ -159,11 +180,14 @@ const GreetingPopup: React.FC = () => {
         }}
       >
         <div className="w-[290px] md:w-[340px] z-30 hidden sm:block">
-          <img
-            loading="lazy"
-            srcSet={"/greetingPopupImage.png"}
-            className="object-cover"
-          />
+          {data?.image?.asset && (
+            <img
+              loading="lazy"
+              src={urlForImage(data?.image?.asset)}
+              className="object-cover"
+              alt={data?.image?.alt}
+            />
+          )}
         </div>
 
         <div className="flex relative flex-col justify-center text-3xl font-light capitalize text-neutral-600 text-opacity-90">
@@ -174,21 +198,27 @@ const GreetingPopup: React.FC = () => {
             &times;
           </button>
           <div className="w-[230px] z-30 block sm:hidden pt-4 mx-auto">
-            <img
-              loading="lazy"
-              srcSet={"/greetingPopupImage.png"}
-              className="object-cover"
-            />
+            {data?.image?.asset && (
+              <img
+                loading="lazy"
+                src={urlForImage(data?.image?.asset)}
+                className="object-cover"
+                alt={data?.image?.alt}
+              />
+            )}
           </div>
 
           <div className="flex relative flex-col gap-4 items-center">
-            <img
-              loading="lazy"
-              srcSet={"/greetingPopupIcon.png"}
-              className="w-[120px] md:w-[174px] hidden sm:block"
-            />
+            {data?.icon?.asset && (
+              <img
+                loading="lazy"
+                src={urlForImage(data?.icon?.asset)}
+                className="w-[120px] md:w-[174px] hidden sm:block"
+                alt={data?.icon?.alt}
+              />
+            )}
             <div className="text-xl md:text-2xl text-center text-black mt-2 sm:mt-0">
-              Sign up for news and updates
+              {data?.title}
             </div>
             <div>
               <form

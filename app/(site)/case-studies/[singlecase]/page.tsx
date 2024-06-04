@@ -22,7 +22,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
           <div style={{ paddingTop: "8px", backgroundColor: "black" }}>
-            <HouseArrestBanner/>
+            <HouseArrestBanner />
           </div>
         ) : (
           data?.cardimage?.asset && (
@@ -30,6 +30,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               loading="lazy"
               src={urlForImage(data.cardimage.asset)}
               style={{ objectFit: "cover" }}
+              className=" sm:h-[700px]  h-auto"
               alt={data.cardimage.alt}
             />
           )
@@ -37,9 +38,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       </section>
       <div className="flex flex-col self-center w-full xl:max-w-[1380px]   mx-auto">
         <div className="lg:px-10 px-4">
-          <div className="flex flex-col xl:flex-row justify-center items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
+          <div className="flex flex-col xl:flex-row justify-center items-center mt-0  gap-6 md:gap-10 lg:gap-36">
             <div>
-              <h2 className="text-3xl font-semibold   mb-4">{data?.introductionheading}</h2>
+              <h2 className="text-3xl font-semibold   mb-4">
+                {data?.introductionheading}
+              </h2>
               <p className="text-lg font-light   xl:max-w-[610px] text-justify">
                 {data.briefdescription && data.briefdescription}
               </p>
@@ -71,31 +74,53 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               />
             )}
             <div className="w-full my-10 md:my-20 text-justify mx-auto">
-              <h3 className="text-3xl font-semibold  mb-4">{data?.projectscopeheading}:</h3>
+              <h3 className="text-3xl font-semibold  mb-4">
+                {data?.projectscopeheading}:
+              </h3>
               <p className="text-lg text-justify font-light leading-8 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
 
               <h3 className="text-3xl font-semibold  my-4 md:my-8">
-              {data?.toolsandtechusedheading}:
+                {data?.toolsandtechusedheading}:
               </h3>
-          
-              <div className="flex flex-col sm:flex-row  items-center sm:flex-wrap justify-center sm:gap-24  gap-10 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
-                {data.toolsandtechlist?.map((item: any) => {
-                  return (
-                    <img
-                      key={item._key}
-                      loading="lazy"
-                      src={urlForImage(item.techImage?.asset)}
-                      alt={item.techImage?.alt}
-                      className="mb-0  sm:w-auto w-52"
-                    />
-                  );
-                })}
-              </div>
+
+              {data?.toolsandtechlist ? (
+                <div className="flex flex-col sm:flex-row  items-center sm:flex-wrap justify-center sm:gap-24  gap-10 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
+                  {data.toolsandtechlist?.map((item: any) => {
+                    return (
+                      <img
+                        key={item._key}
+                        loading="lazy"
+                        src={urlForImage(item.techImage?.asset)}
+                        alt={item.techImage?.alt}
+                        className="mb-0  sm:w-auto w-52"
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <ul>
+                  {data.technologiesused?.map((tech: any) => {
+                    return (
+                      <li
+                        className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                        key={tech._key}
+                      >
+                        <span className="text-lg text-justify font-bold">
+                          {tech.heading}:{" "}
+                        </span>
+                        <span className="text-lg text-justify font-light">
+                          {tech.description}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
 
               <h3 className="text-3xl font-semibold my-4 md:my-8">
-              {data?.challengesfacedheading}:
+                {data?.challengesfacedheading}:
               </h3>
               <ul>
                 {data.chanllangesfaced?.map((challange: any) => {
@@ -112,7 +137,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 })}
               </ul>
               <h3 className="text-3xl font-semibold my-4 md:my-8">
-              {data?.ourapproachheading}:
+                {data?.ourapproachheading}:
               </h3>
               <ul>
                 {data.ourapproach?.map((approach: any) => {
@@ -131,7 +156,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   );
                 })}
               </ul>
-              <h3 className="text-3xl  font-semibold my-4 md:my-8">{data?.resultsheading}:</h3>
+              <h3 className="text-3xl  font-semibold my-4 md:my-8">
+                {data?.resultsheading}:
+              </h3>
               <ul>
                 {data?.results?.map((result: any) => {
                   return (
@@ -151,7 +178,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </ul>
 
               <h3 className="text-3xl font-semibold my-4 md:my-8">
-              {data?.conclusionheading}:
+                {data?.conclusionheading}:
               </h3>
               <p className="text-lg text-justify leading-8 md:leading-8">
                 {data?.conclusion && data.conclusion}

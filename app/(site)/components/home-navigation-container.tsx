@@ -632,7 +632,7 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                     </div>
-                    <div className="grid grid-cols-1 gap-3 lg:p-0 bg-gray-50 rounded-2xl">
+                    <div className="grid grid-cols-1 gap-3 lg:p-0 rounded-2xl">
                       <div className="grid items-start h-full ">
                         {/* <h3 className="text-base font-medium text-black">
                           Getting started
@@ -917,7 +917,7 @@ export default function HomeNavigationContainer() {
                               </li>
                               <li>
                                 <Link
-                                  href="/case-study"
+                                  href="/case-studies"
                                   className="heading"
                                   onClick={handleToggleMenu}
                                 >
@@ -925,7 +925,7 @@ export default function HomeNavigationContainer() {
                                 </Link>
                                 <p>
                                   <Link
-                                    href="/case-study"
+                                    href="/case-studies"
                                     onClick={handleToggleMenu}
                                   >
                                   Success Stories
