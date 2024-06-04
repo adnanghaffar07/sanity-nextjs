@@ -35,13 +35,27 @@ export async function POST(request: any): Promise<any> {
   body { font-family: Arial, sans-serif; }
   h2 { color: #333; }
   p { margin-bottom: 10px; }
-  .data-table { width: 100%; border-collapse: collapse; }
-  .data-table th, .data-table td { border: 1px solid #ddd; padding: 8px; }
-  .data-table th { background-color: #f2f2f2; }
+  .data-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    table-layout: fixed; /* Ensures the table respects the specified column widths */
+  }
+  .data-table th, .data-table td { 
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left; /* Left-aligns text in both columns */
+  }
+  .data-table th { 
+    background-color: #f2f2f2; 
+    width: 30%; /* Specifies the width of the first column */
+  }
+  .data-table td {
+    width: 70%; /* Specifies the width of the second column */
+  }
 </style>
 </head>
 <body>
-<h2>Project Discussion Form</h2>
+<h2>Greeting Pop-up Form</h2>
 <table class="data-table">
   <tr><th>Name</th><td>${name}</td></tr>
   <tr><th>Email</th><td>${email}</td></tr>
