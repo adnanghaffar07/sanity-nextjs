@@ -917,7 +917,7 @@ export default function HomeNavigationContainer() {
                               </li>
                               <li>
                                 <Link
-                                  href="/case-study"
+                                  href="/case-studies"
                                   className="heading"
                                   onClick={handleToggleMenu}
                                 >
@@ -925,7 +925,7 @@ export default function HomeNavigationContainer() {
                                 </Link>
                                 <p>
                                   <Link
-                                    href="/case-study"
+                                    href="/case-studies"
                                     onClick={handleToggleMenu}
                                   >
                                   Success Stories
