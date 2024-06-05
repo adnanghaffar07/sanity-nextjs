@@ -406,43 +406,44 @@ const portfolioSchema = {
       ],
     },
 
-    // {
-    //   name: "sections",
-    //   title: "Sections",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       type: "object",
-    //       fields: [
-    //         {
-    //           name: "heading",
-    //           title: "Heading",
-    //           type: "string",
-    //         },
-    //         {
-    //           name: "content",
-    //           title: "Content",
-    //           type: "array",
-    //           of: [{ type: "block" }],
-    //         },
-    //         {
-    //           name: "image",
-    //           title: "Image",
-    //           type: "image",
-    //           options: {
-    //             hotspot: true,
-    //           },
-    //         },
-    //         {
-    //           name: "listItems",
-    //           title: "List Items",
-    //           type: "array",
-    //           of: [{ type: "string" }],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+    
+    {
+      name: "caseStudiesToolsSection",
+      title: "Tools and Technology  Section",
+      type: "object",
+      fields: 
+      [
+        {
+          "name": "toolsTech",
+          "title": "Tools and Tech",
+          "type": "array",
+          "of": [
+            {
+              "type": "object",
+              "fields": [
+                {
+                  "name": "heading",
+                  "title": "Heading",
+                  "type": "string"
+                },
+                {
+                  "name": "detail",
+                  "title": "Detail",
+                  "type": "string"
+                },
+                {
+                  name: "images",
+                  title: "Images",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+                },
+              ]
+            }
+          ]
+        },
+      ]
+    }
+    
   ],
 };
 

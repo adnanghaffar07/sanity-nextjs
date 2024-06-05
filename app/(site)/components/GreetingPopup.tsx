@@ -294,7 +294,7 @@ const GreetingPopup: React.FC = () => {
                     uploading ? "cursor-not-allowed" : "cursor-pointer"
                   }`}
                 >
-                  Continue
+                  Subscribe
                 </button>
               </form>
             </div>

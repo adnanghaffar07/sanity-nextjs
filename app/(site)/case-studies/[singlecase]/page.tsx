@@ -15,15 +15,30 @@ async function getData(urlService: string) {
     return [];
   }
 }
+
+async function getLogoData() {
+  const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+  try {
+    const fetchData = await client.fetch(queryLogo);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
+  const dataLogo = await getLogoData();
+  console.log("Data Logo", dataLogo);
+
+  console.log("Case Study Technologies ", data.caseStudiesToolsSection);
+
   return (
     <div className="max-w-full">
-      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  max-md:max-w-full ">
+      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light    max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
-          <div style={{ paddingTop: "8px", backgroundColor: "black" }}>
-            <HouseArrestBanner />
-          </div>
+          <HouseArrestBanner />
         ) : (
           data?.cardimage?.asset && (
             <img
@@ -85,37 +100,59 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data?.toolsandtechusedheading}:
               </h3>
 
-              {data?.toolsandtechlist ? (
-                <div className="flex flex-col sm:flex-row  items-center sm:flex-wrap justify-center sm:gap-24  gap-10 sm:mt-0 sm:mb-0  sm:gap-y-[30px]  2xl:gap-y-[30px]  sm:my-40">
-                  {data.toolsandtechlist?.map((item: any) => {
-                    return (
-                      <img
-                        key={item._key}
-                        loading="lazy"
-                        src={urlForImage(item.techImage?.asset)}
-                        alt={item.techImage?.alt}
-                        className="mb-0  sm:w-auto w-52"
-                      />
-                    );
-                  })}
+              {data.caseStudiesToolsSection ? (
+                <div className=" flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-28">
+                  {data.caseStudiesToolsSection.toolsTech.map(
+                    (tool: any, toolIndex: any) => (
+                      <div key={toolIndex} className="flex flex-row gap-4">
+                        <div className="flex flex-row gap-2">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex}>
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-12 object-cover"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+
+                        <div className="flex flex-col my-auto">
+                          <h3 className="text-3xl tracking-wider">
+                            {tool.heading}
+                          </h3>
+                          <p className="mt-3 text-lg tracking-wide">
+                            {tool.detail}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  )}
                 </div>
               ) : (
                 <ul>
-                  {data.technologiesused?.map((tech: any) => {
-                    return (
-                      <li
-                        className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                        key={tech._key}
-                      >
-                        <span className="text-lg text-justify font-bold">
-                          {tech.heading}:{" "}
-                        </span>
-                        <span className="text-lg text-justify font-light">
-                          {tech.description}
-                        </span>
-                      </li>
-                    );
-                  })}
+                  {data.technologiesused?.map((tech: any) => (
+                    <li
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                      key={tech._key}
+                    >
+                      <span className="text-lg text-justify font-bold">
+                        {tech.heading}:{" "}
+                      </span>
+                      <span className="text-lg text-justify font-light">
+                        {tech.description}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               )}
 
