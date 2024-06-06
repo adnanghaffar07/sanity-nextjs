@@ -70,7 +70,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     <p className="text-[#707070] text-sm md:text-xl font-medium">
                       {item.heading}
                     </p>
-                    <p className="text-lg md:text-xl font-medium ">
+                    <p className="text-lg md:text-xl max-w-80 font-medium ">
                       {item.value}
                     </p>
                   </div>
@@ -101,10 +101,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </h3>
 
               {data.caseStudiesToolsSection ? (
-                <div className=" flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-28">
+                <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-24">
                   {data.caseStudiesToolsSection.toolsTech.map(
                     (tool: any, toolIndex: any) => (
-                      <div key={toolIndex} className="flex flex-row gap-4">
+                      <div key={toolIndex} className="flex flex-row gap-2">
                         <div className="flex flex-row gap-2">
                           {tool.images?.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find(
@@ -116,7 +116,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover"
+                                    className=" max-h-12 object-cover"
                                   />
                                 </div>
                               );
@@ -130,7 +130,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                           <h3 className="text-3xl tracking-wider">
                             {tool.heading}
                           </h3>
-                          <p className="mt-3 text-lg tracking-wide">
+                          <p className="mt-1 text-lg tracking-wide">
                             {tool.detail}
                           </p>
                         </div>
