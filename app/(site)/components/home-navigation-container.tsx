@@ -45,7 +45,11 @@ export default function HomeNavigationContainer() {
   };
   const toggleMenuVisibility = () => {
     setMenuVisible((prevMenuVisible) => !prevMenuVisible);
-    setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+    // setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+  };
+  const toggleAboutVisibility = () => {
+   
+    setAboutVisible((prevAboutVisible) => !prevAboutVisible);
   };
   const toggleMenu = () => {
     setOpen(!open);
@@ -137,11 +141,7 @@ export default function HomeNavigationContainer() {
           <ul className=" nav-links relative lg:mx-auto">
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Home
-                </span>
+                <span className="hover:underline text-white">Home</span>
               </Link>
             </li>
             <li
@@ -149,11 +149,7 @@ export default function HomeNavigationContainer() {
               className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
             >
               <button>
-              <span
-                  className="hover:underline text-white"
-                >
-                  Services
-                </span>
+                <span className="hover:underline text-white">Services</span>
               </button>
               <svg
                 fill="white"
@@ -440,14 +436,12 @@ export default function HomeNavigationContainer() {
             </div>
             {/* About us */}
 
-            <li onClick={toggleAbout} className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
-             
-               <button>
-                <span
-                  className="hover:underline text-white"
-                >
-                  About Us
-                </span>
+            <li
+              onClick={toggleAbout}
+              className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
+            >
+              <button>
+                <span className="hover:underline text-white">About Us</span>
               </button>
               <svg
                 fill="white"
@@ -470,7 +464,6 @@ export default function HomeNavigationContainer() {
                 <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-6">
-                  
                       <Link
                         href="/service-summary"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -489,7 +482,7 @@ export default function HomeNavigationContainer() {
                             Service Summary
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                          Service Essence
+                            Service Essence
                           </p>
                         </div>
                       </Link>
@@ -559,11 +552,33 @@ export default function HomeNavigationContainer() {
                           </p>
                         </div>
                       </Link>
+                      <Link
+                        href="/value-blueprints"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/cash.svg"
+                            alt="cash"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">
+                            Value BluePrints
+                          </p>
+                          <p className="mt-1 text-sm text-gray-500">
+                            Efficient Deployment
+                          </p>
+                        </div>
+                      </Link>
                     </div>
-                  
+
                     <div className="grid grid-cols-1 gap-6">
-                    <Link
-                        href="/case-study"
+                      <Link
+                        href="/case-studies"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
@@ -649,7 +664,7 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                     </div>
-                    <div className="grid grid-cols-1 gap-3 lg:p-0 bg-gray-50 rounded-2xl">
+                    <div className="grid grid-cols-1 gap-3 lg:p-0 rounded-2xl">
                       <div className="grid items-start h-full ">
                         {/* <h3 className="text-base font-medium text-black">
                           Getting started
@@ -703,31 +718,19 @@ export default function HomeNavigationContainer() {
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/blogs">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Blogs
-                </span>
+                <span className="hover:underline text-white">Blogs</span>
               </Link>
             </li>
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/career">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Career
-                </span> 
+                <span className="hover:underline text-white">Career</span>
               </Link>{" "}
             </li>
 
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/technologies">
-              <span
-                  className="hover:underline text-white"
-                >
-                  Technologies
-                </span> 
+                <span className="hover:underline text-white">Technologies</span>
               </Link>{" "}
             </li>
 
@@ -812,8 +815,8 @@ export default function HomeNavigationContainer() {
           >
             <div className="xl:hidden">
               {menuOpen && (
-                <div className="mobile-menu">
-                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
+                <div className="mobile-menu"  >
+                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6"    >
                     <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
                       <Link href="/" onClick={handleToggleMenu}>
                         Home
@@ -823,8 +826,6 @@ export default function HomeNavigationContainer() {
                       <div
                         className=""
                         onClick={toggleMenuVisibility}
-                        onMouseEnter={() => setMenuVisible(true)}
-                        onMouseLeave={() => setMenuVisible(false)}
                       >
                         Services
                       </div>
@@ -926,9 +927,105 @@ export default function HomeNavigationContainer() {
                     </li>
 
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <Link href="/lifeatca" onClick={handleToggleMenu}>
-                        Life at CA
-                      </Link>
+                      <div
+                        className=""
+                        onClick={toggleAboutVisibility}
+                      >
+                        About Us
+                      </div>
+                      {aboutVisible && (
+                        <div className="content mt-4 mb-0">
+                          <div>
+                            <ul className="mega-links-mb">
+                              <li>
+                                <Link
+                                  href="/service-summary"
+                                  className=""
+                                  onClick={handleToggleMenu}
+                                >
+                                  Service Summary
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/service-summary"
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Service Essence
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/lifeatca"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Life At CA
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/lifeatca"
+                                    onClick={handleToggleMenu}
+                                  >
+                                   Employee Experiences
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/partnership-program"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Partner with Us
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/partnership-program"
+                                    onClick={handleToggleMenu}
+                                  >
+                                    Grow Together
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/value-blueprints"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Value BluePrints
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/value-blueprints"
+                                    onClick={handleToggleMenu}
+                                  >
+                                   Efficient Deployment
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/case-studies"
+                                  className="heading"
+                                  onClick={handleToggleMenu}
+                                >
+                                  Case-Studies
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/case-studies"
+                                    onClick={handleToggleMenu}
+                                  >
+                                  Success Stories
+                                  </Link>
+                                </p>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
                       <Link href="/blogs" onClick={handleToggleMenu}>

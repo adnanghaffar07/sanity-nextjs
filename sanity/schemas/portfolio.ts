@@ -1,6 +1,6 @@
 const portfolioSchema = {
   name: "portfolio",
-  title: "Portfolio",
+  title: "Case Studies",
   type: "document",
   fields: [
     {
@@ -14,6 +14,18 @@ const portfolioSchema = {
       type: "string",
     },
     {
+      name: "pageType", // New field for page type
+      title: "Page Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Case Study", value: "caseStudy" },
+          { title: "Value Blueprint", value: "valueBlueprint" },
+        ],
+      },
+    },
+    
+    {
       name: "slug",
       title: "Slug",
       type: "string",
@@ -23,6 +35,265 @@ const portfolioSchema = {
       title: "Group",
       type: "string",
     },
+
+
+    {
+      name: "introductionheading",
+      title: "Introduction Heading",
+      type: "string",
+    },
+     
+    {
+      name: "briefdescription",
+      title: "Brief Description",
+      type: "string",
+    },
+    {
+      name: "briefitemsarray",
+      title: "Brief Items Array",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+            {
+              name: "value",
+              title: "Value",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+
+
+    {
+      name: "projectscopeheading",
+      title: "Project Scope Heading",
+      type: "string",
+    },
+
+    {
+      name: "projectscopecontent",
+      title: "Project Scope Content",
+      type: "string",
+    },
+
+
+    {
+      name: "toolsandtechusedheading",
+      title: "Tools & Technologies Used Heading",
+      type: "string",
+    },
+    {
+      name: "toolstechlist",
+      title: "Tools Tech List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "categories",
+              title: "Categories",
+              type: "object",
+              fields: [
+                {
+                  name: "firstCat",
+                  title: "First Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "secondCat",
+                  title: "Second Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "thirdCat",
+                  title: "Third Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "forthCat",
+                  title: "Forth Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "fifthCat",
+                  title: "Fifth Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "SixthCat",
+                  title: "Sixth Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "SevenCat",
+                  title: "Seven Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+
+    {
+      name: "toolsandtechlist",
+      title: "Tools And Tech List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+
+            {
+              name: "techImage",
+              title: "Tech Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+
+    {
+      name: "challengesfacedheading",
+      title: "Challenges Faced Heading",
+      type: "string",
+    },
+
+    {
+      name: "chanllangesfaced",
+      title: "Chanllanges Faced",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+            {
+              name: "description",
+              title: "Description",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+
+    {
+      name: "ourapproachheading",
+      title: "Our Approach Heading",
+      type: "string",
+    },
+
+    {
+      name: "ourapproach",
+      title: "Our Approach",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+            {
+              name: "description",
+              title: "Description",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+
+
+    {
+      name: "resultsheading",
+      title: "Results Heading",
+      type: "string",
+    },
+
+    {
+      name: "results",
+      title: "Results",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "heading",
+              title: "Heading",
+              type: "string",
+            },
+            {
+              name: "description",
+              title: "Description",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+    {
+      name: "conclusionheading",
+      title: "Conclusion Heading",
+      type: "string",
+    },
+    
+    {
+      name: "conclusion",
+      title: "Conclusion",
+      type: "string",
+    },
+
+
+
+    
 
     {
       name: "heroimage",
@@ -77,33 +348,7 @@ const portfolioSchema = {
         },
       ],
     },
-    {
-      name: "briefdescription",
-      title: "Brief Description",
-      type: "string",
-    },
-    {
-      name: "briefitemsarray",
-      title: "Brief Items Array",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "string",
-            },
-            {
-              name: "value",
-              title: "Value",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
+    
     {
       name: "secondaryimage",
       title: "Secondary Image",
@@ -120,66 +365,14 @@ const portfolioSchema = {
       ],
     },
 
-    {
-      name: "toolsandtechlist",
-      title: "Tools And Tech List",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "string",
-            },
+    
 
-            {
-              name: "techImage",
-              title: "Tech Image",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: "alt",
-                  title: "Alt",
-                  type: "string",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      name: "projectscopecontent",
-      title: "Project Scope Content",
-      type: "string",
-    },
+    
 
     {
       name: "operatingsystem",
       title: "Operating System",
       type: "string",
-    },
-
-    {
-      name: "toolsandtechnologies",
-      title: "Tools & Technologies Used",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          title: "Alt",
-          type: "string",
-        },
-      ],
     },
 
     {
@@ -204,83 +397,16 @@ const portfolioSchema = {
         },
       ],
     },
-    {
-      name: "chanllangesfaced",
-      title: "Chanllanges Faced",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "string",
-            },
-            {
-              name: "description",
-              title: "Description",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "ourapproach",
-      title: "Our aAproach",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "string",
-            },
-            {
-              name: "description",
-              title: "Description",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "results",
-      title: "Results",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "string",
-            },
-            {
-              name: "description",
-              title: "Description",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
+    
+    
+    
 
     {
       name: "toolsfortest",
       title: "Tools For Test",
       type: "string",
     },
-    {
-      name: "conclusion",
-      title: "Conclusion",
-      type: "string",
-    },
+   
 
     {
       name: "cardItemsList",
@@ -353,43 +479,44 @@ const portfolioSchema = {
       ],
     },
 
-    // {
-    //   name: "sections",
-    //   title: "Sections",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       type: "object",
-    //       fields: [
-    //         {
-    //           name: "heading",
-    //           title: "Heading",
-    //           type: "string",
-    //         },
-    //         {
-    //           name: "content",
-    //           title: "Content",
-    //           type: "array",
-    //           of: [{ type: "block" }],
-    //         },
-    //         {
-    //           name: "image",
-    //           title: "Image",
-    //           type: "image",
-    //           options: {
-    //             hotspot: true,
-    //           },
-    //         },
-    //         {
-    //           name: "listItems",
-    //           title: "List Items",
-    //           type: "array",
-    //           of: [{ type: "string" }],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+    
+    {
+      name: "caseStudiesToolsSection",
+      title: "Tools and Technology  Section",
+      type: "object",
+      fields: 
+      [
+        {
+          "name": "toolsTech",
+          "title": "Tools and Tech",
+          "type": "array",
+          "of": [
+            {
+              "type": "object",
+              "fields": [
+                {
+                  "name": "heading",
+                  "title": "Heading",
+                  "type": "string"
+                },
+                {
+                  "name": "detail",
+                  "title": "Detail",
+                  "type": "string"
+                },
+                {
+                  name: "images",
+                  title: "Images",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+                },
+              ]
+            }
+          ]
+        },
+      ]
+    }
+    
   ],
 };
 

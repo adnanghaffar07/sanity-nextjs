@@ -66,7 +66,7 @@ const OurWorkSection = () => {
                         </div>
                         {item.slug ? (
                           <Link
-                            href={`/case-study/${item.slug}`}
+                            href={`/case-studies/${item.slug}`}
                             className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-2xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
                           >
                             {item.title} - {item.subtitle}
@@ -84,7 +84,7 @@ const OurWorkSection = () => {
           </div>
         </div>
         <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
-          <div className="max-md:max-w-full flex md:flex-row flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-10">
+          <div className="flex md:flex-row flex-col grow md:text-xl text-base font-bold whitespace-nowrap text-zinc-100 max-md:mt-10 max-md:max-w-full rounded-3xl lg:gap-[6.25rem] gap-10">
             {recentArray &&
               recentArray.map((item: any, index: any) => {
                 if (index < 2) {
@@ -110,7 +110,7 @@ const OurWorkSection = () => {
                         </div>
                         {item.slug ? (
                           <Link
-                            href={`/case-study/${item.slug}`}
+                            href={`/case-studies/${item.slug}`}
                             className="absolute top-0 overlay left-0 w-full h-full flex items-end pt-60 pr-16 pb-4 pl-5 rounded-3xl shadow-md bg-black bg-opacity-50 max-md:pt-10 max-md:pr-5 max-md:max-w-full transition-opacity duration-300 hover:bg-opacity-25"
                           >
                             {item.title} - {item.subtitle}
@@ -137,10 +137,10 @@ const OurWorkSection = () => {
         }
       `}</style>
 
-<div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
+      <div className="flex flex-col self-center mt-16 w-full max-w-[1624px]  mx-auto max-md:mt-10 max-md:max-w-full">
         <div className="flex items-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap order-2 md:order-1">
           <Link
-            href="/case-study"
+            href="/case-studies"
             className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center  bg-[#F7E022] rounded-lg shadow-md"
           >
             <div className="relative grow  self-center">

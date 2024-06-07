@@ -312,7 +312,7 @@ body {
   color: rgb(0, 0, 0);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 300;
   transition: color 0.3s, transform 0.3s; /* Add smooth transition */
 }
 .mega-links-mb li p a{

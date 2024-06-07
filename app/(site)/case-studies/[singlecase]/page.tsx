@@ -1,6 +1,8 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
+import Image from "next/image";
+import HouseArrestBanner from "../../components/HouseArrestBanners";
 
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
@@ -13,28 +15,37 @@ async function getData(urlService: string) {
     return [];
   }
 }
+
+async function getLogoData() {
+  const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
+  try {
+    const fetchData = await client.fetch(queryLogo);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
+  const dataLogo = await getLogoData();
+  console.log("Data Logo", dataLogo);
+
+  console.log("Case Study Technologies ", data.caseStudiesToolsSection);
 
   return (
     <div className="max-w-full">
-      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light  lg:min-h-[700px] max-md:max-w-full ">
+      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light    max-md:max-w-full ">
         {data?.title === "House Arrest" && data?.cardimage?.asset ? (
-          <div style={{ paddingTop: '8px' }}>
-          <img
-            loading="lazy"
-            src={urlForImage(data.cardimage.asset)}
-            style={{ objectFit: "cover", display:"block" }}
-            className="lg:min-h-[700px]"
-            alt={data.cardimage.alt}
-          />
-          </div>
+          <HouseArrestBanner />
         ) : (
           data?.cardimage?.asset && (
             <img
               loading="lazy"
               src={urlForImage(data.cardimage.asset)}
               style={{ objectFit: "cover" }}
+              className=" sm:h-[700px]  h-auto"
               alt={data.cardimage.alt}
             />
           )
@@ -42,14 +53,16 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       </section>
       <div className="flex flex-col self-center w-full xl:max-w-[1380px]   mx-auto">
         <div className="lg:px-10 px-4">
-          <div className="flex flex-col xl:flex-row justify-center items-center  mt-10  gap-6 md:gap-10 lg:gap-36">
-            <div className=" mr-32">
-              <h2 className="text-3xl font-semibold   mb-4">Introduction</h2>
+          <div className="flex flex-col xl:flex-row justify-center items-center mt-0  gap-6 md:gap-10 lg:gap-36">
+            <div>
+              <h2 className="text-3xl font-semibold   mb-4">
+                {data?.introductionheading}
+              </h2>
               <p className="text-lg font-light   xl:max-w-[610px] text-justify">
                 {data.briefdescription && data.briefdescription}
               </p>
             </div>
-            <div className="flex flex-col  gap-6 md:gap-10 mb-20 mr-40 mt-20 md:mb-24">
+            <div className="flex flex-col   gap-6 md:gap-10 mb-20  mt-20 md:mb-24">
               {data.briefitemsarray?.map((item: any) => {
                 return (
                   <div className="relative" key={item._key}>
@@ -57,7 +70,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     <p className="text-[#707070] text-sm md:text-xl font-medium">
                       {item.heading}
                     </p>
-                    <p className="text-lg md:text-xl font-medium ">
+                    <p className="text-lg md:text-xl max-w-80 font-medium ">
                       {item.value}
                     </p>
                   </div>
@@ -76,31 +89,75 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               />
             )}
             <div className="w-full my-10 md:my-20 text-justify mx-auto">
-              <h3 className="text-3xl font-semibold  mb-4">Project Scope:</h3>
+              <h3 className="text-3xl font-semibold  mb-4">
+                {data?.projectscopeheading}:
+              </h3>
               <p className="text-lg text-justify font-light leading-8 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
 
               <h3 className="text-3xl font-semibold  my-4 md:my-8">
-                Tools & Technologies Used:
+                {data?.toolsandtechusedheading}:
               </h3>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center  gap-44 sm:mt-0 sm:mb-0  sm:gap-[100px] 2xl:gap-[130px] max-w-[1440px] sm:my-40">
-                {data.toolsandtechlist?.map((item: any) => {
-                  return (
-                    <img
-                      key={item._key}
-                      loading="lazy"
-                      src={urlForImage(item.techImage?.asset)}
-                      alt={item.techImage?.alt}
-                      className="mb-0"
-                    />
-                  );
-                })}
-              </div>
+              {data.caseStudiesToolsSection ? (
+                <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-24">
+                  {data.caseStudiesToolsSection.toolsTech.map(
+                    (tool: any, toolIndex: any) => (
+                      <div key={toolIndex} className="flex flex-row gap-2">
+                        <div className="flex flex-row gap-2">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex}>
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className=" max-h-12 object-cover"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+
+                        <div className="flex flex-col my-auto">
+                          <h3 className="text-3xl tracking-wider">
+                            {tool.heading}
+                          </h3>
+                          <p className="mt-1 text-lg tracking-wide">
+                            {tool.detail}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              ) : (
+                <ul>
+                  {data.technologiesused?.map((tech: any) => (
+                    <li
+                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                      key={tech._key}
+                    >
+                      <span className="text-lg text-justify font-bold">
+                        {tech.heading}:{" "}
+                      </span>
+                      <span className="text-lg text-justify font-light">
+                        {tech.description}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               <h3 className="text-3xl font-semibold my-4 md:my-8">
-                Challenges Faced:
+                {data?.challengesfacedheading}:
               </h3>
               <ul>
                 {data.chanllangesfaced?.map((challange: any) => {
@@ -117,7 +174,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 })}
               </ul>
               <h3 className="text-3xl font-semibold my-4 md:my-8">
-                Our Approach:
+                {data?.ourapproachheading}:
               </h3>
               <ul>
                 {data.ourapproach?.map((approach: any) => {
@@ -136,7 +193,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   );
                 })}
               </ul>
-              <h3 className="text-3xl  font-semibold my-4 md:my-8">Results:</h3>
+              <h3 className="text-3xl  font-semibold my-4 md:my-8">
+                {data?.resultsheading}:
+              </h3>
               <ul>
                 {data?.results?.map((result: any) => {
                   return (
@@ -156,7 +215,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </ul>
 
               <h3 className="text-3xl font-semibold my-4 md:my-8">
-                Conclusion:
+                {data?.conclusionheading}:
               </h3>
               <p className="text-lg text-justify leading-8 md:leading-8">
                 {data?.conclusion && data.conclusion}
