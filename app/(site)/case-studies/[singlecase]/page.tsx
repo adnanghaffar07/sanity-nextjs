@@ -105,8 +105,8 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
                     {data.caseStudiesToolsSection.toolsTech.map(
                       (tool: any, toolIndex: any) => (
-                        <div className="w-full sm:w-1/2 lg:w-1/3 ">
-                          <div key={toolIndex} className="flex  gap-2">
+                        <div key={toolIndex} className="w-full sm:w-1/2 lg:w-1/3 ">
+                          <div  className="flex  gap-2">
                             <div className="flex flex-row  gap-2">
                               {tool.images?.map(
                                 (logoRef: any, logoIndex: any) => {
