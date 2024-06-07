@@ -96,11 +96,10 @@ export async function POST(request: any): Promise<any> {
   const subscribe = completeFormData.get("subscribe");
   const pageName = completeFormData.get("pagename");
 
-  // Configure Nodemailer with Brevo (Sendinblue) SMTP
   const transporter = nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false,
     auth: {
       user: "75f6c8001@smtp-brevo.com",
       pass: "KVvb5cOUnwqmx3Gy",
@@ -109,13 +108,7 @@ export async function POST(request: any): Promise<any> {
 
   const mailOptions = {
     from: "umaid@codeautomation.dev",
-    // to: ["umaid@codeautomation.dev"],
-    // to: ["umaid@codeautomation.ai"],
-    to: [
-      "adnan@codeautomation.dev",
-      "jason@codeautomation.dev",
-      "umaid@codeautomation.dev",
-    ],
+    to: ["adnan@codeautomation.dev", "jason@codeautomation.dev"],
     subject: `CA Website Greeting Popup form - ${pageName} page`,
     html: `
     <!DOCTYPE html>
@@ -161,15 +154,12 @@ export async function POST(request: any): Promise<any> {
   };
 
   try {
-    // Send email using Nodemailer and Brevo SMTP
     await transporter.sendMail(mailOptions);
 
     if (subscribe === "true") {
-      // Add user to Brevo contact list
       const brevoApiKey =
-        "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"; // Replace with your Brevo API key
+        "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";
 
-      // Check if the contact already exists
       const checkContactResponse = await fetch(
         `https://api.sendinblue.com/v3/contacts/${email}`,
         {
@@ -182,13 +172,12 @@ export async function POST(request: any): Promise<any> {
       );
 
       if (checkContactResponse.status === 404) {
-        // Contact does not exist, add it
         const contactData = {
           email: email,
           attributes: {
             FIRSTNAME: name,
           },
-          listIds: [5], // Replace with your list ID
+          listIds: [5],
           updateEnabled: false,
         };
 
@@ -205,7 +194,6 @@ export async function POST(request: any): Promise<any> {
         );
 
         const addContactResult = await addContactResponse.json();
-        console.log("Add Contact Response:", addContactResult);
 
         if (!addContactResponse.ok) {
           console.error("Error adding contact:", addContactResult);
@@ -221,10 +209,9 @@ export async function POST(request: any): Promise<any> {
         );
       }
 
-      // Send thank-you email using Brevo template
       const transactionalEmailData = {
         to: [{ email: email, name: name }],
-        templateId: 2, // Replace with your Brevo template ID
+        templateId: 2,
         params: {
           FIRSTNAME: name,
         },
@@ -243,7 +230,6 @@ export async function POST(request: any): Promise<any> {
       );
 
       const sendEmailResult = await sendEmailResponse.json();
-      console.log("Send Email Response:", sendEmailResult);
 
       if (!sendEmailResponse.ok) {
         console.error("Error sending email:", sendEmailResult);
