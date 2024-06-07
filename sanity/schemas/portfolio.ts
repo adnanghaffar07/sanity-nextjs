@@ -13,6 +13,17 @@ const portfolioSchema = {
       title: "Sub Title",
       type: "string",
     },
+    {
+      name: "pageType", // New field for page type
+      title: "Page Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Case Study", value: "caseStudy" },
+          { title: "Value Blueprint", value: "valueBlueprint" },
+        ],
+      },
+    },
     
     {
       name: "slug",
@@ -80,6 +91,68 @@ const portfolioSchema = {
       title: "Tools & Technologies Used Heading",
       type: "string",
     },
+    {
+      name: "toolstechlist",
+      title: "Tools Tech List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "categories",
+              title: "Categories",
+              type: "object",
+              fields: [
+                {
+                  name: "firstCat",
+                  title: "First Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "secondCat",
+                  title: "Second Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "thirdCat",
+                  title: "Third Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "forthCat",
+                  title: "Forth Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "fifthCat",
+                  title: "Fifth Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "SixthCat",
+                  title: "Sixth Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+                {
+                  name: "SevenCat",
+                  title: "Seven Category",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
 
     {
       name: "toolsandtechlist",
