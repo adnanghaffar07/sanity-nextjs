@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { urlForImage } from "@/sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
 import React from 'react';
-import Link from 'next/link';
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 interface Props {
@@ -19,6 +18,28 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
   useEffect(() => {
     setSectionData(data);
   }, [data]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const user = getUser();
+      if (user) {
+        const userId = user.id;
+        const userEmail = user.email;
+        const userGivenName = user.given_name;
+        const userFamilyName = user.family_name;
+
+        // Push login event to data layer
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'user_login',
+          userId: userId,
+          userGivenName: userGivenName,
+          userFamilyName: userFamilyName,
+          userEmail: userEmail
+        });
+      }
+    }
+  }, [isAuthenticated, getUser]);
 
   const handleDownload = async (service: any) => {
     try {
@@ -38,6 +59,20 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
         if (isAuthenticated) {
           console.log("User is authenticated. Starting download...");
           startDownload(pdfUrl, assetData);
+
+          // Push download event to data layer
+          const user = getUser();
+          if (user && window.dataLayer) {
+            window.dataLayer.push({
+              event: 'brochure_download',
+              brochureId: service._id,
+              brochureName: assetData?.originalFilename || 'unknown',
+              userId: user.id,
+              userGivenName: user.given_name,
+              userFamilyName: user.family_name,
+              userEmail: user.email
+            });
+          }
         } else {
           console.log("User is not authenticated. Redirecting to login page...");
           const currentUrl = encodeURIComponent(window.location.href);
@@ -71,7 +106,7 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
   };
 
   return (
-    <section className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mx-auto my-12 sm:my-12">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mx-auto my-12 sm:my-12">
       {data.map((service: any, index: number) => (
         <div className="card" key={service._id}>
           <button onClick={() => handleDownload(service)} className="focus:outline-none flex items-center space-x-2 mb-2">
@@ -104,14 +139,13 @@ const Brochure: React.FC<Props> = ({ data, dataSub }) => {
         </div>
       ))}
       <style jsx>{`
-   
         .card {
           background: black;
           border: 2px solid white;
-        padding: 20px 20px 20px 20px;
-        opacity:0.7;
+          padding: 20px;
+          opacity: 0.7;
           border-radius: 10px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
         }
         .card:hover {
