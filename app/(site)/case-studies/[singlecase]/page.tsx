@@ -101,42 +101,50 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </h3>
 
               {data.caseStudiesToolsSection ? (
-                <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-24">
-                  {data.caseStudiesToolsSection.toolsTech.map(
-                    (tool: any, toolIndex: any) => (
-                      <div key={toolIndex} className="flex flex-row gap-2">
-                        <div className="flex flex-row gap-2">
-                          {tool.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find(
-                              (logo: any) => logo._id === logoRef._ref
-                            );
-                            if (logoData) {
-                              return (
-                                <div key={logoIndex}>
-                                  <img
-                                    src={urlForImage(logoData.image).toString()}
-                                    alt={logoData.heading}
-                                    className=" max-h-12 object-cover"
-                                  />
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
+                <div className=" container mx-16 ">
+                  <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
+                    {data.caseStudiesToolsSection.toolsTech.map(
+                      (tool: any, toolIndex: any) => (
+                        <div key={toolIndex} className="w-full sm:w-1/2 lg:w-1/3 ">
+                          <div  className="flex  gap-2">
+                            <div className="flex flex-row  gap-2">
+                              {tool.images?.map(
+                                (logoRef: any, logoIndex: any) => {
+                                  const logoData = dataLogo.find(
+                                    (logo: any) => logo._id === logoRef._ref
+                                  );
+                                  if (logoData) {
+                                    return (
+                                      <div key={logoIndex}>
+                                        <img
+                                          src={urlForImage(
+                                            logoData.image
+                                          ).toString()}
+                                          alt={logoData.heading}
+                                          className=" max-h-10   object-cover"
+                                        />
+                                      </div>
+                                    );
+                                  } else {
+                                    return null;
+                                  }
+                                }
+                              )}
+                            </div>
 
-                        <div className="flex flex-col my-auto">
-                          <h3 className="text-3xl tracking-wider">
-                            {tool.heading}
-                          </h3>
-                          <p className="mt-1 text-lg tracking-wide">
-                            {tool.detail}
-                          </p>
+                            <div className="flex flex-col my-auto">
+                              <h3 className="text-3xl tracking-wider">
+                                {tool.heading}
+                              </h3>
+                              <p className="mt-1 text-lg tracking-wide">
+                                {tool.detail}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    )
-                  )}
+                      )
+                    )}
+                  </div>
                 </div>
               ) : (
                 <ul>
