@@ -97,29 +97,29 @@ export default async function ValueBlueprints() {
       </div>
 
       <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-  <div className="container mx-auto">
-    <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">Explore Our Value Blueprints</h2>
-    <div className="flex flex-wrap justify-center gap-8">
-      {portfolioData.map((item: any) => (
-        <Link key={item._id} href={`/value-blueprints/${item._id}`}>
-          <div className="group h-full w-full sm:w-auto">
-            <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
-              <img
-                src={urlForImage(item.heroimage).toString()}
-                alt={item.title}
-                className="w-full h-40 object-cover object-center transition duration-300 group-hover:scale-105"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300">{item.title}</h3>
-                <p className="text-gray-700 text-center">{item.description}</p>
-              </div>
-            </div>
+        <div className="container mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">Explore Our Value Blueprints</h2>
+          <div className="flex flex-wrap justify-center gap-8">
+            {portfolioData.map((item: any) => (
+              <Link key={item._id} href={`/value-blueprints/${item._id}`}>
+                <div className="group h-full w-full sm:w-auto">
+                  <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
+                    <img
+                      src={urlForImage(item.heroimage).toString()}
+                      alt={item.title}
+                      className="w-full h-40 object-cover object-center transition duration-300 group-hover:scale-105"
+                    />
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300">{item.title}</h3>
+                      <p className="text-gray-700 text-center">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-        </Link>
-      ))}
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
 
       {/* Tools and Technology */}
