@@ -100,13 +100,23 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 {data?.toolsandtechusedheading}:
               </h3>
 
+              <p className="text-lg font-light tracking-wider leading-9 text-center text-black">
+                House Arrest Monitoring System is an innovative offender
+                monitoring solution empowering law enforcement and offenders
+                with real-time Check-in requests and Location tracking for safer
+                communities.
+              </p>
+
               {data.caseStudiesToolsSection ? (
-                <div className=" container mx-16 ">
+                <div className=" container mx-16 mt-3 ">
                   <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
                     {data.caseStudiesToolsSection.toolsTech.map(
                       (tool: any, toolIndex: any) => (
-                        <div key={toolIndex} className="w-full sm:w-1/2 lg:w-1/3 ">
-                          <div  className="flex  gap-2">
+                        <div
+                          key={toolIndex}
+                          className="w-full sm:w-1/2 lg:w-1/3 "
+                        >
+                          <div className="flex  gap-2">
                             <div className="flex flex-row  gap-2">
                               {tool.images?.map(
                                 (logoRef: any, logoIndex: any) => {

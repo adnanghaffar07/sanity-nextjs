@@ -16,11 +16,17 @@ const HouseArrestBanner = () => {
         className=" w-full h-full"
       >
         <SwiperSlide>
-          <img src="/HouseArrest-Old.png" className="object-cover w-full  h-[700px]"></img>
+          <img
+            src="/HouseArrest-Old.jpg"
+            className="object-cover w-full  h-[700px]"
+          ></img>
         </SwiperSlide>
 
         <SwiperSlide>
-          <img src="/HouseArrest-New.png" className=" object-cover w-full h-[700px]"></img>
+          <img
+            src="/HouseArrest-New.jpg"
+            className=" object-cover w-full h-[700px]"
+          ></img>
         </SwiperSlide>
       </Swiper>
     </>
