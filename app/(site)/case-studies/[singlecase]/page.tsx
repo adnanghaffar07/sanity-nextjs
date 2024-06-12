@@ -79,15 +79,166 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             </div>
           </div>
 
+          <section>
+            <h3 className="text-3xl font-semibold  my-4 md:my-8">
+              {data?.toolsandtechusedheading}:
+            </h3>
+
+            <p className="text-lg font-light tracking-wider leading-9 text-center text-black">
+              {data?.toolsandtechdescription}
+            </p>
+
+            {data.caseStudiesToolsSection ? (
+              <div className="container mx-16 mt-10 ">
+                <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
+                  {data.caseStudiesToolsSection.toolsTech.map(
+                    (tool: any, toolIndex: any) => (
+                      <div
+                        key={toolIndex}
+                        className="w-full sm:w-1/2 lg:w-1/3 "
+                      >
+                        <div className="flex  gap-2">
+                          <div className="flex flex-row  gap-2">
+                            {tool.images?.map(
+                              (logoRef: any, logoIndex: any) => {
+                                const logoData = dataLogo.find(
+                                  (logo: any) => logo._id === logoRef._ref
+                                );
+                                if (logoData) {
+                                  return (
+                                    <div key={logoIndex}>
+                                      <img
+                                        src={urlForImage(
+                                          logoData.image
+                                        ).toString()}
+                                        alt={logoData.heading}
+                                        className=" max-h-10   object-cover"
+                                      />
+                                    </div>
+                                  );
+                                } else {
+                                  return null;
+                                }
+                              }
+                            )}
+                          </div>
+
+                          <div className="flex flex-col my-auto">
+                            <h3 className="text-3xl tracking-wider">
+                              {tool.heading}
+                            </h3>
+                            <p className="mt-1 text-lg tracking-wide">
+                              {tool.detail}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            ) : (
+              <ul>
+                {data.technologiesused?.map((tech: any) => (
+                  <li
+                    className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                    key={tech._key}
+                  >
+                    <span className="text-lg text-justify font-bold">
+                      {tech.heading}:{" "}
+                    </span>
+                    <span className="text-lg text-justify font-light">
+                      {tech.description}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          
+
+          <section className="my-[10%]">
+             {/*  Application Features  */}
+            <div className="flex gap-5  justify-center text-center max-md:flex-wrap">
+              <img
+                loading="lazy"
+                src="/HouseArrestLogo1.png"
+                className="shrink-0 self-start max-w-full aspect-[0.9] w-[114px]"
+              />
+              <div className="flex flex-col grow shrink-0 self-end px-5 mt-10 basis-0 w-fit max-md:mt-10 max-md:max-w-full">
+                <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
+                  House Arrest
+                  Client
+                  App Features
+                </h3>
+                <div className="self-center mt-6 text-xl tracking-wide leading-10 text-black max-md:max-w-full">
+                  iOS and Android Mobile Apps designed & developed by
+                  CodeAutomation for E-CELL
+                </div>
+                <img
+                loading="lazy"
+                src="/FeatureImage.png"
+                className=" max-w-full"
+              />
+              </div>
+            </div>
+          </section>
+
           <div>
             {data?.secondaryimage?.asset && (
               <img
                 loading="lazy"
                 src={urlForImage(data.secondaryimage.asset)}
                 alt={data.secondaryimage.alt}
-                className="size-full mb-0 sm:mb-14 shadow-blogImage"
+                className="size-full my-[10%] sm:mb-14 shadow-blogImage"
               />
             )}
+
+            <div>
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col gap-28  px-5 text-2xl tracking-wider text-black max-md:max-w-full">
+                    {/*  Application Testing  */}
+                    <div className=" text-justify">
+                      <h2 className="text-3xl font-semibold  mb-4">
+                        Application Testing
+                      </h2>
+                      <p className="text-lg text-justify font-light leading-8 md:leading-8">
+                        House Arrest Agent and Client mobile applications
+                        testing are performed on physical iOS and Android
+                        devices and E-Cell FOB and E-Cell Band (IoT Device)
+                      </p>
+                    </div>
+                    {/*  Types of Testing  */}
+                    <div>
+                      <h2 className="text-3xl font-semibold  mb-4">
+                        Types of Testing
+                      </h2>
+                      <ul className=" list-disc text-lg ml-5 leading-8 md:leading-8">
+                        <li>Functional Testing</li>
+                        <br />
+                        <li>Non-Functional Testing</li>
+                        <br />
+                        <li> Cross Devices Testing</li>
+                        <br />
+                        <li>IoT Device Connectivity Testing</li>
+                        <br />
+                        <li> Field Testing</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                  <img
+                    loading="lazy"
+                    src="/ApplicationTesting.png"
+                    className="mt-9 w-full aspect-[1.37] max-md:max-w-full"
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="w-full my-10 md:my-20 text-justify mx-auto">
               <h3 className="text-3xl font-semibold  mb-4">
                 {data?.projectscopeheading}:
@@ -95,84 +246,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <p className="text-lg text-justify font-light leading-8 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
-
-              <h3 className="text-3xl font-semibold  my-4 md:my-8">
-                {data?.toolsandtechusedheading}:
-              </h3>
-
-              <p className="text-lg font-light tracking-wider leading-9 text-center text-black">
-                House Arrest Monitoring System is an innovative offender
-                monitoring solution empowering law enforcement and offenders
-                with real-time Check-in requests and Location tracking for safer
-                communities.
-              </p>
-
-              {data.caseStudiesToolsSection ? (
-                <div className=" container mx-16 mt-3 ">
-                  <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
-                    {data.caseStudiesToolsSection.toolsTech.map(
-                      (tool: any, toolIndex: any) => (
-                        <div
-                          key={toolIndex}
-                          className="w-full sm:w-1/2 lg:w-1/3 "
-                        >
-                          <div className="flex  gap-2">
-                            <div className="flex flex-row  gap-2">
-                              {tool.images?.map(
-                                (logoRef: any, logoIndex: any) => {
-                                  const logoData = dataLogo.find(
-                                    (logo: any) => logo._id === logoRef._ref
-                                  );
-                                  if (logoData) {
-                                    return (
-                                      <div key={logoIndex}>
-                                        <img
-                                          src={urlForImage(
-                                            logoData.image
-                                          ).toString()}
-                                          alt={logoData.heading}
-                                          className=" max-h-10   object-cover"
-                                        />
-                                      </div>
-                                    );
-                                  } else {
-                                    return null;
-                                  }
-                                }
-                              )}
-                            </div>
-
-                            <div className="flex flex-col my-auto">
-                              <h3 className="text-3xl tracking-wider">
-                                {tool.heading}
-                              </h3>
-                              <p className="mt-1 text-lg tracking-wide">
-                                {tool.detail}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <ul>
-                  {data.technologiesused?.map((tech: any) => (
-                    <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                      key={tech._key}
-                    >
-                      <span className="text-lg text-justify font-bold">
-                        {tech.heading}:{" "}
-                      </span>
-                      <span className="text-lg text-justify font-light">
-                        {tech.description}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
 
               <h3 className="text-3xl font-semibold my-4 md:my-8">
                 {data?.challengesfacedheading}:
