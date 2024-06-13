@@ -1,21 +1,19 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
-const Testimonials = React.lazy(() => import("./components/Testimonials"));
-const OurWorkSection = React.lazy(() => import("./components/OurWorkSection"));
-const Faqs = React.lazy(() => import("./components/Faqs"));
-
+const Testimonials = dynamic(() => import("./components/Testimonials"), {
+  suspense: true,
+});
+const OurWorkSection = dynamic(() => import("./components/OurWorkSection"), {
+  suspense: true,
+});
+const Faqs = dynamic(() => import("./components/Faqs"), {
+  suspense: true,
+});
 import ScrollAnimation from "./components/ScrollAnimation";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { redirect } from "next/navigation";
 
-export default async function Home() {
-  const { isAuthenticated } = getKindeServerSession()
-
-if(await isAuthenticated()){
-  redirect("")
-}
-
+export default function Home() {
   return (
     <div>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">

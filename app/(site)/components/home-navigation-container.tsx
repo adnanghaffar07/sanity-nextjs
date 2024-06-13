@@ -32,7 +32,7 @@ export default function HomeNavigationContainer() {
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const currentUrl = encodeURIComponent(window.location.href);
+  // const currentUrl = encodeURIComponent(window.location.href);
 
 
 
@@ -772,7 +772,7 @@ export default function HomeNavigationContainer() {
                       <p className="px-4 py-2 text-gray-800 cursor-pointer">
                          Account Details
                         </p>
-                      <LogoutLink postLogoutRedirectURL={`/api/auth/login?post_login_redirect_url=${currentUrl}`}>
+                      <LogoutLink>
                         <p className="px-4 py-2 mb-2 text-gray-800 cursor-pointer">
                           Sign Out
                         </p>
@@ -784,7 +784,7 @@ export default function HomeNavigationContainer() {
               </>
             ) : (
               <div>
-                <LoginLink postLoginRedirectURL={`/api/auth/login?post_login_redirect_url=${currentUrl}`}>
+                <LoginLink>
                   <button className="inline-flex items-center justify-center mb-1 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-gray-400 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" role="button">
                     Sign In
                   </button>

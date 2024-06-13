@@ -66,6 +66,7 @@ const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
       // If user is not authenticated, redirect to login page
       const currentUrl = encodeURIComponent(window.location.href);
       window.location.href = `/api/auth/login?redirectUrl=${currentUrl}`;
+      console.log(currentUrl, "OPPPPPPPPPP")
     }
   };
 
