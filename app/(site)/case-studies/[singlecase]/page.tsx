@@ -76,18 +76,17 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </div>
 
           <section>
-            
-          <h3 className="text-3xl font-semibold  text-center  my-4 md:my-8">
+            <h3 className="text-3xl font-semibold  text-center  my-4 md:my-8">
               {data?.toolsandtechusedtitle}
             </h3>
 
             <p className="text-lg font-light tracking-wider leading-9  text-justify text-black">
               {data?.toolsandtechdescription}
             </p>
-            
+
             <h3 className="text-3xl font-semibold text-center  my-4 md:my-8">
               {data?.toolsandtechusedheading}
-            </h3> 
+            </h3>
 
             {data.caseStudiesToolsSection ? (
               <div className="container mx-16 mt-10 ">
