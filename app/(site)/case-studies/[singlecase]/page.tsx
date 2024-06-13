@@ -30,10 +30,6 @@ async function getLogoData() {
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
   const dataLogo = await getLogoData();
-  console.log("Data Logo", dataLogo);
-
-  console.log("Case Study Technologies ", data.caseStudiesToolsSection);
-
   return (
     <div className="max-w-full">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light    max-md:max-w-full ">
@@ -80,13 +76,18 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </div>
 
           <section>
-            <h3 className="text-3xl font-semibold  my-4 md:my-8">
-              {data?.toolsandtechusedheading}:
+            
+          <h3 className="text-3xl font-semibold  text-center  my-4 md:my-8">
+              {data?.toolsandtechusedtitle}
             </h3>
 
-            <p className="text-lg font-light tracking-wider leading-9 text-center text-black">
+            <p className="text-lg font-light tracking-wider leading-9  text-justify text-black">
               {data?.toolsandtechdescription}
             </p>
+            
+            <h3 className="text-3xl font-semibold text-center  my-4 md:my-8">
+              {data?.toolsandtechusedheading}
+            </h3> 
 
             {data.caseStudiesToolsSection ? (
               <div className="container mx-16 mt-10 ">
@@ -158,27 +159,50 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
           <section className="my-[10%]">
             {/*  Application Features  */}
-            <div className="flex gap-5  justify-center text-center max-md:flex-wrap">
-              <img
-                loading="lazy"
-                src="/HouseArrestLogo1.png"
-                className="shrink-0 self-start max-w-full aspect-[0.9] w-[114px]"
-              />
-              <div className="flex flex-col grow shrink-0 self-end px-5 mt-10 basis-0 w-fit max-md:mt-10 max-md:max-w-full">
-                <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
-                  House Arrest Client App Features
-                </h3>
-                <div className="self-center mt-6 text-xl tracking-wide leading-10 text-black max-md:max-w-full">
-                  iOS and Android Mobile Apps designed & developed by
-                  CodeAutomation for E-CELL
+
+            {data.features?.featureslist.map((feature: any) => {
+              return (
+                <div
+                  key={feature._key}
+                  className="flex gap-5  justify-center text-center max-md:flex-wrap"
+                >
+                  {feature.logo?.map((logoRef: any, logoIndex: any) => {
+                    const logoData = dataLogo.find(
+                      (logo: any) => logo._id === logoRef._ref
+                    );
+                    if (logoData && logoData.image) {
+                      return (
+                        <div key={logoIndex}>
+                          <img
+                            src={urlForImage(logoData.image).toString()}
+                            alt={logoData.heading}
+                            className="shrink-0 self-start max-w-full aspect-[0.9] w-[114px]"
+                          />
+                        </div>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+
+                  <div className="flex flex-col grow shrink-0 self-end px-5 mt-10 basis-0 w-fit max-md:mt-10 max-md:max-w-full">
+                    <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
+                      {feature.heading}
+                    </h3>
+                    <p className="self-center mt-6 text-xl tracking-wide leading-10 text-justify text-black max-md:max-w-full">
+                      {feature.description}
+                    </p>
+                    {feature.images && (
+                      <img
+                        loading="lazy"
+                        src={urlForImage(feature.images).toString()}
+                        className=" max-w-full"
+                      />
+                    )}
+                  </div>
                 </div>
-                <img
-                  loading="lazy"
-                  src="/FeatureImage.png"
-                  className=" max-w-full"
-                />
-              </div>
-            </div>
+              );
+            })}
           </section>
 
           <div>
@@ -198,39 +222,38 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     {/*  Application Testing  */}
                     <div className=" text-justify">
                       <h2 className="text-3xl font-semibold  mb-4">
-                        Application Testing
+                        {data.applicationtestingheading}
                       </h2>
                       <p className="text-lg text-justify font-light leading-8 md:leading-8">
-                        House Arrest Agent and Client mobile applications
-                        testing are performed on physical iOS and Android
-                        devices and E-Cell FOB and E-Cell Band (IoT Device)
+                        {data.applicationtestingdescription}
                       </p>
                     </div>
                     {/*  Types of Testing  */}
                     <div>
                       <h2 className="text-3xl font-semibold  mb-4">
-                        Types of Testing
+                        {data.typeoftestingheading}
                       </h2>
-                      <ul className=" list-disc text-lg ml-5 leading-8 md:leading-8">
-                        <li>Functional Testing</li>
-                        <br />
-                        <li>Non-Functional Testing</li>
-                        <br />
-                        <li> Cross Devices Testing</li>
-                        <br />
-                        <li>IoT Device Connectivity Testing</li>
-                        <br />
-                        <li> Field Testing</li>
+
+                      <ul className=" mx-10">
+                        {data.typeoftestinglist?.map((testingType: any) => (
+                          <li className=" list-disc" key={testingType._key}>
+                            <span className="text-lg text-justify font-light">
+                              {testingType.value}
+                            </span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                  <img
-                    loading="lazy"
-                    src="/ApplicationTesting.png"
-                    className="mt-9 w-full aspect-[1.37] max-md:max-w-full"
-                  />
+                  {data.testingimage && (
+                    <img
+                      loading="lazy"
+                      src={urlForImage(data.testingimage).toString()}
+                      className="mt-9 w-full aspect-[1.37] max-md:max-w-full"
+                    />
+                  )}
                 </div>
               </div>
             </div>

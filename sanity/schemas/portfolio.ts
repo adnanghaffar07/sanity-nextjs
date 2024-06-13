@@ -71,6 +71,50 @@ const portfolioSchema = {
     },
 
     {
+      name: "features",
+      title: "Features Section",
+      type: "object",
+      fields: [
+        {
+          name: "featureslist",
+          title: "Features List",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
+                },
+
+                {
+                  name: "description",
+                  title: "Description",
+                  type: "string",
+                },
+
+                {
+                  name: "logo",
+                  title: "Logo",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
+                },
+
+                {
+                  name: "images",
+                  title: "Images",
+                  type: "image",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    {
       name: "projectscopeheading",
       title: "Project Scope Heading",
       type: "string",
@@ -79,6 +123,12 @@ const portfolioSchema = {
     {
       name: "projectscopecontent",
       title: "Project Scope Content",
+      type: "string",
+    },
+
+    {
+      name: "toolsandtechusedtitle",
+      title: "Tools & Technologies Title",
       type: "string",
     },
 
@@ -92,6 +142,58 @@ const portfolioSchema = {
       name: "toolsandtechdescription",
       title: "Tools & Technologies Description",
       type: "string",
+    },
+
+    {
+      name: "applicationtestingheading",
+      title: "Application Testing Heading",
+      type: "string",
+    },
+
+    {
+      name: "applicationtestingdescription",
+      title: "Application Testing Description",
+      type: "string",
+    },
+
+    {
+      name: "typeoftestingheading",
+      title: "Type of Testing Heading",
+      type: "string",
+    },
+
+    {
+      name: "testingimage",
+      title: "Testing Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+
+    {
+      name: "typeoftestinglist",
+      title: "Type of Testing List",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "value",
+              title: "Value",
+              type: "string",
+            },
+          ],
+        },
+      ],
     },
 
     {
