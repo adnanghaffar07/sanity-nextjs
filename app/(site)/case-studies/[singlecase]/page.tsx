@@ -156,10 +156,8 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             )}
           </section>
 
-          
-
           <section className="my-[10%]">
-             {/*  Application Features  */}
+            {/*  Application Features  */}
             <div className="flex gap-5  justify-center text-center max-md:flex-wrap">
               <img
                 loading="lazy"
@@ -168,19 +166,17 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               />
               <div className="flex flex-col grow shrink-0 self-end px-5 mt-10 basis-0 w-fit max-md:mt-10 max-md:max-w-full">
                 <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
-                  House Arrest
-                  Client
-                  App Features
+                  House Arrest Client App Features
                 </h3>
                 <div className="self-center mt-6 text-xl tracking-wide leading-10 text-black max-md:max-w-full">
                   iOS and Android Mobile Apps designed & developed by
                   CodeAutomation for E-CELL
                 </div>
                 <img
-                loading="lazy"
-                src="/FeatureImage.png"
-                className=" max-w-full"
-              />
+                  loading="lazy"
+                  src="/FeatureImage.png"
+                  className=" max-w-full"
+                />
               </div>
             </div>
           </section>
