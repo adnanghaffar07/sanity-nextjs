@@ -16,7 +16,7 @@ export default function Blogs() {
           playsInline
           preload="auto"
         >
-          <source src="/hero-sec-video.webm" type="video/mp4" />
+          <source src="/hero-sec-video.webm" type="video/webm" />
         </video>
 
         <div className="mt-[130px] sm:mt-[280px] lg:mt-[327px] absolute inset-0 flex flex-col items-center z-[2]">
