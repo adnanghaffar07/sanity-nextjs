@@ -113,43 +113,53 @@ export default async function service({
 
       {/* child service cards */}
 
-      <section className="px-6 md:px-16 py-10 md:py-16  bg-white">
-        <div className="container  mx-auto">
+      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+        <div className="container mx-auto">
           <h2 className="text-2xl font-bold mb-8 text-center">
             {data.subServiceHeading}
           </h2>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
           <div
-            className="flex flex-col  sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
+            className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
             style={{
               marginTop: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
               marginBottom: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
             }}
           >
             {data.subServices &&
-              data.subServices.map((subServiceRef: any) => {
+              data.subServices.map((subServiceRef:any) => {
                 const subService = dataSub.find(
-                  (item: any) => item._id === subServiceRef._ref
+                  (item:any) => item._id === subServiceRef._ref
                 );
                 if (subService) {
+                  const logos = subService.images?.map((logoRef:any) =>
+                    dataLogo.find((logo:any) => logo._id === logoRef._ref)
+                  );
                   return (
                     <Link
                       href={`/services/${params.service}/${subService.urlPathSub}`}
                       key={subService._id}
                     >
-                      <div
-                        className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full"
-                     
-                      >
+                      <div className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
                           alt={subService.serviceCardSub}
-                          className="w-full h-40 object-cover "
+                          className="w-full h-40 object-cover"
                         />
                         <div className="p-6">
-                          <h3 className="text-xl font-semibold text-center mb-4">
-                            {subService.serviceCardSub}
-                          </h3>
+                          <div className="flex items-center justify-center mb-4">
+                            {logos?.map((logoData:any, logoIndex:any) => (
+                              <div key={logoIndex} className="mr-2">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  className="h-10 object-cover"
+                                />
+                              </div>
+                            ))}
+                            <h3 className="text-xl font-semibold text-center">
+                              {subService.serviceCardSub}
+                            </h3>
+                          </div>
                           <p className="text-gray-700 text-center">
                             {subService.serviceDescSub}
                           </p>
