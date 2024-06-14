@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
@@ -32,13 +32,26 @@ export default function HomeNavigationContainer() {
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []); 
 
 
   const handleSignIn = () => {
     const currentUrl = encodeURIComponent(window.location.href);
     window.location.href = `/api/auth/login?post_login_redirect_url=${currentUrl}`;
   };
- 
+
   const handleToggleMenu = () => {
     setIcon(!menuIcon);
   };
@@ -751,7 +764,7 @@ export default function HomeNavigationContainer() {
                   />
                 )}
                 {isDropdownOpen && (
-                  <div className="absolute mt-2 w-50 bg-white rounded-2xl shadow-lg">
+                  <div ref={dropdownRef}  className="absolute mt-2 w-50 bg-white rounded-2xl shadow-lg">
                     <div className="">
                       <div className="flex flex-row px-4 py-2">
                         <img
@@ -760,22 +773,22 @@ export default function HomeNavigationContainer() {
                           className="h-10 w-10 mt-2 object-cover rounded-full cursor-pointer"
                           onClick={toggleDropdown}
                         />
-                        <p  onClick={toggleDropdown} className=" px-4 mt-4 text-gray-800 cursor-pointer">
+                        <p onClick={toggleDropdown} className=" px-4 mt-4 text-gray-800 cursor-pointer">
                           {userDetails?.given_name} {userDetails?.family_name}
-                         
+
                         </p>
 
                       </div>
 
-                      <p  onClick={toggleDropdown} className=" px-4 text-gray-500 w-18 text-sm cursor-pointer break">
+                      <p onClick={toggleDropdown} className=" px-4 text-gray-500 w-18 text-sm cursor-pointer break">
                         {userDetails?.email}
                       </p>
                       <hr className="my-2" />
-                      <p  onClick={toggleDropdown} className="px-4 py-2 text-gray-800 cursor-pointer">
+                      <p onClick={toggleDropdown} className="px-4 py-2 text-gray-800 cursor-pointer">
                         Account Details
                       </p>
                       <LogoutLink>
-                        <p  onClick={toggleDropdown} className="px-4 py-2 mb-2 text-gray-800 cursor-pointer">
+                        <p onClick={toggleDropdown} className="px-4 py-2 mb-2 text-gray-800 cursor-pointer">
                           Sign Out
                         </p>
                       </LogoutLink>
@@ -788,7 +801,7 @@ export default function HomeNavigationContainer() {
               <div>
                 <button
                   onClick={handleSignIn}
-                  className="inline-flex items-center justify-center mb-1 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-white rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                  className="inline-flex items-center justify-center mb-1 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-white rounded-lg md:w-auto hover:bg-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-black"
                   role="button"
                 >
                   Sign In
