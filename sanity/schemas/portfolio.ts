@@ -372,6 +372,12 @@ const portfolioSchema = {
     },
 
     {
+      name: "projectoverviewtitle",
+      title: "Project Overview Title",
+      type: "string",
+    },
+
+    {
       name: "technologiesused",
       title: "Technologies Used",
       type: "array",
@@ -418,8 +424,14 @@ const portfolioSchema = {
                   type: "string",
                 },
                 {
-                  name: "backgroundcolor",
-                  title: "Background Color",
+                  name: "leftcolor",
+                  title: "Left Color",
+                  type: "string",
+                },
+
+                {
+                  name: "rightcolor",
+                  title: "Right Color",
                   type: "string",
                 },
               ],
