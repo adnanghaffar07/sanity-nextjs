@@ -28,6 +28,7 @@ export default function Home() {
           preload="auto"
         >
           <source src="/hero-sec-video.webm" type="video/webm" />
+          <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
