@@ -28,12 +28,12 @@ export default function FooterContainer() {
 
   const socialIcons = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/473a7429030026bd2ca2fe152aef53403a1f9b0cbee5a68d3ad32022fad854a7?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/facebook-icon.svg",
       alt: "facebook",
       link: "https://www.facebook.com/Codeautomationai/",
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/adf696589e4137664b9c3d84b7694e7064769715ccfab4d849d64bbc25c5674e?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/instagram-icon.svg",
       alt: "Instagram",
       link: "https://www.instagram.com/codeautomation.ai/",
     },
@@ -44,7 +44,7 @@ export default function FooterContainer() {
       className: "rounded-3xl",
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/679d9d2dbbc950158d83a006bad2c7e0bb1376ded77e7aac9361af8cf20181f9?apiKey=4bbac2e9fd8543319fbc188f9510a76b&",
+      src: "/linkedin-icon.svg",
       alt: "Linkedin",
       link: "https://www.linkedin.com/company/codeautomationai/",
     },
@@ -60,8 +60,9 @@ export default function FooterContainer() {
                 <div className="flex self-start">
                   <img
                     loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ca2c2299539776dc609808e4640dd6fc263794a85ae59f86c06f93cea5e7b09f?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
+                    src="/footer-logo.svg"
                     className="max-w-full aspect-[5] w-[300px] max-md:ml-2.5"
+                    alt="logo"
                   />
                 </div>
 
@@ -156,7 +157,7 @@ export default function FooterContainer() {
                   href={`/blogs`}
                   className="hover:underline my-auto inline-block"
                 >
-                 Blogs
+                  Blogs
                 </Link>
                 <Link
                   href={`/career`}
@@ -223,9 +224,8 @@ export default function FooterContainer() {
                       <img
                         src={icon.src}
                         alt={icon.alt}
-                        className="h-10 w-10 rounded-3xl"
-                      />{" "}
-                      {/* Adjust height and width as needed */}
+                        className="h-auto w-10 rounded-3xl"
+                      />
                     </Link>
                   ))}
                 </section>
