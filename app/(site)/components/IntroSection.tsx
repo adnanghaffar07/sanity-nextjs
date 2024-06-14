@@ -4,7 +4,6 @@
 import { useState, useEffect } from "react";
 import { urlForImage } from "@/sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
-
 import Image from "next/image";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
@@ -13,11 +12,9 @@ interface IntroductionSectionProps {
 }
 
 const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
-  // State for storing the fetched data
   const [sectionData, setSectionData] = useState<any>({});
-  const { getUser, isAuthenticated } = useKindeBrowserClient()
+  const { getUser, isAuthenticated } = useKindeBrowserClient();
 
-  // Fetch data on component mount
   useEffect(() => {
     setSectionData(data);
   }, [data]);
@@ -41,10 +38,7 @@ const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
               const blobUrl = URL.createObjectURL(blob);
               const anchor = document.createElement("a");
               anchor.href = blobUrl;
-
-              // Set the downloaded file name
-              const fileName = assetData?.originalFilename || "download.pdf"; // Get the original file name from asset data
-
+              const fileName = assetData?.originalFilename || "download.pdf";
               anchor.download = fileName;
               anchor.click();
             })
@@ -60,63 +54,60 @@ const IntroductionSection: React.FC<IntroductionSectionProps> = ({ data }) => {
     };
 
     if (isAuthenticated) {
-      // If user is authenticated, start download immediately
       startDownload();
     } else {
-      // If user is not authenticated, redirect to login page
       const currentUrl = encodeURIComponent(window.location.href);
-      window.location.href = `/api/auth/login?redirectUrl=${currentUrl}`;
-      console.log(currentUrl, "OPPPPPPPPPP")
+      window.location.href = `/api/auth/login?post_login_redirect_url=${currentUrl}`;
     }
   };
 
   return (
     <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-    <div className="container mx-auto flex flex-wrap items-center justify-center">
-      {sectionData.introductionSection?.introImage ? (
-        <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
-          <Image
-            src={urlForImage(sectionData.introductionSection?.introImage).toString()}
-            alt=""
-            width={570}
-            height={370}
-          />
-        </div>
-      ) : (
-        <div className="w-full  justify-center mb-4">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              {sectionData.introductionSection?.introHeading}
-            </h2>
-            <p className="text-lg text-gray-800 leading-relaxed text-center ">
-              {sectionData.introductionSection?.introDesc}
-            </p>
+      <div className="container mx-auto flex flex-wrap items-center justify-center">
+        {sectionData.introductionSection?.introImage ? (
+          <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+            <Image
+              src={urlForImage(sectionData.introductionSection?.introImage).toString()}
+              alt=""
+              width={570}
+              height={370}
+            />
           </div>
-          {sectionData.pdfFile && (
-            <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black">
-              <button onClick={handleDownload}>Download Brochure</button>
+        ) : (
+          <div className="w-full justify-center mb-4">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                {sectionData.introductionSection?.introHeading}
+              </h2>
+              <p className="text-lg text-gray-800 leading-relaxed text-center ">
+                {sectionData.introductionSection?.introDesc}
+              </p>
             </div>
-          )}
-        </div>
-      )}
-      {sectionData.introductionSection?.introImage && (
-        <div className="w-full md:w-1/2 md:justify-end">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-bold mb-8">
-              {sectionData.introductionSection?.introHeading}
-            </h2>
-            <p className="text-lg text-gray-800 text-justify">
-              {sectionData.introductionSection?.introDesc}
-            </p>
+            {sectionData.pdfFile && (
+              <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                <button onClick={handleDownload}>Download Brochure</button>
+              </div>
+            )}
           </div>
-          {sectionData.pdfFile && (
-            <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black">
-              <button onClick={handleDownload}>Download Brochure</button>
+        )}
+        {sectionData.introductionSection?.introImage && (
+          <div className="w-full md:w-1/2 md:justify-end">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl font-bold mb-8">
+                {sectionData.introductionSection?.introHeading}
+              </h2>
+              <p className="text-lg text-gray-800 text-justify">
+                {sectionData.introductionSection?.introDesc}
+              </p>
             </div>
-          )}
-        </div>
-      )}
-    </div>
+            {sectionData.pdfFile && (
+              <div className="flex cursor-pointer justify-center mt-8 p-5 bg-black text-white rounded-2xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                <button onClick={handleDownload}>Download Brochure</button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   );
 };
