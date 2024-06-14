@@ -30,6 +30,7 @@ async function getLogoData() {
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
   const dataLogo = await getLogoData();
+
   return (
     <div className="max-w-full">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light    max-md:max-w-full ">
@@ -212,6 +213,27 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 alt={data.secondaryimage.alt}
                 className="size-full my-[10%] sm:mb-14 shadow-blogImage"
               />
+            )}
+            {/* Client Background & We Provided Section */}
+            {data.projectoverview ? (
+              <div className="flex flex-col gap-5 sm:flex sm:flex-row justify-center mb-10">
+                {data.projectoverview.projectoverviewdetail.map(
+                  (project: any) => (
+                    <div
+                      key={project._key}
+                      className="rounded-2xl sm:w-[30%] text-white p-10"
+                      style={{ backgroundColor: project.backgroundcolor }}
+                    >
+                      <h1 className="text-3xl text-center font-semibold p-2">
+                        {project.heading}
+                      </h1>
+                      <p>{project.detail}</p>
+                    </div>
+                  )
+                )}
+              </div>
+            ) : (
+              <div className="hidden"></div>
             )}
 
             <div>

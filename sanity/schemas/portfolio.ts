@@ -395,6 +395,41 @@ const portfolioSchema = {
     },
 
     {
+      name: "projectoverview",
+      title: "Project Overview Section",
+      type: "object",
+      fields: [
+        {
+          name: "projectoverviewdetail",
+          title: "Project Overview Details",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
+                },
+                {
+                  name: "detail",
+                  title: "Detail",
+                  type: "string",
+                },
+                {
+                  name: "backgroundcolor",
+                  title: "Background Color",
+                  type: "string",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    {
       name: "cardItemsList",
       title: "Card Items List",
       type: "array",
