@@ -99,67 +99,29 @@ export default async function ValueBlueprints() {
       </div>
 
       <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">
-            Explore Our Value Blueprints
-          </h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {portfolioData.map((item: any) => (
-              <Link
-                key={item._id}
-                href={`/value-blueprints/${item._id}`}
-                aria-label={`View details of ${item.title}`}
-              >
-                <div className="group h-full w-full sm:w-80 md:w-96">
-                  <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
-                    <img
-                      src={urlForImage(item.heroimage).toString()}
-                      alt={item.title}
-                      className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
-                    />
-
-                    <div className="flex flex-row  flex-wrap   py-5 ">
-                      {item.caseStudiesToolsSection?.toolsTech?.map(
-                        (tool: any, toolIndex: any) => (
-                          <div key={toolIndex} className="mx-auto">
-                            {tool?.images.map(
-                              (logoRef: any, logoIndex: any) => {
-                                const logoData = dataLogo.find(
-                                  (logo: any) => logo._id === logoRef._ref
-                                );
-                                if (logoData) {
-                                  return (
-                                    <img
-                                      key={logoIndex}
-                                      src={urlForImage(
-                                        logoData.image
-                                      ).toString()}
-                                      alt={logoData.heading}
-                                      className="h-10 ring-1 rounded-full shadow-lg shadow-red-700 ring-red-400 hover:scale-110 hover:transition duration-500    p-1 object-cover mb-2"
-                                    />
-                                  );
-                                } else {
-                                  return null;
-                                }
-                              }
-                            )}
-                          </div>
-                        )
-                      )}
-
-                      <div className="p-6 mx-auto">
-                        <h3 className="text-xl  md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300 ">
-                          {item.title}
-                        </h3>{" "}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+  <div className="container mx-auto">
+    <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">Explore Our Value Blueprints</h2>
+    <div className="flex flex-wrap justify-center gap-8">
+      {portfolioData.map((item: any) => (
+        <Link key={item._id} href={`/value-blueprints/${item._id}`} aria-label={`View details of ${item.title}`}>
+          <div className="group h-full w-full sm:w-80 md:w-96">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
+              <img
+                src={urlForImage(item.heroimage).toString()}
+                alt={item.title}
+                className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
+              />
+              <div className="p-6">
+                <h3 className="text-xl md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300">{item.title}</h3>              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
+
+
 
       {/* Tools and Technology */}
 
