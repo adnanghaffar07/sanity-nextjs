@@ -36,13 +36,12 @@ async function getValueData() {
   }
 }
 
-
 export default async function ValueBlueprints() {
-  const data = await getData()
+  const data = await getData();
   const dataLogo = await getLogoData();
   const portfolioData = await getValueData();
 
-
+  console.log("Tools & Tech", portfolioData.caseStudiesToolsSection);
 
   return (
     <div className="">
@@ -71,16 +70,19 @@ export default async function ValueBlueprints() {
         src="/affiliate-partner-eclipse.png"
         alt="eclipse icon"
         className="absolute w-[270px] z-0"
-
       />
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="">
             <div className="">
-              <h2 className="text-2xl font-bold mb-8 text-center  "> {/* Adjusted text alignment for larger screens */}
+              <h2 className="text-2xl font-bold mb-8 text-center  ">
+                {" "}
+                {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center"> {/* Adjusted text alignment for larger screens */}
+              <p className="text-lg text-gray-800 leading-relaxed text-justify">
+                {" "}
+                {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introDesc}
               </p>
             </div>
@@ -97,27 +99,27 @@ export default async function ValueBlueprints() {
       </div>
 
       <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">Explore Our Value Blueprints</h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {portfolioData.map((item: any) => (
-              <Link key={item._id} href={`/value-blueprints/${item._id}`} aria-label={`View details of ${item.title}`}>
-                <div className="group h-full w-full sm:w-80 md:w-96">
-                  <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
-                    <img
-                      src={urlForImage(item.heroimage).toString()}
-                      alt={item.title}
-                      className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
-                    />
-                    <div className="p-6">
-                      <h3 className="text-xl md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300">{item.title}</h3>              </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+  <div className="container mx-auto">
+    <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">Explore Our Value Blueprints</h2>
+    <div className="flex flex-wrap justify-center gap-8">
+      {portfolioData.map((item: any) => (
+        <Link key={item._id} href={`/value-blueprints/${item._id}`} aria-label={`View details of ${item.title}`}>
+          <div className="group h-full w-full sm:w-80 md:w-96">
+            <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
+              <img
+                src={urlForImage(item.heroimage).toString()}
+                alt={item.title}
+                className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
+              />
+              <div className="p-6">
+                <h3 className="text-xl md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300">{item.title}</h3>              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
 
 
 
