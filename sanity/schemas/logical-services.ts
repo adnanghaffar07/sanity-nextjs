@@ -785,6 +785,12 @@ const subServiceSchema = {
       type: "string",
     },
     {
+      name: "images",
+      title: "Images",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+    },
+    {
       name: "serviceTitleSub",
       title: "Sub Service Title",
       type: "string",

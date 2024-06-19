@@ -40,7 +40,6 @@ export default function HomeNavigationContainer() {
     // setAboutVisible((prevMenuVisible) => !prevMenuVisible);
   };
   const toggleAboutVisibility = () => {
-   
     setAboutVisible((prevAboutVisible) => !prevAboutVisible);
   };
 
@@ -90,16 +89,16 @@ export default function HomeNavigationContainer() {
         <div className="relative" style={{ zIndex: 1000 }}>
           <Link href={`/`} className="hover:underline my-auto">
             <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/09d382e58784257b38ccca526b1322cf201dacdf4343ff92c6fe39c9ba7a1b1e?apiKey=ce12b64a678e4e2a868af6b5dfd766b9&"
+              src="/logo.svg"
               className="self-start max-w-full aspect-[5] xl:w-[230px] w-[200px]"
+              alt="logo"
             />
           </Link>
         </div>
         <div
           className="w-1/12 xl:hidden items-center flex justify-end"
           onClick={handleSmallerScreenNavigation}
-          style={{ zIndex: 1000 }} // Added z-index
+          style={{ zIndex: 1000 }}
         >
           {menuIcon ? (
             <AiOutlineClose size={23} className="text-gray-800" />
@@ -640,8 +639,9 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <img
                             src="/menu-img.jpg"
-                            alt=""
+                            alt="about us"
                             className="object-cover h-full width-full rounded-2xl"
+                            loading="lazy"
                           />
 
                           {/* <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
@@ -725,18 +725,15 @@ export default function HomeNavigationContainer() {
           >
             <div className="xl:hidden">
               {menuOpen && (
-                <div className="mobile-menu"  >
-                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6"    >
+                <div className="mobile-menu">
+                  <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
                     <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
                       <Link href="/" onClick={handleToggleMenu}>
                         Home
                       </Link>
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <div
-                        className=""
-                        onClick={toggleMenuVisibility}
-                      >
+                      <div className="" onClick={toggleMenuVisibility}>
                         Services
                       </div>
                       {menuVisible && (
@@ -837,10 +834,7 @@ export default function HomeNavigationContainer() {
                     </li>
 
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <div
-                        className=""
-                        onClick={toggleAboutVisibility}
-                      >
+                      <div className="" onClick={toggleAboutVisibility}>
                         About Us
                       </div>
                       {aboutVisible && (
@@ -877,7 +871,7 @@ export default function HomeNavigationContainer() {
                                     href="/lifeatca"
                                     onClick={handleToggleMenu}
                                   >
-                                   Employee Experiences
+                                    Employee Experiences
                                   </Link>
                                 </p>
                               </li>
@@ -911,7 +905,7 @@ export default function HomeNavigationContainer() {
                                     href="/value-blueprints"
                                     onClick={handleToggleMenu}
                                   >
-                                   Efficient Deployment
+                                    Efficient Deployment
                                   </Link>
                                 </p>
                               </li>
@@ -928,7 +922,7 @@ export default function HomeNavigationContainer() {
                                     href="/case-studies"
                                     onClick={handleToggleMenu}
                                   >
-                                  Success Stories
+                                    Success Stories
                                   </Link>
                                 </p>
                               </li>

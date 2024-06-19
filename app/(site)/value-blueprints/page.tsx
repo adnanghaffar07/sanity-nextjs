@@ -36,13 +36,12 @@ async function getValueData() {
   }
 }
 
-
 export default async function ValueBlueprints() {
-  const data = await getData()
+  const data = await getData();
   const dataLogo = await getLogoData();
   const portfolioData = await getValueData();
 
-
+  console.log("Tools & Tech", portfolioData.caseStudiesToolsSection);
 
   return (
     <div className="">
@@ -71,16 +70,19 @@ export default async function ValueBlueprints() {
         src="/affiliate-partner-eclipse.png"
         alt="eclipse icon"
         className="absolute w-[270px] z-0"
-
       />
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="">
             <div className="">
-              <h2 className="text-2xl font-bold mb-8 text-center  "> {/* Adjusted text alignment for larger screens */}
+              <h2 className="text-2xl font-bold mb-8 text-center  ">
+                {" "}
+                {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center"> {/* Adjusted text alignment for larger screens */}
+              <p className="text-lg text-gray-800 leading-relaxed text-justify">
+                {" "}
+                {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introDesc}
               </p>
             </div>

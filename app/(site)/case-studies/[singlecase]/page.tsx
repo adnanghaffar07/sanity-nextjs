@@ -81,7 +81,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               {data?.toolsandtechusedtitle}
             </h3>
 
-            <p className="text-lg font-light tracking-wider leading-9  text-justify text-black">
+            <p className="text-lg font-light tracking-wider leading-9  text-black">
               {data?.toolsandtechdescription}
             </p>
 
@@ -90,7 +90,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             </h3>
 
             {data.caseStudiesToolsSection ? (
-              <div className="container mx-16 mt-10 ">
+              <div className="container  mt-10 ">
                 <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
                   {data.caseStudiesToolsSection.toolsTech.map(
                     (tool: any, toolIndex: any) => (
@@ -113,7 +113,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                                           logoData.image
                                         ).toString()}
                                         alt={logoData.heading}
-                                        className=" max-h-16   object-cover"
+                                        className=" max-h-16    object-cover"
                                       />
                                     </div>
                                   );
@@ -189,7 +189,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
                       {feature.heading}
                     </h3>
-                    <p className="self-center mt-6 text-xl tracking-wide leading-10 text-justify text-black max-md:max-w-full">
+                    <p className="self-center mt-6 text-xl tracking-wide leading-10  text-black max-md:max-w-full">
                       {feature.description}
                     </p>
                     {feature.images && (
@@ -362,7 +362,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-3xl font-semibold my-4 md:my-8">
                 {data?.conclusionheading}:
               </h3>
-              <p className="text-lg text-justify leading-8 md:leading-8">
+              <p className="text-lg text-justify font-light leading-8 md:leading-8">
                 {data?.conclusion && data.conclusion}
               </p>
             </div>
