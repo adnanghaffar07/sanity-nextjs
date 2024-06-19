@@ -139,7 +139,7 @@ export default async function service({
                       href={`/services/${params.service}/${subService.urlPathSub}`}
                       key={subService._id}
                     >
-                      <div className="bg-white shadow-md w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
+                      <div className="bg-white shadow-md w-auto sm:w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
                         <img
                           src={urlForImage(subService.heroImageSub).toString()}
                           alt={subService.serviceCardSub}
@@ -204,7 +204,7 @@ export default async function service({
             {data.toolsTechSection?.toolsTech?.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex}>
-                  <div className="bg-white shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
+                  <div className="bg-white shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-row justify-center">
                       {tool.images?.map((logoRef: any, logoIndex: any) => {
                         const logoData = dataLogo.find(

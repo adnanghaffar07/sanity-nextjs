@@ -24,7 +24,7 @@ const portfolioSchema = {
         ],
       },
     },
-    
+
     {
       name: "slug",
       title: "Slug",
@@ -36,13 +36,12 @@ const portfolioSchema = {
       type: "string",
     },
 
-
     {
       name: "introductionheading",
       title: "Introduction Heading",
       type: "string",
     },
-     
+
     {
       name: "briefdescription",
       title: "Brief Description",
@@ -71,7 +70,49 @@ const portfolioSchema = {
       ],
     },
 
+    {
+      name: "features",
+      title: "Features Section",
+      type: "object",
+      fields: [
+        {
+          name: "featureslist",
+          title: "Features List",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
+                },
 
+                {
+                  name: "description",
+                  title: "Description",
+                  type: "string",
+                },
+
+                {
+                  name: "logo",
+                  title: "Logo",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
+                },
+
+                {
+                  name: "images",
+                  title: "Images",
+                  type: "image",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
 
     {
       name: "projectscopeheading",
@@ -85,109 +126,75 @@ const portfolioSchema = {
       type: "string",
     },
 
+    {
+      name: "toolsandtechusedtitle",
+      title: "Tools & Technologies Title",
+      type: "string",
+    },
 
     {
       name: "toolsandtechusedheading",
       title: "Tools & Technologies Used Heading",
       type: "string",
     },
+
     {
-      name: "toolstechlist",
-      title: "Tools Tech List",
-      type: "array",
-      of: [
+      name: "toolsandtechdescription",
+      title: "Tools & Technologies Description",
+      type: "string",
+    },
+
+    {
+      name: "applicationtestingheading",
+      title: "Application Testing Heading",
+      type: "string",
+    },
+
+    {
+      name: "applicationtestingdescription",
+      title: "Application Testing Description",
+      type: "string",
+    },
+
+    {
+      name: "typeoftestingheading",
+      title: "Type of Testing Heading",
+      type: "string",
+    },
+
+    {
+      name: "testingimage",
+      title: "Testing Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
         {
-          type: "object",
-          fields: [
-            {
-              name: "categories",
-              title: "Categories",
-              type: "object",
-              fields: [
-                {
-                  name: "firstCat",
-                  title: "First Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "secondCat",
-                  title: "Second Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "thirdCat",
-                  title: "Third Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "forthCat",
-                  title: "Forth Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "fifthCat",
-                  title: "Fifth Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "SixthCat",
-                  title: "Sixth Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "SevenCat",
-                  title: "Seven Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-              ],
-            },
-          ],
+          name: "alt",
+          title: "Alt",
+          type: "string",
         },
       ],
     },
 
-
     {
-      name: "toolsandtechlist",
-      title: "Tools And Tech List",
+      name: "typeoftestinglist",
+      title: "Type of Testing List",
       type: "array",
       of: [
         {
           type: "object",
           fields: [
             {
-              name: "heading",
-              title: "Heading",
+              name: "value",
+              title: "Value",
               type: "string",
             },
-
-            {
-              name: "techImage",
-              title: "Tech Image",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: "alt",
-                  title: "Alt",
-                  type: "string",
-                },
-              ],
-            },
           ],
         },
       ],
     },
-
 
     {
       name: "challengesfacedheading",
@@ -218,7 +225,6 @@ const portfolioSchema = {
       ],
     },
 
-
     {
       name: "ourapproachheading",
       title: "Our Approach Heading",
@@ -247,8 +253,6 @@ const portfolioSchema = {
         },
       ],
     },
-
-
 
     {
       name: "resultsheading",
@@ -284,16 +288,12 @@ const portfolioSchema = {
       title: "Conclusion Heading",
       type: "string",
     },
-    
+
     {
       name: "conclusion",
       title: "Conclusion",
       type: "string",
     },
-
-
-
-    
 
     {
       name: "heroimage",
@@ -348,7 +348,7 @@ const portfolioSchema = {
         },
       ],
     },
-    
+
     {
       name: "secondaryimage",
       title: "Secondary Image",
@@ -365,13 +365,15 @@ const portfolioSchema = {
       ],
     },
 
-    
-
-    
-
     {
       name: "operatingsystem",
       title: "Operating System",
+      type: "string",
+    },
+
+    {
+      name: "projectoverviewtitle",
+      title: "Project Overview Title",
       type: "string",
     },
 
@@ -397,16 +399,47 @@ const portfolioSchema = {
         },
       ],
     },
-    
-    
-    
 
     {
-      name: "toolsfortest",
-      title: "Tools For Test",
-      type: "string",
+      name: "projectoverview",
+      title: "Project Overview Section",
+      type: "object",
+      fields: [
+        {
+          name: "projectoverviewdetail",
+          title: "Project Overview Details",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
+                },
+                {
+                  name: "detail",
+                  title: "Detail",
+                  type: "string",
+                },
+                {
+                  name: "leftcolor",
+                  title: "Left Color",
+                  type: "string",
+                },
+
+                {
+                  name: "rightcolor",
+                  title: "Right Color",
+                  type: "string",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
-   
 
     {
       name: "cardItemsList",
@@ -479,44 +512,41 @@ const portfolioSchema = {
       ],
     },
 
-    
     {
       name: "caseStudiesToolsSection",
       title: "Tools and Technology  Section",
       type: "object",
-      fields: 
-      [
+      fields: [
         {
-          "name": "toolsTech",
-          "title": "Tools and Tech",
-          "type": "array",
-          "of": [
+          name: "toolsTech",
+          title: "Tools and Tech",
+          type: "array",
+          of: [
             {
-              "type": "object",
-              "fields": [
+              type: "object",
+              fields: [
                 {
-                  "name": "heading",
-                  "title": "Heading",
-                  "type": "string"
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
                 },
                 {
-                  "name": "detail",
-                  "title": "Detail",
-                  "type": "string"
+                  name: "detail",
+                  title: "Detail",
+                  type: "string",
                 },
                 {
                   name: "images",
                   title: "Images",
                   type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
                 },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
-      ]
-    }
-    
+      ],
+    },
   ],
 };
 

@@ -124,7 +124,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             {data.toolsTechSubSection?.toolsTech?.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex}>
-                  <div className="bg-white shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
+                  <div className="bg-white shadow-md  p-6  w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-row justify-center">
                       {tool.images?.map((logoRef: any, logoIndex: any) => {
                         const logoData = dataLogo.find(
@@ -189,7 +189,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             {data.exampleServicesSubSection?.exampleService?.map(
               (example: any, exampleIndex: any) => (
                 <div key={exampleIndex}>
-                  <div className="bg-gray-100 shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
+                  <div className="bg-gray-100 shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-col  justify-center">
                       <h3 className="text-xl text-center font-semibold mb-4">
                         {example.heading}
