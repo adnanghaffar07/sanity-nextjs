@@ -90,7 +90,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             </h3>
 
             {data.caseStudiesToolsSection ? (
-              <div className="container mx-16 w-auto mt-10 ">
+              <div className="container  mt-10 ">
                 <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
                   {data.caseStudiesToolsSection.toolsTech.map(
                     (tool: any, toolIndex: any) => (
@@ -113,7 +113,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                                           logoData.image
                                         ).toString()}
                                         alt={logoData.heading}
-                                        className=" sm:max-h-16  object-cover"
+                                        className=" max-h-16    object-cover"
                                       />
                                     </div>
                                   );
