@@ -19,11 +19,9 @@ const Page = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
 
-
   var itemsPerPage = 6;
   var startIndex = 0;
   var endIndex = startIndex + itemsPerPage;
-
 
   useEffect(() => {
     async function getData() {
@@ -53,9 +51,7 @@ const Page = () => {
         setFilteredItems(initalArray);
         SetOriginalCards(initalArray);
         totalPages = Math.ceil(initalArray.length / itemsPerPage);
-      } 
-      
-      else {
+      } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
       }
     };
@@ -72,18 +68,8 @@ const Page = () => {
   }
 
   const handleNextPage = () => {
-    // // setCurrentPage((prevPage) => prevPage + 1);
-    // setCurrentPage(currentPage+1);
-    // console.log("Current Page", currentPage);
-    // console.log("Total Page", totalPages);
-    // totalPages == 0 ? setIsDisabled(true) : setIsDisabled(false);
-
     setCurrentPage((prevPage) => {
       const newPage = prevPage + 1;
-      
-      console.log("Total Pages", totalPages);
-      console.log("Current Page", currentPage);
-      
       if (totalPages === 1) {
         setIsDisabled(true);
       } else {
@@ -91,20 +77,13 @@ const Page = () => {
       }
       return newPage;
     });
-    
-     totalPages--;
-     
 
+    totalPages--;
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
     totalPages++;
-    console.log("Current Page", currentPage);
-    console.log("Total Pages", totalPages);
-
-    
-
     currentPage == 1 ? setIsDisabled(false) : setIsDisabled(true);
   };
 
