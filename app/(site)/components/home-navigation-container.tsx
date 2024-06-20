@@ -709,8 +709,15 @@ export default function HomeNavigationContainer() {
             <Image
               src="/telephone.png"
               alt="Phone-Icon"
-              width={30}
-              height={30}
+              width={40}
+              height={40}
+            ></Image>
+
+            <Image
+              src="/USA-Flag.png"
+              alt="USA-Flag-Icon"
+              width={40}
+              height={40}
             ></Image>
 
             <div className="my-auto text-nowrap text-black">850 558 4691</div>
