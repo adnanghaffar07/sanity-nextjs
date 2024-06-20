@@ -3,6 +3,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
+import { useState } from "react";
 
 async function getData() {
   const query = `*[_type == 'valueBlueprints'][0]`;
@@ -129,14 +130,23 @@ export default async function ValueBlueprints() {
                                 );
                                 if (logoData) {
                                   return (
-                                    <img
+                                    <div
                                       key={logoIndex}
-                                      src={urlForImage(
-                                        logoData.image
-                                      ).toString()}
-                                      alt={logoData.heading}
-                                      className="h-10 ring-1 rounded-full shadow-lg shadow-red-700 ring-red-400 hover:scale-110 hover:transition duration-500    p-1 object-cover mb-2"
-                                    />
+                                      className="relative group"
+                                    >
+                                      <div className="flex items-center justify-center">
+                                        <img
+                                          src={urlForImage(
+                                            logoData.image
+                                          ).toString()}
+                                          alt={logoData.heading}
+                                          className="h-10 w-10 ring-1 rounded-full shadow-lg shadow-red-700 ring-red-400 group-hover:scale-110 transition-transform duration-500 p-1 object-cover"
+                                        />
+                                      </div>
+                                      <h1 className="absolute bg-transparent font-semibold   top-14 left-0  rounded-md   opacity-0 group-hover:opacity-100 group-hover:max-w-10 transition-opacity duration-500">
+                                        {logoData.heading}
+                                      </h1>
+                                    </div>
                                   );
                                 } else {
                                   return null;
@@ -147,7 +157,7 @@ export default async function ValueBlueprints() {
                         )
                       )}
 
-                      <div className="p-6 mx-auto">
+                      <div className="p-6 mx-auto m-10">
                         <h3 className="text-xl  md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300 ">
                           {item.title}
                         </h3>{" "}
