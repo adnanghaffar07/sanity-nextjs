@@ -216,7 +216,7 @@ export default async function service({
                               <img
                                 src={urlForImage(logoData.image).toString()}
                                 alt={logoData.heading}
-                                className="h-8 object-cover mb-2"
+                                className="h-8 object-cover mb-2 mr-2"
                               />
                             </div>
                           );
