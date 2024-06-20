@@ -113,7 +113,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                                           logoData.image
                                         ).toString()}
                                         alt={logoData.heading}
-                                        className=" max-h-16    object-cover"
+                                        className=" max-h-16  object-cover"
                                       />
                                     </div>
                                   );
