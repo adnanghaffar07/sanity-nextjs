@@ -10,6 +10,8 @@ import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
 
+var totalPages = 0;
+
 const Page = () => {
   const [originalCards, SetOriginalCards] = useState<any[]>([""]);
   const [selectedFilters, SetSelectedFilters] = useState<any[]>([]);
@@ -17,10 +19,11 @@ const Page = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
 
+
   var itemsPerPage = 6;
   var startIndex = 0;
   var endIndex = startIndex + itemsPerPage;
-  var totalPages = 0;
+
 
   useEffect(() => {
     async function getData() {
@@ -49,8 +52,10 @@ const Page = () => {
         const initalArray = caseStudyData[0].cardItemsList;
         setFilteredItems(initalArray);
         SetOriginalCards(initalArray);
-        totalPages = Math.ceil(originalCards.length / itemsPerPage);
-      } else {
+        totalPages = Math.ceil(initalArray.length / itemsPerPage);
+      } 
+      
+      else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
       }
     };
@@ -67,16 +72,38 @@ const Page = () => {
   }
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-    console.log("Current Page", currentPage);
-    console.log("Total Page", totalPages);
-    totalPages == 0 ? setIsDisabled(true) : setIsDisabled(false);
+    // // setCurrentPage((prevPage) => prevPage + 1);
+    // setCurrentPage(currentPage+1);
+    // console.log("Current Page", currentPage);
+    // console.log("Total Page", totalPages);
+    // totalPages == 0 ? setIsDisabled(true) : setIsDisabled(false);
+
+    setCurrentPage((prevPage) => {
+      const newPage = prevPage + 1;
+      
+      console.log("Total Pages", totalPages);
+      console.log("Current Page", currentPage);
+      
+      if (totalPages === 1) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      }
+      return newPage;
+    });
+    
+     totalPages--;
+     
+
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+    totalPages++;
     console.log("Current Page", currentPage);
-    console.log("Total Page", totalPages);
+    console.log("Total Pages", totalPages);
+
+    
 
     currentPage == 1 ? setIsDisabled(false) : setIsDisabled(true);
   };
@@ -126,7 +153,7 @@ const Page = () => {
 
         <div className="mt-[130px] sm:mt-[327px] items-center absolute inset-0 flex flex-col z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
-           Our Case Studies
+            Our Case Studies
           </h1>
           <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
             Explore our case study on CodeAutomation, showcasing how innovative
@@ -261,7 +288,6 @@ const Page = () => {
         {/*  Case Study Grid Section    */}
 
         <section className=" mx-auto" id="gridSection">
-         
           <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-7 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems
               .slice(startIndex, endIndex)
