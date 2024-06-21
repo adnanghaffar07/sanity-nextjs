@@ -37,6 +37,20 @@ async function getValueData() {
   }
 }
 
+// Updated generateMetadata function
+export async function generateMetadata()  {
+  const data = await getData(); // Ensure to pass params.service to getData
+  const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadata?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadata?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
+
+
 export default async function ValueBlueprints() {
   const data = await getData();
   const dataLogo = await getLogoData();
