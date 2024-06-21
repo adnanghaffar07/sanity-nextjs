@@ -3,6 +3,7 @@ import { getCpyrighttext } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function FooterContainer() {
   // const cpyrighttext = await getCpyrighttext();
@@ -87,14 +88,32 @@ export default function FooterContainer() {
                     href="tel:+18505584691"
                     className="hover:underline my-auto inline-block"
                   >
-                    <span className=" font-bold">USA:</span> 850.558.4691
+                    <div className=" flex flex-row gap-3">
+                      <Image
+                        src="/USA_Flag.png"
+                        alt="USA-Flag-Icon"
+                        width={50}
+                        height={50}
+                      />
+
+                      <span className=" font-light"> 850.558.4691</span>
+                    </div>
                   </a>
                   <br />
+
                   <a
                     href="tel:+13076556139"
                     className="hover:underline my-auto inline-block"
                   >
-                    <span className=" font-bold">USA:</span> 307.655.6139
+                    <div className=" flex flex-row gap-3">
+                      <Image
+                        src="/USA_Flag.png"
+                        alt="USA-Flag-Icon"
+                        width={50}
+                        height={50}
+                      />
+                      <span className=" font-light"> 307.655.6139 </span>
+                    </div>
                   </a>
                 </div>
               </div>
@@ -190,13 +209,32 @@ export default function FooterContainer() {
             <div className="flex flex-col text-white max-md:mt-10 self-start">
               <div className="text-2xl font-medium leading-6">Address</div>
               <div className="mt-6 text-lg font-light leading-5 self-start">
-                <span className="text-1xl font-bold">USA:</span> 30 N Gould St
-                Ste 7596, Sheridan, WY, 82801
+                <div className="flex flex-row gap-3">
+                  <Image
+                    src="/USA_Flag.png"
+                    alt="USA-Flag-Icon"
+                    width={50}
+                    height={50}
+                  />
+
+                  <span className="text-1xl font-light">
+                    30 N Gould St Ste 7596, Sheridan, WY, 82801
+                  </span>
+                </div>
+
                 <br />
-                <br />
-                <span className="text-1xl font-bold">Canada:</span> 25 McArthur
-                Ave. Ottawa, ON K1L 6R3
-                <br />
+
+                <div className="flex flex-row gap-3">
+                  <Image
+                    src="/Canada-Flag.png"
+                    alt="USA-Flag-Icon"
+                    width={50}
+                    height={50}
+                  />
+                  <span className="text-1xl font-light">
+                    25 McArthur Ave. Ottawa, ON K1L 6R3
+                  </span>
+                </div>
                 <br />
                 {showAddress ? (
                   <span
@@ -206,10 +244,19 @@ export default function FooterContainer() {
                     More
                   </span>
                 ) : (
-                  <span className="text-1xl ">
-                    <span className=" font-bold"> Pakistan:</span> A 1/11 P,
-                    Block P Model Town, Lahore{" "}
-                  </span>
+                  <div className="flex flex-row gap-3">
+                    <Image
+                      src="/Pakistan-Flag.png"
+                      alt="Pakistan-Flag-Icon"
+                      width={50}
+                      height={50}
+                    />
+
+                    <span className=" text-1xl font-light">
+                      {" "}
+                      A 1/11 P, Block P Model Town, Lahore{" "}
+                    </span>
+                  </div>
                 )}
               </div>
               <div className="container mt-20 flex justify-center items-center">
