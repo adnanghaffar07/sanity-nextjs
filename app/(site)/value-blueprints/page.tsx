@@ -133,7 +133,7 @@ export default async function ValueBlueprints() {
                       className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
                     />
 
-                    <div className="flex flex-row  flex-wrap   py-5 ">
+                    <div className="flex flex-row flex-wrap   py-5 ">
                       {item.caseStudiesToolsSection?.toolsTech?.map(
                         (tool: any, toolIndex: any) => (
                           <div key={toolIndex} className="mx-auto">
@@ -157,7 +157,8 @@ export default async function ValueBlueprints() {
                                           className="h-10 w-10 ring-1 rounded-full shadow-lg shadow-red-700 ring-red-400 group-hover:scale-110 transition-transform duration-500 p-1 object-cover"
                                         />
                                       </div>
-                                      <h1 className="absolute bg-transparent font-semibold   top-14 left-0  rounded-md   opacity-0 group-hover:opacity-100 group-hover:max-w-10 transition-opacity duration-500">
+
+                                      <h1 className="absolute uppercase  text-purple-700 bg-transparent font-semibold   top-14  right-3  rounded-md   opacity-0 group-hover:opacity-100 group-hover:max-w-10 transition-opacity duration-500">
                                         {logoData.heading}
                                       </h1>
                                     </div>
@@ -170,7 +171,6 @@ export default async function ValueBlueprints() {
                           </div>
                         )
                       )}
-
                       <div className="p-6 mx-auto m-10">
                         <h3 className="text-xl  md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300 ">
                           {item.title}
@@ -199,7 +199,8 @@ export default async function ValueBlueprints() {
             {data.toolsTechSection?.toolsTech?.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                  <div className="bg-white border border-[#0a8ffc] shadow-md p-6 rounded-lg flex flex-col h-full">
+                   <div className=" bg-white  border border-x-4  border-x-purple-400 border-y-4 border-y-red-400 rounded-l-full  rounded-r-xl rounded-b-full shadow-sm shadow-purple-700 p-6  flex flex-col h-full">
+                    
                     <div className="flex flex-row justify-center mb-4">
                       {tool.images?.map((logoRef: any, logoIndex: any) => {
                         const logoData = dataLogo.find(

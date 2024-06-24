@@ -5,6 +5,7 @@ import React, { Suspense } from "react";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import { GoogleTagManager } from "@next/third-parties/google";
+// import GoogleTagManager from "./components/GoogleTagManager";
 
 const FooterContainer = dynamic(() => import("./components/footer-container"), {
   suspense: true,
@@ -32,23 +33,24 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <GoogleTagManager gtmId="GTM-MJG35754" /> */}
       <GoogleTagManager gtmId="GTM-MJG35754" />
       <body>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
           {children}
-          <Suspense fallback={<div>Loading form...</div>}>
+          <Suspense fallback={<p>Loading form...</p>}>
             <div className="lg:max-w[506px] ml-auto mr-auto -mb-32 relative z-10 lg:px-0 px-5">
               <FormDisplay />
             </div>
           </Suspense>
-          <Suspense fallback={<div>Loading footer...</div>}>
+          <Suspense fallback={<p>Loading footer...</p>}>
             <FooterContainer />
           </Suspense>
-          <Suspense fallback={<div>Loading scroll-to-top...</div>}>
+          <Suspense fallback={<p>Loading scroll-to-top...</p>}>
             <ScrollToTop />
           </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <GreetingPopup />
           </Suspense>
         </div>

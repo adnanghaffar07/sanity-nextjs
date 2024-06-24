@@ -39,7 +39,7 @@ const page = async () => {
             <Image
               src={urlForImage(data.heroImage.asset)}
               alt={data.heroImage.alt}
-              loading="lazy"
+              loading="eager"
               fill
               style={{ objectFit: "cover" }}
             />

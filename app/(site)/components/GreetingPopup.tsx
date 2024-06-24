@@ -98,8 +98,8 @@ const GreetingPopup: React.FC = () => {
 
       if (response.ok) {
         // Push event to dataLayer for GTM
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
           event: "formSubmission",
           form: "contactForm",
         });
