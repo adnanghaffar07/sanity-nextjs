@@ -517,14 +517,18 @@ export default function Home() {
                     <img
                       src="/clutch-icon.svg"
                       alt="clutch-icon"
-                      className="w-20 h-auto"
+                      width={80}
+                      height={22}
+                      // className="h-auto"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <img
                       src="/rating-stars.svg"
                       alt="ratings"
-                      className="w-24 h-auto bg-red-600"
+                      width={96}
+                      height={18}
+                      className="bg-red-600"
                     />
                     <p className="text-xs text-gray-400">8 REVIEWS</p>
                   </div>
