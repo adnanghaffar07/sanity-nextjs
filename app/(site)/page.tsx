@@ -44,7 +44,7 @@ export default function Home() {
                 className="self-center aspect-[1.12] w-[65px]"
                 alt="Global trust"
               />
-              <p className="self-stretch lg:mt-11 mt-3 text-start">
+              <p className="self-stretch lg:mt-11 mt-3">
                 We are trusted by 200 global clients and offer innovative
                 software solutions tailored to specific needs and markets
               </p>
@@ -56,7 +56,7 @@ export default function Home() {
                 className="self-center aspect-square w-[58px]"
                 alt="Project completion"
               />
-              <p className="lg:mt-11 mt-3 text-start">
+              <p className="lg:mt-11 mt-3">
                 Completed 350+ projects, showcasing expertise in providing
                 creative software products globally
               </p>
@@ -68,7 +68,7 @@ export default function Home() {
                 className="self-center aspect-square w-[58px]"
                 alt="Quality assurance"
               />
-              <p className="lg:mt-11 mt-3 text-start">
+              <p className="lg:mt-11 mt-3">
                 We professionally assessed 300 apps to assure high-quality and
                 reliable software solutions for our clients
               </p>
@@ -80,7 +80,7 @@ export default function Home() {
                 className="self-center aspect-[0.89] w-[52px]"
                 alt="Bug fixing"
               />
-              <p className="lg:mt-11 mt-3 text-start">
+              <p className="lg:mt-11 mt-3">
                 Over 150k bugs have been addressed, ensuring that our
                 clients&rsquo; software solutions are reliable and trustworthy
               </p>

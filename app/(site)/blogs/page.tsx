@@ -1,7 +1,20 @@
 import Link from "next/link";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { client } from "../../../sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 
-export default function Blogs() {
+async function getValueData() {
+  const queryValue = `*[_type == 'portfolio' && pageType == 'blogs'] | order(_createdAt asc)`;
+  try {
+    const fetchData = await client.fetch(queryValue);
+    return fetchData || [];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+export default async function Blogs() {
+  const data = await getValueData();
   return (
     <>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white h-[380px] sm:h-[600px] md:h-[620px] lg:h-[704px] max-md:max-w-full">
@@ -159,47 +172,44 @@ export default function Blogs() {
                 </div>
               </div>
             </div>
-
-            <Link href={"/blogs/mobile-strategy"} className="w-full mb-10">
-              <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                <div className="xl:flex gap-5">
-                  <div className="xl:w-7/12">
-                    <img
-                      loading="lazy"
-                      src="/develop-a-successful.jpg"
-                      alt="blog image"
-                      className="w-full rounded-3xl hidden xl:block"
-                    />
-                    <img
-                      loading="lazy"
-                      src="/blogs-develop-a-successful.png"
-                      className="w-full rounded-3xl block xl:hidden"
-                    />
-                  </div>
-                  <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                    <p className="md:text-2xl text-xs sm:text-lg">
-                      19 Feb 2024
-                    </p>
-                    <h3 className="md:text-3xl sm:text-xl text-base font-medium">
-                      How to develop a successful mobile strategy for your
-                      company
-                    </h3>
-                    <div>
-                      <hr className="bg-black my-2 h-px w-full border-0" />
+            {data.map((item: any) => (
+              <Link key={item._id} href={`/blogs/${item._id}`} className="w-full mb-10">
+                <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
+                  <div className="xl:flex gap-5">
+                    <div className="xl:w-7/12">
+                      <img
+                        loading="lazy"
+                        src={urlForImage(item.heroimage).toString()}
+                        alt={item.title}
+                        className="w-full rounded-3xl hidden xl:block"
+                      />
+                      <img
+                        loading="lazy"
+                        src={urlForImage(item.heroimage).toString()}
+                        alt={item.title}
+                        className="w-full rounded-3xl block xl:hidden"
+                      />
                     </div>
-                    <div>
-                      <p className="font-light md:text-2xl sm:text-base text-xs text-justify">
-                        It is uncommon to meet someone who does not use a
-                        smartphone or other mobile gadget. We rely on mobile
-                        applications to be productive at work, on the go, and
-                        even home. They have become a staple of our existence.
+                    <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
+                      <p className="md:text-2xl text-xs sm:text-lg">
+                        19 Feb 2024
                       </p>
+                      <h3 className="md:text-3xl sm:text-xl text-base font-medium">
+                        {item.title}
+                      </h3>
+                      <div>
+                        <hr className="bg-black my-2 h-px w-full border-0" />
+                      </div>
+                      <div>
+                        <p className="font-light md:text-2xl sm:text-base text-xs text-justify">
+                          {item.criticalPrerequisitesSection?.description}                   </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
 
+              </Link>
+            ))}
             <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0 mt-10">
               <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
                 <AiOutlineArrowLeft size={18} className="text-white" />
