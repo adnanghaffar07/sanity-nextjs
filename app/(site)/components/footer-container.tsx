@@ -217,7 +217,7 @@ export default function FooterContainer() {
                     alt="USA-Flag-Icon"
                     width={40}
                     height={40}
-                    className=" md:max-h-10 object-cover"
+                    className="md:max-h-10 object-cover"
                   />
 
                   <span className="text-1xl font-light">

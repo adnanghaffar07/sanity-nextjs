@@ -55,7 +55,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h2 className="text-3xl font-semibold   mb-4">
                 {data?.introductionheading}
               </h2>
-              <p className="text-lg font-light   xl:max-w-[610px] text-justify">
+              <p className="text-lg font-light   xl:max-w-[610px]">
                 {data.briefdescription && data.briefdescription}
               </p>
             </div>
@@ -96,7 +96,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     (tool: any, toolIndex: any) => (
                       <div
                         key={toolIndex}
-                        className="w-full sm:w-1/2  lg:w-1/3 "
+                        className="w-full m-4 sm:m-0 sm:w-1/2  lg:w-1/3 "
                       >
                         <div className="flex  gap-2">
                           <div className="flex flex-row  gap-2">
@@ -145,10 +145,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                     key={tech._key}
                   >
-                    <span className="text-lg text-justify font-bold">
+                    <span className="text-lg  font-bold">
                       {tech.heading}:{" "}
                     </span>
-                    <span className="text-lg text-justify font-light">
+                    <span className="text-lg  font-light">
                       {tech.description}
                     </span>
                   </li>
@@ -189,7 +189,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
                       {feature.heading}
                     </h3>
-                    <p className="self-center mt-6 text-xl tracking-wide leading-10  text-black max-md:max-w-full">
+                    <p className="self-center mt-6 font-light text-xl tracking-wide leading-10  text-black max-md:max-w-full">
                       {feature.description}
                     </p>
                     {feature.images && (
@@ -252,11 +252,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col gap-28  px-5 text-2xl tracking-wider text-black max-md:max-w-full">
                       {/*  Application Testing  */}
-                      <div className=" text-justify">
+                      <div>
                         <h2 className="text-3xl font-semibold  mb-4">
                           {data.applicationtestingheading}
                         </h2>
-                        <p className="text-lg text-justify font-light leading-8 md:leading-8">
+                        <p className="text-lg  font-light leading-8 md:leading-8">
                           {data.applicationtestingdescription}
                         </p>
                       </div>
@@ -269,7 +269,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                         <ul className=" mx-10">
                           {data.typeoftestinglist?.map((testingType: any) => (
                             <li className=" list-disc" key={testingType._key}>
-                              <span className="text-lg text-justify font-light">
+                              <span className="text-lg  font-light">
                                 {testingType.value}
                               </span>
                             </li>
@@ -293,11 +293,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <div className="hidden"></div>
             )}
 
-            <div className="w-full my-10 md:my-20 text-justify mx-auto">
+            <div className="w-full my-10 md:my-20  mx-auto">
               <h3 className="text-3xl font-semibold  mb-4">
                 {data?.projectscopeheading}:
               </h3>
-              <p className="text-lg text-justify font-light leading-8 md:leading-8 ">
+              <p className="text-lg  font-light leading-8 md:leading-8 ">
                 {data?.projectscopecontent && data.projectscopecontent}
               </p>
 
@@ -311,7 +311,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-lg leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
-                      <span className="text-lg text-justify font-light">
+                      <span className="text-lg  font-light">
                         {challange.description}
                       </span>
                     </li>
@@ -328,10 +328,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={approach._key}
                     >
-                      <span className="text-lg text-justify font-bold">
+                      <span className="text-lg  font-bold">
                         {approach.heading}:{" "}
                       </span>
-                      <span className="text-lg text-justify font-light">
+                      <span className="text-lg  font-light">
                         {approach.description}
                       </span>
                     </li>
@@ -348,10 +348,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={result._key}
                     >
-                      <span className="text-lg text-justify font-bold">
+                      <span className="text-lg  font-bold">
                         {result.heading}:{" "}
                       </span>
-                      <span className="text-lg text-justify font-light">
+                      <span className="text-lg  font-light">
                         {result.description}
                       </span>
                     </li>
@@ -362,7 +362,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-3xl font-semibold my-4 md:my-8">
                 {data?.conclusionheading}:
               </h3>
-              <p className="text-lg text-justify font-light leading-8 md:leading-8">
+              <p className="text-lg  font-light leading-8 md:leading-8">
                 {data?.conclusion && data.conclusion}
               </p>
             </div>
