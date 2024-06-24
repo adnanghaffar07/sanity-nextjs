@@ -16,11 +16,18 @@ async function getData() {
   }
 }
 
-// export const metadata: Metadata = {
-//   title: "hyyy",
-//   description: "Custom Software and Mobile Development Company in USA",
-// };
+// Updated generateMetadata function
+export async function generateMetadata()  {
+  const data = await getData();
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
 
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
 const page = async () => {
   const data = await getData();
   return (

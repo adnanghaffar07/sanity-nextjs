@@ -27,6 +27,19 @@ async function getLogoData() {
   }
 }
 
+// Updated generateMetadata function
+export async function generateMetadata() {
+  const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
+  const data = await client.fetch(query);
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords,
+  };
+}
+
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
   const dataLogo = await getLogoData();

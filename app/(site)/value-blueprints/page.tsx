@@ -39,7 +39,7 @@ async function getValueData() {
 
 // Updated generateMetadata function
 export async function generateMetadata()  {
-  const data = await getData(); // Ensure to pass params.service to getData
+  const data = await getData();
   const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
 
   return {
