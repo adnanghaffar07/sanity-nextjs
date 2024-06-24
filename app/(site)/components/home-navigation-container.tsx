@@ -29,6 +29,18 @@ export default function HomeNavigationContainer() {
     
   });
 
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+
+  const toggleMenuVisibility = () => {
+    setMenuVisible((prevMenuVisible) => !prevMenuVisible);
+    // setAboutVisible((prevMenuVisible) => !prevMenuVisible);
+  };
+  const toggleAboutVisibility = () => {
+    setAboutVisible((prevAboutVisible) => !prevAboutVisible);
+  };
+
+
   const handleToggleMenuIcon = useCallback(() => {
     setMenuState((prevState) => ({
       ...prevState,
@@ -601,7 +613,7 @@ export default function HomeNavigationContainer() {
             className={`xl:hidden absolute top-0 right-0 bottom-0 left-0 w-full h-screen bg-white ease-in duration-300 ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"}`}
           >
             <div className="xl:hidden">
-              {menuState.menuIcon && (
+            {menuState.menuIcon && (
                 <div className="mobile-menu">
                   <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
                     <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
@@ -610,10 +622,10 @@ export default function HomeNavigationContainer() {
                       </Link>
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <div className="" onClick={toggleMenu}>
+                      <div className="" onClick={toggleMenuVisibility}>
                         Services
                       </div>
-                      {menuState.menuVisible && (
+                      {menuVisible && (
                         <div className="content mt-4 mb-0">
                           <div>
                             <ul className="mega-links-mb">
@@ -711,10 +723,10 @@ export default function HomeNavigationContainer() {
                     </li>
 
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <div className="" onClick={toggleAbout}>
+                      <div className="" onClick={toggleAboutVisibility}>
                         About Us
                       </div>
-                      {menuState.aboutVisible && (
+                      {aboutVisible && (
                         <div className="content mt-4 mb-0">
                           <div>
                             <ul className="mega-links-mb">
