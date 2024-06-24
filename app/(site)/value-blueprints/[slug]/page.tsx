@@ -26,7 +26,6 @@ async function getLogoData() {
 // Updated generateMetadata function
 export async function generateMetadata ({ params }: { params: { slug: string } }) {
   const data = await getValueData(params.slug);
-  console.log(data, "ghhhhhhhhhhhhhjjjjjjjj")
   const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
 
   return {
