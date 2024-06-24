@@ -92,8 +92,9 @@ export default function FooterContainer() {
                       <Image
                         src="/USA_Flag.png"
                         alt="USA-Flag-Icon"
-                        width={50}
-                        height={50}
+                        width={40}
+                        height={40}
+                        className=" md:max-h-10 object-cover"
                       />
 
                       <span className=" font-light"> 850.558.4691</span>
@@ -109,8 +110,9 @@ export default function FooterContainer() {
                       <Image
                         src="/USA_Flag.png"
                         alt="USA-Flag-Icon"
-                        width={50}
-                        height={50}
+                        width={40}
+                        height={40}
+                        className=" md:max-h-10 object-cover"
                       />
                       <span className=" font-light"> 307.655.6139 </span>
                     </div>
@@ -213,8 +215,9 @@ export default function FooterContainer() {
                   <Image
                     src="/USA_Flag.png"
                     alt="USA-Flag-Icon"
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
+                    className=" md:max-h-10 object-cover"
                   />
 
                   <span className="text-1xl font-light">
@@ -228,8 +231,9 @@ export default function FooterContainer() {
                   <Image
                     src="/Canada-Flag.png"
                     alt="USA-Flag-Icon"
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
+                    className=" md:max-h-10 object-cover"
                   />
                   <span className="text-1xl font-light">
                     25 McArthur Ave. Ottawa, ON K1L 6R3
@@ -248,8 +252,9 @@ export default function FooterContainer() {
                     <Image
                       src="/Pakistan-Flag.png"
                       alt="Pakistan-Flag-Icon"
-                      width={50}
-                      height={50}
+                      width={40}
+                      height={40}
+                      className=" md:max-h-10 object-cover"
                     />
 
                     <span className=" text-1xl font-light">
