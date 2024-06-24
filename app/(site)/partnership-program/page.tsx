@@ -16,11 +16,6 @@ async function getData() {
   }
 }
 
-// export const metadata: Metadata = {
-//   title: "hyyy",
-//   description: "Custom Software and Mobile Development Company in USA",
-// };
-
 const page = async () => {
   const data = await getData();
   return (
@@ -32,7 +27,7 @@ const page = async () => {
             <Image
               src={urlForImage(data.heroImage.asset)}
               alt={data.heroImage.alt}
-              loading="lazy"
+              loading="eager"
               fill
               style={{ objectFit: "cover" }}
             />

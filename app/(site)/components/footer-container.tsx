@@ -276,7 +276,9 @@ export default function FooterContainer() {
                       <img
                         src={icon.src}
                         alt={icon.alt}
-                        className="h-auto w-10 rounded-3xl"
+                        width={40}
+                        height={40}
+                        className="rounded-3xl object-cover w-10 h-10"
                       />
                     </Link>
                   ))}
