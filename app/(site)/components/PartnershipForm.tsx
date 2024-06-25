@@ -168,9 +168,9 @@ const PartnershipForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center px-16 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[36px] max-md:px-5 border border-slate-300">
+    <div className="flex justify-center items-center px-2 sm:px-16 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[36px] border border-slate-300">
       <div className="flex flex-col mt-3.5 w-full max-w-[746px] max-md:max-w-full">
-        <h2 className="lg:text-4xl md:text-3xl text-l font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl w-full sm:w-[500px] lg:w-[570px]">
+        <h2 className="lg:text-4xl md:text-3xl text-2xl font-medium  text-center leading-[52px] max-md:max-w-full max-md:text-4xl w-full sm:w-[500px] lg:w-[570px]">
           Become a Partner
         </h2>
         <form onSubmit={handleCombinedSubmit}>
@@ -409,14 +409,17 @@ const PartnershipForm = () => {
             />
           </div>
 
-          <ReCAPTCHA
-            sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
-            ref={recaptchaRef}
-            onChange={onRecaptchaChange}
-            onExpired={onRecaptchaExpired}
-          />
+          <div className="overflow-x-hidden -mx-5 sm:-mx-0">
+            <div className="w-full max-w-[200px] sm:max-w-[inherit] scale-75 sm:scale-100">
+              <ReCAPTCHA
+                sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
+                ref={recaptchaRef}
+                onChange={onRecaptchaChange}
+                onExpired={onRecaptchaExpired}
+              />
+            </div>
+          </div>
           {errorRecaptcha && <div className="form-error">{errorRecaptcha}</div>}
-
           <button
             type="submit"
             disabled={uploading}

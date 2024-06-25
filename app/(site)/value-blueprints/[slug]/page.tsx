@@ -23,6 +23,18 @@ async function getLogoData() {
     return [];
   }
 }
+// Updated generateMetadata function
+export async function generateMetadata ({ params }: { params: { slug: string } }) {
+  const data = await getValueData(params.slug);
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);

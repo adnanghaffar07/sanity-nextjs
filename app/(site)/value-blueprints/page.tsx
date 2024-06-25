@@ -3,6 +3,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
+import { useState } from "react";
 
 async function getData() {
   const query = `*[_type == 'valueBlueprints'][0]`;
@@ -35,6 +36,20 @@ async function getValueData() {
     return [];
   }
 }
+
+// Updated generateMetadata function
+export async function generateMetadata()  {
+  const data = await getData();
+  const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadata?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadata?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
+
 
 export default async function ValueBlueprints() {
   const data = await getData();
@@ -99,29 +114,76 @@ export default async function ValueBlueprints() {
       </div>
 
       <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-  <div className="container mx-auto">
-    <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">Explore Our Value Blueprints</h2>
-    <div className="flex flex-wrap justify-center gap-8">
-      {portfolioData.map((item: any) => (
-        <Link key={item._id} href={`/value-blueprints/${item._id}`} aria-label={`View details of ${item.title}`}>
-          <div className="group h-full w-full sm:w-80 md:w-96">
-            <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
-              <img
-                src={urlForImage(item.heroimage).toString()}
-                alt={item.title}
-                className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
-              />
-              <div className="p-6">
-                <h3 className="text-xl md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300">{item.title}</h3>              </div>
-            </div>
+        <div className="container mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">
+            Explore Our Value Blueprints
+          </h2>
+          <div className="flex flex-wrap justify-center gap-8">
+            {portfolioData.map((item: any) => (
+              <Link
+                key={item._id}
+                href={`/value-blueprints/${item._id}`}
+                aria-label={`View details of ${item.title}`}
+              >
+                <div className="group h-full w-full sm:w-80 md:w-96">
+                  <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
+                    <img
+                      src={urlForImage(item.heroimage).toString()}
+                      alt={item.title}
+                      className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
+                    />
+
+                    <div className="flex flex-row flex-wrap   py-5 ">
+                      {item.caseStudiesToolsSection?.toolsTech?.map(
+                        (tool: any, toolIndex: any) => (
+                          <div key={toolIndex} className="mx-auto">
+                            {tool?.images.map(
+                              (logoRef: any, logoIndex: any) => {
+                                const logoData = dataLogo.find(
+                                  (logo: any) => logo._id === logoRef._ref
+                                );
+                                if (logoData) {
+                                  return (
+                                    <div
+                                      key={logoIndex}
+                                      className="relative group"
+                                    >
+                                      <div className="flex items-center justify-center">
+                                        <img
+                                          src={urlForImage(
+                                            logoData.image
+                                          ).toString()}
+                                          alt={logoData.heading}
+                                          className="h-10 w-10 ring-1 rounded-full shadow-lg shadow-red-700 ring-red-400 group-hover:scale-110 transition-transform duration-500 p-1 object-cover"
+                                        />
+                                      </div>
+
+                                      <h1 className="absolute uppercase  text-purple-700 bg-transparent font-semibold   top-14  right-3  rounded-md   opacity-0 group-hover:opacity-100 group-hover:max-w-10 transition-opacity duration-500">
+                                        {logoData.heading}
+                                      </h1>
+                                    </div>
+                                  );
+                                } else {
+                                  return null;
+                                }
+                              }
+                            )}
+                          </div>
+                        )
+                      )}
+                      <div className="p-6 mx-auto m-10">
+                        <h3 className="text-xl  md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300 ">
+                          {item.title}
+                        </h3>{" "}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-        </Link>
-      ))}
-    </div>
-  </div>
-</section>
-
-
+        </div>
+      </section>
 
       {/* Tools and Technology */}
 
@@ -137,7 +199,8 @@ export default async function ValueBlueprints() {
             {data.toolsTechSection?.toolsTech?.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                  <div className="bg-white border border-[#0a8ffc] shadow-md p-6 rounded-lg flex flex-col h-full">
+                   <div className=" bg-white  border border-x-4  border-x-purple-400 border-y-4 border-y-red-400 rounded-l-full  rounded-r-xl rounded-b-full shadow-sm shadow-purple-700 p-6  flex flex-col h-full">
+                    
                     <div className="flex flex-row justify-center mb-4">
                       {tool.images?.map((logoRef: any, logoIndex: any) => {
                         const logoData = dataLogo.find(

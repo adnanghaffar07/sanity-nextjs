@@ -29,13 +29,26 @@ async function getLogoData() {
   }
 }
 
+// Updated generateMetadata function
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+})  {
+  const data = await getData(params.slug); // Ensure to pass params.service to getData
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
   const dataLogo = await getLogoData();
-
-  console.log("Sanity Data", data);
-
-  console.log("Tech Imagwes",data.toolsTechSubSection?.toolsTech)
 
   return (
     <div className="bg-gray-100">
@@ -136,7 +149,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                               <img
                                 src={urlForImage(logoData.image).toString()}
                                 alt={logoData.heading}
-                                className="h-8 object-cover mb-2"
+                                className="h-8 object-cover mb-2 mr-2"
                               />
                             </div>
                           );

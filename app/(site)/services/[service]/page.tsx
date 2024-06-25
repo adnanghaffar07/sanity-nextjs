@@ -39,6 +39,24 @@ async function getLogoData() {
   }
 }
 
+
+// Updated generateMetadata function
+export async function generateMetadata({
+  params,
+}: {
+  params: { service: string };
+})  {
+  const data = await getData(params.service); // Ensure to pass params.service to getData
+  const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadata?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadata?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
+
 export default async function service({
   params,
 }: {
@@ -216,7 +234,7 @@ export default async function service({
                               <img
                                 src={urlForImage(logoData.image).toString()}
                                 alt={logoData.heading}
-                                className="h-8 object-cover mb-2"
+                                className="h-8 object-cover mb-2 mr-2"
                               />
                             </div>
                           );
