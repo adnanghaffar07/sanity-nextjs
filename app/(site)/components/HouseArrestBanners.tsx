@@ -13,14 +13,20 @@ const HouseArrestBanner = () => {
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         speed={1000}
         modules={[Pagination, Autoplay]}
-        className=" w-full h-full"
+        className="w-full h-full"
       >
         <SwiperSlide>
-          <img src="/HouseArrest-Old.png" className="object-cover w-full  h-[700px]"></img>
+          <img
+            src="/HouseArrest-Old.jpg"
+            className="object-cover w-full  sm:h-[700px]"
+          ></img>
         </SwiperSlide>
 
         <SwiperSlide>
-          <img src="/HouseArrest-New.png" className=" object-cover w-full h-[700px]"></img>
+          <img
+            src="/HouseArrest-New.jpg"
+            className=" object-cover w-full sm:h-[700px]"
+          ></img>
         </SwiperSlide>
       </Swiper>
     </>

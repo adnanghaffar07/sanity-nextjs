@@ -23,6 +23,18 @@ async function getLogoData() {
     return [];
   }
 }
+// Updated generateMetadata function
+export async function generateMetadata ({ params }: { params: { slug: string } }) {
+  const data = await getValueData(params.slug);
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
@@ -51,41 +63,41 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
       {/* Tools and Technology */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-  <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <h2 className="text-2xl font-bold text-gray-800 text-center mb-8">{data.toolsandtechusedheading}</h2>
-    <div className="flex flex-wrap justify-center items-center gap-8">
-      {["firstCat", "secondCat", "thirdCat", "forthCat", "fifthCat", "SixthCat", "SevenCat"].map((categoryName, categoryIndex, categoriesArray) => (
-        <React.Fragment key={categoryName}>
-          <div className="flex flex-wrap justify-center items-center gap-2"> {/* Adjust the gap here */}
-            {data.toolstechlist?.[0]?.categories?.[categoryName]?.map((logoRef: any, logoIndex: any) => {
-              const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
-              if (logoData) {
-                return (
-                  <React.Fragment key={logoIndex}>
-                    <div className="flex flex-col items-center">
-                      <div className="bg-white border border-[#0a8ffc] shadow-md p-3 rounded-full flex items-center justify-center w-16 h-16 transition duration-300 ease-in-out hover:border-[#F7E022] hover:scale-110">
-                        <img
-                          src={urlForImage(logoData.image).toString()}
-                          alt={logoData.heading} // Make sure you are using correct alt attribute
-                          className="h-8 object-cover"
-                        />
-                      </div>
-                      <h3 className="text-sm font-semibold text-center mt-4">{logoData.heading}</h3>
-                    </div>
-                    {logoIndex !== data.toolstechlist[0].categories[categoryName].length - 1 && <span className="mb-6 text-sm">or</span>}
-                  </React.Fragment>
-                );
-              } else {
-                return null;
-              }
-            })}
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-8">{data.toolsandtechusedheading}</h2>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            {["firstCat", "secondCat", "thirdCat", "forthCat", "fifthCat", "SixthCat", "SevenCat"].map((categoryName, categoryIndex, categoriesArray) => (
+              <React.Fragment key={categoryName}>
+                <div className="flex flex-wrap justify-center items-center gap-2"> {/* Adjust the gap here */}
+                  {data.toolstechlist?.[0]?.categories?.[categoryName]?.map((logoRef: any, logoIndex: any) => {
+                    const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                    if (logoData) {
+                      return (
+                        <React.Fragment key={logoIndex}>
+                          <div className="flex flex-col items-center">
+                            <div className="bg-white border border-[#0a8ffc] shadow-md p-3 rounded-full flex items-center justify-center w-16 h-16 transition duration-300 ease-in-out hover:border-[#F7E022] hover:scale-110">
+                              <img
+                                src={urlForImage(logoData.image).toString()}
+                                alt={logoData.heading} // Make sure you are using correct alt attribute
+                                className="h-8 object-cover"
+                              />
+                            </div>
+                            <h3 className="text-sm font-semibold text-center mt-4">{logoData.heading}</h3>
+                          </div>
+                          {logoIndex !== data.toolstechlist[0].categories[categoryName].length - 1 && <span className="mb-6 text-sm">or</span>}
+                        </React.Fragment>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+                </div>
+                {categoriesArray.slice(categoryIndex + 1).some(category => data.toolstechlist?.[0]?.categories?.[category]?.length) && <span className="mb-6 text-lg"> + </span>}
+              </React.Fragment>
+            ))}
           </div>
-          {categoriesArray.slice(categoryIndex + 1).some(category => data.toolstechlist?.[0]?.categories?.[category]?.length) && <span className="mb-6 text-lg"> + </span>}
-        </React.Fragment>
-      ))}
-    </div>
-  </div>
-</div>
+        </div>
+      </div>
 
 
       {/* Description  */}

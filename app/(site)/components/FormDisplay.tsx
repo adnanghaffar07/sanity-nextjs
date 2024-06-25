@@ -1,16 +1,27 @@
 "use client";
-import ProjectDiscussionContainer from "./project-discussion-form";
-
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { Suspense } from "react";
 import { usePathname } from "next/navigation";
-import PartnershipForm from "./PartnershipForm";
+const ProjectDiscussionContainer = dynamic(
+  () => import("./project-discussion-form"),
+  {
+    suspense: true,
+  }
+);
+const PartnershipForm = dynamic(() => import("./PartnershipForm"), {
+  suspense: true,
+});
 
 const FormDisplay = () => {
   const currentPath = usePathname();
   return currentPath !== "/partnership-program" ? (
-    <ProjectDiscussionContainer />
+    <Suspense fallback={<p>Loading Form ...</p>}>
+      <ProjectDiscussionContainer />
+    </Suspense>
   ) : (
-    <PartnershipForm />
+    <Suspense fallback={<p>Loading Form ...</p>}>
+      <PartnershipForm />
+    </Suspense>
   );
 };
 

@@ -27,12 +27,22 @@ async function getLogoData() {
   }
 }
 
+// Updated generateMetadata function
+export async function generateMetadata() {
+  const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
+  const data = await client.fetch(query);
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords,
+  };
+}
+
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
   const dataLogo = await getLogoData();
-  console.log("Data Logo", dataLogo);
-
-  console.log("Case Study Technologies ", data.caseStudiesToolsSection);
 
   return (
     <div className="max-w-full">
@@ -58,7 +68,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h2 className="text-3xl font-semibold   mb-4">
                 {data?.introductionheading}
               </h2>
-              <p className="text-lg font-light   xl:max-w-[610px] text-justify">
+              <p className="text-lg font-light   xl:max-w-[610px]">
                 {data.briefdescription && data.briefdescription}
               </p>
             </div>
@@ -79,90 +89,230 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             </div>
           </div>
 
+          <section>
+            <h3 className="text-3xl font-semibold  text-center  my-4 md:my-8">
+              {data?.toolsandtechusedtitle}
+            </h3>
+
+            <p className="text-lg font-light tracking-wider leading-9  text-black">
+              {data?.toolsandtechdescription}
+            </p>
+
+            <h3 className="text-3xl font-semibold text-center  my-4 md:my-8">
+              {data?.toolsandtechusedheading}
+            </h3>
+
+            {data.caseStudiesToolsSection ? (
+              <div className="container  mt-10 ">
+                <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
+                  {data.caseStudiesToolsSection.toolsTech.map(
+                    (tool: any, toolIndex: any) => (
+                      <div
+                        key={toolIndex}
+                        className="w-full m-4 sm:m-0 sm:w-1/2  lg:w-1/3 "
+                      >
+                        <div className="flex  gap-2">
+                          <div className="flex flex-row  gap-2">
+                            {tool.images?.map(
+                              (logoRef: any, logoIndex: any) => {
+                                const logoData = dataLogo.find(
+                                  (logo: any) => logo._id === logoRef._ref
+                                );
+                                if (logoData) {
+                                  return (
+                                    <div key={logoIndex}>
+                                      <img
+                                        src={urlForImage(
+                                          logoData.image
+                                        ).toString()}
+                                        alt={logoData.heading}
+                                        className=" max-h-16  object-cover"
+                                      />
+                                    </div>
+                                  );
+                                } else {
+                                  return null;
+                                }
+                              }
+                            )}
+                          </div>
+
+                          <div className="flex flex-col w-auto my-auto">
+                            <h3 className="text-3xl tracking-wider">
+                              {tool.heading}
+                            </h3>
+                            <p className="mt-1 text-lg tracking-wide">
+                              {tool.detail}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            ) : (
+              <ul>
+                {data.technologiesused?.map((tech: any) => (
+                  <li
+                    className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                    key={tech._key}
+                  >
+                    <span className="text-lg  font-bold">
+                      {tech.heading}:{" "}
+                    </span>
+                    <span className="text-lg  font-light">
+                      {tech.description}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section className="my-[10%]">
+            {/*  Application Features  */}
+
+            {data.features?.featureslist.map((feature: any) => {
+              return (
+                <div
+                  key={feature._key}
+                  className="flex gap-5  justify-center text-center max-md:flex-wrap"
+                >
+                  {feature.logo?.map((logoRef: any, logoIndex: any) => {
+                    const logoData = dataLogo.find(
+                      (logo: any) => logo._id === logoRef._ref
+                    );
+                    if (logoData && logoData.image) {
+                      return (
+                        <div key={logoIndex}>
+                          <img
+                            src={urlForImage(logoData.image).toString()}
+                            alt={logoData.heading}
+                            className="shrink-0 self-start max-w-full aspect-[0.9] w-[114px]"
+                          />
+                        </div>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+
+                  <div className="flex flex-col grow shrink-0 self-end px-5 mt-10 basis-0 w-fit max-md:mt-10 max-md:max-w-full">
+                    <h3 className="text-4xl font-semibold  leading-10 text-red-600 max-md:max-w-full max-md:text-4xl max-md:leading-8">
+                      {feature.heading}
+                    </h3>
+                    <p className="self-center mt-6 font-light text-xl tracking-wide leading-10  text-black max-md:max-w-full">
+                      {feature.description}
+                    </p>
+                    {feature.images && (
+                      <img
+                        loading="lazy"
+                        src={urlForImage(feature.images).toString()}
+                        className="max-w-full"
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </section>
+
           <div>
             {data?.secondaryimage?.asset && (
               <img
                 loading="lazy"
                 src={urlForImage(data.secondaryimage.asset)}
                 alt={data.secondaryimage.alt}
-                className="size-full mb-0 sm:mb-14 shadow-blogImage"
+                className="size-full my-[10%] sm:mb-14 shadow-blogImage"
               />
             )}
-            <div className="w-full my-10 md:my-20 text-justify mx-auto">
-              <h3 className="text-3xl font-semibold  mb-4">
-                {data?.projectscopeheading}:
-              </h3>
-              <p className="text-lg text-justify font-light leading-8 md:leading-8 ">
-                {data?.projectscopecontent && data.projectscopecontent}
-              </p>
-
+            {/* Client Background & We Provided Section */}
+            {data.projectoverviewtitle && (
               <h3 className="text-3xl font-semibold  my-4 md:my-8">
-                {data?.toolsandtechusedheading}:
+                {data.projectoverviewtitle}
               </h3>
+            )}
 
-              {data.caseStudiesToolsSection ? (
-                <div className=" container mx-16 ">
-                  <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-10 ">
-                    {data.caseStudiesToolsSection.toolsTech.map(
-                      (tool: any, toolIndex: any) => (
-                        <div key={toolIndex} className="w-full sm:w-1/2 lg:w-1/3 ">
-                          <div  className="flex  gap-2">
-                            <div className="flex flex-row  gap-2">
-                              {tool.images?.map(
-                                (logoRef: any, logoIndex: any) => {
-                                  const logoData = dataLogo.find(
-                                    (logo: any) => logo._id === logoRef._ref
-                                  );
-                                  if (logoData) {
-                                    return (
-                                      <div key={logoIndex}>
-                                        <img
-                                          src={urlForImage(
-                                            logoData.image
-                                          ).toString()}
-                                          alt={logoData.heading}
-                                          className=" max-h-10   object-cover"
-                                        />
-                                      </div>
-                                    );
-                                  } else {
-                                    return null;
-                                  }
-                                }
-                              )}
-                            </div>
+            {data.projectoverview ? (
+              <div className="flex flex-col gap-28 sm:flex sm:flex-row justify-center mb-10">
+                {data.projectoverview.projectoverviewdetail.map(
+                  (project: any) => (
+                    <div
+                      key={project._key}
+                      className="rounded-2xl sm:w-[30%] shadow-md shadow-blue-800   text-white p-10"
+                      style={{
+                        background: `linear-gradient(to right, ${project.leftcolor}, ${project.rightcolor})`,
+                      }}
+                    >
+                      <h1 className="text-3xl text-center font-semibold p-2">
+                        {project.heading}
+                      </h1>
+                      <p>{project.detail}</p>
+                    </div>
+                  )
+                )}
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
 
-                            <div className="flex flex-col my-auto">
-                              <h3 className="text-3xl tracking-wider">
-                                {tool.heading}
-                              </h3>
-                              <p className="mt-1 text-lg tracking-wide">
-                                {tool.detail}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )
+            {data.applicationtestingheading ||
+            data.typeoftestingheading ||
+            data.testingimage ? (
+              <div>
+                <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                  <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                    <div className="flex flex-col gap-28  px-5 text-2xl tracking-wider text-black max-md:max-w-full">
+                      {/*  Application Testing  */}
+                      <div>
+                        <h2 className="text-3xl font-semibold  mb-4">
+                          {data.applicationtestingheading}
+                        </h2>
+                        <p className="text-lg  font-light leading-8 md:leading-8">
+                          {data.applicationtestingdescription}
+                        </p>
+                      </div>
+                      {/*  Types of Testing  */}
+                      <div>
+                        <h2 className="text-3xl font-semibold  mb-4">
+                          {data.typeoftestingheading}
+                        </h2>
+
+                        <ul className=" mx-10">
+                          {data.typeoftestinglist?.map((testingType: any) => (
+                            <li className=" list-disc" key={testingType._key}>
+                              <span className="text-lg  font-light">
+                                {testingType.value}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                    {data.testingimage && (
+                      <img
+                        loading="lazy"
+                        src={urlForImage(data.testingimage).toString()}
+                        className="mt-9 w-full aspect-[1.37] max-md:max-w-full"
+                      />
                     )}
                   </div>
                 </div>
-              ) : (
-                <ul>
-                  {data.technologiesused?.map((tech: any) => (
-                    <li
-                      className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                      key={tech._key}
-                    >
-                      <span className="text-lg text-justify font-bold">
-                        {tech.heading}:{" "}
-                      </span>
-                      <span className="text-lg text-justify font-light">
-                        {tech.description}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+
+            <div className="w-full my-10 md:my-20  mx-auto">
+              <h3 className="text-3xl font-semibold  mb-4">
+                {data?.projectscopeheading}:
+              </h3>
+              <p className="text-lg  font-light leading-8 md:leading-8 ">
+                {data?.projectscopecontent && data.projectscopecontent}
+              </p>
 
               <h3 className="text-3xl font-semibold my-4 md:my-8">
                 {data?.challengesfacedheading}:
@@ -174,7 +324,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-lg leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
-                      <span className="text-lg text-justify font-light">
+                      <span className="text-lg  font-light">
                         {challange.description}
                       </span>
                     </li>
@@ -191,10 +341,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={approach._key}
                     >
-                      <span className="text-lg text-justify font-bold">
+                      <span className="text-lg  font-bold">
                         {approach.heading}:{" "}
                       </span>
-                      <span className="text-lg text-justify font-light">
+                      <span className="text-lg  font-light">
                         {approach.description}
                       </span>
                     </li>
@@ -211,10 +361,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-xl leading-4 md:leading-8 font-light"
                       key={result._key}
                     >
-                      <span className="text-lg text-justify font-bold">
+                      <span className="text-lg  font-bold">
                         {result.heading}:{" "}
                       </span>
-                      <span className="text-lg text-justify font-light">
+                      <span className="text-lg  font-light">
                         {result.description}
                       </span>
                     </li>
@@ -225,7 +375,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <h3 className="text-3xl font-semibold my-4 md:my-8">
                 {data?.conclusionheading}:
               </h3>
-              <p className="text-lg text-justify leading-8 md:leading-8">
+              <p className="text-lg  font-light leading-8 md:leading-8">
                 {data?.conclusion && data.conclusion}
               </p>
             </div>

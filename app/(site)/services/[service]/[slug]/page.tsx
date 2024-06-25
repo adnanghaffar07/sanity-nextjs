@@ -30,13 +30,26 @@ async function getLogoData() {
   }
 }
 
+// Updated generateMetadata function
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+})  {
+  const data = await getData(params.slug); // Ensure to pass params.service to getData
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+
+  return {
+    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
+    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
+    keywords: keywords
+
+  };
+}
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
   const dataLogo = await getLogoData();
-
-  console.log("Sanity Data", data);
-
-  console.log("Tech Imagwes",data.toolsTechSubSection?.toolsTech)
 
   return (
     <div className="bg-gray-100">
@@ -126,7 +139,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             {data.toolsTechSubSection?.toolsTech?.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex}>
-                  <div className="bg-white shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
+                  <div className="bg-white shadow-md  p-6  w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-row justify-center">
                       {tool.images?.map((logoRef: any, logoIndex: any) => {
                         const logoData = dataLogo.find(
@@ -138,7 +151,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                               <img
                                 src={urlForImage(logoData.image).toString()}
                                 alt={logoData.heading}
-                                className="h-8 object-cover mb-2"
+                                className="h-8 object-cover mb-2 mr-2"
                               />
                             </div>
                           );
@@ -191,7 +204,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             {data.exampleServicesSubSection?.exampleService?.map(
               (example: any, exampleIndex: any) => (
                 <div key={exampleIndex}>
-                  <div className="bg-gray-100 shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
+                  <div className="bg-gray-100 shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-col  justify-center">
                       <h3 className="text-xl text-center font-semibold mb-4">
                         {example.heading}
