@@ -255,6 +255,7 @@ export default async function service({
         </div>
       </section>
 
+
       {/* Example Value of Service (Use Cases) Section */}
       <section className="bg-white px-6 md:px-16 py-10 md:py-16">
         <div className="container mx-auto">
@@ -262,7 +263,7 @@ export default async function service({
             {data.exampleServicesSection?.exampleServiceHeading}
           </h2>
 
-          {data.exampleServicesSection?.exampleServicedesc && (
+          {data.exampleServicesSubSection?.exampleServicedesc && (
             <p className="text-xl text-center font-light mb-8">
               {data.exampleServicesSection?.exampleServicedesc}
             </p>
@@ -278,7 +279,8 @@ export default async function service({
               marginTop: data.exampleServicesSection?.exampleService
                 ? "0"
                 : "0",
-              marginBottom: data.exampleServicesSection?.exampleServicesSection
+              marginBottom: data.exampleServicesSection
+                ?.exampleServicesSection
                 ? "0"
                 : "0",
             }}
@@ -286,9 +288,9 @@ export default async function service({
             {data.exampleServicesSection?.exampleService?.map(
               (example: any, exampleIndex: any) => (
                 <div key={exampleIndex}>
-                  <div className="bg-gray-100 shadow-md p-6 w-[400px] rounded-lg flex flex-col h-full">
+                  <div className="bg-gray-100 shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                     <div className="flex flex-col  justify-center">
-                      <h3 className="text-2xl text-center font-semibold mb-4">
+                      <h3 className="text-xl text-center font-semibold mb-4">
                         {example.heading}
                       </h3>
                       <p className="text-gray-700 text-center">
