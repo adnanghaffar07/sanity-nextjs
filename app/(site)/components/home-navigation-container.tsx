@@ -649,7 +649,7 @@ export default function HomeNavigationContainer() {
             {(isAuthenticated) ? (
               <>
 
-                {userDetails && userDetails.picture && (
+                {userDetails && (
                   <img
                     src={userDetails.picture}
                     alt="Profile"
