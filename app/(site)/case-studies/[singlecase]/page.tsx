@@ -102,7 +102,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     key={toolIndex}
                     className="w-full m-4 sm:m-0 sm:w-1/2  lg:w-1/3 "
                   >
-                    <div className="flex  gap-2">
+                    <div className="flex md:justify-center gap-2">
                       <div className="flex flex-row  gap-2">
                         {tool.images?.map(
                           (logoRef: any, logoIndex: any) => {
@@ -117,7 +117,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                                       logoData.image
                                     ).toString()}
                                     alt={logoData.heading}
-                                    className="h-10 md:h-12  object-cover"
+                                    className="h-10 md:h-12 object-contain"
                                   />
                                 </div>
                               );
@@ -129,7 +129,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       </div>
 
                       <div className="flex flex-col w-auto my-auto">
-                        <h3 className="text-2xl tracking-wider">
+                        <h3 className="text-xl md:text-2xl  tracking-wider">
                           {tool.heading}
                         </h3>
                         <p className="mt-1 text-lg tracking-wide">
