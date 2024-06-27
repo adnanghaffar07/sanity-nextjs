@@ -54,6 +54,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           />
         )}
       </section>
+      <img
+        loading="lazy"
+        src="/Subtract-left.png"
+        alt="eclipse icon"
+        className="absolute w-[270px] z-0"
+
+      />
       <div className="flex flex-col xl:flex-row gap-10 xl:gap-36  mt-0 md:mt-10 px-6 md:px-16 max-w-7xl mx-auto">
         <div>
           <h2 className="text-2xl font-semibold mb-4">
@@ -77,7 +84,12 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           ))}
         </div>
       </div>
-
+      <img
+        loading="lazy"
+        src="/Subtract-right.png"
+        alt="eclipse icon"
+        className="absolute right-0 w-[270px] z-0"
+      />
 
       {/* Tools and Technologies Used Section */}
       <section className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto">
@@ -160,7 +172,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </ul>
         )}
       </section>
+      <img
+        loading="lazy"
+        src="/Subtract-left.png"
+        alt="eclipse icon"
+        className="absolute w-[270px] md:w-[320px] z-0"
 
+      />
 
       {/*  Application Features  */}
       <section className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
@@ -212,8 +230,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         })}
       </section>
 
-
-      <div className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto">
+      <div className="px-6 md:px-16 max-w-7xl mx-auto">
         {data?.secondaryimage?.asset && (
           <img
             loading="lazy"
@@ -228,6 +245,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             {data.projectoverviewtitle}
           </h3>
         )} */}
+
         {data.projectoverview ? (
           <div className="">
             <div className="mb-6 md:mb-10">
@@ -256,7 +274,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         ) : (
           <div className="hidden"></div>
         )}
-
 
         {data.applicationtestingheading ||
           data.typeoftestingheading ||
@@ -306,7 +323,15 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         ) : (
           <div className="hidden"></div>
         )}
+      </div>
+      <img
+        loading="lazy"
+        src="/Subtract-left.png"
+        alt="eclipse icon"
+        className="absolute w-[270px] md:w-[320px] z-0"
 
+      />
+      <div className="px-6 md:px-16 max-w-7xl mx-auto">
         <div className="w-full my-8 md:my-10  mx-auto">
           <h3 className="text-2xl font-semibold  mb-4">
             {data?.projectscopeheading}
@@ -332,54 +357,63 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               );
             })}
           </ul>
-          <h3 className="text-2xl font-semibold my-4 md:my-8">
-            {data?.ourapproachheading}
-          </h3>
-          <ul>
-            {data.ourapproach?.map((approach: any) => {
-              return (
-                <li
-                  className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                  key={approach._key}
-                >
-                  <span className="text-lg  font-bold">
-                    {approach.heading}:{" "}
-                  </span>
-                  <span className="text-lg  font-light">
-                    {approach.description}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-          <h3 className="text-2xl  font-semibold my-4 md:my-8">
-            {data?.resultsheading}
-          </h3>
-          <ul>
-            {data?.results?.map((result: any) => {
-              return (
-                <li
-                  className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                  key={result._key}
-                >
-                  <span className="text-lg  font-bold">
-                    {result.heading}:{" "}
-                  </span>
-                  <span className="text-lg  font-light">
-                    {result.description}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-
-          <h3 className="text-2xl font-semibold my-4 md:my-8">
-            {data?.conclusionheading}
-          </h3>
-          <p className="text-lg  font-light leading-8 md:leading-8">
-            {data?.conclusion && data.conclusion}
-          </p>
         </div>
+      </div>
+      <img
+        loading="lazy"
+        src="/Subtract-right.png"
+        alt="eclipse icon"
+        className="absolute right-0 w-[270px] md:w-[370px] z-0"
+      />
+
+      <div className="px-6 md:px-16 pb-10 max-w-7xl mx-auto">
+        <h3 className="text-2xl font-semibold my-4 md:my-8">
+          {data?.ourapproachheading}
+        </h3>
+        <ul>
+          {data.ourapproach?.map((approach: any) => {
+            return (
+              <li
+                className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                key={approach._key}
+              >
+                <span className="text-lg  font-bold">
+                  {approach.heading}:{" "}
+                </span>
+                <span className="text-lg  font-light">
+                  {approach.description}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        <h3 className="text-2xl  font-semibold my-4 md:my-8">
+          {data?.resultsheading}
+        </h3>
+        <ul>
+          {data?.results?.map((result: any) => {
+            return (
+              <li
+                className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                key={result._key}
+              >
+                <span className="text-lg  font-bold">
+                  {result.heading}:{" "}
+                </span>
+                <span className="text-lg  font-light">
+                  {result.description}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+
+        <h3 className="text-2xl font-semibold my-4 md:my-8">
+          {data?.conclusionheading}
+        </h3>
+        <p className="text-lg  font-light leading-8 md:leading-8">
+          {data?.conclusion && data.conclusion}
+        </p>
       </div>
     </div>
 
