@@ -180,6 +180,8 @@ export default function Home() {
                       src="/our-core-expertise-section.webp"
                       className="z-10 mt-0 w-full max-md:max-w-full"
                       alt="core expertise"
+                      width={"570"}
+                      height={"730"}
                     />
                   </div>
                 </div>
