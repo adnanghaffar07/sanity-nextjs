@@ -56,6 +56,8 @@ const OurWorkSection = () => {
                           src={urlForImage(item.cardimage.asset)}
                           className="fixed-size rounded-3xl"
                           alt={item.cardimage.alt}
+                          width={"670"}
+                          height={"325"}
                         />
                       )}
 
@@ -100,6 +102,8 @@ const OurWorkSection = () => {
                           src={urlForImage(item.cardimage.asset)}
                           className="fixed-size rounded-3xl"
                           alt={item.cardimage.alt}
+                          width={"670"}
+                          height={"325"}
                         />
                       )}
 
@@ -151,6 +155,8 @@ const OurWorkSection = () => {
               src="/btn-arrow.svg"
               className="w-[22px] h-[26.8px]"
               alt="icon-arrow"
+              width={"22"}
+              height={"26.8"}
             />
           </Link>
         </div>
