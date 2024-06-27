@@ -147,7 +147,7 @@ const Page = () => {
           Real World Application Case studies
         </div>
 
-        <span className="lg:text-xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+        <span className="lg:text-xl text-base text-center mt-4 max-md:max-w-full mb-6 lg:px-32 ">
           Case studies are essential because they offer detailed insights and
           practical examples of how theories work in real-world scenarios,
           helping to improve strategies and decision-making.
@@ -155,8 +155,8 @@ const Page = () => {
       </section>
 
       <div className=" flex md:flex-row  sm:px-4  justify-center mt-10 mb-10">
-        {/* Filter Section    */}
 
+        {/* Filter Section    */}
         <section className=" md:w-[20%] sm:w-auto py-24 px-10  text-white  bg-[#1D92FB]  max-w-[480px]">
           <div className=" flex flex-row gap-2">
             <Image
@@ -208,64 +208,12 @@ const Page = () => {
                   />
                   <span> Ecommerce</span>
                 </li>
-                {/*
-                <li>
-                  <input type="checkbox" />
-                  <span> CRM Implementation</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> CRM Customization</span>
-                </li> */}
               </ul>
             </div>
-
-            {/* <div className="mt-20 ml-2">
-              <h1> Industries</h1>
-              <br></br>
-              <ul>
-                <li>
-                  <input type="checkbox" />
-                  <span> Travel & Hospitality</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> Communication</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> Finance</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> Technology</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> Automation</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> Agency</span>
-                </li>
-
-                <li>
-                  <input type="checkbox" />
-                  <span> Education Technology</span>
-                </li>
-              </ul>
-            </div> */}
           </div>
         </section>
 
         {/*  Case Study Grid Section    */}
-
         <section className=" mx-auto" id="gridSection">
           <div className=" md:grid md:grid-cols-3 m-[50px]  grid grid-col-1 gap-7 sm:gap-10  md:gap-10 sm:grid  sm:grid-col-1">
             {filteredItems

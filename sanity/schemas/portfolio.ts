@@ -133,6 +133,11 @@ const portfolioSchema = {
       title: "Tools & Technologies Title",
       type: "string",
     },
+    {
+      name: "toolsandtechdescription",
+      title: "Tools & Technologies Description",
+      type: "string",
+    },
 
     {
       name: "toolsandtechusedheading",
@@ -202,11 +207,7 @@ const portfolioSchema = {
     },
 
 
-    {
-      name: "toolsandtechdescription",
-      title: "Tools & Technologies Description",
-      type: "string",
-    },
+   
 
     {
       name: "applicationtestingheading",
@@ -525,6 +526,18 @@ const portfolioSchema = {
       title: "Project Overview Section",
       type: "object",
       fields: [
+
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "detail",
+          title: "Detail",
+          type: "string",
+        }, 
+        
         {
           name: "projectoverviewdetail",
           title: "Project Overview Details",
@@ -535,12 +548,13 @@ const portfolioSchema = {
               fields: [
                 {
                   name: "heading",
-                  title: "Heading",
+                  title: "Card Heading",
                   type: "string",
                 },
+
                 {
                   name: "detail",
-                  title: "Detail",
+                  title: "Card description",
                   type: "string",
                 },
                 {
