@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
@@ -19,18 +19,15 @@ const linkRobotic = "rpa-services";
 const linkIntegrate = "automation-integration";
 
 export default function HomeNavigationContainer() {
-  const currentPath = usePathname();
-  let pathname = usePathname() || "/";
-
-  const [menuIcon, setIcon] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(true);
-
-  const handleToggleMenu = () => {
-    setIcon(!menuIcon);
-  };
-  const handleSmallerScreenNavigation = () => {
-    setIcon(!menuIcon);
-  };
+  const pathname = usePathname() || "/";
+  const [menuState, setMenuState] = useState({
+    menuIcon: false,
+    open: false,
+    aboutOpen: false,
+    menuVisible: false,
+    aboutVisible: false,
+    
+  });
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
@@ -43,45 +40,46 @@ export default function HomeNavigationContainer() {
     setAboutVisible((prevAboutVisible) => !prevAboutVisible);
   };
 
-  const [open, setOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setOpen(!open);
-    // Close the About Us menu when the Services menu is opened
-    if (!open && aboutOpen) {
-      setAboutOpen(false);
-    }
-  };
+  const handleToggleMenuIcon = useCallback(() => {
+    setMenuState((prevState) => ({
+      ...prevState,
+      menuIcon: !prevState.menuIcon,
+    }));
+  }, []);
 
-  const toggleAbout = () => {
-    setAboutOpen(!aboutOpen);
-    // Close the Services menu when the About Us menu is opened
-    if (!aboutOpen && open) {
-      setOpen(false);
-    }
-  };
+  const toggleMenu = useCallback(() => {
+    setMenuState((prevState) => ({
+      ...prevState,
+      open: !prevState.open,
+      aboutOpen: prevState.open ? prevState.aboutOpen : false,
+    }));
+  }, []);
+
+  const toggleAbout = useCallback(() => {
+    setMenuState((prevState) => ({
+      ...prevState,
+      aboutOpen: !prevState.aboutOpen,
+      open: prevState.aboutOpen ? prevState.open : false,
+    }));
+  }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      // if (open && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-      //   setOpen(false);
-      // }
-      // if (aboutOpen && !event.target.closest(".menu-box") && !event.target.closest(".nav-links")) {
-      //   setAboutOpen(false);
-      // }
-      if (open || aboutOpen) {
-        setOpen(false);
-        setAboutOpen(false);
+    const handleClickOutside = () => {
+      if (menuState.open || menuState.aboutOpen) {
+        setMenuState((prevState) => ({
+          ...prevState,
+          open: false,
+          aboutOpen: false,
+        }));
       }
     };
 
     document.addEventListener("click", handleClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [open, aboutOpen]);
+  }, [menuState.open, menuState.aboutOpen]);
 
   return (
     <div className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
@@ -97,17 +95,17 @@ export default function HomeNavigationContainer() {
         </div>
         <div
           className="w-1/12 xl:hidden items-center flex justify-end"
-          onClick={handleSmallerScreenNavigation}
+          onClick={handleToggleMenuIcon}
           style={{ zIndex: 1000 }}
         >
-          {menuIcon ? (
+          {menuState.menuIcon ? (
             <AiOutlineClose size={23} className="text-gray-800" />
           ) : (
             <AiOutlineMenu size={23} className="text-white" />
           )}
         </div>
-        <div className="xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transform translate-x-full xl:transform-none fixed top-0 left-0 h-full transition delay-75 ease-in-out w-full bg-white xl:bg-transparent xl:static js-navigation justify-end">
-          <ul className=" nav-links relative lg:mx-auto">
+        <div className={`xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transition-all duration-300 ease-in-out ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"} xl:translate-x-0 fixed top-0 left-0 h-full w-full bg-white xl:bg-transparent xl:static js-navigation justify-end`}>
+          <ul className="nav-links relative lg:mx-auto">
             <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
               <Link href="/">
                 <span className="hover:underline text-white">Home</span>
@@ -123,9 +121,7 @@ export default function HomeNavigationContainer() {
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
-                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
-                  open ? "rotate-180" : "rotate-0"
-                }`}
+                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${menuState.open ? "rotate-180" : "rotate-0"}`}
               >
                 <path
                   fillRule="evenodd"
@@ -135,8 +131,7 @@ export default function HomeNavigationContainer() {
               </svg>
             </li>
             <div
-              className="absolute z-10 w-screen max-w-5xl px-2 mt-12 transform -translate-x-1/2 left-1/2 sm:px-0"
-              style={{ display: open ? "block" : "none" }}
+              className={`absolute z-10 w-screen max-w-5xl px-2 mt-12 transform -translate-x-1/2 left-1/2 sm:px-0 transition-all duration-300 ease-in-out ${menuState.open ? "block" : "hidden"}`}
             >
               <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
@@ -156,12 +151,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            CMS
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Manage Digital Content
-                          </p>
+                          <p className="text-base font-medium text-black">CMS</p>
+                          <p className="mt-1 text-sm text-gray-500">Manage Digital Content</p>
                         </div>
                       </Link>
                       <Link
@@ -178,12 +169,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Headless-CMS
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Customized Headless-CMS
-                          </p>
+                          <p className="text-base font-medium text-black">Headless-CMS</p>
+                          <p className="mt-1 text-sm text-gray-500">Customized Headless-CMS</p>
                         </div>
                       </Link>
                       <Link
@@ -200,12 +187,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Software Development
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Desktop and Web Development Solutions
-                          </p>
+                          <p className="text-base font-medium text-black">Software Development</p>
+                          <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
                         </div>
                       </Link>
                       <Link
@@ -222,12 +205,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Design Services
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Boost your Online Presence
-                          </p>
+                          <p className="text-base font-medium text-black">Design Services</p>
+                          <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
                         </div>
                       </Link>
                       <Link href="/services">
@@ -260,12 +239,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            QA Testing & Automation
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Ensure the Highest Quality
-                          </p>
+                          <p className="text-base font-medium text-black">QA Testing & Automation</p>
+                          <p className="mt-1 text-sm text-gray-500">Ensure the Highest Quality</p>
                         </div>
                       </Link>
                       <Link
@@ -282,12 +257,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Mobile App development
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Transform Idea into Market Leading App
-                          </p>
+                          <p className="text-base font-medium text-black">Mobile App development</p>
+                          <p className="mt-1 text-sm text-gray-500">Transform Idea into Market Leading App</p>
                         </div>
                       </Link>
                       <Link
@@ -304,12 +275,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            AI Services
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Informed Decision Making Process
-                          </p>
+                          <p className="text-base font-medium text-black">AI Services</p>
+                          <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
                         </div>
                       </Link>
                       <Link
@@ -326,12 +293,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            RPA Services
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Tackle the Complex Robotic Challanges
-                          </p>
+                          <p className="text-base font-medium text-black">RPA Services</p>
+                          <p className="mt-1 text-sm text-gray-500">Tackle the Complex Robotic Challenges</p>
                         </div>
                       </Link>
                       <Link
@@ -344,9 +307,7 @@ export default function HomeNavigationContainer() {
                     </div>
                     <div className="grid grid-cols-1 gap-3 p-2 lg:p-0 bg-gray-50 rounded-2xl">
                       <div className="grid items-start h-1/2 gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-                        <h3 className="text-base font-medium text-black">
-                          Hot Topics{" "}
-                        </h3>
+                        <h3 className="text-base font-medium text-black">Hot Topics</h3>
                         <div className="space-y-3">
                           <Link
                             href={`/services/${linkAI}`}
@@ -364,7 +325,7 @@ export default function HomeNavigationContainer() {
                             href={`/services/${linkIntegrate}`}
                             className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            Integration & Automation{" "}
+                            Integration & Automation
                           </Link>
                           <Link
                             href={`/services/${linkUrlDigital}`}
@@ -376,26 +337,26 @@ export default function HomeNavigationContainer() {
                             href={`/services/${linkUrlAuto}`}
                             className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            QA and Testing{" "}
+                            QA and Testing
                           </Link>
                           <Link
                             href={`/services/${linkMob}`}
                             className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            Mobile Application{" "}
+                            Mobile Application
                           </Link>
 
                           <Link
                             href={`/services/${linkML}`}
                             className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            ML Services{" "}
+                            ML Services
                           </Link>
                           <Link
                             href={`/services/${devops}`}
                             className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            Devops Services{" "}
+                            Devops Services
                           </Link>
                         </div>
                       </div>
@@ -405,10 +366,9 @@ export default function HomeNavigationContainer() {
               </div>
             </div>
             {/* About us */}
-
             <li
               onClick={toggleAbout}
-              className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
+              className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0"
             >
               <button>
                 <span className="hover:underline text-white">About Us</span>
@@ -416,9 +376,7 @@ export default function HomeNavigationContainer() {
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
-                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
-                  aboutOpen ? "rotate-180" : "rotate-0"
-                }`}
+                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${menuState.aboutOpen ? "rotate-180" : "rotate-0"}`}
               >
                 <path
                   fillRule="evenodd"
@@ -428,8 +386,7 @@ export default function HomeNavigationContainer() {
               </svg>
             </li>
             <div
-              className="absolute z-10 w-screen max-w-3xl px-2 mt-12 transform -translate-x-1/2 left-1/2 sm:px-0"
-              style={{ display: aboutOpen ? "block" : "none" }}
+              className={`absolute z-10 w-screen max-w-3xl px-2 mt-12 transform -translate-x-1/2 left-1/2 sm:px-0 transition-all duration-300 ease-in-out ${menuState.aboutOpen ? "block" : "hidden"}`}
             >
               <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
@@ -449,12 +406,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Service Summary
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Service Essence
-                          </p>
+                          <p className="text-base font-medium text-black">Service Summary</p>
+                          <p className="mt-1 text-sm text-gray-500">Service Essence</p>
                         </div>
                       </Link>
                       <Link
@@ -471,14 +424,10 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Careers
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Join our Team{" "}
-                          </p>
+                          <p className="text-base font-medium text-black">Careers</p>
+                          <p className="mt-1 text-sm text-gray-500">Join our Team</p>
                         </div>
-                      </Link>{" "}
+                      </Link>
                       <Link
                         href="/lifeatca"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -493,12 +442,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Life At CA
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Employee Experiences{" "}
-                          </p>
+                          <p className="text-base font-medium text-black">Life At CA</p>
+                          <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
                         </div>
                       </Link>
                       <Link
@@ -515,12 +460,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Partner with Us
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Grow Together
-                          </p>
+                          <p className="text-base font-medium text-black">Partner with Us</p>
+                          <p className="mt-1 text-sm text-gray-500">Grow Together</p>
                         </div>
                       </Link>
                       <Link
@@ -537,16 +478,11 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Value BluePrints
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Efficient Deployment
-                          </p>
+                          <p className="text-base font-medium text-black">Value BluePrints</p>
+                          <p className="mt-1 text-sm text-gray-500">Efficient Deployment</p>
                         </div>
                       </Link>
                     </div>
-
                     <div className="grid grid-cols-1 gap-6">
                       <Link
                         href="/case-studies"
@@ -562,12 +498,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Case-Studies
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Success Stories{" "}
-                          </p>
+                          <p className="text-base font-medium text-black">Case-Studies</p>
+                          <p className="mt-1 text-sm text-gray-500">Success Stories</p>
                         </div>
                       </Link>
                       <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
@@ -581,12 +513,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Brochure Downloads
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500 text-start">
-                            (Coming Soon){" "}
-                          </p>
+                          <p className="text-base font-medium text-black">Brochure Downloads</p>
+                          <p className="mt-1 text-sm text-gray-500 text-start">(Coming Soon)</p>
                         </div>
                       </button>
                       <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
@@ -600,12 +528,8 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black text-start">
-                            News{" "}
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            (Coming Soon){" "}
-                          </p>
+                          <p className="text-base font-medium text-black text-start">News</p>
+                          <p className="mt-1 text-sm text-gray-500">(Coming Soon)</p>
                         </div>
                       </button>
                       <Link
@@ -622,20 +546,13 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">
-                            Blogs{" "}
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            Tech Insights
-                          </p>
+                          <p className="text-base font-medium text-black">Blogs</p>
+                          <p className="mt-1 text-sm text-gray-500">Tech Insights</p>
                         </div>
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 gap-3 lg:p-0 rounded-2xl">
-                      <div className="grid items-start h-full ">
-                        {/* <h3 className="text-base font-medium text-black">
-                          Getting started
-                        </h3> */}
+                      <div className="grid items-start h-full">
                         <div className="">
                           <img
                             src="/menu-img.jpg"
@@ -643,39 +560,6 @@ export default function HomeNavigationContainer() {
                             className="object-cover h-full width-full rounded-2xl"
                             loading="lazy"
                           />
-
-                          {/* <Link href="javascript:void(0)" className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Explore design work
-                          </Link>
-                        </p>
-                      </li>
-                      <li>
-                        <Link
-                          href="javascript:void(0)"
-                          className="heading"
-                          onClick={hideMenu}
-                        >
-                          News{" "}
-                        </Link>
-                        <p>
-                          <Link href="javascript:void(0)" onClick={hideMenu}>
-                            (Coming Soon)
-                          </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Register
-                          </Link>
-                          <Link href="javascript:void(0)" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Video Tutorials
-                          </Link> */}
-                          {/* <a href="#_" className="flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Libraries and SDKs
-                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Adding Plugins
-                          </a>
-                          <a href="#_" className="inline-flex items-start text-sm text-gray-500 transition duration-150 ease-in-out rounded-lg hover:text-black">
-                            Dashboard templates
-                          </a> */}
                         </div>
                       </div>
                     </div>
@@ -684,58 +568,56 @@ export default function HomeNavigationContainer() {
               </div>
             </div>
 
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0">
               <Link href="/blogs">
                 <span className="hover:underline text-white">Blogs</span>
               </Link>
             </li>
 
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0">
               <Link href="/career">
                 <span className="hover:underline text-white">Career</span>
-              </Link>{" "}
+              </Link>
             </li>
 
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0">
               <Link href="/technologies">
                 <span className="hover:underline text-white">Technologies</span>
-              </Link>{" "}
+              </Link>
             </li>
           </ul>
           <Link
-            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl  bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
+            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
             href="tel:+1-850-558-4691"
           >
             <Image
               src="/telephone.png"
               alt="Phone-Icon"
-              width={40}
-              height={40}
+              width={30}
+              height={30}
+              className="object-cover"
             ></Image>
 
             <Image
               src="/USA-Flag.png"
               alt="USA-Flag-Icon"
-              width={40}
-              height={40}
+              width={30}
+              height={30}
+              className="object-cover"
             ></Image>
 
             <div className="my-auto text-nowrap text-black">850 558 4691</div>
           </Link>
 
           <div
-            className={
-              menuIcon
-                ? "xl:hidden absolute top-0 right-0 bottom-0 left-[-100%]  w-full h-screen bg-white ease-in duration-300"
-                : "xl:hidden absolute top-0 right-0 left-0  w-full h-screen bg-white ease-in duration-300"
-            }
+            className={`xl:hidden absolute top-0 right-0 bottom-0 left-0 w-full h-screen bg-white ease-in duration-300 ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"}`}
           >
             <div className="xl:hidden">
-              {menuOpen && (
+            {menuState.menuIcon && (
                 <div className="mobile-menu">
                   <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
                     <li className="border-t border-b border-gray-200 border-opacity-50 py-4">
-                      <Link href="/" onClick={handleToggleMenu}>
+                      <Link href="/" onClick={handleToggleMenuIcon}>
                         Home
                       </Link>
                     </li>
@@ -751,14 +633,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href={`/services/${linkUrlCMS1}`}
                                   className=""
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   CMS
                                 </Link>
                                 <p>
                                   <Link
                                     href={`/services/${linkUrlCMS1}`}
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Manage Digital Content
                                   </Link>
@@ -768,14 +650,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href={`/services/${linkUrlCMS}`}
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Headless-CMS
                                 </Link>
                                 <p>
                                   <Link
                                     href={`/services/${linkUrlCMS}`}
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Customized Headless-CMS
                                   </Link>
@@ -785,14 +667,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href={`/services/${linkMob}`}
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Mobile App Development
                                 </Link>
                                 <p>
                                   <Link
                                     href={`/services/${linkMob}`}
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Transform Idea into Market Leading App
                                   </Link>
@@ -802,14 +684,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href={`/services/${linkUrlSoft}`}
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Software Development
                                 </Link>
                                 <p>
                                   <Link
                                     href={`/services/${linkUrlSoft}`}
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Web Development Solutions
                                   </Link>
@@ -820,7 +702,7 @@ export default function HomeNavigationContainer() {
                             <Link href="/services">
                               <p
                                 className="flex gap-3 text-black hover:text-[#0a8ffc] hover:underline mt-4 mb-0"
-                                onClick={handleToggleMenu}
+                                onClick={handleToggleMenuIcon}
                                 style={{ fontWeight: "600", fontSize: "13px" }}
                               >
                                 View all
@@ -852,14 +734,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href="/service-summary"
                                   className=""
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Service Summary
                                 </Link>
                                 <p>
                                   <Link
                                     href="/service-summary"
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Service Essence
                                   </Link>
@@ -869,14 +751,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href="/lifeatca"
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Life At CA
                                 </Link>
                                 <p>
                                   <Link
                                     href="/lifeatca"
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Employee Experiences
                                   </Link>
@@ -886,14 +768,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href="/partnership-program"
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Partner with Us
                                 </Link>
                                 <p>
                                   <Link
                                     href="/partnership-program"
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Grow Together
                                   </Link>
@@ -903,14 +785,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href="/value-blueprints"
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Value BluePrints
                                 </Link>
                                 <p>
                                   <Link
                                     href="/value-blueprints"
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Efficient Deployment
                                   </Link>
@@ -920,14 +802,14 @@ export default function HomeNavigationContainer() {
                                 <Link
                                   href="/case-studies"
                                   className="heading"
-                                  onClick={handleToggleMenu}
+                                  onClick={handleToggleMenuIcon}
                                 >
                                   Case-Studies
                                 </Link>
                                 <p>
                                   <Link
                                     href="/case-studies"
-                                    onClick={handleToggleMenu}
+                                    onClick={handleToggleMenuIcon}
                                   >
                                     Success Stories
                                   </Link>
@@ -939,17 +821,17 @@ export default function HomeNavigationContainer() {
                       )}
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <Link href="/blogs" onClick={handleToggleMenu}>
+                      <Link href="/blogs" onClick={handleToggleMenuIcon}>
                         Blogs
                       </Link>
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <Link href="/career" onClick={handleToggleMenu}>
+                      <Link href="/career" onClick={handleToggleMenuIcon}>
                         Career
                       </Link>
                     </li>
                     <li className="border-b border-gray-200 border-opacity-50 py-4">
-                      <Link href="/technologies" onClick={handleToggleMenu}>
+                      <Link href="/technologies" onClick={handleToggleMenuIcon}>
                         Technologies
                       </Link>
                     </li>
