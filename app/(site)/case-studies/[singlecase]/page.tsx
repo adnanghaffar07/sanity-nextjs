@@ -1,8 +1,5 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
-import HeroSectionComponent from "../../components/HeroSectionComponent";
-import Image from "next/image";
-import HouseArrestBanner from "../../components/HouseArrestBanners";
 
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
@@ -59,7 +56,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         src="/Subtract-left.png"
         alt="eclipse icon"
         className="absolute w-[270px] z-0"
-
       />
       <div className="flex flex-col xl:flex-row gap-10 xl:gap-36  mt-0 md:mt-10 px-6 md:px-16 max-w-7xl mx-auto">
         <div>
@@ -172,15 +168,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </ul>
         )}
       </section>
-      <img
-        loading="lazy"
-        src="/Subtract-left.png"
-        alt="eclipse icon"
-        className="absolute w-[270px] md:w-[320px] z-0"
-
-      />
-
-      {/*  Application Features  */}
+       {/*  Application Features  */}
       <section className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
         {data.features?.featureslist.map((feature: any, index: number) => {
           return (
@@ -209,7 +197,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
               <div className="flex flex-col grow shrink-0 self-end basis-0 w-fit max-md:mt-10 max-md:max-w-full">
                 <h3
-                  className={`text-2xl font-semibold leading-10 max-md:max-w-full max-md:text-xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"
+                  className={`text-xl font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"
                     }`}
                 >
                   {feature.heading}
@@ -221,7 +209,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <img
                     loading="lazy"
                     src={urlForImage(feature.images).toString()}
-                    className="object-cover"
+                    className="object-cover  md:px-20"
                   />
                 )}
               </div>

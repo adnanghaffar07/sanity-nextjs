@@ -224,8 +224,8 @@ const Page = () => {
                     key={index}
                     className=" ring-2 p-2  sm:ring-2 hover:scale-110 hover:transition duration-300  sm:shadow-2xl sm: hover:shadow-blue-800 sm: ring-yellow-500 sm: rounded-tr-3xl sm: rounded-bl-3xl"
                   >
-                    {item?.cardImage && (
-                      <Link href={`/case-studies/${item?.url}`}>
+                    <Link href={`/case-studies/${item?.url}`}>
+                      {item?.cardImage && (
                         <Image
                           width={404}
                           height={268}
@@ -233,12 +233,12 @@ const Page = () => {
                           src={urlForImage(item.cardImage).toString()}
                           alt="card"
                         ></Image>
-                      </Link>
-                    )}
 
-                    <div className="text-base font-light md:px-5  tracking-wide leading-6 max-w-[317px] text-sky-950">
-                      {item.cardDescription}
-                    </div>
+                      )}
+                      <div className="text-base font-light md:px-5  tracking-wide leading-6 max-w-[317px] text-sky-950">
+                        {item.cardDescription}
+                      </div>
+                    </Link>
                   </div>
                 );
               })}
