@@ -19,6 +19,7 @@
     "@sanity/client": "^6.15.7",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.33.0",
+    "@sentry/nextjs": "^8.13.0",
     "@types/formidable": "^3.4.5",
     "@types/nodemailer": "^6.4.14",
     "@types/react-google-recaptcha": "^2.1.9",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "@types/node": "20.12.7",
+    "@types/pg-pool": "^2.0.6",
     "@types/react": "18.2.79",
     "@types/react-dom": "^18",
     "@types/react-scroll": "^1.8.10",
