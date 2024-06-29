@@ -1,5 +1,7 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
+import HouseArrestBanner from "../../components/HouseArrestBanners";
+
 
 import { urlForImage } from "@/sanity/lib/image";
 async function getData(urlService: string) {
@@ -44,12 +46,16 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   return (
     <div className="">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light max-md:max-w-full ">
-        {data.cardimage && (
+      {data?.title === "House Arrest" && data?.cardimage?.asset ? (
+          <HouseArrestBanner />
+        ) : (
+        data.cardimage && (
           <img
             src={urlForImage(data.cardimage.asset).toString()}
             alt=""
           />
-        )}
+        )
+      )}
       </section>
       <img
         loading="lazy"
