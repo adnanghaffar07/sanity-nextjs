@@ -46,16 +46,16 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   return (
     <div className="">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light max-md:max-w-full ">
-      {data?.title === "House Arrest" && data?.cardimage?.asset ? (
+        {data?.title === "House Arrest" && data?.cardimage?.asset ? (
           <HouseArrestBanner />
         ) : (
-        data.cardimage && (
-          <img
-            src={urlForImage(data.cardimage.asset).toString()}
-            alt=""
-          />
-        )
-      )}
+          data.cardimage && (
+            <img
+              src={urlForImage(data.cardimage.asset).toString()}
+              alt=""
+            />
+          )
+        )}
       </section>
       <img
         loading="lazy"
@@ -174,48 +174,49 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </ul>
         )}
       </section>
-       {/*  Application Features  */}
+      {/*  Application Features  */}
       <section className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
         {data.features?.featureslist.map((feature: any, index: number) => {
           return (
-            <div
-              key={feature._key}
-              className="flex justify-center text-center max-md:flex-wrap"
-            >
-              {feature.logo?.map((logoRef: any, logoIndex: any) => {
-                const logoData = dataLogo.find(
-                  (logo: any) => logo._id === logoRef._ref
-                );
-                if (logoData && logoData.image) {
-                  return (
-                    <div key={logoIndex}>
-                      <img
-                        src={urlForImage(logoData.image).toString()}
-                        alt={logoData.heading}
-                        className="object-cover h-12 md:h-24"
-                      />
-                    </div>
-                  );
-                } else {
-                  return null;
-                }
-              })}
+            <div key={feature._key} className="flex flex-col items-center md:flex-row md:items-start md:justify-center">
 
-              <div className="flex flex-col grow shrink-0 self-end basis-0 w-fit max-md:mt-10 max-md:max-w-full">
+              {/* Render heading and description */}
+              <div className="flex flex-col text-center">
+                {feature.logo?.map((logoRef: any, logoIndex: any) => {
+                  const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                  if (logoData && logoData.image) {
+                    return (
+                      <div key={logoIndex}>
+                        <img
+                          src={urlForImage(logoData.image).toString()}
+                          alt={logoData.heading}
+                          className="object-cover h-12 md:h-24 px-30"
+                        />
+                        <h3
+                          className={`text-xl font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"}`}
+                        >
+                          {feature.heading}
+                        </h3>
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
                 <h3
-                  className={`text-xl font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"
-                    }`}
+                  className={`text-xl font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"}`}
                 >
                   {feature.heading}
                 </h3>
                 <p className="self-center mt-6 font-light text-xl max-md:text-lg tracking-wide leading-10 text-black max-md:max-w-full">
                   {feature.description}
                 </p>
+                {/* Render images if available */}
                 {feature.images && (
                   <img
                     loading="lazy"
                     src={urlForImage(feature.images).toString()}
-                    className="object-cover  md:px-20"
+                    className="object-cover md:px-20"
                   />
                 )}
               </div>
@@ -223,6 +224,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           );
         })}
       </section>
+
 
       <div className="px-6 md:px-16 max-w-7xl mx-auto">
         {data?.secondaryimage?.asset && (
