@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { client } from "../../../sanity/lib/client";
+import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 
@@ -245,6 +245,48 @@ export default async function ServiceSummary() {
           </div>
         </div>
       </div>
+
+{/* Payment Section */}
+<div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+      {data.paymentOption?.paymentHeading}
+    </h2>
+    <p className="text-lg text-gray-700 mb-8 text-center">
+      {data.paymentOption?.paymentDetail}
+    </p>
+    <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-5 gap-8">
+      {data.paymentOption?.paymentTools?.map((tool: any, toolIndex: any) => (
+        <div
+          key={toolIndex}
+          className="p-4 flex flex-col items-center transform hover:scale-105 transition-transform duration-300"
+        >
+          <div className="flex flex-row justify-center mb-4 space-x-2">
+            {tool.images?.map((logoRef: any, logoIndex: any) => {
+              const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+              if (logoData) {
+                return (
+                  <div key={logoIndex} className="mr-2">
+                    <img
+                      src={urlForImage(logoData.image).toString()}
+                      alt={logoData.heading}
+                      className="h-12 object-cover"
+                    />
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+          <h3 className="text-xl font-semibold text-center mb-2 text-gray-800">{tool.heading}</h3>
+          <p className="text-gray-600 text-center">{tool.detail}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
     </div>
   );
