@@ -192,11 +192,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                           alt={logoData.heading}
                           className="object-cover h-12 md:h-24 px-30"
                         />
-                        <h3
-                          className={`text-xl font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"}`}
-                        >
-                          {feature.heading}
-                        </h3>
+                      
                       </div>
                     );
                   } else {
