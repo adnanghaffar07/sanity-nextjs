@@ -63,6 +63,8 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
         alt="eclipse icon"
         className="absolute w-[270px] z-0"
       />
+      {/* Introduction Section */}
+      
       <div className="flex flex-col xl:flex-row gap-10 xl:gap-36  mt-0 md:mt-10 px-6 md:px-16 max-w-7xl mx-auto">
         <div>
           <h2 className="text-2xl font-semibold mb-4">
@@ -94,32 +96,40 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       />
 
       {/* Tools and Technologies Used Section */}
-      <section className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto">
-        <h3 className="text-2xl font-semibold  text-center  my-4 md:my-8">
-          {data?.toolsandtechusedtitle}
-        </h3>
+    
+      <section className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto ">
+      <img
+        loading="lazy"
+        src="/vector1.png"
+        alt="eclipse icon"
+        className="absolute w-[70px] z-0"
+      />
+   
+        <div className="border border-[#0a8ffc] shadow-md p-6 rounded-lg">
+          <h3 className="text-2xl font-semibold text-center my-4 md:my-8 font-klein">
+            {data?.toolsandtechusedtitle}
+          </h3>
 
-        <p className="text-lg font-light text-center leading-9  text-black">
-          {data?.toolsandtechdescription}
-        </p>
+          <p className="text-lg font-light text-center leading-9 text-black">
+            {data?.toolsandtechdescription}
+          </p>
 
-        <h3 className="text-2xl font-semibold text-center  my-4 md:my-8">
-          {data?.toolsandtechusedheading}
-        </h3>
+          <h3 className="text-2xl font-semibold text-center my-4 md:my-8 font-klein">
+            {data?.toolsandtechusedheading}
+          </h3>
 
-        {data.caseStudiesToolsSection ? (
-          <div className="container  mt-10 ">
-            <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10 ">
-              {data.caseStudiesToolsSection.toolsTech.map(
-                (tool: any, toolIndex: any) => (
-                  <div
-                    key={toolIndex}
-                    className="w-full m-4 sm:m-0 sm:w-1/2  lg:w-1/3 "
-                  >
-                    <div className="flex md:justify-center gap-2">
-                      <div className="flex flex-row  gap-2">
-                        {tool.images?.map(
-                          (logoRef: any, logoIndex: any) => {
+          {data.caseStudiesToolsSection ? (
+            <div className="container mt-10">
+              <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10">
+                {data.caseStudiesToolsSection.toolsTech.map(
+                  (tool: any, toolIndex: any) => (
+                    <div
+                      key={toolIndex}
+                      className="w-full m-4 sm:m-0 sm:w-1/2 lg:w-1/3"
+                    >
+                      <div className="flex md:justify-center gap-2">
+                        <div className="flex flex-row gap-3">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find(
                               (logo: any) => logo._id === logoRef._ref
                             );
@@ -127,99 +137,108 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                               return (
                                 <div key={logoIndex}>
                                   <img
-                                    src={urlForImage(
-                                      logoData.image
-                                    ).toString()}
+                                    src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-10 md:h-12 object-contain"
+                                    className="h-10 md:h-14 object-contain"
                                   />
                                 </div>
                               );
                             } else {
                               return null;
                             }
-                          }
-                        )}
-                      </div>
+                          })}
+                        </div>
 
-                      <div className="flex flex-col w-auto my-auto">
-                        <h3 className="text-xl md:text-2xl  tracking-wider">
-                          {tool.heading}
-                        </h3>
-                        <p className="mt-1 text-lg tracking-wide">
-                          {tool.detail}
-                        </p>
+                        <div className="flex flex-col w-auto my-auto">
+                          <h3 className="text-xl md:text-2xl tracking-wider font-bold font-klein">
+                            {tool.heading}
+                          </h3>
+                          <p className="mt-1 text-lg tracking-wide">
+                            {tool.detail}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              )}
+                  )
+                )}
+              </div>
             </div>
-          </div>
-        ) : (
-          <ul>
-            {data.technologiesused?.map((tech: any) => (
-              <li
-                className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                key={tech._key}
-              >
-                <span className="text-lg  font-bold">
-                  {tech.heading}:{" "}
-                </span>
-                <span className="text-lg  font-light">
-                  {tech.description}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+          ) : (
+            <ul>
+              {data.technologiesused?.map((tech: any) => (
+                <li
+                  className="text-xs md:text-xl leading-4 md:leading-8 font-light"
+                  key={tech._key}
+                >
+                  <span className="text-lg font-bold">
+                    {tech.heading}:{" "}
+                  </span>
+                  <span className="text-lg font-light">
+                    {tech.description}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      
       </section>
+
       {/*  Application Features  */}
       <section className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
-        {data.features?.featureslist.map((feature: any, index: number) => {
-          return (
-            <div key={feature._key} className="flex flex-col items-center md:flex-row md:items-start md:justify-center">
+        <div className="border border-[#0a8ffc] shadow-md p-6 rounded-lg">
+          {data.features?.featureslist.map((feature: any, index: number) => (
+            <div key={feature._key} className="flex flex-col items-center">
+              {/* Render heading */}
 
-              {/* Render heading and description */}
-              <div className="flex flex-col text-center">
+
+              <div className="flex flex-row items-center justify-center mt-4 space-x-4">
+                {/* Render logos */}
                 {feature.logo?.map((logoRef: any, logoIndex: any) => {
-                  const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                  const logoData = dataLogo.find(
+                    (logo: any) => logo._id === logoRef._ref
+                  );
                   if (logoData && logoData.image) {
                     return (
-                      <div key={logoIndex}>
+                      <div key={logoIndex} className="flex-shrink-0">
                         <img
                           src={urlForImage(logoData.image).toString()}
                           alt={logoData.heading}
-                          className="object-cover h-12 md:h-24 px-30"
+                          className="object-cover h-12 md:h-24 px-3"
                         />
-                      
                       </div>
                     );
                   } else {
                     return null;
                   }
                 })}
+
                 <h3
-                  className={`text-xl font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"}`}
+                  className={`text-xl font-klein font-semibold leading-10 max-md:max-w-full md:text-2xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"
+                    }`}
                 >
                   {feature.heading}
                 </h3>
-                <p className="self-center mt-6 font-light text-xl max-md:text-lg tracking-wide leading-10 text-black max-md:max-w-full">
-                  {feature.description}
-                </p>
-                {/* Render images if available */}
-                {feature.images && (
-                  <img
-                    loading="lazy"
-                    src={urlForImage(feature.images).toString()}
-                    className="object-cover md:px-20"
-                  />
-                )}
+
               </div>
+              {/* Render description */}
+              <p className="font-light text-center text-xl max-md:text-lg tracking-wide leading-10 text-black max-md:max-w-full">
+                {feature.description}
+              </p>
+              {/* Render images if available */}
+              {feature.images && (
+                <img
+                  loading="lazy"
+                  src={urlForImage(feature.images).toString()}
+                  className="object-cover mt-4 md:px-20"
+                />
+              )}
             </div>
-          );
-        })}
+          ))}
+        </div>
       </section>
+
+
 
 
       <div className="px-6 md:px-16 max-w-7xl mx-auto">
