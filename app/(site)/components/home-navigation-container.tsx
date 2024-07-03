@@ -484,6 +484,24 @@ export default function HomeNavigationContainer() {
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 gap-6">
+                    <Link
+                        href="/about/discovery-process"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/server.svg"
+                            alt=""
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Discovery Process</p>
+                          <p className="mt-1 text-sm text-gray-500">Innovative Strategy</p>
+                        </div>
+                      </Link>
                       <Link
                         href="/case-studies"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"

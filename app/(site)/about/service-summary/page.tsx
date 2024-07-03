@@ -2,6 +2,7 @@ import Image from "next/image";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
+import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 
 async function getData() {
   const query = `*[_type == 'serviceSummary'][0]`;
@@ -25,7 +26,7 @@ async function getLogoData() {
 }
 
 // Updated generateMetadata function
-export async function generateMetadata()  {
+export async function generateMetadata() {
   const data = await getData(); // Ensure to pass params.service to getData
   const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
 
@@ -219,12 +220,13 @@ export default async function ServiceSummary() {
           <div className="text-center">
             <h2 className="text-2xl md:text-2xl font-bold text-gray-800 mb-6">{data.callToActionSection?.callToActionHeading}</h2>
             <p className="text-lg text-gray-700 mb-8">{data.callToActionSection?.callToAction}</p>
-            <Link className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-              href="tel:+1-850-558-4691"
-              role="button"
-            >
-
-              Get Started Now</Link>
+            <div className="mt-8 flex justify-center ">
+              <ButtonScrollToSection
+                content="Get Started Now"
+                classes="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                destination="contact-box"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -235,57 +237,58 @@ export default async function ServiceSummary() {
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">{data.specialOffersSection?.offerHeading}</h2>
             <p className="text-lg text-gray-700 mb-8">{data.specialOffersSection?.specialOffer}</p>
-            <div className="flex justify-center">
-              <Link className="bg-gradient-to-r ml-3 from-pink-500 to-purple-500 cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500"
-                href="tel:+1-850-558-4691"
-                role="button"
-              > Claim Offer</Link>
+            <div className="mt-8 flex justify-center">
+              <ButtonScrollToSection
+                content="Claim Offer"
+                classes="bg-gradient-to-r ml-3 from-pink-500 to-purple-500 cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500"
+                destination="contact-box"
+              />
             </div>
 
           </div>
         </div>
       </div>
 
-{/* Payment Section */}
-<div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-      {data.paymentOption?.paymentHeading}
-    </h2>
-    <p className="text-lg text-gray-700 mb-8 text-center">
-      {data.paymentOption?.paymentDetail}
-    </p>
-    <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-5 gap-8">
-      {data.paymentOption?.paymentTools?.map((tool: any, toolIndex: any) => (
-        <div
-          key={toolIndex}
-          className="p-4 flex flex-col items-center transform hover:scale-105 transition-transform duration-300"
-        >
-          <div className="flex flex-row justify-center mb-4 space-x-2">
-            {tool.images?.map((logoRef: any, logoIndex: any) => {
-              const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
-              if (logoData) {
-                return (
-                  <div key={logoIndex} className="mr-2">
-                    <img
-                      src={urlForImage(logoData.image).toString()}
-                      alt={logoData.heading}
-                      className="h-12 object-cover"
-                    />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
+      {/* Payment Section */}
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+            {data.paymentOption?.paymentHeading}
+          </h2>
+          <p className="text-lg text-gray-700 mb-8 text-center">
+            {data.paymentOption?.paymentDetail}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-5 gap-8">
+            {data.paymentOption?.paymentTools?.map((tool: any, toolIndex: any) => (
+              <div
+                key={toolIndex}
+                className="p-4 flex flex-col items-center transform hover:scale-105 transition-transform duration-300"
+              >
+                <div className="flex flex-row justify-center mb-4 space-x-2">
+                  {tool.images?.map((logoRef: any, logoIndex: any) => {
+                    const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                    if (logoData) {
+                      return (
+                        <div key={logoIndex} className="mr-2">
+                          <img
+                            src={urlForImage(logoData.image).toString()}
+                            alt={logoData.heading}
+                            className="h-12 object-cover"
+                          />
+                        </div>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-2 text-gray-800">{tool.heading}</h3>
+                <p className="text-gray-600 text-center">{tool.detail}</p>
+              </div>
+            ))}
           </div>
-          <h3 className="text-xl font-semibold text-center mb-2 text-gray-800">{tool.heading}</h3>
-          <p className="text-gray-600 text-center">{tool.detail}</p>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
+      </div>
 
 
     </div>
