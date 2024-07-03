@@ -393,7 +393,7 @@ export default function HomeNavigationContainer() {
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-6">
                       <Link
-                        href="/service-summary"
+                        href="/about/service-summary"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
@@ -484,6 +484,24 @@ export default function HomeNavigationContainer() {
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 gap-6">
+                    <Link
+                        href="/about/discovery-process"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/server.svg"
+                            alt=""
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Discovery Process</p>
+                          <p className="mt-1 text-sm text-gray-500">Innovative Strategy</p>
+                        </div>
+                      </Link>
                       <Link
                         href="/case-studies"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -732,7 +750,7 @@ export default function HomeNavigationContainer() {
                             <ul className="mega-links-mb">
                               <li>
                                 <Link
-                                  href="/service-summary"
+                                  href="/about/service-summary"
                                   className=""
                                   onClick={handleToggleMenuIcon}
                                 >
@@ -740,7 +758,7 @@ export default function HomeNavigationContainer() {
                                 </Link>
                                 <p>
                                   <Link
-                                    href="/service-summary"
+                                    href="/about/service-summary"
                                     onClick={handleToggleMenuIcon}
                                   >
                                     Service Essence

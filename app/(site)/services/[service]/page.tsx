@@ -45,7 +45,7 @@ export async function generateMetadata({
   params,
 }: {
   params: { service: string };
-})  {
+}) {
   const data = await getData(params.service); // Ensure to pass params.service to getData
   const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
 
@@ -91,43 +91,33 @@ export default async function service({
       {/* Introduction Section */}
       <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="container mx-auto flex flex-wrap items-center justify-center">
-          {data.introductionSection?.introImage ? (
-            <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
+          {/* Image on the left */}
+          {data.introductionSection?.introImage && (
+            <div className="w-full md:w-1/2 md:flex md:pr-8 md:pl-8 mb-4">
               <Image
-                src={urlForImage(
-                  data.introductionSection?.introImage
-                ).toString()}
+                src={urlForImage(data.introductionSection?.introImage).toString()}
                 alt=""
-                width={570}
-                height={370}
+                width={370}
+                height={150}
+                className="object-cover rounded-lg"
               />
             </div>
-          ) : (
-            <div className="w-full  justify-center mb-4">
-              <div className="max-w-2xl">
-                <h2 className="text-2xl font-bold mb-8 text-center">
-                  {data.introductionSection?.introHeading}
-                </h2>
-                <p className="text-lg text-gray-800 leading-relaxed text-center ">
-                  {data.introductionSection?.introDesc}
-                </p>
-              </div>
-            </div>
           )}
-          {data.introductionSection?.introImage && (
-            <div className="w-full md:w-1/2 md:justify-end">
-              <div className="max-w-2xl">
-                <h2 className="text-2xl font-bold mb-8">
-                  {data.introductionSection?.introHeading}
-                </h2>
-                <p className="text-lg text-gray-800 text-justify">
-                  {data.introductionSection?.introDesc}
-                </p>
-              </div>
+
+          {/* Content on the right */}
+          <div className="w-full md:w-1/2">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+                {data.introductionSection?.introHeading}
+              </h2>
+              <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                {data.introductionSection?.introDesc}
+              </p>
             </div>
-          )}
+          </div>
         </div>
       </section>
+
 
       {/* child service cards */}
 
@@ -144,13 +134,13 @@ export default async function service({
             }}
           >
             {data.subServices &&
-              data.subServices.map((subServiceRef:any) => {
+              data.subServices.map((subServiceRef: any) => {
                 const subService = dataSub.find(
-                  (item:any) => item._id === subServiceRef._ref
+                  (item: any) => item._id === subServiceRef._ref
                 );
                 if (subService) {
-                  const logos = subService.images?.map((logoRef:any) =>
-                    dataLogo.find((logo:any) => logo._id === logoRef._ref)
+                  const logos = subService.images?.map((logoRef: any) =>
+                    dataLogo.find((logo: any) => logo._id === logoRef._ref)
                   );
                   return (
                     <Link
@@ -165,7 +155,7 @@ export default async function service({
                         />
                         <div className="p-6">
                           <div className="flex items-center justify-center mb-4">
-                            {logos?.map((logoData:any, logoIndex:any) => (
+                            {logos?.map((logoData: any, logoIndex: any) => (
                               <div key={logoIndex} className="mr-2">
                                 <img
                                   src={urlForImage(logoData.image).toString()}
