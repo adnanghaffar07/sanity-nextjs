@@ -347,7 +347,7 @@ export default async function ValueBlueprints() {
             <ButtonScrollToSection
               content="Get Started Now"
               classes="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out  transform hover:scale-105 cursor-pointer"
-              destination="project-discussion-form"
+              destination="contact-box"
               key="Get-Started-Now-button"
             />
           </div>
@@ -376,7 +376,7 @@ export default async function ValueBlueprints() {
               <ButtonScrollToSection
                 classes="bg-gradient-to-r ml-3 from-[#F7E022] to-yellow-400 cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 "
                 content="Claim Offer"
-                destination="project-discussion-form"
+                destination="contact-box"
                 key="Claim-Offer-button"
               />
             </div>
