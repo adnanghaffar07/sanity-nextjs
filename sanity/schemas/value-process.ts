@@ -471,7 +471,7 @@ const valueDiscoveryProcessPage = {
         // Open Graph Protocol (OGP)
 
         {
-            name: 'facebool',
+            name: 'facebook',
             title: 'Facebook Meta',
             type: 'object',
             fields: [

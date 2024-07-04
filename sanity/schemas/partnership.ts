@@ -211,31 +211,7 @@ const partnershipSchema = {
         },
       ],
     },
-    // Open Graph Protocol (OGP)
-    {
-      name: "openGraphProtocolSub",
-      title: "Open Graph Protocol (OGP)",
-      type: "object",
-      fields: [
-        {
-          name: "ogTitle",
-          title: "Title",
-          type: "string",
-        },
-        {
-          name: "ogDescription",
-          title: "Description",
-          type: "text",
-        },
-        {
-          name: "ogImage",
-          title: "Image",
-          type: "image",
-          options: { hotspot: true },
-        },
-      ],
-    },
-
+ 
     // Twitter Cards
     {
       name: "twitterCardsSub",
@@ -427,31 +403,6 @@ const partnershipSchema = {
           name: "telegramType",
           title: "Type",
           type: "string",
-        },
-      ],
-    },
-
-    // Social Media
-    {
-      name: "socialMediaSub",
-      title: "Social Media",
-      type: "object",
-      fields: [
-        {
-          name: "socialTitle",
-          title: "Title",
-          type: "string",
-        },
-        {
-          name: "socailDesc",
-          title: "Description",
-          type: "text",
-        },
-        {
-          name: "socialImage",
-          title: "Image",
-          type: "image",
-          options: { hotspot: true },
         },
       ],
     },

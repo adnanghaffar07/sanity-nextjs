@@ -32,13 +32,72 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await getValueData(params.slug);
-  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+  const title = data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA";
+  const description = data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA";
+  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai";
+
+  const heroImageUrl = urlForImage(data.heroimage).toString(); // Use a default image if heroImage is not available
+
+  const facebookMeta = data.facebookCardsSub || {};
+  const twitterMeta = data.twitterCardsSub || {};
+  const linkedInMeta = data.linkedInCardsSub || {};
+  const pinterestMeta = data.pinterestCardsSub || {};
+  const whatsappMeta = data.whatsappCardsSub || {};
+  const telegramMeta = data.telegramCardsSub || {};
 
   return {
-    title: data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
-    description: data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA",
-    keywords: keywords
-
+    title,
+    description,
+    keywords,
+    openGraph: {
+      type: facebookMeta.facebookType || "website",
+      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      title: facebookMeta.facebookTitle || title,
+      description: facebookMeta.facebookDescription || description,
+      images: [
+        {
+          url: heroImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: twitterMeta.twitterType || "summary_large_image",
+      title: twitterMeta.twitterTitle || title,
+      description: twitterMeta.twitterDescription || description,
+      images: [
+        {
+          url: heroImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        }
+      ],
+      url: twitterMeta.twitterUrl || "https://codeautomation.ai",
+    },
+    linkedIn: {
+      title: linkedInMeta.linkedInTitle || title,
+      description: linkedInMeta.linkedInDescription || description,
+      image: heroImageUrl,
+      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+    },
+    pinterest: {
+      title: pinterestMeta.pinterestTitle || title,
+      description: pinterestMeta.pinterestDescription || description,
+      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+    },
+    whatsapp: {
+      title: whatsappMeta.whatsappTitle || title,
+      description: whatsappMeta.whatsappDescription || description,
+      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+    },
+    telegram: {
+      title: telegramMeta.telegramTitle || title,
+      description: telegramMeta.telegramDescription || description,
+      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+    },
   };
 }
 

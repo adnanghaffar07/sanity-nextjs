@@ -18,15 +18,75 @@ async function getData() {
 
 export async function generateMetadata() {
     const data = await getData();
-    const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai";
+
+    const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+    const defaultDescription = "Custom Software and Mobile Development Company in USA";
+    const defaultKeywords = "CodeAutomation.ai";
+
+    const title = data.webSeoMetadata?.title || defaultTitle;
+    const description = data.webSeoMetadata?.description || defaultDescription;
+    const keywords = data.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
+
+    // Extract Open Graph metadata
+    const facebookMeta = data.facebook || {};
+    const twitterMeta = data.twitterhMeta || {};
+    const linkedInMeta = data.linkedInCards || {};
+    const pinterestMeta = data.pinterestCards || {};
+    const whatsappMeta = data.whatsappCards || {};
+    const telegramMeta = data.telegramCards || {};
 
     return {
-        title: data.webSeoMetadata?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
-        description: data.webSeoMetadata?.description || "Custom Software and Mobile Development Company in USA",
-        keywords: keywords
+        title,
+        description,
+        keywords,
+        openGraph: {
+            type: facebookMeta.type || "website",
+            url: facebookMeta.url || "https://codeautomation.ai",
+            title: facebookMeta.title || title,
+            description: facebookMeta.description || description,
+            images: [
+                {
+                    url: urlForImage(facebookMeta.image).toString(),
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                }
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: twitterMeta.title || title,
+            description: twitterMeta.description || description,
+            images: [
+                {
+                    url: urlForImage(twitterMeta.image).toString(),
+                    alt: title,
+                }
+            ],
+        },
+        linkedIn: {
+            title: linkedInMeta.linkedInTitle || title,
+            description: linkedInMeta.linkedInDescription || description,
+             image: urlForImage(linkedInMeta.linkedInImage).toString(),
+            url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+        },
+        pinterest: {
+            title: pinterestMeta.pinterestTitle || title,
+            description: pinterestMeta.pinterestDescription || description,
+            url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+        },
+        whatsapp: {
+            title: whatsappMeta.whatsappTitle || title,
+            description: whatsappMeta.whatsappDescription || description,
+            url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+        },
+        telegram: {
+            title: telegramMeta.telegramTitle || title,
+            description: telegramMeta.telegramDescription || description,
+            url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+        }
     };
 }
-
 export default async function DiscoveryProcess() {
     const data = await getData();
 
