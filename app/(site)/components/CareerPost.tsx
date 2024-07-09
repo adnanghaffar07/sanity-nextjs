@@ -43,7 +43,7 @@ const CareerPost: React.FC<Props> = ({ jobpost }) => {
             className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm"
             aria-label={`Read more about the ${jobpost.jobTitleBaner}`}
           >
-            Read More
+            See Details
           </Link>
         </div>
       </div>
