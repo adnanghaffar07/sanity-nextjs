@@ -9,8 +9,8 @@ const LifeAtCA = () => {
       imageUrl: "ceo-adnan.png",
     },
     {
-      name: "Ambreen Younas",
-      title: "CTO",
+      name: "Ambreen Bilal",
+      title: "CTO/Manager",
       imageUrl: "/cto-ambreen.png",
     },
     {
