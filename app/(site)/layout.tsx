@@ -9,10 +9,8 @@ import { GoogleTagManager } from "@next/third-parties/google";
 //   () => import("./components/GoogleTagManagerClient"),
 //   {
 //     ssr: false,
-//     loading: () => <></>,
 //   }
 // );
-
 const FooterContainer = dynamic(() => import("./components/footer-container"), {
   suspense: true,
 });
@@ -41,6 +39,14 @@ export default async function RootLayout({
     <html lang="en">
       <GoogleTagManager gtmId="GTM-MJG35754" />
       <body>
+        {/* <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=GTM-MJG35754`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript> */}
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
           {children}
