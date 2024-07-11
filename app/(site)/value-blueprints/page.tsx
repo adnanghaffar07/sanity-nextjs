@@ -4,6 +4,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
 import { useState } from "react";
+import ScrollButton from "../components/valueBluePrint";
 
 async function getData() {
   const query = `*[_type == 'valueBlueprints'][0]`;
@@ -38,7 +39,7 @@ async function getValueData() {
 }
 
 // Updated generateMetadata function
-export async function generateMetadata()  {
+export async function generateMetadata() {
   const data = await getData();
   const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
   const defaultDescription = "Custom Software and Mobile Development Company in USA";
@@ -128,7 +129,6 @@ export default async function ValueBlueprints() {
             alt=""
           />
         )}
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
@@ -141,112 +141,116 @@ export default async function ValueBlueprints() {
       {/* Introduction Section */}
       <img
         loading="lazy"
-        src="/affiliate-partner-eclipse.png"
+        src="/stroke1.png"
         alt="eclipse icon"
-        className="absolute w-[270px] z-0"
+        className="absolute w-[130px] z-0"
       />
+
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="">
-            <div className="">
-              <h2 className="text-2xl font-bold mb-8 text-center  ">
-                {" "}
-                {/* Adjusted text alignment for larger screens */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+          <div className="w-full md:w-1/2">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
                 {data.introductionSection?.introHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify">
-                {" "}
-                {/* Adjusted text alignment for larger screens */}
+              <p className="text-lg text-gray-800 leading-relaxed text-justify md:text-left">
                 {data.introductionSection?.introDesc}
               </p>
             </div>
           </div>
-          {/* <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center"> 
+          <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center">
             <Image
               src={urlForImage(data.introductionSection?.introImage).toString()}
-              alt=""
-              width={570}
-              height={370}
+              alt="Introduction image"
+              width={520}
+              height={320}
+              className="object-cover rounded-lg"
             />
-          </div> */}
+          </div>
         </div>
       </div>
 
-      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">
-            Explore Our Value Blueprints
-          </h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {portfolioData.map((item: any) => (
-              <Link
-                key={item._id}
-                href={`/value-blueprints/${item._id}`}
-                aria-label={`View details of ${item.title}`}
-              >
-                <div className="group h-full w-full sm:w-80 md:w-96">
-                  <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
-                    <img
-                      src={urlForImage(item.heroimage).toString()}
-                      alt={item.title}
-                      className="w-full h-48 object-cover object-center transition duration-300 group-hover:scale-105"
-                    />
 
-                    <div className="flex flex-row flex-wrap   py-5 ">
-                      {item.caseStudiesToolsSection?.toolsTech?.map(
-                        (tool: any, toolIndex: any) => (
-                          <div key={toolIndex} className="mx-auto">
-                            {tool?.images.map(
-                              (logoRef: any, logoIndex: any) => {
-                                const logoData = dataLogo.find(
-                                  (logo: any) => logo._id === logoRef._ref
-                                );
-                                if (logoData) {
-                                  return (
-                                    <div
-                                      key={logoIndex}
-                                      className="relative group"
-                                    >
-                                      <div className="flex items-center justify-center">
-                                        <img
-                                          src={urlForImage(
-                                            logoData.image
-                                          ).toString()}
-                                          alt={logoData.heading}
-                                          className="h-10 w-10 ring-1 rounded-full shadow-lg shadow-red-700 ring-red-400 group-hover:scale-110 transition-transform duration-500 p-1 object-cover"
-                                        />
-                                      </div>
-
-                                      <h1 className="absolute uppercase  text-purple-700 bg-transparent font-semibold   top-14  right-3  rounded-md   opacity-0 group-hover:opacity-100 group-hover:max-w-10 transition-opacity duration-500">
-                                        {logoData.heading}
-                                      </h1>
-                                    </div>
-                                  );
-                                } else {
-                                  return null;
-                                }
-                              }
-                            )}
-                          </div>
-                        )
-                      )}
-                      <div className="p-6 mx-auto m-10">
-                        <h3 className="text-xl  md:text-xl font-semibold mb-2 text-center group-hover:text-blue-500 transition duration-300 ">
+      {/* Explore Blueprints section */}
+      <section className="px-6 md:px-16 py-10 md:py-16 bg-slate-100">
+        <div className="flex flex-col pt-20 pb-6">
+          <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
+            <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
+              <div className="justify-center max-md:max-w-full">
+                <span className="font-medium text-black capitalize leading-[60px]">
+                  Explore Our Value{" "}
+                </span>
+                <span className="text-sky-500 capitalize leading-[60px]">
+                  BLUEPRINTS
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-0 justify-center py-3 my-auto text-base font-medium tracking-wide leading-6 text-black rounded-lg">
+              <div className="justify-center px-4">Discover More Blueprints</div>
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/4f719f059b362cac47cf33b94d6d70653d42096efde7e1d97e744b5d50629b4d?apiKey=4bbac2e9fd8543319fbc188f9510a76b&"
+                className="shrink-0 w-6 aspect-square"
+              />
+            </div>
+          </div>
+          <div className="flex overflow-hidden relative flex-col justify-center">
+            <div
+              className="flex overflow-x-auto gap-5 justify-between pl-20 mt-6 max-md:flex-wrap max-md:pl-5 hide-scrollbar"
+              id="scrollContainer"
+            >
+              {portfolioData.map((item: any) => (
+                <Link
+                  key={item._id}
+                  href={`/value-blueprints/${item._id}`}
+                  aria-label={`View details of ${item.title}`}
+                >
+                  <div className="group h-full w-full sm:w-80 md:w-66">
+                    <div className=" shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full relative">
+                      <img
+                        src={urlForImage(item.heroimage).toString()}
+                        alt={item.title}
+                        className="w-full h-68 object-cover object-center transition duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md text-white p-2">
+                        <h3 className="text-lg md:text-lg font-light transition duration-300">
                           {item.title}
-                        </h3>{" "}
+                        </h3>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+
+                </Link>
+              ))}
+
+            </div>
+            <ScrollButton scrollContainerId="scrollContainer" />
+          </div>
+          <div className="flex gap-1 self-center px-5 mt-12 w-[66px] max-md:mt-10">
+            <div className="shrink-0 h-2 bg-black rounded-md" />
+            <div className="shrink-0 w-full h-2 rounded-md bg-black bg-opacity-10" />
+            <div className="shrink-0 w-full h-2 rounded-md bg-black bg-opacity-10" />
+            <div className="shrink-0 w-full h-2 rounded-md bg-black bg-opacity-10" />
           </div>
         </div>
       </section>
+      {/* 
+      <div className="flex flex-col justify-center py-10">
+        <div className="flex flex-col py-10 w-full max-md:max-w-full">
+          <div className="flex flex-col self-center px-5 w-full text-center text-black max-w-[1216px] max-md:max-w-full">
+            <div className="text-4xl font-medium capitalize leading-[60px] max-md:max-w-full">
+              {data.toolsTechSection?.toolsTechHeading}
+            </div>
+            <div className="self-center mt-4 text-xl font-light tracking-wide leading-7 w-[896px] max-md:max-w-full">
+              {data.toolsTechSection?.toolsTechDesc}
+            </div>
+          </div>
+      
+        </div>
+      </div> */}
 
       {/* Tools and Technology */}
-
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
             {data.toolsTechSection?.toolsTechHeading}
@@ -254,194 +258,277 @@ export default async function ValueBlueprints() {
           <h2 className="text-lg text-gray-800 leading-relaxed text-center mb-6">
             {data.toolsTechSection?.toolsTechDesc}
           </h2>
-          <div className="flex flex-wrap justify-center">
-            {data.toolsTechSection?.toolsTech?.map(
-              (tool: any, toolIndex: any) => (
-                <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                   <div className=" bg-white  border border-x-4  border-x-purple-400 border-y-4 border-y-red-400 rounded-l-full  rounded-r-xl rounded-b-full shadow-sm shadow-purple-700 p-6  flex flex-col h-full">
-                    
-                    <div className="flex flex-row justify-center mb-4">
-                      {tool.images?.map((logoRef: any, logoIndex: any) => {
-                        const logoData = dataLogo.find(
-                          (logo: any) => logo._id === logoRef._ref
-                        );
-                        if (logoData) {
-                          return (
-                            <div key={logoIndex} className="mr-2">
-                              <img
-                                src={urlForImage(logoData.image).toString()}
-                                alt={logoData.heading}
-                                className="h-8 object-cover"
-                              />
-                            </div>
-                          );
-                        } else {
-                          return null;
-                        }
-                      })}
+          <div className="flex justify-center items-center px-16 mt-10 w-full max-md:px-5 max-md:max-w-full">
+            <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
+
+              {/* Top Row */}
+              <div className="flex gap-5 justify-center items-center max-md:flex-wrap max-md:max-w-full mb-10">
+                {data.toolsTechSection?.toolsTech?.slice(0, 5).map(
+                  (tool: any, toolIndex: any) => (
+                    <div key={toolIndex} className="flex items-center justify-center w-full md:w-1/2 lg:w-1/3 p-4">
+                      <div className="flex items-center justify-center h-full group">
+                        <div className="flex justify-center mr-1">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex} className="mr-2">
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
+                          {tool.heading}
+                        </h3>
+                      </div>
                     </div>
-                    <h3 className="text-xl text-center font-semibold mb-4">
-                      {tool.heading}
-                    </h3>
-                  </div>
-                </div>
-              )
-            )}
+                  )
+                )}
+              </div>
+
+              {/* Middle Row - Longer */}
+              <div className="flex gap-5 justify-center items-center max-md:flex-wrap max-md:max-w-full mb-10">
+                {data.toolsTechSection?.toolsTech?.slice(5, 10).map(
+                  (tool: any, toolIndex: any) => (
+                    <div key={toolIndex} className="flex items-center justify-center w-full md:w-1/5 lg:w-1/5 p-4">
+                      <div className="flex items-center justify-center h-full group">
+                        <div className="flex justify-center mr-2">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex} className="mr-1">
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-26 w-16 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
+                          {tool.heading}
+                        </h3>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+
+              {/* Bottom Row */}
+              <div className="flex gap-5 justify-center items-center max-md:flex-wrap max-md:max-w-full">
+                {data.toolsTechSection?.toolsTech?.slice(10, 15).map(
+                  (tool: any, toolIndex: any) => (
+                    <div key={toolIndex} className="flex items-center justify-center w-full md:w-1/2 lg:w-1/3 p-4">
+                      <div className="flex items-center justify-center h-full group">
+                        <div className="flex justify-center mr-2">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex} className="mr-1">
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
+                          {tool.heading}
+                        </h3>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Project Cycle Section */}
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+   {/* Project Cycle Section */}
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-16">
-            {data.projectCycleSection?.projectCycleHaeding}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-14">
-            {data.projectCycleSection?.projectCycle.map(
-              (step: any, index: any) => (
-                <div
-                  key={index}
-                  className="bg-[#EDECEC] rounded-3xl shadow-sm relative"
-                >
-                  <div className="z-10 flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-8 drop-shadow-serviceCard">
-                    <span className="text-gray-800 font-bold text-lg">
-                      {index + 1}
-                    </span>
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">  {data.projectCycleSection?.projectCycleHaeding}</h2>
+          <div className="flex flex-wrap justify-center">
+          {data.projectCycleSection?.projectCycle.map((tool: any, toolIndex: any) => (
+              <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
+                <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full">
+                  <div className="flex flex-row justify-center mb-4">
+                    {tool.projectImage?.map((logoRef: any, logoIndex: any) => {
+                    
+                        return (
+                          <div key={logoIndex} className="mr-2">
+                            <img
+                              src={urlForImage(logoRef.image).toString()}
+                              alt={logoRef.heading}
+                              className="h-8 object-cover"
+                            />
+                          </div>
+                        );
+                
+                    })}
                   </div>
-                  <div className="p-6 h-full">
-                    <div className="text-base font-medium text-lg leading-6 pt-6 text-center">
-                      {step.heading}
-                    </div>
-                    <div className="mt-5 text-sm text-center font-light tracking-normal leading-6 ">
-                      {step.detail}
-                    </div>
-                  </div>
+                  <h3 className="text-xl text-center font-semibold mb-4">{tool.heading}</h3>
+                  <p className="text-gray-700 text-center">{tool.detail}</p>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      <img
-        loading="lazy"
-        src="/affiliate-partner-eclipse.png"
-        alt="eclipse icon"
-        className="absolute w-[300px] z-0"
-      />
 
       {/* Service Delivery Options */}
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-16">
-            {data.deliveryOptionSection?.deliveryOptionHaeding}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-14">
-            {data.deliveryOptionSection?.deliveryOption.map(
-              (step: any, index: any) => (
-                <div
-                  key={index}
-                  className="bg-[#EDECEC] rounded-3xl shadow-sm relative"
-                >
-                  <div className="z-10 flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-8 drop-shadow-serviceCard">
-                    <span className="text-gray-800 font-bold text-lg">
-                      {index + 1}
-                    </span>
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6"> {data.deliveryOptionSection?.deliveryOptionHaeding}</h2>
+          <div className="flex flex-wrap justify-center">
+          {data.deliveryOptionSection?.deliveryOption.map((tool: any, toolIndex: any) => (
+              <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
+                <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full">
+                  <div className="flex flex-row justify-center mb-4">
+                    {tool.deliveryImage?.map((logoRef: any, logoIndex: any) => {
+                    
+                        return (
+                          <div key={logoIndex} className="mr-2">
+                            <img
+                              src={urlForImage(logoRef.image).toString()}
+                              alt={logoRef.heading}
+                              className="h-8 object-cover"
+                            />
+                          </div>
+                        );
+                
+                    })}
                   </div>
-                  <div className="p-6 h-full">
-                    <div className="text-base font-medium text-lg leading-6 pt-6 text-center">
-                      {step.heading}
-                    </div>
-                    <div className="mt-5 text-sm text-center font-light tracking-normal leading-6 ">
-                      {step.detail}
-                    </div>
-                  </div>
+                  <h3 className="text-xl text-center font-semibold mb-4">{tool.heading}</h3>
+                  <p className="text-gray-700 text-center">{tool.detail}</p>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
       {/* Summary Section */}
+      <img
+        loading="lazy"
+        src="/stroke1.png"
+        alt="eclipse icon"
+        className="absolute w-[130px] z-0"
+      />
+
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center">
-          <div className="w-full md:w-1/2 md:pr-8">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-8 text-center md:text-left ">
-                {data.summarySection?.summaryHeading}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+          <div className="w-full md:w-1/2">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+              {data.summarySection?.summaryHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center">
-                {data.summarySection?.summaryMessage}
+              <p className="text-lg text-gray-800 leading-relaxed text-justify md:text-left">
+              {data.summarySection?.summaryMessage}
               </p>
             </div>
           </div>
           <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8 md:flex md:justify-center">
             <Image
               src={urlForImage(data.summarySection?.summaryImg).toString()}
-              alt=""
-              width={470}
-              height={250}
+              alt="Introduction image"
+              width={520}
+              height={320}
+              className="object-cover rounded-lg"
             />
           </div>
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="py-12 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-2xl md:text-2xl font-bold text-gray-800 mb-6">
-              {data.callToActionSection?.callToActionHeading}
-            </h2>
-            <p className="text-lg text-gray-700 mb-8">
-              {data.callToActionSection?.callToAction}
-            </p>
-            {/* <Link className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out  transform hover:scale-105 "
-              href="tel:+1-850-558-4691"
-              role="button"
-            >
-              Get Started Now</Link> */}
-            <ButtonScrollToSection
-              content="Get Started Now"
-              classes="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out  transform hover:scale-105 cursor-pointer"
-              destination="contact-box"
-              key="Get-Started-Now-button"
-            />
+ {/* Combined Section */}
+ <div className="flex justify-center items-center px-16 py-20 bg-slate-100 max-md:px-5">
+      <div className="mt-7 w-full max-w-[1066px] max-md:max-w-full">
+        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+          
+          {/* Call to Action Card */}
+          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+            <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-sky-500 bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                  {data.callToActionSection?.callToActionHeading}
+                </h2>
+                <p className="text-lg text-gray-700 mb-8">
+                  {data.callToActionSection?.callToAction}
+                </p>
+                {data.callToActionSection?.callToActionImg && (
+                  <Image
+                    src={urlForImage(data.callToActionSection.callToActionImg).toString()}
+                    alt={data.callToActionSection.callToActionImg.alt}
+                    className="mx-auto mb-6"
+                    width={120}
+              height={120}
+                  />
+                )}
+                <ButtonScrollToSection
+                  content="Get Started Now"
+                  classes="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                  destination="contact-box"
+                  key="Get-Started-Now-button"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* Special Offer Section */}
-      <div className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              {data.specialOffersSection?.offerHeading}
-            </h2>
-            <p className="text-lg text-gray-700 mb-8">
-              {data.specialOffersSection?.specialOffer}
-            </p>
-            <div className="flex justify-center">
-              {/* <Link
-                className="bg-gradient-to-r ml-3 from-[#F7E022] to-yellow-400 cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 "
-                href="tel:+1-850-558-4691"
-                role="button"
-              >
-                {" "}
-                Claim Offer
-              </Link> */}
-              <ButtonScrollToSection
-                classes="bg-gradient-to-r ml-3 from-[#F7E022] to-yellow-400 cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 "
-                content="Claim Offer"
-                destination="contact-box"
-                key="Claim-Offer-button"
-              />
+          
+          {/* Special Offer Card */}
+          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+            <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-yellow-400 bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                  {data.specialOffersSection?.offerHeading}
+                </h2>
+                <p className="text-lg text-gray-700 mb-8">
+                  {data.specialOffersSection?.specialOffer}
+                </p>
+                {data.specialOffersSection?.offerImg && (
+                  <Image
+                    src={urlForImage(data.specialOffersSection.offerImg).toString()}
+                    alt={data.specialOffersSection.offerImg.alt}
+                    className="mx-auto mb-6"
+                    width={120}
+                    height={120}
+                  />
+                )}
+                <ButtonScrollToSection
+                  classes="bg-[#F7E022] cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+                  content="Claim Offer"
+                  destination="contact-box"
+                  key="Claim-Offer-button"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

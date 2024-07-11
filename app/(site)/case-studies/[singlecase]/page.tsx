@@ -29,9 +29,10 @@ async function getLogoData() {
 }
 
 // Updated generateMetadata function
-export async function generateMetadata() {
-  const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
-  const data = await client.fetch(query);
+export async function generateMetadata ({ params }: { params: { singlecase: string } }) {
+
+  const data = await getData(params.singlecase);
+
   const title = data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA";
   const description = data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA";
   const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai";
@@ -67,20 +68,20 @@ export async function generateMetadata() {
       card: twitterMeta.twitterType || "summary_large_image",
       title: twitterMeta.twitterTitle || title,
       description: twitterMeta.twitterDescription || description,
-      // images: [
-      //   {
-      //     url: heroImageUrl,
-      //     width: 1200,
-      //     height: 630,
-      //     alt: title,
-      //   }
-      // ],
+      images: [
+        {
+          url: heroImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        }
+      ],
       url: twitterMeta.twitterUrl || "https://codeautomation.ai",
     },
     linkedIn: {
       title: linkedInMeta.linkedInTitle || title,
       description: linkedInMeta.linkedInDescription || description,
-      // image: heroImageUrl,
+      image: linkedInMeta.linkedInImage && urlForImage(linkedInMeta.linkedInImage).toString(),
       url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
     },
     pinterest: {
@@ -108,12 +109,12 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   return (
     <div className="">
       <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light max-md:max-w-full ">
-        {data?.title === "House Arrest" && data?.cardimage?.asset ? (
+        {data?.title === "House Arrest" && data?.cardimage ? ( 
           <HouseArrestBanner />
         ) : (
           data.cardimage && (
             <img
-              src={urlForImage(data.cardimage.asset).toString()}
+              src={urlForImage(data.cardimage).toString()}
               alt=""
             />
           )

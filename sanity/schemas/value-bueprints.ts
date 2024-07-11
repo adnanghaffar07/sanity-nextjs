@@ -143,6 +143,19 @@ const valueBlueprints = {
                     title: "Detail",
                     type: "string",
                   },
+                  {
+                    name: "projectImage",
+                    title: "Project Image",
+                    type: "image",
+                    options: { hotspot: true },
+                    fields: [
+                      {
+                        name: "alt",
+                        title: "Alt",
+                        type: "string",
+                      },
+                    ],
+                  },
                 ],
               },
             ],
@@ -192,6 +205,19 @@ const valueBlueprints = {
                     name: "detail",
                     title: "Detail",
                     type: "string",
+                  },
+                  {
+                    name: "deliveryImage",
+                    title: "Image",
+                    type: "image",
+                    options: { hotspot: true },
+                    fields: [
+                      {
+                        name: "alt",
+                        title: "Alt",
+                        type: "string",
+                      },
+                    ],
                   },
                 ],
               },
