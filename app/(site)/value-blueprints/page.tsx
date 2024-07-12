@@ -350,7 +350,7 @@ export default async function ValueBlueprints() {
                         <img
                           src={urlForImage(tool.projectImage).toString()}
                           alt={tool.projectImage.alt || tool.heading}
-                          className="h-10 object-cover transition-transform duration-300 ease-in-out group-hover:scale-90"
+                          className="h-12 object-cover transition-transform duration-300 ease-in-out group-hover:scale-90"
                         />
                       </div>
                     )}
@@ -384,7 +384,7 @@ export default async function ValueBlueprints() {
                         <img
                           src={urlForImage(tool.deliveryImage).toString()}
                           alt={tool.deliveryImage.alt || tool.heading}
-                          className="h-10 object-cover transition-transform duration-300 ease-in-out group-hover:scale-90"
+                          className="h-12 object-cover transition-transform duration-300 ease-in-out group-hover:scale-90"
                         />
                       </div>
                     )}
