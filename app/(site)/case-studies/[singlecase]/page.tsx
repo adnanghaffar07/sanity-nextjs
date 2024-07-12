@@ -480,6 +480,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       className="text-xs md:text-lg leading-4 md:leading-8 font-light"
                       key={challange._key}
                     >
+                        <span className="text-lg  font-bold">
+                      {challange.heading}:{" "}
+                    </span>
                       <span className="text-lg  font-light">
                         {challange.description}
                       </span>
