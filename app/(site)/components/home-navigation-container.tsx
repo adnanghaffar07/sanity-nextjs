@@ -617,16 +617,14 @@ export default function HomeNavigationContainer() {
               height={20}
               className="object-cover"
             ></Image>
-
-            {/* <Image
+            <div className="my-auto text-nowrap text-black">850 558 4691</div>
+              <Image
               src="/USA-Flag.png"
               alt="USA-Flag-Icon"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
               className="object-cover"
-            ></Image> */}
-
-            <div className="my-auto text-nowrap text-black">Contact Us</div>
+            ></Image>
           </Link>
 
           <div

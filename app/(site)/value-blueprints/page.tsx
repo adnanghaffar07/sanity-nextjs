@@ -178,20 +178,12 @@ export default async function ValueBlueprints() {
             <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
               <div className="justify-center max-md:max-w-full">
                 <span className="font-medium text-black capitalize leading-[60px]">
-                  Explore Our Value{" "}
+                  Explore Our Value{' '}
                 </span>
                 <span className="text-sky-500 capitalize leading-[60px]">
                   BLUEPRINTS
                 </span>
               </div>
-            </div>
-            <div className="flex gap-0 justify-center py-3 my-auto text-base font-medium tracking-wide leading-6 text-black rounded-lg">
-              <div className="justify-center px-4">Discover More Blueprints</div>
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/4f719f059b362cac47cf33b94d6d70653d42096efde7e1d97e744b5d50629b4d?apiKey=4bbac2e9fd8543319fbc188f9510a76b&"
-                className="shrink-0 w-6 aspect-square"
-              />
             </div>
           </div>
           <div className="flex overflow-hidden relative flex-col justify-center">
@@ -205,8 +197,8 @@ export default async function ValueBlueprints() {
                   href={`/value-blueprints/${item._id}`}
                   aria-label={`View details of ${item.title}`}
                 >
-                  <div className="group h-full w-full sm:w-80 md:w-66">
-                    <div className=" shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full relative">
+                  <div className="group h-full w-full sm:w-80 md:w-80">
+                    <div className="shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full relative">
                       <img
                         src={urlForImage(item.heroimage).toString()}
                         alt={item.title}
@@ -219,37 +211,21 @@ export default async function ValueBlueprints() {
                       </div>
                     </div>
                   </div>
-
                 </Link>
               ))}
-
             </div>
             <ScrollButton scrollContainerId="scrollContainer" />
           </div>
-          <div className="flex gap-1 self-center px-5 mt-12 w-[66px] max-md:mt-10">
-            <div className="shrink-0 h-2 bg-black rounded-md" />
-            <div className="shrink-0 w-full h-2 rounded-md bg-black bg-opacity-10" />
-            <div className="shrink-0 w-full h-2 rounded-md bg-black bg-opacity-10" />
-            <div className="shrink-0 w-full h-2 rounded-md bg-black bg-opacity-10" />
-          </div>
         </div>
       </section>
-      {/* 
-      <div className="flex flex-col justify-center py-10">
-        <div className="flex flex-col py-10 w-full max-md:max-w-full">
-          <div className="flex flex-col self-center px-5 w-full text-center text-black max-w-[1216px] max-md:max-w-full">
-            <div className="text-4xl font-medium capitalize leading-[60px] max-md:max-w-full">
-              {data.toolsTechSection?.toolsTechHeading}
-            </div>
-            <div className="self-center mt-4 text-xl font-light tracking-wide leading-7 w-[896px] max-md:max-w-full">
-              {data.toolsTechSection?.toolsTechDesc}
-            </div>
-          </div>
-      
-        </div>
-      </div> */}
 
       {/* Tools and Technology */}
+      <img
+        loading="lazy"
+        src="/stroke2.png"
+        alt="eclipse icon"
+        className="absolute right-0 w-[150px] z-0"
+      />
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
@@ -262,138 +238,127 @@ export default async function ValueBlueprints() {
             <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
 
               {/* Top Row */}
-              <div className="flex gap-5 justify-center items-center max-md:flex-wrap max-md:max-w-full mb-10">
-                {data.toolsTechSection?.toolsTech?.slice(0, 5).map(
-                  (tool: any, toolIndex: any) => (
-                    <div key={toolIndex} className="flex items-center justify-center w-full md:w-1/2 lg:w-1/3 p-4">
-                      <div className="flex items-center justify-center h-full group">
-                        <div className="flex justify-center mr-1">
-                          {tool.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find(
-                              (logo: any) => logo._id === logoRef._ref
+              <div className="flex gap-5 justify-center items-center flex-wrap mb-10">
+                {data.toolsTechSection?.toolsTech?.slice(0, 5).map((tool: any, toolIndex: any) => (
+                  <div key={toolIndex} className="flex items-center justify-center w-1/5 max-md:w-1/2 p-4">
+                    <div className="flex items-center justify-center h-full group">
+                      <div className="flex justify-center mr-1">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex} className="mr-2">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                />
+                              </div>
                             );
-                            if (logoData) {
-                              return (
-                                <div key={logoIndex} className="mr-2">
-                                  <img
-                                    src={urlForImage(logoData.image).toString()}
-                                    alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
-                                  />
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
-                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
-                          {tool.heading}
-                        </h3>
+                          } else {
+                            return null;
+                          }
+                        })}
                       </div>
+                      <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
+                        {tool.heading}
+                      </h3>
                     </div>
-                  )
-                )}
+                  </div>
+                ))}
               </div>
 
-              {/* Middle Row - Longer */}
-              <div className="flex gap-5 justify-center items-center max-md:flex-wrap max-md:max-w-full mb-10">
-                {data.toolsTechSection?.toolsTech?.slice(5, 10).map(
-                  (tool: any, toolIndex: any) => (
-                    <div key={toolIndex} className="flex items-center justify-center w-full md:w-1/5 lg:w-1/5 p-4">
-                      <div className="flex items-center justify-center h-full group">
-                        <div className="flex justify-center mr-2">
-                          {tool.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find(
-                              (logo: any) => logo._id === logoRef._ref
+              {/* Middle Row */}
+              <div className="flex gap-5 justify-center items-center flex-wrap mb-10">
+                {data.toolsTechSection?.toolsTech?.slice(5, 10).map((tool: any, toolIndex: any) => (
+                  <div key={toolIndex} className="flex items-center justify-center w-1/5 max-md:w-1/2 p-4">
+                    <div className="flex items-center justify-center h-full group">
+                      <div className="flex justify-center mr-2">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex} className="mr-1">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                />
+                              </div>
                             );
-                            if (logoData) {
-                              return (
-                                <div key={logoIndex} className="mr-1">
-                                  <img
-                                    src={urlForImage(logoData.image).toString()}
-                                    alt={logoData.heading}
-                                    className="h-26 w-16 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
-                                  />
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
-                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
-                          {tool.heading}
-                        </h3>
+                          } else {
+                            return null;
+                          }
+                        })}
                       </div>
+                      <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
+                        {tool.heading}
+                      </h3>
                     </div>
-                  )
-                )}
+                  </div>
+                ))}
               </div>
 
               {/* Bottom Row */}
-              <div className="flex gap-5 justify-center items-center max-md:flex-wrap max-md:max-w-full">
-                {data.toolsTechSection?.toolsTech?.slice(10, 15).map(
-                  (tool: any, toolIndex: any) => (
-                    <div key={toolIndex} className="flex items-center justify-center w-full md:w-1/2 lg:w-1/3 p-4">
-                      <div className="flex items-center justify-center h-full group">
-                        <div className="flex justify-center mr-2">
-                          {tool.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find(
-                              (logo: any) => logo._id === logoRef._ref
+              <div className="flex gap-5 justify-center items-center flex-wrap">
+                {data.toolsTechSection?.toolsTech?.slice(10, 15).map((tool: any, toolIndex: any) => (
+                  <div key={toolIndex} className="flex items-center justify-center w-1/5 max-md:w-1/2 p-4">
+                    <div className="flex items-center justify-center h-full group">
+                      <div className="flex justify-center mr-2">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex} className="mr-1">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                />
+                              </div>
                             );
-                            if (logoData) {
-                              return (
-                                <div key={logoIndex} className="mr-1">
-                                  <img
-                                    src={urlForImage(logoData.image).toString()}
-                                    alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
-                                  />
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
-                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
-                          {tool.heading}
-                        </h3>
+                          } else {
+                            return null;
+                          }
+                        })}
                       </div>
+                      <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
+                        {tool.heading}
+                      </h3>
                     </div>
-                  )
-                )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
-   {/* Project Cycle Section */}
+
+      {/* Project Cycle Section */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">  {data.projectCycleSection?.projectCycleHaeding}</h2>
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+            {data.projectCycleSection?.projectCycleHaeding}
+          </h2>
           <div className="flex flex-wrap justify-center">
-          {data.projectCycleSection?.projectCycle.map((tool: any, toolIndex: any) => (
+            {data.projectCycleSection?.projectCycle.map((tool: any, toolIndex: any) => (
               <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full">
+                <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB] group">
                   <div className="flex flex-row justify-center mb-4">
-                    {tool.projectImage?.map((logoRef: any, logoIndex: any) => {
-                    
-                        return (
-                          <div key={logoIndex} className="mr-2">
-                            <img
-                              src={urlForImage(logoRef.image).toString()}
-                              alt={logoRef.heading}
-                              className="h-8 object-cover"
-                            />
-                          </div>
-                        );
-                
-                    })}
+                    {tool.projectImage && (
+                      <div className="mr-2">
+                        <img
+                          src={urlForImage(tool.projectImage).toString()}
+                          alt={tool.projectImage.alt || tool.heading}
+                          className="h-10 object-cover transition-transform duration-300 ease-in-out group-hover:scale-90"
+                        />
+                      </div>
+                    )}
                   </div>
-                  <h3 className="text-xl text-center font-semibold mb-4">{tool.heading}</h3>
-                  <p className="text-gray-700 text-center">{tool.detail}</p>
+                  <h3 className="text-xl text-center font-semibold mb-4 transition-colors duration-300 ease-in-out group-hover:text-white">
+                    {tool.heading}
+                  </h3>
+                  <p className="text-gray-500 text-center transition-colors duration-300 ease-in-out group-hover:text-white">{tool.detail}</p>
                 </div>
               </div>
             ))}
@@ -401,43 +366,46 @@ export default async function ValueBlueprints() {
         </div>
       </div>
 
+
+
       {/* Service Delivery Options */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6"> {data.deliveryOptionSection?.deliveryOptionHaeding}</h2>
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+            {data.deliveryOptionSection?.deliveryOptionHaeding}
+          </h2>
           <div className="flex flex-wrap justify-center">
-          {data.deliveryOptionSection?.deliveryOption.map((tool: any, toolIndex: any) => (
+            {data.deliveryOptionSection?.deliveryOption.map((tool: any, toolIndex: any) => (
               <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full">
+                <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB] group">
                   <div className="flex flex-row justify-center mb-4">
-                    {tool.deliveryImage?.map((logoRef: any, logoIndex: any) => {
-                    
-                        return (
-                          <div key={logoIndex} className="mr-2">
-                            <img
-                              src={urlForImage(logoRef.image).toString()}
-                              alt={logoRef.heading}
-                              className="h-8 object-cover"
-                            />
-                          </div>
-                        );
-                
-                    })}
+                    {tool.deliveryImage && (
+                      <div className="mr-2">
+                        <img
+                          src={urlForImage(tool.deliveryImage).toString()}
+                          alt={tool.deliveryImage.alt || tool.heading}
+                          className="h-10 object-cover transition-transform duration-300 ease-in-out group-hover:scale-90"
+                        />
+                      </div>
+                    )}
                   </div>
-                  <h3 className="text-xl text-center font-semibold mb-4">{tool.heading}</h3>
-                  <p className="text-gray-700 text-center">{tool.detail}</p>
+                  <h3 className="text-xl text-center font-semibold mb-4 transition-colors duration-300 ease-in-out group-hover:text-white">
+                    {tool.heading}
+                  </h3>
+                  <p className="text-gray-500 text-center transition-colors duration-300 ease-in-out group-hover:text-white">{tool.detail}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
+
       {/* Summary Section */}
       <img
         loading="lazy"
         src="/stroke1.png"
         alt="eclipse icon"
-        className="absolute w-[130px] z-0"
+        className="absolute w-[120px] z-0"
       />
 
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
@@ -445,10 +413,10 @@ export default async function ValueBlueprints() {
           <div className="w-full md:w-1/2">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-              {data.summarySection?.summaryHeading}
+                {data.summarySection?.summaryHeading}
               </h2>
               <p className="text-lg text-gray-800 leading-relaxed text-justify md:text-left">
-              {data.summarySection?.summaryMessage}
+                {data.summarySection?.summaryMessage}
               </p>
             </div>
           </div>
@@ -464,71 +432,73 @@ export default async function ValueBlueprints() {
         </div>
       </div>
 
- {/* Combined Section */}
- <div className="flex justify-center items-center px-16 py-20 bg-slate-100 max-md:px-5">
-      <div className="mt-7 w-full max-w-[1066px] max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-          
-          {/* Call to Action Card */}
-          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-sky-500 bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                  {data.callToActionSection?.callToActionHeading}
-                </h2>
-                <p className="text-lg text-gray-700 mb-8">
-                  {data.callToActionSection?.callToAction}
-                </p>
-                {data.callToActionSection?.callToActionImg && (
-                  <Image
-                    src={urlForImage(data.callToActionSection.callToActionImg).toString()}
-                    alt={data.callToActionSection.callToActionImg.alt}
-                    className="mx-auto mb-6"
-                    width={120}
-              height={120}
+      {/* Combined Section */}
+      <div className="flex justify-center items-center px-16 py-20 bg-slate-100 max-md:px-5">
+        <div className="mt-7 w-full max-w-[1066px] max-md:max-w-full">
+          <div className="flex gap-16 max-md:flex-col max-md:gap-0">
+
+            {/* Call to Action Card */}
+            <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-sky-500 bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                    {data.callToActionSection?.callToActionHeading}
+                  </h2>
+                  <p className="text-lg text-gray-700 mb-8">
+                    {data.callToActionSection?.callToAction}
+                  </p>
+                  {data.callToActionSection?.callToActionImg && (
+                    <Image
+                      src={urlForImage(data.callToActionSection.callToActionImg).toString()}
+                      alt={data.callToActionSection.callToActionImg.alt}
+                      className="mx-auto mb-6"
+                      width={120}
+                      height={120}
+                    />
+                  )}
+                  <ButtonScrollToSection
+                    content="Get Started Now"
+                    classes="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+                    destination="contact-box"
+                    key="Get-Started-Now-button"
                   />
-                )}
-                <ButtonScrollToSection
-                  content="Get Started Now"
-                  classes="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-                  destination="contact-box"
-                  key="Get-Started-Now-button"
-                />
+                </div>
               </div>
             </div>
-          </div>
-          
-          {/* Special Offer Card */}
-          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-yellow-400 bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                  {data.specialOffersSection?.offerHeading}
-                </h2>
-                <p className="text-lg text-gray-700 mb-8">
-                  {data.specialOffersSection?.specialOffer}
-                </p>
-                {data.specialOffersSection?.offerImg && (
-                  <Image
-                    src={urlForImage(data.specialOffersSection.offerImg).toString()}
-                    alt={data.specialOffersSection.offerImg.alt}
-                    className="mx-auto mb-6"
-                    width={120}
-                    height={120}
+
+            {/* Special Offer Card */}
+            <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-[#666666] bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                    {data.specialOffersSection?.offerHeading}
+                  </h2>
+                  <p className="text-lg text-gray-700 mb-8">
+                    {data.specialOffersSection?.specialOffer}
+                  </p>
+                  {data.specialOffersSection?.offerImg && (
+                    <Image
+                      src={urlForImage(data.specialOffersSection.offerImg).toString()}
+                      alt={data.specialOffersSection.offerImg.alt}
+                      className="mx-auto mb-6"
+                      width={120}
+                      height={120}
+                    />
+                  )}
+                  <ButtonScrollToSection
+                    classes="bg-[#F7E022] cursor-pointer text-black font-semibold py-2 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-500"
+                    content="Claim Offer"
+                    destination="contact-box"
+                    key="Claim-Offer-button"
                   />
-                )}
-                <ButtonScrollToSection
-                  classes="bg-[#F7E022] cursor-pointer text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
-                  content="Claim Offer"
-                  destination="contact-box"
-                  key="Claim-Offer-button"
-                />
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
-    </div>
+
     </div>
   );
 }
