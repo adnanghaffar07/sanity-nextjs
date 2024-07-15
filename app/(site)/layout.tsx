@@ -4,13 +4,13 @@ import React, { Suspense } from "react";
 // import { Inter } from "next/font/google";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
-import { GoogleTagManager } from "@next/third-parties/google";
-// const GoogleTagManagerClient = dynamic(
-//   () => import("./components/GoogleTagManagerClient"),
-//   {
-//     ssr: false,
-//   }
-// );
+// import { GoogleTagManager } from "@next/third-parties/google";
+const GoogleTagManagerClient = dynamic(
+  () => import("./components/GoogleTagManagerClient"),
+  {
+    ssr: false,
+  }
+);
 const FooterContainer = dynamic(() => import("./components/footer-container"), {
   suspense: true,
 });
@@ -37,16 +37,16 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-MJG35754" />
+      {/* <GoogleTagManager gtmId="GTM-MJG35754" /> */}
       <body>
-        {/* <noscript>
+        <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=GTM-MJG35754`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
-        </noscript> */}
+        </noscript>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
           {children}
@@ -65,7 +65,7 @@ export default async function RootLayout({
             <GreetingPopup />
           </Suspense>
         </div>
-        {/* <GoogleTagManagerClient gtmId="GTM-MJG35754" /> */}
+        <GoogleTagManagerClient gtmId="GTM-MJG35754" />
       </body>
     </html>
   );
