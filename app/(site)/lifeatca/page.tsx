@@ -81,7 +81,6 @@ const LifeAtCA = () => {
           className="absolute top-0 left-0 object-cover inset-0 size-full"
           src="/Optimized-lifeatca.png"
           alt="lifeatca"
-          loading="lazy"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -108,7 +107,6 @@ const LifeAtCA = () => {
               <div className="flex flex-col text-2xl font-semibold leading-9 text-center text-black mt-10">
                 <img
                   src={member.imageUrl}
-                  loading="lazy"
                   alt={`${member.name}'s headshot`}
                   className="w-full aspect-square rounded-full border border-gray-300"
                 />
