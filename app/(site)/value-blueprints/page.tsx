@@ -186,9 +186,9 @@ export default async function ValueBlueprints() {
               </div>
             </div>
           </div>
-          <div className="flex overflow-hidden relative flex-col justify-center">
+          <div className="relative h-auto flex flex-col justify-center overflow-hidden">
             <div
-              className="flex overflow-x-auto gap-5 justify-between pl-20 mt-6 max-md:flex-wrap max-md:pl-5 hide-scrollbar"
+              className="flex overflow-x-auto overflow-y-hidden gap-5 h-auto justify-start pl-20 mt-6 max-md:flex-wrap max-md:pl-5 hide-scrollbar"
               id="scrollContainer"
             >
               {portfolioData.map((item: any) => (
@@ -197,18 +197,55 @@ export default async function ValueBlueprints() {
                   href={`/value-blueprints/${item._id}`}
                   aria-label={`View details of ${item.title}`}
                 >
-                  <div className="group h-full w-full sm:w-80 md:w-80">
+                  <div className="h-auto w-full sm:w-80 md:w-80">
                     <div className="shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full relative">
-                      <img
-                        src={urlForImage(item.heroimage).toString()}
-                        alt={item.title}
-                        className="w-full h-68 object-cover object-center transition duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md text-white p-2">
+                      <div className="w-full h-58 md:h-64 lg:h-72">
+                        <img
+                          src={urlForImage(item.heroimage).toString()}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition duration-300 hover:scale-105"
+                        />
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md text-white px-2 py-4">
                         <h3 className="text-lg md:text-lg font-light transition duration-300">
                           {item.title}
                         </h3>
                       </div>
+                    </div>
+                    <div className="flex justify-start mt-2 flex-wrap">
+                      {item.caseStudiesToolsSection?.toolsTech?.map(
+                        (tool: any, toolIndex: any) => (
+                          <div key={toolIndex} className="relative mx-2 my-1 group">
+                            {tool?.images.map((logoRef: any, logoIndex: any) => {
+                              const logoData = dataLogo.find(
+                                (logo: any) => logo._id === logoRef._ref
+                              );
+                              if (logoData) {
+                                return (
+                                  <div key={logoIndex} className="relative pb-7">
+                                    <div className="flex items-center justify-center">
+                                      <div className="relative group">
+                                        <img
+                                          src={urlForImage(logoData.image).toString()}
+                                          alt={logoData.heading}
+                                          className="h-10 rounded-3xl border border-grey-800 shadow-lg transition-transform duration-500 object-cover group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-x-0 -bottom-7 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                          <div className="mt-2 bg-white text-black text-sm rounded-md shadow-lg px-2 py-1">
+                                            {logoData.heading}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              } else {
+                                return null;
+                              }
+                            })}
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -218,6 +255,8 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </section>
+
+
 
       {/* Tools and Technology */}
       <img
@@ -234,15 +273,15 @@ export default async function ValueBlueprints() {
           <h2 className="text-lg text-gray-800 leading-relaxed text-center mb-6">
             {data.toolsTechSection?.toolsTechDesc}
           </h2>
-          <div className="flex justify-center items-center px-16 mt-10 w-full max-md:px-5 max-md:max-w-full">
+          <div className="flex justify-center items-center mt-10 w-full max-md:max-w-full">
             <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
 
               {/* Top Row */}
-              <div className="flex gap-5 justify-center items-center flex-wrap mb-10">
+              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
                 {data.toolsTechSection?.toolsTech?.slice(0, 5).map((tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="flex items-center justify-center w-1/5 max-md:w-1/2 p-4">
-                    <div className="flex items-center justify-center h-full group">
-                      <div className="flex justify-center mr-1">
+                  <div key={toolIndex} className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
+                    <div className="flex items-center justify-start h-full group">
+                      <div className="flex justify-center">
                         {tool.images?.map((logoRef: any, logoIndex: any) => {
                           const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                           if (logoData) {
@@ -269,11 +308,11 @@ export default async function ValueBlueprints() {
               </div>
 
               {/* Middle Row */}
-              <div className="flex gap-5 justify-center items-center flex-wrap mb-10">
+              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
                 {data.toolsTechSection?.toolsTech?.slice(5, 10).map((tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="flex items-center justify-center w-1/5 max-md:w-1/2 p-4">
+                  <div key={toolIndex} className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
                     <div className="flex items-center justify-center h-full group">
-                      <div className="flex justify-center mr-2">
+                      <div className="flex justify-center">
                         {tool.images?.map((logoRef: any, logoIndex: any) => {
                           const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                           if (logoData) {
@@ -300,11 +339,11 @@ export default async function ValueBlueprints() {
               </div>
 
               {/* Bottom Row */}
-              <div className="flex gap-5 justify-center items-center flex-wrap">
+              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center">
                 {data.toolsTechSection?.toolsTech?.slice(10, 15).map((tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="flex items-center justify-center w-1/5 max-md:w-1/2 p-4">
+                  <div key={toolIndex} className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
                     <div className="flex items-center justify-center h-full group">
-                      <div className="flex justify-center mr-2">
+                      <div className="flex justify-center">
                         {tool.images?.map((logoRef: any, logoIndex: any) => {
                           const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                           if (logoData) {
@@ -333,6 +372,8 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
+
+
 
       {/* Project Cycle Section */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">

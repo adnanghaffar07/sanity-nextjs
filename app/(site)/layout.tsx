@@ -45,7 +45,7 @@ export default async function RootLayout({
           <HomeNavigationContainer />
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
-            <div className="lg:max-w[506px] ml-auto mr-auto -mb-32 relative z-10 lg:px-0 px-5">
+            <div className="lg:max-w[506px] ml-auto mr-auto md:mb-2 lg:mb-16 mt-40 relative z-10 lg:px-0 px-5" >
               <FormDisplay />
             </div>
           </Suspense>
