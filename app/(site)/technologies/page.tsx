@@ -33,6 +33,8 @@ export default async function Technologies() {
         <img
           className="absolute top-0 left-0 object-cover  inset-0 size-full"
           src="/technologies.jpg"
+          alt="technologies"
+          loading="eager"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -70,6 +72,7 @@ export default async function Technologies() {
               loading="lazy"
               src="/intersect-left.png"
               className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
+              alt="eclipse-icon"
             />
             <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
               <div className="lg:px-10 px-5 w-full">
@@ -79,6 +82,7 @@ export default async function Technologies() {
                       loading="lazy"
                       src="/intersect-left.png"
                       className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
+                      alt="eclipse-icon"
                     />
                     <div className="lg:text-5xl text-3xl mb-3">
                       {technology.techname}
@@ -111,6 +115,7 @@ export default async function Technologies() {
                                           ).toString()}
                                           alt={technology.techname}
                                           className="h-14 object-cover mb-2 mx-auto"
+                                          loading="lazy"
                                         />
                                         <p className="text-center">
                                           {logoData.heading}
@@ -132,6 +137,7 @@ export default async function Technologies() {
                       loading="lazy"
                       src={urlForImage(technology.techImage).toString()}
                       className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                      alt="tech-icon"
                     />
                   </div>
                 </div>
@@ -144,6 +150,7 @@ export default async function Technologies() {
               loading="lazy"
               src="/intersect-right.png"
               className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
+              alt="eclipse-icon"
             />
             <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
               <div className="lg:px-10 px-5 w-full">
@@ -153,6 +160,7 @@ export default async function Technologies() {
                       loading="lazy"
                       src={urlForImage(technology.techImage).toString()}
                       className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                      alt="tech-icon"
                     />
                   </div>
                   <div className="lg:pl-20 relative">
@@ -160,6 +168,7 @@ export default async function Technologies() {
                       loading="lazy"
                       src="/intersect-right.png"
                       className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
+                      alt="intersect-icon"
                     />
                     <div className="lg:text-5xl text-3xl mb-3 text-end">
                       {technology.techname}
@@ -192,6 +201,7 @@ export default async function Technologies() {
                                           ).toString()}
                                           alt={technology.techname}
                                           className="h-14 object-cover mb-2 mx-auto"
+                                          loading="lazy"
                                         />
                                         <p className="text-center">
                                           {logoData.heading}

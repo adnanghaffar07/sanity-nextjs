@@ -1,7 +1,6 @@
 import * as React from "react";
 
 const LifeAtCA = () => {
-
   const teamMembers = [
     {
       name: "Adnan Ghaffar",
@@ -77,9 +76,12 @@ const LifeAtCA = () => {
 
   return (
     <div>
-
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <Image className="absolute top-0 left-0 object-cover absolute inset-0 size-full" src="/Optimized-lifeatca.png" alt="lifeatca" />
+        <img
+          className="absolute top-0 left-0 object-cover inset-0 size-full"
+          src="/Optimized-lifeatca.png"
+          alt="lifeatca"
+        />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[350px]">
@@ -87,16 +89,21 @@ const LifeAtCA = () => {
               &quot;Life at CA&quot;
             </div>
             <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-              We offer a diverse blend of cultures and endless recreational opportunities, epitomizing innovation, diversity, and boundless possibilities.              </div>
+              We offer a diverse blend of cultures and endless recreational
+              opportunities, epitomizing innovation, diversity, and boundless
+              possibilities.{" "}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col p-10 md:p-10 bg-white max-md:px-5">
-
         <div className="flex justify-center flex-wrap gap-5 max-md:flex-col max-md:gap-0">
           {teamMembers.map((member, index) => (
-            <div key={index} className="w-full md:w-1/3 lg:w-1/5 flex flex-col items-center">
+            <div
+              key={index}
+              className="w-full md:w-1/3 lg:w-1/5 flex flex-col items-center"
+            >
               <div className="flex flex-col text-2xl font-semibold leading-9 text-center text-black mt-10">
                 <img
                   src={member.imageUrl}
@@ -104,9 +111,13 @@ const LifeAtCA = () => {
                   className="w-full aspect-square rounded-full border border-gray-300"
                 />
                 <div className="mt-7">
-                  <span className="xl:text-2xl lg:text-1xl text-xl">{member.name}</span>
+                  <span className="xl:text-2xl lg:text-1xl text-xl">
+                    {member.name}
+                  </span>
                   <br />
-                  <span className="xl:text-1xl lg:text-xl text-xl font-light">{member.title}</span>
+                  <span className="xl:text-1xl lg:text-xl text-xl font-light">
+                    {member.title}
+                  </span>
                 </div>
               </div>
             </div>
@@ -114,23 +125,19 @@ const LifeAtCA = () => {
         </div>
       </div>
 
-
       <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
         <p className="self-center text-xl text-center text-black">
-          CodeAutomation is not just a workplace; it&apos;s a community. We foster a
-          culture of collaboration, innovation, and inclusivity.        </p>
+          CodeAutomation is not just a workplace; it&apos;s a community. We
+          foster a culture of collaboration, innovation, and inclusivity.{" "}
+        </p>
         <section className="px-0.5 mt-10 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
-        <Image
-                src="ca-pic.jpg"
-                alt=""
-                className="w-full"
-              />
+          <Image src="ca-pic.jpg" alt="employee image" className="w-full" />
         </section>
         <p className="self-center mt-14 text-xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
-          We know that building strong relationships within the team is essential.
-          That&apos;s why we organize regular team-building activities, events, and
-          outings. From hackathons to charity drives, we find ways to bond while
-          making a positive impact on the community.
+          We know that building strong relationships within the team is
+          essential. That&apos;s why we organize regular team-building
+          activities, events, and outings. From hackathons to charity drives, we
+          find ways to bond while making a positive impact on the community.
         </p>
         <section className="mt-7 ml-3.5 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -180,10 +187,10 @@ const LifeAtCA = () => {
           </div>
         </section>
         <p className="mt-10 text-xl leading-7 text-center text-black max-md:mt-14 max-md:mr-2 max-md:max-w-full">
-          We know that building strong relationships within the team is essential.
-          That&apos;s why we organize regular team-building activities, events, and
-          outings. From hackathons to charity drives, we find ways to bond while
-          making a positive impact on the community.
+          We know that building strong relationships within the team is
+          essential. That&apos;s why we organize regular team-building
+          activities, events, and outings. From hackathons to charity drives, we
+          find ways to bond while making a positive impact on the community.
         </p>
         <section className="mt-16 ml-3.5 max-md:mt-10 max-md:mr-2 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -194,8 +201,9 @@ const LifeAtCA = () => {
                     key={index}
                     src={image.src}
                     alt={image.alt}
-                    className={`w-full aspect-[2.08] max-md:max-w-full ${index > 0 ? "mt-3" : ""
-                      } ${index === 2 ? "mt-3.5" : ""}`}
+                    className={`w-full aspect-[2.08] max-md:max-w-full ${
+                      index > 0 ? "mt-3" : ""
+                    } ${index === 2 ? "mt-3.5" : ""}`}
                   />
                 ))}
               </div>
@@ -207,8 +215,9 @@ const LifeAtCA = () => {
                     {images.slice(13, 16).map((image, index) => (
                       <div
                         key={index}
-                        className={`flex flex-col ${index === 0 ? "w-[33%]" : "ml-5 w-[33%]"
-                          } max-md:ml-0 max-md:w-full`}
+                        className={`flex flex-col ${
+                          index === 0 ? "w-[33%]" : "ml-5 w-[33%]"
+                        } max-md:ml-0 max-md:w-full`}
                       >
                         <Image
                           src={image.src}
@@ -224,8 +233,9 @@ const LifeAtCA = () => {
                     {images.slice(16, 19).map((image, index) => (
                       <div
                         key={index}
-                        className={`flex flex-col ${index === 0 ? "w-[33%]" : "ml-5 w-[33%]"
-                          } max-md:ml-0 max-md:w-full`}
+                        className={`flex flex-col ${
+                          index === 0 ? "w-[33%]" : "ml-5 w-[33%]"
+                        } max-md:ml-0 max-md:w-full`}
                       >
                         <Image
                           src={image.src}
@@ -241,11 +251,8 @@ const LifeAtCA = () => {
           </div>
         </section>
       </main>
-
-
     </div>
   );
 };
 
 export default LifeAtCA;
-

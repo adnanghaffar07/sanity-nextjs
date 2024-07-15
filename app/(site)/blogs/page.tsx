@@ -64,18 +64,20 @@ export default async function Blogs() {
                     }}
                   ></div>
                   <img
-                    loading="lazy"
+                    loading="eager"
                     alt="blog image"
                     src="/blogs-why-work-with-web-design.png"
+                    width={456}
+                    height={300}
                     className="w-full block xl:hidden rounded-3xl"
                   />
                 </div>
                 <div className="pb-4 pt-8 px-5">
                   <p className="lg:text-2xl text-sm sm:text-xl">20 Feb 2024</p>
-                  <h3 className="md:text-2xl font-medium text-base sm:text-xl">
+                  <h1 className="md:text-2xl font-medium text-base sm:text-xl">
                     20 tips Why you should work with a Web design company in
                     2024
-                  </h3>
+                  </h1>
                   <div className="">
                     <hr className="bg-black my-2 h-px w-full border-0" />
                   </div>
@@ -106,16 +108,18 @@ export default async function Blogs() {
                         loading="lazy"
                         src="/blogs-finding-the-best.png"
                         alt="blog image"
+                        width={301}
+                        height={288}
                         className="w-full block md:hidden rounded-3xl"
                       />
                     </div>
 
                     <div className="self-center xl:pr-5 xl:pl-0 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
                       <p className="text-xs sm:text-lg">21 Feb 2024</p>
-                      <h3 className="text-base sm:text-xl font-medium">
+                      <h1 className="text-base sm:text-xl font-medium">
                         Finding the Best Web Development Company for your
                         Project
-                      </h3>
+                      </h1>
                       <div className="">
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
@@ -147,14 +151,16 @@ export default async function Blogs() {
                         loading="lazy"
                         src="/blogs-sanity.png"
                         alt="blog image"
+                        width={306}
+                        height={288}
                         className="w-full block md:hidden rounded-3xl"
                       />
                     </div>
                     <div className=" self-center xl:pr-5 xl:pl-5 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
                       <p className="text-xs sm:text-lg">26 Feb 2024</p>
-                      <h3 className="text-base sm:text-xl font-medium">
+                      <h1 className="text-base sm:text-xl font-medium">
                         Creating a portfolio website with sanity and next.js
-                      </h3>
+                      </h1>
                       <div className="">
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
@@ -173,7 +179,11 @@ export default async function Blogs() {
               </div>
             </div>
             {data.map((item: any) => (
-              <Link key={item._id} href={`/blogs/${item._id}`} className="w-full mb-10">
+              <Link
+                key={item._id}
+                href={`/blogs/${item._id}`}
+                className="w-full mb-10"
+              >
                 <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
                   <div className="xl:flex gap-5">
                     <div className="xl:w-7/12">
@@ -181,12 +191,16 @@ export default async function Blogs() {
                         loading="lazy"
                         src={urlForImage(item.heroimage).toString()}
                         alt={item.title}
+                        width={683}
+                        height={477}
                         className="w-full rounded-3xl hidden xl:block"
                       />
                       <img
                         loading="lazy"
                         src={urlForImage(item.heroimage).toString()}
                         alt={item.title}
+                        width={911}
+                        height={636}
                         className="w-full rounded-3xl block xl:hidden"
                       />
                     </div>
@@ -194,20 +208,20 @@ export default async function Blogs() {
                       <p className="md:text-2xl text-xs sm:text-lg">
                         19 Feb 2024
                       </p>
-                      <h3 className="md:text-3xl sm:text-xl text-base font-medium">
+                      <h1 className="md:text-3xl sm:text-xl text-base font-medium">
                         {item.title}
-                      </h3>
+                      </h1>
                       <div>
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div>
                         <p className="font-light md:text-2xl sm:text-base text-xs text-justify">
-                          {item.criticalPrerequisitesSection?.description}                   </p>
+                          {item.criticalPrerequisitesSection?.description}{" "}
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </Link>
             ))}
             <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0 mt-10">
@@ -225,6 +239,7 @@ export default async function Blogs() {
           loading="lazy"
           src="/ellipse-2.png"
           className="aspect-[1.22] absolute -bottom-96 right-0 lg:block hidden"
+          alt="eclipse-icon"
         />
       </div>
     </>
