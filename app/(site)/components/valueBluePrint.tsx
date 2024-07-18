@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
 
 interface ScrollButtonProps {
   scrollContainerId: string;
@@ -9,6 +10,7 @@ interface ScrollButtonProps {
 const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
     const savedIndex = localStorage.getItem('activeIndex');
@@ -24,20 +26,18 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
         const containerWidth = scrollContainer.clientWidth;
         const totalScrollWidth = scrollContainer.scrollWidth;
 
-        // Check if the scroll is at the very beginning
-        if (scrollLeft === 0) {
-          setActiveIndex(0);
-        } else {
-          // Calculate new index based on scroll position
-          const newIndex = Math.round((scrollLeft / (totalScrollWidth - containerWidth)) * 3);
-          if (newIndex !== activeIndex) {
-            setActiveIndex(newIndex);
-            localStorage.setItem('activeIndex', newIndex.toString());
-          }
+        // Calculate new index based on scroll position
+        const newIndex = Math.round((scrollLeft / (totalScrollWidth - containerWidth)) * 3);
+        if (newIndex !== activeIndex) {
+          setActiveIndex(newIndex);
+          localStorage.setItem('activeIndex', newIndex.toString());
         }
 
         // Show or hide the left button based on scroll position
         setShowLeftButton(scrollLeft > 0);
+
+        // Show or hide the right button based on scroll position
+        setShowRightButton(scrollLeft < totalScrollWidth - containerWidth);
       }
     };
 
@@ -52,21 +52,19 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
     };
   }, [scrollContainerId, activeIndex]);
 
-  const handleRightScroll = () => {
-    const scrollContainer = document.getElementById(scrollContainerId);
-    if (scrollContainer) {
-      scrollContainer.scrollBy({
-        left: 700,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const handlePageClick = (data: { selected: number }) => {
+    const newIndex = data.selected;
+    setActiveIndex(newIndex);
+    localStorage.setItem('activeIndex', newIndex.toString());
 
-  const handleLeftScroll = () => {
     const scrollContainer = document.getElementById(scrollContainerId);
     if (scrollContainer) {
-      scrollContainer.scrollBy({
-        left: -700,
+      const containerWidth = scrollContainer.clientWidth;
+      const totalScrollWidth = scrollContainer.scrollWidth;
+      const scrollLeft = (newIndex / 3) * (totalScrollWidth - containerWidth);
+
+      scrollContainer.scrollTo({
+        left: scrollLeft,
         behavior: 'smooth',
       });
     }
@@ -77,7 +75,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
       {showLeftButton && (
         <button
           className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-3 hidden lg:block"
-          onClick={handleLeftScroll}
+          onClick={() => handlePageClick({ selected: activeIndex - 1 })}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -95,32 +93,52 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
           </svg>
         </button>
       )}
-      <button
-        className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-3 hidden lg:block"
-        onClick={handleRightScroll}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className="w-6 h-6"
+      {showRightButton && (
+        <button
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-3 hidden lg:block"
+          onClick={() => handlePageClick({ selected: activeIndex + 1 })}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      )}
       <div className="hidden md:flex gap-1 self-center px-5 mt-12 w-[66px] max-md:mt-10">
-  <div className={`shrink-0 w-full h-2 rounded-md ${activeIndex === 0 ? 'bg-black' : 'bg-black bg-opacity-10'}`} />
-  <div className={`shrink-0 w-full h-2 rounded-md ${activeIndex === 1 ? 'bg-black' : 'bg-black bg-opacity-10'}`} />
-  <div className={`shrink-0 w-full h-2 rounded-md ${activeIndex === 2 ? 'bg-black' : 'bg-black bg-opacity-10'}`} />
-  <div className={`shrink-0 w-full h-2 rounded-md ${activeIndex === 3 ? 'bg-black' : 'bg-black bg-opacity-10'}`} />
-</div>
-
+        <div
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 0 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+        />
+        <div
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 1 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+        />
+        <div
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 2 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+        />
+        <div
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 3 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+        />
+      </div>
+      <ReactPaginate
+        previousLabel={null}
+        nextLabel={null}
+        breakLabel={null}
+        pageCount={4}
+        marginPagesDisplayed={0}
+        pageRangeDisplayed={0}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination hidden'}
+        activeClassName={'active'}
+      />
     </>
   );
 };
