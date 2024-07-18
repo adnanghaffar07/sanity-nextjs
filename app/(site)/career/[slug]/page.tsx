@@ -1,6 +1,4 @@
-// 'use client'
-import React, { useState, ChangeEvent } from "react";
-import { AiOutlinePaperClip } from "react-icons/ai";
+import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import FileInput from "../../components/FileInput";
 
@@ -46,6 +44,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           loading="lazy"
           src="/intersect-left.png"
           className="aspect-[1.22] absolute -left-5 top-5 lg:block hidden"
+          alt="rounded bg"
         />
         <div className="flex flex-col self-center w-full xl:max-w-[1582px] relative z-10 mx-auto">
           <div className="lg:px-10 px-5 w-full py-16">
@@ -116,6 +115,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           loading="lazy"
           src="/ellipse-2.png"
           className="aspect-[1.22] absolute bottom-0 right-0 lg:block hidden"
+          alt="eclipse"
         />
       </div>
     </div>

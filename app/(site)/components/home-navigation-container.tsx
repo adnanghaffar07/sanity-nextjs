@@ -26,7 +26,7 @@ export default function HomeNavigationContainer() {
     aboutOpen: false,
     menuVisible: false,
     aboutVisible: false,
-    
+
   });
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -82,8 +82,8 @@ export default function HomeNavigationContainer() {
   }, [menuState.open, menuState.aboutOpen]);
 
   return (
-    <div className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow lg:absolute fixed top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
-      <div className="flex gap-5 justify-between w-full max-w-[1582px] max-md:flex-wrap max-md:max-w-full text-whit">
+    <div className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow relative top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
+      <div className="flex gap-5 justify-between items-center px-8 py-3.5 w-full border border-solid shadow-md backdrop-blur-[36px] bg-black bg-opacity-20 border-white border-opacity-10 rounded-[62px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
         <div className="relative" style={{ zIndex: 1000 }}>
           <Link href={`/`} className="hover:underline my-auto">
             <img
@@ -104,16 +104,16 @@ export default function HomeNavigationContainer() {
             <AiOutlineMenu size={23} className="text-white" />
           )}
         </div>
-        <div className={`xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transition-all duration-300 ease-in-out ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"} xl:translate-x-0 fixed top-0 left-0 h-full w-full bg-white xl:bg-transparent xl:static js-navigation justify-end`}>
+        <div className={`xl:flex gap-5 items-end max-md:flex-wrap max-md:max-w-full main-navigation list-none p-0 m-0 transition-all duration-300 ease-in-out ${menuState.menuIcon ? "block" : "hidden"} xl:block fixed top-0 left-0 h-full w-full bg-white xl:bg-transparent xl:static js-navigation justify-end`}>
           <ul className="nav-links relative lg:mx-auto">
-            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 ">
+            <li className="flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0">
               <Link href="/">
                 <span className="hover:underline text-white">Home</span>
               </Link>
             </li>
             <li
               onClick={toggleMenu}
-              className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0 "
+              className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0"
             >
               <button>
                 <span className="hover:underline text-white">Services</span>
@@ -141,6 +141,8 @@ export default function HomeNavigationContainer() {
                         href={`/services/${linkUrlCMS1}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
+  
+  
                         <div className="">
                           <Image
                             src="/logo-codepen.svg"
@@ -484,7 +486,7 @@ export default function HomeNavigationContainer() {
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 gap-6">
-                    <Link
+                      <Link
                         href="/about/discovery-process"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -605,33 +607,31 @@ export default function HomeNavigationContainer() {
             </li>
           </ul>
           <Link
-            className="hidden xl:flex gap-3 justify-between self-stretch px-4 py-2 text-xl bg-standardCodeAutomation rounded-full shadow-sm max-md:px-5"
+            className="hidden xl:flex gap-2 self-stretch px-4 pt-4 pb-4 text-base font-medium leading-5 rounded-[50px] text-neutral-900 bg-standardCodeAutomation "
             href="tel:+1-850-558-4691"
           >
             <Image
               src="/telephone.png"
               alt="Phone-Icon"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
               className="object-cover"
             ></Image>
-
-            <Image
+            <div className="my-auto text-nowrap text-black">850 558 4691</div>
+              <Image
               src="/USA-Flag.png"
               alt="USA-Flag-Icon"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
               className="object-cover"
             ></Image>
-
-            <div className="my-auto text-nowrap text-black">850 558 4691</div>
           </Link>
 
           <div
             className={`xl:hidden absolute top-0 right-0 bottom-0 left-0 w-full h-screen bg-white ease-in duration-300 ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"}`}
           >
             <div className="xl:hidden">
-            {menuState.menuIcon && (
+              {menuState.menuIcon && (
                 <div className="mobile-menu">
                   <ul className="text-black text-sm flex flex-col pt-20 pb-8 px-6">
                     <li className="border-t border-b border-gray-200 border-opacity-50 py-4">

@@ -147,7 +147,7 @@ export default function ProjectDiscussionContainer() {
   };
 
   useEffect(() => {
-    const formElement = document.getElementById("project-discussion-form");
+    const formElement = document.getElementById("contact-box");
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

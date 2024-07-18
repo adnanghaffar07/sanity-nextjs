@@ -1,7 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import { AiOutlinePaperClip } from "react-icons/ai";
-import { AiFillFlag } from "react-icons/ai";
 import CareerPost from "../components/CareerPost";
 import { client } from "../../../sanity/lib/client";
 
@@ -34,7 +30,7 @@ const Career: React.FC = async () => {
       <img
         src={imageSrc}
         alt={imageAlt}
-        className="self-center aspect-[1.05] w-[100px]"
+        className="self-center aspect-[1] w-[100px]"
       />
       <div className="mt-2">{title}</div>
     </div>
@@ -111,6 +107,7 @@ const Career: React.FC = async () => {
         <img
           loading="lazy"
           src="/intersect-left.png"
+          alt="rounded-icon"
           className="aspect-[1.22] absolute left-0 top-48 lg:block hidden"
         />
         <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
@@ -120,6 +117,7 @@ const Career: React.FC = async () => {
                 <img
                   loading="lazy"
                   src="/intersect-left.png"
+                  alt="rounded-icon"
                   className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                 />
                 <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
@@ -139,7 +137,10 @@ const Career: React.FC = async () => {
                 <img
                   loading="lazy"
                   src="/career1.svg"
+                  alt="career logo"
                   className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                  width={532}
+                  height={532}
                 />
               </div>
             </div>
@@ -150,6 +151,7 @@ const Career: React.FC = async () => {
         <img
           loading="lazy"
           src="/ellipse-2.png"
+          alt="career logo"
           className="aspect-[1.22] absolute right-0 -top-36"
         />
         <div className="flex flex-col w-full max-w-[1582px] mx-auto">
@@ -181,7 +183,10 @@ const Career: React.FC = async () => {
                 <img
                   loading="lazy"
                   src="/career2.svg"
+                  alt="benefits"
                   className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
+                  width={532}
+                  height={532}
                 />
               </div>
               <div className="xl:pl-20 relative text-right">

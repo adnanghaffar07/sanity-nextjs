@@ -1,18 +1,17 @@
+
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 // import { Inter } from "next/font/google";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
-import { GoogleTagManager } from "@next/third-parties/google";
-// const GoogleTagManagerClient = dynamic(
-//   () => import("./components/GoogleTagManagerClient"),
-//   {
-//     ssr: false,
-//     loading: () => <></>,
-//   }
-// );
-
+// import { GoogleTagManager } from "@next/third-parties/google";
+const GoogleTagManagerClient = dynamic(
+  () => import("./components/GoogleTagManagerClient"),
+  {
+    ssr: false,
+  }
+);
 const FooterContainer = dynamic(() => import("./components/footer-container"), {
   suspense: true,
 });
@@ -39,13 +38,21 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-MJG35754" />
+      {/* <GoogleTagManager gtmId="GTM-MJG35754" /> */}
       <body>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=GTM-MJG35754`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
-            <div className="lg:max-w[506px] ml-auto mr-auto -mb-32 relative z-10 lg:px-0 px-5">
+            <div className="lg:max-w[506px] ml-auto mr-auto -mb-12 relative z-10 lg:px-0 px-5">
               <FormDisplay />
             </div>
           </Suspense>
@@ -59,7 +66,7 @@ export default async function RootLayout({
             <GreetingPopup />
           </Suspense>
         </div>
-        {/* <GoogleTagManagerClient gtmId="GTM-MJG35754" /> */}
+        <GoogleTagManagerClient gtmId="GTM-MJG35754" />
       </body>
     </html>
   );

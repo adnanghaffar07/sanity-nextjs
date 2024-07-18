@@ -47,13 +47,70 @@ export async function generateMetadata({
   params: { service: string };
 }) {
   const data = await getData(params.service); // Ensure to pass params.service to getData
-  const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription = "Custom Software and Mobile Development Company in USA";
+  const defaultKeywords = "CodeAutomation.ai";
 
+  const title = data.webSeoMetadata?.title || defaultTitle;
+  const description = data.webSeoMetadata?.description || defaultDescription;
+  const keywords = data.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
+
+  const facebookMeta = data.facebookCards || {};
+  const twitterMeta = data.twitterCards || {};
+  const linkedInMeta = data.linkedInCards || {};
+  const pinterestMeta = data.pinterestCards || {};
+  const whatsappMeta = data.whatsappCards || {};
+  const telegramMeta = data.telegramCards || {};
   return {
-    title: data.webSeoMetadata?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
-    description: data.webSeoMetadata?.description || "Custom Software and Mobile Development Company in USA",
-    keywords: keywords
-
+    title,
+    description,
+    keywords,
+    openGraph: {
+      type: facebookMeta.facebookType || "website",
+      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      title: facebookMeta.facebookTitle || title,
+      description: facebookMeta.facebookDescription || description,
+      images: [
+        {
+          url: urlForImage(data.heroImage).toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: twitterMeta.twitterTitle || title,
+      description: twitterMeta.twitterDescription || description,
+      images: [
+        {
+          url: urlForImage(data.heroImage).toString(),
+          alt: title,
+        }
+      ],
+    },
+    linkedIn: {
+      title: linkedInMeta.linkedInTitle || title,
+      description: linkedInMeta.linkedInDescription || description,
+      image: urlForImage(data.heroImage).toString(),
+      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+    },
+    pinterest: {
+      title: pinterestMeta.pinterestTitle || title,
+      description: pinterestMeta.pinterestDescription || description,
+      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+    },
+    whatsapp: {
+      title: whatsappMeta.whatsappTitle || title,
+      description: whatsappMeta.whatsappDescription || description,
+      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+    },
+    telegram: {
+      title: telegramMeta.telegramTitle || title,
+      description: telegramMeta.telegramDescription || description,
+      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+    }
   };
 }
 
@@ -88,35 +145,39 @@ export default async function service({
           </div>
         </div>
       </div>
-      {/* Introduction Section */}
-      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="container mx-auto flex flex-wrap items-center justify-center">
-          {/* Image on the left */}
-          {data.introductionSection?.introImage && (
-            <div className="w-full md:w-1/2 md:flex md:pr-8 md:pl-8 mb-4">
-              <Image
-                src={urlForImage(data.introductionSection?.introImage).toString()}
-                alt=""
-                width={370}
-                height={150}
-                className="object-cover rounded-lg"
-              />
-            </div>
-          )}
+ {/* Introduction Section */}
+<section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+  <div className="container mx-auto flex flex-wrap items-center justify-center">
+    {/* Image on the left */}
+    {data.introductionSection?.introImage && (
+      <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
+        <Image
+          src={urlForImage(data.introductionSection?.introImage).toString()}
+          alt="Introduction image"
+          width={370}
+          height={150}
+          className="object-cover rounded-lg"
+          loading="lazy"
+        />
+      </div>
+    )}
 
-          {/* Content on the right */}
-          <div className="w-full md:w-1/2">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                {data.introductionSection?.introHeading}
-              </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                {data.introductionSection?.introDesc}
-              </p>
-            </div>
-          </div>
+    {/* Content on the right */}
+    {data.introductionSection?.introHeading && data.introductionSection?.introDesc && (
+      <div className="w-full md:w-1/2">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+            {data.introductionSection.introHeading}
+          </h2>
+          <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+            {data.introductionSection.introDesc}
+          </p>
         </div>
-      </section>
+      </div>
+    )}
+  </div>
+</section>
+
 
 
       {/* child service cards */}

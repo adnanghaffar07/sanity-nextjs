@@ -1,11 +1,8 @@
 import React from "react";
-import HeroSectionComponent from "../components/HeroSectionComponent";
-import ServiceCard from "../components/ServiceCard";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollAnimation from "../components/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
-
 import { client } from "../../../sanity/lib/client";
 
 async function getData() {
@@ -55,6 +52,7 @@ const Services = async () => {
         <img
           className="absolute top-0 left-0 object-cover inset-0 size-full"
           src="/bg-services.jpg"
+          alt="Services"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
