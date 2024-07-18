@@ -231,7 +231,7 @@ export default async function ValueBlueprints() {
                                           className="h-11 w-11 border-grey-800 shadow-lg transition-transform duration-500 object-cover group-hover:scale-110 rounded-full"
                                         />
                                         <div className="absolute inset-x-0 -bottom-8 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                          <div className="mt-2 bg-white text-black text-sm rounded-md shadow-lg px-2 py-1">
+                                          <div className="mt-2 bg-white text-black text-sm rounded-md shadow-lg px-2 py-1 whitespace-nowrap">
                                             {logoData.heading}
                                           </div>
                                         </div>
