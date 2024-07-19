@@ -108,14 +108,15 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
   return (
     <div className="">
-      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light max-md:max-w-full ">
+      <section className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data?.title === "House Arrest" && data?.cardimage ? (
           <HouseArrestBanner />
         ) : (
           data.cardimage && (
             <img
               src={urlForImage(data.cardimage).toString()}
-              alt=""
+              alt="l"
+              className="xl:top-0 xl:left-0 xl:object-cover xl:absolute xl:inset-0 xl:size-full "
             />
           )
         )}
