@@ -132,7 +132,7 @@ export default async function ValueBlueprints() {
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize">{data.title}</h2>
+              <h2 className="title capitalize leading-[56px]">{data.title}</h2>
             </div>
           </div>
         </div>
