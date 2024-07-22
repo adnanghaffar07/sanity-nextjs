@@ -40,7 +40,7 @@ export default async function Technologies() {
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
-              <h2 className="title capitalize">&quot;Technology&quot;</h2>
+              <h2 className="title capitalize">Technology</h2>
             </div>
             <div className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
               We offer only well-recognized and time-tested technologies to
@@ -67,17 +67,17 @@ export default async function Technologies() {
 
       {data.map((technology: any, index: any) =>
         index % 2 === 0 ? (
-          <div key={index} className="max-w-full mx-auto relative">
+          <div key={index} className="max-w-full mx-auto relative pt-8">
             <img
               loading="lazy"
               src="/intersect-left.png"
               className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
               alt="eclipse-icon"
             />
-            <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+            <div className="flex flex-col items-center justify-center w-full max-w-[1400px] max-md:max-w-full relative z-10 mx-auto">
               <div className="lg:px-10 px-5 w-full">
                 <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
-                  <div className="xl:pr-20 lg:order-1 order-2 relative">
+                  <div className="xl:pl-20 lg:order-1 order-2 relative justify-center">
                     <img
                       loading="lazy"
                       src="/intersect-left.png"
@@ -89,11 +89,11 @@ export default async function Technologies() {
                     </div>
                     <div className="mb-10">
                       <p className="lg:text-lg text-base">
-                        {" "}
                         {technology.techDesc}
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-3 justify-start px-4.5 mt-7 text-xs text-center text-md text-black">
+
+                    <div className="flex flex-wrap gap-3 justify-start px-4.5 mt-7 text-sm text-center text-md text-black">
                       <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
                         {Array.isArray(technology.techLogos) &&
                           technology.techLogos.map(
@@ -152,7 +152,7 @@ export default async function Technologies() {
               className="aspect-[1.22] absolute right-0 top-20 lg:block hidden"
               alt="eclipse-icon"
             />
-            <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
+            <div className="flex flex-col self-center w-full max-w-[1400px] max-md:max-w-full relative z-10 mx-auto">
               <div className="lg:px-10 px-5 w-full">
                 <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
                   <div className="text-center">
@@ -179,7 +179,7 @@ export default async function Technologies() {
                         {technology.techDesc}
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-3 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
+                    <div className="flex flex-wrap gap-3 justify-end px-4.5 mt-7 text-sm text-center text-md text-black">
                       <div className="grid grid-cols-4 gap-4 sm:gap-5 justify-end">
                         {Array.isArray(technology.techLogos) &&
                           technology.techLogos.map(
