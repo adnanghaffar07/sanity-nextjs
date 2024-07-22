@@ -71,7 +71,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {/* Introduction Section */}
       <div className="text-black px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl  mb-6">
+          <h2 className="text-2xl font-bold mb-6">
             {data.introductionheading}
           </h2>
           <p className="mb-6 text-lg">{data.briefdescription}</p>
