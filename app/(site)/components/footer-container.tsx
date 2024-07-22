@@ -53,7 +53,7 @@ export default function FooterContainer() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-12 w-full bg-[#1D92FB] max-md:max-w-full pt-60">
+      <div className="flex flex-col items-center py-5 w-full bg-[#1D92FB] max-md:max-w-full pt-20">
         <div className="w-full max-w-[1582px] lg:px-10 px-5  max-md:max-w-full grid xl:grid-cols-5 md:grid-cols-3 gap-5">
           <div className="flex flex-col xl:col-span-2 md:col-span-3 xl:pr-36">
             <div className="grid xl:grid-cols-1 md:grid-cols-2 gap-6 text-lg font-light text-white max-md:mt-10 self-start">
@@ -62,7 +62,7 @@ export default function FooterContainer() {
                   <img
                     loading="lazy"
                     src="/footer-logo.svg"
-                    className="max-w-full aspect-[5] w-[300px] max-md:ml-2.5"
+                    className="max-w-full aspect-[5] w-[250px] max-md:ml-2.5"
                     alt="logo"
                   />
                 </div>
@@ -73,51 +73,27 @@ export default function FooterContainer() {
                 </div>
               </div>
               <div>
-                <div className=" lg:text-2xl text-base font-medium">
-                  Contact us for business
+                <div className="container mt-7 flex justify-start items-start">
+                  <section className="grid grid-cols-4 gap-3 ">
+                    {socialIcons.map((icon, index) => (
+                      <Link
+                        key={index}
+                        href={icon.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          src={icon.src}
+                          alt={icon.alt}
+                          width={40}
+                          height={40}
+                          className="rounded-3xl object-cover w-10 h-10"
+                        />
+                      </Link>
+                    ))}
+                  </section>
                 </div>
-                <div className="mt-3.5 leading-8">
-                  <a
-                    href="mailto:info@codeautomation.ai"
-                    className="hover:underline my-auto inline-block"
-                  >
-                    info@codeautomation.ai
-                  </a>
-                  <br />
-                  <a
-                    href="tel:+18505584691"
-                    className="hover:underline my-auto inline-block"
-                  >
-                    <div className=" flex flex-row gap-3">
-                      <Image
-                        src="/USA_Flag.png"
-                        alt="USA-Flag-Icon"
-                        width={40}
-                        height={40}
-                        className=" md:max-h-10 object-cover"
-                      />
 
-                      <span className=" font-light"> 850.558.4691</span>
-                    </div>
-                  </a>
-                  <br />
-
-                  <a
-                    href="tel:+13076556139"
-                    className="hover:underline my-auto inline-block"
-                  >
-                    <div className=" flex flex-row gap-3">
-                      <Image
-                        src="/USA_Flag.png"
-                        alt="USA-Flag-Icon"
-                        width={40}
-                        height={40}
-                        className=" md:max-h-10 object-cover"
-                      />
-                      <span className=" font-light"> 307.655.6139 </span>
-                    </div>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
@@ -208,87 +184,99 @@ export default function FooterContainer() {
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col text-white max-md:mt-10 self-start">
-              <div className="text-2xl font-medium leading-6">Address</div>
-              <div className="mt-6 text-lg font-light leading-5 self-start">
+            <div className="flex flex-col text-white max-md:mt-10 self-start space-y-5">
+              <div className="text-2xl font-medium leading-6">Contact Us</div>
+              <div className="text-lg font-light leading-5 self-start space-y-5" style={{ fontSize: "16px" }}>
+                <a href="tel:+18505584691" className="hover:underline my-auto inline-block">
+                  <div className="flex flex-row gap-3">
+                    <Image
+                      src="/USA_Flag.png"
+                      alt="USA-Flag-Icon"
+                      width={20}
+                      height={20}
+                      className="md:max-h-10 object-cover"
+                    />
+                    <span className="font-light">850.558.4691</span>
+                  </div>
+                </a>
+                <br />
+                <a href="tel:+13076556139" className="hover:underline my-auto inline-block">
+                  <div className="flex flex-row gap-3">
+                    <Image
+                      src="/USA_Flag.png"
+                      alt="USA-Flag-Icon"
+                      width={20}
+                      height={20}
+                      className="md:max-h-10 object-cover"
+                    />
+                    <span className="font-light">307.655.6139</span>
+                  </div>
+                </a>
+
                 <div className="flex flex-row gap-3">
+                  <Image
+                    src="/mail.png"
+                    alt="mail"
+                    width={20}
+                    height={20}
+                    className="md:max-h-10 object-cover"
+                  />
+                  <a href="mailto:info@codeautomation.ai" className="hover:underline my-auto inline-block">
+                    info@codeautomation.ai
+                  </a>
+                </div>
+
+                <div className="flex flex-row gap-3 items-start">
                   <Image
                     src="/USA_Flag.png"
                     alt="USA-Flag-Icon"
-                    width={40}
-                    height={40}
+                    width={25}
+                    height={25}
                     className="md:max-h-10 object-cover"
                   />
-
-                  <span className="text-1xl font-light">
+                  <span className="font-light">
                     30 N Gould St Ste 7596, Sheridan, WY, 82801
                   </span>
                 </div>
 
-                <br />
-
-                <div className="flex flex-row gap-3">
+                <div className="flex flex-row gap-3 items-start pb-2">
                   <Image
                     src="/Canada-Flag.png"
-                    alt="USA-Flag-Icon"
-                    width={40}
-                    height={40}
-                    className=" md:max-h-10 object-cover"
+                    alt="Canada-Flag-Icon"
+                    width={25}
+                    height={25}
+                    className="object-cover"
                   />
-                  <span className="text-1xl font-light">
+                  <span className="font-light">
                     25 McArthur Ave. Ottawa, ON K1L 6R3
                   </span>
                 </div>
-                <br />
+
                 {showAddress ? (
-                  <span
-                    className=" cursor-pointer font-semibold"
-                    onClick={handleClick}
-                  >
-                    More
+                  <span className="cursor-pointer font-semibold" onClick={handleClick}>
+                    See more...
                   </span>
                 ) : (
-                  <div className="flex flex-row gap-3">
+                  <div className="flex flex-row gap-3 items-start">
                     <Image
                       src="/Pakistan-Flag.png"
                       alt="Pakistan-Flag-Icon"
-                      width={40}
-                      height={40}
-                      className=" md:max-h-10 object-cover"
+                      width={25}
+                      height={25}
+                      className="object-cover"
                     />
-
-                    <span className=" text-1xl font-light">
-                      {" "}
-                      A 1/11 P, Block P Model Town, Lahore{" "}
+                    <span className="font-light">
+                      A 1/11 P, Block P Model Town, Lahore
                     </span>
                   </div>
                 )}
               </div>
-              <div className="container mt-20 flex justify-center items-center">
-                <section className="grid grid-cols-4 gap-3 ">
-                  {socialIcons.map((icon, index) => (
-                    <Link
-                      key={index}
-                      href={icon.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        src={icon.src}
-                        alt={icon.alt}
-                        width={40}
-                        height={40}
-                        className="rounded-3xl object-cover w-10 h-10"
-                      />
-                    </Link>
-                  ))}
-                </section>
-              </div>
             </div>
           </div>
+
         </div>
         <div className="self-stretch mt-7 w-full bg-white min-h-[1px] mx-auto" />
-        <div className="mt-12 text-md font-light leading-5 text-center text-white max-md:mt-10">
+        <div className="mt-5 text-md font-light leading-5 text-center text-white max-md:mt-10">
           {/* {cpyrighttext.map((cpyrighttext) => (
             <div className="cpyrighttext" key={cpyrighttext._id}>
               {cpyrighttext.name}

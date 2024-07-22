@@ -143,6 +143,19 @@ const valueBlueprints = {
                     title: "Detail",
                     type: "string",
                   },
+                  {
+                    name: "projectImage",
+                    title: "Project Image",
+                    type: "image",
+                    options: { hotspot: true },
+                    fields: [
+                      {
+                        name: "alt",
+                        title: "Alt",
+                        type: "string",
+                      },
+                    ],
+                  },
                 ],
               },
             ],
@@ -192,6 +205,19 @@ const valueBlueprints = {
                     name: "detail",
                     title: "Detail",
                     type: "string",
+                  },
+                  {
+                    name: "deliveryImage",
+                    title: "Image",
+                    type: "image",
+                    options: { hotspot: true },
+                    fields: [
+                      {
+                        name: "alt",
+                        title: "Alt",
+                        type: "string",
+                      },
+                    ],
                   },
                 ],
               },
@@ -336,65 +362,185 @@ const valueBlueprints = {
         ],
       },
   
-      // Open Graph Protocol (OGP)
-      {
-        name: "openGraphProtocol",
-        title: "Open Graph Protocol (OGP)",
-        type: "object",
-        fields: [
-          {
-            name: "ogTitle",
-            title: "Title",
-            type: "string",
-          },
-          {
-            name: "ogDescription",
-            title: "Description",
-            type: "text",
-          },
-          {
-            name: "ogImage",
-            title: "Image",
-            type: "image",
-            options: { hotspot: true },
-          },
-        ],
-      },
+
   
-      // Twitter Cards
-      {
-        name: "twitterCards",
-        title: "Twitter Cards",
-        type: "object",
-        fields: [
+          // Open Graph Protocol (OGP)
+
           {
-            name: "twitterTitle",
-            title: "Title",
-            type: "string",
-          },
-          {
-            name: "twitterDescription",
-            title: "Description",
-            type: "text",
-          },
-          {
-            name: "twitterImage",
-            title: "Image",
-            type: "image",
-            options: { hotspot: true },
-          },
-          {
-            name: "twitterUrl",
-            title: "Url",
-            type: "string",
-          },
-          {
-            name: "twitterType",
-            title: "Type",
-            type: "string",
-          },
-        ],
-      },
+            name: 'facebook',
+            title: 'Facebook Meta',
+            type: 'object',
+            fields: [
+                {
+                    name: 'title',
+                    title: 'Title',
+                    type: 'string',
+                },
+                {
+                    name: 'description',
+                    title: 'Description',
+                    type: 'text',
+                },
+                {
+                    name: 'url',
+                    title: 'URL',
+                    type: 'url',
+                },
+                {
+                    name: 'image',
+                    title: 'Image',
+                    type: 'image',
+                    options: {
+                        hotspot: true,
+                    },
+                },
+                {
+                    name: 'type',
+                    title: 'Type',
+                    type: 'string',
+                },
+            ],
+        },
+
+        // Twitter Cards
+        {
+            name: 'twitterhMeta',
+            title: 'Twitter Meta',
+            type: 'object',
+            fields: [
+                {
+                    name: 'title',
+                    title: 'Twitter Title',
+                    type: 'string',
+                },
+                {
+                    name: 'description',
+                    title: 'Description',
+                    type: 'text',
+                },
+                {
+                    name: 'url',
+                    title: 'URL',
+                    type: 'url',
+                },
+                {
+                    name: 'image',
+                    title: 'Image',
+                    type: 'image',
+                    options: {
+                        hotspot: true,
+                    },
+                },
+            ],
+        },
+
+        // LinkedIn Cards
+        {
+            name: "linkedInCards",
+            title: "LinkedIn Cards",
+            type: "object",
+            fields: [
+                {
+                    name: "linkedInTitle",
+                    title: "Title",
+                    type: "string",
+                },
+                {
+                    name: "linkedInDescription",
+                    title: "Description",
+                    type: "text",
+                },
+                {
+                    name: "linkedInImage",
+                    title: "Image",
+                    type: "image",
+                    options: { hotspot: true },
+                },
+                {
+                    name: "linkedInUrl",
+                    title: "Url",
+                    type: "string",
+                },
+            ],
+        },
+
+
+        // Pinterest Cards
+        {
+            name: "pinterestCards",
+            title: "Pinterest Cards",
+            type: "object",
+            fields: [
+                {
+                    name: "pinterestTitle",
+                    title: "Title",
+                    type: "string",
+                },
+                {
+                    name: "pinterestDescription",
+                    title: "Description",
+                    type: "text",
+                },
+
+                {
+                    name: "pinterestUrl",
+                    title: "Url",
+                    type: "string",
+                },
+            ],
+        },
+
+
+        // WhatsApp  Cards
+        {
+            name: "whatsappCards",
+            title: "Whatsapp Cards",
+            type: "object",
+            fields: [
+                {
+                    name: "whatsappTitle",
+                    title: "Title",
+                    type: "string",
+                },
+                {
+                    name: "whatsappDescription",
+                    title: "Description",
+                    type: "text",
+                },
+
+                {
+                    name: "whatsappUrl",
+                    title: "Url",
+                    type: "string",
+                },
+            ],
+        },
+
+
+        // Telegram  Cards
+        {
+            name: "telegramCards",
+            title: "Telegram Cards",
+            type: "object",
+            fields: [
+                {
+                    name: "telegramTitle",
+                    title: "Title",
+                    type: "string",
+                },
+                {
+                    name: "telegramDescription",
+                    title: "Description",
+                    type: "text",
+                },
+
+                {
+                    name: "telegramUrl",
+                    title: "Url",
+                    type: "string",
+                },
+            ],
+        },
   
   
 

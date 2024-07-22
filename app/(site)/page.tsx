@@ -39,19 +39,19 @@ export default function Home() {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 text-base mt-10 lg:mt-auto max-md:max-w-full text-center max-w-[1400px]">
             <div className="flex flex-col flex-1 items-center mt-1.5">
               <img
-                loading="lazy"
+                loading="eager"
                 src="/global-trust.svg"
                 className="self-center aspect-[1.12] w-[65px]"
                 alt="Global trust"
               />
-              <p className="self-stretch lg:mt-11 mt-3">
+              <p className="lg:mt-11 mt-3">
                 We are trusted by 200 global clients and offer innovative
                 software solutions tailored to specific needs and markets
               </p>
             </div>
             <div className="flex flex-col flex-1 items-center mt-1">
               <img
-                loading="lazy"
+                loading="eager"
                 src="/project-completion.svg"
                 className="self-center aspect-square w-[58px]"
                 alt="Project completion"
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col flex-1 items-center">
               <img
-                loading="lazy"
+                loading="eager"
                 src="/quality-assurance.svg"
                 className="self-center aspect-square w-[58px]"
                 alt="Quality assurance"
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col flex-1 items-center">
               <img
-                loading="lazy"
+                loading="eager"
                 src="/bug-fixing.svg"
                 className="self-center aspect-[0.89] w-[52px]"
                 alt="Bug fixing"
@@ -178,8 +178,10 @@ export default function Home() {
                     <img
                       loading="lazy"
                       src="/our-core-expertise-section.webp"
-                      className="z-10 mt-0 w-full aspect-[0.78] max-md:max-w-full"
+                      className="z-10 mt-0 w-full max-md:max-w-full"
                       alt="core expertise"
+                      width={"570"}
+                      height={"730"}
                     />
                   </div>
                 </div>

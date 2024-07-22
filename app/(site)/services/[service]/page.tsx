@@ -46,15 +46,72 @@ export async function generateMetadata({
   params,
 }: {
   params: { service: string };
-})  {
+}) {
   const data = await getData(params.service); // Ensure to pass params.service to getData
-  const keywords = data.webSeoMetadata?.keywords?.join(", ") || "CodeAutomation.ai"; // Join keywords into a single string
+  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription = "Custom Software and Mobile Development Company in USA";
+  const defaultKeywords = "CodeAutomation.ai";
 
+  const title = data.webSeoMetadata?.title || defaultTitle;
+  const description = data.webSeoMetadata?.description || defaultDescription;
+  const keywords = data.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
+
+  const facebookMeta = data.facebookCards || {};
+  const twitterMeta = data.twitterCards || {};
+  const linkedInMeta = data.linkedInCards || {};
+  const pinterestMeta = data.pinterestCards || {};
+  const whatsappMeta = data.whatsappCards || {};
+  const telegramMeta = data.telegramCards || {};
   return {
-    title: data.webSeoMetadata?.title || "Code Automation - Custom Software and Mobile Development Company in USA",
-    description: data.webSeoMetadata?.description || "Custom Software and Mobile Development Company in USA",
-    keywords: keywords
-
+    title,
+    description,
+    keywords,
+    openGraph: {
+      type: facebookMeta.facebookType || "website",
+      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      title: facebookMeta.facebookTitle || title,
+      description: facebookMeta.facebookDescription || description,
+      images: [
+        {
+          url: urlForImage(data.heroImage).toString(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: twitterMeta.twitterTitle || title,
+      description: twitterMeta.twitterDescription || description,
+      images: [
+        {
+          url: urlForImage(data.heroImage).toString(),
+          alt: title,
+        }
+      ],
+    },
+    linkedIn: {
+      title: linkedInMeta.linkedInTitle || title,
+      description: linkedInMeta.linkedInDescription || description,
+      image: urlForImage(data.heroImage).toString(),
+      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+    },
+    pinterest: {
+      title: pinterestMeta.pinterestTitle || title,
+      description: pinterestMeta.pinterestDescription || description,
+      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+    },
+    whatsapp: {
+      title: whatsappMeta.whatsappTitle || title,
+      description: whatsappMeta.whatsappDescription || description,
+      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+    },
+    telegram: {
+      title: telegramMeta.telegramTitle || title,
+      description: telegramMeta.telegramDescription || description,
+      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+    }
   };
 }
 
@@ -90,8 +147,7 @@ export default async function service({
         </div>
       </div>
       {/* Introduction Section */}
-      <IntroductionSection data={data} />
-      {/* <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="container mx-auto flex flex-wrap items-center justify-center">
           {data.introductionSection?.introImage ? (
             <div className="w-full md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
@@ -107,7 +163,6 @@ export default async function service({
           ) : (
             <div className="w-full  justify-center mb-4">
               <div className="max-w-2xl">
-                <h2 className="text-2xl font-bold mb-8 text-center">
                 <h2 className="text-2xl font-bold mb-8 text-center">
                   {data.introductionSection?.introHeading}
                 </h2>
@@ -130,7 +185,7 @@ export default async function service({
             </div>
           )}
         </div>
-      </section> */}
+      </section>
 
       {/* child service cards */}
 
@@ -147,13 +202,13 @@ export default async function service({
             }}
           >
             {data.subServices &&
-              data.subServices.map((subServiceRef:any) => {
+              data.subServices.map((subServiceRef: any) => {
                 const subService = dataSub.find(
-                  (item:any) => item._id === subServiceRef._ref
+                  (item: any) => item._id === subServiceRef._ref
                 );
                 if (subService) {
-                  const logos = subService.images?.map((logoRef:any) =>
-                    dataLogo.find((logo:any) => logo._id === logoRef._ref)
+                  const logos = subService.images?.map((logoRef: any) =>
+                    dataLogo.find((logo: any) => logo._id === logoRef._ref)
                   );
                   return (
                     <Link
@@ -168,7 +223,7 @@ export default async function service({
                         />
                         <div className="p-6">
                           <div className="flex items-center justify-center mb-4">
-                            {logos?.map((logoData:any, logoIndex:any) => (
+                            {logos?.map((logoData: any, logoIndex: any) => (
                               <div key={logoIndex} className="mr-2">
                                 <img
                                   src={urlForImage(logoData.image).toString()}

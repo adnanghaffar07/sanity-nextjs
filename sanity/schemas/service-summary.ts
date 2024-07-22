@@ -207,7 +207,8 @@ const serviceSummary = {
                                     "title": "Detail",
                                     "type": "string"
                                 },
-                            ]}
+                            ]
+                        }
                     ],
                 },
                 {
@@ -320,6 +321,57 @@ const serviceSummary = {
                 },
             ],
         },
+
+        // Payment Options
+        {
+            name: "paymentOption",
+            title: "Payment Option",
+            type: "object",
+            fields: [
+                {
+                    name: 'paymentHeading',
+                    title: 'Heading',
+                    type: 'string',
+                },
+                {
+                    name: 'paymentDetail',
+                    title: 'Detail',
+                    type: 'string',
+                },
+
+                {
+                    "name": "paymentTools",
+                    "title": "Tools and Tech",
+                    "type": "array",
+                    "of": [
+                        {
+                            "type": "object",
+                            "fields": [
+                                {
+                                    "name": "heading",
+                                    "title": "Heading",
+                                    "type": "string"
+                                },
+                                {
+                                    "name": "detail",
+                                    "title": "Detail",
+                                    "type": "string"
+                                },
+                                {
+                                    name: "images",
+                                    title: "Images",
+                                    type: "array",
+                                    of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+                                }
+                            ]
+                        }
+                    ]
+                }
+                ,
+
+            ],
+        },
+
 
         // Web SEO Metadata
         {

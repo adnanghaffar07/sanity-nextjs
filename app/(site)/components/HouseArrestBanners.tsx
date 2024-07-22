@@ -18,14 +18,14 @@ const HouseArrestBanner = () => {
         <SwiperSlide>
           <img
             src="/HouseArrest-Old.jpg"
-            className="object-cover w-full  sm:h-[700px]"
+            className="object-cover"
           ></img>
         </SwiperSlide>
 
         <SwiperSlide>
           <img
             src="/HouseArrest-New.jpg"
-            className=" object-cover w-full sm:h-[700px]"
+            className=" object-cover"
           ></img>
         </SwiperSlide>
       </Swiper>
