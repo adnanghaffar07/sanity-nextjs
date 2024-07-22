@@ -154,7 +154,7 @@ export default async function Technologies() {
             />
             <div className="flex flex-col self-center w-full max-w-[1400px] max-md:max-w-full relative z-10 mx-auto">
               <div className="lg:px-10 px-5 w-full">
-                <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8">
+                <div className="grid lg:grid-cols-2 gap-5 lg:py-12 py-8 xl:pr-20">
                   <div className="text-center">
                     <img
                       loading="lazy"
