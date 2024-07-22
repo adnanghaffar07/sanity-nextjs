@@ -5,6 +5,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
+import IntroductionSubSection from "@/app/(site)/components/IntroSubServiceSection";
 
 async function getData(urlPathSub: string) {
   const query = `*[_type == 'subService' && urlPathSub == '${urlPathSub}'][0]`;
@@ -135,7 +136,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Introduction Section */}
-      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+      <IntroductionSubSection data={data} />
+      {/* <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="container mx-auto flex flex-wrap items-center justify-center">
           {data.introductionSubSection?.introImage ? (
             <div className="w-full  md:relative md:right-[20px] md:w-1/2 md:flex md:pl-8 md:justify-start mb-4">
@@ -168,7 +170,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Tools & Technology Section */}
       <section className="px-6 md:px-16 py-10 md:py-16">
