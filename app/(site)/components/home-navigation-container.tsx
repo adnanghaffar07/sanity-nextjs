@@ -1,10 +1,8 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,12 +20,6 @@ const linkIntegrate = "automation-integration";
 
 export default function HomeNavigationContainer() {
   const pathname = usePathname() || "/";
-  const { getUser, isAuthenticated } = useKindeBrowserClient()
-  const [userDetails, setUserDetails] = useState<any>(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-
   const [menuState, setMenuState] = useState({
     menuIcon: false,
     open: false,
@@ -71,51 +63,6 @@ export default function HomeNavigationContainer() {
       open: prevState.aboutOpen ? prevState.open : false,
     }));
   }, []);
-
-  const handleSignIn = () => {
-    const currentUrl = encodeURIComponent(window.location.href);
-    window.location.href = `/api/auth/login?post_login_redirect_url=${currentUrl}`;
-  };
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []); 
-
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      if (isAuthenticated) {
-        const user = await getUser();
-        setUserDetails(user);
-      }
-    };
-
-    fetchUserDetails();
-  }, [isAuthenticated]);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      if (isAuthenticated) {
-        const user = await getUser();
-        console.log("User details:", user); // Log the user details fetched by getUser()
-        setUserDetails(user);
-      }
-    };
-
-    console.log("Fetching user details...");
-    fetchUserDetails();
-  }, [isAuthenticated]);
-
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -575,11 +522,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Success Stories</p>
                         </div>
                       </Link>
-                      <Link
-                        href="/brochure"
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-
+                      <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
                             src="/grid.svg"
@@ -591,9 +534,9 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">Brochure Downloads</p>
-                          <p className="mt-1 text-sm text-gray-500 text-start">    Download Center</p>
+                          <p className="mt-1 text-sm text-gray-500 text-start">(Coming Soon)</p>
                         </div>
-                      </Link>
+                      </button>
                       <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
@@ -662,67 +605,7 @@ export default function HomeNavigationContainer() {
                 <span className="hover:underline text-white">Technologies</span>
               </Link>
             </li>
-
           </ul>
-          <div>
-
-            {(isAuthenticated) ? (
-              <>
-
-                {userDetails && (
-                  <img
-                    src={userDetails.picture}
-                    alt="Profile"
-                    className="h-10 w-10 object-cover rounded-full cursor-pointer"
-                    onClick={toggleDropdown}
-                  />
-                )}
-                {isDropdownOpen && (
-                  <div ref={dropdownRef}  className="absolute mt-2 w-50 bg-white rounded-2xl shadow-lg">
-                    <div className="">
-                      <div className="flex flex-row px-4 py-2">
-                        <img
-                          src={userDetails.picture}
-                          alt="Profile"
-                          className="h-10 w-10 mt-2 object-cover rounded-full cursor-pointer"
-                          onClick={toggleDropdown}
-                        />
-                        <p onClick={toggleDropdown} className=" px-4 mt-4 text-gray-800 cursor-pointer">
-                          {userDetails?.given_name} {userDetails?.family_name}
-
-                        </p>
-
-                      </div>
-
-                      <p onClick={toggleDropdown} className=" px-4 text-gray-500 w-18 text-sm cursor-pointer break">
-                        {userDetails?.email}
-                      </p>
-                      <hr className="my-2" />
-                      <p onClick={toggleDropdown} className="px-4 py-2 text-gray-800 cursor-pointer">
-                        Account Details
-                      </p>
-                      <LogoutLink>
-                        <p onClick={toggleDropdown} className="px-4 py-2 mb-2 text-gray-800 cursor-pointer">
-                          Sign Out
-                        </p>
-                      </LogoutLink>
-                    </div>
-                  </div>
-                )}
-
-              </>
-            ) : (
-              <div>
-                <button
-                  onClick={handleSignIn}
-                  className="inline-flex items-center justify-center mb-1 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-black duration-200 bg-white rounded-lg md:w-auto hover:bg-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                  role="button"
-                >
-                  Sign In
-                </button>
-              </div>
-            )}
-          </div>
           <Link
             className="hidden xl:flex gap-2 self-stretch px-4 pt-4 pb-4 text-base font-medium leading-5 rounded-[50px] text-neutral-900 bg-standardCodeAutomation "
             href="tel:+1-850-558-4691"

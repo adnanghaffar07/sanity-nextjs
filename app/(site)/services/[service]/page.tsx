@@ -5,7 +5,6 @@ import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
 import Image from "next/image";
-import IntroductionSection from "../../components/IntroSection";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -146,8 +145,40 @@ export default async function service({
           </div>
         </div>
       </div>
-      {/* Introduction Section */}
-      <IntroductionSection data={data} />
+ {/* Introduction Section */}
+<section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+  <div className="container mx-auto flex flex-wrap items-center justify-center">
+    {/* Image on the left */}
+    {data.introductionSection?.introImage && (
+      <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
+        <Image
+          src={urlForImage(data.introductionSection?.introImage).toString()}
+          alt="Introduction image"
+          width={370}
+          height={150}
+          className="object-cover rounded-lg"
+          loading="lazy"
+        />
+      </div>
+    )}
+
+    {/* Content on the right */}
+    {data.introductionSection?.introHeading && data.introductionSection?.introDesc && (
+      <div className="w-full md:w-1/2">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+            {data.introductionSection.introHeading}
+          </h2>
+          <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+            {data.introductionSection.introDesc}
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+
 
       {/* child service cards */}
 
