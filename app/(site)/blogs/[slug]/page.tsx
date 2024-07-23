@@ -1,8 +1,8 @@
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-async function getValueData(_id: string) {
-  const queryValue = `*[_type == 'portfolio' && _id == '${_id}'][0]`;
+async function getValueData(slug: string) {
+  const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
   try {
     const fetchData = await client.fetch(queryValue);
     return fetchData || [];

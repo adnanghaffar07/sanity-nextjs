@@ -181,7 +181,7 @@ export default async function Blogs() {
             {data.map((item: any) => (
               <Link
                 key={item._id}
-                href={`/blogs/${item._id}`}
+                href={`/blogs/${item.slug}`}
                 className="w-full mb-10"
               >
                 <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
