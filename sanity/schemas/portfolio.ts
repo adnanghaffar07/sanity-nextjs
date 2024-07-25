@@ -37,7 +37,11 @@ const portfolioSchema = {
       title: "Group",
       type: "string",
     },
-
+    {
+      name: "blogheading",
+      title: "Blog Heading",
+      type: "string",
+    },
     {
       name: "introductionheading",
       title: "Introduction Heading",

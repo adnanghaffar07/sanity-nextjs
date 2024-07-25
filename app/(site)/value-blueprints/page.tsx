@@ -212,7 +212,7 @@ export default async function ValueBlueprints() {
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-start mt-2 flex-wrap">
+                    <div className="flex justify-center mt-2 flex-wrap">
                       {item.caseStudiesToolsSection?.toolsTech?.map(
                         (tool: any, toolIndex: any) => (
                           <div key={toolIndex} className="relative mx-2 my-1 group">
