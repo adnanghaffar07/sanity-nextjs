@@ -118,7 +118,7 @@ export default async function DiscoveryProcess() {
             {/* Introduction Section */}
             <div className="relative w-full px-6 py-10 bg-white md:px-16 md:py-16">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-8 text-2xl font-bold text-left">
+                    <h2 className="mb-8 text-2xl text-blue-900 font-bold text-left">
                         {data.introductionSection?.introHeading}
                     </h2>
                     <p className="text-lg leading-relaxed text-gray-800 text-left">

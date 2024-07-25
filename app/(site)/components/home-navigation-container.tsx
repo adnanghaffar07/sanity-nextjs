@@ -628,7 +628,7 @@ export default function HomeNavigationContainer() {
           </Link>
 
           <div
-            className={`xl:hidden absolute top-0 right-0 bottom-0 left-0 w-full h-screen bg-white ease-in duration-300 ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"}`}
+            className={`xl:hidden absolute top-0 right-0 bottom-0 left-0 w-full h-screen bg-white ease-in duration-300 overflow-y-auto ${menuState.menuIcon ? "translate-x-0" : "translate-x-full"}`}
           >
             <div className="xl:hidden">
               {menuState.menuIcon && (

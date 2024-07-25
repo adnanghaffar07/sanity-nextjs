@@ -132,7 +132,7 @@ export default async function ValueBlueprints() {
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize">{data.title}</h2>
+              <h2 className="title capitalize leading-[56px]">{data.title}</h2>
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@ export default async function ValueBlueprints() {
                         </h3>
                       </div>
                     </div>
-                    <div className="flex justify-start mt-2 flex-wrap">
+                    <div className="flex justify-center mt-2 flex-wrap">
                       {item.caseStudiesToolsSection?.toolsTech?.map(
                         (tool: any, toolIndex: any) => (
                           <div key={toolIndex} className="relative mx-2 my-1 group">
@@ -231,7 +231,7 @@ export default async function ValueBlueprints() {
                                           className="h-11 w-11 border-grey-800 shadow-lg transition-transform duration-500 object-cover group-hover:scale-110 rounded-full"
                                         />
                                         <div className="absolute inset-x-0 -bottom-8 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                          <div className="mt-2 bg-white text-black text-sm rounded-md shadow-lg px-2 py-1">
+                                          <div className="mt-2 bg-white text-black text-sm rounded-md shadow-lg px-2 py-1 whitespace-nowrap">
                                             {logoData.heading}
                                           </div>
                                         </div>
@@ -278,7 +278,7 @@ export default async function ValueBlueprints() {
 
               {/* Top Row */}
               <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
-                {data.toolsTechSection?.toolsTech?.slice(0, 5).map((tool: any, toolIndex: any) => (
+                {data.toolsTechSection?.toolsTech?.slice(0, 7).map((tool: any, toolIndex: any) => (
                   <div key={toolIndex} className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
                     <div className="flex items-center justify-start h-full group">
                       <div className="flex justify-center">
@@ -309,7 +309,7 @@ export default async function ValueBlueprints() {
 
               {/* Middle Row */}
               <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
-                {data.toolsTechSection?.toolsTech?.slice(5, 10).map((tool: any, toolIndex: any) => (
+                {data.toolsTechSection?.toolsTech?.slice(7, 14).map((tool: any, toolIndex: any) => (
                   <div key={toolIndex} className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
                     <div className="flex items-center justify-center h-full group">
                       <div className="flex justify-center">
@@ -340,7 +340,7 @@ export default async function ValueBlueprints() {
 
               {/* Bottom Row */}
               <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center">
-                {data.toolsTechSection?.toolsTech?.slice(10, 15).map((tool: any, toolIndex: any) => (
+                {data.toolsTechSection?.toolsTech?.slice(14, 16).map((tool: any, toolIndex: any) => (
                   <div key={toolIndex} className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
                     <div className="flex items-center justify-center h-full group">
                       <div className="flex justify-center">

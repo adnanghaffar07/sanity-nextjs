@@ -20,7 +20,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
 
     const scrollContainer = document.getElementById(scrollContainerId);
 
-    const handleScrollEvent = () => {
+    const updateScrollButtons = () => {
       if (scrollContainer) {
         const scrollLeft = scrollContainer.scrollLeft;
         const containerWidth = scrollContainer.clientWidth;
@@ -41,8 +41,14 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
       }
     };
 
+    const handleScrollEvent = () => {
+      updateScrollButtons();
+    };
+
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScrollEvent);
+      // Call this once to set initial button visibility
+      updateScrollButtons();
     }
 
     return () => {
