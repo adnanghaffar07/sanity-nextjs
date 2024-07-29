@@ -93,7 +93,6 @@ export default function FooterContainer() {
                     ))}
                   </section>
                 </div>
-
               </div>
             </div>
           </div>
@@ -186,8 +185,14 @@ export default function FooterContainer() {
           <div className="flex flex-col">
             <div className="flex flex-col text-white max-md:mt-10 self-start space-y-5">
               <div className="text-2xl font-medium leading-6">Contact Us</div>
-              <div className="text-lg font-light leading-5 self-start space-y-5" style={{ fontSize: "16px" }}>
-                <a href="tel:+18505584691" className="hover:underline my-auto inline-block">
+              <div
+                className="text-lg font-light leading-5 self-start space-y-5"
+                style={{ fontSize: "16px" }}
+              >
+                <a
+                  href="tel:+18505584691"
+                  className="hover:underline my-auto inline-block"
+                >
                   <div className="flex flex-row gap-3">
                     <Image
                       src="/USA_Flag.png"
@@ -199,19 +204,6 @@ export default function FooterContainer() {
                     <span className="font-light">850.558.4691</span>
                   </div>
                 </a>
-                <br />
-                <a href="tel:+13076556139" className="hover:underline my-auto inline-block">
-                  <div className="flex flex-row gap-3">
-                    <Image
-                      src="/USA_Flag.png"
-                      alt="USA-Flag-Icon"
-                      width={20}
-                      height={20}
-                      className="md:max-h-10 object-cover"
-                    />
-                    <span className="font-light">307.655.6139</span>
-                  </div>
-                </a>
 
                 <div className="flex flex-row gap-3">
                   <Image
@@ -221,7 +213,10 @@ export default function FooterContainer() {
                     height={20}
                     className="md:max-h-10 object-cover"
                   />
-                  <a href="mailto:info@codeautomation.ai" className="hover:underline my-auto inline-block">
+                  <a
+                    href="mailto:info@codeautomation.ai"
+                    className="hover:underline my-auto inline-block"
+                  >
                     info@codeautomation.ai
                   </a>
                 </div>
@@ -253,7 +248,10 @@ export default function FooterContainer() {
                 </div>
 
                 {showAddress ? (
-                  <span className="cursor-pointer font-semibold" onClick={handleClick}>
+                  <span
+                    className="cursor-pointer font-semibold"
+                    onClick={handleClick}
+                  >
                     See more...
                   </span>
                 ) : (
@@ -273,7 +271,6 @@ export default function FooterContainer() {
               </div>
             </div>
           </div>
-
         </div>
         <div className="self-stretch mt-7 w-full bg-white min-h-[1px] mx-auto" />
         <div className="mt-5 text-md font-light leading-5 text-center text-white max-md:mt-10">
