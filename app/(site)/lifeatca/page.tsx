@@ -18,7 +18,7 @@ const LifeAtCA = () => {
       imageUrl: "/zoya.jpg",
     },
     {
-      name: "Farhan Ghaffar",
+      name: "Ghaffar",
       title: "Team Lead Project Management",
       imageUrl: "/farhan.png",
     },
