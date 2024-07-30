@@ -165,7 +165,7 @@ export default function FooterContainer() {
                   href={`/lifeatca`}
                   className="hover:underline my-auto inline-block"
                 >
-                  Life at CA - Careers
+                  Life at CA
                 </Link>
                 <Link
                   href={"/partnership-program"}
