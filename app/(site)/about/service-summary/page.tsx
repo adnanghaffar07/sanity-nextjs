@@ -110,7 +110,7 @@ export default async function ServiceSummary() {
           <img
             className="top-0 left-0 object-cover absolute inset-0 size-full"
             src={urlForImage(data.heroImage).toString()}
-            alt=""
+            alt="banner"
           />
         )}
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>

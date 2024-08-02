@@ -17,6 +17,7 @@ import serviceSummary from "./schemas/service-summary";
 import valueBlueprints from "./schemas/value-bueprints";
 import popup from "./schemas/popup";
 import valueDiscoveryProcessPage from "./schemas/value-process";
+import lifeAtCa from "./schemas/life-at-ca";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -28,6 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     testimonial,
     portfolioSchema,
     faq,
+    lifeAtCa,
     techLogos,
     partnershipSchema,
     serviceSummary,
