@@ -121,7 +121,7 @@ export default function HomeNavigationContainer() {
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
-                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${menuState.open ? "rotate-180" : "rotate-0"}`}
+                className={`inline cursor-pointer size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${menuState.open ? "rotate-180" : "rotate-0"}`}
               >
                 <path
                   fillRule="evenodd"
@@ -378,7 +378,7 @@ export default function HomeNavigationContainer() {
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
-                className={`inline size-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${menuState.aboutOpen ? "rotate-180" : "rotate-0"}`}
+                className={`inline size-4 cursor-pointer mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${menuState.aboutOpen ? "rotate-180" : "rotate-0"}`}
               >
                 <path
                   fillRule="evenodd"
