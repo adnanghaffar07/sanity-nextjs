@@ -126,7 +126,7 @@ const Services = async () => {
                   <p
                     className={`${
                       service.urlPath.length > 22 ? "mt-1 sm:mt-4" : "mt-4"
-                    } text-[15px] sm:text-sm font-light leading-4 text-justify max-w-[230px] sm:max-w-[274px]`}
+                    } text-[15px] sm:text-sm font-light leading-4  max-w-[230px] sm:max-w-[274px]`}
                   >
                     {service.serviceDesc}
                   </p>
