@@ -179,7 +179,49 @@ export default async function service({
       </section>
 
 
+      {/* Design section */}
+      {data.designSection &&
+      <section className="bg-white px-6 md:px-16 py-10 md:py-16">
+        <div className="container mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center">
+            {data.designSection?.heading}
+          </h2>
+          <p className="text-lg text-center">
+            {data.designSection?.description}
+          </p>
+        </div>
+      </section>
+}
 
+      
+      {/* Development section */}
+      {data.developmentSection &&
+      <section className="px-6 md:px-16 py-10 md:py-16">
+        <div className="container mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center">
+            {data.developmentSection?.heading}
+          </h2>
+          <p className="text-lg text-center">
+            {data.developmentSection?.description}
+          </p>
+        </div>
+      </section>
+}
+      
+      {/* Implementation section */}
+      {data.implementationSection &&
+
+      <section className="bg-white px-6 md:px-16 py-10 md:py-16">
+        <div className="container mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-center">
+            {data.implementationSection?.heading}
+          </h2>
+          <p className="text-lg text-center">
+            {data.implementationSection?.description}
+          </p>
+        </div>
+      </section>
+}
       {/* child service cards */}
       {data.subServices &&
       <section className="px-6 md:px-16 py-10 md:py-16 bg-white">

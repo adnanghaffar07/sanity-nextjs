@@ -85,6 +85,65 @@ const logicalServices = {
       ],
     },
 
+   // Introduction Section
+   {
+    name: "designSection",
+    title: "Design Section",
+    type: "object",
+    fields: [
+      {
+        name: "heading",
+        title: "Heading",
+        type: "string",
+      },
+      {
+        name: "description",
+        title: "Description",
+        type: "text",
+      },
+    ],
+  },
+
+     // Development Section
+     {
+      name: "developmentSection",
+      title: "Development Section",
+      type: "object",
+      fields: [
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "text",
+        },
+      
+      ],
+    },
+
+       // Implenttaion
+       {
+        name: "implementationSection",
+        title: "Implementation Section",
+        type: "object",
+        fields: [
+          {
+            name: "heading",
+            title: "Heading",
+            type: "string",
+          },
+          {
+            name: "description",
+            title: "Description",
+            type: "text",
+          },
+        ],
+      },
+  
+
     // Tools and Technology Section
     {
       name: "toolsTechSection",
