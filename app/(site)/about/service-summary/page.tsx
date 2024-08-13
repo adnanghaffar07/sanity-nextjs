@@ -229,9 +229,13 @@ export default async function ServiceSummary() {
                   <div className="text-base font-medium text-lg leading-6 pt-6 text-center">
                     {step.heading}
                   </div>
-                  <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify">
+                  <div
+                    className="mt-3 text-sm font-light tracking-normal text-center"
+                    style={{ lineHeight: '1.8', wordSpacing: '0.1em' }}
+                  >
                     {step.detail}
                   </div>
+
                 </div>
               </div>
             ))}
@@ -269,8 +273,6 @@ export default async function ServiceSummary() {
           </div>
         </div>
       </div>
-
-
 
 
       {/* Call to Action Section */}

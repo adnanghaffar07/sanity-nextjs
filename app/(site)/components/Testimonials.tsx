@@ -75,7 +75,7 @@ const Testimonials = () => {
                           target="_blank"
                           className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-4 md:h-[270px]"
                         >
-                          <div className="text-[12px] sm:text-sm leading-5 text-justify text-black">
+                          <div className="text-[12px] sm:text-sm leading-5 text-black">
                             {testimonial.content}
                           </div>
                           <div className="flex gap-3 justify-between mt-4 max-md:mr-1">

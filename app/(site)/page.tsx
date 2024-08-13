@@ -69,7 +69,7 @@ export default function Home() {
                 alt="Quality assurance"
               />
               <p className="lg:mt-11 mt-3">
-                We professionally assessed 300 apps to assure high-quality and
+                We professionally assessed 300 apps to ensure high-quality and
                 reliable software solutions for our clients
               </p>
             </div>
