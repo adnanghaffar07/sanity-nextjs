@@ -27,8 +27,14 @@ const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), {
 // const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title:
-    "Code Automation - Custom Software and Mobile Development Company in USA",
-  description: "Custom Software and Mobile Development Company in USA",
+    "Software Development Company in the USA | CodeAutomation",
+  description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+    "software development services",
+  ],
 };
 
 export default async function RootLayout({
