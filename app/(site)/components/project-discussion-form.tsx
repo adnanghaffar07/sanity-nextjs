@@ -15,10 +15,10 @@ const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
 const contactSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   contact_number: Yup.string()
-    .matches(/^[0-9]{7,16}$/, "Enter a valid contact number.")
+    .matches(/^[\d+\-\s]{7,20}$/, "Enter a valid contact number.")
     .required("Contact number is required"),
   email: Yup.string()
-    .email("Invalid email address")
+    .email("Email must be a valid email")
     .matches(
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       "Please enter a valid email address."
