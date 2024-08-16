@@ -1,140 +1,107 @@
 "use client";
-
-import { client } from "@/sanity/lib/client";
-import { urlForImage } from "@/sanity/lib/image";
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/effect-creative";
-import { Autoplay, EffectCreative } from "swiper/modules";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+import { client } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 
-async function getData() {
-  const query = `*[_type == 'testimonial'] | order(_updatedAt desc)`;
-  try {
-    const fetchData = await client.fetch(query);
-    return fetchData || [];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-}
-
-const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([]);
+const Testimonials = async () => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await getData();
-      setTestimonials(data);
+    async function getData() {
+      const query = `*[_type == 'testimonial'] | order(_updatedAt desc)`;
+      try {
+        const fetchData = await client.fetch(query);
+        return fetchData || [];
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+      }
     }
-    fetchData();
+
+    const fetchTestimonials = async () => {
+      const result = await getData();
+      setData(result);
+    };
+
+    fetchTestimonials();
   }, []);
 
-  const groupedTestimonials = [];
-  for (let i = 0; i < testimonials.length; i += 2) {
-    groupedTestimonials.push(testimonials.slice(i, i + 2));
-  }
-
   return (
-    <>
-      <Swiper
-        grabCursor={true}
-        effect={"creative"}
-        creativeEffect={{
-          prev: {
-            shadow: false,
-            translate: [0, 0, -400],
+    <Swiper
+      effect={"coverflow"}
+      grabCursor={true}
+      centeredSlides={true}
+      slidesPerView={3}
+      initialSlide={1}
+      coverflowEffect={{
+        depth: 0,
+        rotate: 40,
+        scale: 0.6,
+        stretch: 100,
+        modifier: 1,
+        slideShadows: false,
+      }}
+      autoplay={{
+        delay: 2500,
+        pauseOnMouseEnter: true,
+        disableOnInteraction: false,
+      }}
+      loop={true}
+      speed={2000}
+      pagination={false}
+      modules={[EffectCoverflow, Pagination, Autoplay]}
+      className="mySwiper w-full" // Full width
+      breakpoints={{
+        0: {
+          slidesPerView: 1,
+          centeredSlides: true,
+          coverflowEffect: {
+            scale: 0.9,
           },
-          next: {
-            shadow: false,
-            translate: ["100%", 0, 0],
-          },
-        }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        speed={1000}
-        modules={[EffectCreative, Autoplay]}
-        className="w-full h-full"
-      >
-        {groupedTestimonials.map((pair, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative w-full h-full flex items-center justify-center bg-[#F3F3F3] text-2xl rounded-3xl my-20 sm:my-4 lg:my-0">
-              <div className="flex flex-col lg:flex-row justify-center items-center gap-52 sm:gap-40 lg:gap-16 w-full h-[780px] sm:h-[740px] lg:h-[400px] pb-16">
-                {pair.map((testimonial: any) => (
-                  <div
-                    className="flex flex-col ml-5 max-md:ml-0 relative min-h-[255px] sm:min-h-[255px] sm:min-w-[381px]"
-                    key={testimonial._id}
-                  >
-                    <div className="flex flex-col grow pt-7 md:pr-20 px-10 rounded-2xl backdrop-blur-[6.5px] bg-[#1D92FB] w-fit">
-                      <p className="self-end text-xl sm:text-3xl font-medium text-white">
-                        Clients Speaking
-                      </p>
-                      {testimonial.link ? (
-                        <a
-                          href={testimonial.link}
-                          target="_blank"
-                          className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-4 md:h-[270px]"
-                        >
-                          <div className="text-[12px] sm:text-sm leading-5 text-black">
-                            {testimonial.content}
-                          </div>
-                          <div className="flex gap-3 justify-between mt-4 max-md:mr-1">
-                            <div className="flex justify-center items-start px-1 rounded-xl aspect-square w-[68px] h-[68px] bg-[#00000033]">
-                              <img
-                                loading="lazy"
-                                src={urlForImage(testimonial.image.asset)}
-                                alt={testimonial.image.alt}
-                                className="aspect-square rounded-full w-[62px] h-[62px]"
-                              />
-                            </div>
-                            <div className="flex flex-col flex-1 self-start text-sky-950">
-                              {testimonial.name && (
-                                <div className="text-xl sm:text-2xl lg:text-3xl font-medium">
-                                  {testimonial.name}
-                                </div>
-                              )}
-                              <div className="text-sm sm:text-base lg:text-lg font-light leading-6">
-                                {testimonial.designation}
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      ) : (
-                        <div className="flex z-10 flex-col py-7 px-5 w-full bg-white rounded-2xl shadow-sm backdrop-blur-[6.5px] max-md:pr-5 absolute md:-bottom-20 md:top-auto top-20 -bottom-auto md:-left-20 -left-4 md:h-[270px]">
-                          <div className="text-[12px] sm:text-sm leading-5 text-justify text-black">
-                            {testimonial.content}
-                          </div>
-                          <div className="flex gap-3 justify-between mt-4 max-md:mr-1">
-                            <div className="flex justify-center items-center px-1 rounded-xl aspect-square w-[68px] h-[68px] bg-[#00000033]">
-                              <img
-                                loading="lazy"
-                                src={urlForImage(testimonial.image.asset)}
-                                alt={testimonial.image.alt}
-                                className="aspect-square rounded-full w-[62px] h-[62px]"
-                              />
-                            </div>
-                            <div className="flex flex-col flex-1 self-start text-sky-950">
-                              {testimonial.name && (
-                                <div className="text-xl sm:text-2xl lg:text-3xl font-medium">
-                                  {testimonial.name}
-                                </div>
-                              )}
-                              <div className="text-sm sm:text-base lg:text-lg font-light leading-6">
-                                {testimonial.designation}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }}
+    >
+      {data.map((testimonial: any, index: any) => (
+        <SwiperSlide
+          key={index}
+          className="flex justify-center items-center pt-20 md:pt-36"
+        >
+          <div className="flex flex-col relative w-full max-w-[530px] shadow-md backdrop-blur-[36px]">
+            <div className="flex justify-center items-center px-1 xl:px-4 ml-5 w-16 xl:w-28 2xl:w-28 h-16 xl:h-28 2xl:h-28 bg-white rounded-full max-md:ml-2.5 absolute -top-8 md:-top-8 lg:-top-10 xl:-top-16 2xl:-top-20 left-2 lg:left-6 border border-gray-300">
+              <img
+                loading="lazy"
+                src={urlForImage(testimonial.image).toString()}
+                alt={`${testimonial.name}'s profile`}
+                className="w-full aspect-square rounded-full"
+              />
+            </div>
+            <div className="flex flex-col justify-around px-4 2xl:px-8 pt-6 xl:pt-12 2xl:pt-12 pb-6 bg-transparent border border-gray-300 text-white rounded-3xl tracking-[2px] max-md:px-5 w-full h-auto text-xs lg:text-sm xl:text-base 2xl:text-xl">
+              <p className="mt-4 leading-5 xl:leading-7 font-light">
+                {testimonial.content}
+              </p>
+              <div>
+                <p className="mt-6 font-semibold">{testimonial.name}</p>
+                <p className="mt-3 font-semibold ">
+                  {testimonial.designation}
+                </p>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
