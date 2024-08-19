@@ -112,9 +112,9 @@ export default function HomePageForm() {
       pageName === ""
         ? "Home"
         : pageName
-          ?.split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
+            ?.split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
 
     // Revalidate the email before submitting
     if (!Yup.string().email().isValidSync(values.email)) {
@@ -203,16 +203,16 @@ export default function HomePageForm() {
       id="contact-box"
     >
       <div className="flex flex-col mt-2 w-full max-w-[700px] max-md:max-w-full">
-        <h3 className="md:text-2xl text-lg text-left font-medium leading-[52px] max-md:max-w-full max-md:text-4xl">
+        <h3 className="md:text-2xl text-lg text-left font-medium leading-[52px] max-md:max-w-full max-md:text-4xl text-[#3C3C3C]">
           Need a Consultation?
         </h3>
-        <p className="text-lg font-medium text-left text-[#172640] mb-2 text-center leading-[52px] max-md:max-w-full max-md:text-4xl">
+        <p className="text-lg font-medium text-left text-[#3C3C3C] mb-2 leading-[32px] max-md:max-w-full max-md:text-4xl">
           Drop us a line! We are here to answer your query 24/7.
         </p>
         <form onSubmit={handleCombinedSubmit}>
           <div className="">
             <input
-              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-md shadow-sm  w-full text-black text-sm placeholder-black"
+              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm  w-full text-black text-sm placeholder-black"
               placeholder={"Name"}
               name="name"
               value={values.name}
@@ -225,7 +225,7 @@ export default function HomePageForm() {
           </div>
           <div className="mt-4">
             <input
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
+              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder={"Contact Number"}
               name="contact_number"
               value={values.contact_number}
@@ -238,7 +238,7 @@ export default function HomePageForm() {
           </div>
           <div className="mt-4">
             <input
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
+              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder={"Email"}
               name="email"
               value={values.email}
@@ -251,7 +251,7 @@ export default function HomePageForm() {
           </div>
           <div className="mt-4">
             <input
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
+              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder={"What are you looking for?"}
               name="looking"
               value={values.looking}
@@ -264,7 +264,7 @@ export default function HomePageForm() {
           </div>
           <div className="mt-4">
             <textarea
-              className="border-2 justify-center items-start px-7 py-3 rounded-xl shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black resize-none  break-words"
+              className="border-2 justify-center items-start px-4 py-3 rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black resize-none  break-words"
               placeholder={"Your Message"}
               name="message"
               value={values.message}
@@ -287,8 +287,9 @@ export default function HomePageForm() {
           <button
             type="submit"
             disabled={uploading}
-            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
-              }`}
+            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${
+              uploading ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
           >
             Submit
           </button>
@@ -297,7 +298,7 @@ export default function HomePageForm() {
 
       {message && (
         <div
-          className={`fixed top-14  lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg z-50 w-[270px] sm:w-[450px]`}
+          className={`fixed top-14  lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg w-[270px] sm:w-[450px] z-[1000]`}
         >
           <div
             className={`h-1 bg-white mb-2 transition-all duration-500 ${messageSuccess}`}
