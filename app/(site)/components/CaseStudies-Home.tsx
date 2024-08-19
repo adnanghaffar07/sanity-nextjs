@@ -65,7 +65,7 @@ const CaseStudiesHome = async () => {
                 key={index}
                 index={index}
                 imageSrc={item.cardImage}
-                alt={item.cardTitle}
+                alt={item.cardImage.alt}
                 url={item.url}
                 description={item.cardDescription}
                 buttoncolor={item.buttonColor}
