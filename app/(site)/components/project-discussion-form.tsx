@@ -284,8 +284,9 @@ export default function ProjectDiscussionContainer() {
           <button
             type="submit"
             disabled={uploading}
-            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
-              }`}
+            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${
+              uploading ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
           >
             Submit
           </button>
@@ -294,7 +295,7 @@ export default function ProjectDiscussionContainer() {
 
       {message && (
         <div
-          className={`fixed top-14  lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg z-50 w-[270px] sm:w-[450px]`}
+          className={`fixed top-14 lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg w-[270px] sm:w-[450px] z-[1000]`}
         >
           <div
             className={`h-1 bg-white mb-2 transition-all duration-500 ${messageSuccess}`}
