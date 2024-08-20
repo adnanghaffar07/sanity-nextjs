@@ -80,7 +80,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
     <>
       {showLeftButton && (
         <button
-          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-3 hidden lg:block"
+          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-[#1D92FB] text-white rounded-full p-3 hidden lg:block"
           onClick={() => handlePageClick({ selected: activeIndex - 1 })}
         >
           <svg
@@ -101,7 +101,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
       )}
       {showRightButton && (
         <button
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-3 hidden lg:block"
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-[#1D92FB] text-white rounded-full p-3 hidden lg:block"
           onClick={() => handlePageClick({ selected: activeIndex + 1 })}
         >
           <svg
@@ -122,16 +122,16 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
       )}
       <div className="hidden md:flex gap-1 self-center px-5 mt-12 w-[66px] max-md:mt-10">
         <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 0 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 0 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
         />
         <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 1 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 1 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
         />
         <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 2 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 2 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
         />
         <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 3 ? 'bg-black' : 'bg-black bg-opacity-10'}`}
+          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 3 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
         />
       </div>
       <ReactPaginate

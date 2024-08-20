@@ -409,7 +409,6 @@ export default function Home() {
         <ScrollAnimation>
           <section className="relative px-6 py-10 md:px-16 md:py-16">
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-
             <div className="justify-center text-center relative z-10 pb-10">
               <div>
                 <h2 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
