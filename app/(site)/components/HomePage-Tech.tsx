@@ -75,7 +75,7 @@ const TechnologiesSection = () => {
         </div>
         <div className="flex flex-wrap justify-center gap-4">
           {technologiesData[selectedCategory].map((tech, index) => (
-            <div key={index} className="flex flex-col items-center text-center w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
+            <div key={index} className="flex flex-col items-center text-center w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/5">
               <img src={tech.logo} alt={tech.name} className="w-16 h-16 mb-2" />
               <span className="text-md font-md">{tech.name}</span>
             </div>

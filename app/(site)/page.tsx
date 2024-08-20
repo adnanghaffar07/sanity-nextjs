@@ -740,9 +740,9 @@ export default function Home() {
         <ScrollAnimation>
           <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 md:px-16 px-6 md:py-16 py-6 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full mb-10">
             <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow px-5  mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 gap-5 justify-between items-start mt-0">
-                  <h3 className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
+              <div className="flex flex-col grow px-5 py-7  mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
+                <div className="flex z-10 gap-5  justify-between items-start mt-0">
+                  <h3 className="flex-auto self-end  text-2xl font-medium leading-6 text-black ">
                     Project Initiation
                   </h3>
                   <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
