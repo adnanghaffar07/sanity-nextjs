@@ -112,9 +112,9 @@ export default function HomePageForm() {
       pageName === ""
         ? "Home"
         : pageName
-            ?.split("-")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
+          ?.split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
 
     // Revalidate the email before submitting
     if (!Yup.string().email().isValidSync(values.email)) {
@@ -199,14 +199,14 @@ export default function HomePageForm() {
 
   return (
     <div
-      className="flex justify-center items-center px-10 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
+      className="flex justify-center items-center px-10 pt-6 pb-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
       id="contact-box"
     >
       <div className="flex flex-col mt-2 w-full max-w-[700px] max-md:max-w-full">
-        <h3 className="md:text-2xl text-lg text-left font-medium leading-[52px] max-md:max-w-full max-md:text-4xl text-[#3C3C3C]">
+        <h3 className="md:text-2xl text-2xl text-left font-medium leading-[52px] max-md:max-w-full text-[#3C3C3C]">
           Need a Consultation?
         </h3>
-        <p className="text-lg font-medium text-left text-[#3C3C3C] mb-2 leading-[32px] max-md:max-w-full max-md:text-4xl">
+        <p className="text-lg font-medium text-left text-[#3C3C3C] mb-2 leading-[32px] max-md:max-w-full ">
           Drop us a line! We are here to answer your query 24/7.
         </p>
         <form onSubmit={handleCombinedSubmit}>
@@ -287,9 +287,8 @@ export default function HomePageForm() {
           <button
             type="submit"
             disabled={uploading}
-            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${
-              uploading ? "cursor-not-allowed" : "cursor-pointer"
-            }`}
+            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
           >
             Submit
           </button>

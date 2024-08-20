@@ -30,17 +30,17 @@ const WorkItem = ({
   buttoncolor: string;
 }) => (
   <Link href={`/case-studies/${url}`} key={index}>
-    <div className="relative w-[380px] h-[250px] cursor-pointer group overflow-hidden">
+    <div className="relative w-[340px] md:w-[380px] h-[250px] cursor-pointer group overflow-hidden">
       {imageSrc.asset && (
         <img
           loading="lazy"
           src={urlForImage(imageSrc).toString()}
           alt={alt}
-          className="absolute inset-0 w-[380px] h-[250px] object-contain"
+          className="absolute inset-0 w-[340px] md:w-[380px] h-[250px] object-contain"
         />
       )}
       <div
-        className={`w-[380px] h-[250px] absolute inset-0 bg-[#4aa2f0] text-white flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:rotate-0 transition-all duration-700 rounded-3xl`}
+        className={`w-[340px] md:w-[380px] h-[250px] absolute inset-0 bg-[#4aa2f0] text-white flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:rotate-0 transition-all duration-700 rounded-3xl`}
       >
         <p>{description}</p>
       </div>
@@ -57,7 +57,7 @@ const CaseStudiesHome = async () => {
   return (
     <section className="flex flex-col items-center px-0 sm:px-5 pt-20 pb-15 w-full max-md:max-w-full">
       <div className="max-w-full w-[1640px] ">
-        <div className="flex gap-x-5 gap-y-16 justify-around flex-wrap">
+        <div className="flex gap-x-5 gap-y-8 md:gap-y-12 justify-around flex-wrap">
           {caseStudyData[0].cardItemsList
             .slice(0, 6)
             .map((item: any, index: number) => (

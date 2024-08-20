@@ -58,7 +58,7 @@ const TechnologiesSection = () => {
 
   return (
     <div className="bg-[#1D92FB] bg-opacity-10">
-      <div className='max-w-7xl mx-auto px-6 py-6 md:px-16 md:py-16'>
+      <div className='max-w-7xl mx-auto px-6 py-10 md:px-16 md:py-16'>
         <h2 className="w-full xl:text-4xl text-2xl font-medium text-black pb-6 md:pb-10 text-center">
           Technologies We Use
         </h2>
@@ -74,13 +74,13 @@ const TechnologiesSection = () => {
           ))}
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-  {technologiesData[selectedCategory].map((tech, index) => (
-    <div key={index} className="flex flex-col items-center text-center w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
-      <img src={tech.logo} alt={tech.name} className="w-16 h-16 mb-2" />
-      <span className="text-md font-md">{tech.name}</span>
-    </div>
-  ))}
-</div>
+          {technologiesData[selectedCategory].map((tech, index) => (
+            <div key={index} className="flex flex-col items-center text-center w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
+              <img src={tech.logo} alt={tech.name} className="w-16 h-16 mb-2" />
+              <span className="text-md font-md">{tech.name}</span>
+            </div>
+          ))}
+        </div>
 
 
 

@@ -154,7 +154,7 @@ export default function Home() {
         </div>
       </div>
       <ScrollAnimation>
-        <section className="relative flex justify-center items-center py-10">
+        <section className="relative flex justify-center items-center px-6 md:px-16 md:py-16 py-10">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
           <div className="relative z-10">
             <div className="max-w-[1920px] mx-auto">
@@ -682,7 +682,7 @@ export default function Home() {
             {/* Background layer with color and opacity */}
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
 
-            <div className="relative flex gap-5 pb-16 max-md:flex-col max-md:gap-0">
+            <div className="relative flex gap-5 max-md:flex-col max-md:gap-0">
               <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center md:px-4">
                 <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
                   <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
@@ -725,7 +725,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="md:w-5/12 w-full">
+              <div className="md:w-5/12 w-full md:mt-0 mt-6">
                 <img
                   src="/distinctive.png"
                   className="object-cover size-full"
