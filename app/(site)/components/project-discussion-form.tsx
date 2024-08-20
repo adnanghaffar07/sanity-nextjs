@@ -2,12 +2,30 @@
 
 import { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { contactSchema } from "../../schemas/index";
+import * as Yup from "yup"; // Import Yup for validation
 import { usePathname } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
+
 const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
   ssr: false,
+});
+
+// Define the validation schema using Yup
+const contactSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  contact_number: Yup.string()
+    .matches(/^[\d+\-\s]{7,20}$/, "Enter a valid contact number.")
+    .required("Contact number is required"),
+  email: Yup.string()
+    .email("Email must be a valid email")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address."
+    )
+    .required("Email is required"),
+  looking: Yup.string().required("Please specify what you are looking for"),
+  message: Yup.string(),
 });
 
 const initialValues = {
@@ -40,7 +58,7 @@ export default function ProjectDiscussionContainer() {
     resetForm,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: contactSchema,
+    validationSchema: contactSchema, // Apply the validation schema
     onSubmit: (values, action) => {
       // action.resetForm();
     },
@@ -71,6 +89,7 @@ export default function ProjectDiscussionContainer() {
       setErrorRecaptcha("Please verify the above checkbox");
       return;
     }
+
     if (
       !values.name.length ||
       !values.email.length ||
@@ -79,6 +98,7 @@ export default function ProjectDiscussionContainer() {
     ) {
       return;
     }
+
     if (
       errors.name ||
       errors.contact_number ||
@@ -95,6 +115,14 @@ export default function ProjectDiscussionContainer() {
             ?.split("-")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
+
+    // Revalidate the email before submitting
+    if (!Yup.string().email().isValidSync(values.email)) {
+      setBgColor("bg-red-500");
+      setMessage("Please enter a valid email address.");
+      setMessageSuccess("w-[100%]");
+      return;
+    }
 
     try {
       const formData = new FormData();
@@ -233,7 +261,7 @@ export default function ProjectDiscussionContainer() {
           </div>
           <div className="mt-4">
             <textarea
-              className="border-2 justify-center items-start px-7 py-3 whitespace-nowrap rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black resize-none"
+              className="border-2 justify-center items-start px-7 py-3 rounded-xl shadow-sm bg-zinc-100 max-md:px-5 w-full text-black text-sm placeholder-black resize-none  break-words"
               placeholder={"Your Message"}
               name="message"
               value={values.message}
@@ -251,12 +279,6 @@ export default function ProjectDiscussionContainer() {
               onExpired={onRecaptchaExpired}
             />
           )}
-          {/* <ReCAPTCHA
-            sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
-            ref={recaptchaRef}
-            onChange={onRecaptchaChange}
-            onExpired={onRecaptchaExpired}
-          /> */}
           {errorRecaptcha && <p className="form-error">{errorRecaptcha}</p>}
 
           <button
@@ -273,7 +295,7 @@ export default function ProjectDiscussionContainer() {
 
       {message && (
         <div
-          className={`fixed top-14  lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg z-50 w-[270px] sm:w-[450px]`}
+          className={`fixed top-14 lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg w-[270px] sm:w-[450px] z-[1000]`}
         >
           <div
             className={`h-1 bg-white mb-2 transition-all duration-500 ${messageSuccess}`}

@@ -23,49 +23,46 @@ const HomePageSlider = () => {
     <Slider {...swiperSettings}>
       <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
-          <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-            Scale Up Your Business with 70+ Skilled Engineers           </h2>
+          <h1 className="title capitalize" style={{ lineHeight: "1" }}>
+          Leading Software Development Company           </h1>
         </div>
         <div
           className="lg:text-2xl text-base text-center mt-5 xl:mt-5 max-md:max-w-full"
           style={{ lineHeight: "1.3" }}
         >
-          Get opportunity to work with dedicated and diligent professional Software Engineers.
+          Transform your Ideas to Reality through Top Software Development Company dedicated to Your Success.
         </div>
       </div>
 
       <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
           <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-            Transforming Businesses Through Generative AI
+          Custom Software Development for Your Needs
           </h2>
         </div>
         <div
           className="lg:text-2xl text-base text-center mt-5 xl:mt-5 max-md:max-w-full"
           style={{ lineHeight: "1.3" }}
         >
-          Explore with us, and let&rsquo;s pioneer the next era of innovation
-          together.
+         Empower your business with tailored digital solutions and innovations from CodeAutomation.ai
         </div>
       </div>
 
       <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
           <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-            Connecting Visions, Building Innovation
+          Automate Your QA Testing
           </h2>
         </div>
         <div
           className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
           style={{ lineHeight: "1.3" }}
         >
-          In the ever-evolving world, our technology solutions are
-          revolutionizing healthcare, redefining education, or reshaping finance
-          at the forefront of change.
+          Streamline your software quality with expert QA testing services designed to automate and enhance every step of the process.
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
           <h2 className="title capitalize" style={{ lineHeight: "1" }}>
             Imagine, Code, Automate
@@ -78,7 +75,7 @@ const HomePageSlider = () => {
           We are not just a tech company but the architects of your digital
           success. Let&rsquo;s turn your ideas into reality together.
         </div>
-      </div>
+      </div> */}
     </Slider>
   );
 };

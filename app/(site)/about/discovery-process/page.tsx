@@ -326,7 +326,7 @@ export default async function DiscoveryProcess() {
             </div>
 
             {/* Conclusion Section */}
-            <div className="w-full px-6 py-10 mb-16 bg-gray-100 md:px-16 md:py-16 rounded-lg shadow-lg">
+            <div className="w-full  mb-16 bg-gray-100 px-6 py-10 md:px-16 md:py-16 rounded-lg shadow-lg">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="mb-6 text-2xl font-bold  text-blue-900 text-left">
                         {data.conclusionSection?.conclusionHeading}

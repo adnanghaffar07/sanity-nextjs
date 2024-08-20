@@ -126,7 +126,7 @@ const Services = async () => {
                   <p
                     className={`${
                       service.urlPath.length > 22 ? "mt-1 sm:mt-4" : "mt-4"
-                    } text-[15px] sm:text-sm font-light leading-4 text-justify max-w-[230px] sm:max-w-[274px]`}
+                    } text-[15px] sm:text-sm font-light leading-4  max-w-[230px] sm:max-w-[274px]`}
                   >
                     {service.serviceDesc}
                   </p>
@@ -230,10 +230,8 @@ const Services = async () => {
                     <br />
                     Client Goals
                   </div>
-                  <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                    We prioritize understanding the client&apos;s goals and
-                    vision to create a design that perfectly aligns with their
-                    expectations&rsquo;
+                  <div className="mt-5 text-xs font-light tracking-normal leading-4  max-w-[200px]">
+                  We align our design with the client&apos;s goals and vision through in-depth discussions and insights.
                   </div>
                 </div>
               </div>
@@ -246,10 +244,8 @@ const Services = async () => {
                   <div className="text-base font-medium leading-6 pt-6">
                     Thorough Research & Analysis
                   </div>
-                  <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                    We prioritize understanding the client&apos;s goals and
-                    vision to create a design that perfectly aligns with their
-                    expectations&rsquo;
+                  <div className="mt-4 text-xs font-light tracking-normal leading-4  max-w-[200px]">
+                  We conduct research to understand the industry and audience, ensuring our design is relevant and effective.
                   </div>
                 </div>
               </div>
@@ -262,10 +258,8 @@ const Services = async () => {
                   <div className="text-base font-medium leading-6 pt-6">
                     Concept Development & Iteration
                   </div>
-                  <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                    We prioritize understanding the client&apos;s goals and
-                    vision to create a design that perfectly aligns with their
-                    expectations.
+                  <div className="mt-5 text-xs font-light tracking-normal leading-4  max-w-[200px]">
+                  We create and refine design concepts based on client feedback to meet their vision.
                   </div>
                 </div>
               </div>
@@ -278,10 +272,8 @@ const Services = async () => {
                   <div className="text-base font-medium leading-6 pt-6">
                     Attention to Details & Quality Assurance
                   </div>
-                  <div className="mt-4 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                    We prioritize understanding the client&apos;s goals and
-                    vision to create a design that perfectly aligns with their
-                    expectations.
+                  <div className="mt-4 text-xs font-light tracking-normal leading-4  max-w-[200px]">
+                  We ensure high quality and attention to detail through rigorous checks.
                   </div>
                 </div>
               </div>
@@ -294,10 +286,8 @@ const Services = async () => {
                   <div className="text-base font-medium leading-6 pt-6">
                     Timely Delivery & Client Satisfaction
                   </div>
-                  <div className="mt-5 text-xs font-light tracking-normal leading-4 text-justify max-w-[200px]">
-                    We prioritize understanding the client&apos;s goals and
-                    vision to create a design that perfectly aligns with their
-                    expectations.
+                  <div className="mt-5 text-xs font-light tracking-normal leading-4  max-w-[200px]">
+                  We deliver projects on time while focusing on exceeding client expectations.
                   </div>
                 </div>
               </div>

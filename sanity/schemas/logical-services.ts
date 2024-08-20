@@ -85,6 +85,146 @@ const logicalServices = {
       ],
     },
 
+    // Introduction Section
+    {
+      name: "designSection",
+      title: "Design Section",
+      type: "object",
+      fields: [
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "text",
+        },
+      ],
+    },
+
+    // Development Section
+    {
+      name: "developmentSection",
+      title: "Development Section",
+      type: "object",
+      fields: [
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "text",
+        },
+
+      ],
+    },
+
+    // Implenttaion
+    {
+      name: "implementationSection",
+      title: "Implementation Section",
+      type: "object",
+      fields: [
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "text",
+        },
+      ],
+    },
+
+    // Industries & Applications we QA
+    {
+      name: 'industriesWeQA',
+      type: 'document',
+      title: 'Industries & Applications we QA',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          title: 'Description',
+        },
+        {
+          name: 'bulletPointsHeading',
+          type: 'string',
+          title: 'Bullet Points Heading',
+        },
+        {
+          name: 'bulletPoints',
+          type: 'array',
+          title: 'Bullet Points',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+    },
+
+
+    // Industries We Serve
+    {
+      name: 'industriesServe',
+      type: 'document',
+      title: 'Industries we Serve',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          title: 'Description',
+        },
+        {
+          name: 'bulletPoints',
+          type: 'array',
+          title: 'Bullet Points',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'heading',
+                  type: 'string',
+                  title: 'Heading'
+                },
+                {
+                  name: 'bulletPoints',
+                  type: 'array',
+                  title: 'bulletPoints',
+                  of: [{ type: 'string' }],
+                }
+              ],
+            }
+          ]
+        }
+      ]
+    },
+
+
     // Tools and Technology Section
     {
       name: "toolsTechSection",
@@ -146,6 +286,120 @@ const logicalServices = {
       ],
     },
 
+
+     // Why We’re the Preferred Choice for QA Testing
+     {
+      name: 'preferredChoice',
+      type: 'document',
+      title: 'Preferred Choice for QA Testing',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'subheading',
+          type: 'string',
+          title: 'Subheading',
+        },
+        {
+          name: 'paragraph',
+          type: 'text',
+          title: 'paragraph',
+        },
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'items',
+          type: 'array',
+          title: 'Preferred Choice for QA Testing',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'number',
+                  type: 'number',
+                  title: 'Number',
+                },
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'description',
+                  type: 'text',
+                  title: 'Description',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+ // Advantages of Our QA and Testing Services
+    {
+      name: 'advantagesOfQA',
+      type: 'document',
+      title: 'Advantages of Our QA',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'subheading',
+          type: 'text',
+          title: 'Subheading',
+        },
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'items',
+          type: 'array',
+          title: 'Advantages of Our QA Items',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'number',
+                  type: 'number',
+                  title: 'Number',
+                },
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'description',
+                  type: 'text',
+                  title: 'Description',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
     // Example Services Section
     {
       name: "exampleServicesSection",
@@ -200,6 +454,44 @@ const logicalServices = {
       ],
     },
 
+    // Project cycle QA 
+    {
+      name: "projectCycleQA",
+      title: "Project Cycle QA Section",
+      type: "object",
+      fields: [
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "subHeading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "paragraph",
+          title: "paragragh",
+          type: "text",
+        },
+
+        {
+          name: "projectCycleImg",
+          title: "Project Cycle Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
     // Project cycle
     {
       name: "projectCycleSection",
@@ -238,6 +530,43 @@ const logicalServices = {
         {
           name: "projectCycleImg",
           title: "Project Cycle Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+    // Project cycle QA 
+    {
+      name: "qaDelivery",
+      title: "QA Delivery Section",
+      type: "object",
+      fields: [
+        {
+          name: "heading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "subHeading",
+          title: "Heading",
+          type: "string",
+        },
+        {
+          name: "paragraph",
+          title: "paragragh",
+          type: "text",
+        },
+
+        {
+          name: "qaDeliveryleImg",
+          title: "QA Delivery  Image",
           type: "image",
           options: { hotspot: true },
           fields: [
@@ -318,6 +647,29 @@ const logicalServices = {
           name: "specialOffer",
           title: "Special Offer",
           type: "text",
+        },
+        {
+          name: 'specialOfferQA',
+          type: 'array',
+          title: 'QA special Offer',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'heading',
+                  type: 'string',
+                  title: 'Heading'
+                },
+                {
+                  name: 'description',
+                  type: 'text',
+                  title: 'Description',
+                  of: [{ type: 'string' }],
+                }
+              ],
+            }
+          ]
         },
         {
           name: "offerImg",
@@ -467,6 +819,11 @@ const logicalServices = {
       title: "Sub Service Card Section Heading",
       type: "string",
     },
+    {
+      name: "subServiceDesc",
+      title: "Sub Service Card Section Description",
+      type: "string",
+    },
 
     {
       name: "subServices",
@@ -499,7 +856,7 @@ const logicalServices = {
       ],
     },
 
-  
+
     // Twitter Cards
     {
       name: "twitterCards",
@@ -1177,7 +1534,7 @@ const subServiceSchema = {
         },
       ],
     },
-  
+
 
     // Twitter Cards
     {

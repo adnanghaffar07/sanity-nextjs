@@ -73,16 +73,16 @@ export default async function Blogs() {
                   />
                 </div>
                 <div className="pb-4 pt-8 px-5">
-                  <p className="lg:text-2xl text-sm sm:text-xl">20 Feb 2024</p>
+                  <p className="text-xs sm:text-lg">20 Feb 2024</p>
                   <h1 className="md:text-2xl font-medium text-base sm:text-xl">
-                    20 tips Why you should work with a Web design company in
+                    20 Tips: Why You Should Work with a Web Design Company in
                     2024
                   </h1>
                   <div className="">
                     <hr className="bg-black my-2 h-px w-full border-0" />
                   </div>
                   <div className="">
-                    <p className="font-light text-xs sm:text-base text-justify">
+                    <p className="font-light text-xs sm:text-base">
                       This article discusses the benefits of working with a web
                       design company. It provides tips on why you should work
                       with a web design company, how a website can be the
@@ -124,7 +124,7 @@ export default async function Blogs() {
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div className="">
-                        <p className="font-light md:text-sm text-xs sm:text-base text-justify">
+                        <p className="font-light md:text-sm text-xs sm:text-base">
                           Nowadays, finding a perfect fit for your
                           company&rsquo;s project is difficult. Here are some
                           tips on hiring a web design and development company
@@ -159,13 +159,13 @@ export default async function Blogs() {
                     <div className=" self-center xl:pr-5 xl:pl-5 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
                       <p className="text-xs sm:text-lg">26 Feb 2024</p>
                       <h1 className="text-base sm:text-xl font-medium">
-                        Creating a portfolio website with sanity and next.js
+                        Creating a portfolio website with Sanity and Next.js
                       </h1>
                       <div className="">
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div className="">
-                        <p className="font-light md:text-sm text-xs sm:text-base text-justify">
+                        <p className="font-light md:text-sm text-xs sm:text-base">
                           In this blog, we will put together a detailed guide to
                           help you build a functional and beautiful portfolio
                           using Sanity and Next.js. Thus, this article will
@@ -205,9 +205,7 @@ export default async function Blogs() {
                       />
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                      <p className="md:text-2xl text-xs sm:text-lg">
-                        19 Feb 2024
-                      </p>
+                      <p className="text-xs sm:text-lg">19 Feb 2024</p>
                       <h1 className="md:text-3xl sm:text-xl text-base font-medium">
                         {item.title}
                       </h1>
@@ -215,8 +213,11 @@ export default async function Blogs() {
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div>
-                        <p className="font-light md:text-2xl sm:text-base text-xs text-justify">
-                          {item.criticalPrerequisitesSection?.description}{" "}
+                        <p
+                          className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]"
+                          // style={{ lineHeight: "32px" }}
+                        >
+                          {item.criticalPrerequisitesSection?.description}
                         </p>
                       </div>
                     </div>
