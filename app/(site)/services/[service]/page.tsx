@@ -6,6 +6,8 @@ import { urlForImage } from "@/sanity/lib/image";
 import HeroSectionComponent from "../../components/HeroSectionComponent";
 import Image from "next/image";
 import ScrollButton from "../../components/valueBluePrint";
+import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
+import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordian";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -213,7 +215,6 @@ export default async function service({
 
       {/* Implementation section */}
       {data.implementationSection &&
-
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">
@@ -225,11 +226,12 @@ export default async function service({
           </div>
         </section>
       }
+
       {/* child service cards */}
       {data.subServices &&
         <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
           <div className="container mx-auto">
-            <h2 className="text-2xl font-bold mb-6 text-center">
+            <h2 className="text-2xl font-bold mb-4 text-center">
               {data.subServiceHeading}
             </h2>
             <p className="text-lg mb-10 max-w-3xl text-center mx-auto">
@@ -292,6 +294,83 @@ export default async function service({
           </div>
         </section>
       }
+
+      {/* Our Mobile App Development Services Section */}
+      {data.mobileAppServices &&
+        <section className="px-6 md:px-16 py-10 md:py-16 relative">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          {/* Heading and Description */}
+          <div className="text-center mb-10 relative">
+            <h2 className="text-2xl font-bold text-[#3C3C3C] mb-4">
+              {data.mobileAppServices.heading}
+            </h2>
+            <p className="text-lg text-[#3C3C3C] max-w-6xl mx-auto">
+              {data.mobileAppServices.paragraph}
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="flex flex-col gap-8 relative">
+            {data.mobileAppServices.cards.map((card: any, index: any) => (
+              <div
+                key={index}
+                className="w-full max-w-7xl mx-auto bg-[#FDFDFD] border border-gray-300 rounded-lg p-8 shadow-md"
+              >
+                <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
+                  {card.title}
+                </h3>
+                <p className="text-lg text-[#3C3C3C]">
+                  {card.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      }
+
+      {/* Why Choose Code Automation? Mobile APP*/}
+      {data.whyChooseMobile &&
+        <section className="px-6 md:px-16 py-10 md:py-16">
+          <div className="max-w-7xl mx-auto">
+            {/* Heading at the Top */}
+            <div className="text-center mb-10">
+              <h2 className="text-2xl font-bold text-[#3C3C3C] capitalize">
+                {data.whyChooseMobile.heading}
+              </h2>
+            </div>
+
+            {/* Content with Image and Text */}
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              {/* Text Section on the Left */}
+              <div className="flex-1 md:mr-8">
+                {data.whyChooseMobile?.items.map((item: any, index: number) => (
+                  <div key={index} className="mb-8">
+                    <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
+                      {item.title}
+                    </h3>
+                    <p className="text-lg text-[#3C3C3C]">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Image on the Right */}
+              <div className="flex-1 mt-8 md:mt-0">
+                <img
+                  src={urlForImage(data.whyChooseMobile.image).toString()}
+                  alt="why choose us"
+                  className="w-full h-auto rounded-lg shadow-md"
+                />
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      }
+
+
       {/* Industries & Applications We QA */}
       {data.industriesWeQA &&
         <section className="relative px-6 md:px-16 py-16 bg-white">
@@ -330,6 +409,7 @@ export default async function service({
           </div>
         </section>
       }
+
 
 
       {/* Industries We Serve Section */}
@@ -382,7 +462,7 @@ export default async function service({
         </section>
       }
       {/* Tools & Technology Section */}
-      <section className="relative px-6 md:px-16 py-16 bg-white">
+      <section className="relative px-6 md:px-16 py-16">
         <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
         <div className="container mx-auto relative">
           <h2 className="text-2xl text-center font-bold mb-4">
@@ -442,113 +522,118 @@ export default async function service({
           </div>
         </div>
       </section>
-
+      {data.mobileAppServiceSection &&
+      <MobileAppServiceSection data={data} />
+}
+      {data.secondMobileAppAcc &&
+      <SecondMobileServiceAcc data={data} />
+      }
       {/*  Preferred Choice for QA Testing*/}
       {data.advantagesOfQA &&
-      <section className="px-6 py-10 md:px-16 md:py-16">
-      <div className="justify-center text-center pb-10">
-        <div>
-          <h2 className="text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
-            {data.preferredChoice.heading}
-          </h2>
-          <h3 className="text-xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
-            {data.preferredChoice.subheading}
-          </h3>
-          <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
-            {data.preferredChoice.paragraph}
-          </p>
-        </div>
-      </div>
-
-      <div className="relative flex flex-col md:flex-row items-center justify-between z-10">
-        <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12">
-          <div className="space-y-8">
-            {data.preferredChoice.items.map((item:any, index:any) => (
-              <div key={index} className="relative flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#1D92FB] text-white font-bold">
-                    {item.number}
-                  </div>.
-                  {index < data.preferredChoice.items.length - 1 && (
-                    <div className="absolute left-5 top-16 h-10 border-l-4 border-[#1D92FB]" />
-                  )}
-                </div>
-                <div className="ml-8">
-                  <h3 className="text-xl font-semibold text-[#1D92FB]">
-                    {item.title}
-                  </h3>
-                  <p className="text-[#3C3C3C] mt-2">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+        <section className="px-6 py-10 md:px-16 md:py-16">
+          <div className="justify-center text-center pb-10">
+            <div>
+              <h2 className="text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                {data.preferredChoice.heading}
+              </h2>
+              <h3 className="text-xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                {data.preferredChoice.subheading}
+              </h3>
+              <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
+                {data.preferredChoice.paragraph}
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="md:w-1/2 flex justify-center">
-          <img
-            src={urlForImage(data.preferredChoice.image).toString()}
-            alt="Software Development Services"
-            className="w-3/4 rounded-lg shadow-lg z-10 md:mt-0 mt-6"
-          />
-        </div>
-      </div>
-    </section>
-}
+          <div className="relative flex flex-col md:flex-row items-center justify-between z-10">
+            <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12">
+              <div className="space-y-8">
+                {data.preferredChoice.items.map((item: any, index: any) => (
+                  <div key={index} className="relative flex items-start">
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#1D92FB] text-white font-bold">
+                        {item.number}
+                      </div>.
+                      {index < data.preferredChoice.items.length - 1 && (
+                        <div className="absolute left-5 top-16 h-10 border-l-4 border-[#1D92FB]" />
+                      )}
+                    </div>
+                    <div className="ml-8">
+                      <h3 className="text-xl font-semibold text-[#1D92FB]">
+                        {item.title}
+                      </h3>
+                      <p className="text-[#3C3C3C] mt-2">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src={urlForImage(data.preferredChoice.image).toString()}
+                alt="Software Development Services"
+                className="w-3/4 rounded-lg shadow-lg z-10 md:mt-0 mt-6"
+              />
+            </div>
+          </div>
+        </section>
+      }
 
       {/* Advantages of Our QA and Testing Services */}
       {data.advantagesOfQA &&
-      <section className="relative px-6 py-10 md:px-16 md:py-16">
-      <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-      <div className="justify-center text-center relative z-10 pb-10">
-        <div>
-          <h2 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
-            {data.advantagesOfQA.heading}
-          </h2>
-          <p className="justify-center text-center text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
-            {data.advantagesOfQA.subheading}
-          </p>
-        </div>
-      </div>
-
-      <div className="relative flex flex-col md:flex-row items-center justify-between z-10">
-        <div className="md:w-1/2 flex justify-center">
-          {data.advantagesOfQA.image && (
-            <img
-              src={urlForImage(data.advantagesOfQA.image).toString()}
-              alt="Advantages of Our QA"
-              className="w-3/4 rounded-lg shadow-lg z-10 md:mt-0 mt-6"
-            />
-          )}
-        </div>
-        <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12">
-          <div className="space-y-8">
-            {data.advantagesOfQA.items?.map((item:any, index:any) => (
-              <div key={index} className="relative flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#1D92FB] text-white font-bold">
-                    {item.number}
-                  </div>
-                  {index < data.advantagesOfQA.items.length - 1 && (
-                    <div className="absolute left-5 top-16 h-10 border-l-4 border-[#1D92FB]" />
-                  )}
-                </div>
-                <div className="ml-8">
-                  <h3 className="text-xl font-semibold text-[#1D92FB]">
-                    {item.title}
-                  </h3>
-                  <p className="text-[#3C3C3C] mt-2">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+        <section className="relative px-6 py-10 md:px-16 md:py-16">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+          <div className="justify-center text-center relative z-10 pb-10">
+            <div>
+              <h2 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                {data.advantagesOfQA.heading}
+              </h2>
+              <p className="justify-center text-center text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
+                {data.advantagesOfQA.subheading}
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-}
+
+          <div className="relative flex flex-col md:flex-row items-center justify-between z-10">
+            <div className="md:w-1/2 flex justify-center">
+              {data.advantagesOfQA.image && (
+                <img
+                  src={urlForImage(data.advantagesOfQA.image).toString()}
+                  alt="Advantages of Our QA"
+                  className="w-3/4 rounded-lg shadow-lg z-10 md:mt-0 mt-6"
+                />
+              )}
+            </div>
+            <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12">
+              <div className="space-y-8">
+                {data.advantagesOfQA.items?.map((item: any, index: any) => (
+                  <div key={index} className="relative flex items-start">
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#1D92FB] text-white font-bold">
+                        {item.number}
+                      </div>
+                      {index < data.advantagesOfQA.items.length - 1 && (
+                        <div className="absolute left-5 top-16 h-10 border-l-4 border-[#1D92FB]" />
+                      )}
+                    </div>
+                    <div className="ml-8">
+                      <h3 className="text-xl font-semibold text-[#1D92FB]">
+                        {item.title}
+                      </h3>
+                      <p className="text-[#3C3C3C] mt-2">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      }
       {/* Example Value of Service (Use Cases) Section */}
       {data.exampleServicesSection &&
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
@@ -584,10 +669,10 @@ export default async function service({
                   <div key={exampleIndex}>
                     <div className="bg-gray-100 shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                       <div className="flex flex-col  justify-center">
-                        <h3 className="text-xl text-center font-semibold mb-4">
+                        <h3 className="text-xl text-center font-semibold ">
                           {example.heading}
                         </h3>
-                        <p className="text-gray-700 text-center">
+                        <p className="text-gray-700 mt-4 text-center">
                           {example.detail}
                         </p>
                       </div>
@@ -812,8 +897,8 @@ export default async function service({
                 <Image
                   src={urlForImage(data.specialOffersSection?.offerImg).toString()}
                   alt="Special Offer"
-                  width={270}
-                  height={270}
+                  width={300}
+                  height={300}
                   className="object-cover rounded-lg"
                 />
               )}
@@ -825,8 +910,8 @@ export default async function service({
 
 
       {/* Summary Message about Service Section */}
-      <section className="bg-white px-6 md:px-16 py-10 md:py-16">
-        <div className="container mx-auto">
+      <section className="bg-white px-6 md:px-16 py-10 md:py-16 ">
+        <div className="container mx-auto max-w-6xl">
           <h2 className="text-2xl font-bold mb-8 text-center">
             {data.summarySection?.summaryHeading}
           </h2>
@@ -838,7 +923,7 @@ export default async function service({
 
       {/* Call to Action Section */}
       <section className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center max-w-6xl">
           <h2 className="text-2xl font-bold mb-4">
             {data.callToActionSection?.callToActionHeading}
           </h2>
