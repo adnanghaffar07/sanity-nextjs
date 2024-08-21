@@ -143,6 +143,93 @@ const logicalServices = {
       ],
     },
 
+    // Our Mobile App Development Services
+    {
+      name: 'mobileAppServices',
+      type: 'document',
+      title: 'Our Mobile App Development Services',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'paragraph',
+          type: 'text',
+          title: 'paragraph',
+        },
+        {
+          name: 'cards',
+          type: 'array',
+          title: 'Our Mobile App Development Services',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'description',
+                  type: 'text',
+                  title: 'Description',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // Why Choose Code Automation? Mobile APP
+    {
+      name: 'whyChooseMobile',
+      type: 'document',
+      title: 'Why Choose Code Automation? Mobile APP',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'items',
+          type: 'array',
+          title: 'Why Choose Code Automation? Mobile APP',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'description',
+                  type: 'text',
+                  title: 'Description',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+    },
+
+
+
     // Industries & Applications we QA
     {
       name: 'industriesWeQA',
@@ -286,9 +373,142 @@ const logicalServices = {
       ],
     },
 
+ 
+    //Your Premier Mobile App Development Partne
+    {
+      name: 'mobileAppServiceSection',
+      type: 'document',
+      title: 'Your Premier Mobile App Development Partner',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          title: 'Description',
+        },
+        {
+          name: 'accordionItems',
+          type: 'array',
+          title: 'Accordion Items',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'content',
+                  type: 'text',
+                  title: 'Content',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'imageSrc',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true, // Enables image cropping
+          },
+        },
+      ],
+    },
 
-     // Why We’re the Preferred Choice for QA Testing
-     {
+       //Innovative Mobile App Solutions for a Range of Industries
+       {
+        name: 'secondMobileAppAcc',
+        type: 'document',
+        title: 'Innovative Mobile App Solutions for a Range of Industries',
+        fields: [
+          {
+            name: 'heading',
+            type: 'string',
+            title: 'Heading',
+          },
+          {
+            name: 'description',
+            type: 'text',
+            title: 'Description',
+          },
+          {
+            name: 'accordionItems',
+            type: 'array',
+            title: 'Accordion Items',
+            of: [
+              {
+                type: 'object',
+                fields: [
+                  {
+                    name: 'title',
+                    type: 'string',
+                    title: 'Title',
+                  },
+                  {
+                    name: 'contentArray',
+                    type: 'array',
+                    title: 'Content Array',
+                    of: [
+                      {
+                        type: 'object',
+                        fields: [
+                          {
+                            name: 'stringField',
+                            type: 'string',
+                            title: 'String Field',
+                          },
+                          {
+                            name: 'nestedArray',
+                            type: 'array',
+                            title: 'Nested Array',
+                            of: [
+                              {
+                                type: 'object',
+                                fields: [
+                                  {
+                                    name: 'heading',
+                                    type: 'string',
+                                    title: 'Heading',
+                                  },
+                                  {
+                                    name: 'text',
+                                    type: 'text',
+                                    title: 'Text',
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'imageSrc',
+            type: 'image',
+            title: 'Image',
+            options: {
+              hotspot: true, // Enables image cropping
+            },
+          },
+        ],
+      },      
+  
+
+    // Why We’re the Preferred Choice for QA Testing
+    {
       name: 'preferredChoice',
       type: 'document',
       title: 'Preferred Choice for QA Testing',
@@ -346,7 +566,7 @@ const logicalServices = {
       ],
     },
 
- // Advantages of Our QA and Testing Services
+    // Advantages of Our QA and Testing Services
     {
       name: 'advantagesOfQA',
       type: 'document',

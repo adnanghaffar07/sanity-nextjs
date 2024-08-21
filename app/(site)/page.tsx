@@ -911,7 +911,7 @@ export default function Home() {
                       alt="clutch-icon"
                       width={80}
                       height={22}
-                      // className="h-auto"
+                    // className="h-auto"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
