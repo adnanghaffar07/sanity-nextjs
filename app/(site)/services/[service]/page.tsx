@@ -522,11 +522,12 @@ export default async function service({
           </div>
         </div>
       </section>
-
+      {data.mobileAppServiceSection &&
       <MobileAppServiceSection data={data} />
-
+}
+      {data.secondMobileAppAcc &&
       <SecondMobileServiceAcc data={data} />
-
+      }
       {/*  Preferred Choice for QA Testing*/}
       {data.advantagesOfQA &&
         <section className="px-6 py-10 md:px-16 md:py-16">
