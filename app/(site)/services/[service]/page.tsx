@@ -553,7 +553,7 @@ export default async function service({
                     <div className="flex-shrink-0">
                       <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#1D92FB] text-white font-bold">
                         {item.number}
-                      </div>.
+                      </div>
                       {index < data.preferredChoice.items.length - 1 && (
                         <div className="absolute left-5 top-16 h-10 border-l-4 border-[#1D92FB]" />
                       )}
