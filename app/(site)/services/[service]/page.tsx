@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import HeroSectionComponent from "../../components/HeroSectionComponent";
 import Image from "next/image";
 import ScrollButton from "../../components/valueBluePrint";
 import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
 import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordian";
-import HomePageForm from "../../components/Homepage-form";
+import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -149,12 +148,13 @@ export default async function service({
             {(data.firstButton || data.secondButton) &&
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                 {data.firstButton &&
-                  <Link
-                    href={data.firstButton.firstButtonUrl}
-                    className="bg-[#1d92fb] text-white  py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
-                  >
-                    {data.firstButton.firstButtonText}
-                  </Link>
+                  <ButtonScrollToSection
+                    classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
+                    content={data.firstButton.firstButtonText}
+                    key="first-button"
+                    destination="contact-box"
+                  />
+
                 }
                 {data.secondButton &&
                   <Link
@@ -955,6 +955,7 @@ export default async function service({
           </p>
         </div>
       </section>
+
     </div>
   );
 }

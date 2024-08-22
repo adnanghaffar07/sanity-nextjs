@@ -291,7 +291,7 @@ const page = async () => {
       })}
 
       <ScrollAnimation>
-        <section className="flex justify-center leading-8 text-center bg-[#EFEEEE] pb-36 -mb-16">
+        <section className="flex justify-center leading-8 text-center bg-[#EFEEEE] pb-36 ">
           <div className="max-w-[1280px]">
             <h2 className="text-3xl sm:text-5xl my-20">Our Services</h2>
             <div className="text-slate-600 max-w-[1280px]">

@@ -2,8 +2,8 @@
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 import { usePathname } from "next/navigation";
-const ProjectDiscussionContainer = dynamic(
-  () => import("./project-discussion-form"),
+const CalendlyForm = dynamic(
+  () => import("./Calendlyform"),
   {
     suspense: true,
   }
@@ -16,11 +16,14 @@ const FormDisplay = () => {
   const currentPath = usePathname();
   return currentPath !== "/partnership-program" ? (
     <Suspense fallback={<p>Loading Form ...</p>}>
-      <ProjectDiscussionContainer />
+      <CalendlyForm />
     </Suspense>
   ) : (
     <Suspense fallback={<p>Loading Form ...</p>}>
-      <PartnershipForm />
+      {/* <div className="lg:max-w[506px] ml-auto mr-auto -mb-12 relative z-10 lg:px-0 px-5"> */}
+      {/* <PartnershipForm /> */}
+      <CalendlyForm />
+      {/* </div> */}
     </Suspense>
   );
 };

@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-      <link rel="canonical" href="https://codeautomation.xn--ai-02t"/>
+        <link rel="canonical" href="https://codeautomation.xn--ai-02t" />
 
         {/* Meta Pixel Code */}
         <script
@@ -156,7 +156,7 @@ export default function RootLayout({
           <HomeNavigationContainer />
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
-            <div className="lg:max-w[506px] ml-auto mr-auto -mb-12 relative z-10 lg:px-0 px-5">
+            <div >
               <FormDisplay />
             </div>
           </Suspense>

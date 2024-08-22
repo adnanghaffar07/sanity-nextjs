@@ -36,7 +36,7 @@ const initialValues = {
   message: "",
 };
 
-export default function HomePageForm() {
+export default function CalendlyProjectForm() {
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
@@ -200,15 +200,9 @@ export default function HomePageForm() {
   return (
     <div
       className="flex justify-center items-center px-10 pt-6 pb-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
-   
+      id="contact-box"
     >
       <div className="flex flex-col mt-2 w-full max-w-[700px] max-md:max-w-full">
-        <h3 className="md:text-2xl text-2xl text-left font-medium leading-[52px] max-md:max-w-full text-[#3C3C3C]">
-          Need a Consultation?
-        </h3>
-        <p className="text-lg font-medium text-left text-[#3C3C3C] mb-2 leading-[32px] max-md:max-w-full ">
-          Drop us a line! We are here to answer your query 24/7.
-        </p>
         <form onSubmit={handleCombinedSubmit}>
           <div className="">
             <input
