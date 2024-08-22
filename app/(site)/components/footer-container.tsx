@@ -53,7 +53,7 @@ export default function FooterContainer() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-5 w-full bg-[#1D92FB] max-md:max-w-full">
+      <div className="flex flex-col items-center py-5 w-full bg-[#1D92FB] max-md:max-w-full pt-10">
         <div className="w-full max-w-[1582px] lg:px-10 px-5  max-md:max-w-full grid xl:grid-cols-5 md:grid-cols-3 gap-5">
           <div className="flex flex-col xl:col-span-2 md:col-span-3 xl:pr-36">
             <div className="grid xl:grid-cols-1 md:grid-cols-2 gap-6 text-lg font-light text-white max-md:mt-10 self-start">
