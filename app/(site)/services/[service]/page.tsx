@@ -8,6 +8,7 @@ import Image from "next/image";
 import ScrollButton from "../../components/valueBluePrint";
 import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
 import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordian";
+import HomePageForm from "../../components/Homepage-form";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -142,9 +143,31 @@ export default async function service({
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
               <h2 className="title capitalize">{data.serviceTitle}</h2>
             </div>
-            <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+            <div className="lg:text-2xl max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               {data.serviceDesc}
             </div>
+            {(data.firstButton || data.secondButton) &&
+              <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
+                {data.firstButton &&
+                  <Link
+                    href={data.firstButton.firstButtonUrl}
+                    className="bg-[#1d92fb] text-white  py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
+                  >
+                    {data.firstButton.firstButtonText}
+                  </Link>
+                }
+                {data.secondButton &&
+                  <Link
+                    href={data.secondButton.SecondButtonUrl}
+                    className="bg-[#f7e022]  text-black  font-semibold py-3 px-8 rounded-lg shadow-lg text-center w-full sm:max-w-64"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {data.secondButton.SecondButtonText}
+                  </Link>
+                }
+              </div>
+            }
           </div>
         </div>
       </div>
@@ -523,10 +546,10 @@ export default async function service({
         </div>
       </section>
       {data.mobileAppServiceSection &&
-      <MobileAppServiceSection data={data} />
-}
+        <MobileAppServiceSection data={data} />
+      }
       {data.secondMobileAppAcc &&
-      <SecondMobileServiceAcc data={data} />
+        <SecondMobileServiceAcc data={data} />
       }
       {/*  Preferred Choice for QA Testing*/}
       {data.advantagesOfQA &&
@@ -932,29 +955,6 @@ export default async function service({
           </p>
         </div>
       </section>
-
-      {/* Contact Section */}
-      {/* <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
-                <div className="container mx-auto text-center">
-                    <h2 className="text-2xl font-bold mb-4">{data.contactSection?.contactUsHeading}</h2>
-                    <p className="text-lg text-center">
-                        {data.contactSection?.contactUsDesc}
-
-                    </p>
-                   
-                    <p className="text-blue-500 font-bold">
-                     <Link href='mailto:info@codeautomation.ai' target="_blank"> {data.contactSection?.contactEmail} </Link>
-                    </p> 
-                  
-
-                    <p className=" text-blue-500 font-bold">
-                    <Link href='tel:+18505584691'>  {data.contactSection?.contactPhone} </Link>
-                    </p>
-                    <p className=" text-blue-500 font-bold">
-                    <Link href='https://codeautomation.ai/' target="_blank">   {data.contactSection?.contactLink} </Link>
-                    </p>
-                </div>
-            </section> */}
     </div>
   );
 }

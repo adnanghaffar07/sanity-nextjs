@@ -51,6 +51,42 @@ const logicalServices = {
       title: "Service Description",
       type: "string",
     },
+    //First Button
+    {
+      name: "firstButton",
+      title: "First Button",
+      type: "object",
+      fields: [
+        {
+          name: 'firstButtonText',
+          type: 'string',
+          title: 'First Button Text',
+        },
+        {
+          name: 'firstButtonUrl',
+          type: 'url',
+          title: 'First Button URL',
+        },
+      ]
+    },
+    //Second Button
+    {
+      name: "secondButton",
+      title: "Second Section",
+      type: "object",
+      fields: [
+        {
+          name: 'SecondButtonText',
+          type: 'string',
+          title: 'Second Button Text',
+        },
+        {
+          name: 'SecondButtonUrl',
+          type: 'url',
+          title: 'Second Button URL',
+        },
+      ]
+    },
 
 
     // Introduction Section
@@ -373,7 +409,7 @@ const logicalServices = {
       ],
     },
 
- 
+
     //Your Premier Mobile App Development Partne
     {
       name: 'mobileAppServiceSection',
@@ -423,89 +459,89 @@ const logicalServices = {
       ],
     },
 
-       //Innovative Mobile App Solutions for a Range of Industries
-       {
-        name: 'secondMobileAppAcc',
-        type: 'document',
-        title: 'Innovative Mobile App Solutions for a Range of Industries',
-        fields: [
-          {
-            name: 'heading',
-            type: 'string',
-            title: 'Heading',
-          },
-          {
-            name: 'description',
-            type: 'text',
-            title: 'Description',
-          },
-          {
-            name: 'accordionItems',
-            type: 'array',
-            title: 'Accordion Items',
-            of: [
-              {
-                type: 'object',
-                fields: [
-                  {
-                    name: 'title',
-                    type: 'string',
-                    title: 'Title',
-                  },
-                  {
-                    name: 'contentArray',
-                    type: 'array',
-                    title: 'Content Array',
-                    of: [
-                      {
-                        type: 'object',
-                        fields: [
-                          {
-                            name: 'stringField',
-                            type: 'string',
-                            title: 'String Field',
-                          },
-                          {
-                            name: 'nestedArray',
-                            type: 'array',
-                            title: 'Nested Array',
-                            of: [
-                              {
-                                type: 'object',
-                                fields: [
-                                  {
-                                    name: 'heading',
-                                    type: 'string',
-                                    title: 'Heading',
-                                  },
-                                  {
-                                    name: 'text',
-                                    type: 'text',
-                                    title: 'Text',
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            name: 'imageSrc',
-            type: 'image',
-            title: 'Image',
-            options: {
-              hotspot: true, // Enables image cropping
+    //Innovative Mobile App Solutions for a Range of Industries
+    {
+      name: 'secondMobileAppAcc',
+      type: 'document',
+      title: 'Innovative Mobile App Solutions for a Range of Industries',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          title: 'Description',
+        },
+        {
+          name: 'accordionItems',
+          type: 'array',
+          title: 'Accordion Items',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'contentArray',
+                  type: 'array',
+                  title: 'Content Array',
+                  of: [
+                    {
+                      type: 'object',
+                      fields: [
+                        {
+                          name: 'stringField',
+                          type: 'string',
+                          title: 'String Field',
+                        },
+                        {
+                          name: 'nestedArray',
+                          type: 'array',
+                          title: 'Nested Array',
+                          of: [
+                            {
+                              type: 'object',
+                              fields: [
+                                {
+                                  name: 'heading',
+                                  type: 'string',
+                                  title: 'Heading',
+                                },
+                                {
+                                  name: 'text',
+                                  type: 'text',
+                                  title: 'Text',
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
+          ],
+        },
+        {
+          name: 'imageSrc',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true, // Enables image cropping
           },
-        ],
-      },      
-  
+        },
+      ],
+    },
+
 
     // Why We’re the Preferred Choice for QA Testing
     {
