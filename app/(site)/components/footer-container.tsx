@@ -56,9 +56,7 @@ export default function FooterContainer() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/Footer.png')" }}
-      >
-     
-      </div>
+      ></div>
       <div className=" relative flex flex-col items-center py-5 w-full max-md:max-w-full pt-10">
         <div className="w-full max-w-[1582px] lg:px-10 px-5  max-md:max-w-full grid xl:grid-cols-5 md:grid-cols-3 gap-5">
           <div className="flex flex-col xl:col-span-2 md:col-span-3 xl:pr-36">
@@ -100,8 +98,23 @@ export default function FooterContainer() {
                   </section>
                 </div>
               </div>
+              <div className="flex flex-col gap-1">
+                <Link
+                  href={"/privacypolicy"}
+                  className="text-sm text-gray-200 hover:underline"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href={"termsandconditions"}
+                  className="text-sm text-gray-200 hover:underline"
+                >
+                  Terms and Conditions
+                </Link>
+              </div>
             </div>
           </div>
+
           <div className="flex flex-col">
             <div className="flex flex-col grow text-white max-md:mt-10 items-center xl:ml-8 flex-1 px-5 text-xl relative z-10 self-start">
               <div className="text-2xl font-medium self-start">Solutions</div>
