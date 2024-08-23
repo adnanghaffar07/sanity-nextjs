@@ -45,7 +45,7 @@ const CalendlyForm: React.FC = () => {
                 if (calendlyWidgetRef.current && !calendlyWidgetRef.current.hasChildNodes()) {
                     try {
                         window.Calendly.initInlineWidget({
-                            url: 'https://calendly.com/adnanghaffar/30min',
+                            url: 'https://calendly.com/adnanghaffar/30min?timezone=America/New_York',
                             parentElement: calendlyWidgetRef.current,
                         });
                     } catch (error) {
@@ -61,7 +61,7 @@ const CalendlyForm: React.FC = () => {
             if (calendlyWidgetRef.current && !calendlyWidgetRef.current.hasChildNodes()) {
                 try {
                     window.Calendly.initInlineWidget({
-                        url: 'https://calendly.com/adnanghaffar/30min',
+                        url: 'https://calendly.com/adnanghaffar/30min?timezone=America/New_York',
                         parentElement: calendlyWidgetRef.current,
                     });
                 } catch (error) {
