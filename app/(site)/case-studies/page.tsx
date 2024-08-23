@@ -229,8 +229,8 @@ const Page = () => {
             >
               <button
                 onClick={handlePrevPage}
-                className="flex items-center justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-yellow-700 bg-green-800"
-              >
+                className="flex items-center justify-center px-3 h-10 text-sm font-medium bg-[#f7e022] border rounded-xl text-black hover:bg-[#e8d21e] transition-colors"
+                >
                 <svg
                   className="w-3.5 h-3.5 me-2 rtl:rotate-180"
                   aria-hidden="true"
@@ -261,8 +261,8 @@ const Page = () => {
             >
               <button
                 onClick={handleNextPage}
-                className="flex items-center justify-center px-3 h-10 text-sm font-medium text-white hover:shadow-lg hover:shadow-blue-700 bg-blue-800 border-0"
-              >
+                className="flex items-center justify-center px-3 h-10 text-sm font-medium bg-[#1d92fb] rounded-xl  ml-4 text-white border hover:bg-blue-700 transition-colors"
+                >
                 Next
                 <svg
                   className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
