@@ -77,14 +77,14 @@ const CalendlyForm: React.FC = () => {
         <div className="relative flex flex-col w-full mx-auto max-md:max-w-full">
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
             <div className="relative px-6 md:px-16 py-6 md:py-16">
-                <div className="flex flex-col md:flex-row gap-5 pb-16 max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row md:gap-32 max-w-7xl mx-auto">
                     {/* Left Side: Form */}
-                    <div className="flex flex-col w-full md:w-[45%] self-center md:pb-0 pb-10">
-                        <div className="flex flex-col text-black mt-10 md:mt-0 max-w-full md:ml-3">
-                            <h3 className="text-2xl md:text-2xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
+                    <div className="flex flex-col w-full md:w-[45%] self-center md:pb-0 pb-10 md:ml-24">
+                        <div className="flex flex-col text-black mt-10 mb-10 md:mt-0 max-w-full md:ml-3">
+                            <h3 className="text-2xl md:text-3xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
                                 Ready to innovate your business?
                             </h3>
-                            <p className="text-lg text-left text-[#3C3C3C] mb-6 leading-[32px] max-w-full">
+                            <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
                                 We are! Let’s kick-off our journey to success!
                             </p>
                             <div className="max-w-[500px]"><CalendlyProjectForm /></div>
@@ -92,9 +92,9 @@ const CalendlyForm: React.FC = () => {
                     </div>
 
                     {/* Right Side: Calendar */}
-                    <div className="flex flex-col w-full md:w-[50%] md:ml-20">
-                        <div className="flex flex-col">
-                            <div className="text-2xl md:text-2xl text-left font-bold leading-[52px] text-[#3C3C3C]">
+                    <div className="flex flex-col w-full md:w-[50%] ">
+                        <div className="flex flex-col flex-end">
+                            <div className="text-2xl md:text-3xl text-left font-semibold leading-[52px] text-[#3C3C3C]">
                                 Book a meeting
                             </div>
                             <div className="flex gap-3 items-start mt-4 whitespace-nowrap">
