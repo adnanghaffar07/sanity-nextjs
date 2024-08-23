@@ -52,8 +52,14 @@ export default function FooterContainer() {
   ];
 
   return (
-    <div>
-      <div className="flex flex-col items-center py-5 w-full bg-[#1D92FB] max-md:max-w-full pt-10">
+    <div className="relative">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/Footer.png')" }}
+      >
+     
+      </div>
+      <div className=" relative flex flex-col items-center py-5 w-full max-md:max-w-full pt-10">
         <div className="w-full max-w-[1582px] lg:px-10 px-5  max-md:max-w-full grid xl:grid-cols-5 md:grid-cols-3 gap-5">
           <div className="flex flex-col xl:col-span-2 md:col-span-3 xl:pr-36">
             <div className="grid xl:grid-cols-1 md:grid-cols-2 gap-6 text-lg font-light text-white max-md:mt-10 self-start">
@@ -221,7 +227,7 @@ export default function FooterContainer() {
                   </a>
                 </div>
 
-                <div className="flex flex-row gap-3 items-start">
+                <div className="flex flex-row gap-2 items-start">
                   <Image
                     src="/USA_Flag.png"
                     alt="USA-Flag-Icon"
@@ -234,7 +240,7 @@ export default function FooterContainer() {
                   </span>
                 </div>
 
-                <div className="flex flex-row gap-3 items-start pb-2">
+                <div className="flex flex-row gap-2 items-start pb-2">
                   <Image
                     src="/Canada-Flag.png"
                     alt="Canada-Flag-Icon"
@@ -249,13 +255,13 @@ export default function FooterContainer() {
 
                 {showAddress ? (
                   <span
-                    className="cursor-pointer font-semibold"
+                    className="cursor-pointer font-semibold ml-8"
                     onClick={handleClick}
                   >
                     See more...
                   </span>
                 ) : (
-                  <div className="flex flex-row gap-3 items-start">
+                  <div className="flex flex-row gap-2.5 items-start">
                     <Image
                       src="/Pakistan-Flag.png"
                       alt="Pakistan-Flag-Icon"
