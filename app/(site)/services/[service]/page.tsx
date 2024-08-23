@@ -142,7 +142,7 @@ export default async function service({
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
               <h2 className="title capitalize">{data.serviceTitle}</h2>
             </div>
-            <div className="lg:text-2xl max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+            <div className="lg:text-2xl mx-auto max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               {data.serviceDesc}
             </div>
             {(data.firstButton || data.secondButton) &&
