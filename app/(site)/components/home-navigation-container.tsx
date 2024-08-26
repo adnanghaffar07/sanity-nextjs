@@ -137,6 +137,24 @@ export default function HomeNavigationContainer() {
                 <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-8">
+                    <Link
+                        href={`/services/${linkUrlSoft}`}
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/logo-javascript.svg"
+                            alt=""
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Software Development</p>
+                          <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
+                        </div>
+                      </Link>
                       <Link
                         href={`/services/${linkUrlCMS1}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -173,24 +191,6 @@ export default function HomeNavigationContainer() {
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">Headless-CMS</p>
                           <p className="mt-1 text-sm text-gray-500">Customized Headless-CMS</p>
-                        </div>
-                      </Link>
-                      <Link
-                        href={`/services/${linkUrlSoft}`}
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/logo-javascript.svg"
-                            alt=""
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">Software Development</p>
-                          <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
                         </div>
                       </Link>
                       <Link
