@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // Import Yup for validation
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // Import useRouter hook
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 
@@ -37,6 +37,7 @@ const initialValues = {
 };
 
 export default function HomePageForm() {
+  const router = useRouter(); // Initialize the useRouter hook
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
@@ -44,7 +45,7 @@ export default function HomePageForm() {
 
   const currentPath = usePathname();
   const [message, setMessage] = useState("");
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false); // State to manage the loading indicator
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
 
@@ -84,9 +85,11 @@ export default function HomePageForm() {
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
+    setUploading(true); // Start loading state
 
     if (!recaptchaValue) {
       setErrorRecaptcha("Please verify the above checkbox");
+      setUploading(false); // Stop loading state if there's an error
       return;
     }
 
@@ -96,6 +99,7 @@ export default function HomePageForm() {
       !values.contact_number.length ||
       !values.looking.length
     ) {
+      setUploading(false); // Stop loading state if fields are empty
       return;
     }
 
@@ -105,6 +109,7 @@ export default function HomePageForm() {
       errors.email ||
       errors.looking
     ) {
+      setUploading(false); // Stop loading state if there are validation errors
       return;
     }
 
@@ -121,6 +126,7 @@ export default function HomePageForm() {
       setBgColor("bg-red-500");
       setMessage("Please enter a valid email address.");
       setMessageSuccess("w-[100%]");
+      setUploading(false); // Stop loading state
       return;
     }
 
@@ -132,7 +138,6 @@ export default function HomePageForm() {
       formData.append("looking", values.looking);
       formData.append("message", values.message);
       formData.append("pagename", actuallPageName || "Home");
-      setUploading(true);
       setMessage("Submitting form...");
 
       setMessageSuccess("w-[10%]");
@@ -149,9 +154,9 @@ export default function HomePageForm() {
           form: "contactForm",
         });
 
-        setBgColor("bg-green-500");
-        setMessage("Your Message has been successfully submitted!");
-        setMessageSuccess("w-[100%]");
+        // Redirect to Thank You page
+        router.push("/thankyou");
+
         resetForm();
         recaptchaRef?.current?.reset();
         setRecaptchaValue("");
@@ -167,7 +172,7 @@ export default function HomePageForm() {
       setMessageSuccess("w-[100%]");
       console.error("Error:", error);
     } finally {
-      setUploading(false);
+      setUploading(false); // Stop loading state
       setTimeout(() => {
         setMessage("");
       }, 8000);
@@ -200,7 +205,7 @@ export default function HomePageForm() {
   return (
     <div
       className="flex justify-center items-center px-10 pt-6 pb-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
-   
+      id="contact-box"
     >
       <div className="flex flex-col mt-2 w-full max-w-[700px] max-md:max-w-full">
         <h3 className="md:text-2xl text-2xl text-left font-medium leading-[52px] max-md:max-w-full text-[#3C3C3C]">
@@ -290,12 +295,16 @@ export default function HomePageForm() {
             className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
               }`}
           >
-            Submit
+            {uploading ? (
+              <span className="loader"></span> // You can use a spinner class here
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>
 
-      {message && (
+      {/* {message && (
         <div
           className={`fixed top-14  lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg w-[270px] sm:w-[450px] z-[1000]`}
         >
@@ -304,7 +313,7 @@ export default function HomePageForm() {
           ></div>
           <p className="message text-xs sm:text-base">{message}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
