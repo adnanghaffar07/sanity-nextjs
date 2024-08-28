@@ -8,6 +8,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
+import ButtonScrollToSection from "../components/ButtonScrollToSection";
 
 const Page = () => {
   const [originalCards, setOriginalCards] = useState<any[]>([]);
@@ -149,7 +150,7 @@ const Page = () => {
         <div className="w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           <Image
-            src="/CaseStudyHero.jpg"
+            src="/CaseStudyHero.png"
             alt="CaseStudyHero.jpg"
             loading="lazy"
             fill
@@ -157,19 +158,27 @@ const Page = () => {
           />
         </div>
 
-        <div className="mt-[130px] sm:mt-[327px] items-center absolute inset-0 flex flex-col z-[2]">
+        <div className="mt-[130px] sm:mt-[290px] items-center absolute inset-0 flex flex-col z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
-            Our Case Studies
+            Discover Success Stories
           </h1>
-          <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
-            Explore our case study on CodeAutomation, showcasing how innovative
-            strategies significantly enhance efficiency, reduce costs, and
-            accelerate development in software projects.
+          <p className="mt-2 sm:mt-4 mb-4 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-white max-w-5xl xl:px-0 text-center">
+            Explore our case study on codeautomation, showcasing how innovative strategies significantly enhance efficiency, reduce costs, and accelerate development in software projects.
           </p>
+          <ButtonScrollToSection
+            content="Let’s Get Started"
+            classes="bg-[#1D92FB]  hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+            destination="gridSection"
+
+            key="Lets-Get-Started"
+          />
+
+
         </div>
       </section>
 
-      <section className="px-6 md:px-16 py-10 md:py-16">
+      <section className=" relative">
+        <div className="absolute inset-0 bg-[#3595EB] opacity-10 pointer-events-none"></div>
         <img
           loading="lazy"
           src="/ellipse-1.png"
@@ -177,7 +186,7 @@ const Page = () => {
           alt="ellipse"
         />
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl px-6 md:px-16 py-10 md:py-16 mx-auto relative">
           {/* Content with Image and Text */}
           <div className="flex flex-col md:flex-row items-center justify-between">
             {/* Text Section on the Left */}
@@ -206,11 +215,10 @@ const Page = () => {
 
 
 
-      <div className="flex flex-col items-center justify-center relative">
-        <div className="absolute inset-0 bg-[#3595EB] opacity-10 pointer-events-none"></div>
+      <div className="flex flex-col items-center justify-center mb-24 " id="gridSection">
 
         {/* Filter Section */}
-        <section className="w-full max-w-[1240px] relative mx-auto">
+        <section className="w-full max-w-[1340px] mx-auto">
           <div className="flex flex-col md:flex-row gap-4 mt-10 items-center w-full px-6">
             {/* Heading and Search Bar */}
             <h1 className="text-2xl md:text-4xl text-black font-bold">
@@ -264,7 +272,7 @@ const Page = () => {
               <button
                 className={`px-4 py-2 rounded border ${activeFilter === "all"
                   ? "bg-[#1D92FB] text-white"
-                  : "bg-transparent border-[#1D92FB] text-[#1D92FB]"
+                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
                   }`}
                 onClick={() => handleFilterChange("all")}
               >
@@ -275,7 +283,7 @@ const Page = () => {
               <button
                 className={`px-4 py-2 rounded border ${activeFilter === "app"
                   ? "bg-[#1D92FB] text-white"
-                  : "bg-transparent border-[#1D92FB] text-[#1D92FB]"
+                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
                   }`}
                 onClick={() => handleFilterChange("app")}
               >
@@ -286,7 +294,7 @@ const Page = () => {
               <button
                 className={`px-4 py-2 rounded border ${activeFilter === "web"
                   ? "bg-[#1D92FB] text-white"
-                  : "bg-transparent border-[#1D92FB] text-[#1D92FB]"
+                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
                   }`}
                 onClick={() => handleFilterChange("web")}
               >
@@ -297,7 +305,7 @@ const Page = () => {
               <button
                 className={`px-4 py-2 rounded border ${activeFilter === "qa"
                   ? "bg-[#1D92FB] text-white"
-                  : "bg-transparent border-[#1D92FB] text-[#1D92FB]"
+                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
                   }`}
                 onClick={() => handleFilterChange("qa")}
               >
@@ -308,7 +316,7 @@ const Page = () => {
               <button
                 className={`px-4 py-2 rounded border ${activeFilter === "shopify"
                   ? "bg-[#1D92FB] text-white"
-                  : "bg-transparent border-[#1D92FB] text-[#1D92FB]"
+                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
                   }`}
                 onClick={() => handleFilterChange("shopify")}
               >
@@ -319,37 +327,37 @@ const Page = () => {
         </section>
 
         {/* Case Study Grid Section */}
- 
-<section
-  className="mx-auto relative max-w-[1640px] mt-10 px-5"
-  id="gridSection"
->
-  <div className="md:grid md:grid-cols-3 grid grid-cols-1 gap-7 sm:gap-10 md:gap-10">
-    {paginateItems().map((item: any, index: any) => (
-      <div key={index} className="relative w-full cursor-pointer group overflow-hidden">
-        <Link href={`/case-studies/${item?.url}`}>
-          {item?.cardImage && (
-            <Image
-              width={454}
-              height={300}
-              className="w-full aspect-[1.52] md:max-w-[380px] sm:max-w-[204px] sm:mb-2"
-              src={urlForImage(item.cardImage).toString()}
-              alt="card"
-            />
-          )}
-          <div
-            className={`absolute inset-0 flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-700 rounded-3xl`}
-            style={{
-              backgroundColor: item.backgroundColor || '#4aa2f0', // Default or dynamic color
-            }}
-          >
-            <p className="text-white">{item.cardDescription}</p>
+
+        <section
+          className="mx-auto relative max-w-[1740px] mt-10 px-5"
+
+        >
+          <div className="md:grid md:grid-cols-3 grid grid-cols-1 gap-7 sm:gap-10 md:gap-10">
+            {paginateItems().map((item: any, index: any) => (
+              <div key={index} className="relative w-full cursor-pointer group overflow-hidden">
+                <Link href={`/case-studies/${item?.url}`}>
+                  {item?.cardImage && (
+                    <Image
+                      width={454}
+                      height={300}
+                      className="w-full aspect-[1.52] md:max-w-[410px] sm:max-w-[204px] sm:mb-2"
+                      src={urlForImage(item.cardImage).toString()}
+                      alt="card"
+                    />
+                  )}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 rounded-3xl`}
+                    style={{
+                      backgroundColor: item.backgroundColor || '#4aa2f0', // Default or dynamic color
+                    }}
+                  >
+                    <p className="text-white">{item.cardDescription}</p>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
-        </Link>
-      </div>
-    ))}
-  </div>
-</section>
+        </section>
 
 
         {/* Pagination Section */}
@@ -393,15 +401,17 @@ const Page = () => {
               <button
                 key={index}
                 onClick={() => setCurrentPage(index)}
-                className={`px-3 py-1 rounded-md border transition-colors ${currentPage === index
+                className={`w-10 h-10 flex items-center justify-center px-4 py-1 rounded-md border transition-colors ${currentPage === index
                   ? "bg-[#1D92FB] text-white"
                   : "bg-white text-[#1D92FB] border-[#1D92FB]"
                   }`}
+                style={{ minWidth: '40px', minHeight: '40px' }} // Optional: If you need exact pixel dimensions
               >
                 {index + 1}
               </button>
             ))}
           </div>
+
 
           <ScrollLink
             to="gridSection"
