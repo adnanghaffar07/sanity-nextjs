@@ -91,7 +91,7 @@ const CalendlyForm: React.FC = () => {
                 Ready to innovate your business?
               </h3>
               <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
-                We are! Let’s kick-off our journey to success!
+                We are here!
               </p>
               <div className="max-w-[500px]">
                 <CalendlyProjectForm />
@@ -138,9 +138,9 @@ const CalendlyForm: React.FC = () => {
               >
                 {/* Calendly Inline Widget will be injected here */}
               </div>
-              <p className="text-lg text-left text-[#3C3C3C] mt-4 leading-[32px]">
+              {/* <p className="text-lg text-left text-[#3C3C3C] mt-4 leading-[32px]">
                 * US and Canada, exceptions apply
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
