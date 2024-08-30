@@ -513,7 +513,9 @@ export default function Home() {
               </h2>
               <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
                 <Link
-                  href="tel:+1-850-558-4691"
+                  href="https://join.skype.com/invite/crU4cXW4bttb"
+                  target="_blank"
+                  // href="tel:+1-850-558-4691"
                   className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
                 >
                   <p className="relative grow self-center text-black font-semibold text-lg">
@@ -911,7 +913,7 @@ export default function Home() {
                       alt="clutch-icon"
                       width={80}
                       height={22}
-                    // className="h-auto"
+                      // className="h-auto"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center">
