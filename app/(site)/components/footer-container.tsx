@@ -98,16 +98,17 @@ export default function FooterContainer() {
                   </section>
                 </div>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex gap-2 items-center justify-start">
                 <Link
                   href={"/privacypolicy"}
-                  className="text-sm text-gray-200 hover:underline"
+                  className="text-sm hover:underline"
                 >
                   Privacy Policy
                 </Link>
+                <div className="w-1 h-1 bg-white rounded-full"></div>
                 <Link
                   href={"termsandconditions"}
-                  className="text-sm text-gray-200 hover:underline"
+                  className="text-sm hover:underline"
                 >
                   Terms and Conditions
                 </Link>
