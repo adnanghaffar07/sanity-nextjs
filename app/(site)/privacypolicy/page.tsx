@@ -17,10 +17,9 @@ const page = () => {
               <h2 className="title capitalize">Privacy Policy</h2>
             </div>
             <p className="md:text-2xl sm:text-xl text-lg text-center mt-4 max-md:max-w-full lg:px-32">
-              This Privacy Policy describes Our policies and procedures on the
-              collection, use and disclosure of Your information when You use
-              the Service and tells You about Your privacy rights and how the
-              law protects You
+              We&apos;re obliged to keep your shared information confidential.
+              Your privacy is safeguarded throughout our software development
+              services.
             </p>
             <div className="pt-8 flex items-center justify-center">
               <Link
