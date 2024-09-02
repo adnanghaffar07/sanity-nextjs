@@ -174,7 +174,7 @@ const Services = async () => {
       </ScrollAnimation>
 
       <div className="pt-24 sm:pt-32 relative 2xl:container 2xl:mx-auto overflow-x-hidden">
-        <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[600px] md:-left-[500px] -top-20 flex items-center justify-center z-0">
+        <div className="bg-[#1D92FB] opacity-15 w-[734px] h-[734px] rounded-full absolute -left-[660px] md:-left-[560px] -top-20 flex items-center justify-center z-0">
           <div className="bg-white w-[584px] h-[584px] rounded-full"></div>
         </div>
 
