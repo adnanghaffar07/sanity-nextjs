@@ -750,8 +750,8 @@ export default function Home() {
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/project-initiation.svg"
-                        className="w-full aspect-[1.09]"
+                        src="/4.png"
+                        className="w-full"
                         alt="Code automation Project Initiation"
                       />
                     </div>
@@ -773,8 +773,8 @@ export default function Home() {
                   <div className="flex justify-center items-center self-start px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:pl-5 absolute -top-10 right-5">
                     <img
                       loading="lazy"
-                      src="/design-icon.svg"
-                      className="w-full aspect-[1.04]"
+                      src="/3.png"
+                      className="w-full"
                       alt="Code Automation Software Design"
                     />
                   </div>
@@ -834,11 +834,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col  max-md:ml-0 max-md:w-full">
               <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 justify-center items-center self-end px-6 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:px-5 absolute -top-10 right-5">
+                <div className="flex z-10 justify-center items-center self-end px-3 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:px-5 absolute -top-10 right-5">
                   <img
                     loading="lazy"
-                    src="/launch-icon.svg"
-                    className="w-full aspect-[0.58]"
+                    src="/6.png"
+                    className="w-full"
                     alt="Launch"
                   />
                 </div>
@@ -859,7 +859,7 @@ export default function Home() {
                 <div className="flex z-10 justify-center items-center self-end px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 absolute -top-10 right-5">
                   <img
                     loading="lazy"
-                    src="/archives-icon.svg"
+                    src="/5.png"
                     className="w-full aspect-[1.02]"
                     alt="Archives and Artifacts"
                   />
