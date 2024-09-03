@@ -10,7 +10,6 @@ const page = () => {
           src="/privacy-policy.png"
           alt="privacy policy"
         />
-        {/* <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div> */}
         <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 lg:pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow mt-20 lg:mt-0">
           <div className="flex flex-col items-center justify-center text-center">
             <div className="lg:text-4xl text-2xl font-bold capitalize lg:w-8/12 mx-auto">
@@ -21,14 +20,6 @@ const page = () => {
               Your privacy is safeguarded throughout our software development
               services.
             </p>
-            <div className="pt-8 flex items-center justify-center">
-              <Link
-                href="/"
-                className="bg-[#1d92fb] text-white py-3 px-5 font-semibold rounded-lg shadow-lg text-center w-full sm:w-48"
-              >
-                Back to Homepage
-              </Link>
-            </div>
           </div>
         </div>
       </div>
