@@ -133,7 +133,7 @@ const portfolioSchema = {
                 },
 
                 {
-                  name: "image",
+                  name: "images",
                   title: "Image",
                   type: "image",
                 },
@@ -153,7 +153,9 @@ const portfolioSchema = {
                 {
                   name: 'text',
                   title: 'Text',
-                  type: 'string',                },
+                  type: 'string',           
+                     },
+
               ],
             },
           ],
