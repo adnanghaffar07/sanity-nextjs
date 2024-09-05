@@ -11,6 +11,17 @@ const logicalServices = {
       type: "string",
     },
     {
+      name: "redirectUrl",
+      title: "Redirect URL",
+      type: "url", // This will only be set if the service requires redirection
+    },
+    {
+      name: "enableRedirect",
+      title: "Enable Redirect",
+      type: "boolean", // A flag to enable/disable redirect for a specific service
+      initialValue: false // Set the default value to false
+    },
+    {
       name: "serviceCardTitle",
       title: "Service Card Title",
       type: "string",
@@ -121,7 +132,7 @@ const logicalServices = {
       ],
     },
 
-    // Introduction Section
+    // Design
     {
       name: "designSection",
       title: "Design Section",
@@ -178,6 +189,45 @@ const logicalServices = {
         },
       ],
     },
+
+    //CMS page Cards
+
+    {
+      name: 'contentItems',
+      title: 'Content Items',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          title: 'Content Item',
+          fields: [
+            {
+              name: "cmsImage",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+            {
+              name: 'heading',
+              title: 'Heading',
+              type: 'string',
+            },
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+      },
 
     // Our Mobile App Development Services
     {
