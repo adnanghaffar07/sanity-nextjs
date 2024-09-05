@@ -14,6 +14,11 @@ const portfolioSchema = {
       type: "string",
     },
     {
+      name: "color",
+      title: "Color",
+      type: "string",
+    },
+    {
       name: "pageType", // New field for page type
       title: "Page Type",
       type: "string",

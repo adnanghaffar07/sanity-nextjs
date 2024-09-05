@@ -224,7 +224,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       {data?.briefitemsarray?.map((item: any) => (
                         <div className="flex items-start self-stretch my-auto w-[232px]" key={item._key}>
 
-                          <div className="flex shrink-0 bg-[#C6C5C5] opacity-10 rounded-full h-[79px] w-[79px]" />
+                          <div className="flex shrink-0 rounded-full h-[79px] w-[79px]"
+                                     style={{ backgroundColor: data?.color ? `${data.color}33` : '#C6C5C533' }}
+
+                          />
                           <div className="flex flex-col mt-2.5 ">
                             <div className="self-start -ml-10 text-xl text-neutral-500">
                               {item.heading}
@@ -256,7 +259,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       {/* Project Goal Section */}
       <ScrollAnimation>
         {data.projectGoalsSection &&
-          <div className="px-6 md:px-16 py-10 md:py-16 mx-auto bg-green-400 bg-opacity-20">
+          <div className="px-6 md:px-16 py-10 md:py-16 mx-auto"
+          style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
+          >
             <div className="flex flex-col justify-center items-center bg-white rounded-2xl max-w-7xl mx-auto min-h-[412px] shadow-[0px_16px_32px_rgba(109,70,189,0.05)] max-md:px-5 max-md:max-w-full">
               <div className="md:text-4xl text-2xl font-semibold text-slate-900 mt-6">
                 {data.projectGoalsSection.title}
@@ -397,13 +402,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </h3>
 
           {data.caseStudiesToolsSection ? (
-            <div className="container mt-10">
+            <div className="container md:mt-10">
               <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10">
                 {data.caseStudiesToolsSection.toolsTech.map(
                   (tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
-                      className="w-full m-4 sm:m-0 sm:w-1/2 lg:w-1/3"
+                      className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/3"
                     >
                       <div className="flex md:justify-center gap-2">
                         <div className="flex flex-row gap-3">
@@ -467,11 +472,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       {/*  Application Features  */}
       <ScrollAnimation>
         <section className="">
-          <div className="px-6 md:px-16 py-5 md:pb-16 md:pt-8 max-w-7xl mx-auto">
+          <div className="px-6 md:px-16 pb-6 md:pb-16 pt-0 max-w-7xl mx-auto">
             {data.features?.featureslist.map((feature: any, index: number) => (
               <div key={feature._key} className="flex flex-col items-center">
                 {/* Render heading */}
-                <div className="flex flex-row items-center justify-center mt-4 space-x-4">
+                <div className="flex flex-row items-center justify-center space-x-4">
                   {/* Render logos */}
                   {feature.logo?.map((logoRef: any, logoIndex: any) => {
                     const logoData = dataLogo.find(
@@ -483,7 +488,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                           <img
                             src={urlForImage(logoData.image).toString()}
                             alt={logoData.heading}
-                            className="object-cover h-12 md:h-24 px-3"
+                            className="object-cover h-12 md:h-24"
                           />
                         </div>
                       );
@@ -505,10 +510,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <img
                     loading="lazy"
                     src={urlForImage(feature.logoImage).toString()}
-                    className="object-cover mt-4 md:px-20"
+                    className="object-cover my-2 md:px-20"
                   />
                 )}
-                <p className="font-semibold text-center text-2xl my-2 max-w-3xl tracking-wide leading-10 text-black max-md:max-w-full">
+                <p className="font-semibold text-center md:text-2xl text-lg my-2 max-w-3xl tracking-wide leading-10 text-black max-md:max-w-full">
                   {feature.description}
                 </p>
                 {/* Render images if available */}
@@ -516,7 +521,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <img
                     loading="lazy"
                     src={urlForImage(feature.images).toString()}
-                    className="object-cover mt-4 md:px-20"
+                    className="object-cover mt-4 md:px-32"
                   />
                 )}
               </div>
@@ -527,22 +532,22 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       </ScrollAnimation>
       <section >
         <div>
-        {data.typeoftestinglist &&
-          <ScrollAnimation>
-            {data?.secondaryimage &&
-              <div className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
-                {data?.secondaryimage?.asset && (
-                  <img
-                    loading="lazy"
-                    src={urlForImage(data.secondaryimage.asset)}
-                    alt={data.secondaryimage.alt}
-                    className="object-cover"
-                  />
-                )}
-              </div>
-            }
-          </ScrollAnimation>
-}
+          {data.typeoftestinglist &&
+            <ScrollAnimation>
+              {data?.secondaryimage &&
+                <div className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
+                  {data?.secondaryimage?.asset && (
+                    <img
+                      loading="lazy"
+                      src={urlForImage(data.secondaryimage.asset)}
+                      alt={data.secondaryimage.alt}
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+              }
+            </ScrollAnimation>
+          }
 
           <ScrollAnimation>
             {data.typeoftestinglist &&
@@ -632,7 +637,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
 
       <ScrollAnimation>
-        <section className="bg-green-400 bg-opacity-20 py-6 md:py-16 px-6 md:px-16">
+        <section
+           className={`py-6 md:py-16 px-6 md:px-16 bg-opacity-20`}
+           style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
+           >
+         
           <div className="px-6 md:px-16 py-6 max-w-7xl mx-auto  bg-white rounded-2xl max-w-7xl mx-auto shadow-[0px_16px_32px_rgba(109,70,189,0.05)]">
             <div className="">
               <h3 className="text-2xl font-semibold my-4 md:my-8">
