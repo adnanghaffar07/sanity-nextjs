@@ -110,7 +110,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
   return (
     <div className="">
       {data.typeoftestinglist &&
-        <section className="flex overflow-hidden relative flex-col md:pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        <section className="flex overflow-hidden relative flex-col bg-black md:pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
           {data?.title === "House Arrest" && data?.cardimage ? (
             <HouseArrestBanner />
           ) : (
@@ -130,7 +130,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             <img
               src={urlForImage(data.cardimage).toString()}
               alt="l"
-              className="top-0 left-0 object-cover absolute inset-0 size-full"
+              className="top-0 left-0 object-cover absolute inset-0 size-full bg-black"
             />
           )}
           <div className="lg:absolute lg:top-[200px] md:left-[0px] lg:left-[110px] ">
