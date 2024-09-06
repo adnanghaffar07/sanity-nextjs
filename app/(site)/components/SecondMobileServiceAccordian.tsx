@@ -42,7 +42,7 @@ function AccordionItem({ title, contentArray, isOpen, onToggle }: AccordionItemP
                         <div key={idx} className="mb-4">
                             <h4 className="">{contentItem.stringField}</h4>
                             <ul className="pl-4 mt-2 list-disc">
-                                {contentItem.nestedArray.map((nestedItem, nestedIdx) => (
+                                {contentItem?.nestedArray?.map((nestedItem, nestedIdx) => (
                                     <li key={nestedIdx} className="mt-2">
                                         <strong>{nestedItem.heading}</strong> {nestedItem.text}
                                     </li>
@@ -65,7 +65,7 @@ export default function SecondMobileServiceAcc({ data }: { data: any }) {
 
     return (
         <section className="px-6 md:px-16 py-10 md:py-16 relative">
-                      <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+            <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
 
             <div className="max-w-7xl mx-auto relative">
                 {/* Heading and Description in the Middle */}
@@ -96,7 +96,7 @@ export default function SecondMobileServiceAcc({ data }: { data: any }) {
                     <div className="flex-1 mt-8 md:mt-0">
                         <img
                             src={urlForImage(data.secondMobileAppAcc.imageSrc).toString()}
-                            alt={data.secondMobileAppAcc.heading}
+                            alt={data.secondMobileAppAcc.imageSrc.alt}
                             className="w-full h-auto rounded-lg shadow-md"
                         />
                     </div>

@@ -225,7 +225,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                         <div className="flex items-start self-stretch my-auto w-[232px]" key={item._key}>
 
                           <div className="flex shrink-0 rounded-full h-[79px] w-[79px]"
-                                     style={{ backgroundColor: data?.color ? `${data.color}33` : '#C6C5C533' }}
+                            style={{ backgroundColor: data?.color ? `${data.color}33` : '#C6C5C533' }}
 
                           />
                           <div className="flex flex-col mt-2.5 ">
@@ -260,7 +260,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
       <ScrollAnimation>
         {data.projectGoalsSection &&
           <div className="px-6 md:px-16 py-10 md:py-16 mx-auto"
-          style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
+            style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
           >
             <div className="flex flex-col justify-center items-center bg-white rounded-2xl max-w-7xl mx-auto min-h-[412px] shadow-[0px_16px_32px_rgba(109,70,189,0.05)] max-md:px-5 max-md:max-w-full">
               <div className="md:text-4xl text-2xl font-semibold text-slate-900 mt-6">
@@ -638,10 +638,10 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
       <ScrollAnimation>
         <section
-           className={`py-6 md:py-16 px-6 md:px-16 bg-opacity-20`}
-           style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
-           >
-         
+          className={`py-6 md:py-16 px-6 md:px-16 bg-opacity-20`}
+          style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
+        >
+
           <div className="px-6 md:px-16 py-6 max-w-7xl mx-auto  bg-white rounded-2xl max-w-7xl mx-auto shadow-[0px_16px_32px_rgba(109,70,189,0.05)]">
             <div className="">
               <h3 className="text-2xl font-semibold my-4 md:my-8">

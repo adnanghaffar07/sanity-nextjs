@@ -5,14 +5,21 @@ import ReactPaginate from 'react-paginate';
 
 interface ScrollButtonProps {
   scrollContainerId: string;
+  totalItems: number;  // Pass the total content items as a prop
+  itemsPerPage: number; // Number of items per page
 }
 
-const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
+const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId, totalItems, itemsPerPage }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
+  const [pageCount, setPageCount] = useState(1); // Dynamic page count
 
   useEffect(() => {
+    // Calculate total pages based on totalItems and itemsPerPage
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    setPageCount(totalPages);
+
     const savedIndex = localStorage.getItem('activeIndex');
     if (savedIndex !== null) {
       setActiveIndex(parseInt(savedIndex, 10));
@@ -27,7 +34,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
         const totalScrollWidth = scrollContainer.scrollWidth;
 
         // Calculate new index based on scroll position
-        const newIndex = Math.round((scrollLeft / (totalScrollWidth - containerWidth)) * 3);
+        const newIndex = Math.round((scrollLeft / (totalScrollWidth - containerWidth)) * (totalPages - 1));
         if (newIndex !== activeIndex) {
           setActiveIndex(newIndex);
           localStorage.setItem('activeIndex', newIndex.toString());
@@ -56,7 +63,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
         scrollContainer.removeEventListener('scroll', handleScrollEvent);
       }
     };
-  }, [scrollContainerId, activeIndex]);
+  }, [scrollContainerId, activeIndex, totalItems, itemsPerPage]);
 
   const handlePageClick = (data: { selected: number }) => {
     const newIndex = data.selected;
@@ -67,7 +74,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
     if (scrollContainer) {
       const containerWidth = scrollContainer.clientWidth;
       const totalScrollWidth = scrollContainer.scrollWidth;
-      const scrollLeft = (newIndex / 3) * (totalScrollWidth - containerWidth);
+      const scrollLeft = (newIndex / (pageCount - 1)) * (totalScrollWidth - containerWidth);
 
       scrollContainer.scrollTo({
         left: scrollLeft,
@@ -121,24 +128,20 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ scrollContainerId }) => {
         </button>
       )}
       <div className="hidden md:flex gap-1 self-center px-5 mt-12 w-[66px] max-md:mt-10">
-        <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 0 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
-        />
-        <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 1 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
-        />
-        <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 2 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
-        />
-        <div
-          className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${activeIndex === 3 ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'}`}
-        />
+        {Array.from({ length: pageCount }).map((_, idx) => (
+          <div
+            key={idx}
+            className={`shrink-0 w-full h-2 rounded-md transition-colors duration-300 ${
+              activeIndex === idx ? 'bg-[#1D92FB]' : 'bg-[#1D92FB] bg-opacity-10'
+            }`}
+          />
+        ))}
       </div>
       <ReactPaginate
         previousLabel={null}
         nextLabel={null}
         breakLabel={null}
-        pageCount={4}
+        pageCount={pageCount}
         marginPagesDisplayed={0}
         pageRangeDisplayed={0}
         onPageChange={handlePageClick}

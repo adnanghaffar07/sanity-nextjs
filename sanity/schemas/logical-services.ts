@@ -179,6 +179,47 @@ const logicalServices = {
       ],
     },
 
+// CMS Page
+
+{
+  name: 'contentItems',
+  title: 'Content Items',
+  type: 'array',
+  of: [
+    {
+      type: 'object',
+      title: 'Content Item',
+      fields: [
+        {
+          name: 'image',
+          title: 'Image',
+          type: 'image',
+          options:{ hotspot: true}, // Enable hotspot for cropping the image
+          
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+        {
+          name: 'heading',
+          title: 'Heading',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+      ],
+    },
+  ],
+},
+
+
     // Our Mobile App Development Services
     {
       name: 'mobileAppServices',
@@ -537,7 +578,13 @@ const logicalServices = {
           title: 'Image',
           options: {
             hotspot: true, // Enables image cropping
-          },
+          },  fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
         },
       ],
     },
@@ -2018,6 +2065,14 @@ const techLogos = {
       title: "Image",
       type: "image",
       options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+
     },
   ]
 };

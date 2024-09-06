@@ -261,7 +261,12 @@ export default async function ValueBlueprints() {
                 </Link>
               ))}
             </div>
-            <ScrollButton scrollContainerId="scrollContainer" />
+            <ScrollButton
+              scrollContainerId="scrollContainer"
+              totalItems={portfolioData.length} // Number of items in portfolioData
+              itemsPerPage={4} // Adjust based on how many items per page you want
+            />
+
           </div>
         </div>
       </section>
