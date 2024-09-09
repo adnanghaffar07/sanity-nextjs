@@ -36,6 +36,16 @@ module.exports = {
           destination: '/services/qa-testing-services',
           permanent: true,
         },
+        {
+          source: '/services/mobile-app-development',
+          destination: '/services/ai-software-development-services',
+          permanent: true,
+        },
+        {
+          source: '/services/web-app-development',
+          destination: '/services/ai-software-development-services',
+          permanent: true,
+        },
       ];
     },
   };

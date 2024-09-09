@@ -33,7 +33,7 @@ const Testimonials = async () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative max-w-7xl mx-auto">
       {/* Swiper section */}
       <Swiper
         effect={"coverflow"}
@@ -107,35 +107,35 @@ const Testimonials = async () => {
 
       {/* Clutch and Trustpilot section - displayed in a row */}
       <div className="flex justify-center items-center gap-8 mt-12">
-        <a
-          href="https://clutch.co/profile/codeautomationai#highlights"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-center"
-        >
-          <img
-            src="/Clutch.png"
-            alt="clutch-icon"
-            width={130}
-            height={40}
-            className=""
-          />
-        </a>
-        <a
-          href="https://www.trustpilot.com/review/codeautomation.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-center"
-        >
-          <img
-            src="/Trustpilot.png"
-            alt="Trustpilot-icon"
-            width={190}
-            height={90}
-            className="mb-3"
-          />
-        </a>
-      </div>
+  <a
+    href="https://clutch.co/profile/codeautomationai#highlights"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-center"
+  >
+    <img
+      src="/Clutch.png"
+      alt="clutch-icon"
+      width={130}
+      height={40}
+      className="grayscale hover:grayscale-0 transition-all duration-300"
+    />
+  </a>
+  <a
+    href="https://www.trustpilot.com/review/codeautomation.ai"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-center"
+  >
+    <img
+      src="/Trustpilot.png"
+      alt="Trustpilot-icon"
+      width={130}
+      height={40}
+      className="mb-3 grayscale hover:grayscale-0 transition-all duration-300"
+    />
+  </a>
+</div>
     </div>
   );
 };
