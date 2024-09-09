@@ -130,8 +130,8 @@ const Testimonials = async () => {
           <img
             src="/Trustpilot.png"
             alt="Trustpilot-icon"
-            width={160}
-            height={60}
+            width={190}
+            height={90}
             className="mb-3"
           />
         </a>
