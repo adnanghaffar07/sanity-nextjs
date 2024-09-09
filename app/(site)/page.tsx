@@ -898,36 +898,6 @@ export default function Home() {
               <Suspense fallback={<p>Loading Testimonials Section...</p>}>
                 <Testimonials />
               </Suspense>
-
-              <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap mt-8">
-                <Link
-                  href="https://clutch.co/profile/codeautomationai#highlights"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex bg-white py-1 px-2 rounded-lg gap-2 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
-                >
-                  <div className="text-center flex flex-col gap-1">
-                    <p className="text-xs text-gray-400">REVIEWED ON</p>
-                    <img
-                      src="/clutch-icon.svg"
-                      alt="clutch-icon"
-                      width={80}
-                      height={22}
-                      // className="h-auto"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <img
-                      src="/rating-stars.svg"
-                      alt="ratings"
-                      width={96}
-                      height={18}
-                      className="bg-red-600"
-                    />
-                    <p className="text-xs text-gray-400">8 REVIEWS</p>
-                  </div>
-                </Link>
-              </div>
             </div>
           </ScrollAnimation>
         </div>
