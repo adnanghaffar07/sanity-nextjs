@@ -11,10 +11,10 @@ const linkML = "ml-services";
 const devops = "ai-devops";
 const linkUrlCMS1 = "custom-cms-development-services";
 const linkUrlCMS = "headless-cms-development-services";
-const linkUrlSoft = "web-app-development";
+const linkUrlSoft = "custom-software-development-services";
 const linkUrlAuto = "qa-testing-services";
 const linkUrlDigital = "ui-ux-design-services";
-const linkMob = "mobile-app-development";
+const linkMob = "mobile-app-development-services";
 const linkRobotic = "rpa-services";
 const linkIntegrate = "automation-integration";
 
