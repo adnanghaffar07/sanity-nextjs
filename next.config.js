@@ -38,12 +38,12 @@ module.exports = {
         },
         {
           source: '/services/mobile-app-development',
-          destination: '/services/ai-software-development-services',
+          destination: '/services/mobile-app-development-services',
           permanent: true,
         },
         {
           source: '/services/web-app-development',
-          destination: '/services/ai-software-development-services',
+          destination: '/services/custom-software-development-services',
           permanent: true,
         },
       ];
