@@ -85,6 +85,53 @@ body {
   --br-mini: 15px; */
 /* } */
 
+
+/* Shared button styles */
+.button {
+  background-color: #f7e022;
+  color: black;
+  margin-top: 9px;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  width: 100%;
+  max-width: 16rem;
+}
+
+.button2 {
+  background-color: #f7e022;
+  margin-top: 9px;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  width: 100%;
+  max-width: 20rem;
+}
+
+/* Hover and focus effects */
+.button:hover, .button2:hover,
+.button:focus, .button2:focus {
+  transform: translateY(-2px);
+  background-color: #e5d410;
+}
+
+
+/* Additional styles for responsive layouts */
+@media (max-width: 640px) {
+  .button {
+    width: 100%;
+  }
+}
+
+
 .resize-none {
   resize: none;
 }

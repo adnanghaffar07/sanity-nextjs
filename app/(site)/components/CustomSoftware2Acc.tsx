@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image"; // Assuming you're using Next.js
 import { urlForImage } from "@/sanity/lib/image";
 
 interface AccordionItemProps {
@@ -40,7 +39,7 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
     );
 }
 
-export default function MobileAppServiceSection({ data }: { data: any }) {
+export default function CustomSoftware2Section({ data }: { data: any }) {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const handleToggle = (index: number) => {
@@ -48,15 +47,17 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
     };
 
     return (
-        <section className="px-6 md:px-16 py-10 md:py-16">
-            <div className="max-w-7xl mx-auto">
+        <section className="px-6 md:px-16 py-10 md:py-16 relative">
+            <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto relative">
                 {/* Heading and Description in the Middle */}
                 <div className="text-center mb-10">
                     <h2 className="text-2xl font-bold text-[#3C3C3C] capitalize">
-                        {data.mobileAppServiceSection.heading}
+                        {data.provenProcessSection.heading}
                     </h2>
                     <p className="text-lg mt-4 text-[#3C3C3C] max-w-3xl mx-auto">
-                        {data.mobileAppServiceSection.description}
+                        {data.provenProcessSection.description}
                     </p>
                 </div>
 
@@ -64,8 +65,8 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
                     {/* Image on the left */}
                     <div className="flex-1 md:mr-8 ">
                         <img
-                            src={urlForImage(data.mobileAppServiceSection.imageSrc).toString()}
-                            alt={data.mobileAppServiceSection.imageSrc.alt}
+                            src={urlForImage(data.provenProcessSection.imageSrc).toString()}
+                            alt={data.provenProcessSection.imageSrc.alt}
                             className="w-full h-auto rounded-lg shadow-md"
                         />
                     </div>
@@ -73,7 +74,7 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
 
                     {/* Accordion on the right */}
                     <div className="flex-1 mt-8 md:mt-0">
-                        {data.mobileAppServiceSection.accordionItems.map((item: any, index: number) => (
+                        {data.provenProcessSection.accordionItems.map((item: any, index: number) => (
                             <AccordionItem
                                 key={index}
                                 title={item.title}

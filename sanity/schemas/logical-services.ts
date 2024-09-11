@@ -179,45 +179,45 @@ const logicalServices = {
       ],
     },
 
-// CMS Page
+    // CMS Page
 
-{
-  name: 'contentItems',
-  title: 'Content Items',
-  type: 'array',
-  of: [
     {
-      type: 'object',
-      title: 'Content Item',
-      fields: [
+      name: 'contentItems',
+      title: 'Content Items',
+      type: 'array',
+      of: [
         {
-          name: 'image',
-          title: 'Image',
-          type: 'image',
-          options:{ hotspot: true}, // Enable hotspot for cropping the image
-          
+          type: 'object',
+          title: 'Content Item',
           fields: [
             {
-              name: "alt",
-              title: "Alt",
-              type: "string",
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true }, // Enable hotspot for cropping the image
+
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+            {
+              name: 'heading',
+              title: 'Heading',
+              type: 'string',
+            },
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'text',
             },
           ],
         },
-        {
-          name: 'heading',
-          title: 'Heading',
-          type: 'string',
-        },
-        {
-          name: 'description',
-          title: 'Description',
-          type: 'text',
-        },
       ],
     },
-  ],
-},
 
 
     // Our Mobile App Development Services
@@ -449,6 +449,115 @@ const logicalServices = {
         },
       ],
     },
+    //Our Proven Process for Custom Software Development Custom Software
+    {
+      name: 'provenProcessSection',
+      type: 'document',
+      title: 'Our Proven Process for Custom Software',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          title: 'Description',
+        },
+        {
+          name: 'accordionItems',
+          type: 'array',
+          title: 'Accordion Items',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'content',
+                  type: 'text',
+                  title: 'Content',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'imageSrc',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true, // Enables image cropping
+          }, fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+    //Why Prefer Code Automation? Custom Software
+    {
+      name: 'customSoftwareSection',
+      type: 'document',
+      title: 'Why Prefer Code Automation? Custom Software Section',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'description',
+          type: 'text',
+          title: 'Description',
+        },
+        {
+          name: 'accordionItems',
+          type: 'array',
+          title: 'Accordion Items',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'content',
+                  type: 'text',
+                  title: 'Content',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'imageSrc',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true, // Enables image cropping
+          }, fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
 
 
     //Your Premier Mobile App Development Partne
@@ -495,7 +604,13 @@ const logicalServices = {
           title: 'Image',
           options: {
             hotspot: true, // Enables image cropping
-          },
+          }, fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
         },
       ],
     },
@@ -578,7 +693,7 @@ const logicalServices = {
           title: 'Image',
           options: {
             hotspot: true, // Enables image cropping
-          },  fields: [
+          }, fields: [
             {
               name: "alt",
               title: "Alt",
@@ -623,6 +738,208 @@ const logicalServices = {
           name: 'items',
           type: 'array',
           title: 'Preferred Choice for QA Testing',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'number',
+                  type: 'number',
+                  title: 'Number',
+                },
+                {
+                  name: 'title',
+                  type: 'string',
+                  title: 'Title',
+                },
+                {
+                  name: 'description',
+                  type: 'text',
+                  title: 'Description',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+// Client logo custom software 
+{
+  name: 'clientsSection',
+  title: 'Clients Section',
+  type: 'document',
+  fields: [
+    {
+      name: 'sectionTitle',
+      title: 'Section Title',
+      type: 'string',
+    },
+    {
+      name: 'sectionDescription',
+      title: 'Section Description',
+      type: 'text',
+    },
+    {
+      name: 'clientLogos',
+      title: 'Client Logos',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          fields: [
+            {
+              name: 'altText',
+              title: 'Alt Text',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+},
+
+
+
+    // Turn Vision Into Reality Custom Software
+    {
+      name: 'turnVision',
+      title: 'Turn Vision Into Reality Custom Software',
+      type: 'document',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'subtitle',
+          title: 'Subtitle',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'buttonText',
+          title: 'Button Text',
+          type: 'string',
+        },
+        {
+          name: 'buttonLink',
+          title: 'Button Link',
+          type: 'url',
+        },
+        {
+          name: 'backgroundImage',
+          title: 'Background Image',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+        {
+          name: 'featuredImage',
+          title: 'Featured Image',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+    // Ready to Transform Your Business? Custom Software
+    {
+      name: 'transBusiness',
+      title: 'Ready to Transform Your Business? Custom Software',
+      type: 'document',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'buttonText',
+          title: 'Button Text',
+          type: 'string',
+        },
+        {
+          name: 'buttonLink',
+          title: 'Button Link',
+          type: 'url',
+        },
+        {
+          name: 'featuredImage',
+          title: 'Featured Image',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+
+
+    // Our Custom Software Development Services
+    {
+      name: 'customSoftwareDev',
+      type: 'document',
+      title: 'Our Custom Software Development Services',
+      fields: [
+        {
+          name: 'heading',
+          type: 'string',
+          title: 'Heading',
+        },
+        {
+          name: 'subheading',
+          type: 'text',
+          title: 'Subheading',
+        },
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          }, fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+        {
+          name: 'items',
+          type: 'array',
+          title: 'Advantages of Our QA Items',
           of: [
             {
               type: 'object',

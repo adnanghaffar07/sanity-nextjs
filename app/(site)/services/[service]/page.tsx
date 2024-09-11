@@ -5,9 +5,12 @@ import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import ScrollButton from "../../components/valueBluePrint";
+import CustomSoftwareSection from "../../components/CustomSoftwareAcc";
 import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
 import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordian";
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
+import CaseStudiesHome from "../../components/CaseStudies-Home";
+import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -145,67 +148,232 @@ export default async function service({
             <div className="lg:text-2xl mx-auto max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               {data.serviceDesc}
             </div>
-            {(data.firstButton || data.secondButton) &&
+            {(data.firstButton || data.secondButton) && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
-                {data.firstButton &&
+                {data.firstButton && (
                   <ButtonScrollToSection
                     classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
                     content={data.firstButton.firstButtonText}
                     key="first-button"
                     destination="contact-box"
                   />
-
-                }
-                {data.secondButton &&
+                )}
+                {data.secondButton?.SecondButtonUrl && (
                   <Link
                     href={data.secondButton.SecondButtonUrl}
-                    className="bg-[#f7e022]  text-black  font-semibold py-3 px-8 rounded-lg shadow-lg text-center w-full sm:max-w-64"
+                    className="bg-[#f7e022]  text-black  font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-64"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {data.secondButton.SecondButtonText}
                   </Link>
-                }
+                )}
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
-      {/* Introduction Section */}
-      <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
-        <div className="container mx-auto flex flex-wrap items-center justify-center relative">
-          {/* Image on the left */}
-          {data.introductionSection?.introImage && (
-            <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
-              <Image
-                src={urlForImage(data.introductionSection?.introImage).toString()}
-                alt={data.introductionSection?.introImage.alt}
-                width={370}
-                height={150}
-                className="object-cover rounded-lg"
-                loading="lazy"
-              />
-            </div>
-          )}
 
-          {/* Content on the right */}
-          {data.introductionSection?.introHeading && data.introductionSection?.introDesc && (
-            <div className="w-full md:w-1/2">
-              <div className="max-w-3xl mx-auto">
-                <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                  {data.introductionSection.introHeading}
+
+
+
+      {data.clientsSection &&
+        <div className="relative">
+          {/* Background overlay */}
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+
+          {/* Main content */}
+          <div className="flex flex-col justify-around px-6 py-10 md:px-8 md:py-16 max-w-7xl mx-auto relative">
+            {/* Title and Description */}
+            <div className="text-center text-neutral-700">
+              <h2 className="text-3xl font-bold max-md:max-w-full">
+                {data.clientsSection.sectionTitle}
+              </h2>
+              <p className="mt-4 text-lg font-medium max-md:max-w-full">
+                {data.clientsSection.sectionDescription}
+              </p>
+            </div>
+
+            {/* Client Logos */}
+            <div className="flex flex-wrap gap-10 lg:gap-16 justify-center items-center mt-12 max-md:mt-10">
+              {data.clientsSection.clientLogos.map((logo: any, index: any) => (
+                <img
+                  key={index}
+                  src={urlForImage(logo.asset).toString()}
+                  alt={logo.altText}
+                  className="object-cover"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      }
+
+
+
+
+      {/* Why Prefer Code Automation? Custom Software */}
+      {data.customSoftwareSection &&
+        <CustomSoftwareSection data={data} />
+      }
+
+      {/*  Our Custom Software Development Services Custom Software*/}
+      {data.customSoftwareDev &&
+        <section className="px-6 py-10 md:px-16 md:py-16 relative ">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          < section className="max-w-7xl mx-auto">
+            <div className="justify-center text-center relative pb-10">
+              <div>
+                <h2 className="text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                  {data.customSoftwareDev.heading}
                 </h2>
-                <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                  {data.introductionSection.introDesc}
+                <h3 className="text-xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                  {data.customSoftwareDev.subheading}
+                </h3>
+                <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
+                  {data.customSoftwareDev.paragraph}
                 </p>
               </div>
             </div>
-          )}
-        </div>
-      </section>
+
+            <div className="relative flex flex-col md:flex-row items-center justify-between z-10">
+              <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12">
+                <div className="space-y-8">
+                  {data.customSoftwareDev.items.map((item: any, index: any) => (
+                    <div key={index} className="relative flex items-start">
+                      <div className="flex-shrink-0">
+                        <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#1D92FB] text-white font-bold">
+                          {item.number}
+                        </div>
+                        {index < data.customSoftwareDev.items.length - 1 && (
+                          <div className="absolute left-5 top-16 h-10 border-l-4 border-[#1D92FB]" />
+                        )}
+                      </div>
+                      <div className="ml-8">
+                        <h3 className="text-xl font-semibold text-[#1D92FB]">
+                          {item.title}
+                        </h3>
+                        <p className="text-[#3C3C3C] mt-2">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="md:w-1/2 flex justify-center">
+                <img
+                  src={urlForImage(data.customSoftwareDev.image).toString()}
+                  alt={data.customSoftwareDev.image.alt}
+                  className="w-3/4 rounded-lg shadow-lg z-10 md:mt-0 mt-6"
+                />
+              </div>
+            </div>
+          </section>
+        </section>
+      }
+
+      {/* Turn Vision Into Reality Custom Software */}
+      {data.turnVision &&
+        <section
+          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/Container.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container text-white mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side (Heading, Offer Text, and QA) */}
+            <div className="col-span-1 md:col-span-1">
+              <div className="flex flex-col w-full max-md:max-w-full">
+                <div className="text-3xl font-bold leading-none max-md:max-w-full">
+                  {data.turnVision.title}
+                </div>
+                <div className="mt-4 text-xl leading-none max-md:max-w-full">
+                  {data.turnVision.subtitle}
+                </div>
+                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
+                  {data.turnVision.description}
+                </div>
+                <Link
+                  href={data.turnVision.buttonLink}
+                  className="button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {data.turnVision.buttonText}
+                </Link>
+              </div>
+            </div>
+
+            {/* Right side (Image) */}
+            <div className="col-span-1 md:col-span-1 flex justify-center">
+              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                {data.specialOffersSection?.offerImg && (
+                  <Image
+                    src={urlForImage(data.turnVision?.featuredImage).toString()}
+                    alt={data.turnVision?.featuredImage.alt}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+      {/* Custom Software Case Studies Section */}
+      {data.turnVision &&
+      <div className="px-6 md:px-16 py-10 md:py-16">
+        <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Our Success Stories in Software Solutions</h2>
+        <CaseStudiesHome />
+      </div>
+}
+
+      {/* Why Prefer Code Automation? Custom Software */}
+      {data.provenProcessSection &&
+        <CustomSoftware2Section data={data} />
+      }
 
 
+      {/* Introduction Section */}
+      {data.introductionSection &&
+        <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          <div className="container mx-auto flex flex-wrap items-center justify-center relative">
+            {/* Image on the left */}
+            {data.introductionSection?.introImage && (
+              <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
+                <Image
+                  src={urlForImage(data.introductionSection?.introImage).toString()}
+                  alt={data.introductionSection?.introImage.alt}
+                  width={370}
+                  height={150}
+                  className="object-cover rounded-lg"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            {/* Content on the right */}
+            {data.introductionSection?.introHeading && data.introductionSection?.introDesc && (
+              <div className="w-full md:w-1/2">
+                <div className="max-w-3xl mx-auto">
+                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+                    {data.introductionSection.introHeading}
+                  </h2>
+                  <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                    {data.introductionSection.introDesc}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      }
 
       {/* Design section */}
       {data.designSection &&
@@ -655,6 +823,56 @@ export default async function service({
       {data.secondMobileAppAcc &&
         <SecondMobileServiceAcc data={data} />
       }
+
+      {/* Turn Vision Into Reality Custom Software */}
+      {data.transBusiness &&
+        <section
+          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/Container.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container text-white mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side (Heading, Offer Text, and QA) */}
+            <div className="col-span-1 md:col-span-1">
+              <div className="flex flex-col w-full max-md:max-w-full">
+                <div className="text-3xl font-bold leading-none max-md:max-w-full">
+                  {data.transBusiness.title}
+                </div>
+                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
+                  {data.transBusiness.description}
+                </div>
+
+                <ButtonScrollToSection
+                  classes="button2"
+                  content={data.transBusiness.buttonText}
+                  key="first-button"
+                  destination="contact-box"
+                />
+
+              </div>
+            </div>
+
+            {/* Right side (Image) */}
+            <div className="col-span-1 md:col-span-1 flex justify-center">
+              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                {data.specialOffersSection?.offerImg && (
+                  <Image
+                    src={urlForImage(data.transBusiness?.featuredImage).toString()}
+                    alt={data.transBusiness?.featuredImage.alt}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
       {/*  Preferred Choice for QA Testing*/}
       {data.advantagesOfQA &&
         <section className="px-6 py-10 md:px-16 md:py-16">
