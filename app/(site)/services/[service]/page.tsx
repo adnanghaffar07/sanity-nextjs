@@ -195,7 +195,7 @@ export default async function service({
             </div>
 
             {/* Client Logos */}
-            <div className="flex flex-wrap gap-10 xl:gap-16  justify-center items-center mt-12 max-md:mt-10">
+            <div className="flex flex-wrap gap-10 xl:gap-20  justify-center items-center mt-12 max-md:mt-10">
               {data.clientsSection.clientLogos.map((logo: any, index: any) => (
                 <img
                   key={index}
