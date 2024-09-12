@@ -76,10 +76,8 @@ const Career: React.FC = async () => {
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize">
-                &quot;Be a part of our next story&quot;
-              </h2>
+            <div className="lg:text-4xl text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
+              <h2 className="title">&quot;Be a part of our next story&quot;</h2>
             </div>
             <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               Join our team and be part of the next success story in
@@ -91,7 +89,7 @@ const Career: React.FC = async () => {
       <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
           <div className="self-center xl:text-5xl lg:text-4xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
-            Grow And Collaborate With The Top Professionals In The Field.
+            Grow and Collaborate with the Top Professionals in the Field
           </div>
           <div className="xl:w-9/12 mx-auto text-center">
             <p className="lg:text-xl text-base">
@@ -121,7 +119,7 @@ const Career: React.FC = async () => {
                   className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                 />
                 <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
-                  Make Your Own Trajectory With Your Own Assistance.
+                  Make Your Own Trajectory with Your Own Assistance
                 </div>
                 <div className="mb-10">
                   <p className="lg:text-lg text-base text-[#024] text-justify">
@@ -197,7 +195,7 @@ const Career: React.FC = async () => {
                   <p className="lg:text-lg text-base text-[#024] text-right">
                     Get special perks and benefits such as flexible schedules
                     and career advancement chances. Join us and advance your
-                    career in code automation today.
+                    career in CodeAutomation today.
                   </p>
                 </div>
 
