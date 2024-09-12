@@ -105,8 +105,8 @@ const Testimonials = async () => {
         ))}
       </Swiper>
 
-      {/* Clutch and Trustpilot section - displayed in a row */}
-      <div className="flex justify-center items-center gap-8 mt-12">
+{/* Clutch and Trustpilot section - displayed in a row */}
+<div className="flex justify-center items-center gap-8 mt-12">
   <a
     href="https://clutch.co/profile/codeautomationai#highlights"
     target="_blank"
@@ -118,7 +118,6 @@ const Testimonials = async () => {
       alt="clutch-icon"
       width={130}
       height={40}
-      className="grayscale hover:grayscale-0 transition-all duration-300"
     />
   </a>
   <a
@@ -132,10 +131,11 @@ const Testimonials = async () => {
       alt="Trustpilot-icon"
       width={130}
       height={40}
-      className="mb-3 grayscale hover:grayscale-0 transition-all duration-300"
+      className="mb-3"
     />
   </a>
 </div>
+
     </div>
   );
 };
