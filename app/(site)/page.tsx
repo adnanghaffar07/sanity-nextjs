@@ -74,10 +74,12 @@ export default function Home() {
           loop
           playsInline
           preload="auto"
+          poster="/hero.jpg" // Add this line
         >
           <source src="/hero-sec-video.webm" type="video/webm" />
           <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
+
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">

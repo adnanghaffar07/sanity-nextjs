@@ -45,6 +45,8 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="canonical" href="https://codeautomation.xn--ai-02t" />
+        <link rel="preload" href="/hero-sec-video.webm" as="video" type="video/webm" />
+        <link rel="preload" href="/hero-sec-video.mp4" as="video" type="video/mp4" />
 
         {/* Meta Pixel Code */}
         <script
