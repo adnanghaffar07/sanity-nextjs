@@ -183,7 +183,7 @@ export default async function service({
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
 
           {/* Main content */}
-          <div className="flex flex-col justify-around px-6 py-10 md:px-8 md:py-16 max-w-7xl mx-auto relative">
+          <div className="flex flex-col justify-around px-6 py-10 md:px-8 md:py-16 max-w-9xl mx-auto relative">
             {/* Title and Description */}
             <div className="text-center text-neutral-700">
               <h2 className="text-3xl font-bold max-md:max-w-full">
@@ -195,7 +195,7 @@ export default async function service({
             </div>
 
             {/* Client Logos */}
-            <div className="flex flex-wrap gap-10  justify-center items-center mt-12 max-md:mt-10">
+            <div className="flex flex-wrap gap-10 xl:gap-16  justify-center items-center mt-12 max-md:mt-10">
               {data.clientsSection.clientLogos.map((logo: any, index: any) => (
                 <img
                   key={index}
