@@ -201,7 +201,7 @@ export default async function service({
                   key={index}
                   src={urlForImage(logo.asset).toString()}
                   alt={logo.altText}
-                  className="object-cover"
+                  className="object-cover sm:h-8 xl:h-11 "
                 />
               ))}
             </div>
