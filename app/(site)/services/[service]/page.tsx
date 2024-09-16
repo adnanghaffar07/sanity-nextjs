@@ -68,7 +68,7 @@ export async function generateMetadata({
   const whatsappMeta = data.whatsappCards || {};
   const telegramMeta = data.telegramCards || {};
 
-  const canonicalUrl = `https://codeautomation.ai/${params.service}`; // Construct your canonical URL
+  const canonicalUrl = `https://codeautomation.ai/services${params.service}`; // Construct your canonical URL
 
   return {
     title,
