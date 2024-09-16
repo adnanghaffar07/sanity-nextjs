@@ -67,6 +67,9 @@ export async function generateMetadata({
   const pinterestMeta = data.pinterestCards || {};
   const whatsappMeta = data.whatsappCards || {};
   const telegramMeta = data.telegramCards || {};
+
+  const canonicalUrl = `https://codeautomation.ai/${params.service}`; // Construct your canonical URL
+
   return {
     title,
     description,
@@ -116,7 +119,10 @@ export async function generateMetadata({
       title: telegramMeta.telegramTitle || title,
       description: telegramMeta.telegramDescription || description,
       url: telegramMeta.telegramUrl || "https://codeautomation.ai",
-    }
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
   };
 }
 
