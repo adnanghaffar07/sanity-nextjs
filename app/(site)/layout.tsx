@@ -86,6 +86,19 @@ export default function RootLayout({
           />
         </noscript>
 
+        {/* Google Ads Global Site Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11436659671');
+            `,
+          }}
+        />
+
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
