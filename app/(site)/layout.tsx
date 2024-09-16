@@ -86,7 +86,6 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* Google Ads Global Site Tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671"></script>
         <script
           dangerouslySetInnerHTML={{
