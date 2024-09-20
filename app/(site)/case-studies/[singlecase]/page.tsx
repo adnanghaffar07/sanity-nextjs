@@ -405,9 +405,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               {/* Desktop Layout */}
               <div className="hidden md:flex flex-col sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10">
                 {data.caseStudiesToolsSection.toolsTech.map((tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/4">
+                  <div key={toolIndex} className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/3">
                     <div className="flex md:justify-center gap-2">
-                      <div className="flex flex-row gap-3">
+                      <div className="flex flex-row gap-x-3">
                         {tool.images?.map((logoRef: any, logoIndex: any) => {
                           const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                           if (logoData) {
@@ -444,7 +444,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                     key={toolIndex}
                     className="flex-1 sm:flex-none sm:w-[45%] m-2 p-3 border border-gray-200 rounded-lg shadow-sm flex items-center justify-center flex-col"
                   >
-                    <div className="flex items-center justify-center mb-2">
+                    <div className="flex items-center justify-center mb-2 gap-2">
                       {tool.images?.map((logoRef: any, logoIndex: any) => {
                         const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                         if (logoData) {
