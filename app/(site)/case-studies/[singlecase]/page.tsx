@@ -207,11 +207,11 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             <div className="mt-11 text-xl leading-8 text-center text-slate-900 w-[724px] max-md:mt-10 max-md:max-w-full">
               {data.projectscopecontent}
             </div>
-            <div className="self-end mt-16  w-full max-w-[1328px] max-md:mt-10 max-md:max-w-full">
+            <div className="md:self-end mt-16  w-full max-w-[1328px] max-md:mt-10 max-md:max-w-full">
               <div className="flex gap-5 max-md:flex-col">
                 <div className="flex flex-col pb-10 md:pb-16 w-[59%] max-md:ml-0 max-md:w-full">
                   <div className="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full">
-                    <div className="flex flex-col text-slate-900 max-md:max-w-full">
+        <div className="flex flex-col text-slate-900 max-md:max-w-full max-md:items-center max-md:text-center">
                       <div className="text-2xl leading-none">GET STARTED</div>
                       <div className="mt-6 md:text-5xl text-2xl font-semibold leading-none">
                         Overview
@@ -395,77 +395,93 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
       {/* Tools and Technologies Used Section */}
       <ScrollAnimation>
-
-        <section className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto ">
+        <section className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto">
           <h3 className="md:text-4xl text-2xl font-semibold text-center my-4 md:my-8 font-klein">
             {data?.toolsandtechusedheading}
           </h3>
 
           {data.caseStudiesToolsSection ? (
             <div className="container md:mt-10">
-              <div className="flex flex-col sm:flex sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10">
-                {data.caseStudiesToolsSection.toolsTech.map(
-                  (tool: any, toolIndex: any) => (
-                    <div
-                      key={toolIndex}
-                      className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/3"
-                    >
-                      <div className="flex md:justify-center gap-2">
-                        <div className="flex flex-row gap-3">
-                          {tool.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find(
-                              (logo: any) => logo._id === logoRef._ref
+              {/* Desktop Layout */}
+              <div className="hidden md:flex flex-col sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10">
+                {data.caseStudiesToolsSection.toolsTech.map((tool: any, toolIndex: any) => (
+                  <div key={toolIndex} className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/4">
+                    <div className="flex md:justify-center gap-2">
+                      <div className="flex flex-row gap-3">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex}>
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  className="h-10 md:h-14 object-contain"
+                                />
+                              </div>
                             );
-                            if (logoData) {
-                              return (
-                                <div key={logoIndex}>
-                                  <img
-                                    src={urlForImage(logoData.image).toString()}
-                                    alt={logoData.heading}
-                                    className="h-10 md:h-14 object-contain"
-                                  />
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
+                          } else {
+                            return null;
+                          }
+                        })}
+                      </div>
 
-                        <div className="flex flex-col w-auto my-auto">
-                          <h3 className="text-xl md:text-2xl tracking-wider font-bold font-klein">
-                            {tool.heading}
-                          </h3>
-                          <p className="mt-1 text-lg tracking-wide">
-                            {tool.detail}
-                          </p>
-                        </div>
+                      <div className="flex flex-col w-auto my-auto">
+                        <h3 className="text-xl md:text-2xl tracking-wider font-bold font-klein">
+                          {tool.heading}
+                        </h3>
+                        <p className="mt-1 text-lg tracking-wide">{tool.detail}</p>
                       </div>
                     </div>
-                  )
-                )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Layout */}
+              <div className="flex flex-wrap justify-center gap-4 md:hidden">
+                {data.caseStudiesToolsSection.toolsTech.map((tool: any, toolIndex: any) => (
+                  <div
+                    key={toolIndex}
+                    className="flex-1 sm:flex-none sm:w-[45%] m-2 p-3 border border-gray-200 rounded-lg shadow-sm flex items-center justify-center flex-col"
+                  >
+                    <div className="flex items-center justify-center mb-2">
+                      {tool.images?.map((logoRef: any, logoIndex: any) => {
+                        const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                        if (logoData) {
+                          return (
+                            <img
+                              key={logoIndex}
+                              src={urlForImage(logoData.image).toString()}
+                              alt={logoData.heading}
+                              className="h-10 md:h-12 object-contain"
+                            />
+                          );
+                        } else {
+                          return null;
+                        }
+                      })}
+                    </div>
+
+                    <div className="text-center">
+                      <h3 className="text-base md:text-lg font-bold font-klein">{tool.heading}</h3>
+                      <p className="text-sm md:text-base">{tool.detail}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
             <ul>
               {data.technologiesused?.map((tech: any) => (
-                <li
-                  className="text-xs md:text-xl leading-4 md:leading-8 font-light"
-                  key={tech._key}
-                >
-                  <span className="text-lg font-bold">
-                    {tech.heading}:{" "}
-                  </span>
-                  <span className="text-lg font-light">
-                    {tech.description}
-                  </span>
+                <li className="text-xs md:text-xl leading-4 md:leading-8 font-light" key={tech._key}>
+                  <span className="text-lg font-bold">{tech.heading}: </span>
+                  <span className="text-lg font-light">{tech.description}</span>
                 </li>
               ))}
             </ul>
           )}
-
-
         </section>
+
 
       </ScrollAnimation>
 
