@@ -367,7 +367,7 @@ export default async function ValueBlueprints() {
               {/* Bottom Row */}
               <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center">
                 {data.toolsTechSection?.toolsTech
-                  ?.slice(14, 17)
+                  ?.slice(14, 18)
                   .map((tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
