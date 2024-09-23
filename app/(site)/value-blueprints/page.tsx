@@ -173,11 +173,11 @@ export default async function ValueBlueprints() {
 
       {/* Explore Blueprints section */}
       <section className="px-6 md:px-16 py-10 md:py-16 bg-slate-100">
-        <div className="flex flex-col pt-20 pb-6">
+        <div className="flex flex-col pt-20 pb-6 max-w-[1400px] mx-auto">
           <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
             <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
-              <div className="justify-center max-md:max-w-full">
-                <span className="font-medium text-black capitalize leading-[60px]">
+              <div className="justify-center">
+                <span className="font-medium text-black capitalize leading-[60px] text-left">
                   Explore Our Value{" "}
                 </span>
                 <span className="text-sky-500 capitalize leading-[60px]">
@@ -278,133 +278,133 @@ export default async function ValueBlueprints() {
         alt="eclipse icon"
         className="absolute right-0 w-[150px] z-0"
       />
-<div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-  <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-      {data.toolsTechSection?.toolsTechHeading}
-    </h2>
-    <h2 className="text-lg text-gray-800 leading-relaxed text-center mb-6">
-      {data.toolsTechSection?.toolsTechDesc}
-    </h2>
-    <div className="flex justify-center items-center mt-10 w-full max-md:max-w-full">
-      <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
-        {/* Top Row */}
-        <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
-          {data.toolsTechSection?.toolsTech
-            ?.slice(0, 7)
-            .map((tool: any, toolIndex: any) => (
-              <div
-                key={toolIndex}
-                className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
-              >
-                <div className="flex items-center justify-start h-full group cursor-pointer">
-                  <div className="flex justify-center">
-                    {tool.images?.map((logoRef: any, logoIndex: any) => {
-                      const logoData = dataLogo.find(
-                        (logo: any) => logo._id === logoRef._ref
-                      );
-                      if (logoData) {
-                        return (
-                          <div key={logoIndex} className="mr-2">
-                            <img
-                              src={urlForImage(logoData.image).toString()}
-                              alt={logoData.heading}
-                              className="h-12 object-cover transition-transform duration-300 transform group-hover:scale-125 cursor-pointer"
-                            />
-                          </div>
-                        );
-                      } else {
-                        return null;
-                      }
-                    })}
-                  </div>
-                  <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer">
-                    {tool.heading}
-                  </h3>
-                </div>
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+            {data.toolsTechSection?.toolsTechHeading}
+          </h2>
+          <h2 className="text-lg text-gray-800 leading-relaxed text-center mb-6">
+            {data.toolsTechSection?.toolsTechDesc}
+          </h2>
+          <div className="flex justify-center items-center mt-10 w-full max-md:max-w-full">
+            <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
+              {/* Top Row */}
+              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
+                {data.toolsTechSection?.toolsTech
+                  ?.slice(0, 7)
+                  .map((tool: any, toolIndex: any) => (
+                    <div
+                      key={toolIndex}
+                      className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
+                    >
+                      <div className="flex items-center justify-start h-full group cursor-pointer">
+                        <div className="flex justify-center">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex} className="mr-2">
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-12 object-cover transition-transform duration-300 transform group-hover:scale-125 cursor-pointer"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer">
+                          {tool.heading}
+                        </h3>
+                      </div>
+                    </div>
+                  ))}
               </div>
-            ))}
-        </div>
 
-        {/* Middle Row */}
-        <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
-          {data.toolsTechSection?.toolsTech
-            ?.slice(7, 14)
-            .map((tool: any, toolIndex: any) => (
-              <div
-                key={toolIndex}
-                className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
-              >
-                <div className="flex items-center justify-center h-full group cursor-pointer">
-                  <div className="flex justify-center">
-                    {tool.images?.map((logoRef: any, logoIndex: any) => {
-                      const logoData = dataLogo.find(
-                        (logo: any) => logo._id === logoRef._ref
-                      );
-                      if (logoData) {
-                        return (
-                          <div key={logoIndex} className="mr-1">
-                            <img
-                              src={urlForImage(logoData.image).toString()}
-                              alt={logoData.heading}
-                              className="h-12 object-cover transition-transform duration-300 transform group-hover:scale-125 cursor-pointer"
-                            />
-                          </div>
-                        );
-                      } else {
-                        return null;
-                      }
-                    })}
-                  </div>
-                  <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer">
-                    {tool.heading}
-                  </h3>
-                </div>
+              {/* Middle Row */}
+              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
+                {data.toolsTechSection?.toolsTech
+                  ?.slice(7, 14)
+                  .map((tool: any, toolIndex: any) => (
+                    <div
+                      key={toolIndex}
+                      className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
+                    >
+                      <div className="flex items-center justify-center h-full group cursor-pointer">
+                        <div className="flex justify-center">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex} className="mr-1">
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-12 object-cover transition-transform duration-300 transform group-hover:scale-125 cursor-pointer"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer">
+                          {tool.heading}
+                        </h3>
+                      </div>
+                    </div>
+                  ))}
               </div>
-            ))}
-        </div>
 
-        {/* Bottom Row */}
-        <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center">
-          {data.toolsTechSection?.toolsTech
-            ?.slice(14, 18)
-            .map((tool: any, toolIndex: any) => (
-              <div
-                key={toolIndex}
-                className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
-              >
-                <div className="flex items-center justify-center h-full group cursor-pointer">
-                  <div className="flex justify-center">
-                    {tool.images?.map((logoRef: any, logoIndex: any) => {
-                      const logoData = dataLogo.find(
-                        (logo: any) => logo._id === logoRef._ref
-                      );
-                      if (logoData) {
-                        return (
-                          <div key={logoIndex} className="mr-1">
-                            <img
-                              src={urlForImage(logoData.image).toString()}
-                              alt={logoData.heading}
-                              className="h-12 object-cover transition-transform duration-300 transform group-hover:scale-125 cursor-pointer"
-                            />
-                          </div>
-                        );
-                      } else {
-                        return null;
-                      }
-                    })}
-                  </div>
-                  <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer">
-                    {tool.heading}
-                  </h3>
-                </div>
+              {/* Bottom Row */}
+              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center">
+                {data.toolsTechSection?.toolsTech
+                  ?.slice(14, 18)
+                  .map((tool: any, toolIndex: any) => (
+                    <div
+                      key={toolIndex}
+                      className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
+                    >
+                      <div className="flex items-center justify-center h-full group cursor-pointer">
+                        <div className="flex justify-center">
+                          {tool.images?.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find(
+                              (logo: any) => logo._id === logoRef._ref
+                            );
+                            if (logoData) {
+                              return (
+                                <div key={logoIndex} className="mr-1">
+                                  <img
+                                    src={urlForImage(logoData.image).toString()}
+                                    alt={logoData.heading}
+                                    className="h-12 object-cover transition-transform duration-300 transform group-hover:scale-125 cursor-pointer"
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer">
+                          {tool.heading}
+                        </h3>
+                      </div>
+                    </div>
+                  ))}
               </div>
-            ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
 
 
