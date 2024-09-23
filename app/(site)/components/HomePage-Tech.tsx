@@ -21,8 +21,8 @@ const technologiesData: Record<
     { name: "React Native", logo: "/mobile4.png" },
     { name: "Hybrid", logo: "/mobile5.png" },
     { name: "Mobile Design", logo: "/mobile6.png" },
-    { name: "Cross Platform", logo: "/mobile7.png" },
-    { name: "Mobile App Testing", logo: "/mobile8.png" },
+    // { name: "Cross Platform", logo: "/mobile7.png" },
+    // { name: "Mobile App Testing", logo: "/mobile8.png" },
   ],
   "web-development": [
     { name: "Node.js", logo: "/web1.png" },

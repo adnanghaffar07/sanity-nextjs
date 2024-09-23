@@ -168,29 +168,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-16 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
-          <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-            <h1 className="self-center xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
-              Our Top Services
-            </h1>
-
-            <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 xl:mt-12 text-xl font-bold whitespace-nowrap max-md:flex-wrap mt-10 max-md:max-w-full">
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                Web Development
-              </p>
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                Mobile App Development
-              </p>
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                QA Automation Testing
-              </p>
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                AI/ML Services
-              </p>
-            </div>
-          </div>
-        </div> */}
       </ScrollAnimation>
       <div className="max-w-full mx-auto relative max-w-[1920px]">
         <img
