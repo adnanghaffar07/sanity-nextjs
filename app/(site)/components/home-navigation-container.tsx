@@ -48,6 +48,12 @@ export default function HomeNavigationContainer() {
     }));
   }, []);
 
+  const handleCall = () => {
+    // This will attempt to open the standard dialer
+    window.location.href = 'tel:+18505584691';
+  };
+  
+
   const toggleMenu = useCallback(() => {
     setMenuState((prevState) => ({
       ...prevState,
@@ -315,7 +321,7 @@ export default function HomeNavigationContainer() {
                             href={`/services/${linkAI}`}
                             className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            ChatBox & AI
+                            ChatBot & AI
                           </Link>
                           <Link
                             href={`/services/${linkUrlCMS}`}

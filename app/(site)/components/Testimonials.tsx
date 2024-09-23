@@ -105,36 +105,36 @@ const Testimonials = async () => {
         ))}
       </Swiper>
 
-{/* Clutch and Trustpilot section - displayed in a row */}
-<div className="flex justify-center items-center gap-8 mt-12">
-  <a
-    href="https://clutch.co/profile/codeautomationai#highlights"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-center"
-  >
-    <img
-      src="/Clutch.png"
-      alt="clutch-icon"
-      width={130}
-      height={40}
-    />
-  </a>
-  <a
-    href="https://www.trustpilot.com/review/codeautomation.ai"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-center"
-  >
-    <img
-      src="/Trustpilot.png"
-      alt="Trustpilot-icon"
-      width={130}
-      height={40}
-      className="mb-3"
-    />
-  </a>
-</div>
+      {/* Clutch and Trustpilot section - displayed in a row */}
+      <div className="flex justify-center items-center gap-8 mt-12">
+        <a
+          href="https://clutch.co/profile/codeautomationai#highlights"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center"
+        >
+          <img
+            src="/Clutch.png"
+            alt="clutch-icon"
+            width={130}
+            height={40}
+          />
+        </a>
+        <a
+          href="https://www.trustpilot.com/review/codeautomation.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center"
+        >
+          <img
+            src="/Trustpilot.png"
+            alt="Trustpilot-icon"
+            width={130}
+            height={40}
+            className="mb-3"
+          />
+        </a>
+      </div>
 
     </div>
   );

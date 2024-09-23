@@ -101,58 +101,38 @@ export default function Home() {
                 Schedule a Call
               </Link>
             </div>
+            {/* Clutch and Trustpilot section - displayed in a row */}
+            <div className="flex justify-center items-center gap-8 mt-12">
+              <a
+                href="https://clutch.co/profile/codeautomationai#highlights"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <img
+                  src="/Clutch.png"
+                  alt="clutch-icon"
+                  width={130}
+                  height={40}
+                />
+              </a>
+              <a
+                href="https://www.trustpilot.com/review/codeautomation.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <img
+                  src="/Trustpilot.png"
+                  alt="Trustpilot-icon"
+                  width={130}
+                  height={40}
+                  className="mb-3"
+                />
+              </a>
+            </div>
           </div>
 
-          {/* <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 text-base mt-10 lg:mt-auto max-md:max-w-full text-center max-w-[1400px]">
-              <div className="flex flex-col flex-1 items-center mt-1.5">
-                <img
-                  loading="eager"
-                  src="/global-trust.svg"
-                  className="self-center aspect-[1.12] w-[65px]"
-                  alt="Global trust"
-                />
-                <p className="lg:mt-11 mt-3">
-                  We are trusted by 200 global clients and offer innovative
-                  software solutions tailored to specific needs and markets
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center mt-1">
-                <img
-                  loading="eager"
-                  src="/project-completion.svg"
-                  className="self-center aspect-square w-[58px]"
-                  alt="Project completion"
-                />
-                <p className="lg:mt-11 mt-3">
-                  Completed 350+ projects, showcasing expertise in providing
-                  creative software products globally
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center">
-                <img
-                  loading="eager"
-                  src="/quality-assurance.svg"
-                  className="self-center aspect-square w-[58px]"
-                  alt="Quality assurance"
-                />
-                <p className="lg:mt-11 mt-3">
-                  We professionally assessed 300 apps to ensure high-quality and
-                  reliable software solutions for our clients
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center">
-                <img
-                  loading="eager"
-                  src="/bug-fixing.svg"
-                  className="self-center aspect-[0.89] w-[52px]"
-                  alt="Bug fixing"
-                />
-                <p className="lg:mt-11 mt-3">
-                  Over 150k bugs have been addressed, ensuring that our
-                  clients&rsquo; software solutions are reliable and trustworthy
-                </p>
-              </div>
-            </div> */}
         </div>
       </div>
       <ScrollAnimation>

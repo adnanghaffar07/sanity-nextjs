@@ -405,7 +405,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               {/* Desktop Layout */}
               <div className="hidden md:flex flex-col sm:flex-row sm:flex-wrap justify-center gap-y-5 md:gap-y-10">
                 {data.caseStudiesToolsSection.toolsTech.map((tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/3">
+                  <div key={toolIndex} className="w-full m-1 md:m-4 sm:m-0 sm:w-1/2 lg:w-1/4">
                     <div className="flex md:justify-center gap-2">
                       <div className="flex flex-row gap-x-3">
                         {tool.images?.map((logoRef: any, logoIndex: any) => {
