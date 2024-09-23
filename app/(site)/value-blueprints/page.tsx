@@ -309,7 +309,7 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                    className="h-12 object-cover"
                                   />
                                 </div>
                               );
@@ -347,7 +347,7 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                    className="h-12 object-cover"
                                   />
                                 </div>
                               );
@@ -385,7 +385,7 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                    className="h-12 object-cover"
                                   />
                                 </div>
                               );
