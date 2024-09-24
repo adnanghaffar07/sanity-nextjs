@@ -173,7 +173,7 @@ export default async function ValueBlueprints() {
 
       {/* Explore Blueprints section */}
       <section className="px-6 md:px-16 py-10 md:py-16 bg-slate-100">
-        <div className="flex flex-col pt-20 pb-6 max-w-[1400px] mx-auto">
+        <div className="flex flex-col md:pt-20 pb-6 max-w-[1400px] mx-auto">
           <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
             <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
               <div className="justify-center">
@@ -207,7 +207,7 @@ export default async function ValueBlueprints() {
                         />
                       </div>
                       <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md text-white px-2 py-4">
-                        <h3 className="text-lg md:text-lg font-light transition duration-300">
+                        <h3 className="text-sm md:text-lg font-light transition duration-300">
                           {item.title}
                         </h3>
                       </div>
@@ -520,8 +520,8 @@ export default async function ValueBlueprints() {
       </div>
 
       {/* Combined Section */}
-      <div className="flex justify-center items-center px-16 py-20 bg-slate-100 max-md:px-5">
-        <div className="mt-7 w-full max-w-[1066px] max-md:max-w-full">
+      <div className="flex justify-center items-center px-16 py-6 md:py-20 bg-slate-100 max-md:px-5">
+        <div className="w-full max-w-[1066px] max-md:max-w-full">
           <div className="flex gap-16 max-md:flex-col max-md:gap-0">
             {/* Call to Action Card */}
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
