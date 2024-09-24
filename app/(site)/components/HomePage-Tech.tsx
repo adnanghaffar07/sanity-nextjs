@@ -15,14 +15,20 @@ const technologiesData: Record<
   { name: string; logo: string }[]
 > = {
   "mobile-development": [
-    { name: "iOS", logo: "/mobile1.png" },
-    { name: "Android", logo: "/mobile2.png" },
     { name: "Flutter", logo: "/mobile3.png" },
-    { name: "React Native", logo: "/mobile4.png" },
-    { name: "Hybrid", logo: "/mobile5.png" },
-    { name: "Mobile Design", logo: "/mobile6.png" },
-    // { name: "Cross Platform", logo: "/mobile7.png" },
-    // { name: "Mobile App Testing", logo: "/mobile8.png" },
+    { name: "React Native", logo: "/web2.png" },
+    { name: "Xamarin", logo: "/xamarin.png" },
+    { name: "Swift", logo: "/prog2.png" },
+    { name: "Java", logo: "/prog3.png" },
+    { name: "Kotlin", logo: "/kotlin.png" },
+    { name: "Artificial Intelligence", logo: "/ai.png" },
+    { name: "Augmented Reality", logo: "/augmentedReal.png" },
+    { name: "C++", logo: "/prog6.png" },
+    { name: "Internet of Things", logo: "/iot.png" },
+    { name: "HTML5", logo: "/html5.png" },
+    { name: "Blockchain", logo: "/blockchain.png" },
+    { name: "Mobile Angular UI", logo: "/web3.png" },
+
   ],
   "web-development": [
     { name: "Node.js", logo: "/web1.png" },
@@ -93,7 +99,7 @@ const TechnologiesSection = () => {
               className="flex flex-col items-center text-center w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/6"
             >
               <img src={tech.logo} alt={tech.name} className="w-16 h-16 mb-2" />
-              <span className="text-md font-md">{tech.name}</span>
+              <span className="text-sm md:text-md font-md">{tech.name}</span>
             </div>
           ))}
         </div>
