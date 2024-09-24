@@ -502,7 +502,7 @@ export default async function ValueBlueprints() {
               <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
                 {data.summarySection?.summaryHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify md:text-left">
+              <p className="text-lg text-gray-800 leading-relaxed md:text-left">
                 {data.summarySection?.summaryMessage}
               </p>
             </div>
