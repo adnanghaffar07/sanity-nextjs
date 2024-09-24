@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import ScrollAnimation from "../components/ScrollAnimation";
+import ButtonScrollToSection from "../components/ButtonScrollToSection";
 
 async function getData() {
   const query = `*[_type == 'partnership'][0]`;
@@ -17,7 +18,7 @@ async function getData() {
 }
 
 // Updated generateMetadata function
-export async function generateMetadata()  {
+export async function generateMetadata() {
   const data = await getData();
 
   const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
@@ -111,24 +112,30 @@ const page = async () => {
           )}
         </div>
 
-        <div className="mt-[160px] sm:mt-[290px] items-center absolute inset-0 flex flex-col z-[2]">
-          <h1 className="text-xl sm:text-3xl md:text-5xl xl:text-6xl font-semibold tracking-tight capitalize leading-[48px] text-white text-center">
+        <div className="mt-[160px] sm:mt-[290px] items-center absolute inset-0 flex flex-col z-[2] px-16">
+          <h1 className="lg:text-4xl text-2xl  font-semibold tracking-tight capitalize leading-[48px] text-white text-center">
             {data.heroTitle}
           </h1>
-          <p className="mt-2 sm:mt-6 xl:mt-10 text-xs sm:text-base md:text-xl xl:text-3xl font-light tracking-wide leading-4 sm:leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
+          <p className="mt-2 md:mt-8 md:text-2xl text-lg font-light tracking-wide leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
             {data.heroSubTitle}
           </p>
+          <ButtonScrollToSection
+            classes="bg-[#f7e022] text-black cursor-pointer mt-6 py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
+            content="Become a Partner"
+            key="first-button"
+            destination="contact-box"
+          />
         </div>
       </section>
 
       <ScrollAnimation>
         <section className="flex justify-center items-center px-16 py-14 text-center bg-zinc-100 max-md:px-5">
-          <div className="flex flex-col max-w-full w-[700px]">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl leading-10 text-black max-md:max-w-full">
+          <div className="flex flex-col max-w-full ">
+            <h2 className="text-2xl md:text-4xl  leading-20 text-black max-md:max-w-full max-w-3xl mx-auto">
               {data.title}
               <br />
             </h2>
-            <p className="self-center mt-4 text-lg leading-6 text-slate-600 max-md:max-w-full max-w-[610px]">
+            <p className="self-center mt-4 text-lg leading-8 text-slate-600 max-w-4xl mx-auto">
               {data.description}
             </p>
           </div>
@@ -148,10 +155,10 @@ const page = async () => {
             <div className="flex flex-col max-md:ml-0 max-md:w-full">
               <article className="flex flex-col grow max-md:mt-10 max-md:max-w-full z-10 px-4 sm:px-0">
                 <div className="flex flex-col pl-0 sm:pl-20 text-neutral-900 max-md:max-w-full mb-4 mt-1">
-                  <h2 className="text-2xl sm:text-4xl leading-8 sm:leading-6 max-md:max-w-full font-medium text-center sm:text-left">
+                  <h2 className="text-2xl sm:text-4xl leading-16 max-md:max-w-full font-medium text-center sm:text-left">
                     {data?.availableProgramSection?.partnershipTitle}
                   </h2>
-                  <p className="mt-8 text-base leading-6 max-w-[666px] text-justify">
+                  <p className="mt-8 text-base text-lg leading-8 max-w-[666px] text-justify">
                     {data?.availableProgramSection?.partnershipDescription}
                     <br />
                   </p>
@@ -180,7 +187,7 @@ const page = async () => {
                                 Learn more
                               </button> */}
                             </div>
-                            <p className="mt-3 text-sm leading-6 text-slate-600 max-w-[666px] text-justify">
+                            <p className="mt-3 text-md leading-7 text-slate-700 max-w-[666px] text-justify">
                               {program.description}
                               <br />
                             </p>
@@ -224,24 +231,21 @@ const page = async () => {
                 loading="lazy"
                 src="/affiliate-partner-eclipse.png"
                 alt="eclipse icon"
-                className={`absolute bottom-0 w-[320px] z-0 ${
-                  index === 1 ? "block" : "hidden"
-                }`}
+                className={`absolute bottom-0 w-[320px] z-0 ${index === 1 ? "block" : "hidden"
+                  }`}
               />
               <img
                 loading="lazy"
                 src="/white-label-eclipse.png"
                 alt="eclipse icon"
-                className={`absolute bottom-0 right-0 w-[420px] z-0 ${
-                  index === 2 ? "block" : "hidden"
-                }`}
+                className={`absolute bottom-0 right-0 w-[420px] z-0 ${index === 2 ? "block" : "hidden"
+                  }`}
               />
 
               <div className="flex items-center justify-center">
                 <div
-                  className={`flex gap-5 flex-col max-w-[1280px] items-center justify-center ${
-                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
+                  className={`flex gap-5 flex-col max-w-[1280px] items-center justify-center ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                    }`}
                 >
                   {program?.programImage?.asset && (
                     <figure className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
@@ -255,10 +259,10 @@ const page = async () => {
                   )}
                   <div className="flex flex-col ml-0 sm:ml-5 w-[80%] sm:w-[55%]">
                     <div className="flex flex-col self-stretch px-0 sm:px-5 my-auto max-md:mt-10 max-md:max-w-full">
-                      <h2 className="text-3xl text-black leading-[58px] sm:text-4xl md:text-5xl">
+                      <h2 className="text-2xl text-black leading-[58px] md:text-4xl">
                         {program.title}
                       </h2>
-                      <ol className="mt-14 text-xl sm:text-2xl leading-[50px] text-slate-600 max-md:mt-10 list-decimal">
+                      <ol className="mt-10 ml-6 text-lg leading-10 text-slate-700 max-md:mt-10 list-decimal">
                         {program.list.map((item: any) => {
                           return item.subLevelList ? (
                             <div key={item._key}>
@@ -293,20 +297,20 @@ const page = async () => {
       <ScrollAnimation>
         <section className="flex justify-center leading-8 text-center bg-[#EFEEEE] pb-36 ">
           <div className="max-w-[1280px]">
-            <h2 className="text-3xl sm:text-5xl my-20">Our Services</h2>
+            <h2 className="text-2xl md:text-4xl my-20">Our Services</h2>
             <div className="text-slate-600 max-w-[1280px]">
               <div className="flex justify-center gap-x-8 gap-y-14 flex-wrap px-5 w-full max-md:flex-wrap max-md:max-w-full">
                 {data?.services?.map((service: any) => {
                   return service.singleService.length === 1 ? (
                     <p
-                      className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl sm:text-2xl"
+                      className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl"
                       key={service._key}
                     >
                       {service.singleService[0]}
                     </p>
                   ) : (
                     <p
-                      className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl sm:text-2xl"
+                      className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl"
                       key={service._key}
                     >
                       {service.singleService[0]}
