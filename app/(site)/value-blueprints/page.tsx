@@ -182,7 +182,7 @@ export default async function ValueBlueprints() {
           </div>
           <div className="relative h-auto flex flex-col justify-center overflow-hidden">
             <div
-              className="flex overflow-x-auto overflow-y-hidden gap-5 h-auto justify-start pl-20 mt-8 max-md:flex-wrap max-md:pl-5 hide-scrollbar"
+              className="flex overflow-x-auto overflow-y-hidden gap-5 h-auto justify-start md:pl-20 mt-8 max-md:flex-wrap max-md:pl-0 hide-scrollbar"
               id="scrollContainer"
             >
               {portfolioData.map((item: any) => (
@@ -202,7 +202,7 @@ export default async function ValueBlueprints() {
                         {item.title}
                       </div>
                     </div>
-                    <div className="flex gap-3.5 mt-5 max-w-full justify-center transition-all duration-300">
+                    <div className="flex gap-3.5 mt-1 md:mt-5 max-w-full justify-center transition-all duration-300">
                       {item.caseStudiesToolsSection?.toolsTech?.map((tool: any, toolIndex: any) => (
                         <div key={toolIndex} className="flex flex-col flex-1 items-center relative">
                           {tool?.images.map((logoRef: any, logoIndex: any) => {
