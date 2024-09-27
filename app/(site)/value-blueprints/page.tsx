@@ -286,9 +286,9 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-10 md:h-12 md:mr-2 object-cover transition-transform duration-300 transform group-hover:scale-110 cursor-pointer"
+                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
-                                  <h3 className="text-sm  text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer mt-2">
+                                  <h3 className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
                                     {tool.heading}
                                   </h3>
                                 </div>
@@ -327,9 +327,9 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-10 md:h-12 md:mr-2 object-cover transition-transform duration-300 transform group-hover:scale-110 cursor-pointer"
+                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
-                                  <h3 className="text-sm text-[#C4C4C4] text-center transition-all duration-300 group-hover:text-gray-800 cursor-pointer mt-2">
+                                  <h3 className="text-sm text-gray-800 font-semibold text-center cursor-pointer mt-2">
                                     {tool.heading}
                                   </h3>
                                 </div>
@@ -343,7 +343,6 @@ export default async function ValueBlueprints() {
                     </div>
                   ))}
               </div>
-
               {/* Bottom Row */}
               <div className="flex flex-wrap gap-5 justify-center items-center">
                 {data.toolsTechSection?.toolsTech
@@ -368,9 +367,9 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-10 md:h-12 md:mr-2 object-cover transition-transform duration-300 transform group-hover:scale-110 cursor-pointer"
+                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
-                                  <h3 className="text-sm text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800 cursor-pointer mt-2">
+                                  <h3 className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
                                     {tool.heading}
                                   </h3>
                                 </div>
