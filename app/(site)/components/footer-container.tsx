@@ -250,7 +250,7 @@ export default function FooterContainer() {
                     className="md:max-h-10 object-cover"
                   />
                   <span className="font-light">
-                    30 N Gould St Ste 7596, Sheridan, WY, 82801
+                  Office 254, Suite 200 Office Evolution Naperville, IL USA 60543
                   </span>
                 </div>
 
