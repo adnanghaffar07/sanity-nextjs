@@ -45,7 +45,6 @@ async function getLogoData() {
   }
 }
 
-
 // Updated generateMetadata function
 export async function generateMetadata({
   params,
@@ -53,8 +52,10 @@ export async function generateMetadata({
   params: { service: string };
 }) {
   const data = await getData(params.service); // Ensure to pass params.service to getData
-  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
-  const defaultDescription = "Custom Software and Mobile Development Company in USA";
+  const defaultTitle =
+    "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription =
+    "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
 
   const title = data.webSeoMetadata?.title || defaultTitle;
@@ -85,7 +86,7 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: title,
-        }
+        },
       ],
     },
     twitter: {
@@ -96,7 +97,7 @@ export async function generateMetadata({
         {
           url: urlForImage(data.heroImage).toString(),
           alt: title,
-        }
+        },
       ],
     },
     linkedIn: {
@@ -180,10 +181,7 @@ export default async function service({
         </div>
       </div>
 
-
-
-
-      {data.clientsSection &&
+      {data.clientsSection && (
         <div className="relative">
           {/* Background overlay */}
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
@@ -213,21 +211,16 @@ export default async function service({
             </div>
           </div>
         </div>
-      }
-
-
-
+      )}
 
       {/* Why Prefer Code Automation? Custom Software */}
-      {data.customSoftwareSection &&
-        <CustomSoftwareSection data={data} />
-      }
+      {data.customSoftwareSection && <CustomSoftwareSection data={data} />}
 
       {/*  Our Custom Software Development Services Custom Software*/}
-      {data.customSoftwareDev &&
+      {data.customSoftwareDev && (
         <section className="px-6 py-10 md:px-16 md:py-16 relative ">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
-          < section className="max-w-7xl mx-auto">
+          <section className="max-w-7xl mx-auto">
             <div className="justify-center text-center relative pb-10">
               <div>
                 <h2 className="text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
@@ -278,10 +271,10 @@ export default async function service({
             </div>
           </section>
         </section>
-      }
+      )}
 
       {/* Turn Vision Into Reality Custom Software */}
-      {data.turnVision &&
+      {data.turnVision && (
         <section
           className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
           style={{
@@ -330,23 +323,66 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
       {/* Custom Software Case Studies Section */}
-      {data.turnVision &&
-      <div className="px-6 md:px-16 py-10 md:py-16">
-        <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Our Success Stories in Software Solutions</h2>
-        <CaseStudiesHome />
-      </div>
-}
+      {data.turnVision && (
+        <div className="px-6 md:px-16 py-10 md:py-16">
+          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">
+            Our Success Stories in Software Solutions
+          </h2>
+          <CaseStudiesHome />
+        </div>
+      )}
 
       {/* Why Prefer Code Automation? Custom Software */}
-      {data.provenProcessSection &&
-        <CustomSoftware2Section data={data} />
-      }
+      {data.provenProcessSection && <CustomSoftware2Section data={data} />}
 
+      {/* tools section */}
+      {data.toolsLogoSection.logoArray.length > 0 && (
+        <section className="h-[180px] md:h-[224px] mx-auto px-16 bg-[#E8F4FE] flex items-center overflow-hidden">
+          <div className="w-full flex items-center">
+            <div className="flex animate-scroll">
+              {data.toolsLogoSection.logoArray.map(
+                (logo: any, index: number) => (
+                  <div
+                    key={index}
+                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-[#e6edf3] rounded-[26px] flex items-center justify-center mx-8 flex-shrink-0 border-2 border-[#e1e8ee]"
+                  >
+                    <Image
+                      src={urlForImage(logo).toString()}
+                      alt={logo?.alt}
+                      width={96}
+                      height={96}
+                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px]"
+                    />
+                  </div>
+                )
+              )}
+            </div>
+            <div className="flex animate-scroll">
+              {data.toolsLogoSection.logoArray.map(
+                (logo: any, index: number) => (
+                  <div
+                    key={index}
+                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-[#e6edf3] rounded-[26px] flex items-center justify-center mx-8 flex-shrink-0 border-2 border-[#e1e8ee]"
+                  >
+                    <Image
+                      src={urlForImage(logo).toString()}
+                      alt={logo?.alt}
+                      width={96}
+                      height={96}
+                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px]"
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Introduction Section */}
-      {data.introductionSection &&
+      {data.introductionSection && (
         <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
           <div className="container mx-auto flex flex-wrap items-center justify-center relative">
@@ -354,7 +390,9 @@ export default async function service({
             {data.introductionSection?.introImage && (
               <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
                 <Image
-                  src={urlForImage(data.introductionSection?.introImage).toString()}
+                  src={urlForImage(
+                    data.introductionSection?.introImage
+                  ).toString()}
                   alt={data.introductionSection?.introImage.alt}
                   width={370}
                   height={150}
@@ -365,24 +403,43 @@ export default async function service({
             )}
 
             {/* Content on the right */}
-            {data.introductionSection?.introHeading && data.introductionSection?.introDesc && (
-              <div className="w-full md:w-1/2">
-                <div className="max-w-3xl mx-auto">
-                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                    {data.introductionSection.introHeading}
-                  </h2>
-                  <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                    {data.introductionSection.introDesc}
-                  </p>
+            {data.introductionSection?.introHeading &&
+              data.introductionSection?.introDesc && (
+                <div className="w-full md:w-1/2">
+                  <div className="max-w-3xl mx-auto">
+                    <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+                      {data.introductionSection.introHeading}
+                    </h2>
+                    {data.introductionDescArray.length === 0 && (
+                      <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                        {data.introductionSection.introDesc}
+                      </p>
+                    )}
+                    {data.introductionDescArray.length > 0 && (
+                      <div className="flex flex-col gap-4">
+                        {data.introductionDescArray.map(
+                          (description: string, index: number) => {
+                            return (
+                              <p
+                                className="text-lg text-gray-800 leading-relaxed text-center md:text-justify"
+                                key={index}
+                              >
+                                {description}
+                              </p>
+                            );
+                          }
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </section>
-      }
+      )}
 
       {/* Design section */}
-      {data.designSection &&
+      {data.designSection && (
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">
@@ -393,11 +450,10 @@ export default async function service({
             </p>
           </div>
         </section>
-      }
-
+      )}
 
       {/* Development section */}
-      {data.developmentSection &&
+      {data.developmentSection && (
         <section className="px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">
@@ -408,10 +464,10 @@ export default async function service({
             </p>
           </div>
         </section>
-      }
+      )}
 
       {/* Implementation section */}
-      {data.implementationSection &&
+      {data.implementationSection && (
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">
@@ -422,7 +478,7 @@ export default async function service({
             </p>
           </div>
         </section>
-      }
+      )}
       {/* CMS Page */}
       {data.contentItems && (
         <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
@@ -468,9 +524,8 @@ export default async function service({
         </section>
       )}
 
-
       {/* child service cards */}
-      {data.subServices &&
+      {data.subServices && (
         <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold mb-4 text-center">
@@ -502,7 +557,9 @@ export default async function service({
                       >
                         <div className="bg-white shadow-md w-auto sm:w-[400px] rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full">
                           <img
-                            src={urlForImage(subService.heroImageSub).toString()}
+                            src={urlForImage(
+                              subService.heroImageSub
+                            ).toString()}
                             alt={subService.serviceCardSub}
                             className="w-full h-40 object-cover"
                           />
@@ -535,10 +592,65 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
+
+      {/* CTA after SubServices  */}
+      {data.ctaAfterSubServices && (
+        <section
+          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/Container.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container text-white mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side (Heading, Offer Text, and QA) */}
+            <div className="col-span-1 md:col-span-1">
+              <div className="flex flex-col w-full max-md:max-w-full">
+                <div className="text-3xl font-bold leading-none max-md:max-w-full">
+                  {data.ctaAfterSubServices.title}
+                </div>
+                <div className="mt-4 text-xl leading-none max-md:max-w-full">
+                  {data.ctaAfterSubServices.subtitle}
+                </div>
+                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
+                  {data.ctaAfterSubServices.description}
+                </div>
+                <Link
+                  href={data.ctaAfterSubServices.buttonLink}
+                  className="button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ maxWidth: "320px" }}
+                >
+                  {data.ctaAfterSubServices.buttonText}
+                </Link>
+              </div>
+            </div>
+
+            {/* Right side (Image) */}
+            <div className="col-span-1 md:col-span-1 flex justify-center">
+              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                {data.ctaAfterSubServices?.featuredImage && (
+                  <Image
+                    src={urlForImage(
+                      data.ctaAfterSubServices?.featuredImage
+                    ).toString()}
+                    alt={data.ctaAfterSubServices?.featuredImage.alt}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Our Mobile App Development Services Section */}
-      {data.mobileAppServices &&
+      {data.mobileAppServices && (
         <section className="px-6 md:px-16 py-10 md:py-16 relative">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
           {/* Heading and Description */}
@@ -561,17 +673,50 @@ export default async function service({
                 <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                   {card.title}
                 </h3>
-                <p className="text-lg text-[#3C3C3C]">
-                  {card.description}
-                </p>
+                <p className="text-lg text-[#3C3C3C]">{card.description}</p>
               </div>
             ))}
           </div>
         </section>
-      }
+      )}
+
+      {/* clients logo section after subservice */}
+      {data.clientsSectionAfterSubServices && (
+        <div className="relative">
+          {/* Background overlay */}
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+
+          {/* Main content */}
+          <div className="flex flex-col justify-around px-6 py-10 md:px-8 md:py-16 max-w-9xl mx-auto relative">
+            {/* Title and Description */}
+            <div className="text-center text-neutral-700">
+              <h2 className="text-3xl font-bold max-md:max-w-full">
+                {data.clientsSectionAfterSubServices.sectionTitle}
+              </h2>
+              <p className="mt-4 text-lg font-medium max-md:max-w-full">
+                {data.clientsSectionAfterSubServices.sectionDescription}
+              </p>
+            </div>
+
+            {/* Client Logos */}
+            <div className="flex flex-wrap gap-10 xl:gap-20  justify-center items-center mt-12 max-md:mt-10">
+              {data.clientsSectionAfterSubServices.clientLogos.map(
+                (logo: any, index: any) => (
+                  <img
+                    key={index}
+                    src={urlForImage(logo.asset).toString()}
+                    alt={logo.altText}
+                    className="object-cover sm:h-8 xl:h-11 "
+                  />
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Why Choose Code Automation? Mobile APP*/}
-      {data.whyChooseMobile &&
+      {data.whyChooseMobile && (
         <section className="px-6 md:px-16 py-10 md:py-16">
           <div className="max-w-7xl mx-auto">
             {/* Heading at the Top */}
@@ -590,9 +735,7 @@ export default async function service({
                     <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-[#3C3C3C]">
-                      {item.description}
-                    </p>
+                    <p className="text-lg text-[#3C3C3C]">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -606,36 +749,44 @@ export default async function service({
                 />
               </div>
             </div>
-
           </div>
-
         </section>
-      }
-
+      )}
 
       {/* Industries & Applications We QA */}
-      {data.industriesWeQA &&
+      {data.industriesWeQA && (
         <section className="relative px-6 md:px-16 py-16 bg-white">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
 
           {/* Centered Heading and Description */}
           <div className="flex flex-col items-center justify-center text-center mb-12 relative">
-            <h2 className="text-3xl font-bold mb-4">   {data.industriesWeQA?.heading}</h2>
-            <p className="text-lg text-gray-800 leading-relaxed max-w-3xl">   {data.industriesWeQA?.description}</p>
+            <h2 className="text-3xl font-bold mb-4">
+              {" "}
+              {data.industriesWeQA?.heading}
+            </h2>
+            <p className="text-lg text-gray-800 leading-relaxed max-w-3xl">
+              {" "}
+              {data.industriesWeQA?.description}
+            </p>
           </div>
 
           {/* Image on the Right and Bullet Points on the Left */}
           <div className="container mx-auto flex flex-wrap items-start justify-center relative max-w-7xl">
             {/* Bullet Points on the Left */}
             <div className="w-full md:w-1/2 lg:w-1/3 flex flex-col space-y-4">
-              <h2 className="text-3xl font-bold mb-4">{data.industriesWeQA?.bulletPointsHeading}</h2>
-              {data.industriesWeQA?.bulletPoints?.map((point: any, index: any) => (
-                <div key={index} className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105">
-                  <p className="text-[#3C3C3C] font-semibold">
-                    • {point}
-                  </p>
-                </div>
-              ))}
+              <h2 className="text-3xl font-bold mb-4">
+                {data.industriesWeQA?.bulletPointsHeading}
+              </h2>
+              {data.industriesWeQA?.bulletPoints?.map(
+                (point: any, index: any) => (
+                  <div
+                    key={index}
+                    className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+                  >
+                    <p className="text-[#3C3C3C] font-semibold">• {point}</p>
+                  </div>
+                )
+              )}
             </div>
 
             {/* Image on the Right */}
@@ -650,12 +801,10 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
-
-
+      )}
 
       {/* Industries We Serve Section */}
-      {data.industriesServe &&
+      {data.industriesServe && (
         <section className="px-6 md:px-16 py-10 md:py-16">
           <div className="flex flex-col">
             <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
@@ -674,32 +823,36 @@ export default async function service({
               <div
                 className="flex gap-5 h-auto justify-start pl-20 mt-6 max-md:flex-wrap max-md:pl-5 hide-scrollbar"
                 id="scrollContainer"
-                style={{ overflowX: 'auto' }}
+                style={{ overflowX: "auto" }}
               >
-                {data.industriesServe?.bulletPoints.map((item: any, index: number) => (
-                  <div
-                    key={item._id}
-                    className="h-auto flex-shrink-0 w-full sm:w-80 md:w-80 lg:w-1/4 bg-[#FBFBFB] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
-                    style={{ minWidth: 'calc(100% / 4 - 20px)' }} // Ensure 4 cards per row with spacing
-                  >
-                    {/* Index on the Left Side */}
-                    <div className="absolute top-6 left-6 rounded-lg bg-[#1D92FB] text-white text-xl font-bold px-4 py-2">
-                      {index + 1}
-                    </div>
+                {data.industriesServe?.bulletPoints.map(
+                  (item: any, index: number) => (
+                    <div
+                      key={item._id}
+                      className="h-auto flex-shrink-0 w-full sm:w-80 md:w-80 lg:w-1/4 bg-[#FBFBFB] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
+                      style={{ minWidth: "calc(100% / 4 - 20px)" }} // Ensure 4 cards per row with spacing
+                    >
+                      {/* Index on the Left Side */}
+                      <div className="absolute top-6 left-6 rounded-lg bg-[#1D92FB] text-white text-xl font-bold px-4 py-2">
+                        {index + 1}
+                      </div>
 
-                    {/* Heading and Bullet Points */}
-                    <div className="px-5 py-7 pt-16 mt-6">
-                      <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
-                        {item.heading}
-                      </h3>
-                      <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
-                        {item.bulletPoints?.map((bullet: string, bulletIndex: number) => (
-                          <li key={bulletIndex}>{bullet}</li>
-                        ))}
-                      </ul>
+                      {/* Heading and Bullet Points */}
+                      <div className="px-5 py-7 pt-16 mt-6">
+                        <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
+                          {item.heading}
+                        </h3>
+                        <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
+                          {item.bulletPoints?.map(
+                            (bullet: string, bulletIndex: number) => (
+                              <li key={bulletIndex}>{bullet}</li>
+                            )
+                          )}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
               <ScrollButton
                 scrollContainerId="scrollContainer"
@@ -709,71 +862,150 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/* Tools & Technology Section */}
-      <section className="relative px-6 md:px-16 py-16">
-        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
-        <div className="container mx-auto relative">
-          <h2 className="text-2xl text-center font-bold mb-4">
-            {data.toolsTechSection?.toolsTechHeading}
-          </h2>
+      {data.toolsTechSection?.toolsTechHeading && (
+        <section className="relative px-6 md:px-16 py-16">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          <div className="container mx-auto relative">
+            <h2 className="text-2xl text-center font-bold mb-4">
+              {data.toolsTechSection?.toolsTechHeading}
+            </h2>
 
-          {/* Render paragraph if there's content */}
-          {data.toolsTechSection?.toolsTechDesc && (
-            <p className="text-lg text-[#3C3C3C] leading-relaxed max-w-5xl text-center mb-8 mx-auto">
-              {data.toolsTechSection?.toolsTechDesc}
-            </p>
-          )}
-
-          <div
-            className={
-              data.toolsTechSection?.toolsTech != null
-                ? "flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
-                : "hidden"
-            }
-            style={{
-              marginTop: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
-              marginBottom: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
-            }}
-          >
-            {data.toolsTechSection?.toolsTech?.map(
-              (tool: any, toolIndex: any) => (
-                <div key={toolIndex}>
-                  <div className="bg-white shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
-                    <div className="flex flex-row justify-center">
-                      {tool.images?.map((logoRef: any, logoIndex: any) => {
-                        const logoData = dataLogo.find(
-                          (logo: any) => logo._id === logoRef._ref
-                        );
-                        if (logoData) {
-                          return (
-                            <div key={logoIndex} className="">
-                              <img
-                                src={urlForImage(logoData.image).toString()}
-                                alt={logoData.image.alt || logoData.heading}
-                                className="h-8 object-cover mb-2 mr-2"
-                              />
-                            </div>
-                          );
-                        } else {
-                          return null;
-                        }
-                      })}
-                    </div>
-                    <h3 className="text-xl text-center font-semibold mb-4">
-                      {tool.heading}
-                    </h3>
-                    <p className="text-gray-700 text-center">{tool.detail}</p>
-                  </div>
-                </div>
-              )
+            {/* Render paragraph if there's content */}
+            {data.toolsTechSection?.toolsTechDesc && (
+              <p className="text-lg text-[#3C3C3C] leading-relaxed max-w-5xl text-center mb-8 mx-auto">
+                {data.toolsTechSection?.toolsTechDesc}
+              </p>
             )}
+
+            <div
+              className={
+                data.toolsTechSection?.toolsTech != null
+                  ? "flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
+                  : "hidden"
+              }
+              style={{
+                marginTop: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
+                marginBottom: data.toolsTechSection?.toolsTechDesc ? "0" : "0",
+              }}
+            >
+              {data.toolsTechSection?.toolsTech?.map(
+                (tool: any, toolIndex: any) => (
+                  <div key={toolIndex}>
+                    <div className="bg-white shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
+                      <div className="flex flex-row justify-center">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find(
+                            (logo: any) => logo._id === logoRef._ref
+                          );
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex} className="">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.image.alt || logoData.heading}
+                                  className="h-8 object-cover mb-2 mr-2"
+                                />
+                              </div>
+                            );
+                          } else {
+                            return null;
+                          }
+                        })}
+                      </div>
+                      <h3 className="text-xl text-center font-semibold mb-4">
+                        {tool.heading}
+                      </h3>
+                      <p className="text-gray-700 text-center">{tool.detail}</p>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Updated Tools & Technology Section */}
+      {data.updatedToolsTechSection && (
+        <section className="relative px-6 md:px-16 py-16">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          <div className="container mx-auto relative">
+            <h2 className="text-2xl text-center font-bold mb-4">
+              {data.updatedToolsTechSection?.toolsTechHeading}
+            </h2>
+
+            {/* Render paragraph if there's content */}
+            {data.updatedToolsTechSection?.toolsTechDesc && (
+              <p className="text-lg text-[#3C3C3C] leading-relaxed max-w-5xl text-center mb-8 mx-auto">
+                {data.updatedToolsTechSection?.toolsTechDesc}
+              </p>
+            )}
+
+            <div
+              className={
+                data.updatedToolsTechSection?.toolsTech != null
+                  ? "flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] sm:gap-[30px] 2xl:gap-[30px] max-w-[1440px] sm:my-40"
+                  : "hidden"
+              }
+              style={{
+                marginTop: data.updatedToolsTechSection?.toolsTechDesc
+                  ? "0"
+                  : "0",
+                marginBottom: data.updatedToolsTechSection?.toolsTechDesc
+                  ? "0"
+                  : "0",
+              }}
+            >
+              {data.updatedToolsTechSection?.toolsTech?.map(
+                (tool: any, toolIndex: any) => (
+                  <div key={toolIndex}>
+                    <div className="bg-white shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
+                      <div className="flex flex-row">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find(
+                            (logo: any) => logo._id === logoRef._ref
+                          );
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex} className="">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.image.alt || logoData.heading}
+                                  className="h-8 object-cover mb-2 mr-2"
+                                />
+                              </div>
+                            );
+                          } else {
+                            return null;
+                          }
+                        })}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-4">
+                        {tool.heading}
+                      </h3>
+                      <ul className="list-disc ml-5">
+                        {tool.description.map((text: String, index: number) => {
+                          return (
+                            <li className="text-gray-700 mb-2" key={index}>
+                              {text}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Example Value of Service (Use Cases) Section */}
-      {data.exampleServicesSection &&
+      {data.exampleServicesSection && (
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto">
             <h2 className="text-2xl  text-center font-bold mb-8">
@@ -821,17 +1053,13 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
-      {data.mobileAppServiceSection &&
-        <MobileAppServiceSection data={data} />
-      }
-      {data.secondMobileAppAcc &&
-        <SecondMobileServiceAcc data={data} />
-      }
+      {data.mobileAppServiceSection && <MobileAppServiceSection data={data} />}
+      {data.secondMobileAppAcc && <SecondMobileServiceAcc data={data} />}
 
       {/* Turn Vision Into Reality Custom Software */}
-      {data.transBusiness &&
+      {data.transBusiness && (
         <section
           className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
           style={{
@@ -857,7 +1085,6 @@ export default async function service({
                   key="first-button"
                   destination="contact-box"
                 />
-
               </div>
             </div>
 
@@ -866,7 +1093,9 @@ export default async function service({
               <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
                 {data.specialOffersSection?.offerImg && (
                   <Image
-                    src={urlForImage(data.transBusiness?.featuredImage).toString()}
+                    src={urlForImage(
+                      data.transBusiness?.featuredImage
+                    ).toString()}
                     alt={data.transBusiness?.featuredImage.alt}
                     width={300}
                     height={300}
@@ -877,10 +1106,10 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/*  Preferred Choice for QA Testing*/}
-      {data.advantagesOfQA &&
+      {data.advantagesOfQA && (
         <section className="px-6 py-10 md:px-16 md:py-16">
           <div className="justify-center text-center pb-10">
             <div>
@@ -913,9 +1142,7 @@ export default async function service({
                       <h3 className="text-xl font-semibold text-[#1D92FB]">
                         {item.title}
                       </h3>
-                      <p className="text-[#3C3C3C] mt-2">
-                        {item.description}
-                      </p>
+                      <p className="text-[#3C3C3C] mt-2">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -931,10 +1158,10 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/* Advantages of Our QA and Testing Services */}
-      {data.advantagesOfQA &&
+      {data.advantagesOfQA && (
         <section className="relative px-6 py-10 md:px-16 md:py-16">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
           <div className="justify-center text-center relative z-10 pb-10">
@@ -974,9 +1201,7 @@ export default async function service({
                       <h3 className="text-xl font-semibold text-[#1D92FB]">
                         {item.title}
                       </h3>
-                      <p className="text-[#3C3C3C] mt-2">
-                        {item.description}
-                      </p>
+                      <p className="text-[#3C3C3C] mt-2">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -984,11 +1209,10 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
-
+      )}
 
       {/* Typical Project CycleFor QA and Mobile App development and cms */}
-      {data.projectCycleQA &&
+      {data.projectCycleQA && (
         <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
             {/* Right side (Content) */}
@@ -1005,7 +1229,6 @@ export default async function service({
                 <p className="text-lg text-gray-800">
                   {data.projectCycleQA?.paragraph}
                 </p>
-
               </div>
             </div>
             {/* Left side (Image) */}
@@ -1025,10 +1248,10 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/* Typical Project Cycle Stages Section */}
-      {data.projectCycleSection &&
+      {data.projectCycleSection && (
         <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
             {/* Right side (Content) */}
@@ -1073,10 +1296,10 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/* Service Options Section For QA */}
-      {data.qaDelivery &&
+      {data.qaDelivery && (
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center ">
             {/* Left side (Image) */}
@@ -1101,14 +1324,13 @@ export default async function service({
               <p className="text-lg justify-start text-gray-800">
                 {data.qaDelivery?.paragraph}
               </p>
-
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/* Service Options Section */}
-      {data.deliveryOptionSection &&
+      {data.deliveryOptionSection && (
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center ">
             {/* Left side (Image) */}
@@ -1147,94 +1369,168 @@ export default async function service({
             </div>
           </div>
         </section>
-      }
+      )}
 
       {/* Special Offers Section */}
-      <section
-        className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url(/Container.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left side (Heading, Offer Text, and QA) */}
-          <div className="col-span-1 md:col-span-1">
-            <h2 className="text-2xl font-bold text-white mb-8">
-              {data.specialOffersSection?.offerHeading}
-            </h2>
+      {data.specialOffersSection?.offerHeading && (
+        <section
+          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/Container.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side (Heading, Offer Text, and QA) */}
+            <div className="col-span-1 md:col-span-1">
+              <h2 className="text-2xl font-bold text-white mb-8">
+                {data.specialOffersSection?.offerHeading}
+              </h2>
 
-            {data.specialOffersSection?.specialOffer && (
-              <div className="bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg mb-8">
-                <p className="text-lg font-light text-white mb-4">
-                  {data.specialOffersSection?.specialOffer}
-                </p>
-              </div>
-            )}
+              {data.specialOffersSection?.specialOffer && (
+                <div className="bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg mb-8">
+                  <p className="text-lg font-light text-white mb-4">
+                    {data.specialOffersSection?.specialOffer}
+                  </p>
+                </div>
+              )}
 
-            {data.specialOffersSection?.specialOfferQA?.length > 0 && (
-              <div className="space-y-4">
-                {data.specialOffersSection.specialOfferQA.map((qaItem: any, index: any) => (
-                  <div
-                    key={index}
-                    className="bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg"
-                  >
-                    <h3 className="text-lg font-bold text-white mb-2">
-                      {qaItem.heading}
-                    </h3>
-                    <p className="text-base font-light text-white">
-                      {qaItem.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Right side (Image) */}
-          <div className="col-span-1 md:col-span-1 flex justify-center">
-            <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
-              {data.specialOffersSection?.offerImg && (
-                <Image
-                  src={urlForImage(data.specialOffersSection?.offerImg).toString()}
-                  alt={data.specialOffersSection?.offerImg.alt}
-                  width={300}
-                  height={300}
-                  className="object-cover rounded-lg"
-                />
+              {data.specialOffersSection?.specialOfferQA?.length > 0 && (
+                <div className="space-y-4">
+                  {data.specialOffersSection.specialOfferQA.map(
+                    (qaItem: any, index: any) => (
+                      <div
+                        key={index}
+                        className="bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg"
+                      >
+                        <h3 className="text-lg font-bold text-white mb-2">
+                          {qaItem.heading}
+                        </h3>
+                        <p className="text-base font-light text-white">
+                          {qaItem.description}
+                        </p>
+                      </div>
+                    )
+                  )}
+                </div>
               )}
             </div>
+
+            {/* Right side (Image) */}
+            <div className="col-span-1 md:col-span-1 flex justify-center">
+              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                {data.specialOffersSection?.offerImg && (
+                  <Image
+                    src={urlForImage(
+                      data.specialOffersSection?.offerImg
+                    ).toString()}
+                    alt={data.specialOffersSection?.offerImg.alt}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
+      {/* Updated Special Offer Section */}
+      {data.UpdatedSpecialOffersSection.offerHeading && (
+        <section
+          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/Container.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side (Heading, Offer Text, and QA) */}
+            <div className="col-span-1 md:col-span-1">
+              <h2 className="text-2xl font-bold text-white mb-8">
+                {data.UpdatedSpecialOffersSection?.offerHeading}
+              </h2>
 
+              {data.UpdatedSpecialOffersSection?.specialOfferTitle && (
+                <div className="bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-lg mb-8">
+                  <p className="text-lg font-bold text-[#F7E022] mb-4">
+                    {data.UpdatedSpecialOffersSection?.specialOfferTitle}
+                  </p>
+                  <p className="text-lg font-light text-white mb-4">
+                    <span>
+                      {data.UpdatedSpecialOffersSection?.specialOfferText1}
+                    </span>{" "}
+                    <span className="text-[#F7E022]">
+                      {data.UpdatedSpecialOffersSection?.specialOfferDays}
+                    </span>{" "}
+                    <span>
+                      {data.UpdatedSpecialOffersSection?.specialOfferText2}
+                    </span>
+                  </p>
+                </div>
+              )}
+
+              <Link
+                href={data.UpdatedSpecialOffersSection.buttonLink}
+                className="button"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ maxWidth: "320px" }}
+              >
+                {data.UpdatedSpecialOffersSection.buttonText}
+              </Link>
+            </div>
+
+            {/* Right side (Image) */}
+            <div className="col-span-1 md:col-span-1 flex justify-center">
+              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                {data.UpdatedSpecialOffersSection?.offerImg && (
+                  <Image
+                    src={urlForImage(
+                      data.UpdatedSpecialOffersSection?.offerImg
+                    ).toString()}
+                    alt={data.UpdatedSpecialOffersSection?.offerImg.alt}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Summary Message about Service Section */}
-      <section className="bg-white px-6 md:px-16 py-10 md:py-16 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-2xl font-bold mb-8 text-center">
-            {data.summarySection?.summaryHeading}
-          </h2>
-          <p className="text-lg text-center">
-            {data.summarySection?.summaryMessage}
-          </p>
-        </div>
-      </section>
+      {data.summarySection?.summaryHeading && (
+        <section className="bg-white px-6 md:px-16 py-10 md:py-16 ">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-2xl font-bold mb-8 text-center">
+              {data.summarySection?.summaryHeading}
+            </h2>
+            <p className="text-lg text-center">
+              {data.summarySection?.summaryMessage}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Call to Action Section */}
-      <section className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
-        <div className="container mx-auto text-center max-w-6xl">
-          <h2 className="text-2xl font-bold mb-4">
-            {data.callToActionSection?.callToActionHeading}
-          </h2>
-          <p className="text-lg mb-8">
-            {data.callToActionSection?.callToAction}
-          </p>
-        </div>
-      </section>
-
+      {data.callToActionSection?.callToActionHeading && (
+        <section className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
+          <div className="container mx-auto text-center max-w-6xl">
+            <h2 className="text-2xl font-bold mb-4">
+              {data.callToActionSection?.callToActionHeading}
+            </h2>
+            <p className="text-lg mb-8">
+              {data.callToActionSection?.callToAction}
+            </p>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
