@@ -280,8 +280,8 @@ export default function FooterContainer() {
                     height={25}
                     className="object-cover"
                   />
-                  <span className="font-light md:max-w-[210px]">
-                    25 McArthur Ave. Ottawa, ON K1L 6R3
+                  <span className="font-light">
+                  201 N AZALEA LANE, Orleans, Ontario CA K4A4R5
                   </span>
                 </div>
 
