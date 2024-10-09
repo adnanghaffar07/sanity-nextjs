@@ -313,7 +313,7 @@ export default async function service({
                   <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
                     {data.introductionSection.introHeading}
                   </h2>
-                  <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                  <p className="text-lg text-gray-800 leading-relaxed text-center md:text-left">
                     {data.introductionSection.introDesc}
                   </p>
                 </div>
@@ -653,8 +653,8 @@ export default async function service({
         </section>
       }
 
-            {/* Turn Vision Into Reality Custom Software */}
-            {data.turnVision &&
+      {/* Turn Vision Into Reality Custom Software */}
+      {data.turnVision &&
         <section
           className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
           style={{
@@ -706,11 +706,11 @@ export default async function service({
       }
       {/* Custom Software Case Studies Section */}
       {data.turnVision &&
-      <div className="px-6 md:px-16 py-10 md:py-16">
-        <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Showcasing Our Success Stories</h2>
-        <CaseStudiesHome />
-      </div>
-}
+        <div className="px-6 md:px-16 py-10 md:py-16">
+          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Showcasing Our Success Stories</h2>
+          <CaseStudiesHome />
+        </div>
+      }
 
 
       {/* Tools & Technology Section */}
@@ -774,7 +774,7 @@ export default async function service({
           </div>
         </div>
       </section>
-      
+
       {/* Example Value of Service (Use Cases) Section */}
       {data.exampleServicesSection &&
         <section className="bg-white px-6 md:px-16 py-10 md:py-16">
@@ -1123,7 +1123,7 @@ export default async function service({
                   src={urlForImage(
                     data.deliveryOptionSection?.deliveryImg
                   ).toString()}
-                  alt={   data.deliveryOptionSection?.deliveryImg.alt}
+                  alt={data.deliveryOptionSection?.deliveryImg.alt}
                   width={370}
                   height={370}
                 />
