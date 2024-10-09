@@ -65,7 +65,7 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
                     <div className="flex-1 md:mr-8 ">
                         <img
                             src={urlForImage(data.mobileAppServiceSection.imageSrc).toString()}
-                            alt={data.mobileAppServiceSection.heading}
+                            alt={data.mobileAppServiceSection.imageSrc.alt}
                             className="w-full h-auto rounded-lg shadow-md"
                         />
                     </div>

@@ -6,15 +6,15 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
 
-const linkAI = "ai-services";
+const linkAI = "ai-software-development-services";
 const linkML = "ml-services";
 const devops = "ai-devops";
-const linkUrlCMS1 = "custom-web-cms";
-const linkUrlCMS = "headless-cms";
-const linkUrlSoft = "web-app-development";
-const linkUrlAuto = "qa-web-testing";
-const linkUrlDigital = "design-services";
-const linkMob = "mobile-app-development";
+const linkUrlCMS1 = "custom-cms-development-services";
+const linkUrlCMS = "headless-cms-development-services";
+const linkUrlSoft = "custom-software-development-services";
+const linkUrlAuto = "qa-testing-services";
+const linkUrlDigital = "ui-ux-design-services";
+const linkMob = "mobile-app-development-services";
 const linkRobotic = "rpa-services";
 const linkIntegrate = "automation-integration";
 
@@ -47,6 +47,12 @@ export default function HomeNavigationContainer() {
       menuIcon: !prevState.menuIcon,
     }));
   }, []);
+
+  const handleCall = () => {
+    // This will attempt to open the standard dialer
+    window.location.href = 'tel:+18505584691';
+  };
+  
 
   const toggleMenu = useCallback(() => {
     setMenuState((prevState) => ({
@@ -137,6 +143,24 @@ export default function HomeNavigationContainer() {
                 <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-8">
+                    <Link
+                        href={`/services/${linkUrlSoft}`}
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/logo-javascript.svg"
+                            alt=""
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Software Development</p>
+                          <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
+                        </div>
+                      </Link>
                       <Link
                         href={`/services/${linkUrlCMS1}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -173,24 +197,6 @@ export default function HomeNavigationContainer() {
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">Headless-CMS</p>
                           <p className="mt-1 text-sm text-gray-500">Customized Headless-CMS</p>
-                        </div>
-                      </Link>
-                      <Link
-                        href={`/services/${linkUrlSoft}`}
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/logo-javascript.svg"
-                            alt=""
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">Software Development</p>
-                          <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
                         </div>
                       </Link>
                       <Link
@@ -315,7 +321,7 @@ export default function HomeNavigationContainer() {
                             href={`/services/${linkAI}`}
                             className="flex items-start text-sm font-medium transition duration-150 ease-in-out rounded-lg hover:text-black"
                           >
-                            ChatBox & AI
+                            ChatBot & AI
                           </Link>
                           <Link
                             href={`/services/${linkUrlCMS}`}

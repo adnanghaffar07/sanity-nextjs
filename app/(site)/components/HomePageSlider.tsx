@@ -27,13 +27,14 @@ const HomePageSlider = () => {
             Leading Software Development Company{" "}
           </h1>
         </div>
-        <div
-          className="lg:text-2xl text-base text-center mt-5 xl:mt-5 max-md:max-w-full"
+        <p
+          className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
           style={{ lineHeight: "1.3" }}
         >
-          Transform your Ideas to Reality through Top Software Development
-          Company dedicated to Your Success.
-        </div>
+          Transform your ideas into reality with a top software development
+          company dedicated to delivering innovative solutions and committed to
+          your long-term success and growth.
+        </p>
       </div>
 
       <div>
@@ -42,13 +43,13 @@ const HomePageSlider = () => {
             Custom Software Development for Your Needs
           </h2>
         </div>
-        <div
-          className="lg:text-2xl text-base text-center mt-5 xl:mt-5 max-md:max-w-full"
+        <p
+          className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
           style={{ lineHeight: "1.3" }}
         >
-          Empower your business with tailored digital solutions and innovations
-          from CodeAutomation.ai
-        </div>
+          Enhance your business with custom digital solutions and innovative
+          technologies crafted by CodeAutomation.ai to drive success and growth.
+        </p>
       </div>
 
       <div>
@@ -57,13 +58,13 @@ const HomePageSlider = () => {
             Automate Your QA Testing
           </h2>
         </div>
-        <div
+        <p
           className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
           style={{ lineHeight: "1.3" }}
         >
           Streamline your software quality with expert QA testing services
           designed to automate and enhance every step of the process.
-        </div>
+        </p>
       </div>
 
       {/* <div>

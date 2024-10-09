@@ -74,10 +74,12 @@ export default function Home() {
           loop
           playsInline
           preload="auto"
+          poster="/hero.jpg" // Add this line
         >
           <source src="/hero-sec-video.webm" type="video/webm" />
           <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
+
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -99,58 +101,38 @@ export default function Home() {
                 Schedule a Call
               </Link>
             </div>
+            {/* Clutch and Trustpilot section - displayed in a row */}
+            <div className="flex justify-center items-center gap-8 mt-12">
+              <a
+                href="https://clutch.co/profile/codeautomationai#highlights"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <img
+                  src="/Clutch.png"
+                  alt="clutch-icon"
+                  width={130}
+                  height={40}
+                />
+              </a>
+              <a
+                href="https://www.trustpilot.com/review/codeautomation.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <img
+                  src="/Trustpilot.png"
+                  alt="Trustpilot-icon"
+                  width={130}
+                  height={40}
+                  className="mb-3"
+                />
+              </a>
+            </div>
           </div>
 
-          {/* <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 text-base mt-10 lg:mt-auto max-md:max-w-full text-center max-w-[1400px]">
-              <div className="flex flex-col flex-1 items-center mt-1.5">
-                <img
-                  loading="eager"
-                  src="/global-trust.svg"
-                  className="self-center aspect-[1.12] w-[65px]"
-                  alt="Global trust"
-                />
-                <p className="lg:mt-11 mt-3">
-                  We are trusted by 200 global clients and offer innovative
-                  software solutions tailored to specific needs and markets
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center mt-1">
-                <img
-                  loading="eager"
-                  src="/project-completion.svg"
-                  className="self-center aspect-square w-[58px]"
-                  alt="Project completion"
-                />
-                <p className="lg:mt-11 mt-3">
-                  Completed 350+ projects, showcasing expertise in providing
-                  creative software products globally
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center">
-                <img
-                  loading="eager"
-                  src="/quality-assurance.svg"
-                  className="self-center aspect-square w-[58px]"
-                  alt="Quality assurance"
-                />
-                <p className="lg:mt-11 mt-3">
-                  We professionally assessed 300 apps to ensure high-quality and
-                  reliable software solutions for our clients
-                </p>
-              </div>
-              <div className="flex flex-col flex-1 items-center">
-                <img
-                  loading="eager"
-                  src="/bug-fixing.svg"
-                  className="self-center aspect-[0.89] w-[52px]"
-                  alt="Bug fixing"
-                />
-                <p className="lg:mt-11 mt-3">
-                  Over 150k bugs have been addressed, ensuring that our
-                  clients&rsquo; software solutions are reliable and trustworthy
-                </p>
-              </div>
-            </div> */}
         </div>
       </div>
       <ScrollAnimation>
@@ -186,29 +168,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-16 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
-          <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-            <h1 className="self-center xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
-              Our Top Services
-            </h1>
-
-            <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 xl:mt-12 text-xl font-bold whitespace-nowrap max-md:flex-wrap mt-10 max-md:max-w-full">
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                Web Development
-              </p>
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                Mobile App Development
-              </p>
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                QA Automation Testing
-              </p>
-              <p className="text-center py-4 px-6 bg-white rounded-lg shadow-md max-md:p-3">
-                AI/ML Services
-              </p>
-            </div>
-          </div>
-        </div> */}
       </ScrollAnimation>
       <div className="max-w-full mx-auto relative max-w-[1920px]">
         <img
@@ -263,9 +222,9 @@ export default function Home() {
             </div>
           </div>
         </ScrollAnimation>
-        <div className="relative flex justify-center items-center py-10 max-w-[1624px] mx-auto px-6 lg:px-10">
+        <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-          <div className="relative z-10">
+          <div className="relative z-10 max-w-7xl mx-auto">
             {/* Section Heading */}
             <h2 className="text-2xl md:text-4xl text-center font-semibold mb-4">
               Complete End-to-End Software Development Services
@@ -364,7 +323,7 @@ export default function Home() {
         </div>
 
         <ScrollAnimation>
-          <div className="py-16 px-6 md:px-16 ">
+          <div className="py-16 px-6 md:px-16 max-w-7xl mx-auto">
             <div className="mx-auto flex flex-col lg:flex-row items-center gap-12">
               {/* Image */}
               <div className="lg:w-[50%] md:px-4">
@@ -376,7 +335,7 @@ export default function Home() {
               </div>
 
               {/* Text Content */}
-              <div className="lg:w-[50%]">
+              <div className="lg:w-[50%] ">
                 <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
                   Who We Are
                 </h2>
@@ -409,7 +368,7 @@ export default function Home() {
         <ScrollAnimation>
           <section className="relative px-6 py-10 md:px-16 md:py-16">
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-            <div className="justify-center text-center relative z-10 pb-10">
+            <div className="justify-center text-center relative z-10 pb-10 max-w-7xl mx-auto" >
               <div>
                 <h2 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
                   Why Choose Us for Your Software Development Services?
@@ -422,8 +381,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative flex flex-col md:flex-row items-center justify-between z-10">
-              <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12">
+            <div className="relative flex flex-col md:flex-row items-center justify-between z-10 max-w-7xl mx-auto">
+              <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12 ">
                 <div className="space-y-8">
                   {[
                     {
@@ -505,15 +464,16 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         >
-          {/* Left Content */}
-          <div className="w-full md:w-1/2 text-left">
-            <div className="max-w-7xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            {/* Left Content */}
+            <div className="w-full md:w-1/2 text-left">
               <h2 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
                 Want To Develop A Custom Software Solution?
               </h2>
               <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
                 <Link
-                  href="tel:+1-850-558-4691"
+                  href="https://join.skype.com/invite/crU4cXW4bttb"
+                  target="_blank"
                   className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
                 >
                   <p className="relative grow self-center text-black font-semibold text-lg">
@@ -522,52 +482,45 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+
+            {/* Right Stats */}
+            <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
+              {/* Stats Items */}
+              <div className="w-[45%] flex items-center">
+                <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
+                <div>
+                  <h3 className="text-4xl font-bold">500+</h3>
+                  <p className="text-lg text-white font-light mt-2">Clients Served</p>
+                </div>
+              </div>
+              <div className="w-[45%] flex items-center">
+                <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
+                <div>
+                  <h3 className="text-4xl font-bold">10+</h3>
+                  <p className="text-lg text-white font-light mt-2">Years in Business</p>
+                </div>
+              </div>
+              <div className="w-[45%] flex items-center">
+                <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
+                <div>
+                  <h3 className="text-4xl font-bold">350+</h3>
+                  <p className="text-lg text-white font-light mt-2">Industries Served</p>
+                </div>
+              </div>
+              <div className="w-[45%] flex items-center">
+                <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
+                <div>
+                  <h3 className="text-4xl font-bold">200+</h3>
+                  <p className="text-lg text-white font-light mt-2">Global Clients</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Right Stats */}
-          <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
-            {/* Stats Items */}
-            <div className="w-[45%] flex items-center">
-              <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
-              <div>
-                <h3 className="text-4xl font-bold">500+</h3>
-                <p className="text-lg text-white font-light mt-2">
-                  Clients Served
-                </p>
-              </div>
-            </div>
-            <div className="w-[45%] flex items-center">
-              <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
-              <div>
-                <h3 className="text-4xl font-bold">10+</h3>
-                <p className="text-lg text-white  font-light mt-2">
-                  Years in Business
-                </p>
-              </div>
-            </div>
-            <div className="w-[45%] flex items-center">
-              <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
-              <div>
-                <h3 className="text-4xl font-bold">350+</h3>
-                <p className="text-lg text-white  font-light mt-2">
-                  Industries Served
-                </p>
-              </div>
-            </div>
-            <div className="w-[45%] flex items-center">
-              <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
-              <div>
-                <h3 className="text-4xl font-bold">200+</h3>
-                <p className="text-lg text-white  font-light mt-2">
-                  Global Clients
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <ScrollAnimation>
-          <div className="flex flex-col self-center w-full mx-auto max-md:max-w-full lg:py-16 py-16 lg:px-10 px-5">
+          <div className="flex flex-col self-center w-full mx-auto lg:py-16 py-16 lg:px-10 px-5">
             <h2 className="self-center text-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
               Transformative Software Development Case Studies
             </h2>
@@ -583,105 +536,12 @@ export default function Home() {
           </div>
         </ScrollAnimation>
 
-        {/* <ScrollAnimation>
-          <div className="flex flex-col lg:px-10 px-5  mx-auto max-w-[1582px]">
-            <h2 className="w-full xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full max-md:text-4xl lg:pt-20 pt-16 text-center">
-              Why Work With Us
-            </h2>
-            <h2 className="text-2xl text-center mt-6 font-medium mb-4">Partner with Us for Exceptional Results</h2>
-            <div className="px-px mt-14 w-full max-md:mt-10 max-md:max-w-full">
-              <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 max-md:flex-col">
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex-col justify-center flex h-100">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-17-1.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                        alt="global clients"
-                      />
-                    </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <h3 className="text-lg font-medium leading-6 uppercase">
-                        Global Client
-                      </h3>
-                      <p className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        200+
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-22-4.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                        alt="projects"
-                      />
-                    </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <h3 className="text-lg font-medium leading-6 uppercase">
-                        Projects
-                      </h3>
-                      <p className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        350+
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-27-3.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                        alt="App testing"
-                      />
-                    </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <h3 className="text-lg font-medium leading-6 uppercase">
-                        Apps tested
-                      </h3>
-                      <p className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        300+
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                  <div className="flex grow gap-2.5 items-center pr-5 w-full text-black whitespace-nowrap bg-white rounded-md shadow shadow-slate-400">
-                    <div className="bg-[#F3F3F3] rounded-md p-3 h-full flex flex-col justify-center">
-                      <img
-                        loading="lazy"
-                        srcSet="/Group-28-2.svg"
-                        className="self-stretch max-w-full aspect-[0.9] w-[68px]"
-                        alt="Bug Fixing"
-                      />
-                    </div>
-                    <div className="flex flex-col flex-1 self-stretch my-auto">
-                      <h3 className="text-lg font-medium leading-6 uppercase">
-                        Bugs Resolved
-                      </h3>
-                      <p className="xl:text-5xl font-extrabold lg:text-4xl md:text-4xl text-5xl flex">
-                        150<span className="text-3xl self-end">k</span>+
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ScrollAnimation> */}
-
         <ScrollAnimation>
           <div className="relative max-md:max-w-full md:px-16 px-6 md:py-16 py-6">
             {/* Background layer with color and opacity */}
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
 
-            <div className="relative flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="relative flex gap-5 max-md:flex-col max-md:gap-0 max-w-7xl mx-auto">
               <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center md:px-4">
                 <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
                   <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
@@ -737,8 +597,8 @@ export default function Home() {
         </ScrollAnimation>
 
         <ScrollAnimation>
-          <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 md:px-16 px-6 md:py-16 py-6 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full mb-10">
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full">
+          <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-10 lg:gap-12 md:px-16 px-6 md:py-16 py-6 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full mb-10">
+            <div className="flex flex-col  max-md:ml-0 max-md:w-full ">
               <div className="flex flex-col grow px-5 py-7  mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
                 <div className="flex z-10 gap-5  justify-between items-start mt-0">
                   <h3 className="flex-auto self-end  text-2xl font-medium leading-6 text-black ">
@@ -748,8 +608,8 @@ export default function Home() {
                     <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
                       <img
                         loading="lazy"
-                        src="/project-initiation.svg"
-                        className="w-full aspect-[1.09]"
+                        src="/4.png"
+                        className="w-full"
                         alt="Code automation Project Initiation"
                       />
                     </div>
@@ -771,8 +631,8 @@ export default function Home() {
                   <div className="flex justify-center items-center self-start px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:pl-5 absolute -top-10 right-5">
                     <img
                       loading="lazy"
-                      src="/design-icon.svg"
-                      className="w-full aspect-[1.04]"
+                      src="/3.png"
+                      className="w-full"
                       alt="Code Automation Software Design"
                     />
                   </div>
@@ -832,11 +692,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col  max-md:ml-0 max-md:w-full">
               <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 justify-center items-center self-end px-6 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:px-5 absolute -top-10 right-5">
+                <div className="flex z-10 justify-center items-center self-end px-3 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:px-5 absolute -top-10 right-5">
                   <img
                     loading="lazy"
-                    src="/launch-icon.svg"
-                    className="w-full aspect-[0.58]"
+                    src="/6.png"
+                    className="w-full"
                     alt="Launch"
                   />
                 </div>
@@ -857,7 +717,7 @@ export default function Home() {
                 <div className="flex z-10 justify-center items-center self-end px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 absolute -top-10 right-5">
                   <img
                     loading="lazy"
-                    src="/archives-icon.svg"
+                    src="/5.png"
                     className="w-full aspect-[1.02]"
                     alt="Archives and Artifacts"
                   />
@@ -896,36 +756,6 @@ export default function Home() {
               <Suspense fallback={<p>Loading Testimonials Section...</p>}>
                 <Testimonials />
               </Suspense>
-
-              <div className="flex justify-center text-base xl:text-xl lg:text-xl font-medium whitespace-nowrap mt-8">
-                <Link
-                  href="https://clutch.co/profile/codeautomationai#highlights"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex bg-white py-1 px-2 rounded-lg gap-2 border-2 border-blue-500 hover:shadow-lg shadow-2xl hover:border-2 hover:border-transparent transition-all duration-500 ease-in-out"
-                >
-                  <div className="text-center flex flex-col gap-1">
-                    <p className="text-xs text-gray-400">REVIEWED ON</p>
-                    <img
-                      src="/clutch-icon.svg"
-                      alt="clutch-icon"
-                      width={80}
-                      height={22}
-                    // className="h-auto"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <img
-                      src="/rating-stars.svg"
-                      alt="ratings"
-                      width={96}
-                      height={18}
-                      className="bg-red-600"
-                    />
-                    <p className="text-xs text-gray-400">8 REVIEWS</p>
-                  </div>
-                </Link>
-              </div>
             </div>
           </ScrollAnimation>
         </div>

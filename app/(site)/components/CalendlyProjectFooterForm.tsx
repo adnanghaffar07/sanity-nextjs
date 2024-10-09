@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // Import Yup for validation
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // Import useRouter hook
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 
@@ -37,6 +37,7 @@ const initialValues = {
 };
 
 export default function CalendlyProjectForm() {
+  const router = useRouter(); // Initialize the useRouter hook
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
@@ -44,7 +45,7 @@ export default function CalendlyProjectForm() {
 
   const currentPath = usePathname();
   const [message, setMessage] = useState("");
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false); // State to manage the loading indicator
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
 
@@ -84,9 +85,11 @@ export default function CalendlyProjectForm() {
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
+    setUploading(true); // Start loading state
 
     if (!recaptchaValue) {
       setErrorRecaptcha("Please verify the above checkbox");
+      setUploading(false); // Stop loading state if there's an error
       return;
     }
 
@@ -96,6 +99,7 @@ export default function CalendlyProjectForm() {
       !values.contact_number.length ||
       !values.looking.length
     ) {
+      setUploading(false); // Stop loading state if fields are empty
       return;
     }
 
@@ -105,6 +109,7 @@ export default function CalendlyProjectForm() {
       errors.email ||
       errors.looking
     ) {
+      setUploading(false); // Stop loading state if there are validation errors
       return;
     }
 
@@ -121,6 +126,7 @@ export default function CalendlyProjectForm() {
       setBgColor("bg-red-500");
       setMessage("Please enter a valid email address.");
       setMessageSuccess("w-[100%]");
+      setUploading(false); // Stop loading state
       return;
     }
 
@@ -132,7 +138,6 @@ export default function CalendlyProjectForm() {
       formData.append("looking", values.looking);
       formData.append("message", values.message);
       formData.append("pagename", actuallPageName || "Home");
-      setUploading(true);
       setMessage("Submitting form...");
 
       setMessageSuccess("w-[10%]");
@@ -149,9 +154,9 @@ export default function CalendlyProjectForm() {
           form: "contactForm",
         });
 
-        setBgColor("bg-green-500");
-        setMessage("Your Message has been successfully submitted!");
-        setMessageSuccess("w-[100%]");
+        // Redirect to Thank You page
+        router.push("/thankyou");
+
         resetForm();
         recaptchaRef?.current?.reset();
         setRecaptchaValue("");
@@ -167,7 +172,7 @@ export default function CalendlyProjectForm() {
       setMessageSuccess("w-[100%]");
       console.error("Error:", error);
     } finally {
-      setUploading(false);
+      setUploading(false); // Stop loading state
       setTimeout(() => {
         setMessage("");
       }, 8000);
@@ -281,24 +286,17 @@ export default function CalendlyProjectForm() {
           <button
             type="submit"
             disabled={uploading}
-            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
+            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center items-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
               }`}
           >
-            Submit
+            {uploading ? (
+              <span className="loader"></span> // You can use a spinner class here
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>
-
-      {message && (
-        <div
-          className={`fixed top-14  lg:top-5 right-5 ${bgColor} py-[10px] px-[20px] rounded-lg shadow-lg w-[270px] sm:w-[450px] z-[1000]`}
-        >
-          <div
-            className={`h-1 bg-white mb-2 transition-all duration-500 ${messageSuccess}`}
-          ></div>
-          <p className="message text-xs sm:text-base">{message}</p>
-        </div>
-      )}
     </div>
   );
 }

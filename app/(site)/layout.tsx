@@ -4,6 +4,9 @@ import React, { Suspense } from "react";
 import Head from "next/head";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
+import GoogleAd from "./components/GoogleAd";
+
+
 
 const GoogleTagManagerClient = dynamic(
   () => import("./components/GoogleTagManagerClient"),
@@ -25,15 +28,18 @@ const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), {
 });
 
 export const metadata: Metadata = {
-  title:
-    "Software Development Company in the USA | CodeAutomation",
-  description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  title: "Software Development Company in the USA | CodeAutomation",
+  description:
+    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
   keywords: [
     "CodeAutomation",
     "software development company",
     "software development services",
     "software development services",
   ],
+  alternates: {
+    canonical: "https://codeautomation.ai",
+  },
 };
 
 export default function RootLayout({
@@ -44,7 +50,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <link rel="canonical" href="https://codeautomation.xn--ai-02t" />
+        <link
+          rel="preload"
+          href="/hero-sec-video.webm"
+          as="video"
+          type="video/webm"
+        />
+        <link
+          rel="preload"
+          href="/hero-sec-video.mp4"
+          as="video"
+          type="video/mp4"
+        />
 
         {/* Meta Pixel Code */}
         <script
@@ -72,6 +89,19 @@ export default function RootLayout({
           />
         </noscript>
 
+        {/* Google Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11436659671');
+            `,
+          }}
+        />
+
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -79,65 +109,69 @@ export default function RootLayout({
             "@graph": [
               {
                 "@type": "Webpage",
-                "Name": "Code Automation",
-                "headline": "Software Development Company in the USA | CodeAutomation",
-                "url": "https://codeautomation.ai/",
+                Name: "Code Automation",
+                headline:
+                  "Software Development Company in the USA | CodeAutomation",
+                url: "https://codeautomation.ai/",
                 "@id": "https://codeautomation.ai/",
-                "inLanguage": "en-US",
-                "datePublished": "2024-08-20",
-                "description":
+                inLanguage: "en-US",
+                datePublished: "2024-08-20",
+                description:
                   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-                "image": "https://codeautomation.ai/logo.svg",
-                "speakable": { "@type": "SpeakableSpecification" },
-                "potentialAction": {
+                image: "https://codeautomation.ai/logo.svg",
+                speakable: { "@type": "SpeakableSpecification" },
+                potentialAction: {
                   "@type": "SearchAction",
-                  "target": "Software Development Company USA",
+                  target: "Software Development Company USA",
                 },
-                "isPartOf": { "@type": "WebSite", "@id": "https://codeautomation.ai/" },
-                "mainEntity": [{ "@id": "https://codeautomation.ai/" }],
-                "hasPart": { "@id": "https://codeautomation.ai/" },
+                isPartOf: {
+                  "@type": "WebSite",
+                  "@id": "https://codeautomation.ai/",
+                },
+                mainEntity: [{ "@id": "https://codeautomation.ai/" }],
+                hasPart: { "@id": "https://codeautomation.ai/" },
               },
               {
                 "@type": "CreativeWorkSeries",
                 "@id": "https://codeautomation.ai/",
-                "isPartOf": { "@id": "https://codeautomation.ai/" },
-                "name": "Software Development Company USA",
-                "aggregateRating": {
+                isPartOf: { "@id": "https://codeautomation.ai/" },
+                name: "Software Development Company USA",
+                aggregateRating: {
                   "@type": "AggregateRating",
-                  "bestRating": "5",
-                  "ratingValue": "4.9",
-                  "reviewCount": "100",
-                  "url": "https://maps.app.goo.gl/j7mxdT34Z8Yg1FyU6",
+                  bestRating: "5",
+                  ratingValue: "4.9",
+                  reviewCount: "100",
+                  url: "https://maps.app.goo.gl/j7mxdT34Z8Yg1FyU6",
                 },
               },
               {
                 "@type": "Service",
                 "@id": "https://codeautomation.ai/",
-                "mainEntityOfPage": { "@id": "https://codeautomation.ai/" },
-                "name": "Software Development Company in the USA | CodeAutomation",
-                "serviceType": ["Software Development Company"],
-                "image": "https://codeautomation.ai/who-we-are.png",
-                "provider": {
+                mainEntityOfPage: { "@id": "https://codeautomation.ai/" },
+                name: "Software Development Company in the USA | CodeAutomation",
+                serviceType: ["Software Development Company"],
+                image: "https://codeautomation.ai/who-we-are.png",
+                provider: {
                   "@type": "Organization",
-                  "url": "https://codeautomation.ai/",
-                  "Name": "Code Automation",
-                  "mainEntityOfPage": { "@id": "https://codeautomation.ai/" },
+                  url: "https://codeautomation.ai/",
+                  Name: "Code Automation",
+                  mainEntityOfPage: { "@id": "https://codeautomation.ai/" },
                 },
-                "areaServed": {
+                areaServed: {
                   "@type": "AdministrativeArea",
-                  "name": "https://maps.app.goo.gl/j7mxdT34Z8Yg1FyU6",
+                  name: "https://maps.app.goo.gl/j7mxdT34Z8Yg1FyU6",
                 },
-                "audience": {
+                audience: {
                   "@type": "Audience",
-                  "name": "Software Development Company USA",
+                  name: "Software Development Company USA",
                 },
               },
               {
                 "@type": "AggregateRating",
-                "bestRating": "5",
-                "ratingValue": "5",
-                "reviewCount": "9",
-                "url": "https://clutch.co/profile/codeautomationai",
+                bestRating: "5",
+                ratingValue: "5",
+                reviewCount: "9",
+                url: "https://clutch.co/profile/codeautomationai",
               },
             ],
           })}
@@ -154,9 +188,11 @@ export default function RootLayout({
         </noscript>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
+
+          <GoogleAd/>
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
-            <div >
+            <div>
               <FormDisplay />
             </div>
           </Suspense>

@@ -14,6 +14,11 @@ const portfolioSchema = {
       type: "string",
     },
     {
+      name: "color",
+      title: "Color",
+      type: "string",
+    },
+    {
       name: "pageType", // New field for page type
       title: "Page Type",
       type: "string",
@@ -32,6 +37,7 @@ const portfolioSchema = {
       title: "Slug",
       type: "string",
     },
+    
     {
       name: "group",
       title: "Group",
@@ -42,6 +48,24 @@ const portfolioSchema = {
       title: "Blog Heading",
       type: "string",
     },
+        // Button
+        {
+          name: "button",
+          title: "Button",
+          type: "object",
+          fields: [
+            {
+              name: 'buttonText',
+              type: 'string',
+              title: ' Button Text',
+            },
+            {
+              name: 'buttonUrl',
+              type: 'url',
+              title: ' Button URL',
+            },
+          ]
+        },
     {
       name: "introductionheading",
       title: "Introduction Heading",
@@ -81,6 +105,12 @@ const portfolioSchema = {
       title: "Features Section",
       type: "object",
       fields: [
+
+        {
+          name: "description",
+          title: "Description",
+          type: "string",
+        }, 
         {
           name: "featureslist",
           title: "Features List",
@@ -102,21 +132,40 @@ const portfolioSchema = {
                 },
 
                 {
-                  name: "logo",
+                  name: "logoImage",
                   title: "Logo",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
+                  type: "image",
                 },
 
                 {
                   name: "images",
-                  title: "Images",
+                  title: "Image",
                   type: "image",
                 },
               ],
             },
           ],
         },
+
+        {
+          name: 'feature',
+          title: 'features',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'text',
+                  title: 'Text',
+                  type: 'string',           
+                     },
+
+              ],
+            },
+          ],
+        }
+        
       ],
     },
 
@@ -131,6 +180,46 @@ const portfolioSchema = {
       title: "Project Scope Content",
       type: "string",
     },
+
+{
+      name: 'projectGoalsSection',
+      title: 'Project Goals Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        },
+        
+       
+        {
+          name: 'goals',
+          title: 'Goals',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'image',
+                  title: 'Image',
+                  type: 'image',
+                  options: {
+                    hotspot: true,
+                  },
+                },
+                {
+                  name: 'description',
+                  title: 'Description',
+                  type: 'string',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },    
 
     {
       name: "toolsandtechusedtitle",
@@ -655,6 +744,14 @@ const portfolioSchema = {
       title: "Tools and Technology  Section",
       type: "object",
       fields: [
+
+        {
+          name: "toolImage",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+
         {
           name: "toolsTech",
           title: "Tools and Tech",

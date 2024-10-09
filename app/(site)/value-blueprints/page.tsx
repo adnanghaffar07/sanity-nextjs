@@ -3,7 +3,6 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
-import { useState } from "react";
 import ScrollButton from "../components/valueBluePrint";
 
 async function getData() {
@@ -26,7 +25,6 @@ async function getLogoData() {
     return [];
   }
 }
-
 async function getValueData() {
   const queryValue = `*[_type == 'portfolio' && pageType == 'valueBlueprint'] | order(_createdAt asc)`;
   try {
@@ -46,19 +44,17 @@ export async function generateMetadata() {
   const defaultDescription =
     "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
-
   const title = data.webSeoMetadata?.title || defaultTitle;
   const description = data.webSeoMetadata?.description || defaultDescription;
   const keywords = data.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
-
   const facebookMeta = data.facebook || {};
   const twitterMeta = data.twitterhMeta || {};
   const linkedInMeta = data.linkedInCards || {};
   const pinterestMeta = data.pinterestCards || {};
   const whatsappMeta = data.whatsappCards || {};
   const telegramMeta = data.telegramCards || {};
-
   const heroImageUrl = urlForImage(data.heroImage).toString(); // Use a default image if heroImage is not available
+
   return {
     title,
     description,
@@ -116,11 +112,11 @@ export default async function ValueBlueprints() {
   const data = await getData();
   const dataLogo = await getLogoData();
   const portfolioData = await getValueData();
-
   console.log("Tools & Tech", portfolioData.caseStudiesToolsSection);
 
   return (
     <div className="">
+
       {/* Hero Section */}
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.heroImage && (
@@ -138,7 +134,6 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
       {/* Introduction Section */}
       <img
         loading="lazy"
@@ -146,9 +141,9 @@ export default async function ValueBlueprints() {
         alt="eclipse icon"
         className="absolute w-[130px] z-0"
       />
-
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+      <div className="px-6 md:px-16 py-10 md:py-16 relative">
+        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+        <div className="max-w-7xl relative mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
@@ -170,14 +165,13 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
       {/* Explore Blueprints section */}
-      <section className="px-6 md:px-16 py-10 md:py-16 bg-slate-100">
-        <div className="flex flex-col pt-20 pb-6">
+      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+        <div className="flex flex-col max-w-[1400px] mx-auto">
           <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
             <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
-              <div className="justify-center max-md:max-w-full">
-                <span className="font-medium text-black capitalize leading-[60px]">
+              <div className="justify-center text-center">
+                <span className="font-medium text-black capitalize leading-[60px] text-center">
                   Explore Our Value{" "}
                 </span>
                 <span className="text-sky-500 capitalize leading-[60px]">
@@ -188,7 +182,7 @@ export default async function ValueBlueprints() {
           </div>
           <div className="relative h-auto flex flex-col justify-center overflow-hidden">
             <div
-              className="flex overflow-x-auto overflow-y-hidden gap-5 h-auto justify-start pl-20 mt-6 max-md:flex-wrap max-md:pl-5 hide-scrollbar"
+              className="flex overflow-x-auto overflow-y-hidden gap-5 h-auto justify-start md:pl-20 mt-8 max-md:flex-wrap max-md:pl-0 hide-scrollbar"
               id="scrollContainer"
             >
               {portfolioData.map((item: any) => (
@@ -197,71 +191,55 @@ export default async function ValueBlueprints() {
                   href={`/value-blueprints/${item._id}`}
                   aria-label={`View details of ${item.title}`}
                 >
-                  <div className="h-auto w-full sm:w-80 md:w-80">
-                    <div className="shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300 h-full relative">
-                      <div className="w-full h-58 md:h-64 lg:h-72">
-                        <img
-                          src={urlForImage(item.heroimage).toString()}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition duration-300 hover:scale-105"
-                        />
-                      </div>
-                      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md text-white px-2 py-4">
-                        <h3 className="text-lg md:text-lg font-light transition duration-300">
-                          {item.title}
-                        </h3>
+                  <div className="group flex flex-col items-start p-6 max-w-sm rounded-lg border border-solid bg-zinc-50 border-black border-opacity-0 h-[230px] md:h-[300px] max-w-[384px] w-full sm:w-80 md:w-80 transition duration-300 hover:bg-[#1D92FB]">
+                    <div className="min-h-[150px] md:min-h-[182px] relative overflow-hidden">
+                      <img
+                        src={urlForImage(item.heroimage).toString()}
+                        alt={item.title}
+                        className="w-full h-auto object-cover rounded aspect-[3.06] transition duration-300 group-hover:scale-110"
+                      />
+                      <div className="mt-2.5 text-sm md:text-lg font-semibold leading-snug text-neutral-700 group-hover:text-white transition duration-300">
+                        {item.title}
                       </div>
                     </div>
-                    <div className="flex justify-center mt-2 flex-wrap">
-                      {item.caseStudiesToolsSection?.toolsTech?.map(
-                        (tool: any, toolIndex: any) => (
-                          <div
-                            key={toolIndex}
-                            className="relative mx-2 my-1 group"
-                          >
-                            {tool?.images.map(
-                              (logoRef: any, logoIndex: any) => {
-                                const logoData = dataLogo.find(
-                                  (logo: any) => logo._id === logoRef._ref
-                                );
-                                if (logoData) {
-                                  return (
-                                    <div
-                                      key={logoIndex}
-                                      className="relative pb-7"
-                                    >
-                                      <div className="flex items-center justify-center">
-                                        <div className="relative group">
-                                          <img
-                                            src={urlForImage(
-                                              logoData.image
-                                            ).toString()}
-                                            alt={logoData.heading}
-                                            className="h-11 w-11 border-grey-800 shadow-lg transition-transform duration-500 object-cover group-hover:scale-110 rounded-full"
-                                          />
-                                          <div className="absolute inset-x-0 -bottom-8 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                            <div className="mt-2 bg-white text-black text-sm rounded-md shadow-lg px-2 py-1 whitespace-nowrap">
-                                              {logoData.heading}
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
+                    <div className="flex gap-3.5 mt-1 md:mt-5 max-w-full justify-center transition-all duration-300">
+                      {item.caseStudiesToolsSection?.toolsTech?.map((tool: any, toolIndex: any) => (
+                        <div key={toolIndex} className="flex flex-col flex-1 items-center relative">
+                          {tool?.images.map((logoRef: any, logoIndex: any) => {
+                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
+                            if (logoData) {
+                              return (
+                                <div
+                                  key={logoIndex}
+                                  className="relative transition-transform duration-300 group-hover:-translate-y-2"
+                                >
+                                  <div className="flex items-center justify-center">
+                                    <div className="relative group">
+                                      <img
+                                        src={urlForImage(logoData.image).toString()}
+                                        alt={logoData.heading}
+                                        className="logo-img object-contain gap-2 h-10 w-24 rounded-3xl border border-transparent group-hover:border-white shadow-[0px_2px_5px_rgba(0,137,251,0.14)] transition duration-300"
+                                      />
                                     </div>
-                                  );
-                                } else {
-                                  return null;
-                                }
-                              }
-                            )}
-                          </div>
-                        )
-                      )}
+                                  </div>
+                                </div>
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </Link>
               ))}
             </div>
-            <ScrollButton scrollContainerId="scrollContainer" />
+            <ScrollButton
+              scrollContainerId="scrollContainer"
+              totalItems={portfolioData.length} // Number of items in portfolioData
+              itemsPerPage={4} // Adjust based on how many items per page you want
+            />
           </div>
         </div>
       </section>
@@ -273,8 +251,9 @@ export default async function ValueBlueprints() {
         alt="eclipse icon"
         className="absolute right-0 w-[150px] z-0"
       />
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="px-6 md:px-16 py-10 md:py-16 relative">
+        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 relative">
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
             {data.toolsTechSection?.toolsTechHeading}
           </h2>
@@ -284,15 +263,15 @@ export default async function ValueBlueprints() {
           <div className="flex justify-center items-center mt-10 w-full max-md:max-w-full">
             <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
               {/* Top Row */}
-              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
+              <div className="flex flex-wrap gap-5 justify-center items-center mb-10">
                 {data.toolsTechSection?.toolsTech
                   ?.slice(0, 7)
                   .map((tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
-                      className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
+                      className="flex flex-col items-center justify-center w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/5"
                     >
-                      <div className="flex items-center justify-start h-full group">
+                      <div className="flex items-center justify-start h-full group cursor-pointer">
                         <div className="flex justify-center">
                           {tool.images?.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find(
@@ -300,12 +279,18 @@ export default async function ValueBlueprints() {
                             );
                             if (logoData) {
                               return (
-                                <div key={logoIndex} className="mr-2">
+                                <div
+                                  key={logoIndex}
+                                  className=" flex md:flex-row flex-col items-center"
+                                >
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
+                                  <h3 className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
+                                    {tool.heading}
+                                  </h3>
                                 </div>
                               );
                             } else {
@@ -313,24 +298,21 @@ export default async function ValueBlueprints() {
                             }
                           })}
                         </div>
-                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
-                          {tool.heading}
-                        </h3>
                       </div>
                     </div>
                   ))}
               </div>
 
               {/* Middle Row */}
-              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center mb-10">
+              <div className="flex flex-wrap gap-5 justify-center  items-center mb-10">
                 {data.toolsTechSection?.toolsTech
                   ?.slice(7, 14)
                   .map((tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
-                      className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
+                      className="flex flex-col items-center justify-center w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/5"
                     >
-                      <div className="flex items-center justify-center h-full group">
+                      <div className="flex items-center justify-center h-full group cursor-pointer">
                         <div className="flex justify-center">
                           {tool.images?.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find(
@@ -338,12 +320,18 @@ export default async function ValueBlueprints() {
                             );
                             if (logoData) {
                               return (
-                                <div key={logoIndex} className="mr-1">
+                                <div
+                                  key={logoIndex}
+                                  className=" flex md:flex-row flex-col items-center"
+                                >
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
+                                  <h3 className="text-sm text-gray-800 font-semibold text-center cursor-pointer mt-2">
+                                    {tool.heading}
+                                  </h3>
                                 </div>
                               );
                             } else {
@@ -351,24 +339,20 @@ export default async function ValueBlueprints() {
                             }
                           })}
                         </div>
-                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
-                          {tool.heading}
-                        </h3>
                       </div>
                     </div>
                   ))}
               </div>
-
               {/* Bottom Row */}
-              <div className="flex flex-wrap gap-5 md:justify-center justify-start items-center">
+              <div className="flex flex-wrap gap-5 justify-center items-center">
                 {data.toolsTechSection?.toolsTech
-                  ?.slice(14, 17)
+                  ?.slice(14, 18)
                   .map((tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
-                      className="flex items-center justify-center w-full sm:w-1/3 md:w-1/4 lg:w-1/5"
+                      className="flex flex-col items-center justify-center w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/5"
                     >
-                      <div className="flex items-center justify-center h-full group">
+                      <div className="flex items-center justify-center h-full group cursor-pointer">
                         <div className="flex justify-center">
                           {tool.images?.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find(
@@ -376,12 +360,18 @@ export default async function ValueBlueprints() {
                             );
                             if (logoData) {
                               return (
-                                <div key={logoIndex} className="mr-1">
+                                <div
+                                  key={logoIndex}
+                                  className=" flex md:flex-row flex-col items-center"
+                                >
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-12 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
+                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
+                                  <h3 className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
+                                    {tool.heading}
+                                  </h3>
                                 </div>
                               );
                             } else {
@@ -389,9 +379,6 @@ export default async function ValueBlueprints() {
                             }
                           })}
                         </div>
-                        <h3 className="text-lg text-[#C4C4C4] transition-all duration-300 group-hover:text-gray-800">
-                          {tool.heading}
-                        </h3>
                       </div>
                     </div>
                   ))}
@@ -400,9 +387,8 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
       {/* Project Cycle Section */}
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
             {data.projectCycleSection?.projectCycleHaeding}
@@ -411,7 +397,7 @@ export default async function ValueBlueprints() {
             {data.projectCycleSection?.projectCycle.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                  <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB] group">
+                  <div className="bg-white shadow-xl p-6 rounded-lg flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB] group">
                     <div className="flex flex-row justify-center mb-4">
                       {tool.projectImage && (
                         <div className="mr-2">
@@ -436,9 +422,8 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
       {/* Service Delivery Options */}
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-[#F1F5F9]">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
             {data.deliveryOptionSection?.deliveryOptionHaeding}
@@ -447,7 +432,7 @@ export default async function ValueBlueprints() {
             {data.deliveryOptionSection?.deliveryOption.map(
               (tool: any, toolIndex: any) => (
                 <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                  <div className="bg-white shadow-lg p-6 rounded-lg flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB] group">
+                  <div className="bg-white shadow-xl p-6 rounded-lg flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB] group">
                     <div className="flex flex-row justify-center mb-4">
                       {tool.deliveryImage && (
                         <div className="mr-2">
@@ -472,7 +457,6 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
       {/* Summary Section */}
       <img
         loading="lazy"
@@ -480,15 +464,15 @@ export default async function ValueBlueprints() {
         alt="eclipse icon"
         className="absolute w-[120px] z-0"
       />
-
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+      <div className="px-6 md:px-16 py-10 md:py-16 relative">
+        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center relative">
           <div className="w-full md:w-1/2">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
                 {data.summarySection?.summaryHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify md:text-left">
+              <p className="text-lg text-gray-800 leading-relaxed text-center md:text-left">
                 {data.summarySection?.summaryMessage}
               </p>
             </div>
@@ -504,14 +488,13 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
       {/* Combined Section */}
-      <div className="flex justify-center items-center px-16 py-20 bg-slate-100 max-md:px-5">
-        <div className="mt-7 w-full max-w-[1066px] max-md:max-w-full">
+      <div className="flex justify-center items-center px-16 py-6 md:py-20 bg-white max-md:px-5">
+        <div className="w-full max-w-[1066px] max-md:max-w-full">
           <div className="flex gap-16 max-md:flex-col max-md:gap-0">
             {/* Call to Action Card */}
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-sky-500 bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+              <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-sky-500 bg-opacity-10 max-md:px-5 max-md:mt-10 max-md:max-w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
                 <div className="text-center">
                   <h2 className="text-2xl font-bold text-gray-800 mb-6">
                     {data.callToActionSection?.callToActionHeading}
@@ -542,7 +525,7 @@ export default async function ValueBlueprints() {
 
             {/* Special Offer Card */}
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-[#666666] bg-opacity-10 border-black border-opacity-0 max-md:px-5 max-md:mt-10 max-md:max-w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+              <div className="flex flex-col grow items-center px-20 py-11 w-full rounded-3xl border border-solid bg-[#F7E022] bg-opacity-10 max-md:px-5 max-md:mt-10 max-md:max-w-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
                 <div className="text-center">
                   <h2 className="text-2xl font-bold text-gray-800 mb-6">
                     {data.specialOffersSection?.offerHeading}
@@ -573,6 +556,7 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
