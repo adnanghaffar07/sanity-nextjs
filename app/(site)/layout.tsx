@@ -5,6 +5,7 @@ import Head from "next/head";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import GoogleAd from "./components/GoogleAd";
+import CookieConsent from "./components/CookieConsent";
 
 
 
@@ -188,7 +189,7 @@ export default function RootLayout({
         </noscript>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
-
+<CookieConsent/>
           <GoogleAd/>
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
