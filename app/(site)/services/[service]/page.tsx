@@ -280,6 +280,65 @@ export default async function service({
         </section>
       }
 
+      {/* Turn Vision Into Reality Custom Software */}
+      {data.turnVision &&
+        <section
+          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/Container.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container text-white mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side (Heading, Offer Text, and QA) */}
+            <div className="col-span-1 md:col-span-1">
+              <div className="flex flex-col w-full max-md:max-w-full">
+                <div className="text-3xl font-bold leading-none max-md:max-w-full">
+                  {data.turnVision.title}
+                </div>
+                <div className="mt-4 text-xl leading-none max-md:max-w-full">
+                  {data.turnVision.subtitle}
+                </div>
+                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
+                  {data.turnVision.description}
+                </div>
+                <Link
+                  href={data.turnVision.buttonLink}
+                  className="button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {data.turnVision.buttonText}
+                </Link>
+              </div>
+            </div>
+
+            {/* Right side (Image) */}
+            <div className="col-span-1 md:col-span-1 flex justify-center">
+              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
+                {data.specialOffersSection?.offerImg && (
+                  <Image
+                    src={urlForImage(data.turnVision?.featuredImage).toString()}
+                    alt={data.turnVision?.featuredImage.alt}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+      {/* Custom Software Case Studies Section */}
+      {data.turnVision &&
+        <div className="px-6 md:px-16 py-10 md:py-16">
+          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Showcasing Our Success Stories</h2>
+          <CaseStudiesHome />
+        </div>
+      }
+
 
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection &&
@@ -653,64 +712,6 @@ export default async function service({
         </section>
       }
 
-      {/* Turn Vision Into Reality Custom Software */}
-      {data.turnVision &&
-        <section
-          className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url(/Container.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="container text-white mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {/* Left side (Heading, Offer Text, and QA) */}
-            <div className="col-span-1 md:col-span-1">
-              <div className="flex flex-col w-full max-md:max-w-full">
-                <div className="text-3xl font-bold leading-none max-md:max-w-full">
-                  {data.turnVision.title}
-                </div>
-                <div className="mt-4 text-xl leading-none max-md:max-w-full">
-                  {data.turnVision.subtitle}
-                </div>
-                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
-                  {data.turnVision.description}
-                </div>
-                <Link
-                  href={data.turnVision.buttonLink}
-                  className="button"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {data.turnVision.buttonText}
-                </Link>
-              </div>
-            </div>
-
-            {/* Right side (Image) */}
-            <div className="col-span-1 md:col-span-1 flex justify-center">
-              <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
-                {data.specialOffersSection?.offerImg && (
-                  <Image
-                    src={urlForImage(data.turnVision?.featuredImage).toString()}
-                    alt={data.turnVision?.featuredImage.alt}
-                    width={300}
-                    height={300}
-                    className="object-cover rounded-lg"
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-      }
-      {/* Custom Software Case Studies Section */}
-      {data.turnVision &&
-        <div className="px-6 md:px-16 py-10 md:py-16">
-          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Showcasing Our Success Stories</h2>
-          <CaseStudiesHome />
-        </div>
-      }
 
 
       {/* Tools & Technology Section */}
@@ -1213,10 +1214,8 @@ export default async function service({
           </div>
         </div>
       </section>
-
-
-
-      {/* Summary Message about Service Section */}
+      
+     {/* Summary Message about Service Section */}
       <section className="bg-white px-6 md:px-16 py-10 md:py-16 ">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-2xl font-bold mb-8 text-center">
