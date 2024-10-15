@@ -325,13 +325,14 @@ export default async function service({
         </section>
       )}
       {/* Custom Software Case Studies Section */}
-      {data.turnVision &&
+      {data.turnVision && (
         <div className="px-6 md:px-16 py-10 md:py-16">
-          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Showcasing Our Success Stories</h2>
+          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">
+            Showcasing Our Success Stories
+          </h2>
           <CaseStudiesHome />
         </div>
-      }
-
+      )}
 
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection && <CustomSoftware2Section data={data} />}
@@ -1108,7 +1109,7 @@ export default async function service({
       )}
 
       {/*  Preferred Choice for QA Testing*/}
-      {data.preferredChoice &&
+      {data.preferredChoice && (
         <section className="px-6 py-10 md:px-16 md:py-16">
           <div className="justify-center text-center pb-10">
             <div>
