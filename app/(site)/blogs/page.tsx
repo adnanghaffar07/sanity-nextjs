@@ -184,7 +184,7 @@ export default async function Blogs() {
                 href={`/blogs/${item.slug}`}
                 className="w-full mb-10"
               >
-                <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
+                <div className="rounded-3xl mb-10 shadow-md shadow-slate-400 bg-[#F3F3F3]">
                   <div className="xl:flex gap-5">
                     <div className="xl:w-7/12">
                       <img
@@ -205,7 +205,7 @@ export default async function Blogs() {
                       />
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                      <p className="text-xs sm:text-lg">19 Feb 2024</p>
+                      <p className="text-xs sm:text-lg mb-10">   {item.subtitle}</p>
                       <h1 className="md:text-3xl sm:text-xl text-base font-medium">
                         {item.title}
                       </h1>
@@ -225,7 +225,7 @@ export default async function Blogs() {
                 </div>
               </Link>
             ))}
-            <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0 mt-10">
+            <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0">
               <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
                 <AiOutlineArrowLeft size={18} className="text-white" />
               </div>

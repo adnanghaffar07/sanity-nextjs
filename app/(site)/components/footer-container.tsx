@@ -225,6 +225,25 @@ export default function FooterContainer() {
                   </div>
                 </a>
 
+                <div>
+                  <a
+                    href="tel:+44-(20)-39972588"
+                    className="hover:underline my-auto inline-block"
+                  >
+                    <div className="flex flex-row gap-3">
+                      <Image
+                        src="/uk-flag.png"
+                        alt="UK-Flag-Icon"
+                        width={21}
+                        height={20}
+                        className="md:max-h-10 object-cover rounded-md"
+                      />
+                      <span className="font-light">+44-(20)-39972588</span>
+                    </div>
+                  </a>
+
+                </div>
+
                 <div className="flex flex-row gap-3">
                   <Image
                     src="/mail.png"
@@ -261,8 +280,8 @@ export default function FooterContainer() {
                     height={25}
                     className="object-cover"
                   />
-                  <span className="font-light md:max-w-[210px]">
-                    25 McArthur Ave. Ottawa, ON K1L 6R3
+                  <span className="font-light">
+                  201 N AZALEA LANE, Orleans, Ontario CA K4A4R5
                   </span>
                 </div>
 

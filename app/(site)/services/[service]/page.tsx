@@ -325,14 +325,13 @@ export default async function service({
         </section>
       )}
       {/* Custom Software Case Studies Section */}
-      {data.turnVision && (
+      {data.turnVision &&
         <div className="px-6 md:px-16 py-10 md:py-16">
-          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">
-            Our Success Stories in Software Solutions
-          </h2>
+          <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">Showcasing Our Success Stories</h2>
           <CaseStudiesHome />
         </div>
-      )}
+      }
+
 
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection && <CustomSoftware2Section data={data} />}
@@ -1109,7 +1108,7 @@ export default async function service({
       )}
 
       {/*  Preferred Choice for QA Testing*/}
-      {data.advantagesOfQA && (
+      {data.preferredChoice &&
         <section className="px-6 py-10 md:px-16 md:py-16">
           <div className="justify-center text-center pb-10">
             <div>
@@ -1287,7 +1286,7 @@ export default async function service({
                     src={urlForImage(
                       data.projectCycleSection?.projectCycleImg
                     ).toString()}
-                    alt=""
+                    alt={data.projectCycleSection?.projectCycleImg.alt}
                     width={370}
                     height={370}
                   />
@@ -1340,7 +1339,7 @@ export default async function service({
                   src={urlForImage(
                     data.deliveryOptionSection?.deliveryImg
                   ).toString()}
-                  alt="Delivery Image"
+                  alt={data.deliveryOptionSection?.deliveryImg.alt}
                   width={370}
                   height={370}
                 />

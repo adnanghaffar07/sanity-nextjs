@@ -118,7 +118,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <img
           className="top-0 left-0 object-cover absolute inset-0 size-full"
           src={urlForImage(data.heroImageSub).toString()}
-          alt=""
+          alt={data.heroImageSub.alt}
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -315,7 +315,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   src={urlForImage(
                     data.projectCycleSubSection?.projectCycleImg
                   ).toString()}
-                  alt=""
+                  alt={data.projectCycleSubSection?.projectCycleImg.alt}
                   width={370}
                   height={370}
                 />
@@ -335,7 +335,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 src={urlForImage(
                   data.deliveryOptionSubSection?.deliveryImg
                 ).toString()}
-                alt="Delivery Image"
+                alt={ data.deliveryOptionSubSection?.deliveryImg.alt}
                 width={370}
                 height={370}
               />
@@ -387,7 +387,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   src={urlForImage(
                     data.specialOffersSubSection?.offerImg
                   ).toString()}
-                  alt="Your Image"
+                  alt= {data.specialOffersSubSection?.offerImg.alt}
                   width={270}
                   height={270}
                 />
