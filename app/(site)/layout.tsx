@@ -6,6 +6,7 @@ import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import GoogleAd from "./components/GoogleAd";
 import CookieConsent from "./components/CookieConsent";
+import GoogleAdsTracking from "./components/GoogleAd";
 
 
 
@@ -190,7 +191,7 @@ export default function RootLayout({
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
 <CookieConsent/>
-          <GoogleAd/>
+<GoogleAdsTracking adId="AW-11436659671" />
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
             <div>
