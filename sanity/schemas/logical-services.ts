@@ -58,16 +58,16 @@ const logicalServices = {
       type: "object",
       fields: [
         {
-          name: 'firstButtonText',
-          type: 'string',
-          title: 'First Button Text',
+          name: "firstButtonText",
+          type: "string",
+          title: "First Button Text",
         },
         {
-          name: 'firstButtonUrl',
-          type: 'url',
-          title: 'First Button URL',
+          name: "firstButtonUrl",
+          type: "url",
+          title: "First Button URL",
         },
-      ]
+      ],
     },
     //Second Button
     {
@@ -76,18 +76,17 @@ const logicalServices = {
       type: "object",
       fields: [
         {
-          name: 'SecondButtonText',
-          type: 'string',
-          title: 'Second Button Text',
+          name: "SecondButtonText",
+          type: "string",
+          title: "Second Button Text",
         },
         {
-          name: 'SecondButtonUrl',
-          type: 'url',
-          title: 'Second Button URL',
+          name: "SecondButtonUrl",
+          type: "url",
+          title: "Second Button URL",
         },
-      ]
+      ],
     },
-
 
     // Introduction Section
     {
@@ -115,6 +114,45 @@ const logicalServices = {
               name: "alt",
               title: "Alt",
               type: "string",
+            },
+          ],
+        },
+      ],
+    },
+    // Array of string for Introduction Description Section
+    {
+      name: "introductionDescArray",
+      title: "Introduction Description Array",
+      type: "array",
+      of: [
+        {
+          type: "text",
+        },
+      ],
+    },
+    // Tools & Logo Section
+    {
+      name: "toolsLogoSection",
+      title: "Tools & Logo Section",
+      type: "object",
+      fields: [
+        {
+          name: "logoArray",
+          title: "Logo Array",
+          type: "array",
+          of: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt Text",
+                  type: "string",
+                },
+              ],
             },
           ],
         },
@@ -156,7 +194,6 @@ const logicalServices = {
           title: "Description",
           type: "text",
         },
-
       ],
     },
 
@@ -182,18 +219,18 @@ const logicalServices = {
     // CMS Page
 
     {
-      name: 'contentItems',
-      title: 'Content Items',
-      type: 'array',
+      name: "contentItems",
+      title: "Content Items",
+      type: "array",
       of: [
         {
-          type: 'object',
-          title: 'Content Item',
+          type: "object",
+          title: "Content Item",
           fields: [
             {
-              name: 'image',
-              title: 'Image',
-              type: 'image',
+              name: "image",
+              title: "Image",
+              type: "image",
               options: { hotspot: true }, // Enable hotspot for cropping the image
 
               fields: [
@@ -205,54 +242,89 @@ const logicalServices = {
               ],
             },
             {
-              name: 'heading',
-              title: 'Heading',
-              type: 'string',
+              name: "heading",
+              title: "Heading",
+              type: "string",
             },
             {
-              name: 'description',
-              title: 'Description',
-              type: 'text',
+              name: "description",
+              title: "Description",
+              type: "text",
             },
           ],
         },
       ],
     },
 
-
     // Our Mobile App Development Services
     {
-      name: 'mobileAppServices',
-      type: 'document',
-      title: 'Our Mobile App Development Services',
+      name: "mobileAppServices",
+      type: "document",
+      title: "Our Mobile App Development Services",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'paragraph',
-          type: 'text',
-          title: 'paragraph',
+          name: "paragraph",
+          type: "text",
+          title: "paragraph",
         },
         {
-          name: 'cards',
-          type: 'array',
-          title: 'Our Mobile App Development Services',
+          name: "cards",
+          type: "array",
+          title: "Our Mobile App Development Services",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'description',
-                  type: 'text',
-                  title: 'Description',
+                  name: "description",
+                  type: "text",
+                  title: "Description",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // clients section after subservices
+    {
+      name: "clientsSectionAfterSubServices",
+      title: "Clients Section After Subservices",
+      type: "document",
+      fields: [
+        {
+          name: "sectionTitle",
+          title: "Section Title",
+          type: "string",
+        },
+        {
+          name: "sectionDescription",
+          title: "Section Description",
+          type: "text",
+        },
+        {
+          name: "clientLogos",
+          title: "Client Logos",
+          type: "array",
+          of: [
+            {
+              type: "image",
+              fields: [
+                {
+                  name: "altText",
+                  title: "Alt Text",
+                  type: "string",
                 },
               ],
             },
@@ -263,81 +335,79 @@ const logicalServices = {
 
     // Why Choose Code Automation? Mobile APP
     {
-      name: 'whyChooseMobile',
-      type: 'document',
-      title: 'Why Choose Code Automation? Mobile APP',
+      name: "whyChooseMobile",
+      type: "document",
+      title: "Why Choose Code Automation? Mobile APP",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'items',
-          type: 'array',
-          title: 'Why Choose Code Automation? Mobile APP',
+          name: "items",
+          type: "array",
+          title: "Why Choose Code Automation? Mobile APP",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'description',
-                  type: 'text',
-                  title: 'Description',
+                  name: "description",
+                  type: "text",
+                  title: "Description",
                 },
               ],
             },
           ],
         },
         {
-          name: 'image',
-          type: 'image',
-          title: 'Image',
+          name: "image",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true,
           },
         },
       ],
     },
-
-
 
     // Industries & Applications we QA
     {
-      name: 'industriesWeQA',
-      type: 'document',
-      title: 'Industries & Applications we QA',
+      name: "industriesWeQA",
+      type: "document",
+      title: "Industries & Applications we QA",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'description',
-          type: 'text',
-          title: 'Description',
+          name: "description",
+          type: "text",
+          title: "Description",
         },
         {
-          name: 'bulletPointsHeading',
-          type: 'string',
-          title: 'Bullet Points Heading',
+          name: "bulletPointsHeading",
+          type: "string",
+          title: "Bullet Points Heading",
         },
         {
-          name: 'bulletPoints',
-          type: 'array',
-          title: 'Bullet Points',
-          of: [{ type: 'string' }],
+          name: "bulletPoints",
+          type: "array",
+          title: "Bullet Points",
+          of: [{ type: "string" }],
         },
         {
-          name: 'image',
-          type: 'image',
-          title: 'Image',
+          name: "image",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true,
           },
@@ -345,49 +415,47 @@ const logicalServices = {
       ],
     },
 
-
     // Industries We Serve
     {
-      name: 'industriesServe',
-      type: 'document',
-      title: 'Industries we Serve',
+      name: "industriesServe",
+      type: "document",
+      title: "Industries we Serve",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'description',
-          type: 'text',
-          title: 'Description',
+          name: "description",
+          type: "text",
+          title: "Description",
         },
         {
-          name: 'bulletPoints',
-          type: 'array',
-          title: 'Bullet Points',
+          name: "bulletPoints",
+          type: "array",
+          title: "Bullet Points",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'heading',
-                  type: 'string',
-                  title: 'Heading'
+                  name: "heading",
+                  type: "string",
+                  title: "Heading",
                 },
                 {
-                  name: 'bulletPoints',
-                  type: 'array',
-                  title: 'bulletPoints',
-                  of: [{ type: 'string' }],
-                }
+                  name: "bulletPoints",
+                  type: "array",
+                  title: "bulletPoints",
+                  of: [{ type: "string" }],
+                },
               ],
-            }
-          ]
-        }
-      ]
+            },
+          ],
+        },
+      ],
     },
-
 
     // Tools and Technology Section
     {
@@ -406,34 +474,33 @@ const logicalServices = {
           type: "text",
         },
         {
-          "name": "toolsTech",
-          "title": "Tools and Tech",
-          "type": "array",
-          "of": [
+          name: "toolsTech",
+          title: "Tools and Tech",
+          type: "array",
+          of: [
             {
-              "type": "object",
-              "fields": [
+              type: "object",
+              fields: [
                 {
-                  "name": "heading",
-                  "title": "Heading",
-                  "type": "string"
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
                 },
                 {
-                  "name": "detail",
-                  "title": "Detail",
-                  "type": "string"
+                  name: "detail",
+                  title: "Detail",
+                  type: "string",
                 },
                 {
                   name: "images",
                   title: "Images",
                   type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
-                }
-              ]
-            }
-          ]
-        }
-        ,
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
+                },
+              ],
+            },
+          ],
+        },
         {
           name: "techImage",
           title: "Tech Image",
@@ -449,51 +516,101 @@ const logicalServices = {
         },
       ],
     },
-    //Our Proven Process for Custom Software Development Custom Software
+
+    //
+    // Updated Tools and Technology Section
     {
-      name: 'provenProcessSection',
-      type: 'document',
-      title: 'Our Proven Process for Custom Software',
+      name: "updatedToolsTechSection",
+      title: "Updated Tools and Technology Section",
+      type: "object",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "toolsTechHeading",
+          title: "Tools and Tech Heading",
+          type: "string",
         },
         {
-          name: 'description',
-          type: 'text',
-          title: 'Description',
+          name: "toolsTechDesc",
+          title: "Tools and Tech Desc",
+          type: "text",
         },
         {
-          name: 'accordionItems',
-          type: 'array',
-          title: 'Accordion Items',
+          name: "toolsTech",
+          title: "Tools and Tech",
+          type: "array",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
                 },
                 {
-                  name: 'content',
-                  type: 'text',
-                  title: 'Content',
+                  name: "description",
+                  title: "Description",
+                  type: "array",
+                  of: [{ type: "string" }],
+                },
+                {
+                  name: "images",
+                  title: "Images",
+                  type: "array",
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    //Our Proven Process for Custom Software Development Custom Software
+    {
+      name: "provenProcessSection",
+      type: "document",
+      title: "Our Proven Process for Custom Software",
+      fields: [
+        {
+          name: "heading",
+          type: "string",
+          title: "Heading",
+        },
+        {
+          name: "description",
+          type: "text",
+          title: "Description",
+        },
+        {
+          name: "accordionItems",
+          type: "array",
+          title: "Accordion Items",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  type: "string",
+                  title: "Title",
+                },
+                {
+                  name: "content",
+                  type: "text",
+                  title: "Content",
                 },
               ],
             },
           ],
         },
         {
-          name: 'imageSrc',
-          type: 'image',
-          title: 'Image',
+          name: "imageSrc",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true, // Enables image cropping
-          }, fields: [
+          },
+          fields: [
             {
               name: "alt",
               title: "Alt",
@@ -506,49 +623,50 @@ const logicalServices = {
 
     //Why Prefer Code Automation? Custom Software
     {
-      name: 'customSoftwareSection',
-      type: 'document',
-      title: 'Why Prefer Code Automation? Custom Software Section',
+      name: "customSoftwareSection",
+      type: "document",
+      title: "Why Prefer Code Automation? Custom Software Section",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'description',
-          type: 'text',
-          title: 'Description',
+          name: "description",
+          type: "text",
+          title: "Description",
         },
         {
-          name: 'accordionItems',
-          type: 'array',
-          title: 'Accordion Items',
+          name: "accordionItems",
+          type: "array",
+          title: "Accordion Items",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'content',
-                  type: 'text',
-                  title: 'Content',
+                  name: "content",
+                  type: "text",
+                  title: "Content",
                 },
               ],
             },
           ],
         },
         {
-          name: 'imageSrc',
-          type: 'image',
-          title: 'Image',
+          name: "imageSrc",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true, // Enables image cropping
-          }, fields: [
+          },
+          fields: [
             {
               name: "alt",
               title: "Alt",
@@ -559,52 +677,52 @@ const logicalServices = {
       ],
     },
 
-
     //Your Premier Mobile App Development Partne
     {
-      name: 'mobileAppServiceSection',
-      type: 'document',
-      title: 'Your Premier Mobile App Development Partner',
+      name: "mobileAppServiceSection",
+      type: "document",
+      title: "Your Premier Mobile App Development Partner",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'description',
-          type: 'text',
-          title: 'Description',
+          name: "description",
+          type: "text",
+          title: "Description",
         },
         {
-          name: 'accordionItems',
-          type: 'array',
-          title: 'Accordion Items',
+          name: "accordionItems",
+          type: "array",
+          title: "Accordion Items",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'content',
-                  type: 'text',
-                  title: 'Content',
+                  name: "content",
+                  type: "text",
+                  title: "Content",
                 },
               ],
             },
           ],
         },
         {
-          name: 'imageSrc',
-          type: 'image',
-          title: 'Image',
+          name: "imageSrc",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true, // Enables image cropping
-          }, fields: [
+          },
+          fields: [
             {
               name: "alt",
               title: "Alt",
@@ -617,63 +735,63 @@ const logicalServices = {
 
     //Innovative Mobile App Solutions for a Range of Industries
     {
-      name: 'secondMobileAppAcc',
-      type: 'document',
-      title: 'Innovative Mobile App Solutions for a Range of Industries',
+      name: "secondMobileAppAcc",
+      type: "document",
+      title: "Innovative Mobile App Solutions for a Range of Industries",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'description',
-          type: 'text',
-          title: 'Description',
+          name: "description",
+          type: "text",
+          title: "Description",
         },
         {
-          name: 'accordionItems',
-          type: 'array',
-          title: 'Accordion Items',
+          name: "accordionItems",
+          type: "array",
+          title: "Accordion Items",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'contentArray',
-                  type: 'array',
-                  title: 'Content Array',
+                  name: "contentArray",
+                  type: "array",
+                  title: "Content Array",
                   of: [
                     {
-                      type: 'object',
+                      type: "object",
                       fields: [
                         {
-                          name: 'stringField',
-                          type: 'string',
-                          title: 'String Field',
+                          name: "stringField",
+                          type: "string",
+                          title: "String Field",
                         },
                         {
-                          name: 'nestedArray',
-                          type: 'array',
-                          title: 'Nested Array',
+                          name: "nestedArray",
+                          type: "array",
+                          title: "Nested Array",
                           of: [
                             {
-                              type: 'object',
+                              type: "object",
                               fields: [
                                 {
-                                  name: 'heading',
-                                  type: 'string',
-                                  title: 'Heading',
+                                  name: "heading",
+                                  type: "string",
+                                  title: "Heading",
                                 },
                                 {
-                                  name: 'text',
-                                  type: 'text',
-                                  title: 'Text',
+                                  name: "text",
+                                  type: "text",
+                                  title: "Text",
                                 },
                               ],
                             },
@@ -688,12 +806,13 @@ const logicalServices = {
           ],
         },
         {
-          name: 'imageSrc',
-          type: 'image',
-          title: 'Image',
+          name: "imageSrc",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true, // Enables image cropping
-          }, fields: [
+          },
+          fields: [
             {
               name: "alt",
               title: "Alt",
@@ -704,58 +823,57 @@ const logicalServices = {
       ],
     },
 
-
     // Why We’re the Preferred Choice for QA Testing
     {
-      name: 'preferredChoice',
-      type: 'document',
-      title: 'Preferred Choice for QA Testing',
+      name: "preferredChoice",
+      type: "document",
+      title: "Preferred Choice for QA Testing",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'subheading',
-          type: 'string',
-          title: 'Subheading',
+          name: "subheading",
+          type: "string",
+          title: "Subheading",
         },
         {
-          name: 'paragraph',
-          type: 'text',
-          title: 'paragraph',
+          name: "paragraph",
+          type: "text",
+          title: "paragraph",
         },
         {
-          name: 'image',
-          type: 'image',
-          title: 'Image',
+          name: "image",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true,
           },
         },
         {
-          name: 'items',
-          type: 'array',
-          title: 'Preferred Choice for QA Testing',
+          name: "items",
+          type: "array",
+          title: "Preferred Choice for QA Testing",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'number',
-                  type: 'number',
-                  title: 'Number',
+                  name: "number",
+                  type: "number",
+                  title: "Number",
                 },
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'description',
-                  type: 'text',
-                  title: 'Description',
+                  name: "description",
+                  type: "text",
+                  title: "Description",
                 },
               ],
             },
@@ -764,79 +882,77 @@ const logicalServices = {
       ],
     },
 
-// Client logo custom software 
-{
-  name: 'clientsSection',
-  title: 'Clients Section',
-  type: 'document',
-  fields: [
+    // Client logo custom software
     {
-      name: 'sectionTitle',
-      title: 'Section Title',
-      type: 'string',
-    },
-    {
-      name: 'sectionDescription',
-      title: 'Section Description',
-      type: 'text',
-    },
-    {
-      name: 'clientLogos',
-      title: 'Client Logos',
-      type: 'array',
-      of: [
+      name: "clientsSection",
+      title: "Clients Section",
+      type: "document",
+      fields: [
         {
-          type: 'image',
-          fields: [
+          name: "sectionTitle",
+          title: "Section Title",
+          type: "string",
+        },
+        {
+          name: "sectionDescription",
+          title: "Section Description",
+          type: "text",
+        },
+        {
+          name: "clientLogos",
+          title: "Client Logos",
+          type: "array",
+          of: [
             {
-              name: 'altText',
-              title: 'Alt Text',
-              type: 'string',
+              type: "image",
+              fields: [
+                {
+                  name: "altText",
+                  title: "Alt Text",
+                  type: "string",
+                },
+              ],
             },
           ],
         },
       ],
     },
-  ],
-},
-
-
 
     // Turn Vision Into Reality Custom Software
     {
-      name: 'turnVision',
-      title: 'Turn Vision Into Reality Custom Software',
-      type: 'document',
+      name: "turnVision",
+      title: "Turn Vision Into Reality Custom Software",
+      type: "document",
       fields: [
         {
-          name: 'title',
-          title: 'Title',
-          type: 'string',
+          name: "title",
+          title: "Title",
+          type: "string",
         },
         {
-          name: 'subtitle',
-          title: 'Subtitle',
-          type: 'string',
+          name: "subtitle",
+          title: "Subtitle",
+          type: "string",
         },
         {
-          name: 'description',
-          title: 'Description',
-          type: 'text',
+          name: "description",
+          title: "Description",
+          type: "text",
         },
         {
-          name: 'buttonText',
-          title: 'Button Text',
-          type: 'string',
+          name: "buttonText",
+          title: "Button Text",
+          type: "string",
         },
         {
-          name: 'buttonLink',
-          title: 'Button Link',
-          type: 'url',
+          name: "buttonLink",
+          title: "Button Link",
+          type: "url",
         },
         {
-          name: 'backgroundImage',
-          title: 'Background Image',
-          type: 'image',
+          name: "backgroundImage",
+          title: "Background Image",
+          type: "image",
           options: { hotspot: true },
           fields: [
             {
@@ -847,9 +963,69 @@ const logicalServices = {
           ],
         },
         {
-          name: 'featuredImage',
-          title: 'Featured Image',
-          type: 'image',
+          name: "featuredImage",
+          title: "Featured Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+    // CTA mobile app dev
+    {
+      name: "ctaAfterSubServices",
+      title: "CTA After SubServices",
+      type: "document",
+      fields: [
+        {
+          name: "title",
+          title: "Title",
+          type: "string",
+        },
+        {
+          name: "subtitle",
+          title: "Subtitle",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "text",
+        },
+        {
+          name: "buttonText",
+          title: "Button Text",
+          type: "string",
+        },
+        {
+          name: "buttonLink",
+          title: "Button Link",
+          type: "url",
+        },
+        {
+          name: "backgroundImage",
+          title: "Background Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+        {
+          name: "featuredImage",
+          title: "Featured Image",
+          type: "image",
           options: { hotspot: true },
           fields: [
             {
@@ -864,34 +1040,34 @@ const logicalServices = {
 
     // Ready to Transform Your Business? Custom Software
     {
-      name: 'transBusiness',
-      title: 'Ready to Transform Your Business? Custom Software',
-      type: 'document',
+      name: "transBusiness",
+      title: "Ready to Transform Your Business? Custom Software",
+      type: "document",
       fields: [
         {
-          name: 'title',
-          title: 'Title',
-          type: 'string',
+          name: "title",
+          title: "Title",
+          type: "string",
         },
         {
-          name: 'description',
-          title: 'Description',
-          type: 'text',
+          name: "description",
+          title: "Description",
+          type: "text",
         },
         {
-          name: 'buttonText',
-          title: 'Button Text',
-          type: 'string',
+          name: "buttonText",
+          title: "Button Text",
+          type: "string",
         },
         {
-          name: 'buttonLink',
-          title: 'Button Link',
-          type: 'url',
+          name: "buttonLink",
+          title: "Button Link",
+          type: "url",
         },
         {
-          name: 'featuredImage',
-          title: 'Featured Image',
-          type: 'image',
+          name: "featuredImage",
+          title: "Featured Image",
+          type: "image",
           options: { hotspot: true },
           fields: [
             {
@@ -904,31 +1080,30 @@ const logicalServices = {
       ],
     },
 
-
-
     // Our Custom Software Development Services
     {
-      name: 'customSoftwareDev',
-      type: 'document',
-      title: 'Our Custom Software Development Services',
+      name: "customSoftwareDev",
+      type: "document",
+      title: "Our Custom Software Development Services",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'subheading',
-          type: 'text',
-          title: 'Subheading',
+          name: "subheading",
+          type: "text",
+          title: "Subheading",
         },
         {
-          name: 'image',
-          type: 'image',
-          title: 'Image',
+          name: "image",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true,
-          }, fields: [
+          },
+          fields: [
             {
               name: "alt",
               title: "Alt",
@@ -937,27 +1112,27 @@ const logicalServices = {
           ],
         },
         {
-          name: 'items',
-          type: 'array',
-          title: 'Advantages of Our QA Items',
+          name: "items",
+          type: "array",
+          title: "Advantages of Our QA Items",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'number',
-                  type: 'number',
-                  title: 'Number',
+                  name: "number",
+                  type: "number",
+                  title: "Number",
                 },
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'description',
-                  type: 'text',
-                  title: 'Description',
+                  name: "description",
+                  type: "text",
+                  title: "Description",
                 },
               ],
             },
@@ -968,50 +1143,50 @@ const logicalServices = {
 
     // Advantages of Our QA and Testing Services
     {
-      name: 'advantagesOfQA',
-      type: 'document',
-      title: 'Advantages of Our QA',
+      name: "advantagesOfQA",
+      type: "document",
+      title: "Advantages of Our QA",
       fields: [
         {
-          name: 'heading',
-          type: 'string',
-          title: 'Heading',
+          name: "heading",
+          type: "string",
+          title: "Heading",
         },
         {
-          name: 'subheading',
-          type: 'text',
-          title: 'Subheading',
+          name: "subheading",
+          type: "text",
+          title: "Subheading",
         },
         {
-          name: 'image',
-          type: 'image',
-          title: 'Image',
+          name: "image",
+          type: "image",
+          title: "Image",
           options: {
             hotspot: true,
           },
         },
         {
-          name: 'items',
-          type: 'array',
-          title: 'Advantages of Our QA Items',
+          name: "items",
+          type: "array",
+          title: "Advantages of Our QA Items",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'number',
-                  type: 'number',
-                  title: 'Number',
+                  name: "number",
+                  type: "number",
+                  title: "Number",
                 },
                 {
-                  name: 'title',
-                  type: 'string',
-                  title: 'Title',
+                  name: "title",
+                  type: "string",
+                  title: "Title",
                 },
                 {
-                  name: 'description',
-                  type: 'text',
-                  title: 'Description',
+                  name: "description",
+                  type: "text",
+                  title: "Description",
                 },
               ],
             },
@@ -1074,7 +1249,7 @@ const logicalServices = {
       ],
     },
 
-    // Project cycle QA 
+    // Project cycle QA
     {
       name: "projectCycleQA",
       title: "Project Cycle QA Section",
@@ -1162,7 +1337,7 @@ const logicalServices = {
         },
       ],
     },
-    // Project cycle QA 
+    // Project cycle QA
     {
       name: "qaDelivery",
       title: "QA Delivery Section",
@@ -1251,7 +1426,6 @@ const logicalServices = {
       ],
     },
 
-
     // Special Offers Section
     {
       name: "specialOffersSection",
@@ -1269,27 +1443,84 @@ const logicalServices = {
           type: "text",
         },
         {
-          name: 'specialOfferQA',
-          type: 'array',
-          title: 'QA special Offer',
+          name: "specialOfferQA",
+          type: "array",
+          title: "QA special Offer",
           of: [
             {
-              type: 'object',
+              type: "object",
               fields: [
                 {
-                  name: 'heading',
-                  type: 'string',
-                  title: 'Heading'
+                  name: "heading",
+                  type: "string",
+                  title: "Heading",
                 },
                 {
-                  name: 'description',
-                  type: 'text',
-                  title: 'Description',
-                  of: [{ type: 'string' }],
-                }
+                  name: "description",
+                  type: "text",
+                  title: "Description",
+                  of: [{ type: "string" }],
+                },
               ],
-            }
-          ]
+            },
+          ],
+        },
+        {
+          name: "offerImg",
+          title: "Offer Image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+
+    // Updated Special offer Section
+    {
+      name: "UpdatedSpecialOffersSection",
+      title: "Updated Special Offers Section",
+      type: "object",
+      fields: [
+        {
+          name: "offerHeading",
+          title: "Offer Heading",
+          type: "string",
+        },
+        {
+          name: "specialOfferTitle",
+          title: "Special Offer Title",
+          type: "text",
+        },
+        {
+          name: "specialOfferText1",
+          title: "Special Offer Text 1",
+          type: "text",
+        },
+        {
+          name: "specialOfferDays",
+          title: "Special Offer Days",
+          type: "string",
+        },
+        {
+          name: "specialOfferText2",
+          title: "Special Offer Text 2",
+          type: "text",
+        },
+        {
+          name: "buttonText",
+          title: "Button Text",
+          type: "string",
+        },
+        {
+          name: "buttonLink",
+          title: "Button Link",
+          type: "url",
         },
         {
           name: "offerImg",
@@ -1476,7 +1707,6 @@ const logicalServices = {
       ],
     },
 
-
     // Twitter Cards
     {
       name: "twitterCards",
@@ -1500,7 +1730,6 @@ const logicalServices = {
         },
       ],
     },
-
 
     // Facebook Cards
     {
@@ -1537,7 +1766,6 @@ const logicalServices = {
       ],
     },
 
-
     // LinkedIn Cards
     {
       name: "linkedInCards",
@@ -1573,7 +1801,6 @@ const logicalServices = {
       ],
     },
 
-
     // Pinterest Cards
     {
       name: "pinterestCards",
@@ -1603,7 +1830,6 @@ const logicalServices = {
         },
       ],
     },
-
 
     // WhatsApp  Cards
     {
@@ -1635,7 +1861,6 @@ const logicalServices = {
       ],
     },
 
-
     // Telegram  Cards
     {
       name: "telegramCards",
@@ -1665,11 +1890,8 @@ const logicalServices = {
         },
       ],
     },
-
   ],
-}
-
-
+};
 
 // Define subService schema
 const subServiceSchema = {
@@ -1704,7 +1926,7 @@ const subServiceSchema = {
       name: "images",
       title: "Images",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
+      of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
     },
     {
       name: "serviceTitleSub",
@@ -1716,7 +1938,6 @@ const subServiceSchema = {
       title: "Sub Service Description",
       type: "string",
     },
-
 
     // Introduction Section
     {
@@ -1734,9 +1955,6 @@ const subServiceSchema = {
           title: "Intro Description",
           type: "text",
         },
-
-
-
 
         {
           name: "introImage",
@@ -1771,32 +1989,32 @@ const subServiceSchema = {
           type: "text",
         },
         {
-          "name": "toolsTech",
-          "title": "Tools and Tech",
-          "type": "array",
-          "of": [
+          name: "toolsTech",
+          title: "Tools and Tech",
+          type: "array",
+          of: [
             {
-              "type": "object",
-              "fields": [
+              type: "object",
+              fields: [
                 {
-                  "name": "heading",
-                  "title": "Heading",
-                  "type": "string"
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
                 },
                 {
-                  "name": "detail",
-                  "title": "Detail",
-                  "type": "string"
+                  name: "detail",
+                  title: "Detail",
+                  type: "string",
                 },
                 {
                   name: "images",
                   title: "Images",
                   type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
-                }
-              ]
-            }
-          ]
+                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
+                },
+              ],
+            },
+          ],
         },
         {
           name: "techImage",
@@ -1813,6 +2031,7 @@ const subServiceSchema = {
         },
       ],
     },
+
     // Example Services Section
     {
       name: "exampleServicesSubSection",
@@ -1917,7 +2136,6 @@ const subServiceSchema = {
         },
       ],
     },
-
 
     // Service Delivery Options
     {
@@ -2155,7 +2373,6 @@ const subServiceSchema = {
       ],
     },
 
-
     // Twitter Cards
     {
       name: "twitterCardsSub",
@@ -2188,11 +2405,8 @@ const subServiceSchema = {
           title: "Type",
           type: "string",
         },
-
-
       ],
     },
-
 
     // Facebook Cards
     {
@@ -2229,7 +2443,6 @@ const subServiceSchema = {
       ],
     },
 
-
     // LinkedIn Cards
     {
       name: "linkedInCardsSub",
@@ -2265,8 +2478,6 @@ const subServiceSchema = {
       ],
     },
 
-
-
     // Pinterest Cards
     {
       name: "pinterestCardsSub",
@@ -2296,7 +2507,6 @@ const subServiceSchema = {
         },
       ],
     },
-
 
     // WhatsApp  Cards
     {
@@ -2328,7 +2538,6 @@ const subServiceSchema = {
       ],
     },
 
-
     // Telegram  Cards
     {
       name: "telegramCardsSub",
@@ -2358,11 +2567,6 @@ const subServiceSchema = {
         },
       ],
     },
-
-
-
-
-
   ],
 };
 
@@ -2373,9 +2577,9 @@ const techLogos = {
   title: "Technology Logos",
   fields: [
     {
-      "name": "heading",
-      "title": "Heading",
-      "type": "string"
+      name: "heading",
+      title: "Heading",
+      type: "string",
     },
     {
       name: "image",
@@ -2389,9 +2593,8 @@ const techLogos = {
           type: "string",
         },
       ],
-
     },
-  ]
+  ],
 };
 
 export { logicalServices, subServiceSchema, techLogos };

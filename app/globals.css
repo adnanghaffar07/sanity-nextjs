@@ -2,10 +2,10 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap"); */
 /* @import url("https://fonts.googleapis.com/css2?family=spinwerad:wght@500&display=swap"); */
 
-@import url('https://fonts.googleapis.com/css2?family=Klein:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Klein:wght@400;700&display=swap");
 
 .font-klein {
-  font-family: 'Klein', sans-serif;
+  font-family: "Klein", sans-serif;
 }
 
 @tailwind base;
@@ -42,11 +42,13 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
-
 
 /* :root { */
 /* fonts */
@@ -85,11 +87,6 @@ body {
   --br-mini: 15px; */
 /* } */
 
-
-
-
-
-
 /* Shared button styles */
 .button {
   background-color: #f7e022;
@@ -121,12 +118,13 @@ body {
 }
 
 /* Hover and focus effects */
-.button:hover, .button2:hover,
-.button:focus, .button2:focus {
+.button:hover,
+.button2:hover,
+.button:focus,
+.button2:focus {
   transform: translateY(-2px);
   background-color: #e5d410;
 }
-
 
 /* Additional styles for responsive layouts */
 @media (max-width: 640px) {
@@ -134,7 +132,6 @@ body {
     width: 100%;
   }
 }
-
 
 .resize-none {
   resize: none;
@@ -198,10 +195,9 @@ body {
 }
 
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-
 
 .overlay {
   position: absolute;
@@ -455,3 +451,16 @@ body {
     left: 17%; 
   }
 } */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+}
