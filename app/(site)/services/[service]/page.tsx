@@ -418,7 +418,7 @@ export default async function service({
                     {/* Array in introduction description section */}
                     {data?.introductionDescArray?.length > 0 && (
                       <div className="flex flex-col gap-4">
-                        {data.introductionDescArray.map(
+                        {data?.introductionDescArray?.map(
                           (description: string, index: number) => {
                             return (
                               <p
