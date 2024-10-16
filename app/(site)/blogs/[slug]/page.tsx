@@ -158,8 +158,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Challenges Faced Section */}
-      <div className="bg-gray-50 text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
+      <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+        <div className="max-w-7xl mx-auto relative">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             {data.challengesfacedheading}
           </h2>
@@ -176,6 +177,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Tools and Technology Section */}
+      {data.caseStudiesToolsSection &&
       <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
@@ -219,6 +221,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
+}
 
       {/* Our Approach Section */}
       <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
@@ -246,8 +249,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Prerequisites Section */}
-      <div className="bg-gray-50 text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
+      <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+        <div className="max-w-7xl mx-auto relative">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             {data.criticalPrerequisitesSection?.heading}
           </h2>
