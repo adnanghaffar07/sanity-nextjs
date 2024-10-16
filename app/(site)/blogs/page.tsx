@@ -81,29 +81,20 @@ export default async function Blogs() {
                       />
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                      <p className="text-xs sm:text-lg mb-10">   {item.subtitle}</p>
-                      <h1 className="md:text-3xl sm:text-xl text-base font-medium">
-                        {item.title}
-                      </h1>
-                      <div>
-                        <hr className="bg-black my-2 h-px w-full border-0" />
-                      </div>
-                      <div>
-                        <p
-                          className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]"
-                        >
-                          {item.introductionheading
-                            ? item.introductionheading
-                              .split(" ")
-                              .slice(0, 40)
-                              .join(" ")
-                              .concat(item.introductionheading.split(" ").length > 40 ? "..." : "")
-                            : ""}
+  <p className="text-xs sm:text-lg mb-10">{item.subtitle}</p>
+  <h1 className="md:text-3xl sm:text-xl text-base font-medium">
+    {item.title}
+  </h1>
+  <div>
+    <hr className="bg-black my-2 h-px w-full border-0" />
+  </div>
+  <div>
+    <p className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]">
+      {item.introductionheading || ""}
+    </p>
+  </div>
+</div>
 
-                        </p>
-
-                      </div>
-                    </div>
                   </div>
                 </div>
               </Link>
