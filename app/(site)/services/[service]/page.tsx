@@ -410,12 +410,12 @@ export default async function service({
                     <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
                       {data.introductionSection.introHeading}
                     </h2>
-                    {data.introductionDescArray?.length === 0 && (
+                    {data?.introductionSection?.introDesc && (
                       <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
                         {data.introductionSection.introDesc}
                       </p>
                     )}
-                    {data.introductionDescArray?.length > 0 && (
+                    {data?.introductionDescArray?.length > 0 && (
                       <div className="flex flex-col gap-4">
                         {data.introductionDescArray.map(
                           (description: string, index: number) => {
