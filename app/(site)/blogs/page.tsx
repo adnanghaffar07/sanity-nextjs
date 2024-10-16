@@ -92,11 +92,14 @@ export default async function Blogs() {
                         <p
                           className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]"
                         >
-                          {item.criticalPrerequisitesSection?.description
-                            .split(" ")
-                            .slice(0, 40)
-                            .join(" ")
-                            .concat(item.criticalPrerequisitesSection?.description.split(" ").length > 40 ? "..." : "")}
+                          {item.introductionheading
+                            ? item.introductionheading
+                              .split(" ")
+                              .slice(0, 40)
+                              .join(" ")
+                              .concat(item.introductionheading.split(" ").length > 40 ? "..." : "")
+                            : ""}
+
                         </p>
 
                       </div>

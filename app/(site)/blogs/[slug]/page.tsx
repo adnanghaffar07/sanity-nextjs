@@ -158,8 +158,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Challenges Faced Section */}
+      {data.challengesfacedheading &&
       <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
-      <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+        <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
         <div className="max-w-7xl mx-auto relative">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             {data.challengesfacedheading}
@@ -175,53 +176,53 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             ))}
         </div>
       </div>
-
+}
       {/* Tools and Technology Section */}
       {data.caseStudiesToolsSection &&
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-            {data.toolsandtechusedtitle}
-          </h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {data.caseStudiesToolsSection?.toolsTech?.map(
-              (tool: any, toolIndex: any) => (
-                <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                  <div className="bg-white border border-[#0a8ffc] shadow-lg p-6 rounded-lg flex flex-col h-full hover:shadow-xl transition-shadow duration-200">
-                    <div className="flex justify-center mb-4">
-                      {tool.images?.map((logoRef: any, logoIndex: any) => {
-                        const logoData = dataLogo.find(
-                          (logo: any) => logo._id === logoRef._ref
-                        );
-                        if (logoData) {
-                          return (
-                            <div key={logoIndex} className="mr-2">
-                              <img
-                                src={urlForImage(logoData.image).toString()}
-                                alt={logoData.heading}
-                                width={48}
-                                height={48}
-                                loading="lazy"
-                                className="h-12 object-cover"
-                              />
-                            </div>
+        <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+              {data.toolsandtechusedtitle}
+            </h2>
+            <div className="flex flex-wrap justify-center gap-8">
+              {data.caseStudiesToolsSection?.toolsTech?.map(
+                (tool: any, toolIndex: any) => (
+                  <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
+                    <div className="bg-white border border-[#0a8ffc] shadow-lg p-6 rounded-lg flex flex-col h-full hover:shadow-xl transition-shadow duration-200">
+                      <div className="flex justify-center mb-4">
+                        {tool.images?.map((logoRef: any, logoIndex: any) => {
+                          const logoData = dataLogo.find(
+                            (logo: any) => logo._id === logoRef._ref
                           );
-                        } else {
-                          return null;
-                        }
-                      })}
+                          if (logoData) {
+                            return (
+                              <div key={logoIndex} className="mr-2">
+                                <img
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  width={48}
+                                  height={48}
+                                  loading="lazy"
+                                  className="h-12 object-cover"
+                                />
+                              </div>
+                            );
+                          } else {
+                            return null;
+                          }
+                        })}
+                      </div>
+                      <h3 className="text-xl text-center font-semibold">
+                        {tool.heading}
+                      </h3>
                     </div>
-                    <h3 className="text-xl text-center font-semibold">
-                      {tool.heading}
-                    </h3>
                   </div>
-                </div>
-              )
-            )}
+                )
+              )}
+            </div>
           </div>
         </div>
-      </div>
-}
+      }
 
       {/* Our Approach Section */}
       <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
@@ -238,7 +239,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 <p>{approach.description}</p>
               </div>
             ))}
-                   {data.secondaryimage && (
+          {data.secondaryimage && (
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.secondaryimage).toString()}
@@ -249,8 +250,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Prerequisites Section */}
+      {data.criticalPrerequisitesSection.heading &&
       <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
-      <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+        <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
         <div className="max-w-7xl mx-auto relative">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             {data.criticalPrerequisitesSection?.heading}
@@ -281,8 +283,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
-
+}
       {/* Conclusion Section */}
+      {data.conclusionheading &&
       <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
@@ -291,16 +294,16 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <p className="text-lg">{data.conclusion}</p>
         </div>
       </div>
-
+}
       {/* Project Overview Section */}
       {data.projectoverviewtitle &&
-      <div className="bg-gray-100 text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl font-bold mb-6">
-            {data.projectoverviewtitle}
-          </h2>
+        <div className="bg-gray-100 text-black px-6 md:px-16 py-10 md:py-16">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-xl font-bold mb-6">
+              {data.projectoverviewtitle}
+            </h2>
+          </div>
         </div>
-      </div>
       }
     </div>
   );
