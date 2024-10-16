@@ -337,7 +337,7 @@ export default async function service({
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection && <CustomSoftware2Section data={data} />}
 
-      {/* tools section */}
+      {/* Tools Section */}
       {data.toolsLogoSection.logoArray.length > 0 && (
         <section className="h-[180px] md:h-[224px] mx-auto px-16 bg-[#E8F4FE] flex items-center overflow-hidden">
           <div className="w-full flex items-center">
