@@ -4,7 +4,8 @@ import React, { Suspense } from "react";
 import Head from "next/head";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
-import GoogleAd from "./components/GoogleAd";
+import CookieConsent from "./components/CookieConsent";
+import GoogleAdsTracking from "./components/GoogleAdTracking";
 
 
 
@@ -88,19 +89,6 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=1960013544428790&ev=PageView&noscript=1"
           />
         </noscript>
-
-        {/* Google Tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-11436659671');
-            `,
-          }}
-        />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
@@ -188,8 +176,8 @@ export default function RootLayout({
         </noscript>
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
-
-          <GoogleAd/>
+          <CookieConsent />
+          <GoogleAdsTracking adId="AW-11436659671" />
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
             <div>

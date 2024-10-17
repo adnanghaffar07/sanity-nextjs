@@ -52,139 +52,15 @@ export default async function Blogs() {
           className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
         />
 
-        <div className="flex flex-col self-center w-full xl:max-w-[1272px] max-w-[991px] max-md:max-w-full relative z-10 mx-auto">
+        <div className="flex flex-col self-center py-10 w-full xl:max-w-[1272px] max-w-[991px] max-md:max-w-full relative z-10 mx-auto">
           <div className="lg:px-10 px-5 w-full">
-            <div className="xl:flex gap-10 lg:pt-16 lg:pb-10 pt-8 pb-8">
-              <div className="xl:w-5/12 w-full rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3] mb-10 xl:mb-0">
-                <div className="w-full xl:min-h-[300px] relative rounded-3xl">
-                  <div
-                    className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-left-top rounded-3xl xl:block hidden"
-                    style={{
-                      backgroundImage: `url(/why-work-with-web-design.jpg)`,
-                    }}
-                  ></div>
-                  <img
-                    loading="eager"
-                    alt="blog image"
-                    src="/blogs-why-work-with-web-design.png"
-                    width={456}
-                    height={300}
-                    className="w-full block xl:hidden rounded-3xl"
-                  />
-                </div>
-                <div className="pb-4 pt-8 px-5">
-                  <p className="text-xs sm:text-lg">20 Feb 2024</p>
-                  <h1 className="md:text-2xl font-medium text-base sm:text-xl">
-                    20 Tips: Why You Should Work with a Web Design Company in
-                    2024
-                  </h1>
-                  <div className="">
-                    <hr className="bg-black my-2 h-px w-full border-0" />
-                  </div>
-                  <div className="">
-                    <p className="font-light text-xs sm:text-base">
-                      This article discusses the benefits of working with a web
-                      design company. It provides tips on why you should work
-                      with a web design company, how a website can be the
-                      foundation of any digital marketing campaign, and how a
-                      website can be the focal point for all digital marketing
-                      initiatives.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="xl:w-7/12 gap-10 flex flex-col">
-                <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="md:flex gap-3">
-                    <div className="md:w-[1682px] relative rounded-3xl">
-                      <div
-                        className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-[length:105%] bg-center rounded-3xl border border-black md:block hidden"
-                        style={{
-                          backgroundImage: `url(/finding-the-best.png)`,
-                        }}
-                      ></div>
-                      <img
-                        loading="lazy"
-                        src="/blogs-finding-the-best.png"
-                        alt="blog image"
-                        width={301}
-                        height={288}
-                        className="w-full block md:hidden rounded-3xl"
-                      />
-                    </div>
-
-                    <div className="self-center xl:pr-5 xl:pl-0 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
-                      <p className="text-xs sm:text-lg">21 Feb 2024</p>
-                      <h1 className="text-base sm:text-xl font-medium">
-                        Finding the Best Web Development Company for your
-                        Project
-                      </h1>
-                      <div className="">
-                        <hr className="bg-black my-2 h-px w-full border-0" />
-                      </div>
-                      <div className="">
-                        <p className="font-light md:text-sm text-xs sm:text-base">
-                          Nowadays, finding a perfect fit for your
-                          company&rsquo;s project is difficult. Here are some
-                          tips on hiring a web design and development company
-                          for your project. Hiring a web development company is
-                          not difficult. Finding one that is a perfect fit for
-                          you and can understand and satisfy your needs is
-                          difficult, though.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="md:flex gap-0">
-                    <div className="md:w-[1182px] relative rounded-3xl">
-                      <div
-                        className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center rounded-3xl md:block hidden"
-                        style={{
-                          backgroundImage: `url(/img-sanity-nextjs.jpg)`,
-                        }}
-                      ></div>
-                      <img
-                        loading="lazy"
-                        src="/blogs-sanity.png"
-                        alt="blog image"
-                        width={306}
-                        height={288}
-                        className="w-full block md:hidden rounded-3xl"
-                      />
-                    </div>
-                    <div className=" self-center xl:pr-5 xl:pl-5 xl:py-0 px-5 py-5 xl:min-h-[288px] justify-center flex flex-col">
-                      <p className="text-xs sm:text-lg">26 Feb 2024</p>
-                      <h1 className="text-base sm:text-xl font-medium">
-                        Creating a portfolio website with Sanity and Next.js
-                      </h1>
-                      <div className="">
-                        <hr className="bg-black my-2 h-px w-full border-0" />
-                      </div>
-                      <div className="">
-                        <p className="font-light md:text-sm text-xs sm:text-base">
-                          In this blog, we will put together a detailed guide to
-                          help you build a functional and beautiful portfolio
-                          using Sanity and Next.js. Thus, this article will
-                          explain what Sanity is and why it is essential to our
-                          project.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             {data.map((item: any) => (
               <Link
                 key={item._id}
                 href={`/blogs/${item.slug}`}
                 className="w-full mb-10"
               >
-                <div className="rounded-3xl shadow-md shadow-slate-400 bg-[#F3F3F3]">
+                <div className="rounded-3xl mb-10 shadow-md shadow-slate-400 bg-[#F3F3F3]">
                   <div className="xl:flex gap-5">
                     <div className="xl:w-7/12">
                       <img
@@ -205,7 +81,7 @@ export default async function Blogs() {
                       />
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                      <p className="text-xs sm:text-lg">19 Feb 2024</p>
+                      <p className="text-xs sm:text-lg mb-10">{item.subtitle}</p>
                       <h1 className="md:text-3xl sm:text-xl text-base font-medium">
                         {item.title}
                       </h1>
@@ -213,26 +89,33 @@ export default async function Blogs() {
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div>
-                        <p
-                          className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]"
-                          // style={{ lineHeight: "32px" }}
-                        >
-                          {item.criticalPrerequisitesSection?.description}
-                        </p>
-                      </div>
+  <p className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]">
+    {item.introductionheading
+      ? item.introductionheading
+          .split(" ")
+          .slice(0, 30)
+          .join(" ")
+          .concat(
+            item.introductionheading.split(" ").length > 30 ? "..." : ""
+          )
+      : ""}
+  </p>
+</div>
+
                     </div>
+
                   </div>
                 </div>
               </Link>
             ))}
-            <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0 mt-10">
+            {/* <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0">
               <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
                 <AiOutlineArrowLeft size={18} className="text-white" />
               </div>
               <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
                 <AiOutlineArrowRight size={18} className="text-white" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
