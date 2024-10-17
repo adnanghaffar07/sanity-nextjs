@@ -5,7 +5,7 @@ import Head from "next/head";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import CookieConsent from "./components/CookieConsent";
-import GoogleAdsTracking from "./components/GoogleAdTracking";
+import Script from "next/script";
 
 
 
@@ -165,6 +165,20 @@ export default function RootLayout({
           })}
         </script>
       </Head>
+      {/* Google Tag Manager */}
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671"
+      />
+      <Script strategy="afterInteractive" id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-11436659671');
+        `}
+      </Script>
+
       <body>
         <noscript>
           <iframe
@@ -177,7 +191,6 @@ export default function RootLayout({
         <div className="flex flex-col bg-white relative">
           <HomeNavigationContainer />
           <CookieConsent />
-          <GoogleAdsTracking adId="AW-11436659671" />
           {children}
           <Suspense fallback={<p>Loading form...</p>}>
             <div>
