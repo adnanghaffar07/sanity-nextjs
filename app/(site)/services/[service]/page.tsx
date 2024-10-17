@@ -140,18 +140,12 @@ export default async function service({
   return (
     <div className="bg-white">
       <Head>
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "url": "https://codeautomation.ai",
-      "name": "Code Automation"
-    }),
-  }}
-/>
-
+        {data?.jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: data.jsonLd }}
+          />
+        )}
       </Head>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.heroImage && (
