@@ -1,6 +1,9 @@
+# *
 User-agent: *
-Disallow: /admin/
-Disallow: /private/
 Allow: /
 
+# Host
+Host: https://www.codeautomation.ai
+
+# Sitemaps
 Sitemap: https://www.codeautomation.ai/sitemap.xml

@@ -19,6 +19,7 @@ import CaseStudiesHome from "./components/CaseStudies-Home";
 import ButtonScrollToSection from "./components/ButtonScrollToSection";
 import TechnologiesSection from "./components/HomePage-Tech";
 import Head from "next/head";
+import Script from "next/script";
 
 const StatItem = ({
   imageSrc,
@@ -65,116 +66,114 @@ export default function Home() {
 
   return (
     <div>
-        <Head>
-        {/* JSON-LD schema for Webpage */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `
-            {
-              "@context": "http://schema.org",
-              "@graph": [
-                {
-                  "@type": "Webpage",
-                  "name": "Software Development Company in the USA | CodeAutomation",
-                  "headline": "Software Development Company in the USA",
-                  "url": "https://codeautomation.ai/",
-                  "@id": "https://codeautomation.ai/",
-                  "inLanguage": "en-US",
-                  "datePublished": "2024-10-17",
-                  "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-                  "image": "https://codeautomation.ai/logo.svg",
-                  "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "Software Development Company in the USA"
-                  },
-                  "isPartOf": {
-                    "@type": "WebSite",
-                    "@id": "https://codeautomation.ai/#website"
-                  },
-                  "mainEntity": [{"@id": "https://codeautomation.ai/#service"}],
-                  "hasPart": {"@id": "https://codeautomation.ai/#creativeworkseries"}
-                },
-                {
-                  "@type": "CreativeWorkSeries",
-                  "@id": "https://codeautomation.ai/#creativeworkseries",
-                  "isPartOf": {"@id": "https://codeautomation.ai/#webpage"},
-                  "name": "Software Development Company in the USA | CodeAutomation",
-                  "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "bestRating": "5",
-                    "ratingValue": "4.9",
-                    "reviewCount": "49",
-                    "url": "https://maps.app.goo.gl/waAVkpmb1ETqvfUU6"
-                  }
-                },
-                {
-                  "@type": "Service",
-                  "@id": "https://codeautomation.ai/#service",
-                  "mainEntityOfPage": {"@id": "https://codeautomation.ai/#webpage"},
-                  "name": "Software Development Company in the USA | CodeAutomation",
-                  "serviceType": ["Software Development Company in the USA"],
-                  "image": "https://codeautomation.ai/logo.svg",
-                  "provider": {
-                    "@type": "Organization",
-                    "url": "https://codeautomation.ai/",
-                    "name": "Software Development Company in the USA",
-                    "mainEntityOfPage": {"@id": "https://codeautomation.ai/#webpage"}
-                  },
-                  "areaServed": {
-                    "@type": "AdministrativeArea",
-                    "name": "https://maps.app.goo.gl/waAVkpmb1ETqvfUU6"
-                  },
-                  "audience": {
-                    "@type": "Audience",
-                    "name": "Software Development Company | CodeAutomation"
-                  }
-                }
-              ]
-            }
-            `
-          }}
-        />
-        
-        {/* JSON-LD schema for Website and Organization */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `
-            [
+      <Script
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          {
+            "@context": "http://schema.org",
+            "@graph": [
               {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "@id": "https://codeautomation.ai/#website",
-                "headline": "Software Development Company",
-                "name": "CodeAutomation",
-                "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+                "@type": "Webpage",
+                "name": "Software Development Company in the USA | CodeAutomation",
+                "headline": "Software Development Company in the USA",
                 "url": "https://codeautomation.ai/",
+                "@id": "https://codeautomation.ai/",
+                "inLanguage": "en-US",
+                "datePublished": "2024-10-17",
+                "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+                "image": "https://codeautomation.ai/logo.svg",
                 "potentialAction": {
                   "@type": "SearchAction",
-                  "target": "https://codeautomation.ai?s={search_term_string}",
-                  "query-input": "required name=search_term_string"
+                  "target": "Software Development Company in the USA"
+                },
+                "isPartOf": {
+                  "@type": "WebSite",
+                  "@id": "https://codeautomation.ai/#website"
+                },
+                "mainEntity": [{"@id": "https://codeautomation.ai/#service"}],
+                "hasPart": {"@id": "https://codeautomation.ai/#creativeworkseries"}
+              },
+              {
+                "@type": "CreativeWorkSeries",
+                "@id": "https://codeautomation.ai/#creativeworkseries",
+                "isPartOf": {"@id": "https://codeautomation.ai/#webpage"},
+                "name": "Software Development Company in the USA | CodeAutomation",
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "bestRating": "5",
+                  "ratingValue": "4.9",
+                  "reviewCount": "49",
+                  "url": "https://maps.app.goo.gl/waAVkpmb1ETqvfUU6"
                 }
               },
               {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "@id": "https://codeautomation.ai/#Organization",
-                "name": "CodeAutomation",
-                "url": "https://codeautomation.ai/",
-                "sameAs": [],
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://codeautomation.ai/logo.svg",
-                  "width": "1800",
-                  "height": "1200"
+                "@type": "Service",
+                "@id": "https://codeautomation.ai/#service",
+                "mainEntityOfPage": {"@id": "https://codeautomation.ai/#webpage"},
+                "name": "Software Development Company in the USA | CodeAutomation",
+                "serviceType": ["Software Development Company in the USA"],
+                "image": "https://codeautomation.ai/logo.svg",
+                "provider": {
+                  "@type": "Organization",
+                  "url": "https://codeautomation.ai/",
+                  "name": "Software Development Company in the USA",
+                  "mainEntityOfPage": {"@id": "https://codeautomation.ai/#webpage"}
+                },
+                "areaServed": {
+                  "@type": "AdministrativeArea",
+                  "name": "https://maps.app.goo.gl/waAVkpmb1ETqvfUU6"
+                },
+                "audience": {
+                  "@type": "Audience",
+                  "name": "Software Development Company | CodeAutomation"
                 }
               }
             ]
-            `
-          }}
-        />
-      </Head>
+          }
+          `
+        }}
+      />
+
+      <Script
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          [
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://codeautomation.ai/#website",
+              "headline": "Software Development Company",
+              "name": "CodeAutomation",
+              "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+              "url": "https://codeautomation.ai/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://codeautomation.ai?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://codeautomation.ai/#Organization",
+              "name": "CodeAutomation",
+              "url": "https://codeautomation.ai/",
+              "sameAs": [],
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://codeautomation.ai/logo.svg",
+                "width": "1800",
+                "height": "1200"
+              }
+            }
+          ]
+          `
+        }}
+      />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <video
           className="top-0 left-0 object-cover absolute inset-0 size-full"
