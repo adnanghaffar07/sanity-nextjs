@@ -11,6 +11,7 @@ import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordia
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
+import Head from "next/head";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -138,6 +139,15 @@ export default async function service({
 
   return (
     <div className="bg-white">
+       <Head>
+        {data.jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: data.jsonLd }}
+          />
+        )}
+      </Head>
+
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.heroImage && (
           <img
