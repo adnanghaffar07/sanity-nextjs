@@ -13,7 +13,7 @@ const logicalServices = {
     {
       name: 'jsonLd',
       title: 'JSON-LD Script',
-      type: 'text', 
+      type: 'text',
     },
     {
       name: "serviceCardTitle",
