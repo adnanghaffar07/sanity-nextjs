@@ -66,7 +66,8 @@ export default function Home() {
 
   return (
     <div>
-      <Script
+         <Script
+        id="structured-data-webpage"
         type="application/ld+json"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
@@ -137,6 +138,7 @@ export default function Home() {
       />
 
       <Script
+        id="structured-data-website-organization"
         type="application/ld+json"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
