@@ -165,6 +165,10 @@ export default function RootLayout({
           })}
         </script>
       </Head>
+
+
+
+      
       {/* Google Tag Manager */}
       <Script
         strategy="afterInteractive"
