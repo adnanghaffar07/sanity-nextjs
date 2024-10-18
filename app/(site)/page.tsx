@@ -334,6 +334,7 @@ export default function Home() {
             </div>
           </div>
         </ScrollAnimation>
+        <ScrollAnimation>
         <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
           <div className="relative z-10 max-w-7xl mx-auto">
@@ -433,7 +434,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+        </ScrollAnimation>
         <ScrollAnimation>
           <div className="py-16 px-6 md:px-16 max-w-7xl mx-auto">
             <div className="mx-auto flex flex-col lg:flex-row items-center gap-12">
@@ -566,7 +567,7 @@ export default function Home() {
             </div>
           </section>
         </ScrollAnimation>
-
+        <ScrollAnimation>
         {/* Call to Action (CTA) Section */}
         <div
           className="w-full px-6 py-10 md:px-16 md:py-20 shadow-lg flex flex-col md:flex-row items-center text-white"
@@ -630,7 +631,7 @@ export default function Home() {
           </div>
 
         </div>
-
+        </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto lg:py-16 py-16 lg:px-10 px-5">
             <h2 className="self-center text-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
@@ -849,7 +850,7 @@ export default function Home() {
           </div>
         </ScrollAnimation>
 
-        <div className="flex flex-col bg-[#F3F3F3] py-16 relative  overflow-hidden">
+        <div className="flex flex-col bg-[#F3F3F3] py-16 px-6 relative  overflow-hidden">
           <div className="absolute inset-0 z-0 bg-[url('/Testimonials.png')] bg-cover bg-center backdrop-blur-md"></div>
 
           <ScrollAnimation>

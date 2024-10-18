@@ -30,17 +30,17 @@ const WorkItem = ({
   buttoncolor: string;
 }) => (
   <Link href={`/case-studies/${url}`} key={index}>
-    <div className="relative w-[340px] md:w-[380px] h-[250px] cursor-pointer group overflow-hidden">
+    <div className="relative w-[280px] sm:w-[340px] md:w-[380px] h-[250px] cursor-pointer group overflow-hidden">
       {imageSrc.asset && (
         <img
           loading="lazy"
           src={urlForImage(imageSrc).toString()}
           alt={alt}
-          className="absolute inset-0 w-[340px] md:w-[380px] h-[250px] object-contain"
+          className="absolute inset-0 w-[280px] sm:w-[340px] md:w-[380px] h-[250px] object-contain"
         />
       )}
       <div
-        className={`w-[340px] md:w-[380px] h-[250px] absolute inset-0 bg-[#4aa2f0] text-white flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:rotate-0 transition-all duration-700 rounded-3xl`}
+        className={`w-[280px] sm:w-[340px] md:w-[380px] h-[250px] absolute inset-0 bg-[#4aa2f0] text-white flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:rotate-0 transition-all duration-700 rounded-3xl`}
       >
         <p>{description}</p>
       </div>
