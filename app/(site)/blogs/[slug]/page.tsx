@@ -107,7 +107,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <img
             className="absolute inset-0 object-cover w-full h-full"
             src={urlForImage(data.heroimage).toString()}
-            alt="blog post"
+            alt={data.heroimage?.alt || "blog post"}
+
 
           />
         )}
@@ -134,7 +135,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.cardimage).toString()}
-              alt="blog post"
+              alt={data.cardimage?.alt || "blog post"}
+
             />
           )}
           <p className="my-6 text-lg">{data.briefdescription}</p>
@@ -151,8 +153,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.primaryimage).toString()}
-              alt="blog post"
-            />
+              alt={data.primaryimage?.alt || "blog post"}
+              />
           )}
         </div>
       </div>
@@ -243,8 +245,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.secondaryimage).toString()}
-              alt="blog post"
-            />
+              alt={data.secondaryimage?.alt || "blog post"}
+              />
           )}
         </div>
       </div>
