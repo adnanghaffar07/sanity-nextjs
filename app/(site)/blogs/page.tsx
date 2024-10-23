@@ -89,18 +89,18 @@ export default async function Blogs() {
                         <hr className="bg-black my-2 h-px w-full border-0" />
                       </div>
                       <div>
-  <p className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]">
-    {item.introductionheading
-      ? item.introductionheading
-          .split(" ")
-          .slice(0, 30)
-          .join(" ")
-          .concat(
-            item.introductionheading.split(" ").length > 30 ? "..." : ""
-          )
-      : ""}
-  </p>
-</div>
+                        <p className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]">
+                          {item.introductionheading
+                            ? item.introductionheading
+                              .split(" ")
+                              .slice(0, 30)
+                              .join(" ")
+                              .concat(
+                                item.introductionheading.split(" ").length > 30 ? "..." : ""
+                              )
+                            : ""}
+                        </p>
+                      </div>
 
                     </div>
 
