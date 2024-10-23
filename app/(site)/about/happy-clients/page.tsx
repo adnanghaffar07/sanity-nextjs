@@ -141,8 +141,7 @@ const HappyClients = () => {
                         >
                             {client.videoUrl ? (
                                 <div className="relative h-94">
-                                    <video
-                                    
+                                    <video                                    
                                         controls
                                         className="w-full h-full object-cover rounded-t-xl"
                                     >
