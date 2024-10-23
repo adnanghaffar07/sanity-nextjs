@@ -92,7 +92,7 @@ const HappyClients = () => {
                             </Link>
                         </div>
                         {/* Clutch and Trustpilot section - displayed in a row */}
-                        <div className="flex justify-center items-center gap-8 mt-8">
+                        <div className="flex justify-center items-center gap-8 mt-12">
                             <a
                                 href="https://clutch.co/profile/codeautomationai#highlights"
                                 target="_blank"
