@@ -12,7 +12,7 @@ const HappyClients = () => {
         {
             id: 2,
             name: 'Client 2',
-            videoUrl: '/client9.mov',
+            videoUrl: '/client9.mp4',
         },
         {
             id: 3,
