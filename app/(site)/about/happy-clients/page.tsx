@@ -132,30 +132,31 @@ const HappyClients = () => {
                     Moments with Our Clients
                 </h2>
 
-                {/* First Grid for First Two Items */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 mb-12">
-                    {firstTwoClients.map((client) => (
-                        <div
-                            key={client.id}
-                            className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
-                        >
-                            {client.videoUrl ? (
-                                <div className="relative h-94">
-                                    <video                                    
-                                        controls
-                                        className="w-full h-full object-cover rounded-t-xl"
-                                    >
-                                        <source src={client.videoUrl} type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            ) : (
-                                <div className="">
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                         {/* First Grid for First Two Items */}
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 mb-12">
+    {firstTwoClients.map((client) => (
+        <div
+            key={client.id}
+            className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+        >
+            {client.videoUrl ? (
+                <div className="relative h-94">
+                    <video
+                        controls
+                        className="w-full h-full object-contain max-h-screen rounded-t-xl"
+                    >
+                        <source src={client.videoUrl} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
+            ) : (
+                <div className="">
+                </div>
+            )}
+        </div>
+    ))}
+</div>
+
 
                 {/* Second Grid for Remaining Items */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
