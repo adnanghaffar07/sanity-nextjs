@@ -73,7 +73,7 @@ const HappyClients = () => {
                 </video>
                 <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
                     <div className="lg:absolute top-[270px] lg:top-[290px] 2xl:top-[330px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
-                    <h2 className="text-3xl md:text-4xl text-center font-bold leading-[56px]">Celebrating Our Happy Clients</h2>
+                        <h2 className="text-3xl md:text-4xl text-center font-bold leading-[56px]">Celebrating Our Happy Clients</h2>
 
                         <div className="flex flex-col sm:flex-row mx-auto pt-8 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                             <Link
@@ -132,30 +132,30 @@ const HappyClients = () => {
                     Moments with Our Clients
                 </h2>
 
-                         {/* First Grid for First Two Items */}
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 mb-12">
-    {firstTwoClients.map((client) => (
-        <div
-            key={client.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
-        >
-            {client.videoUrl ? (
-                <div className="relative h-94">
-                    <video
-                        controls
-                        className="w-full h-full object-contain max-h-screen rounded-t-xl"
-                    >
-                        <source src={client.videoUrl} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                {/* First Grid for First Two Items */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 mb-12">
+                    {firstTwoClients.map((client) => (
+                        <div
+                            key={client.id}
+                            className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+                        >
+                            {client.videoUrl ? (
+                                <div className="relative h-94">
+                                    <video
+                                        controls
+                                        className="w-full h-full object-contain max-h-screen rounded-t-xl"
+                                    >
+                                        <source src={client.videoUrl} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            ) : (
+                                <div className="">
+                                </div>
+                            )}
+                        </div>
+                    ))}
                 </div>
-            ) : (
-                <div className="">
-                </div>
-            )}
-        </div>
-    ))}
-</div>
 
 
                 {/* Second Grid for Remaining Items */}
