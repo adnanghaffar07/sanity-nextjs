@@ -305,10 +305,12 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Tackle the Complex Robotic Challenges</p>
                         </div>
                       </Link>
+
                       <Link
+                        href="https://calendly.com/adnanghaffar"
                         className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-white duration-200 bg-gray-900 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                        href="tel:+1-850-558-4691"
-                        role="button"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Contact Us
                       </Link>
