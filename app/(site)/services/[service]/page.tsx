@@ -73,6 +73,7 @@ export async function generateMetadata({
 
   const canonicalUrl = `https://codeautomation.ai/services/${params.service}`; // Construct your canonical URL
 
+  
   return {
     title,
     description,
