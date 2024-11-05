@@ -140,6 +140,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             <div className="md:text-4xl text-2xl text-gray-100 font-bold capitalize max-w-lg lg:pl-8">
               <h2>{data.blogheading}</h2>
             </div>
+             {data.button.buttonText &&
             <Link
               href={data.button.buttonUrl}
               target="_blank"
@@ -162,6 +163,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 />
               </svg>
             </Link>
+}
           </div>
         </section>
 
