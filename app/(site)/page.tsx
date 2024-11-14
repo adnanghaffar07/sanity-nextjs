@@ -210,7 +210,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Schedule a Call
+                Schedule a Call 
               </Link>
             </div>
             {/* Clutch and Trustpilot section - displayed in a row */}

@@ -75,9 +75,9 @@ const GreetingPopup: React.FC = () => {
       pageName === ""
         ? "Home"
         : pageName
-            ?.split("-")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
+          ?.split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
 
     try {
       const formData = new FormData();
@@ -166,39 +166,38 @@ const GreetingPopup: React.FC = () => {
 
   return isVisible ? (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[1000] popup-overlay transition-all duration-700 ease-in-out ${
-        isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-0"
-      }`}
+      className={`fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[1000] popup-overlay transition-all duration-700 ease-in-out ${isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-0"
+        }`}
       onClick={handleClickOutside}
     >
-      <div
-        className={`overflow-scroll sm:overflow-hidden gap-4 rounded-3xl p-2 sm:p-3 flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${
-          isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
-        }`}
-        style={{
-          backgroundImage: `url("/greetingPopup-bg.png")`,
-        }}
-      >
-        <div className="w-[290px] md:w-[340px] z-30 hidden sm:block">
+<div
+  className={`greetings overflow-hidden gap-4 rounded-lg pl-3 md:pl-0 pr-3 pt-3 pb-3 bg-white flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${
+    isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
+  }`}
+>
+
+        <div className="w-[290px] md:w-[340px] z-30 hidden sm:block h-full">
           {data?.image?.asset && (
             <img
               loading="lazy"
               src={urlForImage(data?.image?.asset)}
-              className="object-cover"
+              className="h-full w-full object-cover" // Ensures the image fills both height and width
               alt={data?.image?.alt}
-              width={"340"}
-              height={"391"}
             />
           )}
         </div>
 
-        <div className="flex relative flex-col justify-center text-3xl font-light capitalize text-neutral-600 text-opacity-90">
-          <button
-            className="absolute top-[2px] sm:top-1 right-2 sm:right-4 text-4xl font-bold text-gray-800 transition-transform transform hover:rotate-90 z-10 duration-500 ease-in-out"
-            onClick={closePopup}
-          >
-            &times;
-          </button>
+
+
+
+        <button
+          className="absolute top-[2px] sm:top-1 p-4 md:p-2 right-0 sm:right-4 text-2xl font-light text-gray-800 transition-transform transform hover:rotate-90 z-10 duration-500 ease-in-out"
+          onClick={closePopup}
+        >
+          &times;
+        </button>
+        <div className="flex border border-2 border-gray-300 rounded-lg p-2 relative flex-col justify-center text-3xl font-light capitalize text-neutral-600 text-opacity-90">
+
           <div className="w-[230px] z-30 block sm:hidden pt-4 mx-auto">
             {data?.image?.asset && (
               <img
@@ -212,24 +211,23 @@ const GreetingPopup: React.FC = () => {
             )}
           </div>
 
-          <div className="flex relative flex-col gap-4 items-center">
+          <div className=" px-5 py-7 flex relative flex-col items-center">
             {data?.icon?.asset && (
               <img
                 loading="lazy"
                 src={urlForImage(data?.icon?.asset)}
-                className="w-[120px] md:w-[174px] hidden sm:block"
+                className="h-12 hidden sm:block"
                 alt={data?.icon?.alt}
-                width={"174"}
-                height={"46"}
+
               />
             )}
-            <div className="text-xl md:text-2xl text-center text-black mt-2 sm:mt-0">
+            <div className="text-xl font-medium text-center text-black mb-4 mt-5">
               {data?.title}
             </div>
             <div>
               <form
                 onSubmit={handleCombinedSubmit}
-                className="flex flex-col gap-3 w-[260px] md:w-[300px]"
+                className="flex flex-col gap-4 w-[260px] md:w-[300px]"
               >
                 <input
                   name="name"
@@ -238,11 +236,10 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="Full Name"
-                  className={`text-base px-2 py-[2px] md:py-1 bg-white border-2 rounded-md outline-none ${
-                    errors.name && touched.name
+                  className={`text-sm px-2 py-[2px] md:py-2 bg-white shadow-md border rounded-md outline-none ${errors.name && touched.name
                       ? "border-red-400"
                       : "border-gray-400"
-                  }`}
+                    }`}
                 />
                 <input
                   name="email"
@@ -251,11 +248,10 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="Enter Your Email Address"
-                  className={`text-base px-2 py-[2px] md:py-1 bg-white border-2 rounded-md outline-none ${
-                    errors.email && touched.email
+                  className={`text-sm px-2 py-[2px] md:py-2 shadow-md bg-white border rounded-md outline-none ${errors.email && touched.email
                       ? "border-red-400"
                       : "border-gray-400"
-                  }`}
+                    }`}
                 />
                 <input
                   name="contact_number"
@@ -264,11 +260,10 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="Contact Number"
-                  className={`text-base px-2 py-[2px] md:py-1 bg-white border-2 rounded-md outline-none ${
-                    errors.contact_number && touched.contact_number
+                  className={`text-sm px-2 py-[2px] md:py-2 shadow-md bg-white border rounded-md outline-none ${errors.contact_number && touched.contact_number
                       ? "border-red-400"
                       : "border-gray-400"
-                  }`}
+                    }`}
                 />
                 <input
                   name="looking"
@@ -277,7 +272,7 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="What are you looking for ?"
-                  className="text-base px-2 py-[2px] md:py-1 bg-white border-2 rounded-md outline-none border-gray-400"
+                  className="text-sm px-2 py-[2px] md:py-2 shadow-md bg-white border rounded-md outline-none border-gray-400"
                 />
 
                 <label className="text-base normal-case cursor-pointer">
@@ -287,7 +282,7 @@ const GreetingPopup: React.FC = () => {
                     checked={values.subscribe}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    placeholder="What are you looking for ?"
+                    placeholder="What text-sm are you looking for ?"
                     className="mr-2"
                   />
                   Subscribe to our newsletter
@@ -296,9 +291,8 @@ const GreetingPopup: React.FC = () => {
                 <button
                   type="submit"
                   disabled={uploading}
-                  className={`text-base text-center text-white bg-[#007ae7] hover:bg-[#1d92fb] shadow-sm rounded-md py-1 transition-colors delay-100 ease-in-out ${
-                    uploading ? "cursor-not-allowed" : "cursor-pointer"
-                  }`}
+                  className={`text-base text-center text-white bg-[#0A8FFC] hover:bg-[#1d92fb] shadow-sm rounded-md py-2 transition-colors delay-100 ease-in-out ${uploading ? "cursor-not-allowed" : "cursor-pointer"
+                    }`}
                 >
                   Subscribe
                 </button>
