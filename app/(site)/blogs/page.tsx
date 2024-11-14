@@ -2,7 +2,6 @@ import Link from "next/link";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-
 async function getValueData() {
   const queryValue = `*[_type == 'portfolio' && pageType == 'blogs'] | order(_createdAt asc)`;
   try {
