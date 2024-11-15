@@ -51,7 +51,7 @@
     "sanity": "^3.33.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",
-    "swiper": "^11.0.7",
+    "swiper": "^11.1.14",
     "yup": "^1.4.0"
   },
   "devDependencies": {
