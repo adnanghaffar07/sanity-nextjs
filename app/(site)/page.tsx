@@ -254,7 +254,7 @@ export default function Home() {
             <div className="max-w-[1920px] mx-auto">
               <div className="flex flex-col items-center justify-center text-center mb-6">
                 <h2 className="text-2xl md:text-4xl font-semibold mb-4">
-                  Why We&apos;re Trusted by Industry Leaders
+                  Why Our Software Development Trusted by Industry Leaders
                 </h2>
                 <h3 className="text-lg md:text-2xl font-medium max-w-4xl text-[#3C3C3C]">
                   Businesses trust us for our top-notch software development
@@ -303,11 +303,11 @@ export default function Home() {
                     <CoreExpertise />
 
                     {/* New H2 Heading */}
-                    <h2 className="text-xl font-medium text-left mt-12 ">
+                    <p className="text-xl font-medium text-left mt-12 ">
                       Partner with us to access unmatched expertise and support
                       in these areas, empowering your business with advanced
                       technologies and driving your growth to new heights.
-                    </h2>
+                    </p>
 
                     <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
                       <Link
@@ -602,28 +602,28 @@ export default function Home() {
               <div className="w-[45%] flex items-center">
                 <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">500+</h3>
+                  <p className="text-4xl font-bold">500+</p>
                   <p className="text-lg text-white font-light mt-2">Clients Served</p>
                 </div>
               </div>
               <div className="w-[45%] flex items-center">
                 <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">10+</h3>
+                  <p className="text-4xl font-bold">10+</p>
                   <p className="text-lg text-white font-light mt-2">Years in Business</p>
                 </div>
               </div>
               <div className="w-[45%] flex items-center">
                 <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">350+</h3>
+                  <p className="text-4xl font-bold">350+</p>
                   <p className="text-lg text-white font-light mt-2">Industries Served</p>
                 </div>
               </div>
               <div className="w-[45%] flex items-center">
                 <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">200+</h3>
+                  <p className="text-4xl font-bold">200+</p>
                   <p className="text-lg text-white font-light mt-2">Global Clients</p>
                 </div>
               </div>

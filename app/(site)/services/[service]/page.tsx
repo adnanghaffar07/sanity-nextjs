@@ -159,7 +159,7 @@ export default async function service({
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize">{data.serviceTitle}</h2>
+              <h1 className="title capitalize">{data.serviceTitle}</h1>
             </div>
             <div className="lg:text-2xl mx-auto max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               {data.serviceDesc}

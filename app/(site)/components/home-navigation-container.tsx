@@ -150,7 +150,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-javascript.svg"
-                            alt=""
+                            alt="Software Development"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -170,7 +170,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-codepen.svg"
-                            alt=""
+                            alt="CMS"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -188,7 +188,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-buffer.svg"
-                            alt=""
+                            alt="Headless-CMS"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -206,7 +206,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-figma.svg"
-                            alt=""
+                            alt="Design Services"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -240,7 +240,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-apple-ar.svg"
-                            alt=""
+                            alt="QA Testing & Automation"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -258,7 +258,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-react.svg"
-                            alt=""
+                            alt="Mobile App development"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -276,7 +276,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-web-component.svg"
-                            alt=""
+                            alt="AI Development Services"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -294,7 +294,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/logo-ionitron.svg"
-                            alt=""
+                            alt="RPA Services"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -318,7 +318,7 @@ export default function HomeNavigationContainer() {
                     </div>
                     <div className="grid grid-cols-1 gap-3 p-2 lg:p-0 bg-gray-50 rounded-2xl">
                       <div className="grid items-start h-1/2 gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-                        <h3 className="text-base font-medium text-black">Hot Topics</h3>
+                        <p className="text-base font-medium text-black">Hot Topics</p>
                         <div className="space-y-3">
                           <Link
                             href={`/services/${linkAI}`}
@@ -410,7 +410,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/documents-sharp.svg"
-                            alt=""
+                            alt="Service Summary"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -428,7 +428,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/briefcase.svg"
-                            alt=""
+                            alt="Careers"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -446,7 +446,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/images.svg"
-                            alt=""
+                            alt="Life At CA"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -500,7 +500,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/clients-icon.svg"
-                            alt=""
+                            alt="Clients"
                             height={12}
                             width={12}
                             className="text-black size-8 md hydrated"
@@ -520,7 +520,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/server.svg"
-                            alt=""
+                            alt="Discovery Process"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -538,7 +538,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/library.svg"
-                            alt=""
+                            alt="Case-Studies"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -553,7 +553,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/grid.svg"
-                            alt=""
+                            alt="Brochure"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -568,7 +568,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/reader.svg"
-                            alt=""
+                            alt="News"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
@@ -586,7 +586,7 @@ export default function HomeNavigationContainer() {
                         <div className="">
                           <Image
                             src="/newspaper.svg"
-                            alt=""
+                            alt="Blogs"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"

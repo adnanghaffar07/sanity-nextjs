@@ -16,7 +16,7 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
         onClick={onToggle}
         className="w-full flex justify-between items-center py-4 text-left text-gray-800 text-lg font-medium focus:outline-none"
       >
-        <span>{title}</span>
+        <h3>{title}</h3>
         <svg
           className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
           xmlns="http://www.w3.org/2000/svg"
@@ -72,16 +72,16 @@ export default function CoreExpertise() {
     <div className="flex flex-col w-full max-w-screen-xl mx-auto md:px-4">
       <div className="flex flex-col text-black">
         <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
-          Our Core Expertise
+          Our Software Development Expertise
         </h2>
         <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 xl:pr-36 tracking-normal">
           <p>
             Hire from our team of over 70+ dedicated Software Engineers and working in more than 100 technologies along with your time zone. We are a software development company that offers a wide range of software services, right according to your precise requirements.
           </p>
         </div>
-        <h2 className="md:text-2xl text-lg mt-6 font-medium">
+        <p className="md:text-2xl text-lg mt-6 font-medium">
           Our expertise includes:
-        </h2>
+        </p>
         <div className="mt-4 min-h-[370px]"> {/* Set minimum height for the accordion container */}
           {items.map((item, index) => (
             <AccordionItem
