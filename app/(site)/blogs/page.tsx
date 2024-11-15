@@ -12,6 +12,8 @@ async function getValueData() {
     return [];
   }
 }
+
+
 export default async function Blogs() {
   const data = await getValueData();
   return (
