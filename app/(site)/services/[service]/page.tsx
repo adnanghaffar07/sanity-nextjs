@@ -13,6 +13,7 @@ import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 import Head from "next/head";
 import Script from "next/script";
+import FAQServicePage from "../../components/FaqService";
 
 async function getData(params: string) {
   const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
@@ -137,6 +138,7 @@ export default async function service({
   const data = await getData(params.service);
   const dataSub = await getSubData();
   const dataLogo = await getLogoData();
+  console.log(data)
 
   return (
     <div className="bg-white">
@@ -1530,7 +1532,7 @@ export default async function service({
 
       {/* Call to Action Section */}
       {data.callToActionSection?.callToActionHeading && (
-        <section className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
+        <section className="px-6 md:px-16 py-10 md:py-16 bg-blue-50">
           <div className="container mx-auto text-center max-w-6xl">
             <h2 className="text-2xl font-bold mb-4">
               {data.callToActionSection?.callToActionHeading}
@@ -1541,6 +1543,9 @@ export default async function service({
           </div>
         </section>
       )}
+   {data.faqSection && (
+      <FAQServicePage faqSection={data.faqSection} />
+    )}
     </div>
   );
 }
