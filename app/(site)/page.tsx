@@ -13,13 +13,11 @@ const Faqs = dynamic(() => import("./components/Faqs"), {
 });
 import ScrollAnimation from "./components/ScrollAnimation";
 import CoreExpertise from "./components/Expertise-home";
-import ProjectDiscussionContainer from "./components/project-discussion-form";
 import HomePageForm from "./components/Homepage-form";
 import CaseStudiesHome from "./components/CaseStudies-Home";
-import ButtonScrollToSection from "./components/ButtonScrollToSection";
 import TechnologiesSection from "./components/HomePage-Tech";
-import Head from "next/head";
 import Script from "next/script";
+import Head from "next/head";
 
 const StatItem = ({
   imageSrc,
@@ -66,6 +64,7 @@ export default function Home() {
 
   return (
     <div>
+
          <Script
         id="structured-data-webpage"
         type="application/ld+json"
@@ -263,7 +262,7 @@ export default function Home() {
                 </h3>
               </div>
 
-              <div className="flex gap-14 flex-wrap justify-center max-w-full md:max-w-[800px] mx-auto 2xl:max-w-full">
+              <div className="flex gap-6 lg:gap-14 flex-wrap justify-center">
                 {stats.map((stat, index) => (
                   <div
                     key={index}
