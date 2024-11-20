@@ -263,7 +263,7 @@ export default function Home() {
                 </h3>
               </div>
 
-              <div className="flex gap-14 flex-wrap justify-center max-w-full lg:max-w-[800px] 2xl:max-w-full">
+              <div className="flex gap-14 flex-wrap justify-center max-w-full md:max-w-[800px] mx-auto 2xl:max-w-full">
                 {stats.map((stat, index) => (
                   <div
                     key={index}
@@ -700,7 +700,7 @@ export default function Home() {
               <div className="md:w-5/12 w-full md:mt-0 mt-6">
                 <img
                   src="/distinctive.png"
-                  className="object-cover size-full"
+                  className="object-cover"
                   alt="Software Development Service USA"
                   loading="lazy"
                 />
