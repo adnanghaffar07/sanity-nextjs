@@ -69,12 +69,7 @@ const CalendlyForm: React.FC = () => {
           {/* Left Side: Form */}
           <div className="flex flex-col w-full lg:w-[45%] self-center md:pb-0 pb-10 md:ml-24">
             <div className="flex flex-col text-black mt-10 mb-10 md:mt-0 max-w-full md:ml-3">
-              <h3 className="text-2xl md:text-3xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
-                Ready to innovate your business?
-              </h3>
-              <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
-                We are here! Let’s kick-off our journey to success!
-              </p>
+            
               <div className="max-w-[500px]">
                 <CalendlyProjectForm />
               </div>
@@ -84,12 +79,13 @@ const CalendlyForm: React.FC = () => {
           {/* Right Side: Calendar */}
           <div className="flex flex-col w-full lg:w-[50%]">
             <div className="flex flex-col flex-center md:flex-end">
-              <div className="text-2xl md:text-3xl text-left font-semibold leading-[52px] text-[#3C3C3C]">
-                Book a meeting
-              </div>
+            <div className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
+  Book a Meeting
+</div>
+
               <div
                 ref={calendlyWidgetRef}
-                className="mt-4 p-2 bg-white rounded-3xl"
+                className="mt-4 p-2 bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
                 style={{
                   height: "860px",
                   maxWidth: widgetWidth,
