@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 const HappyClients = () => {
-    // Sample data for client videos and images
+// Sample data for client videos and images
     const clients = [
         {
             id: 1,
