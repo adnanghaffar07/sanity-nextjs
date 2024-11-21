@@ -262,7 +262,7 @@ export default function Home() {
                 </h3>
               </div>
 
-              <div className="flex gap-6 lg:gap-14 flex-wrap justify-center">
+              <div className="flex gap-14 flex-wrap justify-center max-w-full md:max-w-[800px] mx-auto 2xl:max-w-full">
                 {stats.map((stat, index) => (
                   <div
                     key={index}

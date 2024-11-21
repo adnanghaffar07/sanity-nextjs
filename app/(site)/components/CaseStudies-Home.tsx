@@ -55,7 +55,7 @@ const CaseStudiesHome = async () => {
   );
 
   return (
-    <section className="flex flex-col items-center px-0 sm:px-5 pt-20 pb-15 w-full max-md:max-w-full">
+    <section className="flex flex-col items-center px-0 sm:px-5 md:pt-20 pb-15 w-full max-md:max-w-full">
       <div className="max-w-7xl mx-auto">
         <div className="flex gap-x-5 gap-y-8 md:gap-y-12 justify-around flex-wrap">
           {caseStudyData[0].cardItemsList
