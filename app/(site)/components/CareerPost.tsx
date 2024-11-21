@@ -11,7 +11,7 @@ const CareerPost: React.FC<Props> = ({ jobpost }) => {
     <div className="flex flex-col  max-md:ml-0 max-md:w-full h-full">
       <div className="flex flex-col p-5 text-black mx-auto rounded-lg sm:rounded-3xl shadow-lg backdrop-blur-[6.5px] bg-[#D7D7D7] bg-opacity-30 w-[300px] sm:w-[368px] h-full">
         <div className="flex z-10 gap-5 justify-between items-start mt-0">
-          <div className="flex-auto self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
+          <div className="flex-auto self-end mt-5 text-2xl font-medium leading-6 text-black">
             {jobpost.jobTitleBaner}
           </div>
           <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 async function getValueData() {
-  const queryValue = `*[_type == 'portfolio' && pageType == 'blogs'] | order(_createdAt asc)`;
+  const queryValue = `*[_type == 'portfolio' && pageType == 'blogs'] | order(_createdAt desc)`;
   try {
     const fetchData = await client.fetch(queryValue);
     return fetchData || [];
@@ -59,7 +58,7 @@ export default async function Blogs() {
                 href={`/blogs/${item.slug}`}
                 className="w-full mb-10"
               >
-                <div className="rounded-3xl mb-10 shadow-md shadow-slate-400 bg-[#F3F3F3]">
+                <div className="rounded-3xl mb-10 shadow-md xl:h-[400px] shadow-slate-400 bg-[#F3F3F3]">
                   <div className="xl:flex gap-5">
                     <div className="xl:w-7/12">
                       <img
@@ -67,28 +66,30 @@ export default async function Blogs() {
                         src={urlForImage(item.heroimage).toString()}
                         alt={item.title}
                         width={683}
-                        height={477}
-                        className="w-full rounded-3xl hidden xl:block"
+                        height={207}
+                        className="w-full xl:h-[400px] rounded-3xl hidden xl:block"
                       />
-                      <img
+                       <img
                         loading="lazy"
                         src={urlForImage(item.heroimage).toString()}
                         alt={item.title}
                         width={911}
                         height={636}
-                        className="w-full rounded-3xl block xl:hidden"
+                        className="w-full xl:h-[400px] rounded-3xl block xl:hidden"
+        
                       />
+                  
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                      <p className="text-xs sm:text-lg mb-10">{item.subtitle}</p>
-                      <h1 className="md:text-3xl sm:text-xl text-base font-medium">
+                      <p className="text-xs sm:text-lg mb-4">{item.subtitle}</p>
+                      <h1 className="text-2xl  sm:text-xl text-base font-medium">
                         {item.title}
                       </h1>
                       <div>
-                        <hr className="bg-black my-2 h-px w-full border-0" />
+                        <hr className="bg-black my-5 h-px   w-full border-0" />
                       </div>
                       <div>
-                        <p className="font-light text-xs sm:text-base md:text-[22px] leading-normal md:leading-[32px]">
+                        <p className="font-light text-sm sm:text-lg  leading-7">
                           {item.introductionheading
                             ? item.introductionheading
                               .split(" ")

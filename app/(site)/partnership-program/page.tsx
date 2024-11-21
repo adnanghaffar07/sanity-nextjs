@@ -130,7 +130,7 @@ const page = async () => {
       </section>
 
       <ScrollAnimation>
-        <section className="flex justify-center items-center px-16 py-14 text-center bg-zinc-100 max-md:px-5">
+        <section className="flex justify-center items-center px-16 py-14 text-center bg-blue-50 max-md:px-5">
           <div className="flex flex-col max-w-full ">
             <h2 className="text-2xl md:text-4xl  leading-20 text-black max-md:max-w-full max-w-3xl mx-auto">
               {data.title}
