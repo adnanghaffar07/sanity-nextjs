@@ -108,8 +108,8 @@ const Career: React.FC = async () => {
           className="aspect-[1.22] absolute left-0 top-48 lg:block hidden"
         />
         <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-          <div className="lg:px-10 px-5 w-full">
-            <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
+          <div className="lg:px-10 px-6 w-full">
+            <div className="grid lg:grid-cols-2 gap-5 lg:py-16 pt-8">
               <div className="xl:pr-20 lg:order-1 order-2 relative self-center">
                 <img
                   loading="lazy"
@@ -144,7 +144,7 @@ const Career: React.FC = async () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:pt-0 lg:pb-0 py-8 md:px-5 w-full mx-auto relative">
+      <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:pt-0 lg:pb-0 px-6 py-8 md:px-5 w-full mx-auto relative">
         <img
           loading="lazy"
           src="/ellipse-2.png"
@@ -156,14 +156,14 @@ const Career: React.FC = async () => {
             <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
               Open Vacancies
             </div>
-            <div className="mb-10">
+            <div className="mb-14">
               <p className="lg:text-lg text-base text-[#024]">
                 Are you passionate about building your career with opportunities
                 to learn and lead?
               </p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[80px] sm:gap-y-[50px] sm:gap-[30px] 2xl:gap-[30px] 2xl:gap-y-[50px] max-w-[1440px] sm:my-40">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[80px] sm:gap-y-[50px] sm:gap-[30px] 2xl:gap-[30px] 2xl:gap-y-[50px] max-w-[1440px] sm:my-20">
             {data.map((jobpost: any) => (
               <div key={jobpost._id}>
                 <CareerPost jobpost={jobpost} />
@@ -186,19 +186,19 @@ const Career: React.FC = async () => {
                   height={532}
                 />
               </div>
-              <div className="xl:pl-20 relative text-right">
+              <div className="xl:pl-20 relative text-left md:text-right">
                 <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
                   Perks & Benefits
                 </div>
                 <div className="mb-10">
-                  <p className="lg:text-lg text-base text-[#024] text-right">
+                  <p className="lg:text-lg text-base text-[#024] text-left md:text-right">
                     Get special perks and benefits such as flexible schedules
                     and career advancement chances. Join us and advance your
                     career in CodeAutomation today.
                   </p>
                 </div>
 
-                <section className="flex flex-wrap gap-5 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
+                <section className="flex flex-wrap gap-5 justify-start md:justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
                   <div className="grid grid-cols-3 gap-4 sm:gap-5 sm:justify-center">
                     {benefits.slice(0, 3).map((benefit, index) => (
                       <BenefitItem key={index} {...benefit} />

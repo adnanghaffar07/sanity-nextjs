@@ -69,7 +69,7 @@ const CalendlyForm: React.FC = () => {
           {/* Left Side: Form */}
           <div className="flex flex-col w-full lg:w-[45%] self-center md:pb-0 pb-10 md:ml-24">
             <div className="flex flex-col text-black mt-10 mb-10 md:mt-0 max-w-full md:ml-3">
-            
+
               <div className="max-w-[500px]">
                 <CalendlyProjectForm />
               </div>
@@ -79,9 +79,9 @@ const CalendlyForm: React.FC = () => {
           {/* Right Side: Calendar */}
           <div className="flex flex-col w-full lg:w-[50%]">
             <div className="flex flex-col flex-center md:flex-end">
-            <div className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
-  Book a Meeting
-</div>
+              <div className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
+                Book a Meeting
+              </div>
 
               <div
                 ref={calendlyWidgetRef}

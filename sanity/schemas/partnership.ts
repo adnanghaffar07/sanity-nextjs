@@ -183,10 +183,17 @@ const partnershipSchema = {
                 },
               ],
             },
+            {
+              name: "link",
+              title: "Service Link",
+              type: "url", // URL type to store valid links
+              description: "Add a link for this service.",
+            },
           ],
         },
       ],
     },
+    
     // Web SEO Meta data
     {
       name: "webSeoMetadataSub",
