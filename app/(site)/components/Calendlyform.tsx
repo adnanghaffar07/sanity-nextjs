@@ -11,26 +11,9 @@ declare global {
 
 const CalendlyForm: React.FC = () => {
   const calendlyWidgetRef = useRef<HTMLDivElement | null>(null);
-  const [widgetHeight, setWidgetHeight] = useState<number>(860);
   const [widgetWidth, setWidgetWidth] = useState<string>("86%");
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setWidgetHeight(860);
-        setWidgetWidth("100%");
-      } else if (window.innerWidth <= 1023) {
-        setWidgetHeight(860);
-        setWidgetWidth("100%");
-      } else {
-        setWidgetHeight(860);
-        setWidgetWidth("86%");
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Set initial dimensions based on current window size
-
     const calendlyScriptId = "calendly-widget-script";
     const existingScript = document.getElementById(calendlyScriptId);
 
@@ -46,13 +29,13 @@ const CalendlyForm: React.FC = () => {
           calendlyWidgetRef.current &&
           !calendlyWidgetRef.current.hasChildNodes()
         ) {
-          try {
+          if (window.Calendly) {
             window.Calendly.initInlineWidget({
               url: "https://calendly.com/adnanghaffar/30min?timezone=America/New_York",
               parentElement: calendlyWidgetRef.current,
             });
-          } catch (error) {
-            console.error("Error initializing Calendly widget:", error);
+          } else {
+            console.error("Calendly script loaded, but 'Calendly' is undefined.");
           }
         }
       };
@@ -61,22 +44,21 @@ const CalendlyForm: React.FC = () => {
         console.error("Failed to load Calendly script.");
       };
     } else {
+      // Initialize the Calendly widget if the script is already present
       if (
         calendlyWidgetRef.current &&
         !calendlyWidgetRef.current.hasChildNodes()
       ) {
-        try {
+        if (window.Calendly) {
           window.Calendly.initInlineWidget({
             url: "https://calendly.com/adnanghaffar/30min?timezone=America/New_York",
             parentElement: calendlyWidgetRef.current,
           });
-        } catch (error) {
-          console.error("Error initializing Calendly widget:", error);
+        } else {
+          console.error("Calendly script is already present, but 'Calendly' is undefined.");
         }
       }
     }
-
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -87,12 +69,7 @@ const CalendlyForm: React.FC = () => {
           {/* Left Side: Form */}
           <div className="flex flex-col w-full lg:w-[45%] self-center md:pb-0 pb-10 md:ml-24">
             <div className="flex flex-col text-black mt-10 mb-10 md:mt-0 max-w-full md:ml-3">
-              <h3 className="text-2xl md:text-3xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
-                Ready to innovate your business?
-              </h3>
-              <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
-                We are here! Let’s kick-off our journey to success!
-              </p>
+
               <div className="max-w-[500px]">
                 <CalendlyProjectForm />
               </div>
@@ -100,47 +77,20 @@ const CalendlyForm: React.FC = () => {
           </div>
 
           {/* Right Side: Calendar */}
-          <div className="flex flex-col w-full lg:w-[50%] ">
-            <div className="flex flex-col flex-end">
-              <div className="text-2xl md:text-3xl text-left font-semibold leading-[52px] text-[#3C3C3C]">
-                Book a meeting
+          <div className="flex flex-col w-full lg:w-[50%]">
+            <div className="flex flex-col flex-center md:flex-end">
+              <div className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
+                Book a Meeting
               </div>
-              {/* <div className="flex gap-3 items-start mt-4 whitespace-nowrap">
-                                <img
-                                    loading="lazy"
-                                    src="/Phone-form.png"
-                                    className="object-contain w-5"
-                                />
-                                <div>850-558-4691</div>
-                            </div> */}
-              {/* <div className="flex gap-3 items-start mt-4 whitespace-nowrap">
-                                <img
-                                    loading="lazy"
-                                    src="/maik-form.png"
-                                    className="object-contain w-5"
-                                />
-                                <div>info@codeautomation.ai</div>
-                            </div> */}
-              {/* <div className="flex gap-3 items-center mt-4">
-                                <img
-                                    loading="lazy"
-                                    src="/Call-form.png"
-                                    className="object-contain w-5"
-                                />
-                                <div>30 min</div>
-                            </div> */}
 
               <div
                 ref={calendlyWidgetRef}
-                id="calendly-inline-widget"
-                className="mt-4 p-2 bg-white rounded-3xl"
-                style={{ height: `${widgetHeight}px`, maxWidth: widgetWidth }}
-              >
-                {/* Calendly Inline Widget will be injected here */}
-              </div>
-              {/* <p className="text-lg text-left text-[#3C3C3C] mt-4 leading-[32px]">
-                * US and Canada, exceptions apply
-              </p> */}
+                className="mt-4 p-2 bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
+                style={{
+                  height: "860px",
+                  maxWidth: widgetWidth,
+                }}
+              ></div>
             </div>
           </div>
         </div>

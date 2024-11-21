@@ -204,10 +204,17 @@ export default function CalendlyProjectForm() {
 
   return (
     <div
-      className="flex justify-center items-center px-10 pt-6 pb-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
+      className="flex justify-center items-center px-10 pt-6 pb-6 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
       id="contact-box"
     >
       <div className="flex flex-col mt-2 w-full max-w-[700px] max-md:max-w-full">
+        <h3 className="text-2xl md:text-3xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
+          Ready to innovate your business?
+        </h3>
+        <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
+          We are here! Let’s kick-off our journey to success!
+        </p>
+
         <form onSubmit={handleCombinedSubmit}>
           <div className="">
             <input

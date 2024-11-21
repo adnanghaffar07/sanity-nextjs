@@ -13,11 +13,11 @@ const Faqs = dynamic(() => import("./components/Faqs"), {
 });
 import ScrollAnimation from "./components/ScrollAnimation";
 import CoreExpertise from "./components/Expertise-home";
-import ProjectDiscussionContainer from "./components/project-discussion-form";
 import HomePageForm from "./components/Homepage-form";
 import CaseStudiesHome from "./components/CaseStudies-Home";
-import ButtonScrollToSection from "./components/ButtonScrollToSection";
 import TechnologiesSection from "./components/HomePage-Tech";
+import Script from "next/script";
+import Head from "next/head";
 
 const StatItem = ({
   imageSrc,
@@ -64,6 +64,117 @@ export default function Home() {
 
   return (
     <div>
+
+         <Script
+        id="structured-data-webpage"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          {
+            "@context": "http://schema.org",
+            "@graph": [
+              {
+                "@type": "Webpage",
+                "name": "Software Development Company in the USA | CodeAutomation",
+                "headline": "Software Development Company in the USA",
+                "url": "https://codeautomation.ai/",
+                "@id": "https://codeautomation.ai/",
+                "inLanguage": "en-US",
+                "datePublished": "2024-10-17",
+                "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+                "image": "https://codeautomation.ai/logo.svg",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "Software Development Company in the USA"
+                },
+                "isPartOf": {
+                  "@type": "WebSite",
+                  "@id": "https://codeautomation.ai/#website"
+                },
+                "mainEntity": [{"@id": "https://codeautomation.ai/#service"}],
+                "hasPart": {"@id": "https://codeautomation.ai/#creativeworkseries"}
+              },
+              {
+                "@type": "CreativeWorkSeries",
+                "@id": "https://codeautomation.ai/#creativeworkseries",
+                "isPartOf": {"@id": "https://codeautomation.ai/#webpage"},
+                "name": "Software Development Company in the USA | CodeAutomation",
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "bestRating": "5",
+                  "ratingValue": "4.9",
+                  "reviewCount": "49",
+                  "url": "https://maps.app.goo.gl/waAVkpmb1ETqvfUU6"
+                }
+              },
+              {
+                "@type": "Service",
+                "@id": "https://codeautomation.ai/#service",
+                "mainEntityOfPage": {"@id": "https://codeautomation.ai/#webpage"},
+                "name": "Software Development Company in the USA | CodeAutomation",
+                "serviceType": ["Software Development Company in the USA"],
+                "image": "https://codeautomation.ai/logo.svg",
+                "provider": {
+                  "@type": "Organization",
+                  "url": "https://codeautomation.ai/",
+                  "name": "Software Development Company in the USA",
+                  "mainEntityOfPage": {"@id": "https://codeautomation.ai/#webpage"}
+                },
+                "areaServed": {
+                  "@type": "AdministrativeArea",
+                  "name": "https://maps.app.goo.gl/waAVkpmb1ETqvfUU6"
+                },
+                "audience": {
+                  "@type": "Audience",
+                  "name": "Software Development Company | CodeAutomation"
+                }
+              }
+            ]
+          }
+          `
+        }}
+      />
+
+      <Script
+        id="structured-data-website-organization"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          [
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://codeautomation.ai/#website",
+              "headline": "Software Development Company",
+              "name": "CodeAutomation",
+              "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+              "url": "https://codeautomation.ai/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://codeautomation.ai?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://codeautomation.ai/#Organization",
+              "name": "CodeAutomation",
+              "url": "https://codeautomation.ai/",
+              "sameAs": [],
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://codeautomation.ai/logo.svg",
+                "width": "1800",
+                "height": "1200"
+              }
+            }
+          ]
+          `
+        }}
+      />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <video
           className="top-0 left-0 object-cover absolute inset-0 size-full"
@@ -98,7 +209,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Schedule a Call
+                Schedule a Call 
               </Link>
             </div>
             {/* Clutch and Trustpilot section - displayed in a row */}
@@ -142,7 +253,7 @@ export default function Home() {
             <div className="max-w-[1920px] mx-auto">
               <div className="flex flex-col items-center justify-center text-center mb-6">
                 <h2 className="text-2xl md:text-4xl font-semibold mb-4">
-                  Why We&apos;re Trusted by Industry Leaders
+                  Why Our Software Development Trusted by Industry Leaders
                 </h2>
                 <h3 className="text-lg md:text-2xl font-medium max-w-4xl text-[#3C3C3C]">
                   Businesses trust us for our top-notch software development
@@ -151,7 +262,7 @@ export default function Home() {
                 </h3>
               </div>
 
-              <div className="flex gap-14 flex-wrap justify-center max-w-full lg:max-w-[800px] 2xl:max-w-full">
+              <div className="flex gap-14 flex-wrap justify-center max-w-full md:max-w-[800px] mx-auto 2xl:max-w-full">
                 {stats.map((stat, index) => (
                   <div
                     key={index}
@@ -191,11 +302,11 @@ export default function Home() {
                     <CoreExpertise />
 
                     {/* New H2 Heading */}
-                    <h2 className="text-xl font-medium text-left mt-12 ">
+                    <p className="text-xl font-medium text-left mt-12 ">
                       Partner with us to access unmatched expertise and support
                       in these areas, empowering your business with advanced
                       technologies and driving your growth to new heights.
-                    </h2>
+                    </p>
 
                     <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
                       <Link
@@ -222,6 +333,7 @@ export default function Home() {
             </div>
           </div>
         </ScrollAnimation>
+        <ScrollAnimation>
         <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
           <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
           <div className="relative z-10 max-w-7xl mx-auto">
@@ -321,7 +433,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+        </ScrollAnimation>
         <ScrollAnimation>
           <div className="py-16 px-6 md:px-16 max-w-7xl mx-auto">
             <div className="mx-auto flex flex-col lg:flex-row items-center gap-12">
@@ -454,7 +566,7 @@ export default function Home() {
             </div>
           </section>
         </ScrollAnimation>
-
+        <ScrollAnimation>
         {/* Call to Action (CTA) Section */}
         <div
           className="w-full px-6 py-10 md:px-16 md:py-20 shadow-lg flex flex-col md:flex-row items-center text-white"
@@ -489,28 +601,28 @@ export default function Home() {
               <div className="w-[45%] flex items-center">
                 <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">500+</h3>
+                  <p className="text-4xl font-bold">500+</p>
                   <p className="text-lg text-white font-light mt-2">Clients Served</p>
                 </div>
               </div>
               <div className="w-[45%] flex items-center">
                 <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">10+</h3>
+                  <p className="text-4xl font-bold">10+</p>
                   <p className="text-lg text-white font-light mt-2">Years in Business</p>
                 </div>
               </div>
               <div className="w-[45%] flex items-center">
                 <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">350+</h3>
+                  <p className="text-4xl font-bold">350+</p>
                   <p className="text-lg text-white font-light mt-2">Industries Served</p>
                 </div>
               </div>
               <div className="w-[45%] flex items-center">
                 <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
                 <div>
-                  <h3 className="text-4xl font-bold">200+</h3>
+                  <p className="text-4xl font-bold">200+</p>
                   <p className="text-lg text-white font-light mt-2">Global Clients</p>
                 </div>
               </div>
@@ -518,7 +630,7 @@ export default function Home() {
           </div>
 
         </div>
-
+        </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto lg:py-16 py-16 lg:px-10 px-5">
             <h2 className="self-center text-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
@@ -587,7 +699,7 @@ export default function Home() {
               <div className="md:w-5/12 w-full md:mt-0 mt-6">
                 <img
                   src="/distinctive.png"
-                  className="object-cover size-full"
+                  className="object-cover"
                   alt="Software Development Service USA"
                   loading="lazy"
                 />
@@ -737,7 +849,7 @@ export default function Home() {
           </div>
         </ScrollAnimation>
 
-        <div className="flex flex-col bg-[#F3F3F3] py-16 relative  overflow-hidden">
+        <div className="flex flex-col bg-[#F3F3F3] py-16 px-6 relative  overflow-hidden">
           <div className="absolute inset-0 z-0 bg-[url('/Testimonials.png')] bg-cover bg-center backdrop-blur-md"></div>
 
           <ScrollAnimation>

@@ -18,6 +18,69 @@ const portfolioSchema = {
       title: "Color",
       type: "string",
     },
+   
+    {
+      name: "description",
+      title: "Description",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [{ title: 'Bullet', value: 'bullet' }],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' }, // Add underline decorator
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL'
+                  },
+                  {
+                    name: 'blank',
+                    type: 'boolean',
+                    title: 'Open in new tab'
+                  }
+                ]
+              },
+              {
+                name: 'textColor',
+                type: 'object',
+                title: 'Text Color',
+                fields: [
+                  {
+                    name: 'color',
+                    type: 'string',
+                    title: 'Color',
+                    options: {
+                      list: [
+                        { title: 'Red', value: 'red' },
+                        { title: 'Green', value: 'green' },
+                        { title: 'Blue', value: 'blue' },
+                        // Add more color options if needed
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          type: "image",
+          options: { hotspot: true },
+        }
+      ]
+    },    
     {
       name: "pageType", // New field for page type
       title: "Page Type",

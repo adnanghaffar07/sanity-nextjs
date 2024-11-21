@@ -86,7 +86,7 @@ const Career: React.FC = async () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-[#F3F3F3] leading-[100%] max-md:px-5 max-md:max-w-full">
+      <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-blue-50 leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
           <div className="self-center xl:text-5xl lg:text-4xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
             Grow and Collaborate with the Top Professionals in the Field
@@ -108,21 +108,21 @@ const Career: React.FC = async () => {
           alt="rounded-icon"
           className="aspect-[1.22] absolute left-0 top-48 lg:block hidden"
         />
-        <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-          <div className="lg:px-10 px-5 w-full">
-            <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
-              <div className="xl:pr-20 lg:order-1 order-2 relative self-center">
+        <div className="flex flex-col self-center max-w-[1440px] mx-auto relative z-10 mx-auto">
+          <div className="lg:px-10 px-6 w-full">
+            <div className="grid lg:grid-cols-2 gap-5">
+              <div className="xl:pr-10 lg:order-1 order-1 relative self-center">
                 <img
                   loading="lazy"
                   src="/intersect-left.png"
                   alt="rounded-icon"
                   className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                 />
-                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
+                <div className="text-3xl lg:text-5xl pt-10  md:pt-0 mb-3 text-black">
                   Make Your Own Trajectory with Your Own Assistance
                 </div>
                 <div className="mb-10">
-                  <p className="lg:text-lg text-base text-[#024] text-justify">
+                  <p className="lg:text-lg text-base text-black">
                     We support and encourage our team members as they pursue
                     their goals. Whether it&rsquo;s a move up or a step sideways
                     into a career you&rsquo;ve always desired, our senior
@@ -131,7 +131,7 @@ const Career: React.FC = async () => {
                   </p>
                 </div>
               </div>
-              <div className="text-center lg:order-2 order-1">
+              <div className="text-center lg:order-2 order-2">
                 <img
                   loading="lazy"
                   src="/career1.svg"
@@ -145,7 +145,7 @@ const Career: React.FC = async () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:pt-0 lg:pb-0 py-8 md:px-5 w-full mx-auto relative">
+      <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:pt-0 lg:pb-0 px-6 py-8 md:px-5 w-full mx-auto relative">
         <img
           loading="lazy"
           src="/ellipse-2.png"
@@ -153,18 +153,18 @@ const Career: React.FC = async () => {
           className="aspect-[1.22] absolute right-0 -top-36"
         />
         <div className="flex flex-col w-full max-w-[1582px] mx-auto">
-          <div className="text-center">
-            <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
+          <div className="text-center mt-6">
+            <div className="xl:text-5xl lg:text-4xl text-3xl mb-6 text-black">
               Open Vacancies
             </div>
-            <div className="mb-10">
-              <p className="lg:text-lg text-base text-[#024]">
+            <div className="mb-14">
+              <p className="text-lg lg:text-xl text-base text-black">
                 Are you passionate about building your career with opportunities
                 to learn and lead?
               </p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[80px] sm:gap-y-[50px] sm:gap-[30px] 2xl:gap-[30px] 2xl:gap-y-[50px] max-w-[1440px] sm:my-40">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[80px] sm:gap-y-[50px] sm:gap-[30px] xl:gap-[70px] max-w-[1440px] sm:my-20">
             {data.map((jobpost: any) => (
               <div key={jobpost._id}>
                 <CareerPost jobpost={jobpost} />
@@ -174,8 +174,8 @@ const Career: React.FC = async () => {
         </div>
       </div>
       <div className="max-w-full mx-auto relative">
-        <div className="flex flex-col self-center w-full max-w-[1624px] max-md:max-w-full relative z-10 mx-auto">
-          <div className="lg:px-10 px-5 w-full">
+        <div className="flex flex-col mx-auto self-center w-full max-w-[1440px] max-md:max-w-full relative z-10 mx-auto">
+          <div className="lg:px-10 px-6 w-full">
             <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
               <div className="text-center">
                 <img
@@ -187,19 +187,19 @@ const Career: React.FC = async () => {
                   height={532}
                 />
               </div>
-              <div className="xl:pl-20 relative text-right">
-                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-[#024]">
+              <div className="xl:pr-10 relative text-left md:text-right">
+                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-black">
                   Perks & Benefits
                 </div>
                 <div className="mb-10">
-                  <p className="lg:text-lg text-base text-[#024] text-right">
+                  <p className="lg:text-lg text-base text-black text-left md:text-right">
                     Get special perks and benefits such as flexible schedules
                     and career advancement chances. Join us and advance your
                     career in CodeAutomation today.
                   </p>
                 </div>
 
-                <section className="flex flex-wrap gap-5 justify-end px-4.5 mt-7 text-xs text-center text-md text-black">
+                <section className="flex flex-wrap gap-5 justify-start md:justify-end px-4.5 mt-7 text-xs text-center text-black text-md text-black">
                   <div className="grid grid-cols-3 gap-4 sm:gap-5 sm:justify-center">
                     {benefits.slice(0, 3).map((benefit, index) => (
                       <BenefitItem key={index} {...benefit} />

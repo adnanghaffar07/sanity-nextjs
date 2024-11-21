@@ -87,6 +87,17 @@ body {
   --br-mini: 15px; */
 /* } */
 
+
+.greetings {
+  height: 65%; /* Default for larger screens */
+}
+
+@media (max-width: 640px) {
+  .greetings {
+    height: 90%; /* Override for smaller screens */
+  }
+}
+
 /* Shared button styles */
 .button {
   background-color: #f7e022;

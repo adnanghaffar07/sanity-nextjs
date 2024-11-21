@@ -127,7 +127,7 @@ export default async function DiscoveryProcess() {
                 </div>
             </div>
             {/* Value Discovery Section */}
-            <div className="w-full px-6 py-10 bg-gray-50 md:px-16 md:py-16">
+            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="mb-8 text-2xl font-bold text-blue-900 text-left">
                         {data.discoverynSection?.heading}
@@ -179,7 +179,7 @@ export default async function DiscoveryProcess() {
             </div>
 
             {/* Voice of the Customer Section */}
-            <div className="w-full px-6 py-10 bg-gray-50 md:px-16 md:py-16">
+            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="mb-6 text-2xl font-bold text-blue-900 text-left">
                         {data.vocSection?.heading}
@@ -239,7 +239,7 @@ export default async function DiscoveryProcess() {
             </div>
 
             {/* DMADV Section */}
-            <div className="w-full px-6 py-10 bg-gray-50 md:px-16 md:py-16">
+            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
                 <div className="max-w-7xl mx-auto">
                     <h3 className="mb-4 text-2xl font-semibold text-blue-800">
                         {data.dmaicDmadSection?.dmadv?.dmadvHeading}
@@ -285,7 +285,7 @@ export default async function DiscoveryProcess() {
             </div>
 
             {/* Guidance for Web Development and Imagery Section */}
-            <div className="w-full px-6 py-10 bg-gray-50 md:px-16 md:py-16">
+            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="mb-6 text-2xl font-bold text-blue-900 text-left">
                         {data.webDevelopmentImagerySection?.heading}
@@ -326,7 +326,7 @@ export default async function DiscoveryProcess() {
             </div>
 
             {/* Conclusion Section */}
-            <div className="w-full  mb-16 bg-gray-100 px-6 py-10 md:px-16 md:py-16 rounded-lg shadow-lg">
+            <div className="w-full  bg-white px-6 py-10 md:px-16 md:py-16 rounded-lg">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="mb-6 text-2xl font-bold  text-blue-900 text-left">
                         {data.conclusionSection?.conclusionHeading}

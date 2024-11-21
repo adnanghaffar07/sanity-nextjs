@@ -1671,6 +1671,40 @@ const logicalServices = {
       ],
     },
     {
+      name: "faqSection",
+      title: "FAQ Section",
+      type: "object",
+      fields: [
+        {
+          name: "title",
+          title: "Section Title",
+          type: "string",
+        },
+        {
+          name: "faqs",
+          title: "FAQs",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "question",
+                  title: "Question",
+                  type: "string",
+                },
+                {
+                  name: "answer",
+                  title: "Answer",
+                  type: "text",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "subServiceHeading",
       title: "Sub Service Card Section Heading",
       type: "string",
@@ -2352,6 +2386,7 @@ const subServiceSchema = {
         },
       ],
     },
+  
 
     // Web SEO Meta data
     {

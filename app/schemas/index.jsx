@@ -7,7 +7,6 @@ export const contactSchema = Yup.object({
   email: Yup.string().email().required("Please enter your email"),
   message: Yup.string(),
 });
-
 export const partnershipSchema = Yup.object({
   name: Yup.string()
     .matches(/^(\S+\s){1,}\S+$/, "Please enter last name")

@@ -5,6 +5,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import ScrollAnimation from "../components/ScrollAnimation";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
+import Link from "next/link";
 
 async function getData() {
   const query = `*[_type == 'partnership'][0]`;
@@ -129,7 +130,7 @@ const page = async () => {
       </section>
 
       <ScrollAnimation>
-        <section className="flex justify-center items-center px-16 py-14 text-center bg-zinc-100 max-md:px-5">
+        <section className="flex justify-center items-center px-16 py-14 text-center bg-blue-50 max-md:px-5">
           <div className="flex flex-col max-w-full ">
             <h2 className="text-2xl md:text-4xl  leading-20 text-black max-md:max-w-full max-w-3xl mx-auto">
               {data.title}
@@ -295,34 +296,36 @@ const page = async () => {
       })}
 
       <ScrollAnimation>
-        <section className="flex justify-center leading-8 text-center bg-[#EFEEEE] pb-36 ">
+        <section className="flex justify-center leading-8 text-center bg-blue-50 border-t border-b pb-36">
           <div className="max-w-[1280px]">
-            <h2 className="text-2xl md:text-4xl my-20">Our Services</h2>
+            <h2 className="text-2xl md:text-4xl my-20 font-semibold text-gray-800">Our Services</h2>
             <div className="text-slate-600 max-w-[1280px]">
               <div className="flex justify-center gap-x-8 gap-y-14 flex-wrap px-5 w-full max-md:flex-wrap max-md:max-w-full">
-                {data?.services?.map((service: any) => {
-                  return service.singleService.length === 1 ? (
-                    <p
-                      className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl"
-                      key={service._key}
-                    >
-                      {service.singleService[0]}
-                    </p>
-                  ) : (
-                    <p
-                      className="flex items-center justify-center bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-2 text-xl"
-                      key={service._key}
-                    >
-                      {service.singleService[0]}
-                      <br />
-                      {service.singleService[1]}
-                    </p>
-                  );
-                })}
+                {data?.services?.map((service: any) => (
+                  <Link
+                    href={service.link} // Dynamically use the link field
+                    target="_blank" // Opens the link in a new tab
+                    rel="noopener noreferrer" // Improves security
+                    className="flex flex-col items-center justify-center text-black bg-white rounded-2xl shadow-md max-md:px-5 w-[290px] sm:w-[390px] h-[80px] p-4 text-xl hover:text-white transition border duration-300 ease-in-out transform hover:scale-105 hover:bg-[#1D92FB]"
+                    key={service._key}
+                  >
+                    {service.singleService.length === 1 ? (
+                      <span>{service.singleService[0]}</span>
+                    ) : (
+                      <>
+                        <span>{service.singleService[0]}</span>
+                       
+                        <span>{service.singleService[1]}</span>
+                      </>
+                    )}
+                  </Link>
+                ))}
+
               </div>
             </div>
           </div>
         </section>
+
       </ScrollAnimation>
     </div>
   );

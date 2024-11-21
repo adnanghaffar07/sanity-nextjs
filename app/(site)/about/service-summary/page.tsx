@@ -139,10 +139,10 @@ export default async function ServiceSummary() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="">
             <div className="">
-              <h2 className="text-2xl font-bold mb-8 text-center md:text-left "> {/* Adjusted text alignment for larger screens */}
+              <h2 className="text-3xl font-bold mb-8 text-center"> {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center"> {/* Adjusted text alignment for larger screens */}
+              <p className="text-lg text-gray-800 leading-relaxed text-center"> {/* Adjusted text alignment for larger screens */}
                 {data.introductionSection?.introDesc}
               </p>
 
@@ -161,7 +161,7 @@ export default async function ServiceSummary() {
       {/* Detail Section */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">{data.detailSection.heading}</h2>
+          <h2 className="text-3xl font-bold text-center text-black mb-10">{data.detailSection.heading}</h2>
           <div className="flex flex-wrap gap-8 justify-center">
             {data.detailSection?.detailInd?.map((detail: any, index: any) => (
               <div key={index} className="bg-white rounded-lg shadow-xl p-6 mb-6 w-full max-w-xl border border-gray-700">
@@ -181,9 +181,9 @@ export default async function ServiceSummary() {
       </div>
 
       {/* Project Management Section */}
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">{data.projectManagement?.projectHeading}</h2>
+          <h2 className="text-3xl font-bold text-black text-center mb-6">{data.projectManagement?.projectHeading}</h2>
           <div className="flex flex-wrap justify-center">
             {data.projectManagement?.toolsTech?.map((tool: any, toolIndex: any) => (
               <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
@@ -218,7 +218,7 @@ export default async function ServiceSummary() {
       {/* Project Cycle Section */}
       <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-16">{data.projectCycleSection?.projectCycleHaeding}</h2>
+          <h2 className="text-3xl font-bold text-black text-center mb-16">{data.projectCycleSection?.projectCycleHaeding}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-14">
             {data.projectCycleSection?.projectLifeCycle.map((step: any, index: any) => (
               <div key={index} className="bg-[#EDECEC] rounded-3xl shadow-sm relative">
@@ -255,10 +255,10 @@ export default async function ServiceSummary() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center">
           <div className="w-full md:w-1/2 md:pr-8">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-8 text-center md:text-left "> {/* Adjusted text alignment for larger screens */}
+              <h2 className="text-3xl font-bold mb-8 text-black text-center md:text-left "> {/* Adjusted text alignment for larger screens */}
                 {data.summarySection?.summaryHeading}
               </h2>
-              <p className="text-lg text-gray-800 leading-relaxed text-justify text-center"> {/* Adjusted text alignment for larger screens */}
+              <p className="text-lg text-gray-800 leading-relaxed md:text-left text-center"> {/* Adjusted text alignment for larger screens */}
                 {data.summarySection?.summaryMessage}
               </p>
             </div>
@@ -276,10 +276,10 @@ export default async function ServiceSummary() {
 
 
       {/* Call to Action Section */}
-      <div className="py-12 bg-gray-100">
+      <div className="py-12 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl md:text-2xl font-bold text-gray-800 mb-6">{data.callToActionSection?.callToActionHeading}</h2>
+            <h2 className="text-3xl font-bold text-black mb-6">{data.callToActionSection?.callToActionHeading}</h2>
             <p className="text-lg text-gray-700 mb-8">{data.callToActionSection?.callToAction}</p>
             <div className="mt-8 flex justify-center ">
               <ButtonScrollToSection
@@ -296,7 +296,7 @@ export default async function ServiceSummary() {
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">{data.specialOffersSection?.offerHeading}</h2>
+            <h2 className="text-3xl font-bold text-black mb-6">{data.specialOffersSection?.offerHeading}</h2>
             <p className="text-lg text-gray-700 mb-8">{data.specialOffersSection?.specialOffer}</p>
             <div className="mt-8 flex justify-center">
               <ButtonScrollToSection
@@ -311,9 +311,9 @@ export default async function ServiceSummary() {
       </div>
 
       {/* Payment Section */}
-      <div className="px-6 md:px-16 py-10 md:py-16 bg-white">
+      <div className="px-6 md:px-16 py-10 md:py-16 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+          <h2 className="text-4xl font-bold text-black text-center mb-6">
             {data.paymentOption?.paymentHeading}
           </h2>
           <p className="text-lg text-gray-700 mb-8 text-center">

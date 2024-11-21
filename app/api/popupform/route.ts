@@ -2,14 +2,12 @@
 
 // export async function POST(request: any): Promise<any> {
 //   const completeFormData = await request.formData();
-
 //   const name = completeFormData.get("name");
 //   const email = completeFormData.get("email");
 //   const number = completeFormData.get("number");
 //   const looking = completeFormData.get("looking");
 //   const subscribe = completeFormData.get("subscribe");
 //   const pageName = completeFormData.get("pagename");
-
 //   const transporter = nodemailer.createTransport({
 //     name: "SMTP",
 //     host: "smtp.gmail.com",

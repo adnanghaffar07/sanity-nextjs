@@ -1,5 +1,7 @@
+import { PortableText } from "@portabletext/react";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import Script from "next/script";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -96,10 +98,44 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+  // Custom PortableText component configuration
+  const portableTextComponents = {
+    types: {
+      image: ({ value }:any) => (
+        <img
+          className="object-cover w-full h-full rounded-3xl"
+          src={urlForImage(value).toString()}
+          alt={value.alt || "Image"}
+        />
+      ),
+    },
+    list: {
+      bullet: ({ children }:any) => <ul className="list-disc ml-5">{children}</ul>,
+    },
+    marks: {
+      link: ({ children, value }:any) => {
+        const target = value.blank ? '_blank' : undefined;
+        return (
+          <a
+            href={value.href}
+            target={target}
+            rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+            style={{ color: 'blue', textDecoration: 'underline' }} // Custom color for links
+          >
+            {children}
+          </a>
+        );
+      },
+    },
+  }
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
   const dataLogo = await getLogoData();
 
+
+
+  
   return (
     <div>
       <div className="relative flex flex-col pb-12 w-full font-light text-white lg:min-h-[700px] bg-[#020C16]">
@@ -107,7 +143,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <img
             className="absolute inset-0 object-cover w-full h-full"
             src={urlForImage(data.heroimage).toString()}
-            alt="blog post"
+            alt={data.heroimage?.alt || "blog post"}
+
 
           />
         )}
@@ -130,11 +167,16 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <p className="text-xl  mb-6">
             {data.introductionheading}
           </p>
+             {/* Rendering description (portable text) */}
+             <div className="my-6 text-lg space-y-6">
+             {data.description && <PortableText value={data.description} components={portableTextComponents} />}
+             </div>
           {data.cardimage && (
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.cardimage).toString()}
-              alt="blog post"
+              alt={data.cardimage?.alt || "blog post"}
+
             />
           )}
           <p className="my-6 text-lg">{data.briefdescription}</p>
@@ -151,8 +193,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.primaryimage).toString()}
-              alt="blog post"
-            />
+              alt={data.primaryimage?.alt || "blog post"}
+              />
           )}
         </div>
       </div>
@@ -243,8 +285,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <img
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.secondaryimage).toString()}
-              alt="blog post"
-            />
+              alt={data.secondaryimage?.alt || "blog post"}
+              />
           )}
         </div>
       </div>
