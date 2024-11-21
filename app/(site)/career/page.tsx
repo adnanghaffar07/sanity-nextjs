@@ -11,6 +11,7 @@ async function getData() {
     return [];
   }
 }
+
 const Career: React.FC = async () => {
   const data = await getData();
 
