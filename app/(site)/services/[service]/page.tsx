@@ -170,7 +170,7 @@ export default async function service({
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                 {data.firstButton && (
                   <ButtonScrollToSection
-                    classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
+                    classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72"
                     content={data.firstButton.firstButtonText}
                     key="first-button"
                     destination="contact-box"
@@ -179,7 +179,7 @@ export default async function service({
                 {data.secondButton?.SecondButtonUrl && (
                   <Link
                     href={data.secondButton.SecondButtonUrl}
-                    className="bg-[#f7e022]  text-black  font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-64"
+                    className="bg-[#f7e022]  text-black  font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -191,6 +191,51 @@ export default async function service({
           </div>
         </div>
       </div>
+
+          {/* Tools Section */}
+          {data.toolsLogoSection?.logoArray?.length > 0 && (
+        <section className="h-[180px] md:h-[224px] mx-auto px-16 bg-white flex items-center overflow-hidden">
+          <div className="w-full flex items-center">
+            <div className="flex animate-scroll">
+              {data.toolsLogoSection.logoArray.map(
+                (logo: any, index: number) => (
+                  <div
+                    key={index}
+                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-blue-50 bg-opacity-10 rounded-[26px] flex items-center justify-center mx-3 flex-shrink-0 border-2 border-[#e1e8ee]"
+                  >
+                    <Image
+                      src={urlForImage(logo).toString()}
+                      alt={logo?.alt}
+                      width={96}
+                      height={96}
+                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px] object-contain"
+                    />
+                  </div>
+                )
+              )}
+            </div>
+            <div className="flex animate-scroll">
+              {data.toolsLogoSection.logoArray.map(
+                (logo: any, index: number) => (
+                  <div
+                    key={index}
+                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-blue-50 bg-opacity-10 rounded-[26px] flex items-center justify-center mx-3 flex-shrink-0 border-2 border-[#e1e8ee]"
+                  >
+                    <Image
+                      src={urlForImage(logo).toString()}
+                      alt={logo?.alt}
+                      width={96}
+                      height={96}
+                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px] object-contain"
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
 
       {data.clientsSection && (
         <div className="relative">
@@ -216,7 +261,7 @@ export default async function service({
                   key={index}
                   src={urlForImage(logo.asset).toString()}
                   alt={logo.altText}
-                  className="object-cover sm:h-8 xl:h-11 "
+                  className="object-cover h-8 xl:h-11 "
                 />
               ))}
             </div>
@@ -348,50 +393,7 @@ export default async function service({
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection && <CustomSoftware2Section data={data} />}
 
-      {/* Tools Section */}
-      {data.toolsLogoSection?.logoArray?.length > 0 && (
-        <section className="h-[180px] md:h-[224px] mx-auto px-16 bg-[#E8F4FE] flex items-center overflow-hidden">
-          <div className="w-full flex items-center">
-            <div className="flex animate-scroll">
-              {data.toolsLogoSection.logoArray.map(
-                (logo: any, index: number) => (
-                  <div
-                    key={index}
-                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-[#e6edf3] rounded-[26px] flex items-center justify-center mx-8 flex-shrink-0 border-2 border-[#e1e8ee]"
-                  >
-                    <Image
-                      src={urlForImage(logo).toString()}
-                      alt={logo?.alt}
-                      width={96}
-                      height={96}
-                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px]"
-                    />
-                  </div>
-                )
-              )}
-            </div>
-            <div className="flex animate-scroll">
-              {data.toolsLogoSection.logoArray.map(
-                (logo: any, index: number) => (
-                  <div
-                    key={index}
-                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-[#e6edf3] rounded-[26px] flex items-center justify-center mx-8 flex-shrink-0 border-2 border-[#e1e8ee]"
-                  >
-                    <Image
-                      src={urlForImage(logo).toString()}
-                      alt={logo?.alt}
-                      width={96}
-                      height={96}
-                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px]"
-                    />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
+  
       {/* Introduction Section */}
       {data.introductionSection && (
         <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
@@ -820,12 +822,12 @@ export default async function service({
         <section className="px-6 md:px-16 py-10 md:py-16">
           <div className="flex flex-col">
             <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
-              <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
+              <div className="flex flex-col flex-1 justify-center text-4xl text-sky-500 capitalize leading-[60px] max-md:max-w-full">
                 <div className="justify-center max-md:max-w-full">
                   <h2 className="font-bold  text-2xl text-black text-center capitalize leading-[60px]">
                     {data.industriesServe.heading}
                   </h2>
-                  <p className="font-light text-xl text-black text-center capitalize leading-[60px]">
+                  <p className="text-lg text-[#3C3C3C] leading-relaxed mb-3 text-center">
                     {data.industriesServe.description}
                   </p>
                 </div>

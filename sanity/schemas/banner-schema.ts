@@ -6,7 +6,7 @@ const bannercontent = {
         {
             name: 'content',
             title: 'Content',
-            type: 'string'
+            type: 'string',
         },
         {
             name: 'content',

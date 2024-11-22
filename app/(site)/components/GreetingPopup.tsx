@@ -170,11 +170,10 @@ const GreetingPopup: React.FC = () => {
         }`}
       onClick={handleClickOutside}
     >
-<div
-  className={`greetings overflow-hidden gap-4 rounded-lg pl-3 md:pl-0 pr-3 pt-3 pb-3 bg-white flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${
-    isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
-  }`}
->
+      <div
+        className={`greetings overflow-hidden gap-4 rounded-lg pl-3 md:pl-0 pr-3 pt-3 pb-3 bg-white flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
+          }`}
+      >
 
         <div className="w-[290px] md:w-[340px] z-30 hidden sm:block h-full">
           {data?.image?.asset && (
@@ -211,23 +210,23 @@ const GreetingPopup: React.FC = () => {
             )}
           </div>
 
-          <div className=" px-5 py-7 flex relative flex-col items-center">
+          <div className=" px-5 py-2 2xl:py-7 flex relative flex-col items-center">
             {data?.icon?.asset && (
               <img
                 loading="lazy"
                 src={urlForImage(data?.icon?.asset)}
-                className="h-12 hidden sm:block"
+                className="h-8 2xl:h-12 hidden sm:block"
                 alt={data?.icon?.alt}
 
               />
             )}
-            <div className="text-xl font-medium text-center text-black mb-4 mt-5">
+            <div className="text-lg xl:text-xl font-base text-center text-black mb-4 mt-5">
               {data?.title}
             </div>
             <div>
               <form
                 onSubmit={handleCombinedSubmit}
-                className="flex flex-col gap-4 w-[260px] md:w-[300px]"
+                className="flex flex-col gap-2 2xl:gap-4 w-[260px] md:w-[300px]"
               >
                 <input
                   name="name"
@@ -236,9 +235,9 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="Full Name"
-                  className={`text-sm px-2 py-[2px] md:py-2 bg-white shadow-md border rounded-md outline-none ${errors.name && touched.name
-                      ? "border-red-400"
-                      : "border-gray-400"
+                  className={`text-sm px-2 py-[2px] md:py-1.5 bg-white shadow-md border rounded-md outline-none ${errors.name && touched.name
+                    ? "border-red-400"
+                    : "border-gray-400"
                     }`}
                 />
                 <input
@@ -248,9 +247,9 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="Enter Your Email Address"
-                  className={`text-sm px-2 py-[2px] md:py-2 shadow-md bg-white border rounded-md outline-none ${errors.email && touched.email
-                      ? "border-red-400"
-                      : "border-gray-400"
+                  className={`text-sm px-2 py-[2px] md:py-1.5 shadow-md bg-white border rounded-md outline-none ${errors.email && touched.email
+                    ? "border-red-400"
+                    : "border-gray-400"
                     }`}
                 />
                 <input
@@ -260,9 +259,9 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="Contact Number"
-                  className={`text-sm px-2 py-[2px] md:py-2 shadow-md bg-white border rounded-md outline-none ${errors.contact_number && touched.contact_number
-                      ? "border-red-400"
-                      : "border-gray-400"
+                  className={`text-sm px-2 py-[2px] md:py-1.5 shadow-md bg-white border rounded-md outline-none ${errors.contact_number && touched.contact_number
+                    ? "border-red-400"
+                    : "border-gray-400"
                     }`}
                 />
                 <input
@@ -272,7 +271,7 @@ const GreetingPopup: React.FC = () => {
                   onBlur={handleBlur}
                   type="text"
                   placeholder="What are you looking for ?"
-                  className="text-sm px-2 py-[2px] md:py-2 shadow-md bg-white border rounded-md outline-none border-gray-400"
+                  className="text-sm px-2 py-[2px] md:py-1.5 shadow-md bg-white border rounded-md outline-none border-gray-400"
                 />
 
                 <label className="text-base normal-case cursor-pointer">
