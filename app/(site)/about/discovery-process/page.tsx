@@ -4,7 +4,6 @@ import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 
-
 async function getData() {
     const query = `*[_type == 'valueDiscoveryProcessPage'][0]`;
     try {
