@@ -51,6 +51,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
+      <link rel="apple-touch-icon" href="/favicon.ico" />
+
         <link
           rel="preload"
           href="/hero-sec-video.webm"
