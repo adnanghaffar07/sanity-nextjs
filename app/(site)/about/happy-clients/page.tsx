@@ -48,6 +48,16 @@ const HappyClients = () => {
             name: 'Client 9',
             imageUrl: '/client2.png',
         },
+        {
+            id: 9,
+            name: 'Client 9',
+            imageUrl: '/zoya-1.jpeg',
+        },
+        {
+            id: 9,
+            name: 'Client 9',
+            imageUrl: '/zoya-2.jpeg',
+        },
         // Add more clients as needed
     ];
 
