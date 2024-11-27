@@ -164,7 +164,7 @@ export default async function service({
               <h1 className="title capitalize">{data.serviceTitle}</h1>
             </div>
             <div className="lg:text-2xl mx-auto max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-              {data.serviceDesc}
+             <h2>{data.serviceDesc}</h2>
             </div>
             {(data.firstButton || data.secondButton) && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
