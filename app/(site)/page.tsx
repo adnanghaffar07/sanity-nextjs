@@ -632,11 +632,11 @@ export default function Home() {
         </div>
         </ScrollAnimation>
         <ScrollAnimation>
-          <div className="flex flex-col self-center w-full mx-auto lg:py-16 py-16 lg:px-10 px-5">
-            <h2 className="self-center text-center font-medium text-black xl:text-4xl lg:text-3xl text-3xl max-w-[1582px] mx-auto">
+          <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
+            <h2 className="self-center text-center font-bold text-black xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
               Transformative Software Development Case Studies
             </h2>
-            <p className="lg:mt-8 mt-4 text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
+            <p className="lg:mt-8 mt-4 text-lg  md:text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
               Explore the impactful results of our expertise in software
               development. Each project in our portfolio reflects our commitment
               to excellence. Discover how we&rsquo;ve driven success for
