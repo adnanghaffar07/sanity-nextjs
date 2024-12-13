@@ -269,7 +269,7 @@ export default function FooterContainer() {
                     className="md:max-h-10 object-cover"
                   />
                   <span className="font-light">
-                  1755 Park St, Office 254, Suite 200 Office Evolution Naperville, IL USA 60543                  </span>
+                  Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States</span>
                 </div>
 
                 <div className="flex flex-row gap-2 items-start pb-2">
