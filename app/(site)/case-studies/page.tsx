@@ -1,13 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
-import HeroSectionComponent from "../components/HeroSectionComponent";
 import Image from "next/image";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { revalidatePath } from "next/cache";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
 
 const Page = () => {
