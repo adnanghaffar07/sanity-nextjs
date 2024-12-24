@@ -36,14 +36,12 @@ const initialValues = {
   message: "",
 };
 
-export default function CalendlyProjectForm() {
+export default function HomePageForm() {
   const router = useRouter(); // Initialize the useRouter hook
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [isRecaptchaVisible, setIsRecaptchaVisible] = useState(false);
-
-  const currentPath = usePathname();
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false); // State to manage the loading indicator
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
@@ -79,9 +77,14 @@ export default function CalendlyProjectForm() {
     setErrorRecaptcha("Please verify again the above checkbox.");
   };
 
-  const pageName = currentPath.split("/").pop();
+  const currentPath = usePathname();
+  const pageName = currentPath ? currentPath.split("/").pop() || "home" : "home";
+
+  console.log("Current Path:", currentPath);
+  console.log("Page Name:", pageName);
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
+    event.preventDefault(); // Prevent default form submission
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
@@ -93,22 +96,12 @@ export default function CalendlyProjectForm() {
       return;
     }
 
-    if (
-      !values.name.length ||
-      !values.email.length ||
-      !values.contact_number.length ||
-      !values.looking.length
-    ) {
+    if (!values.name.length || !values.email.length || !values.contact_number.length || !values.looking.length) {
       setUploading(false); // Stop loading state if fields are empty
       return;
     }
 
-    if (
-      errors.name ||
-      errors.contact_number ||
-      errors.email ||
-      errors.looking
-    ) {
+    if (errors.name || errors.contact_number || errors.email || errors.looking) {
       setUploading(false); // Stop loading state if there are validation errors
       return;
     }
@@ -117,9 +110,9 @@ export default function CalendlyProjectForm() {
       pageName === ""
         ? "Home"
         : pageName
-          ?.split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
+            ?.split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
 
     // Revalidate the email before submitting
     if (!Yup.string().email().isValidSync(values.email)) {
@@ -131,6 +124,7 @@ export default function CalendlyProjectForm() {
     }
 
     try {
+      // Sending data to Email
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("email", values.email);
@@ -138,33 +132,62 @@ export default function CalendlyProjectForm() {
       formData.append("looking", values.looking);
       formData.append("message", values.message);
       formData.append("pagename", actuallPageName || "Home");
+      setUploading(true);
       setMessage("Submitting form...");
-
+    
       setMessageSuccess("w-[10%]");
-      const response = await fetch("/api/projectdiscussionform", {
+      
+      // First API call (Email Submission)
+      const emailResponse = await fetch("/api/projectdiscussionform", {
         method: "POST",
         body: formData,
       });
-
-      if (response.ok) {
+    
+      if (!emailResponse.ok) {
+        throw new Error("Failed to send email.");
+      }
+    
+      // Second API call (Sanity Submission)
+      const sanityResponse = await fetch("/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          contact_number: values.contact_number,
+          looking: values.looking,
+          message: values.message,
+          recaptcha_value: recaptchaValue,
+          page_name: pageName,
+        }),
+      });
+    
+      const data = await sanityResponse.json();
+      console.log("Sanity API Response:", data);
+    
+      if (sanityResponse.ok) {
         // Push event to dataLayer for GTM
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
           event: "formSubmission",
           form: "contactForm",
         });
-
+    
         // Redirect to Thank You page
         router.push("/thankyou");
-
+    
         resetForm();
         recaptchaRef?.current?.reset();
         setRecaptchaValue("");
         setErrorRecaptcha("");
+        setMessage("Form submitted successfully!");
+        setMessageSuccess("w-[100%]");
       } else {
-        setBgColor("bg-red-500");
         setMessage("Message not submitted!");
         setMessageSuccess("w-[100%]");
+        setBgColor("bg-red-500");
       }
     } catch (error) {
       setBgColor("bg-red-500");
@@ -177,7 +200,8 @@ export default function CalendlyProjectForm() {
         setMessage("");
       }, 8000);
     }
-  };
+  }
+    
 
   useEffect(() => {
     const formElement = document.getElementById("contact-box");
