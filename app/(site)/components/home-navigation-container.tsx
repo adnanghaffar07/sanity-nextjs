@@ -304,7 +304,7 @@ export default function HomeNavigationContainer() {
                           <p className="text-base font-medium text-black">RPA Services</p>
                           <p className="mt-1 text-sm text-gray-500">Tackle the Complex Robotic Challenges</p>
                         </div>
-                        
+
                       </Link>
 
                       <Link
@@ -549,7 +549,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Success Stories</p>
                         </div>
                       </Link>
-                      <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
+                      <Link href="/brochure" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
                             src="/grid.svg"
@@ -561,10 +561,10 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">Brochure Downloads</p>
-                          <p className="mt-1 text-sm text-gray-500 text-start">(Coming Soon)</p>
+                          <p className="mt-1 text-sm text-gray-500 text-start">Your Ultimate Guide</p>
                         </div>
-                      </button>
-                      <button className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
+                      </Link>
+                      <Link href="/news" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
                             src="/reader.svg"
@@ -576,9 +576,9 @@ export default function HomeNavigationContainer() {
                         </div>
                         <div className="ml-4">
                           <p className="text-base font-medium text-black text-start">News</p>
-                          <p className="mt-1 text-sm text-gray-500">(Coming Soon)</p>
+                          <p className="mt-1 text-sm text-gray-500">Stay Updated</p>
                         </div>
-                      </button>
+                      </Link>
                       <Link
                         href="/blogs"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"

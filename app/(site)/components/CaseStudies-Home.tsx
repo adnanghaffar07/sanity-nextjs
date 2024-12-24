@@ -1,7 +1,7 @@
 import React from "react";
-import { client } from "@/sanity/lib/client";
-import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import WorkItem from "./WorkItem";
 
 async function getData() {
   const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
@@ -14,40 +14,6 @@ async function getData() {
   }
 }
 
-const WorkItem = ({
-  imageSrc,
-  alt,
-  index,
-  url,
-  description,
-  buttoncolor = "gray",
-}: {
-  imageSrc: any;
-  alt: string;
-  index: number;
-  url: string;
-  description: string;
-  buttoncolor: string;
-}) => (
-  <Link href={`/case-studies/${url}`} key={index}>
-    <div className="relative w-[280px] sm:w-[340px] md:w-[380px] h-[250px] cursor-pointer group overflow-hidden">
-      {imageSrc.asset && (
-        <img
-          loading="lazy"
-          src={urlForImage(imageSrc).toString()}
-          alt={alt}
-          className="absolute inset-0 w-[280px] sm:w-[340px] md:w-[380px] h-[250px] object-contain"
-        />
-      )}
-      <div
-        className={`w-[280px] sm:w-[340px] md:w-[380px] h-[250px] absolute inset-0 bg-[#4aa2f0] text-white flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:rotate-0 transition-all duration-700 rounded-3xl`}
-      >
-        <p>{description}</p>
-      </div>
-    </div>
-  </Link>
-);
-
 const CaseStudiesHome = async () => {
   const data = await getData();
   const caseStudyData = data.filter(
@@ -55,9 +21,9 @@ const CaseStudiesHome = async () => {
   );
 
   return (
-    <section className="flex flex-col items-center px-0 sm:px-5 md:pt-20 pb-15 w-full max-md:max-w-full">
+    <section className="flex flex-col items-center px-0 sm:px-5 md:pt-10 pb-15 w-full max-md:max-w-full">
       <div className="max-w-7xl mx-auto">
-        <div className="flex gap-x-5 gap-y-8 md:gap-y-12 justify-around flex-wrap">
+        <div className="grid grid-cols-1 mt-6 md:mt-0 sm:grid-cols-2 md:grid-cols-3 gap-7 sm:gap-10 md:gap-10">
           {caseStudyData[0].cardItemsList
             .slice(0, 6)
             .map((item: any, index: number) => (
@@ -68,17 +34,18 @@ const CaseStudiesHome = async () => {
                 alt={item.cardImage.alt}
                 url={item.url}
                 description={item.cardDescription}
-                buttoncolor={item.buttonColor}
+                color={item.buttonColor} // Pass color dynamically
               />
             ))}
         </div>
       </div>
       <Link
-        href={"/case-studies"}
-        className="px-10 py-3 mt-14 font-semibold text-center text-white bg-[#1D92FB] rounded flex items-center justify-center"
-      >
-        View more
-      </Link>
+  href={"/case-studies"}
+  className="px-10 py-3 mt-14 font-semibold text-center text-white bg-[#1D92FB] border-2 border-[#1D92FB] rounded flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-[#1D92FB]"
+>
+  View more
+</Link>
+
     </section>
   );
 };

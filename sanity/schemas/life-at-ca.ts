@@ -53,6 +53,19 @@ export default {
         ]
       },
       {
+        name: 'zoyaImages',
+        title: 'Zoya Images',
+        type: 'array',
+        of: [
+          {
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
+        ],
+      },
+      {
         name: 'introText',
         title: 'Introduction Text',
         type: 'text',
@@ -64,6 +77,19 @@ export default {
         options: {
           hotspot: true,
         },
+      },
+      {
+        name: 'extraImages',
+        title: 'Extra Images',
+        type: 'array',
+        of: [
+          {
+            type: 'image',
+            options: {
+              hotspot: true,
+            },
+          },
+        ],
       },
       {
         name: 'middleText',

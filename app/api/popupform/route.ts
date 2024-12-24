@@ -1,5 +1,4 @@
 // import nodemailer from "nodemailer";
-
 // export async function POST(request: any): Promise<any> {
 //   const completeFormData = await request.formData();
 //   const name = completeFormData.get("name");
@@ -106,7 +105,7 @@ export async function POST(request: any): Promise<any> {
 
   const mailOptions = {
     from: "umaid@codeautomation.dev",
-    to: ["adnan@codeautomation.dev"],
+    to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
     subject: `CA Website Greeting Popup form - ${pageName} page`,
     html: `
     <!DOCTYPE html>

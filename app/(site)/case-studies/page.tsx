@@ -1,13 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
-import HeroSectionComponent from "../components/HeroSectionComponent";
 import Image from "next/image";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { revalidatePath } from "next/cache";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
 
 const Page = () => {
@@ -348,7 +345,7 @@ const Page = () => {
                   <div
                     className={`absolute inset-0 flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 rounded-3xl`}
                     style={{
-                      backgroundColor: item.backgroundColor || '#4aa2f0', // Default or dynamic color
+                      backgroundColor: item.buttonColor || '#4aa2f0', // Default or dynamic color
                     }}
                   >
                     <p className="text-white">{item.cardDescription}</p>

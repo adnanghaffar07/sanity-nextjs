@@ -15,6 +15,12 @@ const logicalServices = {
       title: 'JSON-LD Script',
       type: 'text',
     },
+    { 
+      name: "brochure", 
+      type: "file", 
+      title: "Brochure", 
+      options: { accept: ".pdf" } 
+    },
     {
       name: "serviceCardTitle",
       title: "Service Card Title",

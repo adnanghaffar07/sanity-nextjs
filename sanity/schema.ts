@@ -17,6 +17,8 @@ import valueBlueprints from "./schemas/value-bueprints";
 import popup from "./schemas/popup";
 import valueDiscoveryProcessPage from "./schemas/value-process";
 import lifeAtCa from "./schemas/life-at-ca";
+import news from "./schemas/news";
+import contactForm from "./schemas/contactForm";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,6 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     subServiceSchema,
     testimonial,
     portfolioSchema,
+    news,
     faq,
     lifeAtCa,
     techLogos,
@@ -34,6 +37,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     serviceSummary,
     valueBlueprints,
     popup,
-    valueDiscoveryProcessPage
+    valueDiscoveryProcessPage,
+    contactForm
   ],
 };

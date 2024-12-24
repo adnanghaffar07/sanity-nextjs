@@ -2,6 +2,7 @@ import { PortableText } from "@portabletext/react";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Script from "next/script";
+import SocialShare from "../../components/socialShare";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -98,36 +99,36 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-  // Custom PortableText component configuration
-  const portableTextComponents = {
-    types: {
-      image: ({ value }:any) => (
-        <img
-          className="object-cover w-full h-full rounded-3xl"
-          src={urlForImage(value).toString()}
-          alt={value.alt || "Image"}
-        />
-      ),
+// Custom PortableText component configuration
+const portableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <img
+        className="object-cover w-full h-full rounded-3xl"
+        src={urlForImage(value).toString()}
+        alt={value.alt || "Image"}
+      />
+    ),
+  },
+  list: {
+    bullet: ({ children }: any) => <ul className="list-disc ml-5">{children}</ul>,
+  },
+  marks: {
+    link: ({ children, value }: any) => {
+      const target = value.blank ? '_blank' : undefined;
+      return (
+        <a
+          href={value.href}
+          target={target}
+          rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+          style={{ color: 'blue', textDecoration: 'underline' }} // Custom color for links
+        >
+          {children}
+        </a>
+      );
     },
-    list: {
-      bullet: ({ children }:any) => <ul className="list-disc ml-5">{children}</ul>,
-    },
-    marks: {
-      link: ({ children, value }:any) => {
-        const target = value.blank ? '_blank' : undefined;
-        return (
-          <a
-            href={value.href}
-            target={target}
-            rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-            style={{ color: 'blue', textDecoration: 'underline' }} // Custom color for links
-          >
-            {children}
-          </a>
-        );
-      },
-    },
-  }
+  },
+}
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
@@ -135,7 +136,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
 
 
-  
+
   return (
     <div>
       <div className="relative flex flex-col pb-12 w-full font-light text-white lg:min-h-[700px] bg-[#020C16]">
@@ -155,22 +156,32 @@ const Page = async ({ params }: { params: { slug: string } }) => {
               <h2 className="title capitalize leading-[56px]">{data.title}</h2>
             </div>
           </div>
+
         </div>
       </div>
 
       {/* Introduction Section */}
       <div className="text-black px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {data.blogheading}
-          </h2>
+          <div className="flex flex-col md:flex-row justify-between">
+          <div className="block md:hidden mb-8">
+              <SocialShare title={data.title}/>
+            </div>
+            <h2 className="text-2xl max-w-5xl md:text-3xl font-bold mb-6">
+              {data.blogheading}
+            </h2>
+            <div className="hidden md:block">
+              <SocialShare title={data.title}/>
+            </div>          </div>
+
+
           <p className="text-xl  mb-6">
             {data.introductionheading}
           </p>
-             {/* Rendering description (portable text) */}
-             <div className="my-6 text-lg space-y-6">
-             {data.description && <PortableText value={data.description} components={portableTextComponents} />}
-             </div>
+          {/* Rendering description (portable text) */}
+          <div className="my-6 text-lg space-y-6">
+            {data.description && <PortableText value={data.description} components={portableTextComponents} />}
+          </div>
           {data.cardimage && (
             <img
               className=" object-cover w-full h-full rounded-3xl"
@@ -194,31 +205,31 @@ const Page = async ({ params }: { params: { slug: string } }) => {
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.primaryimage).toString()}
               alt={data.primaryimage?.alt || "blog post"}
-              />
+            />
           )}
         </div>
       </div>
 
       {/* Challenges Faced Section */}
       {data.challengesfacedheading &&
-      <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-        <div className="max-w-7xl mx-auto relative">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {data.challengesfacedheading}
-          </h2>
-          {data.chanllangesfaced &&
-            data.chanllangesfaced.map((challenge: any, index: any) => (
-              <div key={index} className="mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  {challenge.heading}
-                </h3>
-                <p>{challenge.description}</p>
-              </div>
-            ))}
+        <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+          <div className="max-w-7xl mx-auto relative">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              {data.challengesfacedheading}
+            </h2>
+            {data.chanllangesfaced &&
+              data.chanllangesfaced.map((challenge: any, index: any) => (
+                <div key={index} className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {challenge.heading}
+                  </h3>
+                  <p>{challenge.description}</p>
+                </div>
+              ))}
+          </div>
         </div>
-      </div>
-}
+      }
       {/* Tools and Technology Section */}
       {data.caseStudiesToolsSection &&
         <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
@@ -267,6 +278,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       }
 
       {/* Our Approach Section */}
+       {data.ourapproachheading &&
       <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
@@ -286,57 +298,58 @@ const Page = async ({ params }: { params: { slug: string } }) => {
               className=" object-cover w-full h-full rounded-3xl"
               src={urlForImage(data.secondaryimage).toString()}
               alt={data.secondaryimage?.alt || "blog post"}
-              />
+            />
           )}
         </div>
       </div>
+       }
 
       {/* Prerequisites Section */}
       {data.criticalPrerequisitesSection.heading &&
-      <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-        <div className="max-w-7xl mx-auto relative">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {data.criticalPrerequisitesSection?.heading}
-          </h2>
-          <p className="mb-6 text-lg">
-            {data.criticalPrerequisitesSection?.description}
-          </p>
-          <div className="space-y-6">
-            {data.criticalPrerequisitesSection?.prerequisites &&
-              data.criticalPrerequisitesSection?.prerequisites.map(
-                (prerequisite: any, index: any) => (
-                  <div key={index} className="mb-6">
-                    <h3 className="text-xl font-semibold mb-2">
-                      {prerequisite.heading}
-                    </h3>
-                    {prerequisite.details &&
-                      prerequisite.details.map((detail: any, idx: any) => (
-                        <div key={idx} className="ml-4 mb-2">
-                          <h4 className="text-lg font-semibold">
-                            {detail.subheading}
-                          </h4>
-                          <p>{detail.content}</p>
-                        </div>
-                      ))}
-                  </div>
-                )
-              )}
+        <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+          <div className="max-w-7xl mx-auto relative">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              {data.criticalPrerequisitesSection?.heading}
+            </h2>
+            <p className="mb-6 text-lg">
+              {data.criticalPrerequisitesSection?.description}
+            </p>
+            <div className="space-y-6">
+              {data.criticalPrerequisitesSection?.prerequisites &&
+                data.criticalPrerequisitesSection?.prerequisites.map(
+                  (prerequisite: any, index: any) => (
+                    <div key={index} className="mb-6">
+                      <h3 className="text-xl font-semibold mb-2">
+                        {prerequisite.heading}
+                      </h3>
+                      {prerequisite.details &&
+                        prerequisite.details.map((detail: any, idx: any) => (
+                          <div key={idx} className="ml-4 mb-2">
+                            <h4 className="text-lg font-semibold">
+                              {detail.subheading}
+                            </h4>
+                            <p>{detail.content}</p>
+                          </div>
+                        ))}
+                    </div>
+                  )
+                )}
+            </div>
           </div>
         </div>
-      </div>
-}
+      }
       {/* Conclusion Section */}
       {data.conclusionheading &&
-      <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {data.conclusionheading}
-          </h2>
-          <p className="text-lg">{data.conclusion}</p>
+        <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              {data.conclusionheading}
+            </h2>
+            <p className="text-lg">{data.conclusion}</p>
+          </div>
         </div>
-      </div>
-}
+      }
       {/* Project Overview Section */}
       {data.projectoverviewtitle &&
         <div className="bg-gray-100 text-black px-6 md:px-16 py-10 md:py-16">
