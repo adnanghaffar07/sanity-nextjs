@@ -240,11 +240,8 @@ export async function POST(request: any): Promise<any> {
   };
 
   try {
-    console.log("Sending email to the team...");
     const teamResponse = await transporter.sendMail(mailOptions);
     console.log("Team email response:", teamResponse);
-
-    console.log("Sending confirmation email to the user...");
     const userResponse = await transporter.sendMail(immediateMailOptions);
     console.log("User email response:", userResponse);
 
@@ -264,7 +261,7 @@ export async function POST(request: any): Promise<any> {
           }
         );
         const data = await response.json();
-        console.log("Calendly API Response:", data);
+        // console.log("Calendly API Response:", data);
         return data.collection && data.collection.length > 0;
       } catch (error) {
         console.error("Error fetching Calendly data:", error);
