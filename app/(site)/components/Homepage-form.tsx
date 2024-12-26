@@ -110,9 +110,9 @@ export default function HomePageForm() {
       pageName === ""
         ? "Home"
         : pageName
-            ?.split("-")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
+          ?.split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
 
     // Revalidate the email before submitting
     if (!Yup.string().email().isValidSync(values.email)) {
@@ -134,19 +134,19 @@ export default function HomePageForm() {
       formData.append("pagename", actuallPageName || "Home");
       setUploading(true);
       setMessage("Submitting form...");
-    
+
       setMessageSuccess("w-[10%]");
-      
+
       // First API call (Email Submission)
       const emailResponse = await fetch("/api/projectdiscussionform", {
         method: "POST",
         body: formData,
       });
-    
+
       if (!emailResponse.ok) {
         throw new Error("Failed to send email.");
       }
-    
+
       // Second API call (Sanity Submission)
       const sanityResponse = await fetch("/api/submit", {
         method: "POST",
@@ -163,10 +163,10 @@ export default function HomePageForm() {
           page_name: pageName,
         }),
       });
-    
+
       const data = await sanityResponse.json();
       console.log("Sanity API Response:", data);
-    
+
       if (sanityResponse.ok) {
         // Push event to dataLayer for GTM
         (window as any).dataLayer = (window as any).dataLayer || [];
@@ -174,10 +174,10 @@ export default function HomePageForm() {
           event: "formSubmission",
           form: "contactForm",
         });
-    
+
         // Redirect to Thank You page
         router.push("/thankyou");
-    
+
         resetForm();
         recaptchaRef?.current?.reset();
         setRecaptchaValue("");
@@ -201,7 +201,7 @@ export default function HomePageForm() {
       }, 8000);
     }
   }
-    
+
 
   useEffect(() => {
     const formElement = document.getElementById("contact-box");
