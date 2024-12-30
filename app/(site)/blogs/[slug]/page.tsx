@@ -164,14 +164,14 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <div className="text-black px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between">
-          <div className="block md:hidden mb-8">
-              <SocialShare title={data.title}/>
+            <div className="block md:hidden mb-8">
+              <SocialShare title={data.title} />
             </div>
             <h2 className="text-2xl max-w-5xl md:text-3xl font-bold mb-6">
               {data.blogheading}
             </h2>
             <div className="hidden md:block">
-              <SocialShare title={data.title}/>
+              <SocialShare title={data.title} />
             </div>          </div>
 
 
@@ -278,31 +278,31 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       }
 
       {/* Our Approach Section */}
-       {data.ourapproachheading &&
-      <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            {data.ourapproachheading}
-          </h2>
-          {data.ourapproach &&
-            data.ourapproach.map((approach: any, index: any) => (
-              <div key={index} className="mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  {approach.heading}
-                </h3>
-                <p>{approach.description}</p>
-              </div>
-            ))}
-          {data.secondaryimage && (
-            <img
-              className=" object-cover w-full h-full rounded-3xl"
-              src={urlForImage(data.secondaryimage).toString()}
-              alt={data.secondaryimage?.alt || "blog post"}
-            />
-          )}
+      {data.ourapproachheading &&
+        <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              {data.ourapproachheading}
+            </h2>
+            {data.ourapproach &&
+              data.ourapproach.map((approach: any, index: any) => (
+                <div key={index} className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {approach.heading}
+                  </h3>
+                  <p>{approach.description}</p>
+                </div>
+              ))}
+            {data.secondaryimage && (
+              <img
+                className=" object-cover w-full h-full rounded-3xl"
+                src={urlForImage(data.secondaryimage).toString()}
+                alt={data.secondaryimage?.alt || "blog post"}
+              />
+            )}
+          </div>
         </div>
-      </div>
-       }
+      }
 
       {/* Prerequisites Section */}
       {data.criticalPrerequisitesSection.heading &&
@@ -352,7 +352,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       }
       {/* Project Overview Section */}
       {data.projectoverviewtitle &&
-        <div className="bg-gray-50 text-black px-6 md:px-16 py-10 md:py-16">
+        <div className="bg-gray-5 x0 text-black px-6 md:px-16 py-10 md:py-16">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-xl font-bold mb-6">
               {data.projectoverviewtitle}
