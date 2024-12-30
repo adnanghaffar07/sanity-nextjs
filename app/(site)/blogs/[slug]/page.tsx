@@ -352,7 +352,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       }
       {/* Project Overview Section */}
       {data.projectoverviewtitle &&
-        <div className="bg-gray-100 text-black px-6 md:px-16 py-10 md:py-16">
+        <div className="bg-gray-50 text-black px-6 md:px-16 py-10 md:py-16">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-xl font-bold mb-6">
               {data.projectoverviewtitle}
