@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import sgMail from '@sendgrid/mail';  // Import SendGrid
 
 const CALENDLY_API_KEY = process.env.CALENDLY_API_KEY;
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY  || "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";  // Add SendGrid API key to environment variables
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || "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";  // Add SendGrid API key to environment variables
 
 sgMail.setApiKey(SENDGRID_API_KEY);  // Set SendGrid API Key
 
@@ -23,7 +23,7 @@ export async function POST(request: any): Promise<any> {
     secure: true,
     auth: {
       user: "adnan@codeautomation.dev",
-      pass: "lzaq xujq zwvu jkjf", // Replace with environment variables in production
+      pass: "lzaq xujq zwvu jkjf    ", // Replace with environment variables in production
     },
   });
 
@@ -155,11 +155,11 @@ export async function POST(request: any): Promise<any> {
       // Create and send the reminder email after 5 minutes using SendGrid
       setTimeout(async () => {
         try {
-        const reminderMailOptions = {
-          to: email,
-          from: "adnan@codeautomation.dev",
-          subject: "Don’t Forget to Schedule Your Meeting!",
-          html: `
+          const reminderMailOptions = {
+            to: email,
+            from: "adnan@codeautomation.dev",
+            subject: "Don’t Forget to Schedule Your Meeting!",
+            html: `
             <!DOCTYPE html>
             <html lang="en">
               <head>
@@ -189,18 +189,18 @@ export async function POST(request: any): Promise<any> {
               </body>
             </html>
           `,
-        };
+          };
 
-        await sgMail.send(reminderMailOptions);
-        console.log("Reminder email sent to the user after 5 minutes.");
-      } catch (error:any) {
-        console.error("Error sending emails:", error);
-        if (error.response) {
-          console.error("SendGrid error response:", error.response.body);
+          await sgMail.send(reminderMailOptions);
+          console.log("Reminder email sent to the user after 5 minutes.");
+        } catch (error: any) {
+          console.error("Error sending emails:", error);
+          if (error.response) {
+            console.error("SendGrid error response:", error.response.body);
+          }
+          return Response.json({ message: "Error in sending emails" }, { status: 500 });
         }
-        return Response.json({ message: "Error in sending emails" }, { status: 500 });
-      }
-    }, 100000); // 5 minutes in milliseconds
+      }, 100000); // 5 minutes in milliseconds
       console.log("Meeting found for this email. No reminder needed.");
     }
 
