@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
@@ -10,7 +10,6 @@ import ButtonScrollToSection from "../components/ButtonScrollToSection";
 const Page = () => {
   const [originalCards, setOriginalCards] = useState<any[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [filteredItems, setFilteredItems] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,131 +17,91 @@ const Page = () => {
 
   const itemsPerPage = 9;
 
-  const handleFilterChange = (filter: string) => {
-    if (filter === "all") {
-      setSelectedFilters([]);
-      setActiveFilter("all");
-    } else {
-      if (activeFilter === filter) {
-        setSelectedFilters([]);
-        setActiveFilter("all");
-      } else {
-        setSelectedFilters([filter]);
-        setActiveFilter(filter);
-      }
-    }
-    setCurrentPage(0); // Reset to the first page whenever filter changes
-  };
+  const fetchData = async () => {
+    const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
+    try {
+      const data = await client.fetch(query);
+      const caseStudyData = data.find((item: any) => item.title === "CaseStudyInfo");
 
-  useEffect(() => {
-    async function getData() {
-      const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
-      try {
-        const fetchData = await client.fetch(query);
-        return fetchData || [];
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-      }
-    }
-
-    const dataFun = async () => {
-      const data = await getData();
-      const caseStudyData = data.filter(
-        (item: any) => item.title === "CaseStudyInfo"
-      );
-
-      if (caseStudyData && caseStudyData[0].cardItemsList) {
-        const initialArray = caseStudyData[0].cardItemsList;
-        setOriginalCards(initialArray);
-        setFilteredItems(initialArray);
+      if (caseStudyData?.cardItemsList) {
+        setOriginalCards(caseStudyData.cardItemsList);
       } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
       }
-    };
-    dataFun();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    filterItems();
-    setCurrentPage(0); // Reset to the first page when filters change
-  }, [selectedFilters]);
-
-  useEffect(() => {
-    paginateItems();
-  }, [currentPage, filteredItems]);
-
-  const filterItems = () => {
-    let tempItems = originalCards;
+  const filteredItems = useMemo(() => {
+    let items = originalCards;
 
     if (selectedFilters.length > 0) {
-      tempItems = tempItems.filter((item) =>
-        selectedFilters.includes(item.group)
+      items = items.filter((item) => selectedFilters.includes(item.group));
+    }
+
+    if (searchTerm) {
+      items = items.filter((item) =>
+        item.cardTitle?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
-    setFilteredItems(tempItems);
-  };
+    return items;
+  }, [originalCards, selectedFilters, searchTerm]);
 
-  const paginateItems = () => {
+  const paginatedItems = useMemo(() => {
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return filteredItems.slice(startIndex, endIndex);
-  };
+  }, [filteredItems, currentPage]);
 
-  const handleNextPage = () => {
-    if ((currentPage + 1) * itemsPerPage < filteredItems.length) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
-  const handlePrevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    setSelectedFilters(filter === "all" ? [] : [filter]);
+    setCurrentPage(0);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     setSearchTerm(value);
 
-    if (value) {
-      // Filter suggestions based on the search term
-      const filteredSuggestions = originalCards
+    const newSuggestions = value
+      ? originalCards
         .filter((item) =>
-          item.cardTitle?.toLowerCase().startsWith(value.toLowerCase())
+          item.cardTitle?.toLowerCase().startsWith(value)
         )
-        .map((item) => item.cardTitle);
-
-      setSuggestions(filteredSuggestions);
-    } else {
-      setSuggestions([]);
-    }
-
-    // Update filtered items as the user types
-    const filteredItems = originalCards.filter((item) =>
-      item.cardTitle?.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredItems(filteredItems);
-    setCurrentPage(0); // Reset to the first page
+        .map((item) => item.cardTitle)
+      : [];
+    setSuggestions(newSuggestions);
   };
 
   const handleSuggestionClick = (suggestion: string) => {
     setSearchTerm(suggestion);
     setSuggestions([]);
-
-    // Find and set the filtered item matching the suggestion
-    const selectedCaseStudy = originalCards.filter(
-      (item) => item.cardTitle.toLowerCase() === suggestion.toLowerCase()
-    );
-    setFilteredItems(selectedCaseStudy);
-    setCurrentPage(0); // Reset to the first page when a suggestion is clicked
+    setCurrentPage(0);
   };
 
-  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if ((currentPage + 1) * itemsPerPage < filteredItems.length) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
 
   return (
     <>
+      {/* Hero Section */}
       <section className="relative">
         <div className="w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
@@ -154,23 +113,21 @@ const Page = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
-
         <div className="mt-[130px] sm:mt-[290px] items-center absolute inset-0 flex flex-col z-[2]">
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight capitalize leading-[48px] text-white text-center">
             Discover Success Stories
           </h1>
           <p className="mt-2 sm:mt-4 mb-4 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-white max-w-5xl xl:px-0 text-center">
-            Explore our case study on codeautomation, showcasing how innovative strategies significantly enhance efficiency, reduce costs, and accelerate development in software projects.
+            Explore our case study on codeautomation, showcasing how innovative
+            strategies significantly enhance efficiency, reduce costs, and
+            accelerate development in software projects.
           </p>
           <ButtonScrollToSection
             content="Let’s Get Started"
-            classes="bg-[#1D92FB]  hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+            classes="bg-[#1D92FB] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
             destination="gridSection"
-
             key="Lets-Get-Started"
           />
-
-
         </div>
       </section>
 
@@ -330,7 +287,7 @@ const Page = () => {
 
         >
           <div className="md:grid md:grid-cols-3 grid grid-cols-1 gap-7 sm:gap-10 md:gap-10">
-            {paginateItems().map((item: any, index: any) => (
+            {paginatedItems.map((item: any, index: any) => (
               <div key={index} className="relative w-full cursor-pointer group overflow-hidden">
                 <Link href={`/case-studies/${item?.url}`}>
                   {item?.cardImage && (
