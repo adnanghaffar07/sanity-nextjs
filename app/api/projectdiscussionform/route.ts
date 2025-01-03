@@ -30,7 +30,7 @@ export async function POST(request: any): Promise<any> {
   // Email for the team
   const mailOptions = {
     from: "adnan@codeautomation.dev",
-    to: "ayesha@codeautomation.dev",
+   to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
     subject: `CA Website Contact form - ${pageName} page`,
     html: `
       <!DOCTYPE html>
@@ -117,11 +117,8 @@ export async function POST(request: any): Promise<any> {
   };
 
   try {
-    console.log("Sending email to the team...");
     const teamResponse = await transporter.sendMail(mailOptions);
     console.log("Team email response:", teamResponse);
-
-    console.log("Sending confirmation email to the user...");
     const userResponse = await transporter.sendMail(immediateMailOptions);
     console.log("User email response:", userResponse);
 
