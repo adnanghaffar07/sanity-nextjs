@@ -23,7 +23,7 @@ export async function POST(request: any): Promise<any> {
     secure: true,
     auth: {
       user: "adnan@codeautomation.dev",
-      pass: "hmwk rlwe ylfv jakg", // Replace with environment variables in production
+      pass: "hmwk rlwe ylfv jakg",  // Replace with environment variables in production
     },
   });
 
