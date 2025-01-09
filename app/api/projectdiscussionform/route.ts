@@ -30,7 +30,7 @@ export async function POST(request: any): Promise<any> {
   // Email for the team
   const mailOptions = {
     from: "adnan@codeautomation.dev",
-    to: "ayesha@codeautomation.dev",
+    to:  ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
     subject: `CA Website Contact form - ${pageName} page`,
     html: `
       <!DOCTYPE html>
