@@ -18,8 +18,8 @@ export async function POST(request: any): Promise<any> {
     port: 465,
     secure: true,
     auth: {
-      user: "ayesha@codeautomation.dev",
-      pass: "ecdn kgrs slcs lwbo",  // Replace with environment variables in production
+      user: "adnan@codeautomation.dev",
+      pass: "hmwk rlwe ylfv jakg",  // Replace with environment variables in production
     },
   });
 
