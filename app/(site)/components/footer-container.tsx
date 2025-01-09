@@ -317,7 +317,7 @@ export default function FooterContainer() {
               {cpyrighttext.name}
             </div>
           ))} */}
-          Copyright @2024 - by Codeautomation.ai
+          Copyright @2025 - by Codeautomation.ai
         </div>
       </div>
     </div>
