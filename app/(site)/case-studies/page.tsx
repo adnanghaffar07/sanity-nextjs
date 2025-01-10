@@ -353,6 +353,7 @@ const Page = () => {
           <div className="flex gap-2 my-4 md:mt-0">
             {Array.from({ length: totalPages }, (_, index) => (
               <ScrollLink
+                key={index} 
               to="gridSection"
               spy={true}
               smooth={true}
