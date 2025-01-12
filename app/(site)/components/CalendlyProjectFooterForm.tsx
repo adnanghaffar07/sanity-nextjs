@@ -80,8 +80,8 @@ export default function HomePageForm() {
   const currentPath = usePathname();
   const pageName = currentPath ? currentPath.split("/").pop() || "home" : "home";
 
-  console.log("Current Path:", currentPath);
-  console.log("Page Name:", pageName);
+  // console.log("Current Path:", currentPath);
+  // console.log("Page Name:", pageName);
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     event.preventDefault(); // Prevent default form submission
@@ -165,7 +165,7 @@ export default function HomePageForm() {
       });
     
       const data = await sanityResponse.json();
-      console.log("Sanity API Response:", data);
+      // console.log("Sanity API Response:", data);
     
       if (sanityResponse.ok) {
         // Push event to dataLayer for GTM

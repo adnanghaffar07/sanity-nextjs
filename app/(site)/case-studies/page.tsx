@@ -352,6 +352,14 @@ const Page = () => {
 
           <div className="flex gap-2 my-4 md:mt-0">
             {Array.from({ length: totalPages }, (_, index) => (
+              <ScrollLink
+                key={index} 
+              to="gridSection"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
               <button
                 key={index}
                 onClick={() => setCurrentPage(index)}
@@ -363,9 +371,9 @@ const Page = () => {
               >
                 {index + 1}
               </button>
+              </ScrollLink>
             ))}
           </div>
-
 
           <ScrollLink
             to="gridSection"

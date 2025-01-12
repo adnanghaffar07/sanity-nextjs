@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <div>
 
-         <Script
+      <Script
         id="structured-data-webpage"
         type="application/ld+json"
         strategy="beforeInteractive"
@@ -209,7 +209,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Schedule a Call 
+                Schedule a Call
               </Link>
             </div>
             {/* Clutch and Trustpilot section - displayed in a row */}
@@ -309,8 +309,10 @@ export default function Home() {
                     </p>
 
                     <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
-                      <Link
+                      <a
                         href="/technologies"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
                       >
                         <p className="relative grow self-center">
@@ -322,7 +324,7 @@ export default function Home() {
                           className="w-[22px] h-[26.8px]"
                           alt="arrow-icon"
                         />
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -334,105 +336,105 @@ export default function Home() {
           </div>
         </ScrollAnimation>
         <ScrollAnimation>
-        <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
-          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-          <div className="relative z-10 max-w-7xl mx-auto">
-            {/* Section Heading */}
-            <h2 className="text-2xl md:text-4xl text-center font-semibold mb-4">
-              Complete End-to-End Software Development Services
-            </h2>
+          <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
+            <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+            <div className="relative z-10 max-w-7xl mx-auto">
+              {/* Section Heading */}
+              <h2 className="text-2xl md:text-4xl text-center font-semibold mb-4">
+                Complete End-to-End Software Development Services
+              </h2>
 
-            {/* Section Description */}
-            <p className="text-lg xl:text-xl text-gray-600 text-center max-w-4xl mx-auto mb-16">
-              Over years of experience, we know that all businesses work within
-              a specific software and hardware setup. We offer a wide range of
-              software development services that are available to suit the
-              specific requirements for your product. Check out our services
-              below.{" "}
-            </p>
+              {/* Section Description */}
+              <p className="text-lg xl:text-xl text-gray-600 text-center max-w-4xl mx-auto mb-16">
+                Over years of experience, we know that all businesses work within
+                a specific software and hardware setup. We offer a wide range of
+                software development services that are available to suit the
+                specific requirements for your product. Check out our services
+                below.{" "}
+              </p>
 
-            {/* Services Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left px:6 md:px-16 ">
-              <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                <div className="mr-6 flex-shrink-0">
-                  <img
-                    src="/end-to-end-1.png"
-                    alt="Custom Software Development Services Company USA"
-                    className="w-16 h-16"
-                  />
+              {/* Services Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left px:6 md:px-16 ">
+                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                  <div className="mr-6 flex-shrink-0">
+                    <img
+                      src="/end-to-end-1.png"
+                      alt="Custom Software Development Services Company USA"
+                      className="w-16 h-16"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2">
+                      Custom Software Development
+                    </h3>
+                    <p className="text-lg text-gray-700">
+                      Custom Software Solutions To Power Innovation And Efficiency
+                      In Your Business.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-2">
-                    Custom Software Development
-                  </h3>
-                  <p className="text-lg text-gray-700">
-                    Custom Software Solutions To Power Innovation And Efficiency
-                    In Your Business.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                <div className="mr-6 flex-shrink-0">
-                  <img
-                    src="end-to-end-2.png"
-                    alt="Offshore Software Development Services Company USA"
-                    className="w-16 h-16"
-                  />
+                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                  <div className="mr-6 flex-shrink-0">
+                    <img
+                      src="end-to-end-2.png"
+                      alt="Offshore Software Development Services Company USA"
+                      className="w-16 h-16"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2">
+                      Offshore Software Development
+                    </h3>
+                    <p className="text-lg text-gray-700">
+                      Ensure premium results, coupled with seamless project
+                      management by the leverage of cost-effective offshore
+                      development services to hire top global talent.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-2">
-                    Offshore Software Development
-                  </h3>
-                  <p className="text-lg text-gray-700">
-                    Ensure premium results, coupled with seamless project
-                    management by the leverage of cost-effective offshore
-                    development services to hire top global talent.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                <div className="mr-6 flex-shrink-0">
-                  <img
-                    src="end-to-end-3.png"
-                    alt="Enterprise Software Development Services Company USA"
-                    className="w-16 h-16"
-                  />
+                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                  <div className="mr-6 flex-shrink-0">
+                    <img
+                      src="end-to-end-3.png"
+                      alt="Enterprise Software Development Services Company USA"
+                      className="w-16 h-16"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2">
+                      Enterprise Software Development
+                    </h3>
+                    <p className="text-lg text-gray-700">
+                      Scalable, secure enterprise solutions that enhance
+                      productivity and support complex business operations.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-2">
-                    Enterprise Software Development
-                  </h3>
-                  <p className="text-lg text-gray-700">
-                    Scalable, secure enterprise solutions that enhance
-                    productivity and support complex business operations.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                <div className="mr-6 flex-shrink-0">
-                  <img
-                    src="/end-to-end-4.png"
-                    alt="Software Integration Services Company USA"
-                    className="w-16 h-16"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-2">
-                    Software Integration
-                  </h3>
-                  <p className="text-lg text-gray-700">
-                    Software application alignment with a single point-to-point
-                    connection removing data silos and optimizing business
-                    workflow
-                  </p>
+                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                  <div className="mr-6 flex-shrink-0">
+                    <img
+                      src="/end-to-end-4.png"
+                      alt="Software Integration Services Company USA"
+                      className="w-16 h-16"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2">
+                      Software Integration
+                    </h3>
+                    <p className="text-lg text-gray-700">
+                      Software application alignment with a single point-to-point
+                      connection removing data silos and optimizing business
+                      workflow
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="py-16 px-6 md:px-16 max-w-7xl mx-auto">
@@ -567,69 +569,69 @@ export default function Home() {
           </section>
         </ScrollAnimation>
         <ScrollAnimation>
-        {/* Call to Action (CTA) Section */}
-        <div
-          className="w-full px-6 py-10 md:px-16 md:py-20 shadow-lg flex flex-col md:flex-row items-center text-white"
-          style={{
-            backgroundImage: "url(/Container.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
-            {/* Left Content */}
-            <div className="w-full md:w-1/2 text-left">
-              <h2 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
-                Want To Develop A Custom Software Solution?
-              </h2>
-              <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
-                <Link
-                  href="https://join.skype.com/invite/crU4cXW4bttb"
-                  target="_blank"
-                  className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
-                >
-                  <p className="relative grow self-center text-black font-semibold text-lg">
-                    Get Started Today
-                  </p>
-                </Link>
+          {/* Call to Action (CTA) Section */}
+          <div
+            className="w-full px-6 py-10 md:px-16 md:py-20 shadow-lg flex flex-col md:flex-row items-center text-white"
+            style={{
+              backgroundImage: "url(/Container.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+              {/* Left Content */}
+              <div className="w-full md:w-1/2 text-left">
+                <h2 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
+                  Want To Develop A Custom Software Solution?
+                </h2>
+                <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
+                  <Link
+                    href="https://join.skype.com/invite/crU4cXW4bttb"
+                    target="_blank"
+                    className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
+                  >
+                    <p className="relative grow self-center text-black font-semibold text-lg">
+                      Get Started Today
+                    </p>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Stats */}
+              <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
+                {/* Stats Items */}
+                <div className="w-[45%] flex items-center">
+                  <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
+                  <div>
+                    <p className="text-4xl font-bold">500+</p>
+                    <p className="text-lg text-white font-light mt-2">Clients Served</p>
+                  </div>
+                </div>
+                <div className="w-[45%] flex items-center">
+                  <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
+                  <div>
+                    <p className="text-4xl font-bold">10+</p>
+                    <p className="text-lg text-white font-light mt-2">Years in Business</p>
+                  </div>
+                </div>
+                <div className="w-[45%] flex items-center">
+                  <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
+                  <div>
+                    <p className="text-4xl font-bold">350+</p>
+                    <p className="text-lg text-white font-light mt-2">Industries Served</p>
+                  </div>
+                </div>
+                <div className="w-[45%] flex items-center">
+                  <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
+                  <div>
+                    <p className="text-4xl font-bold">200+</p>
+                    <p className="text-lg text-white font-light mt-2">Global Clients</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Stats */}
-            <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
-              {/* Stats Items */}
-              <div className="w-[45%] flex items-center">
-                <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
-                <div>
-                  <p className="text-4xl font-bold">500+</p>
-                  <p className="text-lg text-white font-light mt-2">Clients Served</p>
-                </div>
-              </div>
-              <div className="w-[45%] flex items-center">
-                <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
-                <div>
-                  <p className="text-4xl font-bold">10+</p>
-                  <p className="text-lg text-white font-light mt-2">Years in Business</p>
-                </div>
-              </div>
-              <div className="w-[45%] flex items-center">
-                <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
-                <div>
-                  <p className="text-4xl font-bold">350+</p>
-                  <p className="text-lg text-white font-light mt-2">Industries Served</p>
-                </div>
-              </div>
-              <div className="w-[45%] flex items-center">
-                <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
-                <div>
-                  <p className="text-4xl font-bold">200+</p>
-                  <p className="text-lg text-white font-light mt-2">Global Clients</p>
-                </div>
-              </div>
-            </div>
           </div>
-
-        </div>
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
