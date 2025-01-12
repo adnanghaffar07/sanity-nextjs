@@ -37,8 +37,8 @@ export async function POST(req: NextRequest) {
         notes: body.payload.questions_and_answers
           ?.map((qa: any) => qa.answer)
           .join(", "),
-        start_time: body.payload.event.start_time,
-        end_time: body.payload.event.end_time,
+        start_time: body.payload.scheduled_event.start_time, // Correct field access for start_time
+        end_time: body.payload.scheduled_event.end_time,     // Correct field access for end_time
       };
 
       // Save meeting data to Sanity
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ message: "Event processed successfully" });
-  } catch (error:any) {
+  } catch (error: any) {
     console.error("Error processing webhook:", error);
     return NextResponse.json(
       { message: "Error processing webhook", error: error.message },
