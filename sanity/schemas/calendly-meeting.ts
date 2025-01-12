@@ -34,6 +34,11 @@ export default {
         title: "Meeting End",
         type: "datetime",
       },
+      {
+        name: "eventName",
+        title: "Event Name",
+        type: "string",
+      },
     ],
   };
   
