@@ -200,7 +200,7 @@ export async function POST(request: any): Promise<any> {
         }
         return Response.json({ message: "Error in sending emails" }, { status: 500 });
       }
-    }, 100000); // 5 minutes in milliseconds
+    }, 6000); // 5 minutes in milliseconds
       console.log("Meeting found for this email. No reminder needed.");
     }
 
