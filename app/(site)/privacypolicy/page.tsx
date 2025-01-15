@@ -109,7 +109,7 @@ const page = () => {
             <strong>Website</strong> refers to Code Automation, accessible from{" "}
             <a
               href="https://codeautomation.ai/"
-              rel="external nofollow noopener"
+              rel="noopener noreferrer"
               target="_blank"
               className="text-blue-500 hover:underline"
             >

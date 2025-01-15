@@ -51,7 +51,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
+      <meta property="og:title" content="Software Development Company in the USA | CodeAutomation" />
+        <meta property="og:description" content="CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts." />
+        <meta property="og:image" content="https://codeautomation.ai/thankyou.jpg" /> {/* Path to your logo */}
+        <meta property="og:url" content="https://codeautomation.ai/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:title" content="Software Development Company in the USA | CodeAutomation" />
+        <meta name="twitter:description" content="CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts." />
+        <meta name="twitter:image" content="https://codeautomation.ai/" />
+        <meta name="twitter:card" content="summary_large_image" />
+  
       <link rel="apple-touch-icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
 
         <link
           rel="preload"

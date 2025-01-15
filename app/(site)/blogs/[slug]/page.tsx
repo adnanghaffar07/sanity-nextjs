@@ -116,11 +116,13 @@ const portableTextComponents = {
   marks: {
     link: ({ children, value }: any) => {
       const target = value.blank ? '_blank' : undefined;
+      const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
+      
       return (
         <a
           href={value.href}
           target={target}
-          rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+          rel={rel} // Add rel if target is _blank
           style={{ color: 'blue', textDecoration: 'underline' }} // Custom color for links
         >
           {children}
@@ -128,6 +130,7 @@ const portableTextComponents = {
       );
     },
   },
+  
 }
 
 const Page = async ({ params }: { params: { slug: string } }) => {
