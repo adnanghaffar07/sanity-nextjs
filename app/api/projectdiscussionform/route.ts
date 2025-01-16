@@ -1,200 +1,193 @@
 import nodemailer from "nodemailer";
 import fetch from "node-fetch";
 
-const CALENDLY_API_KEY = process.env.CALENDLY_API_KEY;
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_TABLE_NAME = "CA Booking Reminder"; // Replace with your table name
+const CALENDLY_API_KEY = process.env.CALENDLY_API_KEY || "";
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || "";
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || "";
 
-export async function POST(request: any): Promise<any> {
-  console.log("POST handler triggered.");
+export async function POST(request: Request): Promise<Response> {
   try {
     const completeFormData = await request.formData();
-    console.log("Form data received:", completeFormData);
 
-    const name = completeFormData.get("name") as string;
-    const email = completeFormData.get("email") as string;
-    const number = completeFormData.get("number") as string;
-    const looking = completeFormData.get("looking") as string;
-    const message = completeFormData.get("message") as string;
-    const pageName = completeFormData.get("pagename") as string;
+    const name = completeFormData.get("name") as string | null;
+    const email = completeFormData.get("email") as string | null;
+    const number = completeFormData.get("number") as string | null;
+    const looking = completeFormData.get("looking") as string | null;
+    const message = completeFormData.get("message") as string | null;
+    const pageName = completeFormData.get("pagename") as string | null;
 
-    console.log("Parsed form data:", { name, email, number, looking, message, pageName });
+    if (!name || !email || !number || !looking || !message || !pageName) {
+      return new Response(JSON.stringify({ error: "Invalid form data" }), { status: 400 });
+    }
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true,
       auth: {
-        user: "mailto:adnan@codeautomation.dev",
-        pass: "hmwk rlwe ylfv jakg",  // Replace with environment variables in production
+        user: process.env.EMAIL_USER, // Set in environment variables
+        pass: process.env.EMAIL_PASS, // Set in environment variables
       },
     });
 
-    // Email for the team
-    const mailOptions = {
-      from: "mailto:adnan@codeautomation.dev",
-      to: ["mailto:ayesha@codeautomation.dev"],
-      subject: `CA Website Contact form - ${pageName} page`,
-      html: `<!DOCTYPE html>
-        <html lang="en">
-          <body>
-            <h1>Project Discussion Form</h1>
-            <p>Name: ${name}</p>
-            <p>Email: ${email}</p>
-            <p>Contact Number: ${number}</p>
-            <p>Looking For: ${looking}</p>
-            <p>Message: ${message}</p>
+    const teamMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: ["ayesha@codeautomation.dev"],
+      subject: `CA Website Contact Form - ${pageName} Page`,
+      html: `
+        <html>
+          <body style="font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 0;">
+            <div style="max-width: 600px; margin: 30px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <h1 style="font-size: 28px; color: #4CAF50; text-align: center; margin-bottom: 20px;">Project Discussion Form</h1>
+              <p style="font-size: 16px; margin: 10px 0;"><strong>Name:</strong> ${name}</p>
+              <p style="font-size: 16px; margin: 10px 0;"><strong>Email:</strong> ${email}</p>
+              <p style="font-size: 16px; margin: 10px 0;"><strong>Contact Number:</strong> ${number}</p>
+              <p style="font-size: 16px; margin: 10px 0;"><strong>Looking For:</strong> ${looking}</p>
+              <p style="font-size: 16px; margin: 10px 0;"><strong>Message:</strong> ${message}</p>
+              <div style="margin-top: 20px; text-align: center;">
+                <p style="font-size: 14px; color: #777;">Thank you for reaching out!</p>
+              </div>
+            </div>
           </body>
-        </html>`,
+        </html>
+      `
     };
-
-    const teamResponse = await transporter.sendMail(mailOptions);
-    console.log("Team email sent successfully:", teamResponse);
+    
+    const userMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Thank you for reaching out!",
+      html: `
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <style>
+              body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+              .email-container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); overflow: hidden; }
+              .header { background-color: #007bff; padding: 20px; color: #ffffff; text-align: center; }
+              .header h1 { margin: 0; font-size: 24px; }
+              .content { padding: 20px; color: #333333; line-height: 1.6; }
+              .cta { text-align: center; margin: 20px 0; }
+              .cta a { text-decoration: none; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; font-size: 16px; }
+              .cta a:hover { background-color: #0056b3; }
+              .footer { background-color: #f1f1f1; text-align: center; padding: 10px; font-size: 12px; color: #666666; }
+            </style>
+          </head>
+          <body>
+            <div class="email-container">
+              <div class="header">
+                <h1>Thank You for Reaching Out!</h1>
+              </div>
+              <div class="content">
+                <h2>Dear ${name},</h2>
+                <p>We appreciate you taking the time to contact us. Your message is important to us, and our team will review it shortly.</p>
+                <p>Meanwhile, feel free to explore our website or schedule a call with us directly. We look forward to connecting with you soon.</p>
+                <div class="cta">
+                  <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" target="_blank">Schedule a Call</a>
+                </div>
+                <p>If you have any additional questions or concerns, don’t hesitate to reach out via email or phone.</p>
+              </div>
+              <div class="footer">© 2025 CodeAutomation. All Rights Reserved.</div>
+            </div>
+          </body>
+        </html>
+      `,
+    };
+    
+    // Send emails
+    await transporter.sendMail(teamMailOptions);
+    await transporter.sendMail(userMailOptions);
 
     const hasMeeting = await checkMeetingExists(email);
 
     if (!hasMeeting) {
-      console.log("No meeting found for this email. Proceeding to add reminder email to Airtable...");
-
-      // Add reminder to Airtable with a timestamp for 5 minutes later
       const reminderTimestamp = new Date();
       reminderTimestamp.setMinutes(reminderTimestamp.getMinutes() + 5);
 
       await addEmailToAirtable({
         Name: name,
         Email: email,
-        Subject: "Don’t Forget to Schedule Your Meeting!",
-        Body: `
-          <!DOCTYPE html>
-          <html lang="en">
-            <body>
-              <h1>Let’s Connect, ${name}!</h1>
-              <p>We noticed you haven’t scheduled a meeting with us yet. Let’s discuss your project and bring your vision to life!</p>
-              <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York">Schedule a Meeting Now</a>
-            </body>
-          </html>`,
-        ReminderTimestamp: reminderTimestamp.toISOString(), // Store the timestamp
+        Looking: "Don’t Forget to Schedule Your Meeting!",
+        Message: `
+          <div style="max-width: 600px; margin: 30px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h1 style="font-size: 28px; color: #FF9800; text-align: center; margin-bottom: 20px;">Reminder: Schedule Your Meeting, ${name}!</h1>
+            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6;">Hi ${name},</p>
+            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6;">We noticed you haven’t scheduled a meeting with us yet. We want to make sure we connect at a time that works best for you!</p>
+            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6;">Please <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" style="color: #FF9800; text-decoration: none; font-weight: bold;">click here</a> to book your time with us.</p>
+            <div style="margin-top: 30px; text-align: center;">
+              <p style="font-size: 14px; color: #777;">We look forward to speaking with you soon!</p>
+              <p style="font-size: 14px; color: #777;">Best regards,</p>
+              <p style="font-size: 14px; color: #777;">The CA Team</p>
+            </div>
+          </div>
+        `,
+        ReminderTimestamp: reminderTimestamp.toISOString(),
       });
-      console.log("Reminder email added to Airtable.");
-
-    } else {
-      console.log("Meeting already exists for this email. No action needed.");
+      
+      
     }
 
-    return Response.json({ message: "Emails handled successfully" }, { status: 200 });
+    return new Response(JSON.stringify({ message: "Emails handled successfully" }), { status: 200 });
   } catch (error) {
-    console.error("Error handling POST request:", error);
-    return Response.json({ message: "Error handling emails" }, { status: 500 });
+    console.error("Error in POST handler:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
   }
 }
 
-// Function to check if the email exists in any scheduled event
 async function checkMeetingExists(email: string): Promise<boolean> {
-  console.log("Checking meeting existence for email:", email);
   try {
     const userUri = await getUserId();
-    console.log("Calendly user URI fetched:", userUri);
-
-    const response = await fetch(
-      `https://api.calendly.com/scheduled_events?invitee_email=${email}&user=${encodeURIComponent(userUri)}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${CALENDLY_API_KEY}`,
-        },
-      }
-    );
+    const response = await fetch(`https://api.calendly.com/scheduled_events?invitee_email=${email}&user=${encodeURIComponent(userUri)}`, {
+      headers: { Authorization: `Bearer ${CALENDLY_API_KEY}` },
+    });
     const data = await response.json();
-    console.log("Calendly meeting check response:", data);
-
     return data.collection && data.collection.length > 0;
   } catch (error) {
-    console.error("Error fetching Calendly data:", error);
+    console.error("Error checking Calendly events:", error);
     return false;
   }
 }
 
-// Function to add email to Airtable
 async function addEmailToAirtable(emailData: {
   Name: string;
   Email: string;
-  Subject: string;
-  Body: string;
-  ReminderTimestamp: string; // Store reminder timestamp
+  Looking: string;
+  Message: string;
+  ReminderTimestamp: string;
 }) {
-  console.log("Adding email to Airtable:", emailData);
-
-  const response = await fetch(
-    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/tblrMLGwSsOnZ17kO`, // Use table ID
-    {
+  try {
+    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/tblrMLGwSsOnZ17kO`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${AIRTABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        fields: {
-          Name: emailData.Name,
-          Email: emailData.Email,
-          Looking: emailData.Subject,
-          Message: emailData.Body,
-          ReminderTimestamp: emailData.ReminderTimestamp, // Ensure this field is correctly set
-        },
-      }),
-    }
-  );
-
-  console.log("Airtable response status:", response.status);
-  const responseBody = await response.text();
-  console.log("Airtable response body:", responseBody);
-
-  if (!response.ok) {
-    console.error("Failed to add email to Airtable:", responseBody);
-    throw new Error(`Failed to add email to Airtable: ${responseBody}`);
-  }
-
-  const data = JSON.parse(responseBody);
-  console.log("Airtable API response:", data);
-}
-
-// Function to get Calendly user ID
-async function getUserId(): Promise<string> {
-  console.log("Fetching Calendly user ID...");
-  try {
-    const response = await fetch("https://api.calendly.com/users/me", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${CALENDLY_API_KEY}`,
-      },
+      body: JSON.stringify({ fields: emailData }),
     });
 
-    console.log("Calendly user ID response status:", response.status);
+    if (!response.ok) {
+      throw new Error(`Airtable error: ${await response.text()}`);
+    }
+  } catch (error) {
+    console.error("Error adding email to Airtable:", error);
+    throw error;
+  }
+}
+
+async function getUserId(): Promise<string> {
+  try {
+    const response = await fetch("https://api.calendly.com/users/me", {
+      headers: { Authorization: `Bearer ${CALENDLY_API_KEY}` },
+    });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Failed to fetch user ID:", errorText);
-      throw new Error(`Failed to fetch user ID: ${response.statusText}`);
+      throw new Error(`Calendly user fetch error: ${await response.text()}`);
     }
 
     const data = await response.json();
-    console.log("Calendly user data:", data);
-
     return data.resource.uri;
   } catch (error) {
-    console.error("Error in getUserId:", error);
-    throw new Error("Unable to retrieve user ID from Calendly");
+    console.error("Error fetching Calendly user ID:", error);
+    throw error;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
