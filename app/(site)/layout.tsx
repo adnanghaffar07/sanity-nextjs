@@ -51,20 +51,30 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-      <meta property="og:title" content="Software Development Company in the USA | CodeAutomation" />
-        <meta property="og:description" content="CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts." />
-        <meta property="og:image" content="https://codeautomation.ai/thankyou.jpg" /> {/* Path to your logo */}
-        <meta property="og:url" content="https://codeautomation.ai/" />
-        <meta property="og:type" content="website" />
+        {/* General Meta Tags */}
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="title" content="Software Development Company in the USA | CodeAutomation" />
+        <meta name="description" content="CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts." />
 
-        {/* Twitter Card Meta Tags */}
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://codeautomation.ai/" />
+        <meta property="og:title" content="Software Development Company in the USA | CodeAutomation" />
+        <meta property="og:description" content="CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts." />
+        <meta property="og:image" content="https://codeautomation.ai/thankyou.jpg" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://codeautomation.ai/" />
         <meta name="twitter:title" content="Software Development Company in the USA | CodeAutomation" />
         <meta name="twitter:description" content="CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts." />
-        <meta name="twitter:image" content="https://codeautomation.ai/" />
-        <meta name="twitter:card" content="summary_large_image" />
-  
-      <link rel="apple-touch-icon" href="/favicon.ico" />
-      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <meta name="twitter:image" content="https://codeautomation.ai/thankyou.jpg" />
+        {/* Title */}
+        <title>Software Development Company in the USA | CodeAutomation</title>
+
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
 
         <link
@@ -184,7 +194,7 @@ export default function RootLayout({
 
 
 
-      
+
       {/* Google Tag Manager */}
       <Script
         strategy="afterInteractive"

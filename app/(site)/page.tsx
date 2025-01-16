@@ -176,21 +176,21 @@ export default function Home() {
         }}
       />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-      <video
-  className="top-0 left-0 object-cover absolute inset-0 w-full h-full"
-  width="100%"
-  height="100%"
-  muted
-  autoPlay
-  loop
-  playsInline
-  preload="metadata"
-  poster="/hero.jpg" // Ensure this is an optimized image
->
-  <source src="/hero-sec-video.webm" type="video/webm" />
-  <source src="/hero-sec-video.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+        <video
+          className="top-0 left-0 object-cover absolute inset-0 w-full h-full"
+          width="100%"
+          height="100%"
+          muted
+          autoPlay
+          loop
+          playsInline
+          preload="metadata"
+          poster="/hero.jpg" // Ensure this is an optimized image
+        >
+          <source src="/hero-sec-video.webm" type="video/webm" />
+          <source src="/hero-sec-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
