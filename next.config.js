@@ -11,7 +11,6 @@ module.exports = {
     },
     async redirects() {
       return [
-        
         {
           source: '/services/custom-web-cms',
           destination: '/services/custom-cms-development-services',
