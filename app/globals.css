@@ -1,7 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=spinwerad:wght@500&display=swap"); */
-
 @import url("https://fonts.googleapis.com/css2?family=Klein:wght@400;700&display=swap");
 
 .font-klein {
@@ -49,43 +45,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* :root { */
-/* fonts */
-/* --font-poppins: Poppins; */
-/* --font-spinwerad: spinwerad; */
-/* --font-kanit: Kanit; */
-
-/* font sizes */
-/* --font-size-8xl: 27px;
-  --font-size-6xl: 25px;
-  --font-size-20xl: 39px;
-  --font-size-15xl: 34px;
-  --font-size-153xl: 172px;
-  --font-size-9xl: 28px;
-  --font-size-439xl: 458px;
-  --font-size-93xl: 112px;
-  --font-size-76xl: 95px;
-  --font-size-xl-5: 20.5px;
-  --font-size-12xl: 31px;
-  --font-size-4xl: 23px;
-  --font-size-mid: 17px; */
-
-/* Colors */
-/* --color-white: #fff;
-  --color-black: #000;
-  --color-gray-100: #002244;
-  --color-whitesmoke: #edecec;
-  --color-dodgerblue: #0a8ffc;
-  --color-darkslateblue: #0c4f92; */
-
-/* Border radiuses */
-/* --br-lgi: 19px;
-  --br-9xl: 28px;
-  --br-mid: 17px;
-  --br-7xl: 26px;
-  --br-mini: 15px; */
-/* } */
 
 
 .greetings {
@@ -243,7 +202,6 @@ body {
   fill: black;
 }
 
-/* Navbar mega menu */
 
 /* Navbar Styling */
 .navbar {
@@ -313,51 +271,7 @@ body {
   visibility: visible;
 }
 
-/* Mega Menu Styling */
-/* .mega-box {
-  position: fixed;
-  top: 68px;
-  left: 30%; 
-  width: calc(40% - 20px); 
-  max-width: calc(40% - 20px);
-  background-color: #ffffff;
-  padding: 25px 20px 20px 20px; 
-  border-radius: 12px;
-  display: none;
-  z-index: 1000;
-}
 
-.mega-box.visible {
-  display: block; 
-} */
-
-/* .mega-box::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: 21%; 
-  transform: translateX(-50%);
-  border-width: 10px;
-  border-style: solid;
-  border-color: transparent transparent #ffffff transparent;
-}  */
-
-/* .mega-menu:hover .mega-box,
-.mega-box:hover {
-  animation: showMegaMenu 0.4s forwards;
-} */
-
-/* @keyframes showMegaMenu {
-  from {
-    opacity: 0;
-    visibility: hidden;
-  }
-  to {
-    opacity: 1;
-    visibility: visible;
-  }
-}
- */
 
 .content {
   display: flex;
@@ -475,3 +389,6 @@ body {
 .animate-scroll {
   animation: scroll 25s linear infinite;
 }
+
+
+

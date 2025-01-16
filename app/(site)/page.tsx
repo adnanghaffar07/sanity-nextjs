@@ -176,20 +176,21 @@ export default function Home() {
         }}
       />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <video
-          className="top-0 left-0 object-cover absolute inset-0 size-full"
-          width="100%"
-          height="100%"
-          muted
-          autoPlay
-          loop
-          playsInline
-          preload="auto"
-          poster="/hero.jpg" // Add this line
-        >
-          <source src="/hero-sec-video.webm" type="video/webm" />
-          <source src="/hero-sec-video.mp4" type="video/mp4" />
-        </video>
+      <video
+  className="top-0 left-0 object-cover absolute inset-0 w-full h-full"
+  width="100%"
+  height="100%"
+  muted
+  autoPlay
+  loop
+  playsInline
+  preload="metadata"
+  poster="/hero.jpg" // Ensure this is an optimized image
+>
+  <source src="/hero-sec-video.webm" type="video/webm" />
+  <source src="/hero-sec-video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
@@ -252,9 +253,9 @@ export default function Home() {
           <div className="relative z-10">
             <div className="max-w-[1920px] mx-auto">
               <div className="flex flex-col items-center justify-center text-center mb-6">
-                <h2 className="text-2xl md:text-4xl font-semibold mb-4">
+                <h1 className="text-2xl md:text-4xl font-semibold mb-4">
                   Why Our Software Development Trusted by Industry Leaders
-                </h2>
+                </h1>
                 <h3 className="text-lg md:text-2xl font-medium max-w-4xl text-[#3C3C3C]">
                   Businesses trust us for our top-notch software development
                   services, proven expertise, and reliable solutions tailored to
@@ -340,9 +341,9 @@ export default function Home() {
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
             <div className="relative z-10 max-w-7xl mx-auto">
               {/* Section Heading */}
-              <h2 className="text-2xl md:text-4xl text-center font-semibold mb-4">
+              <h3 className="text-2xl md:text-4xl text-center font-semibold mb-4">
                 Complete End-to-End Software Development Services
-              </h2>
+              </h3>
 
               {/* Section Description */}
               <p className="text-lg xl:text-xl text-gray-600 text-center max-w-4xl mx-auto mb-16">
@@ -450,9 +451,9 @@ export default function Home() {
 
               {/* Text Content */}
               <div className="lg:w-[50%] ">
-                <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
+                <h4 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
                   Who We Are
-                </h2>
+                </h4>
                 <p className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full tracking-normal">
                   We are a leading IT software development company specializing
                   in crafting and managing high-performing remote software
@@ -484,9 +485,9 @@ export default function Home() {
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
             <div className="justify-center text-center relative z-10 pb-10 max-w-7xl mx-auto" >
               <div>
-                <h2 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                <h3 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
                   Why Choose Us for Your Software Development Services?
-                </h2>
+                </h3>
                 <p className=" justify-center text-center text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
                   Outsource with us for real experience in custom software
                   development and top-line software solutions that will bring
@@ -581,13 +582,14 @@ export default function Home() {
             <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
               {/* Left Content */}
               <div className="w-full md:w-1/2 text-left">
-                <h2 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
+                <h4 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
                   Want To Develop A Custom Software Solution?
-                </h2>
+                </h4>
                 <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
                   <Link
                     href="https://join.skype.com/invite/crU4cXW4bttb"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
                   >
                     <p className="relative grow self-center text-black font-semibold text-lg">
@@ -635,9 +637,9 @@ export default function Home() {
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
-            <h2 className="self-center text-center font-bold text-black xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
+            <h4 className="self-center text-center font-bold text-black xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
               Transformative Software Development Case Studies
-            </h2>
+            </h4>
             <p className="lg:mt-8 mt-4 text-lg  md:text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
               Explore the impactful results of our expertise in software
               development. Each project in our portfolio reflects our commitment
@@ -658,9 +660,9 @@ export default function Home() {
             <div className="relative flex gap-5 max-md:flex-col max-md:gap-0 max-w-7xl mx-auto">
               <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center md:px-4">
                 <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
-                  <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
+                  <h3 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
                     Our Development Approach
-                  </h2>
+                  </h3>
                   <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                     <p>
                       At CodeAutomation, we blend collaboration, creativity, and
@@ -856,9 +858,9 @@ export default function Home() {
 
           <ScrollAnimation>
             <div className="relative z-10 flex flex-col items-center">
-              <h2 className="w-full xl:text-4xl text-2xl font-medium text-white text-center">
+              <h3 className="w-full xl:text-4xl text-2xl font-medium text-white text-center">
                 Trusted by Industry Leaders
-              </h2>
+              </h3>
               <p className="self-center md:mt-6 mt-3 lg:text-xl text-lg text-center text-white max-w-4xl mx-auto">
                 Let us show you how our services have helped clients with custom
                 software development. These client reviews will tell you why our
@@ -887,9 +889,9 @@ export default function Home() {
               alt="ellipse"
             />
             <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10 xl:container xl:mx-auto">
-              <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
+              <h5 className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
-              </h2>
+              </h5>
               <Suspense fallback={<p>Loading FAQs Section...</p>}>
                 <Faqs />
               </Suspense>

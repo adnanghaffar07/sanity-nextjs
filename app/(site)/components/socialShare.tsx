@@ -23,7 +23,8 @@ const SocialShare = ({ title }: { title: string }) => {
             `https://api.whatsapp.com/send?text=${encodeURIComponent(
               `${title}\n\n${currentUrl}`
             )}`,
-            "_blank"
+            "_blank",
+      "noopener noreferrer"
           )
         }
       />
@@ -39,7 +40,8 @@ const SocialShare = ({ title }: { title: string }) => {
       )}&quote=${encodeURIComponent(
         `Check this out: ${title}. Visit here for more details!`
       )}`,
-      "_blank"
+       "_blank",
+      "noopener noreferrer"
     )
   }
 />
@@ -57,7 +59,8 @@ const SocialShare = ({ title }: { title: string }) => {
       )}&summary=${encodeURIComponent(
         "Check out this blog on CodeAutomation.ai! A leading platform for custom software and mobile development solutions."
       )}&source=CodeAutomation.ai`,
-      "_blank"
+     "_blank",
+      "noopener noreferrer"
     )
   }
 />
@@ -91,7 +94,8 @@ const SocialShare = ({ title }: { title: string }) => {
       )}&text=${encodeURIComponent(
         `Check out this blog: "${title}"! Read more at `
       )}`,
-      "_blank"
+     "_blank",
+      "noopener noreferrer"
     )
   }
 />
