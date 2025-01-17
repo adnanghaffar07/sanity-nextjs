@@ -36,7 +36,7 @@ function urlForImage(source: any) {
 }
 
 async function getFormData() {
-  const queryValue = `*[_type == 'testing']{
+  const queryValue = `*[_type == 'contactForm']{
     name,
     email
   }`;
@@ -51,7 +51,7 @@ async function getFormData() {
 }
 
 async function getCalendlyData() {
-  const queryValue = `*[_type == 'testing']{
+  const queryValue = `*[_type == 'calendlyMeeting']{
     name,
     email
   }`;

@@ -20,7 +20,6 @@ import lifeAtCa from "./schemas/life-at-ca";
 import news from "./schemas/news";
 import contactForm from "./schemas/contactForm";
 import calendlyMeeting from "./schemas/calendly-meeting";
-import testing from "./schemas/testing";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -42,6 +41,5 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueDiscoveryProcessPage,
     contactForm,
     calendlyMeeting,
-    testing
   ],
 };
