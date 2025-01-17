@@ -18,13 +18,16 @@ interface SanityWebhookBody {
   };
 }
 
-
 type Recipient = {
   name: string;
   email: string;
 };
 
-export function urlForImage(source: any) {
+// Initialize Sanity image builder
+const builder = imageUrlBuilder(client);
+
+// Helper function to build image URLs
+function urlForImage(source: any) {
   if (!source) {
     console.error("Image source is undefined or null");
     return '';
@@ -62,16 +65,11 @@ async function getCalendlyData() {
   }
 }
 
-// Initialize Sanity image builder
-const builder = imageUrlBuilder(client);
-
-function urlFor(source: any) {
-  return builder.image(source).url();
-}
 export async function POST(req: NextRequest) {
   const secret = process.env.SANITY_WEBHOOK_SECRET;
   const calendlyData = await getCalendlyData();
   const formData = await getFormData();
+
   console.log(calendlyData, "Calendly Emails Fetched");
   console.log(formData, "Form Emails Fetched");
 
@@ -89,7 +87,7 @@ export async function POST(req: NextRequest) {
       const { title, slug, introductionheading, heroimage } = body;
 
       // Get the image URL from the hero image reference
-      const imageUrl = urlFor(heroimage.asset._ref); // Access image URL via Sanity's image builder
+      const imageUrl = urlForImage(heroimage.asset); // Access image URL via Sanity's image builder
 
       // Combine recipients from both sources
       const allRecipients: Recipient[] = [
@@ -101,6 +99,7 @@ export async function POST(req: NextRequest) {
       const uniqueRecipients: Recipient[] = Array.from(
         new Map(allRecipients.map((item) => [item.email, item])).values()
       );
+
       // Send email to each recipient
       for (const recipient of uniqueRecipients) {
         console.log(`Sending email to ${recipient.name} at ${recipient.email}`);
@@ -163,18 +162,17 @@ export async function POST(req: NextRequest) {
                   margin: 15px 0;
                   text-align: center;
                 }
-              .email-button {
-  display: block;
-  width: max-content;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #0073e6;
-  color: white; /* Set the text color to white */
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
+                .email-button {
+                  display: block;
+                  width: max-content;
+                  margin: 20px auto;
+                  padding: 10px 20px;
+                  background-color: #0073e6;
+                  color: white;
+                  text-decoration: none;
+                  border-radius: 5px;
+                  font-weight: bold;
+                }
                 .email-footer {
                   text-align: center;
                   padding: 10px;
@@ -185,25 +183,21 @@ export async function POST(req: NextRequest) {
             </head>
             <body>
               <div class="email-container">
-                <!-- Blog Image with rounded corners -->
                 <div class="email-image">
                   <img src="${imageUrl}" alt="${heroimage.alt}" style="width: 100%; max-width: 600px; height: auto; margin-bottom: 20px; border-radius: 15px; overflow: hidden;">
                 </div>
-
-                <!-- Blog Details -->
                 <div class="email-body">
                   <h2>${title}</h2>
                   <p>${introductionheading}</p>
                   <a class="email-button" href="https://codeautomation.ai/blogs/${slug}" target="_blank">Read the Blog</a>
                 </div>
-                <!-- Footer -->
                 <div class="email-footer">
                   <p>&copy; ${new Date().getFullYear()} CodeAutomation.ai LLC. All Rights Reserved.</p>
                 </div>
               </div>
             </body>
             </html>
-          `
+          `,
         };
 
         await sendEmail(emailContent);
@@ -236,16 +230,16 @@ async function sendEmail({
     port: 465,
     secure: true,
     auth: {
-      user: process.env.EMAIL_USER, // Set in environment variables
-      pass: process.env.EMAIL_PASS, // Set in environment variables
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   await transporter.sendMail({
-    from: `"CodeAutomation.ai LLC" <${process.env.EMAIL_USER}>`, // Sender address
+    from: `"CodeAutomation.ai LLC" <${process.env.EMAIL_USER}>`,
     to,
-    subject, // Subject line
-    text, // Plain text body
-    html, // HTML body
+    subject,
+    text,
+    html,
   });
 }
