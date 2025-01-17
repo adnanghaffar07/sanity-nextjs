@@ -162,17 +162,19 @@ export async function POST(req: NextRequest) {
                   margin: 15px 0;
                   text-align: center;
                 }
-                .email-button {
-                  display: block;
-                  width: max-content;
-                  margin: 20px auto;
-                  padding: 10px 20px;
-                  background-color: #0073e6;
-                  color: white;
-                  text-decoration: none;
-                  border-radius: 5px;
-                  font-weight: bold;
-                }
+             .email-button {
+  display: block;
+  width: max-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: white; /* White background */
+  color: black; /* Black text */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px solid #333; /* Optional border for better visibility */
+}
+
                 .email-footer {
                   text-align: center;
                   padding: 10px;
@@ -184,7 +186,7 @@ export async function POST(req: NextRequest) {
             <body>
               <div class="email-container">
                 <div class="email-image">
-                  <img src="${imageUrl}" alt="${heroimage.alt}" style="width: 100%; max-width: 600px; height: auto; margin-bottom: 20px; border-radius: 15px; overflow: hidden;">
+                  <img src="${imageUrl}" alt="${heroimage.alt}" style="width: 100%; max-width: 600px; height: auto; margin-bottom: 10px; border-radius: 15px; overflow: hidden;">
                 </div>
                 <div class="email-body">
                   <h2>${title}</h2>
