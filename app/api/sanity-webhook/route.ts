@@ -49,6 +49,7 @@ async function fetchRecipients() {
 
 export async function POST(req: NextRequest) {
   const secret = process.env.SANITY_WEBHOOK_SECRET;
+    const skipEmails = req.url.includes("skipEmails=true"); // Check for skipEmails flag in URL
 
   // Verify authorization
   const authHeader = req.headers.get("authorization");
