@@ -32,7 +32,7 @@ export async function POST(request: Request): Promise<Response> {
 
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-      to:  ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
+      to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
       subject: `CA Website Contact Form - ${pageName} Page`,
       html: `
         <html>
@@ -52,7 +52,7 @@ export async function POST(request: Request): Promise<Response> {
         </html>
       `
     };
-    
+
     const userMailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
@@ -79,13 +79,13 @@ export async function POST(request: Request): Promise<Response> {
                 <h1>Thank You for Reaching Out!</h1>
               </div>
               <div class="content">
-                <h2>Dear ${name},</h2>
-                <p>We appreciate you taking the time to contact us. Your message is important to us, and our team will review it shortly.</p>
-                <p>Meanwhile, feel free to explore our website or schedule a call with us directly. We look forward to connecting with you soon.</p>
-                <div class="cta">
-                  <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" target="_blank">Schedule a Call</a>
-                </div>
-                <p>If you have any additional questions or concerns, don’t hesitate to reach out via email or phone.</p>
+               <h2>Dear ${name},</h2>
+               <p>Your message is important to us, and our team will review it promptly. We’ll get back to you within 24 hours.</p>
+               <p>In the meantime, feel free to explore our website or schedule a meeting with CodeAutomation at your convenience.</p>
+               <div class="cta">
+               <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" target="_blank">Schedule a Meeting</a>
+               </div>
+               <p>If you have any further questions or concerns, don’t hesitate to contact us via email or phone. We’re here to help!</p>
               </div>
               <div class="footer">© 2025 CodeAutomation. All Rights Reserved.</div>
             </div>
@@ -93,7 +93,7 @@ export async function POST(request: Request): Promise<Response> {
         </html>
       `,
     };
-    
+
     // Send emails
     await transporter.sendMail(teamMailOptions);
     await transporter.sendMail(userMailOptions);
@@ -123,8 +123,8 @@ export async function POST(request: Request): Promise<Response> {
         `,
         ReminderTimestamp: reminderTimestamp.toISOString(),
       });
-      
-      
+
+
     }
 
     return new Response(JSON.stringify({ message: "Emails handled successfully" }), { status: 200 });

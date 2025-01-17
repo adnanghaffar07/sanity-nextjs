@@ -191,8 +191,6 @@ export default function Home() {
           <source src="/hero-sec-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
-
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[270px] lg:top-[220px] 2xl:top-[270px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
