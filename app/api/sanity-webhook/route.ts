@@ -303,10 +303,10 @@ export async function POST(req: NextRequest) {
           <img src="https://codeautomation.ai/instagram.png" alt="Instagram" style="width: 24px; height: 24px;">
         </a>
         <a href="https://twitter.com/codeautomation" target="_blank">
-          <img src="https://codeautomation.ai/twitter.png" alt="Twitter">
+          <img src="https://codeautomation.ai/twitter.png" alt="Twitter" style="width: 24px; height: 24px;>
         </a>
         <a href="https://www.linkedin.com/company/codeautomationai/" target="_blank">
-          <img src="https://codeautomation.ai/linkedin.png" alt="LinkedIn">
+          <img src="https://codeautomation.ai/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;>
         </a>
       </div>
 
