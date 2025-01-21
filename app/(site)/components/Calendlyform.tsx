@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import CalendlyProjectForm from "./CalendlyProjectFooterForm";
-import { client } from "@/sanity/lib/client";
 
 declare global {
   interface Window {
@@ -13,70 +12,6 @@ declare global {
 const CalendlyForm: React.FC = () => {
   const calendlyWidgetRef = useRef<HTMLDivElement | null>(null);
   const [widgetWidth, setWidgetWidth] = useState<string>("86%");
-
-  const handleCalendlyEvent = useCallback(async (event: MessageEvent) => {
-    if (event.data.event !== "calendly.event_scheduled") return;
-
-    const { uri: eventUri } = event.data.payload.event;
-    const { uri: inviteeUri } = event.data.payload.invitee;
-    const token = process.env.NEXT_PUBLIC_CALENDLY_API_KEY;
-
-    if (!token) {
-      console.error("API token is missing.");
-      return;
-    }
-
-    try {
-      // Fetch event and invitee data concurrently
-      const [eventResponse, inviteeResponse] = await Promise.all([
-        fetch(eventUri, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }),
-        fetch(inviteeUri, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }),
-      ]);
-
-      if (!eventResponse.ok || !inviteeResponse.ok) {
-        console.error(
-          "Error fetching event or invitee data",
-          eventResponse.status,
-          eventResponse.statusText
-        );
-        return;
-      }
-
-      const eventData = await eventResponse.json();
-      const inviteeData = await inviteeResponse.json();
-
-      const notes = inviteeData?.resource?.questions_and_answers?.map(
-        (q: any) => q.answer
-      ) || [];
-
-      const bookingData = {
-        _type: "calendlyMeeting",
-        name: inviteeData?.resource?.name || "Unknown",
-        email: inviteeData?.resource?.email || "Unknown",
-        meetingStart: eventData?.resource?.start_time || null,
-        meetingEnd: eventData?.resource?.end_time || null,
-        notes,
-      };
-
-      // Send data to Sanity
-      const sanityResponse = await client.create(bookingData);
-      if (!sanityResponse) {
-        console.error("Failed to create document in Sanity");
-      }
-    } catch (error) {
-      console.error("Error processing Calendly event data:", error);
-    }
-  }, []);
 
   useEffect(() => {
     const calendlyScriptId = "calendly-widget-script";
@@ -95,7 +30,6 @@ const CalendlyForm: React.FC = () => {
             url: "https://calendly.com/adnanghaffar/30min?timezone=America/New_York",
             parentElement: calendlyWidgetRef.current,
           });
-          window.addEventListener("message", handleCalendlyEvent);
         }
       };
 
@@ -109,14 +43,10 @@ const CalendlyForm: React.FC = () => {
           url: "https://calendly.com/adnanghaffar/30min?timezone=America/New_York",
           parentElement: calendlyWidgetRef.current,
         });
-        window.addEventListener("message", handleCalendlyEvent);
       }
     }
 
-    return () => {
-      window.removeEventListener("message", handleCalendlyEvent);
-    };
-  }, [handleCalendlyEvent]);
+  },[]);
 
   return (
     <div className="relative flex flex-col w-full mx-auto max-md:max-w-full">

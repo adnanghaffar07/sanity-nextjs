@@ -71,9 +71,9 @@ export default function CoreExpertise() {
   return (
     <div className="flex flex-col w-full max-w-screen-xl mx-auto md:px-4">
       <div className="flex flex-col text-black">
-        <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
+        <h3 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
           Our Software Development Expertise
-        </h2>
+        </h3>
         <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 xl:pr-36 tracking-normal">
           <p>
             Hire from our team of over 70+ dedicated Software Engineers and working in more than 100 technologies along with your time zone. We are a software development company that offers a wide range of software services, right according to your precise requirements.
