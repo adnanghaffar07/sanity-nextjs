@@ -1,6 +1,6 @@
 export default {
-    name: "calendlyMeeting",
-    title: "Calendly Meeting",
+    name: "testing",
+    title: "Testing",
     type: "document",
     fields: [
       {
@@ -45,6 +45,7 @@ export default {
         type: "boolean",
         default: false,
       }
+      
     ],
   };
   

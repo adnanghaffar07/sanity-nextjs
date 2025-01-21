@@ -50,6 +50,12 @@ export default {
           calendarTodayLabel: 'Today',
         },
       },
+      {
+        name: "isUnsubscribed",
+        title: "Unsubscribed",
+        type: "boolean",
+        default: false,
+      }
     ],
   };
   
