@@ -549,6 +549,26 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Success Stories</p>
                         </div>
                       </Link>
+                      {/* OFFFShore Development */}
+                      <Link
+                        href="/offshore-software-development"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/outsourcing.png"
+                            alt="OFFFShore Development"
+                            height={30}
+                            width={30}
+                            className=" object-cover"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Offshore Development</p>
+                          <p className="mt-1 text-sm text-gray-500">Global Development</p>
+                        </div>
+                      </Link>
+                      
                       <Link href="/brochure" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
@@ -857,6 +877,23 @@ export default function HomeNavigationContainer() {
                                     onClick={handleToggleMenuIcon}
                                   >
                                     Success Stories
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
+                                  href="/offshore-software-development"
+                                  className="heading"
+                                  onClick={handleToggleMenuIcon}
+                                >
+                                 Offshore Development
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/offshore-software-development"
+                                    onClick={handleToggleMenuIcon}
+                                  >
+                                  Global Development
                                   </Link>
                                 </p>
                               </li>

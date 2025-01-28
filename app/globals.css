@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Klein:wght@400;700&display=swap");
 
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
 .font-klein {
   font-family: "Klein", sans-serif;
 }

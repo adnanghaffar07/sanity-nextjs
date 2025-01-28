@@ -11,7 +11,6 @@ import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordia
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
-import Head from "next/head";
 import Script from "next/script";
 import FAQServicePage from "../../components/FaqService";
 
@@ -138,8 +137,6 @@ export default async function service({
   const data = await getData(params.service);
   const dataSub = await getSubData();
   const dataLogo = await getLogoData();
-  console.log(data)
-
   return (
     <div className="bg-white">
     {data?.jsonLd && (
