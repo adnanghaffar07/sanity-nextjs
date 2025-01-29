@@ -6,7 +6,9 @@ import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import CookieConsent from "./components/CookieConsent";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 
+const inter = Inter({ subsets: ["latin"] });
 
 
 const GoogleTagManagerClient = dynamic(
@@ -209,7 +211,7 @@ export default function RootLayout({
         `}
       </Script>
 
-      <body>
+      <body className={inter.className}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=GTM-MJG35754`}

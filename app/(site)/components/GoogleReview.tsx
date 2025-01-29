@@ -16,7 +16,7 @@ const ReviewsSection = () => {
             name: "Ryan M",
             time: "2 months ago",
             stars: 5,
-            comment: "It was enjoyable working with CodeAutomation. They provided an automated solution that went beyond our expectations and demonstrated a genuine understanding of our demands. Highly recommended!",
+            comment: "It was enjoyable working with them. They provided an automated solution that went beyond our expectations and demonstrated a genuine understanding of our demands. Highly recommended!",
             bgColor: "bg-blue-300",
         },
         {
@@ -40,7 +40,7 @@ const ReviewsSection = () => {
             name: "Muhammad Eijaz Akram",
             time: "9 months ago",
             stars: 5,
-            comment: "In the realm of modern business, CodeAutomation.ai has been a game-changer for me. Under the visionary leadership of CEO Sir Adnan Ghaffar, this platform delivers exceptional results.",
+            comment: "In the modern business, CodeAutomation has been a game-changer for me. Under the visionary leadership of CEO Sir Adnan Ghaffar, this platform delivers exceptional results.",
             bgColor: "bg-pink-200",
         },
         {
@@ -48,7 +48,7 @@ const ReviewsSection = () => {
             name: "James William",
             time: "1 year ago",
             stars: 5,
-            comment: "AWESOME! CodeAutomation team helped me automate my software and make it bug-free. Their prompt replies and fast work pace were remarkable.",
+            comment: "AWESOME! CodeAutomation team helped me automate my software and make it bug-free. Their prompt replies and fast work pace were remarkable. Highly Recommended!",
             bgColor: "bg-teal-200",
         },
         {
@@ -104,7 +104,7 @@ const ReviewsSection = () => {
                     <p className="mt-3 text-lg font-medium max-md:max-w-full">
                         Hear from businesses worldwide who trust us for their offshore development needs.                        </p>
                 </div>
-                <div className="poppins mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="mx-auto poppins grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Left Section */}
                     <div className="flex flex-col justify-center items-center ">
                         <h2 className="text-2xl lg:text-3xl text-black poppins font-bold">Excellent</h2>
@@ -141,7 +141,7 @@ const ReviewsSection = () => {
                                         ? currentReview.comment
                                         : `${currentReview.comment.slice(0, 150)}...`}
                                 </p>
-                                {currentReview.comment.length > 150 && (
+                                {currentReview.comment.length > 140 && (
                                     <button
                                         onClick={() => setShowFullComment(!showFullComment)}
                                         className="text-blue-500 mt-2 underline"
@@ -192,7 +192,7 @@ const ReviewsSection = () => {
                                     {currentReview.comment.length > 150 && (
                                         <button
                                             onClick={() => setShowFullComment(!showFullComment)}
-                                            className="text-blue-500 mt-2 underline"
+                                            className="text-[#656565] mt-2"
                                         >
                                             {showFullComment ? "Show Less" : "Read More"}
                                         </button>
@@ -212,7 +212,6 @@ const ReviewsSection = () => {
                                 >
                                     <path d="M4.293 12l7.793-7.793a1 1 0 011.414 0l1.414 1.414a1 1 0 010 1.414L10.536 12l4.378 4.378a1 1 0 010 1.414l-1.414 1.414a1 1 0 01-1.414 0L4.293 12z" />
                                 </svg>
-
                             </button>
                         </div>
 
@@ -220,8 +219,8 @@ const ReviewsSection = () => {
                     </div>
 
                     {/* Right Section - Map */}
-                    <div className="rounded-lg overflow-hidden shadow-lg">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108921.09762832048!2d74.28223660341418!3d31.44760464534993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919055ce3897a39%3A0x3fd045ce5b387979!2sCodeAutomation!5e0!3m2!1sen!2s!4v1738082908335!5m2!1sen!2s" width="600" height="450" loading="lazy"></iframe>
+                    <div className="rounded-lg overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108921.09762832048!2d74.28223660341418!3d31.44760464534993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919055ce3897a39%3A0x3fd045ce5b387979!2sCodeAutomation!5e0!3m2!1sen!2s!4v1738082908335!5m2!1sen!2s" width="526" height="602" loading="lazy"></iframe>
                     </div>
 
                 </div>

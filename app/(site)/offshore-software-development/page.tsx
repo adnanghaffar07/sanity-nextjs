@@ -659,7 +659,7 @@ const OffshoreDevelopment = () => {
                             </h2>
                             <h3 className="my-4 text-xl font-bold leading-7 max-md:max-w-full">
                                 Consultation on Custom Web App Development for FREE              </h3>
-                            <p className="text-lg lg:max-w-lg font-light mt-4">
+                            <p className="text-lg lg:max-w-lg font-light">
                                 Obtain free information about our consultation process and jumpstart your development of a custom web application. Learn how customized web solutions can redefine your concept of business growth and effectiveness in any operation.                            </p>
 
                             <ButtonScrollToSection
