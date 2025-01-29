@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-  export async function POST(request: any): Promise<any> {
+export async function POST(request: any): Promise<any> {
   const completeFormData = await request.formData();
 
   const name = completeFormData.get("name");

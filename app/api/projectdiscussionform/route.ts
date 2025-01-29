@@ -29,10 +29,9 @@ export async function POST(request: Request): Promise<Response> {
         pass: process.env.EMAIL_PASS, // Set in environment variables
       },
     });
-
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-      to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
+      to:["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
       subject: `CA Website Contact Form - ${pageName} Page`,
       html: `
         <html>
@@ -109,22 +108,22 @@ export async function POST(request: Request): Promise<Response> {
         Email: email,
         Looking: "Don’t Forget to Schedule Your Meeting!",
         Message: `
-          <div style="max-width: 600px; margin: 30px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <h1 style="font-size: 28px; color: #FF9800; text-align: center; margin-bottom: 20px;">Reminder: Schedule Your Meeting, ${name}!</h1>
-            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6;">Hi ${name},</p>
-            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6;">We noticed you haven’t scheduled a meeting with us yet. We want to make sure we connect at a time that works best for you!</p>
-            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6;">Please <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" style="color: #FF9800; text-decoration: none; font-weight: bold;">click here</a> to book your time with us.</p>
-            <div style="margin-top: 30px; text-align: center;">
-              <p style="font-size: 14px; color: #777;">We look forward to speaking with you soon!</p>
-              <p style="font-size: 14px; color: #777;">Best regards,</p>
-              <p style="font-size: 14px; color: #777;">The CA Team</p>
+          <div style="max-width: 600px; margin: 30px auto; padding: 30px; background-color: #fff; border-radius: 10px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+            <h1 style="font-size: 32px; color: #1D92FB; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 500;">Schedule Your Meeting, ${name}!</h1>
+            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6; color: #333; font-family: 'Poppins', sans-serif;">Hi ${name},</p>
+            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6; color: #333; font-family: 'Poppins', sans-serif;">We noticed that you haven’t scheduled your meeting yet. Let’s find the perfect time to connect!</p>
+            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6; color: #333; font-family: 'Poppins', sans-serif;">Click the button below to schedule a time with us:</p>
+            <div style="text-align: center; margin-top: 20px;">
+              <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" style="background-color: #f7e022; color: #000; padding: 12px 25px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 6px; display: inline-block; transition: background-color 0.3s;">Schedule Your Meeting</a>
+            </div>
+            <div style="margin-top: 40px; text-align: center; font-size: 14px; color: #777; font-family: 'Poppins', sans-serif;">
+              <p style="margin: 5px 0;">Looking forward to connecting with you soon!</p>
             </div>
           </div>
         `,
         ReminderTimestamp: reminderTimestamp.toISOString(),
       });
-
-
+      
     }
 
     return new Response(JSON.stringify({ message: "Emails handled successfully" }), { status: 200 });
