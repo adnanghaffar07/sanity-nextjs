@@ -121,16 +121,16 @@ const ReviewsSection = () => {
                         />
                         {/* Review Card */}
                         <div
-                            className="block lg:hidden bg-[#F3F3F3] mt-8 flex items-start p-4 rounded-lg max-w-[462px]"
+                            className="block lg:hidden bg-[#F3F3F3] mt-8 flex items-start p-4 rounded-lg w-full"
                         >
                             <div
                                 className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-white ${currentReview.bgColor}`}
                             >
                                 {currentReview.name.charAt(0)}
                             </div>
-                            <div className="ml-4 max-w-[250px]">
+                            <div className="ml-4 max-w-[270px]">
                                 <h3 className="font-semibold text-black">{currentReview.name}</h3>
-                                <p className="text-md text-[#9D9D9D]">{currentReview.time}</p>
+                                <p className="text-sm text-[#9D9D9D]">{currentReview.time}</p>
                                 <img
                                     src="/5star.png"
                                     alt="5 stars"
