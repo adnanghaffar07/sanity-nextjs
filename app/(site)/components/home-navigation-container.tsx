@@ -556,11 +556,11 @@ export default function HomeNavigationContainer() {
                       >
                         <div className="">
                           <Image
-                            src="/outsourcing.png"
+                            src="/globe-sharp.svg"
                             alt="OFFFShore Development"
-                            height={30}
-                            width={30}
-                            className=" object-cover"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
                           />
                         </div>
                         <div className="ml-4">
@@ -568,7 +568,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Global Development</p>
                         </div>
                       </Link>
-                      
+
                       <Link href="/brochure" className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50">
                         <div className="">
                           <Image
@@ -886,14 +886,14 @@ export default function HomeNavigationContainer() {
                                   className="heading"
                                   onClick={handleToggleMenuIcon}
                                 >
-                                 Offshore Development
+                                  Offshore Development
                                 </Link>
                                 <p>
                                   <Link
                                     href="/offshore-software-development"
                                     onClick={handleToggleMenuIcon}
                                   >
-                                  Global Development
+                                    Global Development
                                   </Link>
                                 </p>
                               </li>

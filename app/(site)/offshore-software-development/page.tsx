@@ -7,8 +7,51 @@ import Offshoresoftware from '../components/Offshoresoftware';
 import ReviewsSection from '../components/GoogleReview';
 import FAQSection from '../components/OffshoreFaq';
 
+export const metadata = {
+    title: "Top Offshore Software Development Company | Expert Services",
+    description: "Partner with a leading offshore software development company. We provide expert offshore IT development, web, and app solutions to drive your success.",
+    keywords: [
+      "offshore software development company",
+      "offshore software development",
+      "offshore software development services",
+      "offshore development services",
+      "offshore IT development",
+      "offshore software development outsourcing",
+      "offshore software development team",
+      "offshore software outsourcing",
+      "offshore development company",
+      "offshore web development",
+      "offshore app development",
+    ],
+    alternates: {
+      canonical: "https://codeautomation.ai/offshore-software-development/",
+    },
+    openGraph: {
+      title: "Top Offshore Software Development Company | Expert Services",
+      description: "Partner with a leading offshore software development company. We provide expert offshore IT development, web, and app solutions to drive your success.",
+      url: "https://codeautomation.ai/offshore-software-development/",
+      siteName: "CodeAutomation",
+      type: "website",
+      images: [
+        {
+          url: "https://codeautomation.ai/offshore.jpeg",
+          width: 1200,
+          height: 630,
+          alt: "Offshore Software Development",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Top Offshore Software Development Company | Expert Services",
+      description: "Partner with a leading offshore software development company. We provide expert offshore IT development, web, and app solutions to drive your success.",
+      images: ["https://codeautomation.ai/offshore.jpeg"],
+    },
+  };
+
 const OffshoreDevelopment = () => {
 
+      
     const clientLogos = [
         { image: "/logo1.png", altText: "Client 1 Logo" },
         { image: "/logo2.png", altText: "Client 2 Logo" },
@@ -128,7 +171,7 @@ const OffshoreDevelopment = () => {
 
     return (
 
-        <>
+        <>  
             {/* Hero Section */}
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
                 <img
@@ -560,9 +603,9 @@ const OffshoreDevelopment = () => {
                     {/* Heading and Description */}
                     <div className="text-center max-w-4xl mx-auto mb-12">
                         <h2 className="text-2xl lg:text-3xl font-bold ">
-                        What You Get With Us as Your Offshore Development Vendor                         </h2>
+                            What You Get With Us as Your Offshore Development Vendor                         </h2>
                         <p className="mt-3 text-lg font-medium">
-                        When you choose us as your offshore development vendor, you gain a trusted partner dedicated to delivering excellence. Here’s what we offer:
+                            When you choose us as your offshore development vendor, you gain a trusted partner dedicated to delivering excellence. Here’s what we offer:
                         </p>
                     </div>
 
@@ -612,12 +655,12 @@ const OffshoreDevelopment = () => {
                     <div className="col-span-2">
                         <div className="flex flex-col w-full">
                             <h2 className="text-2xl lg:text-3xl font-bold leading-none">
-                            Exclusive Offer:
+                                Exclusive Offer:
                             </h2>
                             <h3 className="my-4 text-xl font-bold leading-7 max-md:max-w-full">
-                            Consultation on Custom Web App Development for FREE              </h3>
+                                Consultation on Custom Web App Development for FREE              </h3>
                             <p className="text-lg lg:max-w-lg font-light mt-4">
-                            Obtain free information about our consultation process and jumpstart your development of a custom web application. Learn how customized web solutions can redefine your concept of business growth and effectiveness in any operation.                            </p>
+                                Obtain free information about our consultation process and jumpstart your development of a custom web application. Learn how customized web solutions can redefine your concept of business growth and effectiveness in any operation.                            </p>
 
                             <ButtonScrollToSection
                                 classes="bg-white text-[#1d92fb] hover:bg-[#f7e022] cursor-pointer mt-4 hover:text-black font-semibold py-3 px-3 rounded-lg shadow-lg text-center w-fit"
@@ -642,7 +685,7 @@ const OffshoreDevelopment = () => {
             </section>
 
             {/* FAQ */}
-            <FAQSection/>
+            <FAQSection />
         </>
     )
 }
