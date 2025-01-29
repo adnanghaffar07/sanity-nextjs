@@ -142,12 +142,12 @@ const ReviewsSection = () => {
                                         : `${currentReview.comment.slice(0, 150)}...`}
                                 </p>
                                 {currentReview.comment.length > 140 && (
-                                    <button
-                                        onClick={() => setShowFullComment(!showFullComment)}
-                                        className="text-blue-500 mt-2 underline"
-                                    >
-                                        {showFullComment ? "Show Less" : "Read More"}
-                                    </button>
+                                     <button
+                                            onClick={() => setShowFullComment(!showFullComment)}
+                                            className="text-[#656565] mt-2"
+                                        >
+                                            {showFullComment ? "Show Less" : "Read More"}
+                                        </button>
                                 )}
                             </div>
                         </div>
