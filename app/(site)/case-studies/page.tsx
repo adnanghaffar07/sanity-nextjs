@@ -167,10 +167,7 @@ const Page = () => {
         </div>
       </section>
 
-
-
       <div className="flex flex-col items-center justify-center mb-24 " id="gridSection">
-
         {/* Filter Section */}
         <section className="w-full max-w-[1340px] mx-auto">
           <div className="flex flex-col md:flex-row gap-4 mt-10 items-center w-full px-6">
