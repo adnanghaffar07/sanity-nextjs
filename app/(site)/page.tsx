@@ -17,7 +17,6 @@ import HomePageForm from "./components/Homepage-form";
 import CaseStudiesHome from "./components/CaseStudies-Home";
 import TechnologiesSection from "./components/HomePage-Tech";
 import Script from "next/script";
-import Head from "next/head";
 
 const StatItem = ({
   imageSrc,
