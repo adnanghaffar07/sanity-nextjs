@@ -58,8 +58,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
-        {/* ✅ Preload Critical CSS */}
-        <link rel="preload" href="/styles.css" as="style" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -108,7 +106,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
 
         {/* ✅ LinkedIn Partner Tag Fix */}
-        <Script strategy="afterInteractive" id="linkedin-tag">
+        {/* <Script strategy="afterInteractive" id="linkedin-tag">
           {`
             window._linkedin_partner_id = "7913033";
             window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -136,7 +134,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             height={1}
             style={{ display: "none" }}
           />
-        </noscript>
+        </noscript> */}
 
         {/* ✅ JSON-LD Structured Data Fix */}
         <Script type="application/ld+json" strategy="afterInteractive" id="json-ld">

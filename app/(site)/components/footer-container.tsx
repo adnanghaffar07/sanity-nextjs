@@ -261,24 +261,20 @@ export default function FooterContainer() {
                 </div>
 
                 <div className="flex flex-row gap-2 items-start">
-                  <Image
+                  <img
                     src="/USA_Flag.png"
                     alt="USA-Flag-Icon"
-                    width={25}
-                    height={25}
-                    className="md:max-h-10 object-cover"
+                    className="h-5 w-5 object-cover"
                   />
                   <span className="font-light">
                   Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States</span>
                 </div>
 
                 <div className="flex flex-row gap-2 items-start pb-2">
-                  <Image
+                  <img
                     src="/Canada-Flag.png"
                     alt="Canada-Flag-Icon"
-                    width={25}
-                    height={25}
-                    className="object-cover"
+                    className="h-5 w-5 object-cover"
                   />
                   <span className="font-light">
                   201 N AZALEA LANE, Orleans, Ontario CA K4A4R5
