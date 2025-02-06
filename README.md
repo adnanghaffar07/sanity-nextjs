@@ -51,7 +51,7 @@ After starting the development server, open [http://localhost:3000](http://local
 
 You can start editing the required changes. The server auto-updates as you edit and save files.
 
-## Features
+## Features 
 
 - **Font Optimization:** The project uses `next/font` to automatically optimize and load Inter, a custom Google Font.
 
