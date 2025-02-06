@@ -148,7 +148,7 @@ export async function POST(request: Request): Promise<Response> {
     };
 
     // Send emails
-    // await transporter.sendMail(teamMailOptions);
+    await transporter.sendMail(teamMailOptions);
     await transporter.sendMail(userMailOptions);
 
     const hasMeeting = await checkMeetingExists(email);
