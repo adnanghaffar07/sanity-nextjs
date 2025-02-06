@@ -11,22 +11,11 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 // Dynamically Imported Components
-const GoogleTagManagerClient = dynamic(
-  () => import("./components/GoogleTagManagerClient"),
-  { ssr: false }
-);
-const FooterContainer = dynamic(() => import("./components/footer-container"), {
-  suspense: true,
-});
-const FormDisplay = dynamic(() => import("./components/FormDisplay"), {
-  suspense: true,
-});
-const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), {
-  suspense: true,
-});
-const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), {
-  suspense: true,
-});
+const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
+const FooterContainer = dynamic(() => import("./components/footer-container"), { suspense: true });
+const FormDisplay = dynamic(() => import("./components/FormDisplay"), { suspense: true });
+const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { suspense: true });
+const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true });
 
 // Metadata
 export const metadata: Metadata = {
@@ -65,13 +54,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ Favicon Fix */}
+        {/* ✅ Preload Critical CSS */}
+        <link rel="preload" href="/styles.css" as="style" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -139,6 +127,7 @@ export default function RootLayout({
             })(window.lintrk);
           `}
         </Script>
+
         <noscript>
           <Image
             src="https://px.ads.linkedin.com/collect/?pid=7913033&fmt=gif"

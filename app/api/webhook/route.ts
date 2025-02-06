@@ -1,18 +1,33 @@
 import { client } from "@/sanity/lib/client";
 import { NextRequest, NextResponse } from "next/server";
 
-// Function to save data to Sanity
-async function saveToSanity(meetingData: any) {
+// Function to extract phone number from questions_and_answers
+function extractPhoneNumber(questions_and_answers: any[]) {
+  for (const q of questions_and_answers) {
+    const answer = q.answer.trim(); // Remove extra spaces
+    if (/^\+\d+$/.test(answer)) {
+      return answer; // Return the first valid phone number found
+    }
+  }
+  return ""; // Return empty if no number found
+}
+
+// Function to process and optionally save to Sanity
+async function processMeeting(meetingData: any) {
   const {
     name = "Unknown",
     email = "Unknown",
-    start_time = null,
-    end_time = null,
     scheduled_event = {},
     questions_and_answers = [],
   } = meetingData;
 
-  const notes = questions_and_answers.map((q: any) => q.answer);
+  const contact_number = extractPhoneNumber(questions_and_answers);
+
+  // **Skip saving if the phone number starts with +92 (Pakistan)**
+  if (contact_number.startsWith("+92")) {
+    // console.log("Skipping document creation for Pakistani number:", contact_number);
+    return; // Do NOT create the document
+  }
 
   const meetingDocument = {
     _type: "calendlyMeeting",
@@ -20,7 +35,7 @@ async function saveToSanity(meetingData: any) {
     email,
     meetingStart: scheduled_event?.start_time,
     meetingEnd: scheduled_event?.end_time,
-    notes,
+    notes: questions_and_answers.map((q: any) => q.answer),
     eventName: scheduled_event?.name || "Unknown",
   };
 
@@ -49,10 +64,10 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      await saveToSanity(payload);
+      await processMeeting(payload);
     }
 
-    return NextResponse.json({ message: "Webhook processed" });
+    return NextResponse.json({ message: "Webhook processed successfully" });
   } catch (error: any) {
     console.error("Webhook error:", error.message);
     return NextResponse.json(

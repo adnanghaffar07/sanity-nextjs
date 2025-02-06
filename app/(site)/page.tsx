@@ -4,10 +4,7 @@ import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
 const Testimonials = dynamic(() => import("./components/Testimonials"), {
   suspense: true,
-});
-const OurWorkSection = dynamic(() => import("./components/OurWorkSection"), {
-  suspense: true,
-});
+}); 
 const Faqs = dynamic(() => import("./components/Faqs"), {
   suspense: true,
 });
@@ -18,6 +15,7 @@ import CaseStudiesHome from "./components/CaseStudies-Home";
 import TechnologiesSection from "./components/HomePage-Tech";
 import Script from "next/script";
 
+// StatItem Component
 const StatItem = ({
   imageSrc,
   text,
@@ -37,6 +35,7 @@ const StatItem = ({
     <div className="mt-6 max-w-[325px]">{text}</div>
   </div>
 );
+
 export default function Home() {
   const stats = [
     {
@@ -63,11 +62,11 @@ export default function Home() {
 
   return (
     <div>
-
+      {/* Structured Data for Webpage */}
       <Script
         id="structured-data-webpage"
         type="application/ld+json"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
           {
@@ -131,14 +130,14 @@ export default function Home() {
               }
             ]
           }
-          `
+          `,
         }}
       />
-
+      {/* Structured Data for Website Organization */}
       <Script
         id="structured-data-website-organization"
         type="application/ld+json"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
           [
@@ -171,7 +170,7 @@ export default function Home() {
               }
             }
           ]
-          `
+          `,
         }}
       />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
