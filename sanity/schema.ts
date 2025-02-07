@@ -21,6 +21,7 @@ import news from "./schemas/news";
 import contactForm from "./schemas/contactForm";
 import calendlyMeeting from "./schemas/calendly-meeting";
 import testing from "./schemas/testing";
+import newsLetter from "./schemas/news-letter";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -42,6 +43,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueDiscoveryProcessPage,
     contactForm,
     calendlyMeeting,
+    newsLetter,
     testing
   ],
 };
