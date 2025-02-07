@@ -2,7 +2,6 @@ import { type SchemaTypeDefinition } from "sanity";
 import careers from "./schemas/careers-job";
 import blog from "./schemas/blog-sub-page";
 import technologies from "./schemas/technologies";
-
 import {
   logicalServices,
   subServiceSchema,
@@ -21,6 +20,7 @@ import news from "./schemas/news";
 import contactForm from "./schemas/contactForm";
 import calendlyMeeting from "./schemas/calendly-meeting";
 import testing from "./schemas/testing";
+import newsLetter from "./schemas/news-letter";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -42,6 +42,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueDiscoveryProcessPage,
     contactForm,
     calendlyMeeting,
+    newsLetter,
     testing
   ],
 };
