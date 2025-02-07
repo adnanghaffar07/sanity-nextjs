@@ -40,11 +40,11 @@ const CaseStudiesHome = async () => {
         </div>
       </div>
       <Link
-  href={"/case-studies"}
-  className="px-10 py-3 mt-14 font-semibold text-center text-white bg-[#1D92FB] border-2 border-[#1D92FB] rounded flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-[#1D92FB]"
->
-  View more
-</Link>
+        href={"/case-studies"}
+        className="px-10 py-3 mt-10 font-semibold text-center text-white bg-[#1D92FB] border-2 border-[#1D92FB] rounded flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-[#1D92FB]"
+      >
+        View Case Studies
+      </Link>
 
     </section>
   );

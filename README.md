@@ -7,7 +7,7 @@ This project is a Next.js application initialized using [`create-next-app`](http
 Before you begin, ensure you have the following installed on your system:
 - Node.js 20.12.2 or later
 - A package manager like npm, yarn, pnpm, or bun
-
+ 
 ## Getting Started
 
 These instructions will get your copy of the project up and running on your local machine for development and testing purposes.
@@ -51,7 +51,7 @@ After starting the development server, open [http://localhost:3000](http://local
 
 You can start editing the required changes. The server auto-updates as you edit and save files.
 
-## Features
+## Features 
 
 - **Font Optimization:** The project uses `next/font` to automatically optimize and load Inter, a custom Google Font.
 
