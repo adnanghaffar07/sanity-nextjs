@@ -60,7 +60,7 @@ const BrochuresPage = async () => {
                     <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         {/* Left Section */}
                         <div className="space-y-6">
-                            <h3 className="text-lg font-bold text-purple-600 uppercase">Features</h3>
+                            <h3 className="text-lg font-bold text-[#1d92fb] uppercase">Features</h3>
                             <h2 className="text-4xl font-extrabold text-gray-800">
                                 Discover the Value of Our Brochures
                             </h2>
@@ -196,7 +196,7 @@ const BrochuresPage = async () => {
                 </div>
             </div>
 
-            <div className="w-full mt-10 mb-10 px-6 py-10 text-white bg-blue-900 md:px-16 md:py-16 rounded-lg shadow-lg text-center md:text-left">
+            <div className="w-full mt-10 mb-10 px-6 py-10 text-white bg-[#1d92fb] md:px-16 md:py-16 rounded-lg shadow-lg text-center md:text-left">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="mb-6 text-2xl font-bold">
                         Your Guide to Automation & Development
@@ -209,7 +209,7 @@ const BrochuresPage = async () => {
                     <div className="mt-8 flex justify-center md:justify-start">
                         <ButtonScrollToSection
                             content="Download Now"
-                            classes="px-8 py-3 text-blue-900 cursor-pointer bg-white rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+                            classes="px-8 py-3 text-blue-900 cursor-pointer bg-white rounded-full shadow-md hover:text-black hover:bg-[#f7e022] transition duration-300"
                             destination="brochure"
                         />
                     </div>
