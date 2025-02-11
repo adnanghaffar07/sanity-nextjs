@@ -311,7 +311,7 @@ export async function POST(req: NextRequest) {
       </div>
 
       <p>&copy; ${new Date().getFullYear()} CodeAutomation.ai LLC. All Rights Reserved.</p>
-      <p class="unsubscribe">Don't want to receive these emails? <a href="http://localhost:3000/api/unsubscribe?email=${recipient.email}" style="color: #0a66c2;">Unsubscribe</a>.</p>
+      <p class="unsubscribe">Don't want to receive these emails? <a href="https://codeautomation.ai/api/unsubscribe?email=${recipient.email}" style="color: #0a66c2;">Unsubscribe</a>.</p>
     </div>
   </div>
 </body>

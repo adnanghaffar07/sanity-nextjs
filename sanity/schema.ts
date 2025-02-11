@@ -2,7 +2,6 @@ import { type SchemaTypeDefinition } from "sanity";
 import careers from "./schemas/careers-job";
 import blog from "./schemas/blog-sub-page";
 import technologies from "./schemas/technologies";
-
 import {
   logicalServices,
   subServiceSchema,
