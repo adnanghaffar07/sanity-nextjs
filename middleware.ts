@@ -6,7 +6,7 @@ export function middleware(req: NextRequest) {
 
   if (country === "PK") {
     // Redirect to the not-found page
-    return NextResponse.redirect(new URL('/404', req.url));
+    return NextResponse.rewrite(new URL('/not-found', req.url));
   }
 
   return NextResponse.next();
