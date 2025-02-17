@@ -47,7 +47,7 @@ const DownloadButton = ({
     return (
         <button
             onClick={handleDownload}
-            className="bg-purple-500 text-white text-sm px-4 py-2 rounded-full hover:bg-purple-600"
+            className="bg-[#1d92fb] text-white text-sm px-4 py-2 rounded-full hover:text-black hover:bg-[#f7e022]"
         >
             Download
         </button>
