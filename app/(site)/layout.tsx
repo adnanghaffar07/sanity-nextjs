@@ -64,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={inter.className}>
         {/* ✅ Google Tag Manager */}
-        <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+        <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
 
         <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
         <Script strategy="afterInteractive" id="google-analytics">

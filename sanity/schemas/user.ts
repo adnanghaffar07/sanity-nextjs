@@ -25,11 +25,6 @@ export default {
       type: "string" 
     },
     { 
-      name: "profilePicture", 
-      title: "Profile Picture", 
-      type: "url" 
-    },
-    { 
       name: "token", 
       title: "Token", 
       type: "string", 

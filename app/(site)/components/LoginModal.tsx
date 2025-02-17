@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { GoogleLogin } from "@react-oauth/google";
 
@@ -87,25 +88,44 @@ const LoginModal = ({
   };
 
   const handleGoogleLoginSuccess = async (response: any) => {
-    const { credential } = response;
+    console.log("Google Response:", response);
     setIsLoading(true);
-
-    const res = await fetch("/api/auth/google-login", {
-      method: "POST",
-      body: JSON.stringify({ tokenId: credential }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    const data = await res.json();
-    setIsLoading(false);
-
-    if (data.success) {
-      Cookies.set("authToken", data.token, { expires: 30 });
-      onLoginSuccess();
-      onClose();
-      setIsLoggedIn(true);
-    } else {
-      setErrorMessage(data.error || "Something went wrong. Please try again.");
+  
+    try {
+      const { credential } = response;
+      if (!credential) {
+        throw new Error("Google credential missing");
+      }
+  
+      // Decode the Google JWT token to extract user details
+      const decodedToken: any = jwtDecode(credential);
+      console.log("Decoded Google User:", decodedToken);
+  
+      // Send the token to the backend
+      const res = await fetch("/api/auth/google-login", {
+        method: "POST",
+        body: JSON.stringify({ tokenId: credential }),
+        headers: { "Content-Type": "application/json" },
+      });
+  
+      const data = await res.json();
+      setIsLoading(false);
+  
+      if (res.ok && data.success) {
+        // Store auth token in cookies for persistence
+        Cookies.set("authToken", data.token, { expires: 30 });
+  
+        // Callback functions
+        onLoginSuccess();
+        onClose();
+        setIsLoggedIn(true);
+      } else {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error: any) {
+      setIsLoading(false);
+      console.error("Login Error:", error);
+      setErrorMessage(error.message);
     }
   };
 

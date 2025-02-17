@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library"; // Correct import
-import { client } from "@/sanity/lib/client"; // Ensure correct import path
+import { client } from "@/sanity/lib/client";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const JWT_SECRET = process.env.JWT_SECRET!;
