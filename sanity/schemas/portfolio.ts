@@ -578,7 +578,40 @@ const portfolioSchema = {
       title: "Conclusion",
       type: "string",
     },
-
+{
+      name: "faqSection",
+      title: "FAQ Section",
+      type: "object",
+      fields: [
+        {
+          name: "title",
+          title: "FAQ Section Title",
+          type: "string",
+        },
+        {
+          name: "faqs",
+          title: "FAQs",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "question",
+                  title: "Question",
+                  type: "string",
+                },
+                {
+                  name: "answer",
+                  title: "Answer",
+                  type: "text",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },    
     {
       name: "heroimage",
       title: "Hero Image",

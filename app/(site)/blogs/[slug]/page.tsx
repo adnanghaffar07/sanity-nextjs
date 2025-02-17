@@ -3,6 +3,7 @@ import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Script from "next/script";
 import SocialShare from "../../components/socialShare";
+import BlogsFaq from "../../components/BlogsFaq";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -347,6 +348,13 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       }
+
+      {/* Conclusion Section */}
+      {data.faqSection &&
+        <div className="">
+          <BlogsFaq faq={data.faqSection} />
+          </div>
+                 }
     </div>
   );
 };
