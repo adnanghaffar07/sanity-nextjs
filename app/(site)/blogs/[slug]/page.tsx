@@ -1,8 +1,9 @@
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Script from "next/script";
 import SocialShare from "../../components/socialShare";
+import BlogsFaq from "../../components/BlogsFaq";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -99,46 +100,30 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// Custom PortableText component configuration
-const portableTextComponents = {
+const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
-    image: ({ value }: any) => (
+    image: ({ value }: { value: any }) => (
       <img
         className="object-cover w-full h-full rounded-3xl"
         src={urlForImage(value).toString()}
-        alt={value.alt || "Image"}
+        alt={value.alt || "Default Alt Text"} // Provide a fallback if `alt` is undefined
       />
     ),
   },
   list: {
-    bullet: ({ children }: any) => <ul className="list-disc ml-5">{children}</ul>,
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="list-disc ml-5">{children}</ul>
+    ),
   },
-  marks: {
-    link: ({ children, value }: any) => {
-      const target = value.blank ? '_blank' : undefined;
-      const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
-      
-      return (
-        <a
-          href={value.href}
-          target={target}
-          rel={rel} // Add rel if target is _blank
-          style={{ color: 'blue', textDecoration: 'underline' }} // Custom color for links
-        >
-          {children}
-        </a>
-      );
-    },
-  },
-  
-}
+
+
+};
+
+
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
   const dataLogo = await getLogoData();
-
-
-
 
   return (
     <div>
@@ -156,7 +141,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <div className="relative flex flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px] text-center">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize leading-[56px]">{data.title}</h2>
+              <h1 className="title capitalize leading-[56px]">{data.title}</h1>
             </div>
           </div>
 
@@ -363,6 +348,13 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       }
+
+      {/* Conclusion Section */}
+      {data.faqSection &&
+        <div className="">
+          <BlogsFaq faq={data.faqSection} />
+          </div>
+                 }
     </div>
   );
 };
