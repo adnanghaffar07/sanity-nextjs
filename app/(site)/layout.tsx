@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
-import Image from "next/image"; // ✅ Import Next.js Image
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import Script from "next/script";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
@@ -64,6 +64,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={inter.className}>
         {/* ✅ Google Tag Manager */}
+        <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
+
         <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
         <Script strategy="afterInteractive" id="google-analytics">
           {`
@@ -101,7 +103,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <GreetingPopup />
           </Suspense>
         </div>
-
+        </GoogleOAuthProvider>
         {/* ✅ Google Tag Manager Client */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
 

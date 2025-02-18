@@ -2,11 +2,9 @@ import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import HouseArrestBanner from "../../components/HouseArrestBanners";
 import ScrollAnimation from "../../components/ScrollAnimation";
-
-
-
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
+
 async function getData(urlService: string) {
   const query = `*[_type == 'portfolio' && slug == '${urlService}'][0]`;
   try {

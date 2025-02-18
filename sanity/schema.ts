@@ -21,6 +21,8 @@ import contactForm from "./schemas/contactForm";
 import calendlyMeeting from "./schemas/calendly-meeting";
 import testing from "./schemas/testing";
 import newsLetter from "./schemas/news-letter";
+import user from "./schemas/user";
+import paymentProposal from "./schemas/payment-proposal";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -40,9 +42,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueBlueprints,
     popup,
     valueDiscoveryProcessPage,
+    user,
     contactForm,
     calendlyMeeting,
     newsLetter,
+    paymentProposal,
     testing
   ],
 };
