@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import LoginModal from "./LoginModal";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const CustomTick = () => (
     <svg
@@ -28,6 +29,13 @@ const PricingPlan = () => {
         }
     }, []);
 
+    const router = useRouter(); // Initialize Router
+
+    const handlePackageSelect = (packageName: string) => {
+        router.push(`/register?package=${encodeURIComponent(packageName)}`); // Redirect to Register page with package name
+    };
+
+
     return (
         <div className="px-6 md:px-16 py-6 md:py-10 bg-cover bg-center bg-no-repeat"
             style={{
@@ -37,7 +45,7 @@ const PricingPlan = () => {
             }}>
 
             <div className="max-w-7xl mx-auto text-center text-white">
-                <h2 className="text-2xl mb-4 lg:text-4xl font-bold leading-none">
+                <h2 className="text-2xl mb-4 lg:text-4xl font-bold leading-7">
                     Mobile App Development Services
                 </h2>
                 <p className="text-2xl mb-4 lg:text-4xl font-bold">
@@ -133,14 +141,29 @@ const PricingPlan = () => {
                             <tr>
                                 <td></td>
                                 <td className="p-4 text-center font-bold border-r border-gray-300">
-                                    <button className="bg-[#1D92FB] text-white px-4 py-4 rounded-xl">SUBMIT A PROPOSAL REQUEST</button>
-                                </td>
-                                <td className="p-4 text-center border-r font-bold border-gray-300">
-                                    <button className="bg-[#F7E022] text-black px-4 py-4 rounded-xl">SUBMIT A PROPOSAL REQUEST</button>
-                                </td>
-                                <td className="p-4 text-center font-bold">
-                                    <button className="bg-black text-white px-4 py-4 rounded-xl">SUBMIT A PROPOSAL REQUEST</button>
-                                </td>
+                        <button 
+                            onClick={() => handlePackageSelect("Basic")} 
+                            className="bg-[#1D92FB] text-white px-4 py-4 rounded-xl"
+                        >
+                            SUBMIT A PROPOSAL REQUEST
+                        </button>
+                    </td>
+                    <td className="p-4 text-center border-r font-bold border-gray-300">
+                        <button 
+                            onClick={() => handlePackageSelect("Standard")} 
+                            className="bg-[#F7E022] text-black px-4 py-4 rounded-xl"
+                        >
+                            SUBMIT A PROPOSAL REQUEST
+                        </button>
+                    </td>
+                    <td className="p-4 text-center font-bold">
+                        <button 
+                            onClick={() => handlePackageSelect("Enterprise")} 
+                            className="bg-black text-white px-4 py-4 rounded-xl"
+                        >
+                            SUBMIT A PROPOSAL REQUEST
+                        </button>
+                    </td>
                             </tr>
                         </tfoot>
                     )}
