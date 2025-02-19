@@ -17,9 +17,13 @@ export async function POST(req: NextRequest) {
     const secret = process.env.NEWS_LETTER_SECRET;
     const authHeader = req.headers.get("authorization");
 
-    if (authHeader !== `Bearer ${secret}`) {
-        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-    }
+  if (authHeader !== `Bearer ${secret}`) {
+    console.log("Received Authorization Header:", authHeader);
+    console.log("Expected Secret:", secret);
+    
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+}
+
 
     try {
         // Parse the request body as JSON
