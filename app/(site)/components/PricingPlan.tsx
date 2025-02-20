@@ -52,7 +52,6 @@ const PricingPlan = () => {
                     Price Plan
                 </p>
             </div>
-
             <div className="relative max-w-7xl mx-auto bg-white border border-black shadow-lg overflow-x-auto">
                 <table className="relative w-full border-collapse border border-gray-300">
                     {/* Top Right Illustration */}

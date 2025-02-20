@@ -1,7 +1,6 @@
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import Script from "next/script";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
 
@@ -115,11 +114,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
       <ul className="list-disc ml-5">{children}</ul>
     ),
   },
-
-
 };
-
-
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
@@ -133,8 +128,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             className="absolute inset-0 object-cover w-full h-full"
             src={urlForImage(data.heroimage).toString()}
             alt={data.heroimage?.alt || "blog post"}
-
-
           />
         )}
         <div className="absolute inset-0 bg-[#020C16] opacity-75"></div>
