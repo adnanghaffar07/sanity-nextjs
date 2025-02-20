@@ -3,49 +3,61 @@ import React from 'react'
 import ButtonScrollToSection from '../components/ButtonScrollToSection'
 import PricingPlan from '../components/PricingPlan';
 import CaseStudiesHome from '../components/CaseStudies-Home';
+import { client } from '@/sanity/lib/client';
 
 export const metadata = {
     title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
     description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
     keywords: [
-      "software development pricing plans",
-      "web development pricing",
-      "app development pricing",
-      "affordable pricing for development services",
-      "custom software development pricing",
-      "software development plans",
-      "pricing for IT services",
-      "development services pricing",
-      "web and app development pricing",
+        "software development pricing plans",
+        "web development pricing",
+        "app development pricing",
+        "affordable pricing for development services",
+        "custom software development pricing",
+        "software development plans",
+        "pricing for IT services",
+        "development services pricing",
+        "web and app development pricing",
     ],
     alternates: {
-      canonical: "https://codeautomation.ai/pricing",
+        canonical: "https://codeautomation.ai/pricing",
     },
     openGraph: {
-      title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
-      description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
-      url: "https://codeautomation.ai/pricing",
-      siteName: "CodeAutomation.ai",
-      type: "website",
-      images: [
-        {
-          url: "https://codeautomation.ai/price-plan.jpg",
-          width: 1200,
-          height: 630,
-          alt: "CodeAutomation.ai Pricing Plans",
-        },
-      ],
+        title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
+        description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
+        url: "https://codeautomation.ai/pricing",
+        siteName: "CodeAutomation.ai",
+        type: "website",
+        images: [
+            {
+                url: "https://codeautomation.ai/price-plan.jpg",
+                width: 1200,
+                height: 630,
+                alt: "CodeAutomation.ai Pricing Plans",
+            },
+        ],
     },
     twitter: {
-      card: "summary_large_image",
-      title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
-      description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
-      images: ["https://codeautomation.ai/price-plan.jpg"],
+        card: "summary_large_image",
+        title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
+        description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
+        images: ["https://codeautomation.ai/price-plan.jpg"],
     },
 };
 
-const PricePlan = () => {
-
+async function getData() {
+    const query = `*[_type == 'paymentPlanUI'][0]`;
+    try {
+        const fetchData = await client.fetch(query);
+        return fetchData || [];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+}
+export default async function PricePlan() {
+    const data = await getData()
+    console.log("Price Plan Data Fetch", data)
     return (
         <div>
             {/* Hero Section */}
@@ -109,17 +121,17 @@ const PricePlan = () => {
                 </div>
             </section>
             {/* Pricing Plan Updated Section */}
-            <PricingPlan/>
-   
+            <PricingPlan />
+
             {/* Recent Products */}
             <section className="text-center">
                 <div className='max-w-[1440px] mx-auto px-6 md:px-16 py-6 md:py-10'>
                     <h2 className="text-2xl md:text-3xl font-bold text-[#3C3C3C]">
                         Recent Projects              </h2>
-                        <CaseStudiesHome />
+                    <CaseStudiesHome />
                 </div>
             </section>
-            
+
             {/* CAll to Action */}
             <section
                 className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
@@ -160,9 +172,6 @@ const PricePlan = () => {
                     </div>
                 </div>
             </section>
-
         </div>
     )
 }
-
-export default PricePlan
