@@ -58,7 +58,6 @@ async function getData() {
 }
 export default async function PricePlan() {
     const data = await getData()
-    console.log("Price Plan Data Fetch", data)
     return (
         <div>
             {/* Hero Section */}

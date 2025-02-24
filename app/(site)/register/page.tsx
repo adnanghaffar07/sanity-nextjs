@@ -16,8 +16,7 @@ type FormData = {
 function RegisterForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const packageName = searchParams.get("package") || ""; // Get package name from URL
-
+  const packageName = searchParams.get("package") || "";
   // Form State
   const [formData, setFormData] = useState<FormData>({
     name: "",

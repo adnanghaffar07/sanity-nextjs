@@ -3,8 +3,6 @@
 import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
-import Link from "next/link";
 
 async function getData(urlPathSub: string) {
   const query = `*[_type == 'subService' && urlPathSub == '${urlPathSub}'][0]`;
