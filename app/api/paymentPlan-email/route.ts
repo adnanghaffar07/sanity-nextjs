@@ -17,7 +17,7 @@ async function sendEmail(formData: any) {
 
         const mailOptions = {
             from: `"CODEAUTOMATION PAYMENT PROPSAL" <${process.env.EMAIL_USER}>`,
-            to: "ayesha@codeautomation.dev", // Change this to your team's email
+            to: "adnan@codeautomation.dev", // Change this to your team's email
             subject: "New Propsal Form Submission",
             html: `
         <h2>New Propsal Form Submission</h2>
