@@ -439,7 +439,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Join our Team</p>
                         </div>
                       </Link>
-                      <Link
+                      {/* <Link
                         href="/lifeatca"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -456,7 +456,7 @@ export default function HomeNavigationContainer() {
                           <p className="text-base font-medium text-black">Life At CA</p>
                           <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
                         </div>
-                      </Link>
+                      </Link> */}
                       <Link
                         href="/partnership-program"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -812,7 +812,7 @@ export default function HomeNavigationContainer() {
                                   </Link>
                                 </p>
                               </li>
-                              <li>
+                              {/* <li>
                                 <Link
                                   href="/lifeatca"
                                   className="heading"
@@ -828,7 +828,7 @@ export default function HomeNavigationContainer() {
                                     Employee Experiences
                                   </Link>
                                 </p>
-                              </li>
+                              </li> */}
                               <li>
                                 <Link
                                   href="/partnership-program"

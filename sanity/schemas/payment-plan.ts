@@ -140,8 +140,31 @@ export default {
                             ]
                         }
                     ]
-                }
-            ]
+                },
+                {
+                    name: "pricing",
+                    title: "Pricing",
+                    type: "object",
+                    fields: [
+                        {
+                            name: "basicPrice",
+                            title: "Basic Plan Price",
+                            type: "number",
+                        },
+                        {
+                            name: "standardPrice",
+                            title: "Standard Plan Price",
+                            type: "number",
+                        },
+                        {
+                            name: "enterprisePrice",
+                            title: "Enterprise Plan Price",
+                            type: "number",
+                        },
+                    ],
+                },
+            ],
         },
+
     ],
 };

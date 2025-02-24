@@ -139,9 +139,9 @@ export default async function service({
   const dataLogo = await getLogoData();
   return (
     <div className="bg-white">
-    {data?.jsonLd && (
+      {data?.jsonLd && (
         <Script
-        id="services-pages"
+          id="services-pages"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: data.jsonLd }}
         />
@@ -161,9 +161,9 @@ export default async function service({
               <h1 className="title capitalize">{data.serviceTitle}</h1>
             </div>
             <div className="lg:text-2xl mx-auto max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-             <h2>{data.serviceDesc}</h2>
+              <h2>{data.serviceDesc}</h2>
             </div>
-            {(data.firstButton || data.secondButton) && (
+            {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                 {data.firstButton && (
                   <ButtonScrollToSection
@@ -176,59 +176,91 @@ export default async function service({
                 {data.secondButton?.SecondButtonUrl && (
                   <Link
                     href={data.secondButton.SecondButtonUrl}
-                    className="bg-[#f7e022]  text-black  font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
+                    className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {data.secondButton.SecondButtonText}
                   </Link>
                 )}
+                {params.service === "mobile-app-development-services" && (
+                  <Link
+                    href="/pricing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
+                  >
+                    View Pricing
+                  </Link>
+                )}
+
               </div>
             )}
+
           </div>
         </div>
       </div>
 
-          {/* Tools Section */}
-          {data.toolsLogoSection?.logoArray?.length > 0 && (
-        <section className="h-[180px] md:h-[224px] mx-auto px-16 bg-white flex items-center overflow-hidden">
-          <div className="w-full flex items-center">
-            <div className="flex animate-scroll">
-              {data.toolsLogoSection.logoArray.map(
-                (logo: any, index: number) => (
-                  <div
-                    key={index}
-                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-blue-50 bg-opacity-10 rounded-[26px] flex items-center justify-center mx-3 flex-shrink-0 border-2 border-[#e1e8ee]"
-                  >
-                    <Image
-                      src={urlForImage(logo).toString()}
-                      alt={logo?.alt}
-                      width={96}
-                      height={96}
-                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px] object-contain"
-                    />
-                  </div>
-                )
-              )}
-            </div>
-            <div className="flex animate-scroll">
-              {data.toolsLogoSection.logoArray.map(
-                (logo: any, index: number) => (
-                  <div
-                    key={index}
-                    className="w-28 md:w-[154px] h-28 md:h-[154px] bg-blue-50 bg-opacity-10 rounded-[26px] flex items-center justify-center mx-3 flex-shrink-0 border-2 border-[#e1e8ee]"
-                  >
-                    <Image
-                      src={urlForImage(logo).toString()}
-                      alt={logo?.alt}
-                      width={96}
-                      height={96}
-                      className="w-[76px] md:w-[96px] h-[76px] md:h-[96px] object-contain"
-                    />
-                  </div>
-                )
-              )}
-            </div>
+
+      {/* Tools Section */}
+      {data.toolsLogoSection?.logoArray?.length > 0 && (
+        <section className="mx-auto px-6 md:px-16 bg-white max-w-6xl py-8">
+          <h2 className="text-3xl font-bold text-center text-neutral-700">
+            Tools & Technologies
+          </h2>
+          <h2 className="mt-4 text-lg font-medium mb-8 text-center text-neutral-700">
+            We leverage industry-leading technologies and tools to create our Mobile Applications, including but not limited to
+          </h2>
+          <div className="grid grid-cols-4 gap-4 justify-center">
+            {data.toolsLogoSection.logoArray.slice(0, 4).map((logo: any, index: number) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row items-center justify-center md:space-x-4"
+              >
+                <div className="w-fit flex items-center justify-center">
+                  <img
+                    src={urlForImage(logo).toString()}
+                    alt={logo?.alt}
+                    className="h-10 md:h-16 object-cover cursor-pointer"
+                  />
+                </div>
+                <span className="text-gray-900 mt-4 md:mt-0">{logo?.alt}</span>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-3 gap-4 mt-6 justify-center">
+            {data.toolsLogoSection.logoArray.slice(4, 7).map((logo: any, index: number) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row items-center justify-center md:space-x-4"
+              >
+                <div className="w-fit flex items-center justify-center">
+                  <img
+                    src={urlForImage(logo).toString()}
+                    alt={logo?.alt}
+                    className="h-10 md:h-16 object-cover cursor-pointer"
+                  />
+                </div>
+                <span className="text-gray-900 mt-4 md:mt-0">{logo?.alt}</span>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-4 mt-6 justify-center">
+            {data.toolsLogoSection.logoArray.slice(7, 11).map((logo: any, index: number) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row items-center justify-center md:space-x-4"
+              >
+                <div className="w-fit flex items-center justify-center">
+                  <img
+                    src={urlForImage(logo).toString()}
+                    alt={logo?.alt}
+                    className="h-10 md:h-16 object-cover cursor-pointer"
+                  />
+                </div>
+                <span className="text-gray-900 mt-4 md:mt-0">{logo?.alt}</span>
+              </div>
+            ))}
           </div>
         </section>
       )}
@@ -390,7 +422,7 @@ export default async function service({
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection && <CustomSoftware2Section data={data} />}
 
-  
+
       {/* Introduction Section */}
       {data.introductionSection && (
         <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
@@ -1542,9 +1574,9 @@ export default async function service({
           </div>
         </section>
       )}
-   {data.faqSection && (
-      <FAQServicePage faqSection={data.faqSection} />
-    )}
+      {data.faqSection && (
+        <FAQServicePage faqSection={data.faqSection} />
+      )}
     </div>
   );
 }

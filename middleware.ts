@@ -8,7 +8,6 @@ export function middleware(req: NextRequest) {
     // Redirect to the not-found page
     return NextResponse.rewrite(new URL('/not-found', req.url));
   }
-
   return NextResponse.next();
 }
 

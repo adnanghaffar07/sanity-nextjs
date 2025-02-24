@@ -3,8 +3,8 @@ import type { Image } from 'sanity'
 
 import { dataset, projectId } from '../env'
 const imageBuilder = createImageUrlBuilder({
-  projectId: projectId || '',
-  dataset: dataset || '',
+  projectId: projectId || 'ld8m6d0z',
+  dataset: dataset || 'production',
 })
 
 export const urlForImage = (source: Image) => {

@@ -4,6 +4,7 @@ import ButtonScrollToSection from '../components/ButtonScrollToSection'
 import PricingPlan from '../components/PricingPlan';
 import CaseStudiesHome from '../components/CaseStudies-Home';
 import { client } from '@/sanity/lib/client';
+import { urlForImage } from '@/sanity/lib/image';
 
 export const metadata = {
     title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
@@ -57,7 +58,6 @@ async function getData() {
 }
 export default async function PricePlan() {
     const data = await getData()
-    console.log("Price Plan Data Fetch", data)
     return (
         <div>
             {/* Hero Section */}
@@ -70,20 +70,20 @@ export default async function PricePlan() {
                 <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
                     <div className="lg:absolute lg:top-[300px]">
                         <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 mx-auto">
-                            <h1 className="title capitalize">Simple and Clear Pricing for Your Business Needs</h1>
+                            <h1 className="title capitalize">{data.heading}</h1>
                         </div>
                         <div className="lg:text-2xl mx-auto text-base text-center mt-4 max-md:max-w-full lg:px-32">
-                            <h2> Cost-Effective Plans Designed for Every Business </h2>
+                            <h2>{data.subHeading}</h2>
                         </div>
 
                         <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                             <Link
-                                href="https://calendly.com/adnanghaffar"
+                                href={data.callToActionLink}
                                 className="hover:bg-[#1d92fb] hover:text-white bg-[#f7e022] text-black font-semibold py-3 px-8 rounded-lg shadow-lg text-center w-fit"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                Schedule a Call
+                                {data.callToActionButton}
                             </Link>
 
                         </div>
@@ -99,7 +99,7 @@ export default async function PricePlan() {
                         {/* Image Section on the Left */}
                         <div className="flex-1 md:mr-8">
                             <img
-                                src="/plan-include.png"
+                                src={urlForImage(data.introductionSection.introImage).toString()}
                                 alt="Our Case Studies"
                                 className="w-full h-auto rounded-lg"
                             />
@@ -108,20 +108,19 @@ export default async function PricePlan() {
                         {/* Text Section on the Right */}
                         <div className="flex-1 mt-6 md:mt-0 md:ml-8">
                             <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
-                                What’s Included?
+                                {data.introductionSection.introHeading}
                             </h3>
-                            <ul className="text-xl  list-disc pl-5 space-y-2">
-                                <li>Full mobile app development (iOS & Android)</li>
-                                <li>Seamless UI/UX design</li>
-                                <li>End-to-end testing & quality assurance</li>
-                                <li>Ongoing support & maintenance</li>
+                            <ul className="text-xl list-disc pl-5 space-y-2">
+                                {data.introductionSection.featureIncluded?.map((feature: any, index: any) => (
+                                    <li key={index}>{feature}</li>
+                                ))}
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
             {/* Pricing Plan Updated Section */}
-            <PricingPlan />
+            <PricingPlan data={data.features} />
 
             {/* Recent Products */}
             <section className="text-center">
