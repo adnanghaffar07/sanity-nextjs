@@ -26,47 +26,54 @@ const portfolioSchema = {
       of: [
         {
           type: "block",
-          styles: [{ title: 'Normal', value: 'normal' }],
-          lists: [{ title: 'Bullet', value: 'bullet' }],
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Heading 1", value: "h1" },
+            { title: "Heading 2", value: "h2" },
+            { title: "Heading 3", value: "h3" },
+            { title: "Heading 4", value: "h4" },
+            { title: "Heading 5", value: "h5" },
+            { title: "Heading 6", value: "h6" }
+          ],
+          lists: [{ title: "Bullet", value: "bullet" }],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
               { title: 'Emphasis', value: 'em' },
-              { title: 'Underline', value: 'underline' }, // Add underline decorator
+              { title: 'Underline', value: 'underline' },
             ],
             annotations: [
               {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
+                name: "link",
+                type: "object",
+                title: "Link",
                 fields: [
                   {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL'
+                    name: "href",
+                    type: "url",
+                    title: "URL"
                   },
                   {
-                    name: 'blank',
-                    type: 'boolean',
-                    title: 'Open in new tab'
+                    name: "blank",
+                    type: "boolean",
+                    title: "Open in new tab"
                   }
                 ]
               },
               {
-                name: 'textColor',
-                type: 'object',
-                title: 'Text Color',
+                name: "textColor",
+                type: "object",
+                title: "Text Color",
                 fields: [
                   {
-                    name: 'color',
-                    type: 'string',
-                    title: 'Color',
+                    name: "color",
+                    type: "string",
+                    title: "Color",
                     options: {
                       list: [
-                        { title: 'Red', value: 'red' },
-                        { title: 'Green', value: 'green' },
-                        { title: 'Blue', value: 'blue' },
-                        // Add more color options if needed
+                        { title: "Red", value: "red" },
+                        { title: "Green", value: "green" },
+                        { title: "Blue", value: "blue" }
                       ]
                     }
                   }
@@ -78,16 +85,16 @@ const portfolioSchema = {
         {
           type: "image",
           options: { hotspot: true },
-           fields: [
+          fields: [
             {
               name: "alt",
               title: "Alt",
-              type: "string",
-            },
-          ],
+              type: "string"
+            }
+          ]
         }
       ]
-    },    
+    },     
     {
       name: "pageType", // New field for page type
       title: "Page Type",
