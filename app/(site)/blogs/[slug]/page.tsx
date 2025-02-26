@@ -111,10 +111,46 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="list-disc ml-5">{children}</ul>
+      <ul className="list-disc ml-5 space-y-2">{children}</ul>
     ),
   },
+  listItem: {
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <li className="ml-3 text-lg">{children}</li> // Bullet point with bold text
+    ),
+  },
+  block: {
+    h1: ({ children }: { children?: React.ReactNode }) => (
+      <h1 className="text-4xl font-bold my-4">{children}</h1>
+    ),
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="text-3xl font-semibold my-3">{children}</h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="text-2xl font-semibold">{children}</h3>
+    ),
+    h4: ({ children }: { children?: React.ReactNode }) => (
+      <h4 className="text-xl font-medium my-2">{children}</h4>
+    ),
+    h5: ({ children }: { children?: React.ReactNode }) => (
+      <h5 className="text-lg font-medium my-1">{children}</h5>
+    ),
+    h6: ({ children }: { children?: React.ReactNode }) => (
+      <h6 className="text-base font-medium my-1">{children}</h6>
+    ),
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p className="text-base my-2">{children}</p>
+    ),
+  },
+  
+  marks: {
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <span className="">{children}</span> // No `<strong>` tag, only class-based styling
+    ),
+  },
+  
 };
+
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
