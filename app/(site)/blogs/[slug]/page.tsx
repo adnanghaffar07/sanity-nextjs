@@ -121,13 +121,13 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   },
   block: {
     h1: ({ children }: { children?: React.ReactNode }) => (
-      <h1 className="text-4xl font-bold my-4">{children}</h1>
+      <h1 className="lg:text-4xl text-2xl font-bold my-4">{children}</h1>
     ),
     h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="text-3xl font-semibold my-3">{children}</h2>
+      <h2 className="lg:text-3xl text-2xl font-semibold my-3">{children}</h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="text-2xl font-semibold">{children}</h3>
+      <h3 className="lg:text-2xl text-xl font-semibold">{children}</h3>
     ),
     h4: ({ children }: { children?: React.ReactNode }) => (
       <h4 className="text-xl font-medium my-2">{children}</h4>
@@ -158,7 +158,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
-      <div className="relative flex flex-col pb-12 w-full font-light text-white lg:min-h-[700px] bg-[#020C16]">
+      <div className="relative flex flex-col pb-12 w-full font-light text-white lg:min-h-[700px] bg-[ #020C16]">
         {data.heroimage && (
           <img
             className="absolute inset-0 object-cover w-full h-full"
