@@ -92,8 +92,8 @@ export default async function PricePlan() {
                 </div>
             </div>
             {/* Included Section */}
-            <section className="bg-[#1D92FB] bg-opacity-10">
-                <div className="max-w-6xl text-[#3C3C3C] px-6 md:px-16 py-10 md:py-16 mx-auto">
+            <section className="bg-[#D3EAFF]">
+                <div className="max-w-6xl text-[#3C3C3C] px-6 py-10 md:py-16 mx-auto">
                     {/* Content with Image on Left and Text on Right */}
                     <div className="flex flex-col md:flex-row items-center justify-between">
                         {/* Image Section on the Left */}
@@ -107,10 +107,10 @@ export default async function PricePlan() {
 
                         {/* Text Section on the Right */}
                         <div className="flex-1 mt-6 md:mt-0 md:ml-8">
-                            <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
+                            <h3 className="text-2xl md:text-3xl font-bold  mb-4">
                                 {data.introductionSection.introHeading}
                             </h3>
-                            <ul className="text-xl list-disc pl-5 space-y-2">
+                            <ul className="text-lg list-disc pl-5 space-y-2">
                                 {data.introductionSection.featureIncluded?.map((feature: any, index: any) => (
                                     <li key={index}>{feature}</li>
                                 ))}
