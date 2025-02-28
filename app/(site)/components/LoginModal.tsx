@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { GoogleLogin } from "@react-oauth/google";
@@ -19,7 +19,24 @@ const LoginModal = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const modalRef = useRef<HTMLDivElement>(null);
 
+  // Close modal when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose(); // Corrected from setShowModal(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
   useEffect(() => {
     const token = Cookies.get("authToken") || localStorage.getItem("authToken");
     if (token) {
@@ -138,7 +155,7 @@ const LoginModal = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex px-6 items-center justify-center z-50">
-      <div className="bg-white px-6 md:px-12 py-6 rounded-lg shadow-lg mt-16 md:mt-24 w-full md:w-[500px]">
+      <div ref={modalRef} className="bg-white px-6 md:px-12 py-6 rounded-lg shadow-lg mt-16 md:mt-24 w-full md:w-[500px]">
         <h2 className="text-2xl font-medium mb-6 text-center">
           {isSignUp ? "Sign Up" : "Sign in"} to View Full Plan
         </h2>

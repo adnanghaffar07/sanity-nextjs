@@ -75,12 +75,14 @@ const PricingPlan = ({ data }: any) => {
                             </thead>
                             <tbody>
                                 {(isAuthenticated ? data.featuresList : data.featuresList.slice(0, 4)).map((feature: any, index: any) => (
-                                    <tr key={index} className="border-b border-gray-300 text-sm">
-                                        <td className="px-3 py-2 font-semibold border-r border-gray-300">{feature.name}</td>
-                                        <td className=" px-3 py-2 text-left border-r border-gray-300">
-                                            {feature?.basic?.included ? <CustomTick /> : "❌"} {feature?.basic?.description}
-                                        </td>
-                                    </tr>
+                                   <tr key={index} className="border-b border-gray-300 text-sm">
+                                   <td className="px-3 py-2 font-semibold border-r border-gray-300 w-[45%]">{feature.name}</td>
+                                   <td className="px-3 py-2 text-left border-r border-gray-300 w-[55%]">
+                                       {feature?.basic?.included ? <CustomTick /> : "❌"}{" "}
+                                       <span className="inline-block">{feature?.basic?.description}</span>
+                                   </td>
+                               </tr>
+                               
                                 ))}
                             </tbody>
                             {/* Hide prices and buttons if not authenticated */}
@@ -95,7 +97,7 @@ const PricingPlan = ({ data }: any) => {
                                         <td className="p-3 text-center border-r font-bold border-gray-300">
                                             <button
                                                 onClick={() => handlePackageSelect("Basic")}
-                                                className="bg-[#F7E022] text-black px-3 py-4 rounded-xl"
+                                                className="bg-[#F7E022]  text-black px-2 py-4 rounded-xl"
                                             >
                                                 SUBMIT PROPOSAL
                                             </button>
@@ -369,7 +371,7 @@ const PricingPlan = ({ data }: any) => {
                 </div>
             )}
 
-            <LoginModal isOpen={showModal} onClose={() => setShowModal(false)} onLoginSuccess={() => setIsAuthenticated(true)} />
+            <LoginModal  isOpen={showModal} onClose={() => setShowModal(false)} onLoginSuccess={() => setIsAuthenticated(true)} />
         </div>
     );
 };
