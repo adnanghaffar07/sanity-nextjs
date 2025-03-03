@@ -159,8 +159,8 @@ function RegisterForm() {
     }
   };
 
-   // Disable/Enable scrolling when OTP modal is open
-   useEffect(() => {
+  // Disable/Enable scrolling when OTP modal is open
+  useEffect(() => {
     if (otpModalOpen) {
       document.body.style.overflow = "hidden"; // Disable scroll
     } else {
@@ -289,7 +289,7 @@ function RegisterForm() {
               <div className="bg-white p-2 text-sm rounded-lg">
                 Click{" "}
                 <a href="/brochure" className="text-blue-600 cursor-pointer" target="_blank" rel="noopener noreferrer">
-                  HERE
+                  HERE{" "}
                 </a>
                 to view our brochures.
               </div>
@@ -300,7 +300,16 @@ function RegisterForm() {
       {/* OTP Modal */}
       {otpModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[350px] text-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[350px] text-center relative">
+
+            {/* Close Button */}
+            <button
+              className="absolute top-2 right-4 text-gray-600 hover:text-gray-900 text-2xl"
+              onClick={() => setOtpModalOpen(false)}
+            >
+              &times;
+            </button>
+
             {/* Icon */}
             <div className="flex justify-center mb-4">
               <div className="bg-blue-500 p-3 rounded-full">
@@ -321,12 +330,11 @@ function RegisterForm() {
                 <input
                   key={index}
                   type="text"
-                  maxLength={1}  // Set maxLength as number
-                  ref={(el) => { otpInputs.current[index] = el }} // Assign ref to input
+                  maxLength={1}
+                  ref={(el) => { otpInputs.current[index] = el }}
                   className="w-12 h-12 text-center border rounded-md text-lg font-bold focus:outline-none focus:border-blue-500"
-                  onChange={(e) => handleOtpChange(e, index)} // Handle change
+                  onChange={(e) => handleOtpChange(e, index)}
                 />
-
               ))}
             </div>
 
@@ -334,15 +342,17 @@ function RegisterForm() {
             {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
             {/* Verify Button */}
-            <button className="bg-blue-500 text-white py-2 px-4 rounded w-full text-lg font-semibold" onClick={verifyOtpAndSubmit} disabled={loading}>
+            <button
+              className="bg-blue-500 text-white py-2 px-4 rounded w-full text-lg font-semibold"
+              onClick={verifyOtpAndSubmit}
+              disabled={loading}
+            >
               {loading ? "Verifying..." : "Verify OTP"}
             </button>
-
-            {/* Cancel Button */}
-            <button className="text-red-500 mt-3 text-sm font-medium" onClick={() => setOtpModalOpen(false)}>Cancel</button>
           </div>
         </div>
       )}
+
 
     </div>
   );
