@@ -166,15 +166,22 @@ export default async function ValueBlueprints() {
         </div>
       </div>
       {/* Explore Blueprints section */}
-      <section className="px-6 md:px-16 py-10 md:py-16 bg-white">
+      <section
+        className="px-6 md:px-16 py-10 bg-white"
+        style={{
+          backgroundImage: "url(/Container.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="flex flex-col max-w-[1400px] mx-auto">
           <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
             <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
               <div className="justify-center text-center">
-                <span className="font-medium text-black capitalize leading-[60px] text-center">
+                <span className="font-medium text-white capitalize leading-[60px] text-center">
                   Explore Our Value{" "}
                 </span>
-                <span className="text-sky-500 capitalize leading-[60px]">
+                <span className="text-white capitalize leading-[60px]">
                   BLUEPRINTS
                 </span>
               </div>
@@ -191,45 +198,41 @@ export default async function ValueBlueprints() {
                   href={`/value-blueprints/${item._id}`}
                   aria-label={`View details of ${item.title}`}
                 >
-                  <div className="group flex flex-col items-start p-6 max-w-sm rounded-lg border border-solid bg-zinc-50 border-black border-opacity-0 h-[230px] md:h-[300px] max-w-[384px] w-full sm:w-80 md:w-80 transition duration-300 hover:bg-[#1D92FB]">
-                    <div className="min-h-[150px] md:min-h-[182px] relative overflow-hidden">
-                      <img
-                        src={urlForImage(item.heroimage).toString()}
-                        alt={item.title}
-                        className="w-full h-auto object-cover rounded aspect-[3.06] transition duration-300 group-hover:scale-110"
-                      />
-                      <div className="mt-2.5 text-sm md:text-lg font-semibold leading-snug text-neutral-700 group-hover:text-white transition duration-300">
-                        {item.title}
-                      </div>
-                    </div>
-                    <div className="flex gap-3.5 mt-1 md:mt-5 max-w-full justify-center transition-all duration-300">
-                      {item.caseStudiesToolsSection?.toolsTech?.map((tool: any, toolIndex: any) => (
-                        <div key={toolIndex} className="flex flex-col flex-1 items-center relative">
-                          {tool?.images.map((logoRef: any, logoIndex: any) => {
+                  {/* Card Container */}
+                  <div className="relative w-full sm:w-80 md:w-80 h-[200px] md:h-[230px] rounded-lg overflow-hidden group">
+                    {/* Main Image (Covers Full Width) */}
+                    <img
+                      src={urlForImage(item.heroimage).toString()}
+                      alt={item.title}
+                      className="w-full h-[200px] md:h-[230px] object-cover rounded aspect-[3.06] transition duration-300 group-hover:scale-110"
+                    />
+
+                    {/* Overlay on Hover */}
+                    <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                      {/* Logos Row */}
+                      <div className="flex gap-3 justify-center mb-3">
+                        {item.caseStudiesToolsSection?.toolsTech?.map((tool: any, toolIndex: any) =>
+                          tool?.images.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
                             if (logoData) {
                               return (
-                                <div
+                                <img
                                   key={logoIndex}
-                                  className="relative transition-transform duration-300 group-hover:-translate-y-2"
-                                >
-                                  <div className="flex items-center justify-center">
-                                    <div className="relative group">
-                                      <img
-                                        src={urlForImage(logoData.image).toString()}
-                                        alt={logoData.heading}
-                                        className="logo-img object-contain gap-2 h-10 w-24 rounded-3xl border border-transparent group-hover:border-white shadow-[0px_2px_5px_rgba(0,137,251,0.14)] transition duration-300"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
+                                  src={urlForImage(logoData.image).toString()}
+                                  alt={logoData.heading}
+                                  className="h-10 bg-white rounded-full object-contain"
+                                />
                               );
-                            } else {
-                              return null;
                             }
-                          })}
-                        </div>
-                      ))}
+                            return null;
+                          })
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <div className="text-white text-lg font-medium text-center px-3">
+                        {item.title}
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -237,12 +240,13 @@ export default async function ValueBlueprints() {
             </div>
             <ScrollButton
               scrollContainerId="scrollContainer"
-              totalItems={portfolioData.length} // Number of items in portfolioData
-              itemsPerPage={4} // Adjust based on how many items per page you want
+              totalItems={portfolioData.length}
+              itemsPerPage={3}
             />
           </div>
         </div>
       </section>
+
 
       {/* Tools and Technology */}
       <img
