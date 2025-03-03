@@ -291,7 +291,7 @@ function RegisterForm() {
                 <a href="/brochure" className="text-blue-600 cursor-pointer" target="_blank" rel="noopener noreferrer">
                   HERE{" "}
                 </a>
-                to view our brochures.
+                 to view our brochures.
               </div>
             </div>
           </form>
