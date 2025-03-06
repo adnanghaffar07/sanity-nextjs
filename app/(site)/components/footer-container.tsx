@@ -107,7 +107,7 @@ export default function FooterContainer() {
                 </Link>
                 <div className="w-1 h-1 bg-white rounded-full"></div>
                 <Link
-                  href={"termsandconditions"}
+                  href={"/termsandconditions"}
                   className="text-sm hover:underline"
                 >
                   Terms and Conditions

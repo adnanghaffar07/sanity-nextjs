@@ -77,20 +77,20 @@ const Career: React.FC = async () => {
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title">&quot;Be a part of our next story&quot;</h2>
+              <h1 className="title">&quot;Be a part of our next story&quot;</h1>
             </div>
-            <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+            <h2 className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               Join our team and be part of the next success story in
               CodeAutomation careers. Unlock your potential today!
-            </div>
+            </h2>
           </div>
         </div>
       </div>
       <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-blue-50 leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-          <div className="self-center xl:text-5xl lg:text-4xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
+          <h2 className="self-center xl:text-5xl lg:text-4xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
             Grow and Collaborate with the Top Professionals in the Field
-          </div>
+          </h2>
           <div className="xl:w-9/12 mx-auto text-center">
             <p className="lg:text-xl text-base">
               We pick applicants based on their skill set, mentality, and
@@ -118,9 +118,9 @@ const Career: React.FC = async () => {
                   alt="rounded-icon"
                   className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                 />
-                <div className="text-3xl lg:text-5xl pt-10  md:pt-0 mb-3 text-black">
+                <h3 className="text-3xl lg:text-5xl pt-10  md:pt-0 mb-3 text-black">
                   Make Your Own Trajectory with Your Own Assistance
-                </div>
+                </h3>
                 <div className="mb-10">
                   <p className="lg:text-lg text-base text-black">
                     We support and encourage our team members as they pursue
@@ -154,9 +154,9 @@ const Career: React.FC = async () => {
         />
         <div className="flex flex-col w-full max-w-[1582px] mx-auto">
           <div className="text-center mt-6">
-            <div className="xl:text-5xl lg:text-4xl text-3xl mb-6 text-black">
+            <h3 className="xl:text-5xl lg:text-4xl text-3xl mb-6 text-black">
               Open Vacancies
-            </div>
+            </h3>
             <div className="mb-14">
               <p className="text-lg lg:text-xl text-base text-black">
                 Are you passionate about building your career with opportunities
@@ -188,9 +188,9 @@ const Career: React.FC = async () => {
                 />
               </div>
               <div className="xl:pr-10 relative text-left md:text-right">
-                <div className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-black">
+                <h3 className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-black">
                   Perks & Benefits
-                </div>
+                </h3>
                 <div className="mb-10">
                   <p className="lg:text-lg text-base text-black text-left md:text-right">
                     Get special perks and benefits such as flexible schedules

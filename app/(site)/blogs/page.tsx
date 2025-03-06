@@ -82,9 +82,9 @@ export default async function Blogs() {
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
                       <p className="text-xs sm:text-lg mb-4">{item.subtitle}</p>
-                      <h1 className="text-2xl  sm:text-xl text-base font-medium">
+                      <h2 className="text-2xl  sm:text-xl text-base font-medium">
                         {item.title}
-                      </h1>
+                      </h2>
                       <div>
                         <hr className="bg-black my-5 h-px   w-full border-0" />
                       </div>

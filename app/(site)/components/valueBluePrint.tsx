@@ -102,7 +102,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({
         </button>
       )}
 
-      {/* Pagination Dots (Representing Rounds) */}
+      {/* Pagination Dots (Representing Rounds) */}b
       <div className="hidden md:flex gap-1 self-center mt-12 bg-white bg-opacity-10 py-2.5 px-3 rounded-2xl">
         {Array.from({ length: totalRounds }).map((_, idx) => (
           <div

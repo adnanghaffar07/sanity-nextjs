@@ -172,9 +172,9 @@ const Page = () => {
         <section className="w-full max-w-[1340px] mx-auto">
           <div className="flex flex-col md:flex-row gap-4 mt-10 items-center w-full px-6">
             {/* Heading and Search Bar */}
-            <h1 className="text-2xl md:text-4xl text-black font-bold">
+            <h2 className="text-2xl md:text-4xl text-black font-bold">
               Explore Our Work
-            </h1>
+            </h2>
             <div className="relative flex items-center border border-gray-400 rounded px-2 bg-white md:ml-auto w-full md:w-auto">
               <svg
                 className="w-6 h-6 text-black"

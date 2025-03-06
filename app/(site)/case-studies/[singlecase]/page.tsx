@@ -133,7 +133,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           )}
           <div className="lg:absolute lg:top-[200px] md:left-[0px] lg:left-[110px] ">
             <div className="md:text-6xl text-3xl mb-6 font-bold capitalize max-w-2xl lg:pl-8">
-              <h2>{data.subtitle}</h2>
+              <h1>{data.subtitle}</h1>
             </div>
             <div className="md:text-4xl text-2xl text-gray-100 font-bold capitalize max-w-lg lg:pl-8">
               <h2>{data.blogheading}</h2>
@@ -585,9 +585,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                             background: `linear-gradient(to right, ${project.leftcolor}, ${project.rightcolor})`,
                           }}
                         >
-                          <h1 className="text-2xl text-center text-white font-semibold p-2">
+                          <h3 className="text-2xl text-center text-white font-semibold p-2">
                             {project.heading}
-                          </h1>
+                          </h3>
                           <p className="text-white text-center">{project.detail}</p>
                         </div>
                       ))}

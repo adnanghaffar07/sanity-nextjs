@@ -155,9 +155,9 @@ const BrochuresPage = async () => {
 
 
             <div className="max-w-5xl mx-auto pt-6 px-4">
-                <h1 className="text-3xl font-bold text-left pb-4 my-6 text-black">
+                <h2 className="text-3xl font-bold text-left pb-4 my-6 text-black">
                     Our Best Brochures
-                </h1>
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {brochures.slice(0, 6).map((brochure: any, index: any) => (
                         <div
@@ -216,9 +216,9 @@ const BrochuresPage = async () => {
                 </div>
             </div>
             <div id="brochure" className="max-w-7xl mx-auto py-6 px-4">
-                <h1 className="text-3xl font-bold text-left pb-4 my-6 text-black">
+                <h3 className="text-3xl font-bold text-left pb-4 my-6 text-black">
                     Brochures Tailored for Your Success
-                </h1>
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {brochures.slice(6, brochures.length - 3).map((brochure: any, index: any) => (
                         <div
