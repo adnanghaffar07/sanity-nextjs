@@ -1,6 +1,21 @@
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
+export const metadata = {
+  title: "Technologies | CodeAutomation",
+  description:
+    "We offer only well-recognized and time-tested technologies to bring advancement to any of your business goals.",
+  keywords: [
+    "Technologies",
+    "CodeAutomation",
+    "Software Development",
+    "Tech Stack",
+  ],
+  alternates: {
+    canonical: "https://codeautomation.ai/technologies", // ✅ Fixes the canonical error
+  },
+};
+
 async function getData() {
   const query = `*[_type == 'technologies'] | order(_updatedAt desc)`;
   try {

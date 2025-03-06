@@ -5,40 +5,45 @@ import { urlForImage } from "@/sanity/lib/image";
 async function getValueData(_id: string) {
   const queryValue = `*[_type == 'portfolio' && _id == '${_id}'][0]`;
   try {
-    const fetchData = await client.fetch(queryValue);
-    return fetchData || [];
+    return await client.fetch(queryValue);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    return null;
   }
 }
 
 async function getLogoData() {
   const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
   try {
-    const fetchData = await client.fetch(queryLogo);
-    return fetchData || [];
+    return await client.fetch(queryLogo);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
   }
 }
-// Updated generateMetadata function
-export async function generateMetadata ({ params }: { params: { slug: string } }) {
 
+// ✅ Updated generateMetadata function with Canonical URL
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const data = await getValueData(params.slug);
-  const title = data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA";
-  const description = data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA";
-  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai";
 
-  const heroImageUrl = urlForImage(data.heroimage).toString(); // Use a default image if heroImage is not available
+  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription = "Custom Software and Mobile Development Company in USA";
+  const defaultKeywords = "CodeAutomation.ai";
+  const canonicalUrl = `https://codeautomation.ai/value-blueprints/${params.slug}`; // ✅ Dynamic Canonical URL
 
-  const facebookMeta = data.facebookCardsSub || {};
-  const twitterMeta = data.twitterCardsSub || {};
-  const linkedInMeta = data.linkedInCardsSub || {};
-  const pinterestMeta = data.pinterestCardsSub || {};
-  const whatsappMeta = data.whatsappCardsSub || {};
-  const telegramMeta = data.telegramCardsSub || {};
+  const title = data?.webSeoMetadataSub?.title || defaultTitle;
+  const description = data?.webSeoMetadataSub?.description || defaultDescription;
+  const keywords = data?.webSeoMetadataSub?.keywords?.join(", ") || defaultKeywords;
+
+  // ✅ Prevents errors if `heroimage` is missing
+  const heroImageUrl = data?.heroimage ? urlForImage(data.heroimage).toString() : "/default-image.jpg";
+
+  const facebookMeta = data?.facebookCardsSub || {};
+  const twitterMeta = data?.twitterCardsSub || {};
+  const linkedInMeta = data?.linkedInCardsSub || {};
+  const pinterestMeta = data?.pinterestCardsSub || {};
+  const whatsappMeta = data?.whatsappCardsSub || {};
+  const telegramMeta = data?.telegramCardsSub || {};
 
   return {
     title,
@@ -46,55 +51,45 @@ export async function generateMetadata ({ params }: { params: { slug: string } }
     keywords,
     openGraph: {
       type: facebookMeta.facebookType || "website",
-      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      url: facebookMeta.facebookUrl || canonicalUrl,
       title: facebookMeta.facebookTitle || title,
       description: facebookMeta.facebookDescription || description,
-      images: [
-        {
-          url: heroImageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: twitterMeta.twitterType || "summary_large_image",
       title: twitterMeta.twitterTitle || title,
       description: twitterMeta.twitterDescription || description,
-      images: [
-        {
-          url: heroImageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        }
-      ],
-      url: twitterMeta.twitterUrl || "https://codeautomation.ai",
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+      url: twitterMeta.twitterUrl || canonicalUrl,
     },
     linkedIn: {
       title: linkedInMeta.linkedInTitle || title,
       description: linkedInMeta.linkedInDescription || description,
       image: heroImageUrl,
-      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+      url: linkedInMeta.linkedInUrl || canonicalUrl,
     },
     pinterest: {
       title: pinterestMeta.pinterestTitle || title,
       description: pinterestMeta.pinterestDescription || description,
-      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+      url: pinterestMeta.pinterestUrl || canonicalUrl,
     },
     whatsapp: {
       title: whatsappMeta.whatsappTitle || title,
       description: whatsappMeta.whatsappDescription || description,
-      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+      url: whatsappMeta.whatsappUrl || canonicalUrl,
     },
     telegram: {
       title: telegramMeta.telegramTitle || title,
       description: telegramMeta.telegramDescription || description,
-      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+      url: telegramMeta.telegramUrl || canonicalUrl,
+    },
+    alternates: {
+      canonical: canonicalUrl, // ✅ Fixed canonical tag
     },
   };
 }
+
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);

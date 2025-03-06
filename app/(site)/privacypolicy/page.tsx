@@ -1,12 +1,23 @@
-import Link from "next/link";
 import React from "react";
+
+export const metadata = {
+  title: "Software Development Company in the USA | CodeAutomation",
+ description:
+   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+   keywords: [
+     "CodeAutomation",
+     "software development company",
+     "software development services",
+   ],
+ alternates: {
+   canonical: "https://codeautomation.ai/privacypolicy", // ✅ Fixes the canonical error
+ },
+};
 
 const page = () => {
   return (
     <section>
       <div className="flex overflow-hidden relative flex-col w-full font-light text-white h-[450px] lg:min-h-[700px]">
-
-
         <img
           className="top-0 left-0 object-cover absolute inset-0 size-full"
           src="/privacy-policy.png"

@@ -39,6 +39,7 @@ async function getValueData() {
 // Updated generateMetadata function
 export async function generateMetadata() {
   const data = await getData();
+  const canonicalUrl = "https://codeautomation.ai/value-blueprints";
   const defaultTitle =
     "Code Automation - Custom Software and Mobile Development Company in USA";
   const defaultDescription =
@@ -59,6 +60,9 @@ export async function generateMetadata() {
     title,
     description,
     keywords,
+    alternates: {
+      canonical: canonicalUrl, // ✅ This ensures correct canonical
+    },
     openGraph: {
       type: facebookMeta.type || "website",
       url: facebookMeta.url || "https://codeautomation.ai",

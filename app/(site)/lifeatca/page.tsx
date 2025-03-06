@@ -2,7 +2,19 @@ import * as React from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-
+export const metadata = {
+  title: "Software Development Company in the USA | CodeAutomation",
+ description:
+   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+   keywords: [
+     "CodeAutomation",
+     "software development company",
+     "software development services",
+   ],
+ alternates: {
+   canonical: "https://codeautomation.ai/lifeatca", // ✅ Fixes the canonical error
+ },
+};
 
 async function getData() {
   const query = `*[_type == 'lifeatCA'][0]`;

@@ -14,22 +14,21 @@ import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 import Script from "next/script";
 import FAQServicePage from "../../components/FaqService";
 
-async function getData(params: string) {
-  const query = `*[_type == 'logicalServices' && urlPath == '${params}'][0]`;
+async function getData(service: string) {
+  if (!service) return null; // ✅ Prevents undefined errors
+  const query = `*[_type == 'logicalServices' && urlPath == '${service}'][0]`;
   try {
-    const fetchData = await client.fetch(query);
-    return fetchData || [];
+    return await client.fetch(query);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    return null;
   }
 }
 
 async function getSubData() {
   const querySub = `*[_type == 'subService'] | order(_createdAt asc)`;
   try {
-    const fetchData = await client.fetch(querySub);
-    return fetchData || [];
+    return await client.fetch(querySub);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
@@ -39,39 +38,38 @@ async function getSubData() {
 async function getLogoData() {
   const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
   try {
-    const fetchData = await client.fetch(queryLogo);
-    return fetchData || [];
+    return await client.fetch(queryLogo);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
   }
 }
 
-// Updated generateMetadata function
-export async function generateMetadata({
-  params,
-}: {
-  params: { service: string };
-}) {
-  const data = await getData(params.service); // Ensure to pass params.service to getData
-  const defaultTitle =
-    "Code Automation - Custom Software and Mobile Development Company in USA";
-  const defaultDescription =
-    "Custom Software and Mobile Development Company in USA";
+// ✅ Fixed generateMetadata Function
+export async function generateMetadata({ params }: { params: { service: string } }) {
+  const data = await getData(params.service);
+
+  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription = "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
 
-  const title = data.webSeoMetadata?.title || defaultTitle;
-  const description = data.webSeoMetadata?.description || defaultDescription;
-  const keywords = data.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
+  const title = data?.webSeoMetadata?.title || defaultTitle;
+  const description = data?.webSeoMetadata?.description || defaultDescription;
+  const keywords = data?.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
 
-  const facebookMeta = data.facebookCards || {};
-  const twitterMeta = data.twitterCards || {};
-  const linkedInMeta = data.linkedInCards || {};
-  const pinterestMeta = data.pinterestCards || {};
-  const whatsappMeta = data.whatsappCards || {};
-  const telegramMeta = data.telegramCards || {};
+  const facebookMeta = data?.facebookCards || {};
+  const twitterMeta = data?.twitterCards || {};
+  const linkedInMeta = data?.linkedInCards || {};
+  const pinterestMeta = data?.pinterestCards || {};
+  const whatsappMeta = data?.whatsappCards || {};
+  const telegramMeta = data?.telegramCards || {};
 
-  const canonicalUrl = `https://codeautomation.ai/services/${params.service}`; // Construct your canonical URL
+  const heroImageUrl = data?.heroImage ? urlForImage(data.heroImage).toString() : "/default-image.jpg"; // ✅ Prevents errors if image is missing
+
+  // ✅ Fixed Canonical URL
+  const canonicalUrl = params.service
+    ? `https://codeautomation.ai/services/${params.service}`
+    : "https://codeautomation.ai/services";
 
   return {
     title,
@@ -79,52 +77,40 @@ export async function generateMetadata({
     keywords,
     openGraph: {
       type: facebookMeta.facebookType || "website",
-      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      url: facebookMeta.facebookUrl || canonicalUrl, // ✅ Uses canonical URL
       title: facebookMeta.facebookTitle || title,
       description: facebookMeta.facebookDescription || description,
-      images: [
-        {
-          url: urlForImage(data.heroImage).toString(),
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title: twitterMeta.twitterTitle || title,
       description: twitterMeta.twitterDescription || description,
-      images: [
-        {
-          url: urlForImage(data.heroImage).toString(),
-          alt: title,
-        },
-      ],
+      images: [{ url: heroImageUrl, alt: title }],
     },
     linkedIn: {
       title: linkedInMeta.linkedInTitle || title,
       description: linkedInMeta.linkedInDescription || description,
-      image: urlForImage(data.heroImage).toString(),
-      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+      image: heroImageUrl,
+      url: linkedInMeta.linkedInUrl || canonicalUrl,
     },
     pinterest: {
       title: pinterestMeta.pinterestTitle || title,
       description: pinterestMeta.pinterestDescription || description,
-      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+      url: pinterestMeta.pinterestUrl || canonicalUrl,
     },
     whatsapp: {
       title: whatsappMeta.whatsappTitle || title,
       description: whatsappMeta.whatsappDescription || description,
-      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+      url: whatsappMeta.whatsappUrl || canonicalUrl,
     },
     telegram: {
       title: telegramMeta.telegramTitle || title,
       description: telegramMeta.telegramDescription || description,
-      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+      url: telegramMeta.telegramUrl || canonicalUrl,
     },
     alternates: {
-      canonical: canonicalUrl,
+      canonical: canonicalUrl, // ✅ Fixed the canonical tag
     },
   };
 }

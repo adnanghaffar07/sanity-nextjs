@@ -1,6 +1,21 @@
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+
+export const metadata = {
+  title: "Software Development Company in the USA | CodeAutomation",
+ description:
+   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+   keywords: [
+     "CodeAutomation",
+     "software development company",
+     "software development services",
+   ],
+ alternates: {
+   canonical: "https://codeautomation.ai/blogs", // ✅ Fixes the canonical error
+ },
+};
+
 async function getValueData() {
   const queryValue = `*[_type == 'portfolio' && pageType == 'blogs'] | order(_createdAt desc)`;
   try {

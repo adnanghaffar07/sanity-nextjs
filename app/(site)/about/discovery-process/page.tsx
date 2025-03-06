@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import Link from "next/link";
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 async function getData() {
     const query = `*[_type == 'valueDiscoveryProcessPage'][0]`;
@@ -37,6 +35,9 @@ export async function generateMetadata() {
         title,
         description,
         keywords,
+        alternates: {
+            canonical: "https://codeautomation.ai/about/discovery-process", // Update this URL based on your page
+          },          
         openGraph: {
             type: facebookMeta.type || "website",
             url: facebookMeta.url || "https://codeautomation.ai",
@@ -87,8 +88,6 @@ export async function generateMetadata() {
 }
 export default async function DiscoveryProcess() {
     const data = await getData();
-
-
     return (
         <div className="w-full flex flex-col items-center">
             {/* Hero Section */}
