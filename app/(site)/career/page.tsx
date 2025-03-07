@@ -5,11 +5,11 @@ export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
   description:
     "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-    keywords: [
-      "CodeAutomation",
-      "software development company",
-      "software development services",
-    ],
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
   alternates: {
     canonical: "https://codeautomation.ai/career", // ✅ Fixes the canonical error
   },
@@ -89,9 +89,9 @@ const Career: React.FC = async () => {
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h1 className="title">&quot;Be a part of our next story&quot;</h1>
-            </div>
+            <h1 className="lg:text-4xl title text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
+              Be a part of our next story
+            </h1>
             <h2 className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               Join our team and be part of the next success story in
               CodeAutomation careers. Unlock your potential today!

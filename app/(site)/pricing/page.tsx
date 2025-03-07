@@ -7,7 +7,7 @@ import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 
 export const metadata = {
-    title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
+    title: "Affordable Software Development Pricing | CodeAutomation.ai",
     description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
     keywords: [
         "software development pricing plans",
@@ -24,7 +24,7 @@ export const metadata = {
         canonical: "https://codeautomation.ai/pricing",
     },
     openGraph: {
-        title: "Affordable Pricing Plans for Software Development Services | CodeAutomation.ai",
+        title: "Affordable Software Development Pricing | CodeAutomation.ai",
         description: "Explore our transparent and cost-effective pricing plans for expert software development, web development, and app development services at CodeAutomation.ai.",
         url: "https://codeautomation.ai/pricing",
         siteName: "CodeAutomation.ai",

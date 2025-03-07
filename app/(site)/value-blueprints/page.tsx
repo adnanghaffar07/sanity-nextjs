@@ -133,7 +133,7 @@ export default async function ValueBlueprints() {
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize leading-[56px]">{data.title}</h2>
+              <h1 className="title capitalize leading-[56px]">{data.title}</h1>
             </div>
           </div>
         </div>
@@ -234,9 +234,9 @@ export default async function ValueBlueprints() {
                       </div>
 
                       {/* Title */}
-                      <div className="text-white text-lg font-medium text-center px-3">
+                      <p className="text-white text-lg font-medium text-center px-3">
                         {item.title}
-                      </div>
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -265,9 +265,9 @@ export default async function ValueBlueprints() {
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
             {data.toolsTechSection?.toolsTechHeading}
           </h2>
-          <h2 className="text-lg text-gray-800 leading-relaxed text-center mb-6">
+          <p className="text-lg text-gray-800 leading-relaxed text-center mb-6">
             {data.toolsTechSection?.toolsTechDesc}
-          </h2>
+          </p>
           <div className="flex justify-center items-center mt-10 w-full max-md:max-w-full">
             <div className="flex flex-col w-full max-w-[1090px] max-md:max-w-full">
               {/* Top Row */}
@@ -296,9 +296,9 @@ export default async function ValueBlueprints() {
                                     alt={logoData.heading}
                                     className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
-                                  <h3 className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
+                                  <p className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
                                     {tool.heading}
-                                  </h3>
+                                  </p>
                                 </div>
                               );
                             } else {
@@ -337,9 +337,9 @@ export default async function ValueBlueprints() {
                                     alt={logoData.heading}
                                     className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
-                                  <h3 className="text-sm text-gray-800 font-semibold text-center cursor-pointer mt-2">
+                                  <p className="text-sm text-gray-800 font-semibold text-center cursor-pointer mt-2">
                                     {tool.heading}
-                                  </h3>
+                                  </p>
                                 </div>
                               );
                             } else {
@@ -377,9 +377,9 @@ export default async function ValueBlueprints() {
                                     alt={logoData.heading}
                                     className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
                                   />
-                                  <h3 className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
+                                  <p className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
                                     {tool.heading}
-                                  </h3>
+                                  </p>
                                 </div>
                               );
                             } else {
@@ -564,7 +564,6 @@ export default async function ValueBlueprints() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

@@ -29,7 +29,7 @@ const News: React.FC = async () => {
                 <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 lg:pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow mt-20 lg:mt-0">
                     <div className="flex flex-col items-center justify-center text-center">
                         <div className="lg:text-4xl text-3xl font-bold capitalize lg:w-8/12 mx-auto">
-                            <h2 className="title capitalize">{data.title}</h2>
+                            <h1 className="title capitalize">{data.title}</h1>
                         </div>
                         <p className="md:text-2xl sm:text-xl text-lg text-center mt-4 max-md:max-w-full lg:px-32">
                             {data.subtitle}
@@ -40,9 +40,9 @@ const News: React.FC = async () => {
 
             {/* News Articles Section */}
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-                <h1 className="text-2xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
+                <h3 className="text-2xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
                     {data.articleTitle}
-                </h1>
+                </h3>
                 <p className="text-xl text-center text-gray-700 mb-12 max-w-5xl mx-auto">
                     {data.articleSubtitle}
                 </p>

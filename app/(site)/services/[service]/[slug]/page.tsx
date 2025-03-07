@@ -113,13 +113,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h2 className="title capitalize">{data.serviceTitleSub}</h2>
-            </div>
-
-            <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+            <h1 className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
+              {data.serviceTitleSub}
+            </h1>
+            <h2 className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               {data.serviceDescSub}
-            </div>
+            </h2>
           </div>
         </div>
       </div>
@@ -325,7 +324,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                 src={urlForImage(
                   data.deliveryOptionSubSection?.deliveryImg
                 ).toString()}
-                alt={ data.deliveryOptionSubSection?.deliveryImg.alt}
+                alt={data.deliveryOptionSubSection?.deliveryImg.alt}
                 width={370}
                 height={370}
               />
@@ -377,7 +376,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   src={urlForImage(
                     data.specialOffersSubSection?.offerImg
                   ).toString()}
-                  alt= {data.specialOffersSubSection?.offerImg.alt}
+                  alt={data.specialOffersSubSection?.offerImg.alt}
                   width={270}
                   height={270}
                 />

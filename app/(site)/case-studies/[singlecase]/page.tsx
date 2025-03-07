@@ -125,36 +125,36 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             />
           )}
           <div className="lg:absolute lg:top-[200px] md:left-[0px] lg:left-[110px] ">
-            <div className="md:text-6xl text-3xl mb-6 font-bold capitalize max-w-2xl lg:pl-8">
-              <h1>{data.subtitle}</h1>
-            </div>
-            <div className="md:text-4xl text-2xl text-gray-100 font-bold capitalize max-w-lg lg:pl-8">
-              <h2>{data.blogheading}</h2>
-            </div>
-             {data.button &&
-            <Link
-              href={data.button.buttonUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 flex items-center bg-black text-lg text-white ml-6 mr-6 md:-pl-20 lg:pl-8 p-5 rounded-md hover:bg-white hover:text-black transition-all sm:w-2 md:w-48">
-              <span className="mr-2">{data.button.buttonText}</span>
-              <svg
-                className="w-4 h-4 ms-2 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </Link>
-}
+            <h1 className="md:text-6xl text-3xl mb-6 font-bold capitalize max-w-2xl lg:pl-8">
+              {data.subtitle}
+            </h1>
+            <h2 className="md:text-4xl text-2xl text-gray-100 font-bold capitalize max-w-lg lg:pl-8">
+              {data.blogheading}
+            </h2>
+            {data.button &&
+              <Link
+                href={data.button.buttonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 flex items-center bg-black text-lg text-white ml-6 mr-6 md:-pl-20 lg:pl-8 p-5 rounded-md hover:bg-white hover:text-black transition-all sm:w-2 md:w-48">
+                <span className="mr-2">{data.button.buttonText}</span>
+                <svg
+                  className="w-4 h-4 ms-2 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </Link>
+            }
           </div>
         </section>
 
@@ -204,7 +204,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <div className="flex gap-5 max-md:flex-col">
                 <div className="flex flex-col pb-10 md:pb-16 w-[59%] max-md:ml-0 max-md:w-full">
                   <div className="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full">
-        <div className="flex flex-col text-slate-900 max-md:max-w-full max-md:items-center max-md:text-center">
+                    <div className="flex flex-col text-slate-900 max-md:max-w-full max-md:items-center max-md:text-center">
                       <div className="text-2xl leading-none">GET STARTED</div>
                       <div className="mt-6 md:text-5xl text-2xl font-semibold leading-none">
                         Overview

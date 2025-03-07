@@ -50,10 +50,10 @@ export default async function Blogs() {
           <h1 className="text-xl sm:text-5xl font-bold tracking-tight text-center capitalize leading-[48px] text-white">
             Our Blogs
           </h1>
-          <p className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
+          <h2 className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
             Your gateway to thought-provoking articles that spark curiosity and
             ignite your passions.
-          </p>
+          </h2>
         </div>
       </div>
 
@@ -97,9 +97,9 @@ export default async function Blogs() {
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
                       <p className="text-xs sm:text-lg mb-4">{item.subtitle}</p>
-                      <h2 className="text-2xl  sm:text-xl text-base font-medium">
+                      <h3 className="text-2xl  sm:text-xl text-base font-medium">
                         {item.title}
-                      </h2>
+                      </h3>
                       <div>
                         <hr className="bg-black my-5 h-px   w-full border-0" />
                       </div>
@@ -116,21 +116,11 @@ export default async function Blogs() {
                             : ""}
                         </p>
                       </div>
-
                     </div>
-
                   </div>
                 </div>
               </Link>
             ))}
-            {/* <div className="flex md:justify-end justify-center gap-3 mb-5 lg:mb-0">
-              <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
-                <AiOutlineArrowLeft size={18} className="text-white" />
-              </div>
-              <div className="bg-[#002244] rounded-full w-6 h-6 flex justify-center items-center flex-col cursor-pointer">
-                <AiOutlineArrowRight size={18} className="text-white" />
-              </div>
-            </div> */}
           </div>
         </div>
 

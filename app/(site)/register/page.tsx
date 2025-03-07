@@ -182,9 +182,9 @@ function RegisterForm() {
       <div className="flex flex-col md:flex-row max-w-7xl w-full p-10">
         {/* Left Side */}
         <div className="md:w-1/2 flex flex-col justify-center md:p-6 mt-[100px] md:mt-0 text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:leading-[56px]">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 md:leading-[56px]">
             Let’s Build a Better Tomorrow Together
-          </h2>
+          </h1>
           <p className="mb-6 text-lg">
             Kick off your project, explore our previous work, transition your application seamlessly, or simply
             contact us through our form to connect with Keyideas today.

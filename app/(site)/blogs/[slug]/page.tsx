@@ -135,13 +135,13 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
       <p className="text-base my-2">{children}</p>
     ),
   },
-  
+
   marks: {
     strong: ({ children }: { children?: React.ReactNode }) => (
       <span className="">{children}</span> // No `<strong>` tag, only class-based styling
     ),
   },
-  
+
 };
 
 
@@ -162,11 +162,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <div className="absolute inset-0 bg-[#020C16] opacity-75"></div>
         <div className="relative flex flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px] text-center">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h1 className="title capitalize leading-[56px]">{data.title}</h1>
-            </div>
+            <h1 className="lg:text-4xl text-2xl leading-[56px] font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
+              {data.title}
+            </h1>
           </div>
-
         </div>
       </div>
 
@@ -183,8 +182,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <div className="hidden md:block">
               <SocialShare title={data.title} />
             </div>          </div>
-
-
           <p className="text-xl  mb-6">
             {data.introductionheading}
           </p>
@@ -240,115 +237,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       }
-      {/* Tools and Technology Section */}
-      {data.caseStudiesToolsSection &&
-        <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              {data.toolsandtechusedtitle}
-            </h2>
-            <div className="flex flex-wrap justify-center gap-8">
-              {data.caseStudiesToolsSection?.toolsTech?.map(
-                (tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                    <div className="bg-white border border-[#0a8ffc] shadow-lg p-6 rounded-lg flex flex-col h-full hover:shadow-xl transition-shadow duration-200">
-                      <div className="flex justify-center mb-4">
-                        {tool.images?.map((logoRef: any, logoIndex: any) => {
-                          const logoData = dataLogo.find(
-                            (logo: any) => logo._id === logoRef._ref
-                          );
-                          if (logoData) {
-                            return (
-                              <div key={logoIndex} className="mr-2">
-                                <img
-                                  src={urlForImage(logoData.image).toString()}
-                                  alt={logoData.heading}
-                                  width={48}
-                                  height={48}
-                                  loading="lazy"
-                                  className="h-12 object-cover"
-                                />
-                              </div>
-                            );
-                          } else {
-                            return null;
-                          }
-                        })}
-                      </div>
-                      <h3 className="text-xl text-center font-semibold">
-                        {tool.heading}
-                      </h3>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      }
 
-      {/* Our Approach Section */}
-      {data.ourapproachheading &&
-        <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">
-              {data.ourapproachheading}
-            </h2>
-            {data.ourapproach &&
-              data.ourapproach.map((approach: any, index: any) => (
-                <div key={index} className="mb-6">
-                  <h3 className="text-xl font-semibold mb-2">
-                    {approach.heading}
-                  </h3>
-                  <p>{approach.description}</p>
-                </div>
-              ))}
-            {data.secondaryimage && (
-              <img
-                className=" object-cover w-full h-full rounded-3xl"
-                src={urlForImage(data.secondaryimage).toString()}
-                alt={data.secondaryimage?.alt || "blog post"}
-              />
-            )}
-          </div>
-        </div>
-      }
-
-      {/* Prerequisites Section */}
-      {data.criticalPrerequisitesSection.heading &&
-        <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
-          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-          <div className="max-w-7xl mx-auto relative">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">
-              {data.criticalPrerequisitesSection?.heading}
-            </h2>
-            <p className="mb-6 text-lg">
-              {data.criticalPrerequisitesSection?.description}
-            </p>
-            <div className="space-y-6">
-              {data.criticalPrerequisitesSection?.prerequisites &&
-                data.criticalPrerequisitesSection?.prerequisites.map(
-                  (prerequisite: any, index: any) => (
-                    <div key={index} className="mb-6">
-                      <h3 className="text-xl font-semibold mb-2">
-                        {prerequisite.heading}
-                      </h3>
-                      {prerequisite.details &&
-                        prerequisite.details.map((detail: any, idx: any) => (
-                          <div key={idx} className="ml-4 mb-2">
-                            <h4 className="text-lg font-semibold">
-                              {detail.subheading}
-                            </h4>
-                            <p>{detail.content}</p>
-                          </div>
-                        ))}
-                    </div>
-                  )
-                )}
-            </div>
-          </div>
-        </div>
-      }
       {/* Conclusion Section */}
       {data.conclusionheading &&
         <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
@@ -375,8 +264,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {data.faqSection &&
         <div className="">
           <BlogsFaq faq={data.faqSection} />
-          </div>
-                 }
+        </div>
+      }
     </div>
   );
 };

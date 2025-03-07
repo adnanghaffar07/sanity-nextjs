@@ -13,11 +13,11 @@ const page = () => {
       <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 pt-40 lg:pt-12 lg:pb-0 lg:top-[100px] pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
         <div className="flex flex-col items-center justify-center lg:transform lg:-translate-y-1/2 text-center">
           <div className="lg:text-4xl text-2xl font-bold capitalize lg:w-8/12 mx-auto">
-            <h2 className="title capitalize">Thank You</h2>
+            <h1 className="title capitalize">Thank You</h1>
           </div>
-          <div className="md:text-3xl text-xl text-center mt-4 max-md:max-w-full lg:px-32">
+          <h2 className="md:text-3xl text-xl text-center mt-4 max-md:max-w-full lg:px-32">
             We appreciate your time and visit to CodeAutomation
-          </div>
+          </h2>
           <div className="pt-8 flex items-center justify-center">
             <Link
               href="/"

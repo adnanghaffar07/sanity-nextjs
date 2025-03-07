@@ -33,7 +33,7 @@ const NotFoundPage = () => {
             alt="404 Animation"
             className="w-64 mx-auto mb-6 animate-pulse"
           />
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">Oops! Page Not Found</h2>
+          <h1 className="text-3xl font-semibold text-gray-800 mb-4">Oops! Page Not Found</h1>
           <p className="text-lg text-gray-600 mb-8">
             It seems the page you&apos;re looking for doesn&apos;t exist. Please check the URL or go back to the home page.
           </p>

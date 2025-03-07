@@ -72,22 +72,22 @@ const Services = async () => {
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
             <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
-              <h2 className="title capitalize">Our Services</h2>
+              <h1 className="title capitalize">Our Services</h1>
             </div>
-            <div className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
+            <h2 className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
               CodeAutomation.ai provides comprehensive software development,
               testing, and automation solutions to enable digital transformation
               for enterprises globally
-            </div>
+            </h2>
           </div>
         </div>
       </div>
 
       <ScrollAnimation>
         <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-blue-50 max-md:px-5 max-md:max-w-full">
-          <h2 className="text-2xl sm:text-5xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
+          <h3 className="text-2xl sm:text-5xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
             Your Partner for all your digital needs
-          </h2>
+          </h3>
 
           <p className="mt-5 mb-2 text-lg sm:text-xl leading-7 text-gray-900 max-w-6xl mx-auto text-center mx-auto">
             As a custom software development company, we offer a wide range of
