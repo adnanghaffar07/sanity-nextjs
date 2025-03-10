@@ -124,8 +124,9 @@ const page = () => {
               target="_blank"
               className="text-blue-500 hover:underline"
             >
-              https://codeautomation.ai/
+              Visit CodeAutomation
             </a>
+
 
           </li>
           <li className="mb-2">
@@ -518,9 +519,8 @@ const page = () => {
               target="_blank"
               className="text-blue-500 hover:underline"
             >
-              https://codeautomation.ai/
+              Visit CodeAutomation
             </a>
-
           </li>
           <li className="mb-2">By phone number: 850.558.4691</li>
         </ul>

@@ -4,16 +4,16 @@ import { urlForImage } from "@/sanity/lib/image";
 
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
- description:
-   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-   keywords: [
-     "CodeAutomation",
-     "software development company",
-     "software development services",
-   ],
- alternates: {
-   canonical: "https://codeautomation.ai/blogs", // ✅ Fixes the canonical error
- },
+  description:
+    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
+  alternates: {
+    canonical: "https://codeautomation.ai/blogs", // ✅ Fixes the canonical error
+  },
 };
 
 async function getValueData() {
@@ -84,16 +84,16 @@ export default async function Blogs() {
                         height={207}
                         className="w-full xl:h-[400px] rounded-3xl hidden xl:block"
                       />
-                       <img
+                      <img
                         loading="lazy"
                         src={urlForImage(item.heroimage).toString()}
                         alt={item.title}
                         width={911}
                         height={636}
                         className="w-full xl:h-[400px] rounded-3xl block xl:hidden"
-        
+
                       />
-                  
+
                     </div>
                     <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
                       <p className="text-xs sm:text-lg mb-4">{item.subtitle}</p>
@@ -123,7 +123,6 @@ export default async function Blogs() {
             ))}
           </div>
         </div>
-
         <img
           loading="lazy"
           src="/ellipse-2.png"

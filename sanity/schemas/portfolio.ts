@@ -212,12 +212,32 @@ const portfolioSchema = {
                   name: "logoImage",
                   title: "Logo",
                   type: "image",
+                  options: {
+                    hotspot: true,
+                  },
+                  fields: [
+                    {
+                      name: "alt",
+                      title: "Alt",
+                      type: "string",
+                    },
+                  ],
                 },
 
                 {
                   name: "images",
                   title: "Image",
                   type: "image",
+                  options: {
+                    hotspot: true,
+                  },
+                  fields: [
+                    {
+                      name: "alt",
+                      title: "Alt",
+                      type: "string",
+                    },
+                  ],
                 },
               ],
             },
@@ -375,9 +395,6 @@ const portfolioSchema = {
         },
       ],
     },
-
-
-   
 
     {
       name: "applicationtestingheading",
