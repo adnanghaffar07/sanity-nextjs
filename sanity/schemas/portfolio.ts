@@ -92,6 +92,21 @@ const portfolioSchema = {
               type: "string"
             }
           ]
+        },
+        {
+          type: "code", // ✅ New Code Snippet Support
+          title: "Code Snippet",
+          name: "code",
+          options: {
+            language: "javascript", // Default language, can be changed in the CMS
+            languages: [
+              { title: "JavaScript", value: "javascript" },
+              { title: "TypeScript", value: "typescript" },
+              { title: "Python", value: "python" },
+              { title: "HTML", value: "html" },
+              { title: "CSS", value: "css" }
+            ]
+          }
         }
       ]
     },     

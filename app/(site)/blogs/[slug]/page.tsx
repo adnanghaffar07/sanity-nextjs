@@ -1,4 +1,6 @@
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism"; 
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
@@ -101,6 +103,13 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
         alt={value.alt || "Default Alt Text"} // Provide a fallback if `alt` is undefined
       />
     ),
+    code: ({ value }: { value: any }) => (
+      <div className="my-4">
+        <SyntaxHighlighter language={value.language || "javascript"} style={dracula}>
+          {value.code}
+        </SyntaxHighlighter>
+      </div>
+    )
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
