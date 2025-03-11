@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import Link from "next/link";
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
 async function getData() {
     const query = `*[_type == 'valueDiscoveryProcessPage'][0]`;
@@ -37,6 +35,9 @@ export async function generateMetadata() {
         title,
         description,
         keywords,
+        alternates: {
+            canonical: "https://codeautomation.ai/about/discovery-process   ", // Update this URL based on your page
+        },
         openGraph: {
             type: facebookMeta.type || "website",
             url: facebookMeta.url || "https://codeautomation.ai",
@@ -65,7 +66,7 @@ export async function generateMetadata() {
         linkedIn: {
             title: linkedInMeta.linkedInTitle || title,
             description: linkedInMeta.linkedInDescription || description,
-             image: urlForImage(linkedInMeta.linkedInImage).toString(),
+            image: urlForImage(linkedInMeta.linkedInImage).toString(),
             url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
         },
         pinterest: {
@@ -87,8 +88,6 @@ export async function generateMetadata() {
 }
 export default async function DiscoveryProcess() {
     const data = await getData();
-
-
     return (
         <div className="w-full flex flex-col items-center">
             {/* Hero Section */}
@@ -97,20 +96,16 @@ export default async function DiscoveryProcess() {
                     <img
                         className="top-0 left-0 object-cover absolute inset-0 size-full"
                         src={urlForImage(data.heroImage).toString()}
-                        alt=""
+                        alt="Hero Image Discovery"
                     />
                 )}
                 <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
-                <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-                    <div className="lg:absolute lg:top-[300px]">
-                        <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-                            <h2 className="title capitalize">{data.pageTitle}</h2>
-                        </div>
-                        <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-                            {data.pageDesc}
-                        </div>
-                    </div>
+                <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
+                <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">
+                    <h1 className="text-2xl font-bold capitalize lg:text-4xl">{data.pageTitle}</h1>
+                    <h2 className="mt-4 text-base lg:text-2xl lg:px-32">{data.pageDesc}</h2>
                 </div>
+            </div>
             </div>
 
             {/* Introduction Section */}

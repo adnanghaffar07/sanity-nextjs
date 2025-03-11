@@ -59,7 +59,6 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
                         {data.mobileAppServiceSection.description}
                     </p>
                 </div>
-
                 <div className="flex flex-col md:flex-row items-start justify-between">
                     {/* Image on the left */}
                     <div className="flex-1 md:mr-8 ">
@@ -69,8 +68,6 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
                             className="w-full h-auto rounded-lg shadow-md"
                         />
                     </div>
-
-
                     {/* Accordion on the right */}
                     <div className="flex-1 mt-8 md:mt-0">
                         {data.mobileAppServiceSection.accordionItems.map((item: any, index: number) => (
@@ -83,9 +80,6 @@ export default function MobileAppServiceSection({ data }: { data: any }) {
                             />
                         ))}
                     </div>
-
-
-
                 </div>
             </div>
 

@@ -65,9 +65,9 @@ const CalendlyForm: React.FC = () => {
           {/* Right Side: Calendar */}
           <div className="flex flex-col w-full lg:w-[50%]">
             <div className="flex flex-col flex-center md:flex-end">
-              <div className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
+              <h3 className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
                 Book a Meeting
-              </div>
+              </h3>
 
               <div
                 ref={calendlyWidgetRef}

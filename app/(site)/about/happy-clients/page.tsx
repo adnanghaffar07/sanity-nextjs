@@ -1,5 +1,20 @@
 import Link from 'next/link';
 import React from 'react';
+
+export const metadata = {
+    title: "Software Development Company in the USA | CodeAutomation",
+   description:
+     "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+     keywords: [
+       "CodeAutomation",
+       "software development company",
+       "software development services",
+     ],
+   alternates: {
+     canonical: "https://codeautomation.ai/about/happy-clients", // ✅ Fixes the canonical error
+   },
+ };
+
 const HappyClients = () => {
 // Sample data for client videos and images
     const clients = [
@@ -82,7 +97,7 @@ const HappyClients = () => {
                 </video>
                 <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
                     <div className="lg:absolute top-[270px] lg:top-[290px] 2xl:top-[330px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
-                        <h2 className="text-3xl md:text-4xl text-center font-bold leading-[56px]">Celebrating Our Happy Clients</h2>
+                        <h1 className="text-3xl md:text-4xl text-center font-bold leading-[56px]">Celebrating Our Happy Clients</h1>
 
                         <div className="flex flex-col sm:flex-row mx-auto pt-8 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                             <Link

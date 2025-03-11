@@ -1,6 +1,17 @@
-import Link from "next/link";
 import React from "react";
-
+export const metadata = {
+  title: "Software Development Company in the USA | CodeAutomation",
+ description:
+   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+   keywords: [
+     "CodeAutomation",
+     "software development company",
+     "software development services",
+   ],
+ alternates: {
+   canonical: "https://codeautomation.ai/termsandconditions", // ✅ Fixes the canonical error
+ },
+};
 const page = () => {
   return (
     <section>

@@ -1,4 +1,6 @@
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism"; 
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
@@ -7,41 +9,45 @@ import BlogsFaq from "../../components/BlogsFaq";
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
   try {
-    const fetchData = await client.fetch(queryValue);
-    return fetchData || [];
+    return await client.fetch(queryValue);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    return null;
   }
 }
 
 async function getLogoData() {
   const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
   try {
-    const fetchData = await client.fetch(queryLogo);
-    return fetchData || [];
+    return await client.fetch(queryLogo);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
   }
 }
 
-// Updated generateMetadata function
+// ✅ Updated generateMetadata function with Canonical URL
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-
   const data = await getValueData(params.slug);
-  const title = data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA";
-  const description = data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA";
-  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai";
 
-  const heroImageUrl = urlForImage(data.heroimage).toString(); // Use a default image if heroImage is not available
+  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription = "Custom Software and Mobile Development Company in USA";
+  const defaultKeywords = "CodeAutomation.ai";
+  const canonicalUrl = `https://codeautomation.ai/blogs/${params.slug}`; // ✅ Dynamic Canonical URL
 
-  const facebookMeta = data.facebookCardsSub || {};
-  const twitterMeta = data.twitterCardsSub || {};
-  const linkedInMeta = data.linkedInCardsSub || {};
-  const pinterestMeta = data.pinterestCardsSub || {};
-  const whatsappMeta = data.whatsappCardsSub || {};
-  const telegramMeta = data.telegramCardsSub || {};
+  const title = data?.webSeoMetadataSub?.title || defaultTitle;
+  const description = data?.webSeoMetadataSub?.description || defaultDescription;
+  const keywords = data?.webSeoMetadataSub?.keywords?.join(", ") || defaultKeywords;
+
+  // ✅ Prevents errors if `heroimage` is missing
+  const heroImageUrl = data?.heroimage ? urlForImage(data.heroimage).toString() : "/default-image.jpg";
+
+  const facebookMeta = data?.facebookCardsSub || {};
+  const twitterMeta = data?.twitterCardsSub || {};
+  const linkedInMeta = data?.linkedInCardsSub || {};
+  const pinterestMeta = data?.pinterestCardsSub || {};
+  const whatsappMeta = data?.whatsappCardsSub || {};
+  const telegramMeta = data?.telegramCardsSub || {};
 
   return {
     title,
@@ -49,52 +55,41 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     keywords,
     openGraph: {
       type: facebookMeta.facebookType || "website",
-      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      url: facebookMeta.facebookUrl || canonicalUrl,
       title: facebookMeta.facebookTitle || title,
       description: facebookMeta.facebookDescription || description,
-      images: [
-        {
-          url: heroImageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: twitterMeta.twitterType || "summary_large_image",
       title: twitterMeta.twitterTitle || title,
       description: twitterMeta.twitterDescription || description,
-      images: [
-        {
-          url: heroImageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        }
-      ],
-      url: twitterMeta.twitterUrl || "https://codeautomation.ai",
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+      url: twitterMeta.twitterUrl || canonicalUrl,
     },
     linkedIn: {
       title: linkedInMeta.linkedInTitle || title,
       description: linkedInMeta.linkedInDescription || description,
       image: heroImageUrl,
-      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+      url: linkedInMeta.linkedInUrl || canonicalUrl,
     },
     pinterest: {
       title: pinterestMeta.pinterestTitle || title,
       description: pinterestMeta.pinterestDescription || description,
-      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+      url: pinterestMeta.pinterestUrl || canonicalUrl,
     },
     whatsapp: {
       title: whatsappMeta.whatsappTitle || title,
       description: whatsappMeta.whatsappDescription || description,
-      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+      url: whatsappMeta.whatsappUrl || canonicalUrl,
     },
     telegram: {
       title: telegramMeta.telegramTitle || title,
       description: telegramMeta.telegramDescription || description,
-      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+      url: telegramMeta.telegramUrl || canonicalUrl,
+    },
+    alternates: {
+      canonical: canonicalUrl, // ✅ Fixed canonical tag
     },
   };
 }
@@ -108,6 +103,13 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
         alt={value.alt || "Default Alt Text"} // Provide a fallback if `alt` is undefined
       />
     ),
+    code: ({ value }: { value: any }) => (
+      <div className="my-4">
+        <SyntaxHighlighter language={value.language || "javascript"} style={dracula}>
+          {value.code}
+        </SyntaxHighlighter>
+      </div>
+    )
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
@@ -142,13 +144,13 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
       <p className="text-base my-2">{children}</p>
     ),
   },
-  
+
   marks: {
     strong: ({ children }: { children?: React.ReactNode }) => (
       <span className="">{children}</span> // No `<strong>` tag, only class-based styling
     ),
   },
-  
+
 };
 
 
@@ -169,11 +171,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <div className="absolute inset-0 bg-[#020C16] opacity-75"></div>
         <div className="relative flex flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px] text-center">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              <h1 className="title capitalize leading-[56px]">{data.title}</h1>
-            </div>
+            <h1 className="lg:text-4xl text-2xl leading-[56px] font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
+              {data.title}
+            </h1>
           </div>
-
         </div>
       </div>
 
@@ -190,8 +191,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <div className="hidden md:block">
               <SocialShare title={data.title} />
             </div>          </div>
-
-
           <p className="text-xl  mb-6">
             {data.introductionheading}
           </p>
@@ -247,115 +246,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       }
-      {/* Tools and Technology Section */}
-      {data.caseStudiesToolsSection &&
-        <div className="px-6 md:px-16 py-10 md:py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              {data.toolsandtechusedtitle}
-            </h2>
-            <div className="flex flex-wrap justify-center gap-8">
-              {data.caseStudiesToolsSection?.toolsTech?.map(
-                (tool: any, toolIndex: any) => (
-                  <div key={toolIndex} className="w-full md:w-1/2 lg:w-1/3 p-4">
-                    <div className="bg-white border border-[#0a8ffc] shadow-lg p-6 rounded-lg flex flex-col h-full hover:shadow-xl transition-shadow duration-200">
-                      <div className="flex justify-center mb-4">
-                        {tool.images?.map((logoRef: any, logoIndex: any) => {
-                          const logoData = dataLogo.find(
-                            (logo: any) => logo._id === logoRef._ref
-                          );
-                          if (logoData) {
-                            return (
-                              <div key={logoIndex} className="mr-2">
-                                <img
-                                  src={urlForImage(logoData.image).toString()}
-                                  alt={logoData.heading}
-                                  width={48}
-                                  height={48}
-                                  loading="lazy"
-                                  className="h-12 object-cover"
-                                />
-                              </div>
-                            );
-                          } else {
-                            return null;
-                          }
-                        })}
-                      </div>
-                      <h3 className="text-xl text-center font-semibold">
-                        {tool.heading}
-                      </h3>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      }
 
-      {/* Our Approach Section */}
-      {data.ourapproachheading &&
-        <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">
-              {data.ourapproachheading}
-            </h2>
-            {data.ourapproach &&
-              data.ourapproach.map((approach: any, index: any) => (
-                <div key={index} className="mb-6">
-                  <h3 className="text-xl font-semibold mb-2">
-                    {approach.heading}
-                  </h3>
-                  <p>{approach.description}</p>
-                </div>
-              ))}
-            {data.secondaryimage && (
-              <img
-                className=" object-cover w-full h-full rounded-3xl"
-                src={urlForImage(data.secondaryimage).toString()}
-                alt={data.secondaryimage?.alt || "blog post"}
-              />
-            )}
-          </div>
-        </div>
-      }
-
-      {/* Prerequisites Section */}
-      {data.criticalPrerequisitesSection.heading &&
-        <div className="relative text-black px-6 md:px-16 py-10 md:py-16">
-          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
-          <div className="max-w-7xl mx-auto relative">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">
-              {data.criticalPrerequisitesSection?.heading}
-            </h2>
-            <p className="mb-6 text-lg">
-              {data.criticalPrerequisitesSection?.description}
-            </p>
-            <div className="space-y-6">
-              {data.criticalPrerequisitesSection?.prerequisites &&
-                data.criticalPrerequisitesSection?.prerequisites.map(
-                  (prerequisite: any, index: any) => (
-                    <div key={index} className="mb-6">
-                      <h3 className="text-xl font-semibold mb-2">
-                        {prerequisite.heading}
-                      </h3>
-                      {prerequisite.details &&
-                        prerequisite.details.map((detail: any, idx: any) => (
-                          <div key={idx} className="ml-4 mb-2">
-                            <h4 className="text-lg font-semibold">
-                              {detail.subheading}
-                            </h4>
-                            <p>{detail.content}</p>
-                          </div>
-                        ))}
-                    </div>
-                  )
-                )}
-            </div>
-          </div>
-        </div>
-      }
       {/* Conclusion Section */}
       {data.conclusionheading &&
         <div className="bg-white text-black px-6 md:px-16 py-10 md:py-16">
@@ -382,8 +273,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {data.faqSection &&
         <div className="">
           <BlogsFaq faq={data.faqSection} />
-          </div>
-                 }
+        </div>
+      }
     </div>
   );
 };

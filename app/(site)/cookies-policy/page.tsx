@@ -12,23 +12,22 @@ const CookiePolicyPage = () => {
           src="/cookies-policy.jpg"
           alt="cookies policy"
         />
-                <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
-
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 lg:pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow mt-20 lg:mt-0">
           <div className="flex flex-col items-center justify-center text-center">
             <div className="lg:text-4xl text-2xl font-bold capitalize lg:w-8/12 mx-auto">
-              <h2 className="title capitalize text-md">Cookies Policy</h2>
+              <h1 className="title capitalize text-md">Cookies Policy</h1>
             </div>
-            <p className="md:text-2xl sm:text-xl text-lg text-center mt-4 max-md:max-w-full lg:px-32">
-            Cookies and Data Privacy at CodeAutomation
-            </p>
+            <h2 className="md:text-2xl sm:text-xl text-lg text-center mt-4 max-md:max-w-full lg:px-32">
+              Cookies and Data Privacy at CodeAutomation
+            </h2>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col w-full text-gray-800 bg-white pt-10 px-4 md:px-12 lg:px-20">
-        <h1 className="text-2xl md:text-3xl font-bold text-center mb-4">CODEAUTOMATION.AI</h1>
-        <h2 className="text-2xl font-semibold text-center mb-6">Cookies Policy</h2>
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-4">CODEAUTOMATION.AI</h3>
+        <h3 className="text-2xl font-semibold text-center mb-6">Cookies Policy</h3>
         <p className=" text-center md:text-left text-gray-800 text-lg max-w-6xl mx-auto leading-relaxed">
           Thank you for visiting our website (“Site”).  CodeAutomation is committed to treating the personal and corporate information of our Site users, customers, and vendors with respect and sensitivity.  This Cookie Policy (“Policy “) explains our website use “cookies” and web server logs.  This Policy should be read in conjunction with our Privacy Policy and our Terms of Use.
         </p>
@@ -116,7 +115,7 @@ const CookiePolicyPage = () => {
 
         <div id="types-of-cookies" className="mb-8">
           <h3 className="text-2xl font-bold my-3">4. Types of Cookies We Use</h3>
-         <p className="text-lg text-gray-700 my-6">We use cookies where they are essential for the operation of our Site, such as to enable you to use our shopping basket function when purchasing products and services.</p> 
+          <p className="text-lg text-gray-700 my-6">We use cookies where they are essential for the operation of our Site, such as to enable you to use our shopping basket function when purchasing products and services.</p>
           <p className="text-gray-800 text-lg">
             <strong>Strictly Necessary Cookies:</strong> Essential for the website’s functionality.<br /><br />
             <strong>Session Cookies:</strong> Used to maintain your browsing session.<br /><br />
@@ -126,41 +125,41 @@ const CookiePolicyPage = () => {
         </div>
 
         <div id="specific-cookies" className="mb-8">
-  <h3 className="text-2xl font-bold mb-7">5. Details of Specific Cookies</h3>
-  <table className="w-full border text-left text-gray-700">
-    <thead>
-      <tr className="bg-gray-100">
-        <th className="p-2">Cookie</th>
-        <th className="p-2">Purpose</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td className="p-2 border-t">Google Analytics (_ga, _gid)</td>
-        <td className="p-2 border-t">Tracks session duration, user engagement, and site usage for analytics purposes.</td>
-      </tr>
-      <tr>
-        <td className="p-2 border-t">Google Ads/Google Tag Manager (IDE, ANID)</td>
-        <td className="p-2 border-t">Used for advertising, such as remarketing and conversion tracking, and to manage other tags.</td>
-      </tr>
-      <tr>
-        <td className="p-2 border-t">Meta Pixel (Facebook/Instagram) (_fbp, fr)</td>
-        <td className="p-2 border-t">Tracks user interactions and engagement with Facebook and Instagram ads.</td>
-      </tr>
-      <tr>
-        <td className="p-2 border-t">CookieConsent</td>
-        <td className="p-2 border-t">Stores user consent preferences regarding cookies.</td>
-      </tr>
-      <tr>
-        <td className="p-2 border-t">Session Management</td>
-        <td className="p-2 border-t">Maintains the user&apos;s session state and preferences during a visit.</td>
-      </tr>
-    </tbody>
-  </table>
-  <p className="mt-4">
-    <em>Note:</em> Most cookies expire within 30 days, though some may persist longer depending on user interactions and preferences.
-  </p>
-</div>
+          <h3 className="text-2xl font-bold mb-7">5. Details of Specific Cookies</h3>
+          <table className="w-full border text-left text-gray-700">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="p-2">Cookie</th>
+                <th className="p-2">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-2 border-t">Google Analytics (_ga, _gid)</td>
+                <td className="p-2 border-t">Tracks session duration, user engagement, and site usage for analytics purposes.</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-t">Google Ads/Google Tag Manager (IDE, ANID)</td>
+                <td className="p-2 border-t">Used for advertising, such as remarketing and conversion tracking, and to manage other tags.</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-t">Meta Pixel (Facebook/Instagram) (_fbp, fr)</td>
+                <td className="p-2 border-t">Tracks user interactions and engagement with Facebook and Instagram ads.</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-t">CookieConsent</td>
+                <td className="p-2 border-t">Stores user consent preferences regarding cookies.</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-t">Session Management</td>
+                <td className="p-2 border-t">Maintains the user&apos;s session state and preferences during a visit.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="mt-4">
+            <em>Note:</em> Most cookies expire within 30 days, though some may persist longer depending on user interactions and preferences.
+          </p>
+        </div>
 
       </div>
     </section>

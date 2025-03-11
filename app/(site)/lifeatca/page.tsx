@@ -2,7 +2,19 @@ import * as React from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-
+export const metadata = {
+  title: "Software Development Company in the USA | CodeAutomation",
+  description:
+    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
+  alternates: {
+    canonical: "https://codeautomation.ai/lifeatca", // ✅ Fixes the canonical error
+  },
+};
 
 async function getData() {
   const query = `*[_type == 'lifeatCA'][0]`;
@@ -40,12 +52,12 @@ export default async function LifeAtCA() {
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[350px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
+            <h1 className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
               {data.title}
-            </div>
-            <div className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+            </h1>
+            <h2 className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
               {data.description}
-            </div>
+            </h2>
           </div>
         </div>
       </div>
@@ -79,72 +91,6 @@ export default async function LifeAtCA() {
       </div>
 
       <main className="flex flex-col p-20 pt-0 bg-white max-md:px-5 ">
-        {/* <h2 className="self-center mt-7  md:text-3xl font-bold leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">Zoya Engages with Woody Woodward at Business Digital Mastery Conference in Chicago, US</h2>
-        <p className="self-center mt-7 text-lg leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
-          At the Business Digital Mastery Conference in Chicago, Zoya, CMO of CodeAutomation.ai, joined professionals to learn from keynote speaker Woody Woodward, renowned for his D.R.I.V.E. System. This framework—highlighting motivators like Director, Relator, Validator, Intellectual, and Executive—emphasizes leveraging personal strengths to enhance leadership and success.
-          <br /> <br />
-          Key discussions included balancing digital responsibilities with personal well-being, where Zoya asked about strategies to harmonize career goals with personal life. Woody provided practical advice on setting boundaries and prioritizing meaningful moments, aligning with Zoya’s values of maintaining balance in a tech-driven world.
-          <br /> <br />
-          The conference also explored topics like AI innovation, risk-taking for growth, and modern leadership strategies. Zoya gained insights into how automation, including solutions from CodeAutomation.ai, is shaping the future of business. Networking with women leaders further enriched her experience, fostering discussions on overcoming challenges and exploring potential collaborations.
-          <br /> <br />
-          Zoya’s participation demonstrated CodeAutomation.ai’s commitment to innovation and leadership, underscoring the importance of learning from thought leaders like Woody Woodward to stay ahead in the evolving digital age.
-        </p>
-        <section className="mt-6 md:mt-10 ml-3.5 max-md:mr-2 max-md:max-w-full">
-          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-            <div className="flex flex-col w-[36%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow max-md:mt-3.5 max-md:max-w-full">
-                {data.zoyaImages?.slice(0, 3).map((image: any, index: any) => (
-                  <Image
-                    key={index}
-                    src={urlForImage(image.asset).toString()}
-                    alt={image.alt || `Image ${index + 1}`}
-                    className={`w-full md:aspect-[1.97] max-md:max-w-full md:object-cover ${index > 0 ? "mt-3" : ""
-                      } ${index === 2 ? "mt-3.5" : ""}`}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col ml-2 w-[64%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow max-md:mt-3 max-md:max-w-full">
-                <div className="max-md:max-w-full">
-                  <div className="flex gap-2 max-md:flex-col max-md:gap-0">
-                    {data.zoyaImages?.slice(3, 6).map((image: any, index: any) => (
-                      <div
-                        key={index}
-                        className={`flex flex-col ${index === 0 ? "w-[33%]" : "ml-2 w-[33%]"
-                          } max-md:ml-0 max-md:w-full`}
-                      >
-                        <Image
-                          src={urlForImage(image.asset).toString()}
-                          alt={image.alt || `Image ${index + 4}`}
-                          className="grow w-full aspect-[0.75] max-md:mt-7"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-6 max-md:max-w-full">
-                  <div className="flex gap-2 max-md:flex-col max-md:gap-0">
-                    {data.zoyaImages?.slice(6, 9).map((image: any, index: any) => (
-                      <div
-                        key={index}
-                        className={`flex flex-col ${index === 0 ? "w-[33%]" : "ml-2 w-[33%]"
-                          } max-md:ml-0 max-md:w-full`}
-                      >
-                        <Image
-                          src={urlForImage(image.asset).toString()}
-                          alt={image.alt || `Image ${index + 7}`}
-                          className="grow w-full aspect-[0.75] max-md:mt-7"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
         <p className="self-center text-xl mt-6 md:mt-10 text-center text-black">
           {data.introText}
         </p>

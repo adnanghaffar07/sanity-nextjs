@@ -46,11 +46,11 @@ const BrochuresPage = async () => {
                 <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 lg:pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow mt-20 lg:mt-0">
                     <div className="flex flex-col items-center justify-center text-center">
                         <div className="lg:text-4xl text-3xl font-bold capitalize lg:w-8/12 mx-auto">
-                            <h2 className="title capitalize">Download Your Future Today!</h2>
+                            <h1 className="title capitalize">Download Your Future Today!</h1>
                         </div>
-                        <p className="md:text-2xl sm:text-xl text-lg text-center mt-4 max-md:max-w-full lg:px-32">
+                        <h2 className="md:text-2xl sm:text-xl text-lg text-center mt-4 max-md:max-w-full lg:px-32">
                             Unlock the secrets of automation with our exclusive brochures. Your journey to efficiency starts here!
-                        </p>
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -61,9 +61,9 @@ const BrochuresPage = async () => {
                         {/* Left Section */}
                         <div className="space-y-6">
                             <h3 className="text-lg font-bold text-[#1d92fb] uppercase">Features</h3>
-                            <h2 className="text-4xl font-extrabold text-gray-800">
+                            <h3 className="text-4xl font-extrabold text-gray-800">
                                 Discover the Value of Our Brochures
-                            </h2>
+                            </h3>
                             <p className="text-gray-600 text-lg">
                                 Explore comprehensive insights, detailed guides, and exclusive knowledge about our services by downloading our brochures. Enhance your decision-making and stay informed about the latest trends and offerings.
                             </p>
@@ -115,11 +115,10 @@ const BrochuresPage = async () => {
                 </section>
             </div>
 
-
             {/* Brochures List */}
             <div className="max-w-5xl px-6 mx-auto">
                 <div className="text-left mb-3 mt-8">
-                    <h1 className="text-3xl font-bold text-gray-900">Latest Brochures</h1>
+                    <h3 className="text-3xl font-bold text-gray-900">Latest Brochures</h3>
                 </div>
 
                 {brochures.slice(-3).map((brochure: any, index: any) => (
@@ -155,9 +154,9 @@ const BrochuresPage = async () => {
 
 
             <div className="max-w-5xl mx-auto pt-6 px-4">
-                <h1 className="text-3xl font-bold text-left pb-4 my-6 text-black">
+                <h2 className="text-3xl font-bold text-left pb-4 my-6 text-black">
                     Our Best Brochures
-                </h1>
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {brochures.slice(0, 6).map((brochure: any, index: any) => (
                         <div
@@ -216,9 +215,9 @@ const BrochuresPage = async () => {
                 </div>
             </div>
             <div id="brochure" className="max-w-7xl mx-auto py-6 px-4">
-                <h1 className="text-3xl font-bold text-left pb-4 my-6 text-black">
+                <h3 className="text-3xl font-bold text-left pb-4 my-6 text-black">
                     Brochures Tailored for Your Success
-                </h1>
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {brochures.slice(6, brochures.length - 3).map((brochure: any, index: any) => (
                         <div

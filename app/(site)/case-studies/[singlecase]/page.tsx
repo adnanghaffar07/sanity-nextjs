@@ -8,42 +8,45 @@ import Link from "next/link";
 async function getData(urlService: string) {
   const query = `*[_type == 'portfolio' && slug == '${urlService}'][0]`;
   try {
-    const fetchData = await client.fetch(query);
-    return fetchData || [];
+    return await client.fetch(query);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    return null;
   }
 }
 
 async function getLogoData() {
   const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
   try {
-    const fetchData = await client.fetch(queryLogo);
-    return fetchData || [];
+    return await client.fetch(queryLogo);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
   }
 }
 
-// Updated generateMetadata function
+// ✅ Updated generateMetadata function with Canonical URL
 export async function generateMetadata({ params }: { params: { singlecase: string } }) {
-
   const data = await getData(params.singlecase);
 
-  const title = data.webSeoMetadataSub?.title || "Code Automation - Custom Software and Mobile Development Company in USA";
-  const description = data.webSeoMetadataSub?.description || "Custom Software and Mobile Development Company in USA";
-  const keywords = data.webSeoMetadataSub?.keywords?.join(", ") || "CodeAutomation.ai";
+  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultDescription = "Custom Software and Mobile Development Company in USA";
+  const defaultKeywords = "CodeAutomation.ai";
+  const canonicalUrl = `https://codeautomation.ai/case-studies/${params.singlecase}`; // ✅ Dynamic Canonical URL
 
-  const heroImageUrl = data.cardimage ? urlForImage(data.cardimage).toString() : " " // Use a default image if heroImage is not available
+  const title = data?.webSeoMetadataSub?.title || defaultTitle;
+  const description = data?.webSeoMetadataSub?.description || defaultDescription;
+  const keywords = data?.webSeoMetadataSub?.keywords?.join(", ") || defaultKeywords;
 
-  const facebookMeta = data.facebookCardsSub || {};
-  const twitterMeta = data.twitterCardsSub || {};
-  const linkedInMeta = data.linkedInCardsSub || {};
-  const pinterestMeta = data.pinterestCardsSub || {};
-  const whatsappMeta = data.whatsappCardsSub || {};
-  const telegramMeta = data.telegramCardsSub || {};
+  // ✅ Prevents errors if `cardimage` is missing
+  const heroImageUrl = data?.cardimage ? urlForImage(data.cardimage).toString() : "/default-image.jpg";
+
+  const facebookMeta = data?.facebookCardsSub || {};
+  const twitterMeta = data?.twitterCardsSub || {};
+  const linkedInMeta = data?.linkedInCardsSub || {};
+  const pinterestMeta = data?.pinterestCardsSub || {};
+  const whatsappMeta = data?.whatsappCardsSub || {};
+  const telegramMeta = data?.telegramCardsSub || {};
 
   return {
     title,
@@ -51,55 +54,45 @@ export async function generateMetadata({ params }: { params: { singlecase: strin
     keywords,
     openGraph: {
       type: facebookMeta.facebookType || "website",
-      url: facebookMeta.facebookUrl || "https://codeautomation.ai",
+      url: facebookMeta.facebookUrl || canonicalUrl,
       title: facebookMeta.facebookTitle || title,
       description: facebookMeta.facebookDescription || description,
-      images: [
-        {
-          url: heroImageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: twitterMeta.twitterType || "summary_large_image",
       title: twitterMeta.twitterTitle || title,
       description: twitterMeta.twitterDescription || description,
-      images: [
-        {
-          url: heroImageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        }
-      ],
-      url: twitterMeta.twitterUrl || "https://codeautomation.ai",
+      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+      url: twitterMeta.twitterUrl || canonicalUrl,
     },
     linkedIn: {
       title: linkedInMeta.linkedInTitle || title,
       description: linkedInMeta.linkedInDescription || description,
-      image: linkedInMeta.linkedInImage && urlForImage(linkedInMeta.linkedInImage).toString(),
-      url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
+      image: linkedInMeta.linkedInImage ? urlForImage(linkedInMeta.linkedInImage).toString() : heroImageUrl,
+      url: linkedInMeta.linkedInUrl || canonicalUrl,
     },
     pinterest: {
       title: pinterestMeta.pinterestTitle || title,
       description: pinterestMeta.pinterestDescription || description,
-      url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
+      url: pinterestMeta.pinterestUrl || canonicalUrl,
     },
     whatsapp: {
       title: whatsappMeta.whatsappTitle || title,
       description: whatsappMeta.whatsappDescription || description,
-      url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
+      url: whatsappMeta.whatsappUrl || canonicalUrl,
     },
     telegram: {
       title: telegramMeta.telegramTitle || title,
       description: telegramMeta.telegramDescription || description,
-      url: telegramMeta.telegramUrl || "https://codeautomation.ai",
+      url: telegramMeta.telegramUrl || canonicalUrl,
+    },
+    alternates: {
+      canonical: canonicalUrl, // ✅ Fixed canonical tag
     },
   };
 }
+
 
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
@@ -122,23 +115,22 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           )}
         </section>
       }
-      {data.projectGoalsSection &&
-        <section className="flex overflow-hidden relative flex-col md:pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-          {data.cardimage && (
-            <img
-              src={urlForImage(data.cardimage).toString()}
-              alt="l"
-              className="top-0 left-0 object-cover absolute inset-0 size-full bg-black"
-            />
-          )}
-          <div className="lg:absolute lg:top-[200px] md:left-[0px] lg:left-[110px] ">
-            <div className="md:text-6xl text-3xl mb-6 font-bold capitalize max-w-2xl lg:pl-8">
-              <h2>{data.subtitle}</h2>
-            </div>
-            <div className="md:text-4xl text-2xl text-gray-100 font-bold capitalize max-w-lg lg:pl-8">
-              <h2>{data.blogheading}</h2>
-            </div>
-             {data.button &&
+      <section className="flex overflow-hidden relative flex-col md:pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        {data.cardimage && (
+          <img
+            src={urlForImage(data.cardimage).toString()}
+            alt="l"
+            className="top-0 left-0 object-cover absolute inset-0 size-full bg-black"
+          />
+        )}
+        <div className="lg:absolute lg:top-[200px] md:left-[0px] lg:left-[110px] ">
+          <h1 className="md:text-6xl text-3xl mb-6 font-bold capitalize max-w-2xl lg:pl-8">
+            {data.subtitle}
+          </h1>
+          <h2 className="md:text-4xl text-2xl text-gray-100 font-bold capitalize max-w-lg lg:pl-8">
+            {data.blogheading}
+          </h2>
+          {data.button &&
             <Link
               href={data.button.buttonUrl}
               target="_blank"
@@ -161,41 +153,9 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 />
               </svg>
             </Link>
-}
-          </div>
-        </section>
-
-      }
-
-      {/* Introduction Section */}
-      <ScrollAnimation>
-        {data.typeoftestinglist &&
-          <div className="flex flex-col xl:flex-row gap-10 xl:gap-36  mt-0 md:mt-10 px-6 md:px-16 max-w-7xl mx-auto">
-            <div>
-              <h2 className="text-2xl font-semibold mb-4">
-                {data?.introductionheading}
-              </h2>
-              <p className="text-lg font-light xl:max-w-[610px]">
-                {data?.briefdescription}
-              </p>
-            </div>
-            <div className="flex flex-col gap-6 ml-8 md:gap-10">
-              {data?.briefitemsarray?.map((item: any) => (
-                <div className="relative" key={item._key}>
-                  <div className="w-[42px] md:w-[78px] h-[42px] md:h-[78px] rounded-full bg-[#1D92FB] opacity-[0.14] absolute -left-4 md:-left-10 md:-top-2"></div>
-                  <p className="text-[#707070] text-sm md:text-xl font-medium">
-                    {item.heading}
-                  </p>
-                  <p className="text-lg max-w-80 font-medium">
-                    {item.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        }
-      </ScrollAnimation>
-
+          }
+        </div>
+      </section>
       {/* Introduction Section */}
       <ScrollAnimation>
         {data.projectGoalsSection &&
@@ -211,7 +171,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <div className="flex gap-5 max-md:flex-col">
                 <div className="flex flex-col pb-10 md:pb-16 w-[59%] max-md:ml-0 max-md:w-full">
                   <div className="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full">
-        <div className="flex flex-col text-slate-900 max-md:max-w-full max-md:items-center max-md:text-center">
+                    <div className="flex flex-col text-slate-900 max-md:max-w-full max-md:items-center max-md:text-center">
                       <div className="text-2xl leading-none">GET STARTED</div>
                       <div className="mt-6 md:text-5xl text-2xl font-semibold leading-none">
                         Overview
@@ -254,8 +214,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </div>
         }
       </ScrollAnimation>
-
-
       {/* Project Goal Section */}
       <ScrollAnimation>
         {data.projectGoalsSection &&
@@ -285,114 +243,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
           </div>
         }
       </ScrollAnimation>
-
-
-
-      {/* Tools and Technologies Used Section */}
-      {/* <ScrollAnimation>
-        {data.projectGoalsSection &&
-          <div className="overflow-hidden px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
-            <div className="flex gap-10 max-md:flex-col">
-              <div className="flex flex-col w-[41%] max-md:ml-0 max-md:w-full">
-                <img
-                  loading="lazy"
-                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/b7f5532a9f5fd6d00fdcb03c11b38378b35e812402a8b93409a6f9303aab8985?placeholderIfAbsent=true&apiKey=4bbac2e9fd8543319fbc188f9510a76b"
-                  className="object-contain grow w-full aspect-[1.01] rounded-[32px_32px_300px_32px] max-md:mt-10 max-md:max-w-full"
-                />
-              </div>
-              <div className="flex flex-col ml-10 w-[59%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col mt-2 w-full max-md:mt-10 max-md:max-w-full">
-                  <div className="md:text-4xl text-2xl font-semibold leading-none text-slate-900 max-md:max-w-full">
-                    {data.toolsandtechusedheading}
-                  </div>
-                  {data.caseStudiesToolsSection.toolsTech.map(
-                    (tool: any, toolIndex: any) => (
-                      <div key={toolIndex} className="flex flex-col mt-8 w-full max-w-[624px] max-md:max-w-full">
-                        <div className="md:text-2xl text-xl font-semibold leading-relaxed text-slate-900 max-md:max-w-full">
-                          {tool.heading}
-                        </div>
-                        <div className="flex flex-wrap gap-10 items-center mt-2 w-full text-lg tracking-wide text-black max-md:max-w-full">
-                          {tool.images?.map((logoRef: any, logoIndex: any) => {
-                            const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
-                            if (logoData) {
-                              return (
-                                <div key={logoIndex} className="flex gap-1.5 items-center self-stretch my-auto w-[158px]">
-                                  <img
-                                    src={urlForImage(logoData.image).toString()}
-                                    alt={logoData.heading}
-                                    className="object-contain shrink-0 self-stretch my-auto w-14 rounded-lg aspect-square"
-                                  />
-                                  <div className="self-stretch my-auto">{logoData.heading}</div>
-                                </div>
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
-
-                      </div>
-                    ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-      </ScrollAnimation> */}
-
-
-      {/*  Application Features  */}
-      {/* <ScrollAnimation>
-        {data.projectGoalsSection &&
-          <div className="overflow-hidden px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
-            <div className="flex gap-5 max-md:flex-col">
-              <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col grow text-slate-900 max-md:mt-10 max-md:max-w-full">
-                  {data.features?.featureslist?.map((feature: any, index: any) => (
-                    <img
-                      key={index}
-                      loading="lazy"
-                      src={urlForImage(feature.logoImage)}
-                      className="object-contain max-w-full aspect-[3.13] w-[125px]"
-                    />
-                  ))}
-                  <div className="mt-2.5 text-2xl font-semibold leading-relaxed max-md:max-w-full">
-                    {data.features.description}
-                  </div>
-                  <div className="flex flex-col mt-10 w-full font-medium text-center max-md:max-w-full">
-                    <div className="flex flex-wrap gap-3 md:gap-6 items-center w-full max-md:max-w-full">
-                      {data.features?.feature?.map((features: any, featureIndex: any) => (
-                        <div
-                          key={featureIndex}
-                          className="flex flex-col grow shrink items-center self-stretch px-6 pb-4 my-auto bg-white rounded-xl border border-solid border-black border-opacity-10 shadow-[0px_4px_8px_rgba(0,0,0,0.08)] md:w-[calc(25%-24px)] w-[calc(33.33%-16px)] max-md:px-5"
-                        >
-                          <div className="px-2 py-1 text-md whitespace-nowrap rounded-md bg-slate-900 bg-opacity-10 w-[32px]">
-                            {featureIndex + 1}
-                          </div>
-                          <div className="mt-3 text-sm leading-5">{features.text}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                {data.features?.featureslist?.map((feature: any, index: any) => (
-                  <img
-                    key={index}
-                    loading="lazy"
-                    src={urlForImage(feature.image)}
-                    className="object-contain self-stretch my-auto w-full aspect-[1.01] max-md:mt-10 max-md:max-w-full"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        }
-      </ScrollAnimation> */}
-
-
       {/* Tools and Technologies Used Section */}
       <ScrollAnimation>
         <section className="px-6 md:px-16 py-10 md:py-16 max-w-7xl mx-auto">
@@ -481,10 +331,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             </ul>
           )}
         </section>
-
-
       </ScrollAnimation>
-
       {/*  Application Features  */}
       <ScrollAnimation>
         <section className="">
@@ -526,6 +373,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <img
                     loading="lazy"
                     src={urlForImage(feature.logoImage).toString()}
+                    alt={feature?.logoImage?.alt}
                     className="object-cover my-2 md:px-20"
                   />
                 )}
@@ -537,6 +385,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                   <img
                     loading="lazy"
                     src={urlForImage(feature.images).toString()}
+                    alt={feature?.images?.alt}
                     className="object-cover mt-4 md:px-32"
                   />
                 )}
@@ -544,120 +393,12 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
             ))}
           </div>
         </section>
-
       </ScrollAnimation>
-      <section >
-        <div>
-          {data.typeoftestinglist &&
-            <ScrollAnimation>
-              {data?.secondaryimage &&
-                <div className="px-6 md:px-16 py-5 md:py-16 max-w-7xl mx-auto">
-                  {data?.secondaryimage?.asset && (
-                    <img
-                      loading="lazy"
-                      src={urlForImage(data.secondaryimage.asset)}
-                      alt={data.secondaryimage.alt}
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-              }
-            </ScrollAnimation>
-          }
-
-          <ScrollAnimation>
-            {data.typeoftestinglist &&
-              <div className="px-6 md:px-16 max-w-7xl mx-auto">
-                {data.projectoverview ? (
-                  <div className="">
-                    <div className="mb-6 md:mb-10">
-                      <h3 className="text-2xl font-semibold mb-6">
-                        {data.projectoverview.heading}
-                      </h3>
-                      <p>{data.projectoverview.detail}</p>
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-6">
-                      {data.projectoverview.projectoverviewdetail.map((project: any) => (
-                        <div
-                          key={project._key}
-                          className="rounded-3xl w-full sm:w-[45%] shadow-md text-black p-6 sm:p-8 md:p-10"
-                          style={{
-                            background: `linear-gradient(to right, ${project.leftcolor}, ${project.rightcolor})`,
-                          }}
-                        >
-                          <h1 className="text-2xl text-center text-white font-semibold p-2">
-                            {project.heading}
-                          </h1>
-                          <p className="text-white text-center">{project.detail}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="hidden"></div>
-                )}
-
-                {data.applicationtestingheading ||
-                  data.typeoftestingheading ||
-                  data.testingimage ? (
-                  <div>
-                    <div className="flex gap-5 max-md:flex-col max-md:gap-0 py-10 md:py-16">
-                      <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                        <div className="flex flex-col text-2xl gap-10 md:gap-18 text-black max-md:max-w-full">
-                          {/*  Application Testing  */}
-                          <div>
-                            <h2 className="text-2xl font-semibold  mb-4">
-                              {data.applicationtestingheading}
-                            </h2>
-                            <p className="text-lg  font-light leading-8 md:leading-8">
-                              {data.applicationtestingdescription}
-                            </p>
-                          </div>
-                          {/*  Types of Testing  */}
-                          <div>
-                            <h2 className="text-2xl font-semibold  mb-4">
-                              {data.typeoftestingheading}
-                            </h2>
-
-                            <ul className=" mx-10">
-                              {data.typeoftestinglist?.map((testingType: any) => (
-                                <li className=" list-disc" key={testingType._key}>
-                                  <span className="text-lg  font-light">
-                                    {testingType.value}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                        {data.testingimage && (
-                          <img
-                            loading="lazy"
-                            src={urlForImage(data.testingimage).toString()}
-                            className="mt-9 w-full aspect-[1.37] max-md:max-w-full"
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="hidden"></div>
-                )}
-              </div>
-            }
-          </ScrollAnimation>
-        </div>
-      </section>
-
-
       <ScrollAnimation>
         <section
           className={`py-6 md:py-16 px-6 md:px-16 bg-opacity-20`}
           style={{ backgroundColor: data?.color ? `${data.color}33` : '#05BD4B33' }}
         >
-
           <div className="px-6 md:px-16 py-6 max-w-7xl mx-auto  bg-white rounded-2xl max-w-7xl mx-auto shadow-[0px_16px_32px_rgba(109,70,189,0.05)]">
             <div className="">
               <h3 className="text-2xl font-semibold my-4 md:my-8">
@@ -682,7 +423,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </ul>
             </div>
           </div>
-
           <div className="px-6 md:px-16 py-6 max-w-7xl mt-14 mx-auto  bg-white rounded-2xl max-w-7xl mx-auto shadow-[0px_16px_32px_rgba(109,70,189,0.05)]">
             <div className="">
               <h3 className="text-2xl font-semibold my-4 md:my-8">
@@ -707,7 +447,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </ul>
             </div>
           </div>
-
           <div className="px-6 md:px-16 py-6 max-w-7xl mt-14 mx-auto  bg-white rounded-2xl max-w-7xl mx-auto shadow-[0px_16px_32px_rgba(109,70,189,0.05)]">
             <div className="">
               <h3 className="text-2xl font-semibold my-4 md:my-8">
@@ -732,8 +471,6 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               </ul>
             </div>
           </div>
-
-
           <div className="px-6 md:px-16 py-6 max-w-7xl mx-auto mt-14 bg-white rounded-2xl max-w-7xl mx-auto shadow-[0px_16px_32px_rgba(109,70,189,0.05)]">
             <h3 className="text-2xl font-semibold my-4 md:my-8">
               {data?.conclusionheading}:
@@ -742,11 +479,8 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               {data?.conclusion && data.conclusion}
             </p>
           </div>
-
         </section>
       </ScrollAnimation>
-
-
     </div>
 
   );

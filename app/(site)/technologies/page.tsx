@@ -1,6 +1,21 @@
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
+export const metadata = {
+  title: "Technologies | CodeAutomation",
+  description:
+    "We offer only well-recognized and time-tested technologies to bring advancement to any of your business goals.",
+  keywords: [
+    "Technologies",
+    "CodeAutomation",
+    "Software Development",
+    "Tech Stack",
+  ],
+  alternates: {
+    canonical: "https://codeautomation.ai/technologies", // ✅ Fixes the canonical error
+  },
+};
+
 async function getData() {
   const query = `*[_type == 'technologies'] | order(_updatedAt desc)`;
   try {
@@ -39,21 +54,21 @@ export default async function Technologies() {
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[300px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
-              <h2 className="title capitalize">Technology</h2>
-            </div>
-            <div className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
+            <h1 className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
+              Technology
+            </h1>
+            <h2 className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
               We offer only well-recognized and time-tested technologies to
               bring advancement to any of your business goals.
-            </div>
+            </h2>
           </div>
         </div>
       </div>
       <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-blue-50 leading-[100%] max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-          <div className="self-center lg:text-5xl text-3xl xl:w-6/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
+          <h3 className="self-center lg:text-5xl text-3xl xl:w-6/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
             Our Tech Stack In Different Technologies
-          </div>
+          </h3>
           <div className="xl:w-9/12 mx-auto text-center">
             <p className="lg:text-xl text-l text-base">
               Explore the technologies that power our solutions and witness the
@@ -84,9 +99,9 @@ export default async function Technologies() {
                       className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
                       alt="eclipse-icon"
                     />
-                    <div className="lg:text-5xl text-3xl mb-3">
+                    <p className="lg:text-5xl text-3xl mb-3">
                       {technology.techname}
-                    </div>
+                    </p>
                     <div className="mb-10">
                       <p className="lg:text-lg text-base">
                         {technology.techDesc}
@@ -170,9 +185,9 @@ export default async function Technologies() {
                       className="w-20 absolute -right-5 top-0 lg:hidden block -z-10"
                       alt="intersect-icon"
                     />
-                    <div className="lg:text-5xl text-3xl mb-3 text-end">
+                    <p className="lg:text-5xl text-3xl mb-3 text-end">
                       {technology.techname}
-                    </div>
+                    </p>
                     <div className="mb-10">
                       <p className="lg:text-lg text-base text-end">
                         {" "}

@@ -1,18 +1,29 @@
-import Link from "next/link";
 import React from "react";
+
+export const metadata = {
+  title: "Software Development Company in the USA | CodeAutomation",
+  description:
+    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
+  alternates: {
+    canonical: "https://codeautomation.ai/privacypolicy", // ✅ Fixes the canonical error
+  },
+};
 
 const page = () => {
   return (
     <section>
       <div className="flex overflow-hidden relative flex-col w-full font-light text-white h-[450px] lg:min-h-[700px]">
-
-
         <img
           className="top-0 left-0 object-cover absolute inset-0 size-full"
           src="/privacy-policy.png"
           alt="privacy policy"
         />
-              <div className="w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
+        <div className="w-full h-[380px] sm:h-[700px] opacity-65 absolute z-[1]"></div>
         <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 lg:pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow mt-20 lg:mt-0">
           <div className="flex flex-col items-center justify-center text-center">
             <div className="lg:text-4xl text-2xl font-bold capitalize lg:w-8/12 mx-auto">
@@ -113,8 +124,10 @@ const page = () => {
               target="_blank"
               className="text-blue-500 hover:underline"
             >
-              https://codeautomation.ai/
+              Visit CodeAutomation
             </a>
+
+
           </li>
           <li className="mb-2">
             <strong>You</strong> means the individual accessing or using the
@@ -502,11 +515,11 @@ const page = () => {
             By visiting this page on our website:{" "}
             <a
               href="https://codeautomation.ai/"
-              rel="external nofollow noopener"
+              rel="noopener noreferrer"
               target="_blank"
               className="text-blue-500 hover:underline"
             >
-              https://codeautomation.ai/
+              Visit CodeAutomation
             </a>
           </li>
           <li className="mb-2">By phone number: 850.558.4691</li>

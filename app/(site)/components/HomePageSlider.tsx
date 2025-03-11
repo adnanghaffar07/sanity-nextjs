@@ -22,9 +22,9 @@ const HomePageSlider = () => {
       <SwiperSlide>
         <div>
           <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
-            <h1 className="title capitalize" style={{ lineHeight: "1" }}>
+            <h2 className="title capitalize" style={{ lineHeight: "1" }}>
               Leading Software Development Company
-            </h1>
+            </h2>
           </div>
           <p
             className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"

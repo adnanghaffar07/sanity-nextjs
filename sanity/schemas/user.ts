@@ -17,7 +17,7 @@ export default {
       name: "password", 
       title: "Password", 
       type: "string",
-      hidden: ({ document }:any) => !!document?.googleId // Hide password if Google ID exists
+      hidden: ({ document }: any) => !!document?.googleId // Hide password if Google ID exists
     },
     { 
       name: "googleId", 
@@ -30,5 +30,17 @@ export default {
       type: "string", 
       hidden: true // Hide token field from Sanity Studio UI
     },
+    { 
+      name: "otp", 
+      title: "OTP", 
+      type: "string", 
+      hidden: true // Hide OTP field from Sanity Studio UI
+    },
+    { 
+      name: "otpExpiration", 
+      title: "OTP Expiration Time", 
+      type: "datetime", 
+      hidden: true // Hide OTP expiration field from Sanity Studio UI
+    }
   ]
 };
