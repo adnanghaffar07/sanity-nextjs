@@ -1,3 +1,4 @@
+import table from "./table"; 
 const portfolioSchema = {
   name: "portfolio",
   title: "Case Studies",
@@ -107,7 +108,9 @@ const portfolioSchema = {
               { title: "CSS", value: "css" }
             ]
           }
-        }
+        },
+        { type: 'table' }, // ✅ Add table support here
+
       ]
     },     
     {
