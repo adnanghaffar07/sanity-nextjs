@@ -109,7 +109,24 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
           {value.code}
         </SyntaxHighlighter>
       </div>
-    )
+    ),
+    table: ({ value }: { value: any }) => (
+      <div className="overflow-x-auto my-6">
+        <table className="w-full border-collapse border border-gray-300">
+          <tbody>
+            {value.rows?.map((row: any, rowIndex: number) => (
+              <tr key={rowIndex} className="border border-gray-300">
+                {row.cells.map((cell: string, cellIndex: number) => (
+                  <td key={cellIndex} className="border border-gray-300 px-4 py-2">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ),
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (

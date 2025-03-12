@@ -24,6 +24,7 @@ import newsLetter from "./schemas/news-letter";
 import user from "./schemas/user";
 import paymentProposal from "./schemas/payment-proposal";
 import paymentPlan from "./schemas/payment-plan";
+import table from "./schemas/table";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -43,6 +44,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueBlueprints,
     popup,
     valueDiscoveryProcessPage,
+    table,
     user,
     contactForm,
     calendlyMeeting,
