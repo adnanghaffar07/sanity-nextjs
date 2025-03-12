@@ -20,7 +20,7 @@ First, clone the repository to your local machine:
 git clone https://github.com/adnanghaffar07/sanity-nextjs.git
 
 Next, install the dependencies:
-
+ 
 ```bash
 npm install
 # or
