@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import Image from "next/image";
 import ScrollButton from "../../components/valueBluePrint";
 import CustomSoftwareSection from "../../components/CustomSoftwareAcc";
 import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
@@ -382,12 +381,10 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
                 {data.specialOffersSection?.offerImg && (
-                  <Image
+                  <img
                     src={urlForImage(data.turnVision?.featuredImage).toString()}
                     alt={data.turnVision?.featuredImage.alt}
-                    width={300}
-                    height={300}
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg h-[200px] md:h-[300px]"
                   />
                 )}
               </div>
@@ -417,14 +414,12 @@ export default async function service({
             {/* Image on the left */}
             {data.introductionSection?.introImage && (
               <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
-                <Image
+                <img
                   src={urlForImage(
                     data.introductionSection?.introImage
                   ).toString()}
                   alt={data.introductionSection?.introImage.alt}
-                  width={370}
-                  height={150}
-                  className="object-cover rounded-lg"
+                  className="object-cover rounded-lg h-[150px]"
                   loading="lazy"
                 />
               </div>
@@ -662,14 +657,12 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
                 {data.ctaAfterSubServices?.featuredImage && (
-                  <Image
+                  <img
                     src={urlForImage(
                       data.ctaAfterSubServices?.featuredImage
                     ).toString()}
                     alt={data.ctaAfterSubServices?.featuredImage.alt}
-                    width={300}
-                    height={300}
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg h-[300px]"
                   />
                 )}
               </div>
@@ -1121,14 +1114,12 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
                 {data.specialOffersSection?.offerImg && (
-                  <Image
+                  <img
                     src={urlForImage(
                       data.transBusiness?.featuredImage
                     ).toString()}
                     alt={data.transBusiness?.featuredImage.alt}
-                    width={300}
-                    height={300}
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg h-[300px]"
                   />
                 )}
               </div>
@@ -1264,13 +1255,12 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div>
                 {data.projectCycleQA?.projectCycleImg && (
-                  <Image
+                  <img
                     src={urlForImage(
                       data.projectCycleQA?.projectCycleImg
                     ).toString()}
                     alt={data.projectCycleQA?.projectCycleImg.alt}
-                    width={370}
-                    height={370}
+                    className="object-cover h-[370px]"
                   />
                 )}
               </div>
@@ -1312,13 +1302,12 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div>
                 {data.projectCycleSection?.projectCycleImg && (
-                  <Image
+                  <img
                     src={urlForImage(
                       data.projectCycleSection?.projectCycleImg
                     ).toString()}
                     alt={data.projectCycleSection?.projectCycleImg.alt}
-                    width={370}
-                    height={370}
+                    className="object-cover h-[370px]"
                   />
                 )}
               </div>
@@ -1334,11 +1323,10 @@ export default async function service({
             {/* Left side (Image) */}
             <div className="col-span-1 md:col-span-1 flex justify-center">
               {data.qaDelivery?.qaDeliveryleImg && (
-                <Image
+                <img
                   src={urlForImage(data.qaDelivery?.qaDeliveryleImg).toString()}
                   alt={data.qaDelivery?.qaDeliveryleImg.alt}
-                  width={370}
-                  height={370}
+                  className="object-cover h-[500px]"
                 />
               )}
             </div>
@@ -1365,13 +1353,12 @@ export default async function service({
             {/* Left side (Image) */}
             <div className="col-span-1 md:col-span-1 flex justify-center">
               {data.deliveryOptionSection?.deliveryImg && (
-                <Image
+                <img
                   src={urlForImage(
                     data.deliveryOptionSection?.deliveryImg
                   ).toString()}
                   alt={data.deliveryOptionSection?.deliveryImg.alt}
-                  width={370}
-                  height={370}
+                  className="object-cover h-[370px]"
                 />
               )}
             </div>
@@ -1450,14 +1437,12 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
                 {data.specialOffersSection?.offerImg && (
-                  <Image
+                  <img
                     src={urlForImage(
                       data.specialOffersSection?.offerImg
                     ).toString()}
                     alt={data.specialOffersSection?.offerImg.alt}
-                    width={300}
-                    height={300}
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg h-[300px]"
                   />
                 )}
               </div>
@@ -1517,14 +1502,12 @@ export default async function service({
             <div className="col-span-1 md:col-span-1 flex justify-center">
               <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
                 {data.UpdatedSpecialOffersSection?.offerImg && (
-                  <Image
+                  <img
                     src={urlForImage(
                       data.UpdatedSpecialOffersSection?.offerImg
                     ).toString()}
                     alt={data.UpdatedSpecialOffersSection?.offerImg.alt}
-                    width={300}
-                    height={300}
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg h-[300px]"
                   />
                 )}
               </div>
