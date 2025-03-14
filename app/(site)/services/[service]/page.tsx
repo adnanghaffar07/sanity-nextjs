@@ -1522,7 +1522,7 @@ export default async function service({
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl font-bold mb-8 text-center">
               {data.summarySection?.summaryHeading}
-            </h2>
+            </h2>  zaaqas
             <p className="text-lg text-center">
               {data.summarySection?.summaryMessage}
             </p>
@@ -1533,7 +1533,7 @@ export default async function service({
       {/* Call to Action Section */}
       {data.callToActionSection?.callToActionHeading && (
         <section className="px-6 md:px-16 py-10 md:py-16 bg-blue-50">
-          <div className="container mx-auto text-center max-w-6xl">
+          <div className="container mx-auto text-cencter max-w-6xl">
             <h2 className="text-2xl font-bold mb-4">
               {data.callToActionSection?.callToActionHeading}
             </h2>
@@ -1549,3 +1549,4 @@ export default async function service({
     </div>
   );
 }
+ 
