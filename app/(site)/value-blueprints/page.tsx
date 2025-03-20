@@ -172,20 +172,15 @@ export default async function ValueBlueprints() {
       {/* Explore Blueprints section */}
       <section
         className="px-6 md:px-16 py-10 bg-white"
-        style={{
-          backgroundImage: "url(/Container.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       >
         <div className="flex flex-col max-w-[1400px] mx-auto">
           <div className="flex gap-5 px-20 max-md:flex-wrap max-md:px-5">
             <div className="flex flex-col flex-1 justify-center text-4xl font-bold text-sky-500 capitalize leading-[60px] max-md:max-w-full">
               <div className="justify-center text-center">
-                <span className="font-medium text-white capitalize leading-[60px] text-center">
+                <span className="font-medium text-black capitalize leading-[60px] text-center">
                   Explore Our Value{" "}
                 </span>
-                <span className="text-white capitalize leading-[60px]">
+                <span className="text-black capitalize leading-[60px]">
                   BLUEPRINTS
                 </span>
               </div>
@@ -203,18 +198,22 @@ export default async function ValueBlueprints() {
                   aria-label={`View details of ${item.title}`}
                 >
                   {/* Card Container */}
-                  <div className="relative w-full sm:w-80 md:w-80 h-[200px] md:h-[230px] rounded-lg overflow-hidden group">
+                  <div className="relative w-full sm:w-80 md:w-80 h-[320px] md:h-[320px] overflow-hidden group">
                     {/* Main Image (Covers Full Width) */}
                     <img
-                      src={urlForImage(item.heroimage).toString()}
+                      src={urlForImage(item?.cardimage).toString()}
                       alt={item.title}
-                      className="w-full h-[200px] md:h-[230px] object-cover rounded aspect-[3.06] transition duration-300 group-hover:scale-110"
+                      className="w-full h-[320px] md:h-[320px] aspect-[3.06] sm:w-80 md:w-80  object-fit md:object-contain rounded-3xl transition duration-300 group-hover:scale-90"
                     />
+                    {/* Title */}
+                    <p className="absolute inset-x-0 top-4 max-w-[200px] text-white text-md font-light text-left ml-3 md:ml-10 py-3 z-10">
+                      {item.title}
+                    </p>
 
                     {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <div className="absolute inset-0 flex flex-col items-end rounded-3xl  justify-start opacity-0 group-hover:opacity-100">
                       {/* Logos Row */}
-                      <div className="flex gap-3 justify-center mb-3">
+                      <div className="flex-col justify-start mt-8 mr-6">
                         {item.caseStudiesToolsSection?.toolsTech?.map((tool: any, toolIndex: any) =>
                           tool?.images.map((logoRef: any, logoIndex: any) => {
                             const logoData = dataLogo.find((logo: any) => logo._id === logoRef._ref);
@@ -224,7 +223,7 @@ export default async function ValueBlueprints() {
                                   key={logoIndex}
                                   src={urlForImage(logoData.image).toString()}
                                   alt={logoData.heading}
-                                  className="h-10 bg-white rounded-full object-contain"
+                                  className="h-8 mb-2 object-contain"
                                 />
                               );
                             }
@@ -232,11 +231,6 @@ export default async function ValueBlueprints() {
                           })
                         )}
                       </div>
-
-                      {/* Title */}
-                      <p className="text-white text-lg font-medium text-center px-3">
-                        {item.title}
-                      </p>
                     </div>
                   </div>
                 </Link>
@@ -354,7 +348,7 @@ export default async function ValueBlueprints() {
               {/* Bottom Row */}
               <div className="flex flex-wrap gap-5 justify-center items-center">
                 {data.toolsTechSection?.toolsTech
-                  ?.slice(14, 18)
+                  ?.slice(14, 19)
                   .map((tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
