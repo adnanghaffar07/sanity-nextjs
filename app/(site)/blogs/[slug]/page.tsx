@@ -116,9 +116,9 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
           <tbody>
             {value.rows?.map((row: any, rowIndex: number) => (
               <tr key={rowIndex} className="border border-gray-300">
-                {row.cells.map((cell: string, cellIndex: number) => (
+                {row.cells.map((cell: any, cellIndex: number) => (
                   <td key={cellIndex} className="border border-gray-300 px-4 py-2">
-                    {cell}
+                    <PortableText value={cell.content} /> {/* Render block content */}
                   </td>
                 ))}
               </tr>
@@ -127,6 +127,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
         </table>
       </div>
     ),
+    
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (

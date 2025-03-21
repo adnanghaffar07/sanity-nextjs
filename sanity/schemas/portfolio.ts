@@ -95,20 +95,21 @@ const portfolioSchema = {
           ]
         },
         {
-          type: "code", // ✅ New Code Snippet Support
+          type: "code",
           title: "Code Snippet",
           name: "code",
           options: {
-            language: "javascript", // Default language, can be changed in the CMS
+            language: "dart", // ✅ Change default to Dart
             languages: [
               { title: "JavaScript", value: "javascript" },
               { title: "TypeScript", value: "typescript" },
               { title: "Python", value: "python" },
               { title: "HTML", value: "html" },
-              { title: "CSS", value: "css" }
+              { title: "CSS", value: "css" },
+              { title: "Dart", value: "dart" } // ✅ Dart is included
             ]
           }
-        },
+        },          
         { type: 'table' }, // ✅ Add table support here
 
       ]
