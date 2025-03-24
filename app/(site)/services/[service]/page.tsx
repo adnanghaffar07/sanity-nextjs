@@ -134,7 +134,7 @@ export default async function service({
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.heroImage && (
           <img
-            className="top-0 left-0 object-cover absolute inset-0 size-full"
+            className="top-0 left-0 object-fit absolute size-full"
             src={urlForImage(data.heroImage).toString()}
             alt={data.heroImage.alt}
           />
@@ -413,13 +413,13 @@ export default async function service({
           <div className="container mx-auto flex flex-wrap items-center justify-center relative">
             {/* Image on the left */}
             {data.introductionSection?.introImage && (
-              <div className="w-full md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
+              <div className="w-full flex justify-center md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
                 <img
                   src={urlForImage(
                     data.introductionSection?.introImage
                   ).toString()}
                   alt={data.introductionSection?.introImage.alt}
-                  className="object-cover rounded-lg h-[150px]"
+                  className="object-cover rounded-lg h-[250px] md:h-[330px]"
                   loading="lazy"
                 />
               </div>
@@ -1522,7 +1522,7 @@ export default async function service({
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl font-bold mb-8 text-center">
               {data.summarySection?.summaryHeading}
-            </h2>
+            </h2> 
             <p className="text-lg text-center">
               {data.summarySection?.summaryMessage}
             </p>
@@ -1533,7 +1533,7 @@ export default async function service({
       {/* Call to Action Section */}
       {data.callToActionSection?.callToActionHeading && (
         <section className="px-6 md:px-16 py-10 md:py-16 bg-blue-50">
-          <div className="container mx-auto text-center max-w-6xl">
+          <div className="container mx-auto text-cencter max-w-6xl">
             <h2 className="text-2xl font-bold mb-4">
               {data.callToActionSection?.callToActionHeading}
             </h2>
@@ -1549,3 +1549,4 @@ export default async function service({
     </div>
   );
 }
+ 

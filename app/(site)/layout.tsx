@@ -61,48 +61,73 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Facebook Pixel Script */}
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s){
+              if(f.fbq)return;n=f.fbq=function(){
+                n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+              };
+              if(!f._fbq)f._fbq=n;
+              n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)
+            }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1960013544428790');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+
+        {/* Facebook Pixel NoScript Fallback */}
+        <noscript>
+          <img height="1" width="1" style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1960013544428790&ev=PageView&noscript=1"
+            alt="Facebook Pixel"
+          />
+        </noscript>
       </head>
       <body className={inter.className}>
         {/* ✅ Google Tag Manager */}
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
 
-        <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
-        <Script strategy="afterInteractive" id="google-analytics">
-          {`
+          <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
+          <Script strategy="afterInteractive" id="google-analytics">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-11436659671');
           `}
-        </Script>
+          </Script>
 
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MJG35754"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-MJG35754"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
 
-        {/* ✅ Page Content */}
-        <div className="flex flex-col bg-white relative">
-          <HomeNavigationContainer />
-          <CookieConsent />
-          {children}
-          <Suspense fallback={<p>Loading form...</p>}>
-            <FormDisplay />
-          </Suspense>
-          <Suspense fallback={<p>Loading footer...</p>}>
-            <FooterContainer />
-          </Suspense>
-          <Suspense fallback={<p>Loading scroll-to-top...</p>}>
-            <ScrollToTop />
-          </Suspense>
-          <Suspense fallback={<p>Loading popup...</p>}>
-            <GreetingPopup />
-          </Suspense>
-        </div>
+          {/* ✅ Page Content */}
+          <div className="flex flex-col bg-white relative">
+            <HomeNavigationContainer />
+            <CookieConsent />
+            {children}
+            <Suspense fallback={<p>Loading form...</p>}>
+              <FormDisplay />
+            </Suspense>
+            <Suspense fallback={<p>Loading footer...</p>}>
+              <FooterContainer />
+            </Suspense>
+            <Suspense fallback={<p>Loading scroll-to-top...</p>}>
+              <ScrollToTop />
+            </Suspense>
+            <Suspense fallback={<p>Loading popup...</p>}>
+              <GreetingPopup />
+            </Suspense>
+          </div>
         </GoogleOAuthProvider>
         {/* ✅ Google Tag Manager Client */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
