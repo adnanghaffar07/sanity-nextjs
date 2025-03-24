@@ -199,6 +199,15 @@ export default function FooterContainer() {
                 >
                   hr@codeautomation.ai
                 </Link>
+                <Link
+                  href="https://codeautomation.ai/sitemap.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline my-auto inline-block"
+                >
+                  Sitemap
+                </Link>
+
               </div>
             </div>
           </div>
@@ -267,7 +276,7 @@ export default function FooterContainer() {
                     className="h-5 w-5 object-cover"
                   />
                   <span className="font-light">
-                  Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States</span>
+                    Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States</span>
                 </div>
 
                 <div className="flex flex-row gap-2 items-start pb-2">
@@ -277,7 +286,7 @@ export default function FooterContainer() {
                     className="h-5 w-5 object-cover"
                   />
                   <span className="font-light">
-                  201 N AZALEA LANE, Orleans, Ontario CA K4A4R5
+                    201 N AZALEA LANE, Orleans, Ontario CA K4A4R5
                   </span>
                 </div>
 
