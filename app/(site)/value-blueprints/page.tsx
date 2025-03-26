@@ -348,7 +348,7 @@ export default async function ValueBlueprints() {
               {/* Bottom Row */}
               <div className="flex flex-wrap gap-5 justify-center items-center">
                 {data.toolsTechSection?.toolsTech
-                  ?.slice(14, 19)
+                  ?.slice(14, 20)
                   .map((tool: any, toolIndex: any) => (
                     <div
                       key={toolIndex}
@@ -369,7 +369,7 @@ export default async function ValueBlueprints() {
                                   <img
                                     src={urlForImage(logoData.image).toString()}
                                     alt={logoData.heading}
-                                    className="h-10 md:h-14 md:mr-2 object-cover cursor-pointer"
+                                    className="h-10 md:h-14 md:mr-2 object-contain cursor-pointer"
                                   />
                                   <p className="text-sm text-gray-800 font-semibold cursor-pointer mt-2">
                                     {tool.heading}
