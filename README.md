@@ -8,7 +8,7 @@ Before you begin, ensure you have the following installed on your system:
 - Node.js 20.12.2 or later
 - A package manager like npm, yarn, pnpm, or bun 
   
-## Getting Started  
+## Getting Started
 
 These instructions will get your copy of the project up and running on your local machine for development and testing purposes.
 
