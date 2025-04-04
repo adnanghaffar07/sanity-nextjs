@@ -61,56 +61,49 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        {/* Facebook Pixel Script */}
-        <Script id="facebook-pixel" strategy="afterInteractive">
-          {`
-            !function(f,b,e,v,n,t,s){
-              if(f.fbq)return;n=f.fbq=function(){
-                n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
-              };
-              if(!f._fbq)f._fbq=n;
-              n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)
-            }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1960013544428790');
-            fbq('track', 'PageView');
-          `}
-        </Script>
-
-        {/* Facebook Pixel NoScript Fallback */}
-        <noscript>
-          <img height="1" width="1" style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1960013544428790&ev=PageView&noscript=1"
-            alt="Facebook Pixel"
-          />
-        </noscript>
       </head>
       <body className={inter.className}>
         {/* ✅ Google Tag Manager */}
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
 
+          {/* Load Google Tag Manager and Analytics after main content */}
           <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
           <Script strategy="afterInteractive" id="google-analytics">
             {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-11436659671');
-          `}
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11436659671');
+            `}
           </Script>
 
+          {/* Load Facebook Pixel after main content */}
+          <Script id="facebook-pixel" strategy="afterInteractive">
+            {`
+              !function(f,b,e,v,n,t,s){
+                if(f.fbq)return;n=f.fbq=function(){
+                  n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+                };
+                if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)
+              }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1960013544428790');
+              fbq('track', 'PageView');
+            `}
+          </Script>
+
+          {/* Facebook Pixel NoScript Fallback */}
           <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-MJG35754"
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
+            <img height="1" width="1" style={{ display: "none" }}
+              src="https://www.facebook.com/tr?id=1960013544428790&ev=PageView&noscript=1"
+              alt="Facebook Pixel"
             />
           </noscript>
 
-          {/* ✅ Page Content */}
+          {/* Main Content */}
           <div className="flex flex-col bg-white relative">
             <HomeNavigationContainer />
             <CookieConsent />
@@ -129,41 +122,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Suspense>
           </div>
         </GoogleOAuthProvider>
+
         {/* ✅ Google Tag Manager Client */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
-
-        {/* ✅ LinkedIn Partner Tag Fix */}
-        {/* <Script strategy="afterInteractive" id="linkedin-tag">
-          {`
-            window._linkedin_partner_id = "7913033";
-            window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-            window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-            (function(l) {
-              if (!l){
-                window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-                window.lintrk.q=[];
-              }
-              var s = document.getElementsByTagName("script")[0];
-              var b = document.createElement("script");
-              b.type = "text/javascript";
-              b.async = true;
-              b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-              s.parentNode.insertBefore(b,s);
-            })(window.lintrk);
-          `}
-        </Script>
-
-        <noscript>
-          <Image
-            src="https://px.ads.linkedin.com/collect/?pid=7913033&fmt=gif"
-            alt=""
-            width={1}
-            height={1}
-            style={{ display: "none" }}
-          />
-        </noscript> */}
-
-        {/* ✅ JSON-LD Structured Data Fix */}
+        
+        {/* ✅ JSON-LD Structured Data */}
         <Script type="application/ld+json" strategy="afterInteractive" id="json-ld">
           {JSON.stringify({
             "@context": "http://schema.org",
