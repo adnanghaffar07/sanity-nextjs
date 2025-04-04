@@ -5,6 +5,6 @@ export type Cpyrighttext = {
     _createdAt: Date;
     title: string;
     name: string;
-    slug: string;
+    slug: string; 
     content: PortableTextBlock[];
 }
