@@ -121,9 +121,7 @@ export default function HomeNavigationContainer() {
               onClick={toggleMenu}
               className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0"
             >
-              <button>
-                <span className="hover:underline text-white">Services</span>
-              </button>
+                <span className="hover:underline text-white cursor-pointer ">Services</span>
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
@@ -381,9 +379,7 @@ export default function HomeNavigationContainer() {
               onClick={toggleAbout}
               className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0"
             >
-              <button>
-                <span className="hover:underline text-white">About Us</span>
-              </button>
+                <span className="hover:underline text-white cursor-pointer">About Us</span>
               <svg
                 fill="white"
                 viewBox="0 0 20 20"

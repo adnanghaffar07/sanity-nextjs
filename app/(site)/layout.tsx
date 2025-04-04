@@ -8,48 +8,33 @@ import HomeNavigationContainer from "./components/home-navigation-container";
 import CookieConsent from "./components/CookieConsent";
 import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" }); // ✅ Prevent Render Blocking
 
-// Dynamically Imported Components
+// Dynamically Import Components
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
 const FooterContainer = dynamic(() => import("./components/footer-container"), { suspense: true });
 const FormDisplay = dynamic(() => import("./components/FormDisplay"), { suspense: true });
 const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { suspense: true });
 const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true });
+const GoogleFonts = dynamic(() => import("./components/GoogleFonts"), { ssr: false });
 
-// Metadata
+
 export const metadata: Metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
-  description:
-    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-  keywords: [
-    "CodeAutomation",
-    "software development company",
-    "software development services",
-  ],
-  alternates: {
-    canonical: "https://codeautomation.ai",
-  },
+  description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  keywords: ["CodeAutomation", "software development company", "software development services"],
+  alternates: { canonical: "https://codeautomation.ai" },
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai",
     title: "Software Development Company in the USA | CodeAutomation",
-    description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-    images: [
-      {
-        url: "https://codeautomation.ai/thankyou.jpg",
-        width: 1200,
-        height: 630,
-        alt: "CodeAutomation Logo",
-      },
-    ],
+    description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    images: [{ url: "https://codeautomation.ai/thankyou.jpg", width: 1200, height: 630, alt: "CodeAutomation Logo" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Software Development Company in the USA | CodeAutomation",
-    description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };
@@ -58,17 +43,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
+   <GoogleFonts/>
+        {/* ✅ Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className={inter.className}>
-        {/* ✅ Google Tag Manager */}
+
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
 
-          {/* Load Google Tag Manager and Analytics after main content */}
-          <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
-          <Script strategy="afterInteractive" id="google-analytics">
+          {/* ✅ Lazy Load Google Tag Manager */}
+          <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
+          <Script strategy="lazyOnload" id="google-analytics">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -77,33 +64,28 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             `}
           </Script>
 
-          {/* Load Facebook Pixel after main content */}
-          <Script id="facebook-pixel" strategy="afterInteractive">
+          {/* ✅ Defer Facebook Pixel */}
+          <Script id="facebook-pixel" strategy="lazyOnload">
             {`
               !function(f,b,e,v,n,t,s){
-                if(f.fbq)return;n=f.fbq=function(){
-                  n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
-                };
-                if(!f._fbq)f._fbq=n;
-                n.push=n;n.loaded=!0;n.version='2.0';
-                n.queue=[];t=b.createElement(e);t.async=!0;
-                t.src=v;s=b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t,s)
+                if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+                s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
               }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1960013544428790');
-              fbq('track', 'PageView');
+              fbq('init', '1960013544428790'); fbq('track', 'PageView');
             `}
           </Script>
 
-          {/* Facebook Pixel NoScript Fallback */}
-          <noscript>
-            <img height="1" width="1" style={{ display: "none" }}
-              src="https://www.facebook.com/tr?id=1960013544428790&ev=PageView&noscript=1"
-              alt="Facebook Pixel"
-            />
-          </noscript>
+          {/* ✅ Lazy Load Stripe & Calendly (Only When Needed) */}
+          {typeof window !== "undefined" && (
+            <>
+              <Script strategy="lazyOnload" src="https://js.stripe.com/v3" />
+              <Script strategy="lazyOnload" src="https://assets.calendly.com/assets/external/widget.js" />
+            </>
+          )}
 
-          {/* Main Content */}
+          {/* ✅ Main Content */}
           <div className="flex flex-col bg-white relative">
             <HomeNavigationContainer />
             <CookieConsent />
@@ -123,11 +105,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </div>
         </GoogleOAuthProvider>
 
-        {/* ✅ Google Tag Manager Client */}
+        {/* ✅ Lazy Load Google Tag Manager */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
-        
+
         {/* ✅ JSON-LD Structured Data */}
-        <Script type="application/ld+json" strategy="afterInteractive" id="json-ld">
+        <Script type="application/ld+json" strategy="lazyOnload" id="json-ld">
           {JSON.stringify({
             "@context": "http://schema.org",
             "@type": "WebPage",
@@ -136,22 +118,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             url: "https://codeautomation.ai/",
             inLanguage: "en-US",
             datePublished: "2024-08-20",
-            description:
-              "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+            description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
             image: "https://codeautomation.ai/logo.svg",
-            isPartOf: {
-              "@type": "WebSite",
-              url: "https://codeautomation.ai/",
-            },
-            mainEntity: [
-              { "@type": "Organization", name: "Code Automation" },
-            ],
-            aggregateRating: {
-              "@type": "AggregateRating",
-              bestRating: "5",
-              ratingValue: "4.9",
-              reviewCount: "100",
-            },
+            isPartOf: { "@type": "WebSite", url: "https://codeautomation.ai/" },
+            mainEntity: [{ "@type": "Organization", name: "Code Automation" }],
+            aggregateRating: { "@type": "AggregateRating", bestRating: "5", ratingValue: "4.9", reviewCount: "100" },
           })}
         </Script>
       </body>
