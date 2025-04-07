@@ -1180,6 +1180,7 @@ export default async function service({
         </section>
       )}
       {/* Pricing Section */}
+      {data.pricingSection  && (
       <section className="px-6 py-10 md:px-16 md:py-16 relative">
         <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
         <div className="relative">
@@ -1222,6 +1223,7 @@ export default async function service({
           </div>
         </div>
       </section>
+         )}
 
 
 
