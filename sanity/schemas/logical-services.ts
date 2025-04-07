@@ -1091,6 +1091,58 @@ const logicalServices = {
       ],
     },
 
+    // /schemas/pricingSection.ts
+{
+  name: 'pricingSection',
+  title: 'Pricing Section',
+  type: 'document',
+  fields: [
+    {
+      name: 'heading',
+      title: 'Heading',
+      type: 'string',
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
+      name: 'plans',
+      title: 'Plans',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Plan Title',
+              type: 'string',
+            },
+            {
+              name: 'price',
+              title: 'Price (e.g. $999/month or Custom)',
+              type: 'string',
+            },
+            {
+              name: 'highlighted',
+              title: 'Highlighted Plan?',
+              type: 'boolean',
+            },
+            {
+              name: 'features',
+              title: 'Features',
+              type: 'array',
+              of: [{ type: 'string' }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+},
+
     // Our Custom Software Development Services
     {
       name: "customSoftwareDev",
