@@ -15,7 +15,7 @@ const sanityConfig = defineConfig({
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
   return (
     <StudioProvider config={sanityConfig}> {/* ✅ Use the correct config */}
-      <PreventCopy />
+      {/* <PreventCopy /> */}
       {children}
     </StudioProvider>
   );

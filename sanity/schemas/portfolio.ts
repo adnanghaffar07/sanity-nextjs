@@ -123,7 +123,6 @@ const portfolioSchema = {
           { title: "Case Study", value: "caseStudy" },
           { title: "Value Blueprint", value: "valueBlueprint" },
           { title: "Blogs", value: "blogs" },
-
         ],
       },
     },

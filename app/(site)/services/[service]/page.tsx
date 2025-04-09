@@ -1097,7 +1097,7 @@ export default async function service({
                 <div className="text-3xl font-bold leading-none max-md:max-w-full">
                   {data.transBusiness.title}
                 </div>
-                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
+                <div className="my-6 text-lg font-light leading-7 max-md:max-w-full">
                   {data.transBusiness.description}
                 </div>
 
@@ -1179,6 +1179,53 @@ export default async function service({
           </div>
         </section>
       )}
+      {/* Pricing Section */}
+      {data.pricingSection  && (
+      <section className="px-6 py-10 md:px-16 md:py-16 relative">
+        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+        <div className="relative">
+          {/* Section Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#3C3C3C]">
+              {data.pricingSection?.heading}
+            </h2>
+            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+              {data.pricingSection?.description}
+            </p>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid gap-8 md:grid-cols-3 relative">
+            {data.pricingSection?.plans?.map((plan: any, index: number) => (
+              <div
+                key={index}
+                className={`bg-white rounded-2xl shadow-lg p-8 ${plan.highlighted
+                    ? 'border-2 border-[#1D92FB] transform scale-105'
+                    : 'border border-gray-200'
+                  }`}
+              >
+                <h3 className="text-2xl font-bold text-[#1D92FB] mb-2">
+                  {plan.title}
+                </h3>
+                <p className="text-3xl font-extrabold text-[#3C3C3C] mb-4">
+                  {plan.price}
+                  {!plan.price.toLowerCase().includes('custom') && (
+                    <span className="text-base font-medium">/month</span>
+                  )}
+                </p>
+                <ul className="space-y-3 text-gray-700 list-disc list-inside">
+                  {plan.features.map((feature: string, idx: number) => (
+                    <li key={idx}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+         )}
+
+
 
       {/* Advantages of Our QA and Testing Services */}
       {data.advantagesOfQA && (
@@ -1522,7 +1569,7 @@ export default async function service({
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl font-bold mb-8 text-center">
               {data.summarySection?.summaryHeading}
-            </h2> 
+            </h2>
             <p className="text-lg text-center">
               {data.summarySection?.summaryMessage}
             </p>
@@ -1549,4 +1596,3 @@ export default async function service({
     </div>
   );
 }
- 
