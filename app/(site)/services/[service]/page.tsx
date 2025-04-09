@@ -879,7 +879,7 @@ export default async function service({
               <ScrollButton
                 scrollContainerId="scrollContainer"
                 totalItems={data.industriesServe?.bulletPoints.length} // Pass total items dynamically
-                itemsPerPage={4} // Adjust items per page based on your design
+                itemsPerPage={3} // Adjust items per page based on your design
               />
             </div>
           </div>
