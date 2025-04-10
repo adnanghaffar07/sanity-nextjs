@@ -14,6 +14,8 @@ import HomePageForm from "./components/Homepage-form";
 import CaseStudiesHome from "./components/CaseStudies-Home";
 import TechnologiesSection from "./components/HomePage-Tech";
 import Script from "next/script";
+import HeroVideo from "./components/HeroSectionVideo";
+import Image from "next/image";
 
 // StatItem Component
 const StatItem = ({
@@ -174,21 +176,7 @@ export default function Home() {
         }}
       />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <video
-          className="top-0 left-0 object-cover absolute inset-0 w-full h-full"
-          width="100%"
-          height="100%"
-          muted
-          autoPlay
-          loop
-          playsInline
-          preload="metadata"
-          poster="/hero.jpg" // Ensure this is an optimized image
-        >
-          <source src="/hero-sec-video.webm" type="video/webm" />
-          <source src="/hero-sec-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+     <HeroVideo/>
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[270px] lg:top-[220px] 2xl:top-[270px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
@@ -217,7 +205,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="text-center"
               >
-                <img
+                <Image
                   src="/Clutch.png"
                   alt="clutch-icon"
                   width={130}
@@ -230,7 +218,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="text-center"
               >
-                <img
+                <Image
                   src="/Trustpilot.png"
                   alt="Trustpilot-icon"
                   width={130}
