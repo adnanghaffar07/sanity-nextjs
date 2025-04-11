@@ -132,7 +132,8 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
       const videoId = videoIdMatch ? videoIdMatch[1] : null;
     
       return videoId ? (
-        <div className="my-8 w-full h-[500px] relative">
+                <div className="my-8 w-full h-[250px] md:h-[450px] lg:[600px] relative">
+
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube Video"
