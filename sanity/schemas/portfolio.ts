@@ -110,6 +110,10 @@ const portfolioSchema = {
           }
         },
         { type: 'table' }, // ✅ Add table support here
+         // ✅ Add this for YouTube embed
+    {
+      type: 'youtubeEmbed'
+    }
 
       ]
     },     

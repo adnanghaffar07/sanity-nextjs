@@ -25,6 +25,7 @@ import user from "./schemas/user";
 import paymentProposal from "./schemas/payment-proposal";
 import paymentPlan from "./schemas/payment-plan";
 import table from "./schemas/table";
+import youtubeEmbed from "./schemas/youtubeEmbed";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -51,6 +52,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     newsLetter,
     paymentProposal,
     testing,
-    paymentPlan
+    paymentPlan, youtubeEmbed
   ],
 };
