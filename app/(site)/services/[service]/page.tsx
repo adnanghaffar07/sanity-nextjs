@@ -150,7 +150,7 @@ export default async function service({
             </h2>
             {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
-                {data.firstButton && (
+                {data.firstButton && ( 
                   <ButtonScrollToSection
                     classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72"
                     content={data.firstButton.firstButtonText}
@@ -879,7 +879,7 @@ export default async function service({
               <ScrollButton
                 scrollContainerId="scrollContainer"
                 totalItems={data.industriesServe?.bulletPoints.length} // Pass total items dynamically
-                itemsPerPage={4} // Adjust items per page based on your design
+                itemsPerPage={3} // Adjust items per page based on your design
               />
             </div>
           </div>

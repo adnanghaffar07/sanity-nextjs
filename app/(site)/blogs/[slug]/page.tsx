@@ -127,6 +127,24 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
         </table>
       </div>
     ),
+    youtubeEmbed: ({ value }: { value: { url: string } }) => {
+      const videoIdMatch = value.url.match(/(?:\?v=|\/embed\/|\.be\/)([\w\-]{11})/);
+      const videoId = videoIdMatch ? videoIdMatch[1] : null;
+    
+      return videoId ? (
+        <div className="my-8 w-full h-[500px] relative">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}`}
+            title="YouTube Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full rounded-xl border-none"
+          />
+        </div>
+      ) : (
+        <p className="text-red-500">Invalid YouTube URL</p>
+      );
+    },
     
   },
   list: {
