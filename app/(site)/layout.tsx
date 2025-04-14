@@ -43,7 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
-   <GoogleFonts/>
+        <GoogleFonts />
         {/* ✅ Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
@@ -78,12 +78,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </Script>
 
           {/* ✅ Lazy Load Stripe & Calendly (Only When Needed) */}
-          {typeof window !== "undefined" && (
+          {/* {typeof window !== "undefined" && (
             <>
               <Script strategy="lazyOnload" src="https://js.stripe.com/v3" />
               <Script strategy="lazyOnload" src="https://assets.calendly.com/assets/external/widget.js" />
             </>
-          )}
+          )} */}
 
           {/* ✅ Main Content */}
           <div className="flex flex-col bg-white relative">

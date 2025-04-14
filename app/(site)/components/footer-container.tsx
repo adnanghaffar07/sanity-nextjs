@@ -1,5 +1,4 @@
 "use client";
-import { getCpyrighttext } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -317,12 +316,7 @@ export default function FooterContainer() {
         </div>
         <div className="self-stretch mt-7 w-full bg-white min-h-[1px] mx-auto" />
         <div className="mt-5 text-md font-light leading-5 text-center text-white max-md:mt-10">
-          {/* {cpyrighttext.map((cpyrighttext) => (
-            <div className="cpyrighttext" key={cpyrighttext._id}>
-              {cpyrighttext.name}
-            </div>
-          ))} */}
-          Copyright @2025 - by Codeautomation.ai
+              Copyright @2025 - by Codeautomation.ai
         </div>
       </div>
     </div>
