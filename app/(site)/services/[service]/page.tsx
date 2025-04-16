@@ -296,9 +296,9 @@ export default async function service({
                 <h2 className="text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
                   {data.customSoftwareDev.heading}
                 </h2>
-                <h3 className="text-xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
                   {data.customSoftwareDev.subheading}
-                </h3>
+                  </p>
                 <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
                   {data.customSoftwareDev.paragraph}
                 </p>
