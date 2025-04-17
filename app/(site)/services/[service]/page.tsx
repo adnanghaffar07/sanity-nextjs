@@ -250,7 +250,6 @@ export default async function service({
         </section>
       )}
 
-
       {data.clientsSection && (
         <div className="relative">
           {/* Background overlay */}
