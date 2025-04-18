@@ -8,7 +8,7 @@ const auth = new google.auth.JWT(
   process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
   SCOPES
 );
-
+ 
 const indexer = google.indexing({ version: "v3", auth });
 
 export async function submitToGoogle(url: string) {
