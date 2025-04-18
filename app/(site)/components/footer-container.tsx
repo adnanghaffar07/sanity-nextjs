@@ -28,7 +28,7 @@ export default function FooterContainer() {
     { name: "Business Intelligence", url: "/business-intelligent-service" },
     { name: "UI UX Designs", url: "/ui-ux-design-services" },
     { name: "Data Analytics", url: "/data-analytics" },
-    { name: "Zoho Development", url: "/zoho-development-ai-business-automation-services" },
+    { name: "Zoho Development", url: "/zoho-services-ai-automation" },
     { name: "HubSpot CRM Services", url: "/hubspot-crm-integration-services" },
     { name: "AI Business Automation", url: "/ai-business-automation-solutions" },
     { name: "Go-Flow Automation ", url: "/go-flow-ecommerce-automation" },
