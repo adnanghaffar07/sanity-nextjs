@@ -24,50 +24,50 @@ const SocialShare = ({ title }: { title: string }) => {
               `${title}\n\n${currentUrl}`
             )}`,
             "_blank",
-      "noopener noreferrer"
+            "noopener noreferrer"
           )
         }
       />
-{/* Facebook */}
-<img
-  src="/facebook.jpeg"
-  alt="Facebook"
-  className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-  onClick={() =>
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        currentUrl
-      )}&quote=${encodeURIComponent(
-        `Check this out: ${title}. Visit here for more details!`
-      )}`,
-       "_blank",
-      "noopener noreferrer"
-    )
-  }
-/>
-{/* LinkedIn */}
-<img
-  src="/linkedin.jpeg"
-  alt="LinkedIn"
-  className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-  onClick={() =>
-    window.open(
-      `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-        currentUrl
-      )}&title=${encodeURIComponent(
-        title
-      )}&summary=${encodeURIComponent(
-        "Check out this blog on CodeAutomation.ai! A leading platform for custom software and mobile development solutions."
-      )}&source=CodeAutomation.ai`,
-     "_blank",
-      "noopener noreferrer"
-    )
-  }
-/>
+      {/* Facebook */}
+      <img
+        src="/facebook.jpeg"
+        alt="Facebook"
+        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
+        onClick={() =>
+          window.open(
+            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              currentUrl
+            )}&quote=${encodeURIComponent(
+              `Check this out: ${title}. Visit here for more details!`
+            )}`,
+            "_blank",
+            "noopener noreferrer"
+          )
+        }
+      />
+      {/* LinkedIn */}
+      <img
+        src="/linkedin.jpeg"
+        alt="LinkedIn"
+        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
+        onClick={() =>
+          window.open(
+            `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+              currentUrl
+            )}&title=${encodeURIComponent(
+              title
+            )}&summary=${encodeURIComponent(
+              "Check out this blog on CodeAutomation.ai! A leading platform for custom software and mobile development solutions."
+            )}&source=CodeAutomation.ai`,
+            "_blank",
+            "noopener noreferrer"
+          )
+        }
+      />
 
 
-  {/* Instagram */}
-{/* <img
+      {/* Instagram */}
+      {/* <img
   src="/instagram.jpeg"
   alt="Instagram"
   className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
@@ -82,26 +82,26 @@ const SocialShare = ({ title }: { title: string }) => {
 /> */}
 
 
-{/* Twitter */}
-<img
-  src="/twitter.jpg"
-  alt="Twitter"
-  className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-  onClick={() =>
-    window.open(
-      `https://twitter.com/share?url=${encodeURIComponent(
-        currentUrl
-      )}&text=${encodeURIComponent(
-        `Check out this blog: "${title}"! Read more at `
-      )}`,
-     "_blank",
-      "noopener noreferrer"
-    )
-  }
-/>
+      {/* Twitter */}
+      <img
+        src="/twitter.jpg"
+        alt="Twitter"
+        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
+        onClick={() =>
+          window.open(
+            `https://twitter.com/share?url=${encodeURIComponent(
+              currentUrl
+            )}&text=${encodeURIComponent(
+              `Check out this blog: "${title}"! Read more at `
+            )}`,
+            "_blank",
+            "noopener noreferrer"
+          )
+        }
+      />
 
 
-    
+
     </div>
   );
 };

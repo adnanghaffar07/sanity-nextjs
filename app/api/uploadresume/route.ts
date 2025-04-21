@@ -13,15 +13,15 @@ export async function POST(request: any): Promise<any> {
     port: 465,
     secure: true,
     auth: {
-      user: "nouman@codeautomation.dev",
-      pass: "bzgldjgspftyusay",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: "nouman@codeautomation.dev",
+    from: process.env.EMAIL_USER,
     to: "hr@codeautomation.ai",
-    subject: `Resume Uploaded for ${formTitle}`,
+    subject: `Resume Uploaded for ${formTitle}` ,
     attachments: [
       {
         filename: fileName,

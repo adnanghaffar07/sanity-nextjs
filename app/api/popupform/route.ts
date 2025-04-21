@@ -98,13 +98,13 @@ export async function POST(request: any): Promise<any> {
     port: 587,
     secure: false,
     auth: {
-      user: "75f6c8001@smtp-brevo.com",
-      pass: "KVvb5cOUnwqmx3Gy",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: "umaid@codeautomation.dev",
+    from: process.env.EMAIL_USER,
     to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
     subject: `CA Website Greeting Popup form - ${pageName} page`,
     html: `

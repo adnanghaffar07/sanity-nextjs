@@ -17,7 +17,6 @@ const failedEmails = [
     "citycf11@gmail.com",
     "pleasantgrovebengals@yahoo.com",
     "ramondeleon987@hotmail.com",
-    "ayesha.munir@codeautomation.ai"
 ];
 
 async function fetchRecipients() {

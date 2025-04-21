@@ -9,24 +9,26 @@ import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
-const Testimonials = async () => {
-  const [data, setData] = useState([]);
+// Optional: define TypeScript interface
+interface Testimonial {
+  name: string;
+  designation: string;
+  content: string;
+  image: any;
+}
+
+const Testimonials = () => {
+  const [data, setData] = useState<Testimonial[]>([]);
 
   useEffect(() => {
-    async function getData() {
-      const query = `*[_type == 'testimonial'] | order(_updatedAt desc)`;
-      try {
-        const fetchData = await client.fetch(query);
-        return fetchData || [];
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-      }
-    }
-
     const fetchTestimonials = async () => {
-      const result = await getData();
-      setData(result);
+      try {
+        const query = `*[_type == 'testimonial'] | order(_updatedAt desc)`;
+        const result = await client.fetch(query);
+        setData(result || []);
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      }
     };
 
     fetchTestimonials();
@@ -57,8 +59,10 @@ const Testimonials = async () => {
         loop={true}
         speed={2000}
         pagination={false}
+        watchSlidesProgress={true}
+        watchOverflow={true}
         modules={[EffectCoverflow, Pagination, Autoplay]}
-        className="mySwiper w-full" // Full width
+        className="mySwiper w-full"
         breakpoints={{
           0: {
             slidesPerView: 1,
@@ -75,7 +79,7 @@ const Testimonials = async () => {
           },
         }}
       >
-        {data.map((testimonial: any, index: any) => (
+        {data.map((testimonial, index) => (
           <SwiperSlide
             key={index}
             className="flex justify-center items-center pt-20 md:pt-36"
@@ -83,9 +87,10 @@ const Testimonials = async () => {
             <div className="flex flex-col relative w-full max-w-[530px] shadow-md backdrop-blur-[36px]">
               <div className="flex justify-center items-center px-1 xl:px-4 ml-5 w-16 xl:w-28 2xl:w-28 h-16 xl:h-28 2xl:h-28 bg-white rounded-full max-md:ml-2.5 absolute -top-8 md:-top-8 lg:-top-10 xl:-top-16 2xl:-top-20 left-2 lg:left-6 border border-gray-300">
                 <img
+                  role="img"
                   loading="lazy"
                   src={urlForImage(testimonial.image).toString()}
-                  alt={`${testimonial.name}'s profile`}
+                  alt={`${testimonial.name}'s profile picture`}
                   className="w-full aspect-square rounded-full"
                 />
               </div>
@@ -95,9 +100,7 @@ const Testimonials = async () => {
                 </p>
                 <div>
                   <p className="mt-6 font-semibold">{testimonial.name}</p>
-                  <p className="mt-3 font-semibold ">
-                    {testimonial.designation}
-                  </p>
+                  <p className="mt-3 font-semibold">{testimonial.designation}</p>
                 </div>
               </div>
             </div>
@@ -105,7 +108,7 @@ const Testimonials = async () => {
         ))}
       </Swiper>
 
-      {/* Clutch and Trustpilot section - displayed in a row */}
+      {/* Clutch and Trustpilot section */}
       <div className="flex justify-center items-center gap-8 mt-12">
         <a
           href="https://clutch.co/profile/codeautomationai#highlights"
@@ -115,7 +118,7 @@ const Testimonials = async () => {
         >
           <img
             src="/Clutch.png"
-            alt="clutch-icon"
+            alt="Clutch icon"
             width={130}
             height={40}
           />
@@ -128,14 +131,13 @@ const Testimonials = async () => {
         >
           <img
             src="/Trustpilot.png"
-            alt="Trustpilot-icon"
+            alt="Trustpilot icon"
             width={130}
             height={40}
             className="mb-3"
           />
         </a>
       </div>
-
     </div>
   );
 };

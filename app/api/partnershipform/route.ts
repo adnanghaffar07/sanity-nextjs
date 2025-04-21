@@ -17,13 +17,13 @@ export async function POST(request: any): Promise<any> {
     port: 465,
     secure: true,
     auth: {
-      user: "adnan@codeautomation.dev",
-      pass: "lzaq xujq zwvu jkjf",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: "adnan@codeautomation.dev",
+    from: process.env.EMAIL_USER,
     to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
 
     subject: `CA Website Contact form - Partnership page`,

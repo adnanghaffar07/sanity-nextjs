@@ -8,7 +8,7 @@ export const metadata = {
      keywords: [
        "CodeAutomation",
        "software development company",
-       "software development services",
+       "software development services", 
      ],
    alternates: {
      canonical: "https://codeautomation.ai/about/happy-clients", // ✅ Fixes the canonical error

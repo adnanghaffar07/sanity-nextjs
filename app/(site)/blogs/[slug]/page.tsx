@@ -1,10 +1,11 @@
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism"; 
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
+// import AuthorBio from "../../components/AuthorBio";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -130,9 +131,10 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
     youtubeEmbed: ({ value }: { value: { url: string } }) => {
       const videoIdMatch = value.url.match(/(?:\?v=|\/embed\/|\.be\/)([\w\-]{11})/);
       const videoId = videoIdMatch ? videoIdMatch[1] : null;
-    
+
       return videoId ? (
-        <div className="my-8 w-full h-[500px] relative">
+        <div className="my-8 w-full h-[250px] md:h-[450px] lg:[600px] relative">
+
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube Video"
@@ -145,7 +147,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
         <p className="text-red-500">Invalid YouTube URL</p>
       );
     },
-    
+
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
@@ -213,18 +215,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
-
       {/* Introduction Section */}
       <div className="text-black px-6 md:px-16 py-10 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between">
-            <div className="block md:hidden mb-8">
+            <div className="block md:hidden mt-6">
               <SocialShare title={data.title} />
             </div>
             <h2 className="text-2xl max-w-5xl md:text-3xl font-bold mb-6">
-              {data.blogheading}
+              {data.blogheading}  <span className="text-sm font-light">By <span className="text-gray-600 text-sm font-light">Adnan Ghaffar</span> Published{"  "} {data.subtitle}</span>
             </h2>
-            <div className="hidden md:block">
+            <div className="hidden md:block my-6">
               <SocialShare title={data.title} />
             </div>          </div>
           <p className="text-xl  mb-6">
@@ -311,6 +312,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <BlogsFaq faq={data.faqSection} />
         </div>
       }
+      {/* <div className="max-w-7xl mx-auto">
+        <AuthorBio />
+      </div> */}
+
     </div>
   );
 };

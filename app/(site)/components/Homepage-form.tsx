@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo  } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // Import Yup for validation
 import { usePathname, useRouter } from "next/navigation"; // Import useRouter hook
@@ -78,10 +78,9 @@ export default function HomePageForm() {
   };
 
   const currentPath = usePathname();
-  const pageName = currentPath ? currentPath.split("/").pop() || "home" : "home";
-
-  console.log("Current Path:", currentPath);
-  console.log("Page Name:", pageName);
+  const pageName = useMemo(() => {
+    return currentPath ? currentPath.split("/").pop() || "home" : "home";
+  }, [currentPath]);
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     event.preventDefault(); // Prevent default form submission

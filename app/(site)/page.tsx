@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
 const Testimonials = dynamic(() => import("./components/Testimonials"), {
-  suspense: true,
+  ssr: false,
 }); 
 const Faqs = dynamic(() => import("./components/Faqs"), {
   suspense: true,

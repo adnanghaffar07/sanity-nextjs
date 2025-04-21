@@ -453,6 +453,24 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
                         </div>
                       </Link> */}
+                        <Link
+                        href="/about/industries"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/industries.svg"
+                            alt="industries"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Our Industries</p>
+                          <p className="mt-1 text-sm text-gray-500">Who We Help</p>
+                        </div>
+                      </Link>
                       <Link
                         href="/partnership-program"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"

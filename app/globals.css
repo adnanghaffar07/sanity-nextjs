@@ -1,12 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Klein:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 .poppins {
   font-family: "Poppins", sans-serif;
 }
-.font-klein {
-  font-family: "Klein", sans-serif;
-}
+
 
 @tailwind base;
 @tailwind components;
@@ -58,6 +55,12 @@ body {
   .greetings {
     height: 90%; /* Override for smaller screens */
   }
+}
+
+/* globals.css or wherever you keep styles */
+.rich-text a {
+  color: #2563eb; /* Tailwind's blue-600 */
+  text-decoration: underline;
 }
 
 /* Shared button styles */
