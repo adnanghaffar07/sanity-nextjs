@@ -15,6 +15,12 @@ const logicalServices = {
       title: 'JSON-LD Script',
       type: 'text',
     },
+    {
+      name: 'seoContent',
+      title: 'SEO Content',
+      type: 'text', // or 'blockContent' if you want PortableText
+      description: 'Add long-form SEO content for better indexing. Will not be visible to users.'
+    },    
     { 
       name: "brochure", 
       type: "file", 

@@ -264,8 +264,8 @@ const Industries = () => {
                 </div>
             </div>
             {/* Introduction */}
-            <section className="w-full bg-white py-16 px-4 md:px-10">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <section className="w-full w-full bg-[#1D92FB] bg-opacity-10 ">
+                <div className="max-w-7xl py-16 px-4 md:px-10 mx-auto grid md:grid-cols-2 gap-12 items-center">
 
                     {/* Text Content */}
                     <div>
@@ -293,22 +293,22 @@ const Industries = () => {
                 </div>
             </section>
             {/* Why Partner with CodeAutomation Section */}
-            <section className="w-full bg-[#1D92FB] bg-opacity-10">
-                <div className="max-w-6xl py-16 px-6 md:px-12 mx-auto text-center">
+            <section className=" py-16 px-6 md:px-12">
+                <div className="max-w-6xl mx-auto text-center">
                     <h2 className="text-2xl md:text-4xl font-bold mb-12 text-gray-900">Why Partner with CodeAutomation?</h2>
                     <div className="grid md:grid-cols-3 gap-8 text-center">
                         {content.map((item, idx) => (
-                            <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                            <div key={idx} className="bg-gray-300 bg-opacity-10 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
                                 <h3 className="text-xl font-semibold mb-3 text-gray-800">{item.heading}</h3>
-                                <p className="text-gray-600">{item.body}</p>
+                                <p className="tex t-gray-600">{item.body}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
             {/* Tools And Technologies Section */}
-            <section className="py-16 px-6 md:px-12">
-                <div className="max-w-7xl mx-auto text-center">
+            <section className=" w-full bg-[#1D92FB] bg-opacity-10">
+                <div className="max-w-7xl mx-auto text-center py-16 px-6 md:px-12">
                     <h2 className="text-2x l md:text-4xl font-bold mb-6 text-gray-900 leading-tight">
                         Technology That Powers Every Industry at CodeAutomation
                     </h2>
@@ -320,7 +320,7 @@ const Industries = () => {
                         {technologies.map((tech, index) => (
                             <div
                                 key={index}
-                                className="w-full sm:w-1/2 md:w-1/3 px-4 mb-10"
+                                className="w-full sm:w-1/2 md:w-1/3 px-4 mb-10" 
                             >
                                 <div className="bg-white p-6 h-full rounded-2xl shadow-md hover:shadow-lg transition duration-300 text-left">
                                     <div className="flex flex-wrap gap-3 justify-start items-center mb-4">
@@ -535,6 +535,7 @@ const Industries = () => {
                     </div>
                 </div>
             </section>
+            
         </div>
     )
 }

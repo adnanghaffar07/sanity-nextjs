@@ -97,8 +97,7 @@ export default function FooterContainer() {
           {/* Second Column */}
           <div className="flex flex-col">
             <div className="text-white flex flex-col items-start text-xl">
-              <div className="text-2xl font-medium hidden md:flex">.</div> {/* Keeps height aligned */}
-              <div className="mt-6 text-base font-light w-full flex flex-col space-y-[20px]">
+              <div className="md:mt-14 text-base font-light w-full flex flex-col space-y-[20px]">
                 {services.slice(7, 14).map((service, idx) => (
                   <Link
                     key={`col2-${idx}`}

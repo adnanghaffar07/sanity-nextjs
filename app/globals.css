@@ -57,6 +57,12 @@ body {
   }
 }
 
+/* globals.css or wherever you keep styles */
+.rich-text a {
+  color: #2563eb; /* Tailwind's blue-600 */
+  text-decoration: underline;
+}
+
 /* Shared button styles */
 .button {
   background-color: #f7e022;

@@ -150,7 +150,7 @@ export default async function service({
             </h2>
             {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
-                {data.firstButton && ( 
+                {data.firstButton && (
                   <ButtonScrollToSection
                     classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72"
                     content={data.firstButton.firstButtonText}
@@ -185,8 +185,6 @@ export default async function service({
           </div>
         </div>
       </div>
-
-
       {/* Tools Section */}
       {data.toolsLogoSection?.logoArray?.length > 0 && (
         <section className="mx-auto px-6 md:px-16 bg-white max-w-6xl py-8">
@@ -297,7 +295,7 @@ export default async function service({
                 </h2>
                 <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
                   {data.customSoftwareDev.subheading}
-                  </p>
+                </p>
                 <p className="text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
                   {data.customSoftwareDev.paragraph}
                 </p>
@@ -433,10 +431,12 @@ export default async function service({
                       {data.introductionSection.introHeading}
                     </h2>
                     {data?.introductionSection?.introDesc && (
-                      <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                        {data.introductionSection.introDesc}
-                      </p>
+                      <div
+                        className="text-lg rich-text text-gray-800 leading-relaxed text-center md:text-justify"
+                        dangerouslySetInnerHTML={{ __html: data.introductionSection.introDesc }}
+                      />
                     )}
+
                     {/* Array in introduction description section */}
                     {data?.introductionDescArray?.length > 0 && (
                       <div className="flex flex-col gap-4">
@@ -536,9 +536,11 @@ export default async function service({
                           {items.heading}
                         </h3>
                       </div>
-                      <p className="text-gray-700 text-center">
-                        {items.description}
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: items.description }}
+                        className="rich-text text-gray-700 text-center"
+                      ></p>
+
                     </div>
                   </div>
                 ))}
@@ -634,12 +636,16 @@ export default async function service({
                 <div className="text-3xl font-bold leading-none max-md:max-w-full">
                   {data.ctaAfterSubServices.title}
                 </div>
-                <div className="mt-4 text-xl leading-none max-md:max-w-full">
-                  {data.ctaAfterSubServices.subtitle}
-                </div>
-                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full">
-                  {data.ctaAfterSubServices.description}
-                </div>
+                <div
+                  className="mt-4 text-xl leading-none max-md:max-w-full rich-text"
+                  dangerouslySetInnerHTML={{ __html: data.ctaAfterSubServices.subtitle }}
+                ></div>
+
+                <div
+                  className="mt-4 text-lg font-light leading-7 max-md:max-w-full rich-text"
+                  dangerouslySetInnerHTML={{ __html: data.ctaAfterSubServices.description }}
+                ></div>
+
                 <Link
                   href={data.ctaAfterSubServices.buttonLink}
                   className="button"
@@ -694,7 +700,10 @@ export default async function service({
                 <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                   {card.title}
                 </h3>
-                <p className="text-lg text-[#3C3C3C]">{card.description}</p>
+                <p
+                  className="text-lg text-[#3C3C3C] rich-text"
+                  dangerouslySetInnerHTML={{ __html: card.description }}
+                ></p>
               </div>
             ))}
           </div>
@@ -756,7 +765,10 @@ export default async function service({
                     <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-[#3C3C3C]">{item.description}</p>
+                    <p
+                      className="text-lg text-[#3C3C3C] rich-text"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    ></p>
                   </div>
                 ))}
               </div>
@@ -798,16 +810,18 @@ export default async function service({
               <h2 className="text-3xl font-bold mb-4">
                 {data.industriesWeQA?.bulletPointsHeading}
               </h2>
-              {data.industriesWeQA?.bulletPoints?.map(
-                (point: any, index: any) => (
-                  <div
-                    key={index}
-                    className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
-                  >
-                    <p className="text-[#3C3C3C] font-semibold">• {point}</p>
-                  </div>
-                )
-              )}
+              {data.industriesWeQA?.bulletPoints?.map((point: any, index: any) => (
+                <div
+                  key={index}
+                  className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+                >
+                  <p
+                    className="text-[#3C3C3C] font-semibold rich-text"
+                    dangerouslySetInnerHTML={{ __html: `• ${point}` }}
+                  ></p>
+                </div>
+              ))}
+
             </div>
 
             {/* Image on the Right */}
@@ -1179,52 +1193,50 @@ export default async function service({
         </section>
       )}
       {/* Pricing Section */}
-      {data.pricingSection  && (
-      <section className="px-6 py-10 md:px-16 md:py-16 relative">
-        <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
-        <div className="relative">
-          {/* Section Heading */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#3C3C3C]">
-              {data.pricingSection?.heading}
-            </h2>
-            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-              {data.pricingSection?.description}
-            </p>
-          </div>
+      {data.pricingSection && (
+        <section className="px-6 py-10 md:px-16 md:py-16 relative">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          <div className="relative">
+            {/* Section Heading */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[#3C3C3C]">
+                {data.pricingSection?.heading}
+              </h2>
+              <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+                {data.pricingSection?.description}
+              </p>
+            </div>
 
-          {/* Pricing Cards */}
-          <div className="grid gap-8 md:grid-cols-3 relative">
-            {data.pricingSection?.plans?.map((plan: any, index: number) => (
-              <div
-                key={index}
-                className={`bg-white rounded-2xl shadow-lg p-8 ${plan.highlighted
+            {/* Pricing Cards */}
+            <div className="grid gap-8 md:grid-cols-3 relative">
+              {data.pricingSection?.plans?.map((plan: any, index: number) => (
+                <div
+                  key={index}
+                  className={`bg-white rounded-2xl shadow-lg p-8 ${plan.highlighted
                     ? 'border-2 border-[#1D92FB] transform scale-105'
                     : 'border border-gray-200'
-                  }`}
-              >
-                <h3 className="text-2xl font-bold text-[#1D92FB] mb-2">
-                  {plan.title}
-                </h3>
-                <p className="text-3xl font-extrabold text-[#3C3C3C] mb-4">
-                  {plan.price}
-                  {!plan.price.toLowerCase().includes('custom') && (
-                    <span className="text-base font-medium">/month</span>
-                  )}
-                </p>
-                <ul className="space-y-3 text-gray-700 list-disc list-inside">
-                  {plan.features.map((feature: string, idx: number) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                    }`}
+                >
+                  <h3 className="text-2xl font-bold text-[#1D92FB] mb-2">
+                    {plan.title}
+                  </h3>
+                  <p className="text-3xl font-extrabold text-[#3C3C3C] mb-4">
+                    {plan.price}
+                    {!plan.price.toLowerCase().includes('custom') && (
+                      <span className="text-base font-medium">/month</span>
+                    )}
+                  </p>
+                  <ul className="space-y-3 text-gray-700 list-disc list-inside">
+                    {plan.features.map((feature: string, idx: number) => (
+                      <li key={idx}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-         )}
-
-
+        </section>
+      )}
 
       {/* Advantages of Our QA and Testing Services */}
       {data.advantagesOfQA && (
@@ -1589,9 +1601,17 @@ export default async function service({
           </div>
         </section>
       )}
+
       {data.faqSection && (
         <FAQServicePage faqSection={data.faqSection} />
       )}
+      {data?.seoContent && (
+        <div
+          className="sr-only"
+          dangerouslySetInnerHTML={{ __html: data.seoContent }}
+        />
+      )}
+
     </div>
   );
 }
