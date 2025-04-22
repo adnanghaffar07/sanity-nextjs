@@ -9,6 +9,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'heading',
+            title: 'Heading',
+            type: 'string',
+        },
+        {
             name: 'subHeading',
             title: 'Sub Heading',
             type: 'string',

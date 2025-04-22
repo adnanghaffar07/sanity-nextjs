@@ -2,6 +2,7 @@ import React from 'react'
 import ScrollButton from '../../components/valueBluePrint';
 import Image from 'next/image';
 import Link from 'next/link';
+import IndustriesAccordion from '../../components/IndustriesAccordion';
 
 const Industries = () => {
     const content = [
@@ -127,13 +128,11 @@ const Industries = () => {
                 heading: "Healthcare & Healthtech",
                 bulletPoints: [
                     "Challenge: Manual processes slow patient care and increase administrative burdens.",
-                    "Solutions:",
-                    "Custom Software Development: Develop tailored EHR/EMR systems that are secure, interoperable, and scalable for seamless data sharing.",
+                    "Solutions: Custom Software Development: Develop tailored EHR/EMR systems that are secure, interoperable, and scalable for seamless data sharing.",
                     "AI Business Automation: Automate patient onboarding, claims processing, and diagnostics with AI-driven, HIPAA-compliant workflows.",
                     "IoT Integrations: Enable remote health monitoring via wearables and real-time health data tracking.",
                     "Manual & Automation Testing: Perform manual testing to ensure healthcare systems comply with strict regulations and automation testing for consistent, error-free performance.",
-                    "Services Delivered:",
-                    "AI-driven diagnostic tools for early disease detection.",
+                    "Services Delivered: AI-driven diagnostic tools for early disease detection.",
                     "Telehealth platforms with automated scheduling and virtual consultations.",
                     "Wearable device integration for chronic disease management.",
                     "Regulatory-compliant data encryption for enhanced security."
@@ -144,13 +143,11 @@ const Industries = () => {
                 heading: "E-Commerce & Retail",
                 bulletPoints: [
                     "Challenge: Cart abandonment, inventory mismanagement, and impersonal customer journeys.",
-                    "Solutions:",
-                    "Custom Software Development: Build custom e-commerce platforms with integrated AR/VR try-ons and AI chatbots for 24/7 customer support.",
+                    "Solutions: Custom Software Development: Build custom e-commerce platforms with integrated AR/VR try-ons and AI chatbots for 24/7 customer support.",
                     "AI Business Automation: Use AI-powered personalization to offer dynamic product recommendations and targeted marketing.",
                     "GHL Automation: Sync Shopify with GoHighLevel to automate abandoned cart recovery and SMS marketing campaigns.",
                     "Inventory Optimization: Apply AI forecasting and IoT sensors to predict stock levels and prevent supply chain disruptions.",
-                    "Services Delivered:",
-                    "Custom e-commerce platforms with AI-driven personalization for a dynamic shopping experience.",
+                    "Services Delivered: Custom e-commerce platforms with AI-driven personalization for a dynamic shopping experience.",
                     "AI chatbots that provide 24/7 customer support and instant query resolution.",
                     "Dynamic pricing engines powered by machine learning.",
                     "Multi-channel campaign analytics for tracking and optimizing digital marketing efforts."
@@ -161,13 +158,11 @@ const Industries = () => {
                 heading: "Finance, FinTech & Banking",
                 bulletPoints: [
                     "Challenge: Fraud risks, manual compliance processes, and slow customer onboarding.",
-                    "Solutions:",
-                    "Custom Software Development: Design mobile banking apps with biometric authentication and secure, user-friendly interfaces.",
+                    "Solutions: Custom Software Development: Design mobile banking apps with biometric authentication and secure, user-friendly interfaces.",
                     "AI Business Automation: Use AI models to detect fraud in real time and perform automated risk assessments.",
                     "RPA for KYC/AML: Automate document verification and regulatory reporting processes with robotic process automation (RPA).",
                     "Blockchain Solutions: Implement secure transaction systems powered by blockchain for transparency and security.",
-                    "Services Delivered:",
-                    "Mobile banking apps with biometric authentication for secure access.",
+                    "Services Delivered: Mobile banking apps with biometric authentication for secure access.",
                     "AI-driven fraud detection systems using machine learning to spot anomalies in real time.",
                     "Automated KYC/AML workflows to streamline compliance.",
                     "Blockchain-based payment solutions for secure, transparent transactions."
@@ -178,13 +173,11 @@ const Industries = () => {
                 heading: "Real Estate & PropTech",
                 bulletPoints: [
                     "Challenge: Disjointed buyer journeys and inefficient lead management.",
-                    "Solutions:",
-                    "Custom Software Development: Build property management systems and virtual reality (VR) property tours for an immersive experience.",
+                    "Solutions: Custom Software Development: Build property management systems and virtual reality (VR) property tours for an immersive experience.",
                     "AI Business Automation: Automate lead follow-ups, client communication, and virtual property tours using AI-driven CRM systems.",
                     "IoT Smart Homes: Integrate IoT devices for remote property monitoring and real-time alerts for property maintenance.",
                     "Marketing Automation: Use AI-powered marketing automation to target specific buyer segments and manage email/SMS campaigns for open houses.",
-                    "Services Delivered:",
-                    "Custom virtual reality (VR) property tours for an immersive buyer experience.",
+                    "Services Delivered: Custom virtual reality (VR) property tours for an immersive buyer experience.",
                     "AI chatbots for instant buyer inquiries and property suggestions.",
                     "Automated lease management systems to simplify property management.",
                     "Predictive maintenance using IoT devices to monitor property health and alert owners."
@@ -195,13 +188,11 @@ const Industries = () => {
                 heading: "Manufacturing & Industrial Tech",
                 bulletPoints: [
                     "Challenge: Production delays, quality control issues, and reliance on outdated systems.",
-                    "Solutions:",
-                    "Custom Software Development: Develop ERP systems with real-time data and predictive maintenance features for manufacturing plants.",
+                    "Solutions: Custom Software Development: Develop ERP systems with real-time data and predictive maintenance features for manufacturing plants.",
                     "AI Business Automation: Leverage AI-powered predictive maintenance using IoT sensors to minimize equipment downtime.",
                     "RPA Workflows: Automate inventory management and supply chain logistics for seamless operations.",
                     "Digital Twins: Simulate production lines using AI to predict and optimize performance.",
-                    "Services Delivered:",
-                    "IoT-based machine health monitoring to reduce downtime and improve operational efficiency.",
+                    "Services Delivered: IoT-based machine health monitoring to reduce downtime and improve operational efficiency.",
                     "AI-based quality control using computer vision to detect defects in manufacturing.",
                     "Real-time analytics for production lines, optimizing throughput.",
                     "Supplier portal integrations for streamlined procurement and logistics management."
@@ -212,13 +203,11 @@ const Industries = () => {
                 heading: "Logistics & Supply Chain",
                 bulletPoints: [
                     "Challenge: Inefficient route planning, slow deliveries, and lack of real-time visibility.",
-                    "Solutions:",
-                    "Custom Software Development: Build real-time shipment tracking dashboards and warehouse management systems to streamline logistics operations.",
+                    "Solutions: Custom Software Development: Build real-time shipment tracking dashboards and warehouse management systems to streamline logistics operations.",
                     "AI-Driven Route Optimization: Use AI algorithms for route planning that reduces fuel costs and delivery times.",
                     "IoT Tracking: Integrate IoT sensors for GPS-enabled fleet management and predictive ETAs.",
                     "RPA for Documentation: Automate customs clearance and invoice processing to reduce delays.",
-                    "Services Delivered:",
-                    "Real-time shipment tracking and inventory management systems to boost efficiency.",
+                    "Services Delivered: Real-time shipment tracking and inventory management systems to boost efficiency.",
                     "AI-driven route optimization for fuel savings and timely deliveries.",
                     "Blockchain-powered supply chain solutions to ensure transparency and product authenticity.",
                     "Automated customs documentation for quicker border crossings and fewer delays."
@@ -229,13 +218,11 @@ const Industries = () => {
                 heading: "Education & EdTech",
                 bulletPoints: [
                     "Challenge: Low student engagement, administrative inefficiencies, and outdated learning management systems (LMS).",
-                    "Solutions:",
-                    "Custom Software Development: Develop learning management systems (LMS) and AI-powered tutoring platforms for personalized education.",
+                    "Solutions: Custom Software Development: Develop learning management systems (LMS) and AI-powered tutoring platforms for personalized education.",
                     "AI Business Automation: Use NLP-powered AI chatbots to assist students and provide personalized learning paths.",
                     "Marketing Automation: Automate student enrollment and communication workflows with HubSpot CRM.",
                     "Virtual Classrooms: Integrate IoT-enabled interactive learning environments to enhance student engagement.",
-                    "Services Delivered:",
-                    "Gamified e-learning platforms that engage students with interactive content.",
+                    "Services Delivered: Gamified e-learning platforms that engage students with interactive content.",
                     "AI-driven plagiarism detection tools for academic integrity.",
                     "Parent-teacher communication portals for real-time progress updates.",
                     "Predictive analytics for student success and personalized intervention strategies."
@@ -249,7 +236,6 @@ const Industries = () => {
         <div className="w-full flex flex-col items-center">
             {/* Hero Section */}
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-
                 <img
                     className="top-0 left-0 object-cover absolute inset-0 size-full"
                     src="/industries.jpg"
@@ -320,7 +306,7 @@ const Industries = () => {
                         {technologies.map((tech, index) => (
                             <div
                                 key={index}
-                                className="w-full sm:w-1/2 md:w-1/3 px-4 mb-10" 
+                                className="w-full sm:w-1/2 md:w-1/3 px-4 mb-10"
                             >
                                 <div className="bg-white p-6 h-full rounded-2xl shadow-md hover:shadow-lg transition duration-300 text-left">
                                     <div className="flex flex-wrap gap-3 justify-start items-center mb-4">
@@ -358,47 +344,7 @@ const Industries = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="relative h-auto flex flex-col justify-center overflow-hidden">
-                            <div
-                                className="flex gap-5 h-auto justify-start lg:pl-20 mt-6 max-md:flex-wrap hide-scrollbar"
-                                id="scrollContainer"
-                                style={{ overflowX: "auto" }}
-                            >
-                                {industriesServe?.bulletPoints.map(
-                                    (item: any, index: number) => (
-                                        <div
-                                            key={item._id}
-                                            className="h-auto flex-shrink-0 w-full sm:w-80 md:w-80 lg:w-1/4 bg-[#FBFBFB] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
-                                            style={{ minWidth: "calc(100% / 4 - 20px)" }} // Ensure 4 cards per row with spacing
-                                        >
-                                            {/* Index on the Left Side */}
-                                            <div className="absolute top-6 left-6 rounded-lg bg-[#1D92FB] text-white text-xl font-bold px-4 py-2">
-                                                {index + 1}
-                                            </div>
-
-                                            {/* Heading and Bullet Points */}
-                                            <div className="px-5 py-7 pt-16 mt-6">
-                                                <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
-                                                    {item.heading}
-                                                </h3>
-                                                <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
-                                                    {item.bulletPoints?.map(
-                                                        (bullet: string, bulletIndex: number) => (
-                                                            <li key={bulletIndex}>{bullet}</li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    )
-                                )}
-                            </div>
-                            <ScrollButton
-                                scrollContainerId="scrollContainer"
-                                totalItems={industriesServe?.bulletPoints.length} // Pass total items dynamically
-                                itemsPerPage={3} // Adjust items per page based on your design
-                            />
-                        </div>
+                        <IndustriesAccordion bulletPoints={industriesServe?.bulletPoints || []} />
                     </div>
                 </section>
             )}
@@ -470,8 +416,8 @@ const Industries = () => {
                     </div>
                 </div>
             </section>
-               {/* CTA after SubServices  */}
-               <section
+            {/* CTA after SubServices  */}
+            <section
                 className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
                 style={{
                     backgroundImage: "url(/Container.png)",
@@ -535,7 +481,7 @@ const Industries = () => {
                     </div>
                 </div>
             </section>
-            
+
         </div>
     )
 }

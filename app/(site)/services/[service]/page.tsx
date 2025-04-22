@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { client } from "../../../../sanity/lib/client";
-import { GetServerSideProps } from "next";
 import { urlForImage } from "@/sanity/lib/image";
 import ScrollButton from "../../components/valueBluePrint";
 import CustomSoftwareSection from "../../components/CustomSoftwareAcc";
@@ -1046,7 +1045,6 @@ export default async function service({
                 {data.exampleServicesSection?.exampleServicedesc}
               </p>
             )}
-
             <div
               className={
                 data.exampleServicesSection?.exampleService != null
@@ -1083,10 +1081,8 @@ export default async function service({
           </div>
         </section>
       )}
-
       {data.mobileAppServiceSection && <MobileAppServiceSection data={data} />}
       {data.secondMobileAppAcc && <SecondMobileServiceAcc data={data} />}
-
       {/* Turn Vision Into Reality Custom Software */}
       {data.transBusiness && (
         <section
