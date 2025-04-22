@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { client } from "../../../../sanity/lib/client";
+import { GetServerSideProps } from "next";
 import { urlForImage } from "@/sanity/lib/image";
 import ScrollButton from "../../components/valueBluePrint";
 import CustomSoftwareSection from "../../components/CustomSoftwareAcc";
@@ -431,10 +432,10 @@ export default async function service({
                       {data.introductionSection.introHeading}
                     </h2>
                     {data?.introductionSection?.introDesc && (
-                      <div
-                        className="text-lg rich-text text-gray-800 leading-relaxed text-center md:text-justify"
-                        dangerouslySetInnerHTML={{ __html: data.introductionSection.introDesc }}
-                      />
+                      <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                        {data.introductionSection.introDesc}
+                      </div>
+
                     )}
 
                     {/* Array in introduction description section */}
@@ -536,11 +537,9 @@ export default async function service({
                           {items.heading}
                         </h3>
                       </div>
-                      <p
-                        dangerouslySetInnerHTML={{ __html: items.description }}
-                        className="rich-text text-gray-700 text-center"
-                      ></p>
-
+                      <p className="text-gray-700 text-center">
+                        {items.description}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -636,16 +635,13 @@ export default async function service({
                 <div className="text-3xl font-bold leading-none max-md:max-w-full">
                   {data.ctaAfterSubServices.title}
                 </div>
-                <div
-                  className="mt-4 text-xl leading-none max-md:max-w-full rich-text"
-                  dangerouslySetInnerHTML={{ __html: data.ctaAfterSubServices.subtitle }}
-                ></div>
+                <div className="mt-4 text-xl leading-none max-md:max-w-full rich-text">
+                  {data.ctaAfterSubServices.subtitle}
+                </div>
 
-                <div
-                  className="mt-4 text-lg font-light leading-7 max-md:max-w-full rich-text"
-                  dangerouslySetInnerHTML={{ __html: data.ctaAfterSubServices.description }}
-                ></div>
-
+                <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full rich-text">
+                  {data.ctaAfterSubServices.description}
+                </div>
                 <Link
                   href={data.ctaAfterSubServices.buttonLink}
                   className="button"
@@ -700,10 +696,9 @@ export default async function service({
                 <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                   {card.title}
                 </h3>
-                <p
-                  className="text-lg text-[#3C3C3C] rich-text"
-                  dangerouslySetInnerHTML={{ __html: card.description }}
-                ></p>
+                <p className="text-lg text-[#3C3C3C]">
+                  {card.description}
+                </p>
               </div>
             ))}
           </div>
@@ -766,9 +761,8 @@ export default async function service({
                       {item.title}
                     </h3>
                     <p
-                      className="text-lg text-[#3C3C3C] rich-text"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    ></p>
+                      className="text-lg text-[#3C3C3C]"
+                    >{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -815,10 +809,10 @@ export default async function service({
                   key={index}
                   className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
                 >
-                  <p
-                    className="text-[#3C3C3C] font-semibold rich-text"
-                    dangerouslySetInnerHTML={{ __html: `• ${point}` }}
-                  ></p>
+                  <p className="text-[#3C3C3C] font-semibold">
+                    • {point}
+                  </p>
+
                 </div>
               ))}
 
@@ -1611,7 +1605,6 @@ export default async function service({
           dangerouslySetInnerHTML={{ __html: data.seoContent }}
         />
       )}
-
     </div>
   );
 }
