@@ -32,9 +32,8 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
                 <p
-                    className="py-4 px-6 text-[#3C3C3C] bg-[#FDFDFD] rich-text"
-                    dangerouslySetInnerHTML={{ __html: content }}
-                ></p>
+                    className="py-4 px-6 text-[#3C3C3C] bg-[#FDFDFD]"
+                              >{content}</p>
 
             </div>
         </div>
