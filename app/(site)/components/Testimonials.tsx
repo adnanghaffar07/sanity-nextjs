@@ -8,6 +8,7 @@ import "swiper/css/autoplay";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import Image from "next/image";
 
 // Optional: define TypeScript interface
 interface Testimonial {
@@ -116,7 +117,7 @@ const Testimonials = () => {
           rel="noopener noreferrer"
           className="text-center"
         >
-          <img
+          <Image
             src="/Clutch.png"
             alt="Clutch icon"
             width={130}
@@ -129,11 +130,39 @@ const Testimonials = () => {
           rel="noopener noreferrer"
           className="text-center"
         >
-          <img
+          <Image
             src="/Trustpilot.png"
             alt="Trustpilot icon"
             width={130}
             height={40}
+            className="mb-3"
+          />
+        </a>
+        <a
+          href="/forbes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center"
+        >
+          <Image
+            src="/forbes.png"
+            alt="Forbes-icon"
+            width={130}
+            height={40}
+            className="mb-3"
+          />
+        </a>
+        <a
+          href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=3loqVSYAAAAJ"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-center"
+        >
+          <Image
+            src="/Google_Scholar_logo.png"
+            alt="Google_Scholar_logo-icon"
+            width={60}
+            height={10}
             className="mb-3"
           />
         </a>

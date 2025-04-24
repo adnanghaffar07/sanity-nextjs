@@ -122,6 +122,12 @@ const logicalServices = {
           type: "text",
         },
         {
+          name: "introDescBlock",
+          title: "Intro Description Block",
+          description: 'Use this field for new content with formatting and internal links. Leave "Intro Description (Legacy)" empty.',
+          type: "blockContent"
+        },
+        {
           name: "introImage",
           title: "Intro Image",
           type: "image",

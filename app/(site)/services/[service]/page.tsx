@@ -12,6 +12,8 @@ import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 import Script from "next/script";
 import FAQServicePage from "../../components/FaqService";
+import { PortableText } from "@portabletext/react";
+import { portableTextComponents } from "../../components/PortableTextServices";
 
 async function getData(service: string) {
   if (!service) return null; // ✅ Prevents undefined errors
@@ -43,6 +45,7 @@ async function getLogoData() {
     return [];
   }
 }
+
 
 // ✅ Fixed generateMetadata Function
 export async function generateMetadata({ params }: { params: { service: string } }) {
@@ -423,40 +426,46 @@ export default async function service({
             )}
 
             {/* Content on the right */}
-            {data.introductionSection?.introHeading &&
-              data.introductionSection?.introDesc && (
-                <div className="w-full md:w-1/2">
-                  <div className="max-w-3xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                      {data.introductionSection.introHeading}
-                    </h2>
-                    {data?.introductionSection?.introDesc && (
-                      <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                        {data.introductionSection.introDesc}
-                      </div>
+            {data.introductionSection?.introHeading && (
+              <div className="w-full md:w-1/2">
+                <div className="max-w-3xl mx-auto">
+                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+                    {data.introductionSection.introHeading}
+                  </h2>
+                  {data.introductionSection.introDescBlock && data.introductionSection.introDescBlock.length > 0 ? (
+                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                      <PortableText
+                        value={data.introductionSection.introDescBlock}
+                        components={portableTextComponents}
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                      {data.introductionSection.introDesc}
+                    </div>
+                  )}
 
-                    )}
 
-                    {/* Array in introduction description section */}
-                    {data?.introductionDescArray?.length > 0 && (
-                      <div className="flex flex-col gap-4">
-                        {data?.introductionDescArray?.map(
-                          (description: string, index: number) => {
-                            return (
-                              <p
-                                className="text-lg text-gray-800 leading-relaxed text-center md:text-justify"
-                                key={index}
-                              >
-                                {description}
-                              </p>
-                            );
-                          }
-                        )}
-                      </div>
-                    )}
-                  </div>
+                  {/* Array in introduction description section */}
+                  {data?.introductionDescArray?.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                      {data?.introductionDescArray?.map(
+                        (description: string, index: number) => {
+                          return (
+                            <p
+                              className="text-lg text-gray-800 leading-relaxed text-center md:text-justify"
+                              key={index}
+                            >
+                              {description}
+                            </p>
+                          );
+                        }
+                      )}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
+            )}
           </div>
         </section>
       )}

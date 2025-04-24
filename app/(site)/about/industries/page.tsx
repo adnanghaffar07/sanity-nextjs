@@ -230,8 +230,6 @@ const Industries = () => {
             }
         ]
     };
-
-
     return (
         <div className="w-full flex flex-col items-center">
             {/* Hero Section */}
