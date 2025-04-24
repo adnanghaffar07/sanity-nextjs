@@ -15,7 +15,7 @@ These instructions will get your copy of the project up and running on your loca
 ### Installation 
  
 First, clone the repository to your local machine:
-
+ 
 ```bash
 git clone https://github.com/adnanghaffar07/sanity-nextjs.git
 
