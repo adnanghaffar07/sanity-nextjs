@@ -153,7 +153,7 @@ const Testimonials = () => {
           />
         </a>
         <a
-          href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=3loqVSYAAAAJ"
+          href="/google-scholar"
           target="_blank"
           rel="noopener noreferrer"
           className="text-center"

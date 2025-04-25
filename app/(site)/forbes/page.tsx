@@ -2,6 +2,19 @@
 
 import ForbesArticleCard from "../components/ForbesArticleCard";
 
+export const metadata = {
+  title: "Adnan Ghaffar in Forbes Councils | AI & Tech Insights | CodeAutomation",
+ description:
+   "Explore CEO Adnan Ghaffar’s Forbes Councils articles on AI innovation, tech trends, and business automation. Discover expert insights driving CodeAutomation’s industry-leading solutions.",
+   keywords: [
+     "CodeAutomation",
+     "software development company",
+     "software development services",
+   ],
+ alternates: {
+   canonical: "https://codeautomation.ai/forbes", // ✅ Fixes the canonical error
+ },
+};
 const forbesArticles = [
   {
     title: 'Automation Is No Longer Optional: Getting Your Business Ready For AI',
@@ -23,10 +36,9 @@ export default function ForbesPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-[#000000] opacity-60"></div>
         <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
           <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">
-            <h1 className="text-2xl font-bold capitalize lg:text-4xl">Explore Forbes Insights</h1>
+            <h1 className="text-2xl font-bold capitalize lg:text-4xl">Featured in Forbes </h1>
             <h2 className="mt-4 text-base lg:text-2xl lg:px-32">
-              Discover hand-picked Forbes articles on AI, business, tech, and the future. Curated by CodeAutomation to keep you informed and inspired.
-            </h2>
+            Our CEO, Adnan Ghaffar, is a recognized thought leader in tech and automation. Explore his ground-breaking insights published in Forbes Councils.            </h2>
           </div>
         </div>
       </div>
