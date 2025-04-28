@@ -1,8 +1,42 @@
 import React from 'react'
-import ScrollButton from '../../components/valueBluePrint';
 import Image from 'next/image';
 import Link from 'next/link';
 import IndustriesAccordion from '../../components/IndustriesAccordion';
+import { Metadata } from 'next'; // ✅ Important to type correctly
+
+// ✅ Generate Metadata with Canonical Tag
+export const generateMetadata = (): Metadata => {
+  const canonicalUrl = "https://codeautomation.ai/about/industries"; // ✅ Update if needed
+
+  return {
+    title: "Industries We Serve - CodeAutomation.ai",
+    description: "Discover how CodeAutomation.ai provides software solutions across various industries.",
+    keywords: "Industries, Software Solutions, CodeAutomation.ai, Healthcare Software, E-commerce Software",
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: "Industries We Serve - CodeAutomation.ai",
+      description: "Discover how CodeAutomation.ai provides software solutions across various industries.",
+      url: canonicalUrl,
+      type: "website",
+      images: [
+        {
+          url: "/default-og-image.jpg", // Optional: Replace with a proper image URL
+          width: 1200,
+          height: 630,
+          alt: "Industries We Serve - CodeAutomation.ai",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Industries We Serve - CodeAutomation.ai",
+      description: "Discover how CodeAutomation.ai provides software solutions across various industries.",
+      images: ["/default-og-image.jpg"],
+    },
+  };
+};
 
 const Industries = () => {
     const content = [

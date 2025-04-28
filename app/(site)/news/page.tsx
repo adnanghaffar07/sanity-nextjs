@@ -1,6 +1,8 @@
 import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import { Metadata } from "next"; // ✅ Import Metadata type
+
 
 async function getData() {
     const query = `*[_type == 'news'][0]`;
@@ -11,6 +13,45 @@ async function getData() {
         console.error("Error fetching data:", error);
         return {};
     }
+}
+// ✅ Generate Metadata with Canonical URL
+export async function generateMetadata(): Promise<Metadata> {
+    const data = await getData();
+
+    const defaultTitle = "Latest News and Updates - CodeAutomation.ai";
+    const defaultDescription = "Stay updated with the latest news, announcements, and insights from CodeAutomation.ai.";
+    const defaultKeywords = "News, Updates, Announcements, CodeAutomation.ai";
+    const canonicalUrl = "https://codeautomation.ai/news"; // ✅ Canonical URL for News Page
+
+    const title = data?.webSeoMetadataSub?.title || defaultTitle;
+    const description = data?.webSeoMetadataSub?.description || defaultDescription;
+    const keywords = data?.webSeoMetadataSub?.keywords?.join(", ") || defaultKeywords;
+
+    const heroImageUrl = data?.heroImage ? urlForImage(data.heroImage).toString() : "/thankyou.jpg";
+    const facebookMeta = data?.facebookCardsSub || {};
+    const twitterMeta = data?.twitterCardsSub || {};
+
+    return {
+        title,
+        description,
+        keywords,
+        openGraph: {
+            type: facebookMeta.facebookType || "website",
+            url: facebookMeta.facebookUrl || canonicalUrl,
+            title: facebookMeta.facebookTitle || title,
+            description: facebookMeta.facebookDescription || description,
+            images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+        },
+        twitter: {
+            card: twitterMeta.twitterType || "summary_large_image",
+            title: twitterMeta.twitterTitle || title,
+            description: twitterMeta.twitterDescription || description,
+            images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+        },
+                alternates: {
+            canonical: canonicalUrl, // ✅ Canonical tag added here
+        },
+    };
 }
 
 const News: React.FC = async () => {

@@ -24,7 +24,7 @@ export const metadata = {
       "offshore app development",
     ],
     alternates: {
-      canonical: "https://codeautomation.ai/offshore-software-development/",
+      canonical: "https://codeautomation.ai/offshore-software-development",
     },
     openGraph: {
       title: "Top Offshore Software Development Company | Expert Services",

@@ -27,8 +27,74 @@ async function getBrochures() {
     } catch (error) {
         console.error("Error fetching brochures:", error);
         return [];
-    }
+    }   
 }
+// ✅ Proper generateMetadata function
+export async function generateMetadata() {
+    const data = await getBrochures();
+  
+    const defaultTitle = "Download Our Service Brochures - CodeAutomation.ai";
+    const defaultDescription = "Explore and download brochures of our custom software and mobile development services.";
+    const defaultKeywords = "Brochures, CodeAutomation.ai, Software Development, Mobile App Development";
+    const canonicalUrl = "https://codeautomation.ai/brochure"; // ✅ Correct canonical URL
+  
+    const title = data?.webSeoMetadataSub?.title || defaultTitle;
+    const description = data?.webSeoMetadataSub?.description || defaultDescription;
+    const keywords = data?.webSeoMetadataSub?.keywords?.join(", ") || defaultKeywords;
+  
+    const heroImageUrl = data?.heroImage?.asset?.url || "/brochure-cover.jpg";
+  
+    const facebookMeta = data?.facebookCardsSub || {};
+    const twitterMeta = data?.twitterCardsSub || {};
+    const linkedInMeta = data?.linkedInCardsSub || {};
+    const pinterestMeta = data?.pinterestCardsSub || {};
+    const whatsappMeta = data?.whatsappCardsSub || {};
+    const telegramMeta = data?.telegramCardsSub || {};
+  
+    return {
+      title,
+      description,
+      keywords,
+      openGraph: {
+        type: facebookMeta.facebookType || "website",
+        url: facebookMeta.facebookUrl || canonicalUrl,
+        title: facebookMeta.facebookTitle || title,
+        description: facebookMeta.facebookDescription || description,
+        images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+      },
+      twitter: {
+        card: twitterMeta.twitterType || "summary_large_image",
+        title: twitterMeta.twitterTitle || title,
+        description: twitterMeta.twitterDescription || description,
+        images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+        url: twitterMeta.twitterUrl || canonicalUrl,
+      },
+      linkedIn: {
+        title: linkedInMeta.linkedInTitle || title,
+        description: linkedInMeta.linkedInDescription || description,
+        image: heroImageUrl,
+        url: linkedInMeta.linkedInUrl || canonicalUrl,
+      },
+      pinterest: {
+        title: pinterestMeta.pinterestTitle || title,
+        description: pinterestMeta.pinterestDescription || description,
+        url: pinterestMeta.pinterestUrl || canonicalUrl,
+      },
+      whatsapp: {
+        title: whatsappMeta.whatsappTitle || title,
+        description: whatsappMeta.whatsappDescription || description,
+        url: whatsappMeta.whatsappUrl || canonicalUrl,
+      },
+      telegram: {
+        title: telegramMeta.telegramTitle || title,
+        description: telegramMeta.telegramDescription || description,
+        url: telegramMeta.telegramUrl || canonicalUrl,
+      },
+      alternates: {
+        canonical: canonicalUrl, // ✅ Canonical properly added
+      },
+    };
+  }
 
 const BrochuresPage = async () => {
     const brochures = await getBrochures();

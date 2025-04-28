@@ -25,11 +25,10 @@ async function getLogoData() {
   }
 }
 
-// ✅ Fixed generateMetadata Function with Canonical URL
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { service: string; slug: string } }) {
   const data = await getData(params.slug);
 
-  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultTitle = "CodeAutomation - Custom Software and Mobile Development Company in USA";
   const defaultDescription = "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
 
@@ -39,18 +38,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const facebookMeta = data?.facebookCards || {};
   const twitterMeta = data?.twitterCards || {};
-  const linkedInMeta = data?.linkedInCards || {};
-  const pinterestMeta = data?.pinterestCards || {};
-  const whatsappMeta = data?.whatsappCards || {};
-  const telegramMeta = data?.telegramCards || {};
 
-  // ✅ Prevent errors if `heroImageSub` is missing
-  const heroImageUrl = data?.heroImageSub ? urlForImage(data.heroImageSub).toString() : "/default-image.jpg";
+  const heroImageUrl = data?.heroImageSub ? urlForImage(data.heroImageSub).toString() : "/thankyou.jpg";
 
-  // ✅ Fixed Canonical URL
   const canonicalUrl = params.slug
-    ? `https://codeautomation.ai/sub-services/${params.slug}`
-    : "https://codeautomation.ai/sub-services";
+  ? `https://codeautomation.ai/services/${params.service}/${params.slug}`
+  : "https://codeautomation.ai/services";
 
   return {
     title,
@@ -69,32 +62,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: twitterMeta.twitterDescription || description,
       images: [{ url: heroImageUrl, alt: title }],
     },
-    linkedIn: {
-      title: linkedInMeta.linkedInTitle || title,
-      description: linkedInMeta.linkedInDescription || description,
-      image: heroImageUrl,
-      url: linkedInMeta.linkedInUrl || canonicalUrl,
-    },
-    pinterest: {
-      title: pinterestMeta.pinterestTitle || title,
-      description: pinterestMeta.pinterestDescription || description,
-      url: pinterestMeta.pinterestUrl || canonicalUrl,
-    },
-    whatsapp: {
-      title: whatsappMeta.whatsappTitle || title,
-      description: whatsappMeta.whatsappDescription || description,
-      url: whatsappMeta.whatsappUrl || canonicalUrl,
-    },
-    telegram: {
-      title: telegramMeta.telegramTitle || title,
-      description: telegramMeta.telegramDescription || description,
-      url: telegramMeta.telegramUrl || canonicalUrl,
-    },
     alternates: {
-      canonical: canonicalUrl, // ✅ Fixed canonical tag
+      canonical: canonicalUrl, // ✅ canonical is correct
     },
   };
 }
+
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
@@ -103,7 +76,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <div className="bg-gray-100">
       {/* Hero Section */}
-
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <img
           className="top-0 left-0 object-cover absolute inset-0 size-full"

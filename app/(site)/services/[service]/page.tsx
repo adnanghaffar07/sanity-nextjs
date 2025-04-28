@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: { params: { service: string }
   const whatsappMeta = data?.whatsappCards || {};
   const telegramMeta = data?.telegramCards || {};
 
-  const heroImageUrl = data?.heroImage ? urlForImage(data.heroImage).toString() : "/default-image.jpg"; // ✅ Prevents errors if image is missing
+  const heroImageUrl = data?.heroImage ? urlForImage(data.heroImage).toString() : "/thankyou.jpg"; // ✅ Prevents errors if image is missing
 
   // ✅ Fixed Canonical URL
   const canonicalUrl = params.service
@@ -323,7 +323,13 @@ export default async function service({
                           {item.title}
                         </h3>
                         <p className="text-[#3C3C3C] mt-2">
-                          {item.description}
+                          {item.descriptionBlock && item.descriptionBlock.length > 0 ? (
+                            // If block content exists, render PortableText for rich text
+                            <PortableText value={item.descriptionBlock} components={portableTextComponents} />
+                          ) : (
+                            // Otherwise, render simple text description
+                            item.description
+                          )}
                         </p>
                       </div>
                     </div>
@@ -444,8 +450,6 @@ export default async function service({
                       {data.introductionSection.introDesc}
                     </div>
                   )}
-
-
                   {/* Array in introduction description section */}
                   {data?.introductionDescArray?.length > 0 && (
                     <div className="flex flex-col gap-4">
@@ -879,13 +883,19 @@ export default async function service({
                         <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                           {item.heading}
                         </h3>
-                        <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
-                          {item.bulletPoints?.map(
-                            (bullet: string, bulletIndex: number) => (
+                        {/* Render blockContent if available, otherwise render simple bullet points */}
+                        {item.bulletPointsBlock && item.bulletPointsBlock.length > 0 ? (
+                          <div className="prose text-[#3C3C3C]">
+                            {/* Assuming you are using @portabletext/react or something similar */}
+                            <PortableText value={item.bulletPointsBlock} components={portableTextComponents} />
+                          </div>
+                        ) : (
+                          <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
+                            {item.bulletPoints?.map((bullet: string, bulletIndex: number) => (
                               <li key={bulletIndex}>{bullet}</li>
-                            )
-                          )}
-                        </ul>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     </div>
                   )
