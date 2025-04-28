@@ -5,7 +5,7 @@ import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
-// import AuthorBio from "../../components/AuthorBio";
+import AuthorBio from "../../components/AuthorBio";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -312,9 +312,9 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <BlogsFaq faq={data.faqSection} />
         </div>
       }
-      {/* <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <AuthorBio />
-      </div> */}
+      </div>
 
     </div>
   );

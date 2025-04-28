@@ -13,6 +13,8 @@ import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 import Script from "next/script";
 import FAQServicePage from "../../components/FaqService";
+import { PortableText } from "@portabletext/react";
+import { portableTextComponents } from "../../components/PortableTextServices";
 
 async function getData(service: string) {
   if (!service) return null; // ✅ Prevents undefined errors
@@ -45,6 +47,7 @@ async function getLogoData() {
   }
 }
 
+
 // ✅ Fixed generateMetadata Function
 export async function generateMetadata({ params }: { params: { service: string } }) {
   const data = await getData(params.service);
@@ -64,7 +67,7 @@ export async function generateMetadata({ params }: { params: { service: string }
   const whatsappMeta = data?.whatsappCards || {};
   const telegramMeta = data?.telegramCards || {};
 
-  const heroImageUrl = data?.heroImage ? urlForImage(data.heroImage).toString() : "/default-image.jpg"; // ✅ Prevents errors if image is missing
+  const heroImageUrl = data?.heroImage ? urlForImage(data.heroImage).toString() : "/thankyou.jpg"; // ✅ Prevents errors if image is missing
 
   // ✅ Fixed Canonical URL
   const canonicalUrl = params.service
@@ -321,7 +324,13 @@ export default async function service({
                           {item.title}
                         </h3>
                         <p className="text-[#3C3C3C] mt-2">
-                          {item.description}
+                          {item.descriptionBlock && item.descriptionBlock.length > 0 ? (
+                            // If block content exists, render PortableText for rich text
+                            <PortableText value={item.descriptionBlock} components={portableTextComponents} />
+                          ) : (
+                            // Otherwise, render simple text description
+                            item.description
+                          )}
                         </p>
                       </div>
                     </div>
@@ -424,40 +433,44 @@ export default async function service({
             )}
 
             {/* Content on the right */}
-            {data.introductionSection?.introHeading &&
-              data.introductionSection?.introDesc && (
-                <div className="w-full md:w-1/2">
-                  <div className="max-w-3xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                      {data.introductionSection.introHeading}
-                    </h2>
-                    {data?.introductionSection?.introDesc && (
-                      <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                        {data.introductionSection.introDesc}
-                      </div>
-
-                    )}
-
-                    {/* Array in introduction description section */}
-                    {data?.introductionDescArray?.length > 0 && (
-                      <div className="flex flex-col gap-4">
-                        {data?.introductionDescArray?.map(
-                          (description: string, index: number) => {
-                            return (
-                              <p
-                                className="text-lg text-gray-800 leading-relaxed text-center md:text-justify"
-                                key={index}
-                              >
-                                {description}
-                              </p>
-                            );
-                          }
-                        )}
-                      </div>
-                    )}
-                  </div>
+            {data.introductionSection?.introHeading && (
+              <div className="w-full md:w-1/2">
+                <div className="max-w-3xl mx-auto">
+                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+                    {data.introductionSection.introHeading}
+                  </h2>
+                  {data.introductionSection.introDescBlock && data.introductionSection.introDescBlock.length > 0 ? (
+                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                      <PortableText
+                        value={data.introductionSection.introDescBlock}
+                        components={portableTextComponents}
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                      {data.introductionSection.introDesc}
+                    </div>
+                  )}
+                  {/* Array in introduction description section */}
+                  {data?.introductionDescArray?.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                      {data?.introductionDescArray?.map(
+                        (description: string, index: number) => {
+                          return (
+                            <p
+                              className="text-lg text-gray-800 leading-relaxed text-center md:text-justify"
+                              key={index}
+                            >
+                              {description}
+                            </p>
+                          );
+                        }
+                      )}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -871,13 +884,19 @@ export default async function service({
                         <h3 className="text-xl font-semibold text-[#3C3C3C] mb-4">
                           {item.heading}
                         </h3>
-                        <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
-                          {item.bulletPoints?.map(
-                            (bullet: string, bulletIndex: number) => (
+                        {/* Render blockContent if available, otherwise render simple bullet points */}
+                        {item.bulletPointsBlock && item.bulletPointsBlock.length > 0 ? (
+                          <div className="prose text-[#3C3C3C]">
+                            {/* Assuming you are using @portabletext/react or something similar */}
+                            <PortableText value={item.bulletPointsBlock} components={portableTextComponents} />
+                          </div>
+                        ) : (
+                          <ul className="list-disc pl-5 space-y-2 text-[#3C3C3C]">
+                            {item.bulletPoints?.map((bullet: string, bulletIndex: number) => (
                               <li key={bulletIndex}>{bullet}</li>
-                            )
-                          )}
-                        </ul>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     </div>
                   )
@@ -1046,7 +1065,6 @@ export default async function service({
                 {data.exampleServicesSection?.exampleServicedesc}
               </p>
             )}
-
             <div
               className={
                 data.exampleServicesSection?.exampleService != null
@@ -1083,10 +1101,8 @@ export default async function service({
           </div>
         </section>
       )}
-
       {data.mobileAppServiceSection && <MobileAppServiceSection data={data} />}
       {data.secondMobileAppAcc && <SecondMobileServiceAcc data={data} />}
-
       {/* Turn Vision Into Reality Custom Software */}
       {data.transBusiness && (
         <section

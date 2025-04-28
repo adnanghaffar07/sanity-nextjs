@@ -20,11 +20,36 @@ const AuthorBio = () => {
             <p className="text-gray-600 dark:text-gray-300">CEO, CodeAutomation.ai</p>
           </div>
           <div className="flex gap-3 text-white">
-            <a href="#" className="bg-black p-2 rounded-full"><FaFacebookF /></a>
-            <a href="#" className="bg-black p-2 rounded-full"><FaXTwitter /></a>
-            <a href="#" className="bg-black p-2 rounded-full"><FaInstagram /></a>
-            <a href="#" className="bg-black p-2 rounded-full"><FaLinkedinIn /></a>
-            <a href="#" className="bg-black p-2 rounded-full"><FaEnvelope /></a>
+            <a
+              href="https://twitter.com/adnanghaffar007"
+              className="bg-black p-2 rounded-full"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaXTwitter />
+            </a>
+            <a
+              href="https://www.instagram.com/itsadnanghaffar/"
+              className="bg-black p-2 rounded-full"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/adnanghaffar007"
+              className="bg-black p-2 rounded-full"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedinIn />
+            </a>
+            <a
+              href="mailto:adnan@codeautomation.dev"
+              className="bg-black p-2 rounded-full text-white"
+            >
+              <FaEnvelope />
+            </a>
           </div>
         </div>
 

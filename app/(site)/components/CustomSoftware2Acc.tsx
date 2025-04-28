@@ -2,15 +2,18 @@
 
 import { useState } from "react";
 import { urlForImage } from "@/sanity/lib/image";
+import { PortableText } from "@portabletext/react";
+import { portableTextComponents } from "./PortableTextServices";
 
 interface AccordionItemProps {
     title: string;
-    content: string;
+    content?: string; // Making content optional since you may pass PortableText as children
     isOpen: boolean;
     onToggle: () => void;
+    children?: React.ReactNode;  // Adding children as a prop
 }
 
-function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps) {
+function AccordionItem({ title, content, isOpen, onToggle, children }: AccordionItemProps) {
     return (
         <div className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden">
             <button
@@ -31,9 +34,15 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
                 </svg>
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
-                <p className="py-4 px-6 text-[#3C3C3C] bg-[#FDFDFD]">
-                    {content}
-                </p>
+                {children ? (
+                    <div className="py-4 px-6 text-[#3C3C3C] bg-[#FDFDFD]">
+                        {children} {/* Render PortableText content or other children */}
+                    </div>
+                ) : (
+                    <p className="py-4 px-6 text-[#3C3C3C] bg-[#FDFDFD]">
+                        {content} {/* Render simple text content for fallback */}
+                    </p>
+                )}
             </div>
         </div>
     );
@@ -70,26 +79,34 @@ export default function CustomSoftware2Section({ data }: { data: any }) {
                             className="w-full h-auto rounded-lg shadow-md"
                         />
                     </div>
-
-
                     {/* Accordion on the right */}
                     <div className="flex-1 mt-8 md:mt-0">
-                        {data.provenProcessSection.accordionItems.map((item: any, index: number) => (
-                            <AccordionItem
-                                key={index}
-                                title={item.title}
-                                content={item.content}
-                                isOpen={openIndex === index}
-                                onToggle={() => handleToggle(index)}
-                            />
-                        ))}
+                        {data.provenProcessSection.accordionItemsBlock && data.provenProcessSection.accordionItemsBlock.length > 0 ? (
+                            data.provenProcessSection.accordionItemsBlock.map((item: any, index: number) => (
+                                <AccordionItem
+                                    key={index}
+                                    title={item.title}
+                                    isOpen={openIndex === index}
+                                    onToggle={() => handleToggle(index)}
+                                >
+                                    {/* Render PortableText content for rich text */}
+                                    <PortableText value={item.content} components={portableTextComponents} />
+                                </AccordionItem>
+                            ))
+                        ) : (
+                            data.provenProcessSection.accordionItems.map((item: any, index: number) => (
+                                <AccordionItem
+                                    key={index}
+                                    title={item.title}
+                                    content={item.content}  // Render simple text content for fallback
+                                    isOpen={openIndex === index}
+                                    onToggle={() => handleToggle(index)}
+                                />
+                            ))
+                        )}
                     </div>
-
-
-
                 </div>
             </div>
-
         </section>
     );
 }

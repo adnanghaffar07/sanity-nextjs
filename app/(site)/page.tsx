@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 import HomePageSlider from "./components/HomePageSlider";
 const Testimonials = dynamic(() => import("./components/Testimonials"), {
   ssr: false,
-}); 
+});
 const Faqs = dynamic(() => import("./components/Faqs"), {
   suspense: true,
 });
@@ -176,7 +176,7 @@ export default function Home() {
         }}
       />
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-     <HeroVideo/>
+        <HeroVideo />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute top-[270px] lg:top-[220px] 2xl:top-[270px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
@@ -223,6 +223,34 @@ export default function Home() {
                   alt="Trustpilot-icon"
                   width={130}
                   height={40}
+                  className="mb-3"
+                />
+              </a>
+              <a
+                href="/forbes"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <Image
+                  src="/forbes.png"
+                  alt="Forbes-icon"
+                  width={130}
+                  height={40}
+                  className="mb-3"
+                />
+              </a>
+              <a
+                href="/google-scholar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <Image
+                  src="/Google_Scholar_logo.png"
+                  alt="Google_Scholar_logo-icon"
+                  width={60}
+                  height={10}
                   className="mb-3"
                 />
               </a>

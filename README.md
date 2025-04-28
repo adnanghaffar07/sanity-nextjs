@@ -4,7 +4,7 @@ This project is a Next.js application initialized using [`create-next-app`](http
 
 ## Prerequisites
    
-Before you begin, ensure you have the following installed on your system:
+Before you begin, ensure you have the following installed on your system:  
 - Node.js 20.12.2 or later   
 - A package manager like npm, yarn, pnpm, or bun 
   
@@ -15,7 +15,7 @@ These instructions will get your copy of the project up and running on your loca
 ### Installation 
  
 First, clone the repository to your local machine:
-
+ 
 ```bash
 git clone https://github.com/adnanghaffar07/sanity-nextjs.git
 

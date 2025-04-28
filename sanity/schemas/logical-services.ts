@@ -20,12 +20,12 @@ const logicalServices = {
       title: 'SEO Content',
       type: 'text', // or 'blockContent' if you want PortableText
       description: 'Add long-form SEO content for better indexing. Will not be visible to users.'
-    },    
-    { 
-      name: "brochure", 
-      type: "file", 
-      title: "Brochure", 
-      options: { accept: ".pdf" } 
+    },
+    {
+      name: "brochure",
+      type: "file",
+      title: "Brochure",
+      options: { accept: ".pdf" }
     },
     {
       name: "serviceCardTitle",
@@ -120,6 +120,12 @@ const logicalServices = {
           name: "introDesc",
           title: "Intro Description",
           type: "text",
+        },
+        {
+          name: "introDescBlock",
+          title: "Intro Description Block",
+          description: 'Use this field for new content with formatting and internal links. Leave "Intro Description (Legacy)" empty.',
+          type: "blockContent"
         },
         {
           name: "introImage",
@@ -467,7 +473,38 @@ const logicalServices = {
                   title: "bulletPoints",
                   of: [{ type: "string" }],
                 },
-              ],
+                {
+                  name: "bulletPointsBlock",
+                  title: "Block Bullet Points",
+                  type: "array",
+                  of: [
+                    {
+                      type: "block",
+                      marks: {
+                        annotations: [
+                          {
+                            name: "link",
+                            type: "object",
+                            title: "Link",
+                            fields: [
+                              {
+                                name: "href",
+                                type: "url",
+                                title: "URL"
+                              },
+                              {
+                                name: "openInNewTab",
+                                type: "boolean",
+                                title: "Open in new tab"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },                                                                           
+              ], 
             },
           ],
         },
@@ -599,6 +636,27 @@ const logicalServices = {
           title: "Description",
         },
         {
+          name: "accordionItemsBlock",
+          type: "array",
+          title: "Accordion Items Interlinking",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  type: "string",
+                  title: "Title",
+                },
+                {
+                  name: "content",
+                  type: "blockContent",  // Changed from `text` to `blockContent` for rich text support
+                  title: "Content",
+                },
+              ],
+            },],
+        },
+        {
           name: "accordionItems",
           type: "array",
           title: "Accordion Items",
@@ -655,6 +713,27 @@ const logicalServices = {
           title: "Description",
         },
         {
+          name: "accordionItemsBlock",
+          type: "array",
+          title: "Accordion Items Interlinking",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  type: "string",
+                  title: "Title",
+                },
+                {
+                  name: "content",
+                  type: "blockContent",  // Changed from `text` to `blockContent` for rich text support
+                  title: "Content",
+                },
+              ],
+            },],
+        },
+        {
           name: "accordionItems",
           type: "array",
           title: "Accordion Items",
@@ -709,6 +788,27 @@ const logicalServices = {
           name: "description",
           type: "text",
           title: "Description",
+        },
+        {
+          name: "accordionItemsBlock",
+          type: "array",
+          title: "Accordion Items Interlinking",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  type: "string",
+                  title: "Title",
+                },
+                {
+                  name: "content",
+                  type: "blockContent",  // Changed from `text` to `blockContent` for rich text support
+                  title: "Content",
+                },
+              ],
+            },],
         },
         {
           name: "accordionItems",
@@ -1098,56 +1198,56 @@ const logicalServices = {
     },
 
     // /schemas/pricingSection.ts
-{
-  name: 'pricingSection',
-  title: 'Pricing Section',
-  type: 'document',
-  fields: [
     {
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-    },
-    {
-      name: 'plans',
-      title: 'Plans',
-      type: 'array',
-      of: [
+      name: 'pricingSection',
+      title: 'Pricing Section',
+      type: 'document',
+      fields: [
         {
-          type: 'object',
-          fields: [
+          name: 'heading',
+          title: 'Heading',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'plans',
+          title: 'Plans',
+          type: 'array',
+          of: [
             {
-              name: 'title',
-              title: 'Plan Title',
-              type: 'string',
-            },
-            {
-              name: 'price',
-              title: 'Price (e.g. $999/month or Custom)',
-              type: 'string',
-            },
-            {
-              name: 'highlighted',
-              title: 'Highlighted Plan?',
-              type: 'boolean',
-            },
-            {
-              name: 'features',
-              title: 'Features',
-              type: 'array',
-              of: [{ type: 'string' }],
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Plan Title',
+                  type: 'string',
+                },
+                {
+                  name: 'price',
+                  title: 'Price (e.g. $999/month or Custom)',
+                  type: 'string',
+                },
+                {
+                  name: 'highlighted',
+                  title: 'Highlighted Plan?',
+                  type: 'boolean',
+                },
+                {
+                  name: 'features',
+                  title: 'Features',
+                  type: 'array',
+                  of: [{ type: 'string' }],
+                },
+              ],
             },
           ],
         },
       ],
     },
-  ],
-},
 
     // Our Custom Software Development Services
     {
@@ -1202,6 +1302,11 @@ const logicalServices = {
                   name: "description",
                   type: "text",
                   title: "Description",
+                },
+                {
+                  name: "descriptionBlock",
+                  type: "blockContent",
+                  title: "Description Block",
                 },
               ],
             },
@@ -2450,7 +2555,7 @@ const subServiceSchema = {
         },
       ],
     },
-  
+
 
     // Web SEO Meta data
     {

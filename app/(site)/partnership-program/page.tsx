@@ -23,7 +23,7 @@ export async function generateMetadata() {
   const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
   const defaultDescription = "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
-  const canonicalUrl = "https://codeautomation.ai/partnership"; // ✅ Canonical URL
+  const canonicalUrl = "https://codeautomation.ai/partnership-program/"; // ✅ Canonical URL
 
   const title = data?.webSeoMetadataSub?.title || defaultTitle;
   const description = data?.webSeoMetadataSub?.description || defaultDescription;
