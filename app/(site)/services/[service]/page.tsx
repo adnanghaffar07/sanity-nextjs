@@ -816,18 +816,42 @@ export default async function service({
               <h2 className="text-3xl font-bold mb-4">
                 {data.industriesWeQA?.bulletPointsHeading}
               </h2>
-              {data.industriesWeQA?.bulletPoints?.map((point: any, index: any) => (
-                <div
-                  key={index}
-                  className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
-                >
-                  <p className="text-[#3C3C3C] font-semibold">
-                    • {point}
-                  </p>
-
-                </div>
-              ))}
-
+       {/* Conditional rendering */}
+    {data.industriesWeQA?.bulletPointsBlock?.length > 0 ? (
+      data.industriesWeQA.bulletPointsBlock.map((block: any, index: number) => (
+        <div
+          key={index}
+          className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+        >
+          <PortableText
+            value={block.bulletPointsBlock}
+            components={{
+              marks: {
+                link: ({ value, children }) => (
+                  <a
+                    href={value.href}
+                    target={value.openInNewTab ? '_blank' : '_self'}
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline"
+                  >
+                    {children}
+                  </a>
+                )
+              }
+            }}
+          />
+        </div>
+      ))
+    ) : (
+      data.industriesWeQA?.bulletPoints?.map((point: string, index: number) => (
+        <div
+          key={index}
+          className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+        >
+          <p className="text-[#3C3C3C] font-semibold">• {point}</p>
+        </div>
+      ))
+    )}
             </div>
 
             {/* Image on the Right */}
