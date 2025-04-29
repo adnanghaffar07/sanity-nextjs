@@ -424,8 +424,51 @@ const logicalServices = {
         {
           name: "bulletPoints",
           type: "array",
-          title: "Bullet Points",
+          title: "Bullet Points ",
           of: [{ type: "string" }],
+        },
+          {
+          name: "bulletPointsBlock" ,
+          type: "array",
+          title: "Bullet Points Block",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "bulletPointsBlock",
+                  title: "Block Bullet Points",
+                  type: "array",
+                  of: [
+                    {
+                      type: "block",
+                      marks: {
+                        annotations: [
+                          {
+                            name: "link",
+                            type: "object",
+                            title: "Link",
+                            fields: [
+                              {
+                                name: "href",
+                                type: "url",
+                                title: "URL"
+                              },
+                              {
+                                name: "openInNewTab",
+                                type: "boolean",
+                                title: "Open in new tab"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+              ],
+            },
+          ],
         },
         {
           name: "image",
@@ -503,8 +546,8 @@ const logicalServices = {
                       }
                     }
                   ]
-                },                                                                           
-              ], 
+                },
+              ],
             },
           ],
         },
@@ -865,6 +908,28 @@ const logicalServices = {
           name: "description",
           type: "text",
           title: "Description",
+        },
+        {
+          name: "accordianItemsBlock",
+          type: "array",
+          title: "Accordion Items",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  type: "string",
+                  title: "Title",
+                },
+                {
+                  name: "content",
+                  type: "blockContent",
+                  title: "content",
+                },
+              ],
+            },
+          ],
         },
         {
           name: "accordionItems",

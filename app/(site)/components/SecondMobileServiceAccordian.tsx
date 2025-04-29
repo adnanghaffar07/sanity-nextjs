@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image"; // Assuming you're using Next.js
 import { urlForImage } from "@/sanity/lib/image";
+import { PortableText } from "@portabletext/react";
+import { portableTextComponents } from "./PortableTextServices";
 
 interface NestedContentProps {
     stringField: string;
@@ -11,12 +12,14 @@ interface NestedContentProps {
 
 interface AccordionItemProps {
     title: string;
-    contentArray: NestedContentProps[];
+    contentArray?: NestedContentProps[]; // ✅ make it optional
     isOpen: boolean;
     onToggle: () => void;
+    children?: React.ReactNode;  // Adding children as a prop
+
 }
 
-function AccordionItem({ title, contentArray, isOpen, onToggle }: AccordionItemProps) {
+function AccordionItem({ title, contentArray, isOpen, onToggle, children }: AccordionItemProps) {
     return (
         <div className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden">
             <button
@@ -37,20 +40,26 @@ function AccordionItem({ title, contentArray, isOpen, onToggle }: AccordionItemP
                 </svg>
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
-                <div className="py-4 px-6 text-[#3C3C3C] bg-white">
-                    {contentArray.map((contentItem, idx) => (
-                        <div key={idx} className="mb-4">
-                            <h4 className="">{contentItem.stringField}</h4>
-                            <ul className="pl-4 mt-2 list-disc">
-                                {contentItem?.nestedArray?.map((nestedItem, nestedIdx) => (
-                                    <li key={nestedIdx} className="mt-2">
-                                        <strong>{nestedItem.heading}</strong> {nestedItem.text}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
+                {children ? (
+                    <div className="py-4 px-6 text-[#3C3C3C] bg-[#FDFDFD]">
+                        {children} {/* Render PortableText content or other children */}
+                    </div>
+                ) : (
+                    <div className="py-4 px-6 text-[#3C3C3C] bg-white">
+                        {contentArray?.map((contentItem, idx) => (
+                            <div key={idx} className="mb-4">
+                                <h4 className="">{contentItem.stringField}</h4>
+                                <ul className="pl-4 mt-2 list-disc">
+                                    {contentItem?.nestedArray?.map((nestedItem, nestedIdx) => (
+                                        <li key={nestedIdx} className="mt-2">
+                                            <strong>{nestedItem.heading}</strong> {nestedItem.text}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -58,11 +67,9 @@ function AccordionItem({ title, contentArray, isOpen, onToggle }: AccordionItemP
 
 export default function SecondMobileServiceAcc({ data }: { data: any }) {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
-
     const handleToggle = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
-
     return (
         <section className="px-6 md:px-16 py-10 md:py-16 relative">
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
@@ -81,15 +88,29 @@ export default function SecondMobileServiceAcc({ data }: { data: any }) {
                 <div className="flex flex-col md:flex-row items-start justify-between">
                     {/* Accordion on the Left */}
                     <div className="flex-1 md:mr-8">
-                        {data.secondMobileAppAcc.accordionItems.map((item: any, index: number) => (
-                            <AccordionItem
-                                key={index}
-                                title={item.title}
-                                contentArray={item.contentArray}
-                                isOpen={openIndex === index}
-                                onToggle={() => handleToggle(index)}
-                            />
-                        ))}
+                        {data.secondMobileAppAcc.accordianItemsBlock && data.secondMobileAppAcc.accordianItemsBlock.length > 0 ? (
+                            data.secondMobileAppAcc.accordianItemsBlock.map((item: any, index: number) => (
+                                <AccordionItem
+                                    key={index}
+                                    title={item.title}
+                                    isOpen={openIndex === index}
+                                    onToggle={() => handleToggle(index)}
+                                >
+                                    {/* Render PortableText content for rich text */}
+                                    <PortableText value={item.content} components={portableTextComponents} />
+                                </AccordionItem>
+                            ))
+                        ) : (
+                            data.secondMobileAppAcc.accordionItems.map((item: any, index: number) => (
+                                <AccordionItem
+                                    key={index}
+                                    title={item.title}
+                                    contentArray={item.contentArray}
+                                    isOpen={openIndex === index}
+                                    onToggle={() => handleToggle(index)}
+                                />
+                            ))
+                        )}
                     </div>
 
                     {/* Image on the right */}
