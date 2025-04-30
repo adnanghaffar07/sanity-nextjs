@@ -650,7 +650,6 @@ export default async function service({
                 <div className="mt-4 text-xl leading-none max-md:max-w-full rich-text">
                   {data.ctaAfterSubServices.subtitle}
                 </div>
-
                 <div className="mt-4 text-lg font-light leading-7 max-md:max-w-full rich-text">
                   {data.ctaAfterSubServices.description}
                 </div>
@@ -816,44 +815,43 @@ export default async function service({
               <h2 className="text-3xl font-bold mb-4">
                 {data.industriesWeQA?.bulletPointsHeading}
               </h2>
-       {/* Conditional rendering */}
-    {data.industriesWeQA?.bulletPointsBlock?.length > 0 ? (
-      data.industriesWeQA.bulletPointsBlock.map((block: any, index: number) => (
-        <div
-          key={index}
-          className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
-        >
-          <PortableText
-            value={block.bulletPointsBlock}
-            components={{
-              marks: {
-                link: ({ value, children }) => (
-                  <a
-                    href={value.href}
-                    target={value.openInNewTab ? '_blank' : '_self'}
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline"
+              {/* Conditional rendering */}
+              {data.industriesWeQA?.bulletPointsBlock?.length > 0 ? (
+                data.industriesWeQA.bulletPointsBlock.map((block: any, index: number) => (
+                  <div
+                    key={index}
+                    className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
                   >
-                    {children}
-                  </a>
-                )
-              }
-            }}
-          />
-        </div>
-      ))
-    ) : (
-      data.industriesWeQA?.bulletPoints?.map((point: string, index: number) => (
-        <div
-          key={index}
-          className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
-        >
-          <p className="text-[#3C3C3C] font-semibold">• {point}</p>
-        </div>
-      ))
-    )}
+                    <PortableText
+                      value={block.bulletPointsBlock}
+                      components={{
+                        marks: {
+                          link: ({ value, children }) => (
+                            <a
+                              href={value.href}
+                              target={value.openInNewTab ? '_blank' : '_self'}
+                              rel="noopener noreferrer"
+                              className="text-blue-600 underline"
+                            >
+                              {children}
+                            </a>
+                          )
+                        }
+                      }}
+                    />
+                  </div>
+                ))
+              ) : (
+                data.industriesWeQA?.bulletPoints?.map((point: string, index: number) => (
+                  <div
+                    key={index}
+                    className="bg-white p-4 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+                  >
+                    <p className="text-[#3C3C3C] font-semibold">• {point}</p>
+                  </div>
+                ))
+              )}
             </div>
-
             {/* Image on the Right */}
             <div className="w-full md:w-1/2 lg:w-2/3 flex md:mt-0 mt-6 justify-center md:justify-end">
               {data.industriesWeQA?.image && (
@@ -1208,8 +1206,11 @@ export default async function service({
                       <h3 className="text-xl font-semibold text-[#1D92FB]">
                         {item.title}
                       </h3>
-                      <p className="text-[#3C3C3C] mt-2">{item.description}</p>
-                    </div>
+                      {item.descriptionBlock ? (
+                        <PortableText value={item.descriptionBlock} components={portableTextComponents} />
+                      ) : (
+                        <p>{item.description}</p>
+                      )}                    </div>
                   </div>
                 ))}
               </div>
@@ -1312,8 +1313,13 @@ export default async function service({
                       <h3 className="text-xl font-semibold text-[#1D92FB]">
                         {item.title}
                       </h3>
-                      <p className="text-[#3C3C3C] mt-2">{item.description}</p>
-                    </div>
+                      <div className="text-[#3C3C3C] mt-2">
+                        {item.descriptionBlock ? (
+                          <PortableText value={item.descriptionBlock} components={portableTextComponents} />
+                        ) : (
+                          <p>{item.description}</p>
+                        )}
+                      </div>                    </div>
                   </div>
                 ))}
               </div>
