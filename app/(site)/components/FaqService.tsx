@@ -2,11 +2,14 @@
 
 import React, { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { portableTextComponents } from "./PortableTextServices";
 
 interface FAQ {
   question: string;
   answer: string;
   open?: boolean;
+  descriptionBlock?: PortableTextBlock[];
 }
 
 export default function FAQServicePage({ faqSection }: { faqSection: any }) {
@@ -49,11 +52,14 @@ export default function FAQServicePage({ faqSection }: { faqSection: any }) {
                   )}
                 </button>
                 <div
-                  className={`px-6 py-4 text-gray-700 ${
-                    faq.open ? "block" : "hidden"
-                  }`}
+                  className={`px-6 py-4 text-gray-700 ${faq.open ? "block" : "hidden"
+                    }`}
                 >
-                  {faq.answer}
+                  {faq.descriptionBlock ? (
+                    <PortableText value={faq.descriptionBlock} components={portableTextComponents} />
+                  ) : (
+                    <p>{faq.answer}</p>
+                  )}
                 </div>
               </div>
             ))}
