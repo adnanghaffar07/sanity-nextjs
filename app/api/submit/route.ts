@@ -15,7 +15,39 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Form submitted successfully, but data will not be stored." }, { status: 200 });
     }
 
-    // Create a new form submission document in Sanity (only for non-Pakistani numbers)
+    // Keyword → Service map
+    const serviceKeywordMap: Record<string, string> = {
+      mobile: "app",
+      android: "app",
+      ios: "app",
+      software: "software",
+      web: "web",
+      ecommerce: "ecommerce",
+      shopify: "shopify",
+      ai: "ai",
+      ml: "ml",
+      marketing: "marketing",
+      seo: "seo",
+      design: "design",
+      logo: "design",
+      branding: "design",
+    };  
+
+    // Helper to detect service type
+    function detectClientType(text: string): string {
+      const lowerText = text.toLowerCase();
+      for (const keyword in serviceKeywordMap) {
+        if (lowerText.includes(keyword)) {
+          return serviceKeywordMap[keyword];
+        }
+      }
+      return "Other";
+    }
+
+    const combinedText = `${looking} ${message}`;
+    const clientType = detectClientType(combinedText);
+
+    // Then pass it into the Sanity document
     const result = await client.create({
       _type: "contactForm",
       name,
@@ -25,8 +57,10 @@ export async function POST(req: Request) {
       message,
       recaptcha_value,
       page_name,
+      clientType,
       submitted_at: new Date().toISOString(),
     });
+
 
     return NextResponse.json({ message: "Form submitted successfully", result }, { status: 200 });
   } catch (error) {
