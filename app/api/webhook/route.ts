@@ -1,15 +1,41 @@
 import { client } from "@/sanity/lib/client";
 import { NextRequest, NextResponse } from "next/server";
 
-// Function to delete meetings with Pakistani numbers
+const serviceKeywordMap: Record<string, string> = {
+  mobile: "app",
+  android: "app",
+  ios: "app",
+  software: "software",
+  web: "web",
+  ecommerce: "ecommerce",
+  shopify: "shopify",
+  ai: "ai",
+  ml: "ml",
+  marketing: "marketing",
+  seo: "seo",
+  design: "design",
+  logo: "design",
+  branding: "design",
+};
+
+function detectClientType(text: string): string {
+  const lowerText = text.toLowerCase();
+  for (const keyword in serviceKeywordMap) {
+    if (lowerText.includes(keyword)) {
+      return serviceKeywordMap[keyword];
+    }
+  }
+  return "other";
+}
+
 async function deletePakistaniMeetings() {
   try {
-    // Fetch meetings that contain a Pakistani number (+92) in the notes array
     const meetingIds = await client.fetch(
       `*[_type == "calendlyMeeting" && array::join(notes, " ") match "*+92*"]._id`
     );
 
     if (meetingIds.length > 0) {
+      console.log("🗑️ Deleting Pakistani meetings:", meetingIds);
       await client.delete(meetingIds);
     }
   } catch (error) {
@@ -17,31 +43,51 @@ async function deletePakistaniMeetings() {
   }
 }
 
-// Function to process and save to Sanity
 async function processMeeting(meetingData: any) {
-  const { name = "Unknown", email = "Unknown", scheduled_event = {}, questions_and_answers = [] } = meetingData;
+  const {
+    name = "Unknown",
+    email = "Unknown",
+    scheduled_event = {},
+    questions_and_answers = [],
+  } = meetingData;
 
-  return client.create({
+  const notes = questions_and_answers.map((q: any) => q.answer).filter(Boolean);
+  const combinedNotesText = notes.join(" ");
+  const clientType = detectClientType(combinedNotesText);
+
+  const meetingDoc = {
     _type: "calendlyMeeting",
     name,
     email,
     meetingStart: scheduled_event?.start_time || "Unknown",
     meetingEnd: scheduled_event?.end_time || "Unknown",
-    notes: questions_and_answers.map((q: any) => q.answer).filter(Boolean),
+    notes,
     eventName: scheduled_event?.name || "Unknown",
-  });
+    clientType,
+  };
+
+  console.log("📤 Creating document in Sanity:", meetingDoc);
+
+  return client.create(meetingDoc);
 }
 
-// Webhook handler
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    console.log("📥 Calendly Webhook Body:", JSON.stringify(body, null, 2));
+
     if (body.event === "invitee.created" && body.payload) {
       await processMeeting(body.payload);
-      await deletePakistaniMeetings();
+
+      // Temporarily comment this out for testing
+       await deletePakistaniMeetings();
+    } else {
+      console.log("❗ Unexpected event type or missing payload");
     }
+
     return NextResponse.json({ message: "Webhook processed successfully" });
-  } catch {
+  } catch (error) {
+    console.error("❌ Error processing Calendly webhook:", error);
     return NextResponse.json({ message: "Error processing webhook" }, { status: 500 });
   }
 }

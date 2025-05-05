@@ -1,4 +1,3 @@
-import table from "./table"; 
 const portfolioSchema = {
   name: "portfolio",
   title: "Case Studies",
@@ -130,7 +129,27 @@ const portfolioSchema = {
         ],
       },
     },
-
+    {
+      name: "audience",
+      title: "Target Audience",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { title: "Mobile App Clients", value: "app" },
+          { title: "Custom Software Clients", value: "software" },
+          { title: "Website Development Clients", value: "web" },
+          { title: "Ecommerce Business", value: "ecommerce" },
+          { title: "Shopify Store", value: "shopify" },
+          { title: "AI Service Clients", value: "ai" },
+          { title: "Machine Learning", value: "ml" },
+          { title: "Digital Marketing Clients", value: "marketing" },
+          { title: "SEO-Focused Clients", value: "seo" },
+          { title: "Design & Branding Clients", value: "design" }
+        ],
+        layout: "checkbox"
+      }
+    },
     {
       name: "slug",
       title: "Slug",

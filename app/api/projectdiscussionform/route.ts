@@ -52,12 +52,9 @@ function getCategoriesHeader(looking: string | null): string {
 
   return matchedCategories.length > 0 ? matchedCategories.join(", ") : "Thank You for Reaching Out";
 }
-
-
 export async function POST(request: Request): Promise<Response> {
   try {
     const completeFormData = await request.formData();
-
     const name = completeFormData.get("name") as string | null;
     const email = completeFormData.get("email") as string | null;
     const number = completeFormData.get("number") as string | null;
@@ -86,7 +83,8 @@ export async function POST(request: Request): Promise<Response> {
     // Email to team
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-      to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
+      to: "ayesha@codeautomation.dev",
+      // to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
       subject: `CA Website Contact Form - ${pageName} Page`,
       html: `
         <html>

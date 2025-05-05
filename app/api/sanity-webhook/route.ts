@@ -8,6 +8,7 @@ interface SanityWebhookBody {
   title: string;
   slug: string;
   introductionheading: string;
+ audience : [];
   heroimage: {
     _type: string;
     alt: string;
@@ -30,17 +31,18 @@ function urlForImage(source: any) {
   return source ? builder.image(source).url() : "";
 }
 
-async function fetchRecipients() {
-  const contactFormQuery = `*[_type == 'contactForm' && isUnsubscribed != true]{ name, email }`;
-  const calendlyQuery = `*[_type == 'calendlyMeeting' && isUnsubscribed != true]{ name, email }`;
+async function fetchRecipients(audience: string[]) {
+  const contactFormQuery = `*[_type == 'contactForm' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
+  const calendlyQuery = `*[_type == 'calendlyMeeting' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
 
   try {
     const [formData, calendlyData] = await Promise.all([
-      client.fetch(contactFormQuery),
-      client.fetch(calendlyQuery),
+      client.fetch(contactFormQuery, { audience }),
+      client.fetch(calendlyQuery, { audience }),
     ]);
+
     const allRecipients = [...formData, ...calendlyData];
-    return Array.from(new Map(allRecipients.map((r) => [r.email, r])).values()); // Deduplicate by email
+    return Array.from(new Map(allRecipients.map((r) => [r.email, r])).values()); // Deduplicate
   } catch (error) {
     console.error("Error fetching recipients:", error);
     return [];
@@ -59,15 +61,17 @@ export async function POST(req: NextRequest) {
     const body = (await req.json()) as SanityWebhookBody;
 
     if (body?.pageType === "blogs") {
-      const { title, slug, introductionheading, heroimage } = body;
+      const { title, slug, introductionheading, heroimage, audience } = body;
       const imageUrl = urlForImage(heroimage.asset);
 
       // Fetch recipients
-      const recipients = await fetchRecipients();
+      const recipients = await fetchRecipients(body.audience); // ✅ already an array
       if (recipients.length === 0) {
         return NextResponse.json({ message: "No recipients found" }, { status: 200 });
       }
-
+      console.log('Received audience:', body.audience);
+      console.log('Fetched recipients:', recipients);
+      
       // Configure email transporter
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -158,14 +162,20 @@ export async function POST(req: NextRequest) {
       transition: background-color 0.3s ease;
     }
 
-   .cta-buttons {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
+   .cta-button1 a,
+.cta-button2 a {
+  display: inline-block;
+  width: 180px;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
 
     .cta-button1 a {
       padding: 10px 20px;
@@ -176,6 +186,7 @@ export async function POST(req: NextRequest) {
       text-decoration: none;
       border-radius: 6px;
       transition: background-color 0.3s ease;
+      margin-
     }
 
     .cta-button1 a:hover {
@@ -294,25 +305,36 @@ export async function POST(req: NextRequest) {
     </div>
 
     <!-- Footer Section -->
-    <div class="email-footer">
-      <div class="social-icons">
-        <a href="https://www.facebook.com/Codeautomationai/" target="_blank" style="margin-right: 10px;">
-          <img src="https://codeautomation.ai/facebook.png" alt="Facebook" style="width: 24px; height: 24px;">
-        </a>
-        <a href="https://www.instagram.com/codeautomation.ai/" target="_blank" style="margin-right: 10px;">
-          <img src="https://codeautomation.ai/instagram.png" alt="Instagram" style="width: 24px; height: 24px;">
-        </a>
-        <a href="https://twitter.com/codeautomation" target="_blank">
-          <img src="https://codeautomation.ai/twitter.png" alt="Twitter" style="width: 24px; height: 24px;>
-        </a>
-        <a href="https://www.linkedin.com/company/codeautomationai/" target="_blank">
-          <img src="https://codeautomation.ai/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;>
-        </a>
-      </div>
+<!-- Footer Section -->
+<div class="email-footer">
+  <!-- Social Icons Row -->
+  <div class="social-icons" style="margin-bottom: 16px;">
+    <a href="https://www.facebook.com/Codeautomationai/" target="_blank">
+      <img src="https://codeautomation.ai/facebook.png" alt="Facebook" width="24" height="24">
+    </a>
+    <a href="https://www.instagram.com/codeautomation.ai/" target="_blank">
+      <img src="https://codeautomation.ai/instagram.png" alt="Instagram" width="24" height="24">
+    </a>
+    <a href="https://twitter.com/codeautomation" target="_blank">
+      <img src="https://codeautomation.ai/twitter.png" alt="Twitter" width="24" height="24">
+    </a>
+    <a href="https://www.linkedin.com/company/codeautomationai/" target="_blank">
+      <img src="https://codeautomation.ai/linkedin.png" alt="LinkedIn" width="24" height="24">
+    </a>
+  </div>
 
-      <p>&copy; ${new Date().getFullYear()} CodeAutomation.ai LLC. All Rights Reserved.</p>
-      <p class="unsubscribe">Don't want to receive these emails? <a href="https://codeautomation.ai/api/unsubscribe?email=${recipient.email}" style="color: #0a66c2;">Unsubscribe</a>.</p>
-    </div>
+  <!-- Copyright Row -->
+  <div style="margin-bottom: 8px; color: #888;">
+    &copy; ${new Date().getFullYear()} CodeAutomation.ai LLC. All Rights Reserved.
+  </div>
+
+  <!-- Unsubscribe Row -->
+  <div style="font-size: 12px; color: #666;">
+    Don't want to receive these emails?
+    <a href="https://codeautomation.ai/api/unsubscribe?email=${recipient.email}" style="color: #0a66c2; text-decoration: underline;">Unsubscribe</a>.
+  </div>
+</div>
+
   </div>
 </body>
 </html>
