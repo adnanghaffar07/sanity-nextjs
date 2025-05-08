@@ -2,8 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup"; // Import Yup for validation
-import { usePathname, useRouter } from "next/navigation"; // Import useRouter hook
+import * as Yup from "yup";
+import { usePathname, useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 
@@ -37,15 +37,16 @@ const initialValues = {
 };
 
 export default function HomePageForm() {
-  const router = useRouter(); // Initialize the useRouter hook
+  const router = useRouter();
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [isRecaptchaVisible, setIsRecaptchaVisible] = useState(false);
   const [message, setMessage] = useState("");
-  const [uploading, setUploading] = useState(false); // State to manage the loading indicator
+  const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
+  const [showJobModal, setShowJobModal] = useState(false);
 
   const {
     values,
@@ -57,11 +58,19 @@ export default function HomePageForm() {
     resetForm,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: contactSchema, // Apply the validation schema
+    validationSchema: contactSchema,
     onSubmit: (values, action) => {
-      // action.resetForm();
+      //action.resetForm();
     },
   });
+
+  const checkForJobKeywords = (text: string): boolean => {
+    if (!text) return false;
+    const jobKeywords = ["job", "jobs", "career", "careers", "internship", "intern", "employment", "hire", "hiring", "position"];
+    return jobKeywords.some(keyword =>
+      text.toLowerCase().includes(keyword.toLowerCase())
+    );
+  };
 
   const onRecaptchaChange = (value: any) => {
     if (!value) {
@@ -80,29 +89,36 @@ export default function HomePageForm() {
   const currentPath = usePathname();
   const pageName = currentPath ? currentPath.split("/").pop() || "home" : "home";
 
-  // console.log("Current Path:", currentPath);
-  // console.log("Page Name:", pageName);
-
   const handleCombinedSubmit = async (event: any): Promise<void> => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
-    setUploading(true); // Start loading state
+
+    // Check for job/internship keywords
+    const isJobRelated = checkForJobKeywords(values.looking) || checkForJobKeywords(values.message);
+
+    if (isJobRelated) {
+      setShowJobModal(true);
+      setUploading(false);
+      return;
+    }
+
+    setUploading(true);
 
     if (!recaptchaValue) {
       setErrorRecaptcha("Please verify the above checkbox");
-      setUploading(false); // Stop loading state if there's an error
+      setUploading(false);
       return;
     }
 
     if (!values.name.length || !values.email.length || !values.contact_number.length || !values.looking.length) {
-      setUploading(false); // Stop loading state if fields are empty
+      setUploading(false);
       return;
     }
 
     if (errors.name || errors.contact_number || errors.email || errors.looking) {
-      setUploading(false); // Stop loading state if there are validation errors
+      setUploading(false);
       return;
     }
 
@@ -110,21 +126,19 @@ export default function HomePageForm() {
       pageName === ""
         ? "Home"
         : pageName
-            ?.split("-")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
+          ?.split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
 
-    // Revalidate the email before submitting
     if (!Yup.string().email().isValidSync(values.email)) {
       setBgColor("bg-red-500");
       setMessage("Please enter a valid email address.");
       setMessageSuccess("w-[100%]");
-      setUploading(false); // Stop loading state
+      setUploading(false);
       return;
     }
 
     try {
-      // Sending data to Email
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("email", values.email);
@@ -134,20 +148,17 @@ export default function HomePageForm() {
       formData.append("pagename", actuallPageName || "Home");
       setUploading(true);
       setMessage("Submitting form...");
-    
       setMessageSuccess("w-[10%]");
-      
-      // First API call (Email Submission)
+
       const emailResponse = await fetch("/api/projectdiscussionform", {
         method: "POST",
         body: formData,
       });
-    
+
       if (!emailResponse.ok) {
         throw new Error("Failed to send email.");
       }
-    
-      // Second API call (Sanity Submission)
+
       const sanityResponse = await fetch("/api/submit", {
         method: "POST",
         headers: {
@@ -163,21 +174,19 @@ export default function HomePageForm() {
           page_name: pageName,
         }),
       });
-    
+
       const data = await sanityResponse.json();
-      // console.log("Sanity API Response:", data);
-    
+
       if (sanityResponse.ok) {
-        // Push event to dataLayer for GTM
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
           event: "formSubmission",
           form: "contactForm",
         });
-    
-        // Redirect to Thank You page
-        router.push("/thankyou");
-    
+
+        // Redirect to meeting page for real clients
+        window.location.href = "https://calendly.com/adnanghaffar";
+
         resetForm();
         recaptchaRef?.current?.reset();
         setRecaptchaValue("");
@@ -195,13 +204,12 @@ export default function HomePageForm() {
       setMessageSuccess("w-[100%]");
       console.error("Error:", error);
     } finally {
-      setUploading(false); // Stop loading state
+      setUploading(false);
       setTimeout(() => {
         setMessage("");
       }, 8000);
     }
-  }
-    
+  };
 
   useEffect(() => {
     const formElement = document.getElementById("contact-box");
@@ -236,7 +244,7 @@ export default function HomePageForm() {
           Ready to innovate your business?
         </h3>
         <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
-          We are here! Let’s kick-off our journey to success!
+          We are here! Let&apos;s kick-off our journey to success!
         </p>
 
         <form onSubmit={handleCombinedSubmit}>
@@ -321,13 +329,55 @@ export default function HomePageForm() {
               }`}
           >
             {uploading ? (
-              <span className="loader"></span> // You can use a spinner class here
+              <span className="loader"></span>
             ) : (
               "Submit"
             )}
           </button>
         </form>
       </div>
+
+      {/* Job/Internship Modal */}
+      {showJobModal && (
+        <div className="fixed px-6 inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/40 transition-opacity">
+          <div className="relative w-full max-w-md mx-auto rounded-2xl bg-white p-8 shadow-2xl transform transition-all scale-100 duration-300">
+            <button
+              onClick={() => setShowJobModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label="Close"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="text-center space-y-4">
+              <h3 className="text-2xl font-extrabold text-gray-800">
+                🚀 Looking for Career Opportunities?
+              </h3>
+              <p className="text-gray-600 text-xl">
+                We noticed you might be interested in job or internship opportunities.
+                We&apos;d love to have you on our team! Visit our Careers page to submit your resume and explore openings.
+              </p>
+
+              <div className="mt-6 flex justify-center gap-4">
+                <button
+                  onClick={() => {
+                    router.push("/career");
+                    setShowJobModal(false);
+                  }}
+                  className="px-5 py-2.5 bg-[#1d92fb] text-white font-semibold text-lg rounded-lg shadow-md hover:from-blue-600 transition-transform transform hover:scale-105"
+                >
+                  Go to Careers Page
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

@@ -306,48 +306,44 @@ export default function Home() {
           className="absolute left-0 top-0 w-40 lg:hidden block"
           alt="ellipse"
         />
-        <ScrollAnimation>
-          <div className="flex flex-col self-center mt-16 w-full mx-auto max-md:mt-10 max-md:max-w-full max-w-[1534px]">
-            <div className="max-md:max-w-full px-6 md:px-16 relative">
-              <div className="flex gap-5 pb-16 max-md:flex-col max-md:gap-0">
-                <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center">
-                  <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
-                    <CoreExpertise />
+        {/* <ScrollAnimation> */}
+          <div className="px-6 md:px-16 mt-16 max-w-[1534px] mx-auto">
+            <div className="flex flex-col md:flex-row gap-5 pb-16">
+              {/* Left Content Column */}
+              <div className="md:w-[58%]">
+                <CoreExpertise />
 
-                    {/* New H2 Heading */}
-                    <p className="text-xl font-medium text-left mt-12 ">
-                      Partner with us to access unmatched expertise and support
-                      in these areas, empowering your business with advanced
-                      technologies and driving your growth to new heights.
-                    </p>
+                <p className="text-xl font-medium text-left mt-12">
+                  Partner with us to access unmatched expertise and support
+                  in these areas, empowering your business with advanced
+                  technologies and driving your growth to new heights.
+                </p>
 
-                    <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
-                      <a
-                        href="/technologies"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
-                      >
-                        <p className="relative grow self-center">
-                          Explore Our Technologies
-                        </p>
-                        <img
-                          loading="lazy"
-                          src="/btn-arrow.svg"
-                          className="w-[22px] h-[26.8px]"
-                          alt="arrow-icon"
-                        />
-                      </a>
-                    </div>
-                  </div>
+                <div className="mt-12 max-w-[450px]">
+                  <a
+                    href="/technologies"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#F7E022] rounded-lg shadow-md font-medium text-base lg:text-lg xl:text-xl"
+                  >
+                    <span>Explore Our Technologies</span>
+                    <img
+                      loading="lazy"
+                      src="/btn-arrow.svg"
+                      className="w-[22px] h-[26.8px]"
+                      alt="arrow-icon"
+                    />
+                  </a>
                 </div>
-                <div className="flex flex-col w-[38%] max-md:ml-0 max-md:w-full mt-6">
-                  <HomePageForm />
-                </div>
+              </div>
+
+              {/* Right Form Column */}
+              <div className="md:w-[38%] mt-6 md:mt-0">
+                <HomePageForm />
               </div>
             </div>
           </div>
-        </ScrollAnimation>
+        {/* </ScrollAnimation> */}
         <ScrollAnimation>
           <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
             <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>

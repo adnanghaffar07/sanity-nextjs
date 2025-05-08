@@ -1,4 +1,5 @@
-// app/help/page.tsx
+ 
+ // app/help/page.tsx
 
 export default function HelpPage() {
     return (
