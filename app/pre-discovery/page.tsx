@@ -1,6 +1,8 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import "../globals.css";
 
 const QualificationForm = () => {
@@ -14,11 +16,17 @@ const QualificationForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [otp, setOtp] = useState('');
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+
+    if (!acceptedTerms) {
+      alert('Please accept the terms and conditions to proceed');
+      return;
+    }
 
     if (parseInt(budget) < 5000) {
       setShowModal(true);
@@ -52,6 +60,14 @@ const QualificationForm = () => {
 
     const data = await response.json();
     if (data.success) {
+      // Send the form data via email
+      await fetch('/api/qualified-meta-leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, phone, budget, service }),
+      });
+
+      // Redirect to Calendly
       router.push('https://calendly.com/adnanghaffar');
     } else {
       alert('Invalid OTP');
@@ -95,31 +111,34 @@ const QualificationForm = () => {
       <div className="relative z-10 flex items-center justify-center min-h-screen py-12 px-4">
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-lg text-gray-800"
+          className="bg-white b shadow-xl rounded-2xl p-8 w-full max-w-lg text-gray-800"
         >
-          <h2 className="text-2xl font-bold text-center text-black mb-1">Post Your Requirements</h2>
-          <p className="text-sm text-center mb-6">Please fill the form below to receive a quote for workspace.<br />Please add all the details required.</p>
+          <h2 className="text-2xl font-bold text-center text-black mb-1">Let’s turn your ideas into results</h2>
+          <p className="text-sm text-lg text-center mb-6">Tell us what you’re looking for and get a tailored proposal from our expert team fast, strategic, and designed for growth.</p>
 
           <div className="space-y-4">
-            <input
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-400
-              focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300"
-              required
-            />
+            {/* First + Last Name in one row on md+ screens */}
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+              <input
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-400
+      focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300"
+                required
+              />
 
-            <input
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-400
-              focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300"
-              required
-            />
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-400
+      focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300"
+                required
+              />
+            </div>
 
             <input
               type="email"
@@ -131,15 +150,16 @@ const QualificationForm = () => {
               required
             />
 
-            <input
-              type="text"
-              placeholder="(123) 456 - 7890"
+            <PhoneInput
+              country={'us'}
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-400
-              focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300"
-              required
+              onChange={(phone) => setPhone('+' + phone)}
+              inputClass="!w-full !h-[52px] !pl-14 !pr-4 !py-3 !border !border-gray-300 !placeholder-gray-400 focus:!outline-none focus:!ring-2 focus:!ring-indigo-300 focus:!border-indigo-300"
+              containerClass="!w-full"
+              buttonClass="!bg-white !border-gray-300"
+              specialLabel=""
             />
+
 
             <select
               value={budget}
@@ -163,13 +183,32 @@ const QualificationForm = () => {
               required
             >
               <option value="">Select a Service</option>
-              <option value="AI Agent">AI Agent</option>
-              <option value="Mobile App">Mobile App</option>
-              <option value="Web App">Web App</option>
-              <option value="Headless">Headless</option>
-              <option value="Automation">Automation</option>
-              <option value="QA">QA</option>
+              <option value="AI Agent">AI-Powered Virtual Agent</option>
+              <option value="Mobile App">Custom Mobile Application</option>
+              <option value="Web App">Web Application Development</option>
+              <option value="Headless">Headless CMS & Frontend</option>
+              <option value="Automation">Business Process Automation</option>
+              <option value="QA">Quality Assurance & Testing</option>
+
             </select>
+          </div>
+          <div className="mt-4 flex items-start">
+            <div className="flex items-center h-5">
+              <input
+                id="terms"
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
+                required
+              />
+            </div>
+            <label htmlFor="terms" className="ml-2 text-sm font-medium text-gray-700">
+              I give my consent to Industry CodeAutomation to send me event reminders and updates via email,
+              SMS and telephone calls. I can opt-out anytime. I have read and accept Industry Rockstar&apos;s
+              <a href="/termsandconditions" className="text-blue-600 hover:underline"> Terms & Conditions</a> and
+              <a href="/privacypolicy" className="text-blue-600 hover:underline"> Privacy Policy</a>.
+            </label>
           </div>
           <button
             onClick={handleSendOtp}
@@ -200,19 +239,40 @@ const QualificationForm = () => {
 
       {showOtpModal && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-sm w-full">
-            <h3 className="text-xl font-bold text-indigo-600">Enter OTP</h3>
+          <div className="bg-white p-6 relative rounded-xl shadow-xl text-center max-w-sm w-full">
+            {/* Close button */}
+            <button
+              onClick={() => setShowOtpModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <h3 className="text-xl font-bold text-black">Enter OTP</h3>
             <p className="text-gray-600 mt-2">We&apos;ve sent an OTP to your phone number.</p>
             <input
               type="text"
               placeholder="Enter 6-digit OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="mt-4 px-4 py-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-300"
-            />
+              className="w-full px-4 py-3 rounded-xl text-black border border-gray-300 placeholder-gray-400
+              focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300 mt-4"            />
             <button
               onClick={handleOtpVerify}
-              className="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-500"
+              className="px-6 mt-6 py-2 bg-[#1d92fb] font-semibold text-[20px] text-white rounded-3xl 
+            hover:bg-[#e5d410] hover:text-black transition-colors duration-300"
             >
               Verify
             </button>
