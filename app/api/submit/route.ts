@@ -61,7 +61,7 @@ export async function POST(req: Request) {
       recaptcha_value,
       page_name,
       clientType,
-      submitted_at: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     });
 
     return NextResponse.json({ message: "Form submitted successfully", result }, { status: 200 });

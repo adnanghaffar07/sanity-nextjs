@@ -20,7 +20,7 @@ const QualificationForm = () => {
 
   const router = useRouter();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!acceptedTerms) {
@@ -30,13 +30,11 @@ const QualificationForm = () => {
 
     if (parseInt(budget) < 5000) {
       setShowModal(true);
-    } else {
-      setIsEligible(true);
-      setShowOtpModal(true);
+      return;
     }
-  };
 
-  const handleSendOtp = async () => {
+    setIsEligible(true);
+
     const response = await fetch('/api/send-meta-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -68,7 +66,12 @@ const QualificationForm = () => {
       });
 
       // Redirect to Calendly
-      router.push('https://calendly.com/adnanghaffar');
+      const fullName = `${firstName} ${lastName}`;
+      const notes = `Service Interested: ${service}\nBudget: ${budget}`;
+
+      const calendlyUrl = `https://calendly.com/adnanghaffar?name=${encodeURIComponent(fullName)}&email=${encodeURIComponent(email)}&a1=${encodeURIComponent(notes)}&notes=${encodeURIComponent(phone)}`
+
+      router.push(calendlyUrl);
     } else {
       alert('Invalid OTP');
     }
@@ -211,13 +214,13 @@ const QualificationForm = () => {
             </label>
           </div>
           <button
-            onClick={handleSendOtp}
             type="submit"
             className="w-full mt-6 py-3 bg-[#1d92fb] font-semibold text-[20px] text-white rounded-full 
-            hover:bg-[#e5d410] hover:text-black transition-colors duration-300"
+  hover:bg-[#e5d410] hover:text-black transition-colors duration-300"
           >
             Next
           </button>
+
         </form>
       </div>
 

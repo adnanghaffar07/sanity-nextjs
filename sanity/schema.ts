@@ -27,6 +27,7 @@ import paymentPlan from "./schemas/payment-plan";
 import table from "./schemas/table";
 import youtubeEmbed from "./schemas/youtubeEmbed";
 import blockContent from "./schemas/blockContent";
+import metaLeads from "./schemas/metaLeads";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -53,6 +54,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     newsLetter,
     paymentProposal,
     testing,
-    paymentPlan, youtubeEmbed,  blockContent
+    paymentPlan, youtubeEmbed,  blockContent,metaLeads
   ],
 };

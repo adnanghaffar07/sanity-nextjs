@@ -1,6 +1,6 @@
-// app/api/send-qualified-lead/route.ts
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { client } from '@/sanity/lib/client';
 
 export async function POST(req: Request) {
   try {
@@ -14,19 +14,31 @@ export async function POST(req: Request) {
       service,
     } = body;
 
-     const transporter = nodemailer.createTransport({
-       host: "smtp.gmail.com",
-       port: 465,
-       secure: true,
-       auth: {
-         user: process.env.EMAIL_USER,
-         pass: process.env.EMAIL_PASS,
-       },
-     });
+    // 💾 Save to Sanity
+    await client.create({
+      _type: 'metaLead',
+      fullName: `${firstName} ${lastName}`,
+      email,
+      phone,
+      budget,
+      message: service, // assuming "service" acts like a message
+      createdAt: new Date().toISOString(),
+    });
+
+    // 📧 Send email
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
     const mailOptions = {
       from: `"CodeAutomation Qualified Meta Leads" <${process.env.EMAIL_USER}>`,
-      to: 'ayesha@codeautomation.dev', // your internal team email
+      to: 'ayesha@codeautomation.dev',
       subject: 'New Qualified Meta Lead',
       html: `
         <h2>New Qualified Lead</h2>
@@ -39,9 +51,10 @@ export async function POST(req: Request) {
     };
 
     await transporter.sendMail(mailOptions);
+
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error('Error sending email:', err);
-    return NextResponse.json({ success: false, error: 'Failed to send email' }, { status: 500 });
+    console.error('Error in lead handling:', err);
+    return NextResponse.json({ success: false, error: 'Failed to handle lead' }, { status: 500 });
   }
 }
