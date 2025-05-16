@@ -5,14 +5,20 @@ export async function POST(req: Request) {
   try {
     const { name, email, contact_number, looking, message, recaptcha_value, page_name } = await req.json();
 
-    // Verify the ReCAPTCHA response with Google
+    // Check ReCAPTCHA
     if (!recaptcha_value) {
       return NextResponse.json({ message: "ReCAPTCHA verification failed." }, { status: 400 });
     }
 
-    // Check if the phone number starts with +92 (Pakistan)
+    // Skip if phone number is from Pakistan
     if (contact_number && contact_number.startsWith("+92")) {
       return NextResponse.json({ message: "Form submitted successfully, but data will not be stored." }, { status: 200 });
+    }
+
+    // Check for job/internship spam
+    const combinedText = `${looking} ${message}`.toLowerCase();
+    if (combinedText.includes("job") || combinedText.includes("internship")) {
+      return NextResponse.json({ message: "Submission ignored (job/internship detected)." }, { status: 200 });
     }
 
     // Keyword → Service map
@@ -31,9 +37,8 @@ export async function POST(req: Request) {
       design: "design",
       logo: "design",
       branding: "design",
-    };  
+    };
 
-    // Helper to detect service type
     function detectClientType(text: string): string {
       const lowerText = text.toLowerCase();
       for (const keyword in serviceKeywordMap) {
@@ -44,10 +49,8 @@ export async function POST(req: Request) {
       return "Other";
     }
 
-    const combinedText = `${looking} ${message}`;
     const clientType = detectClientType(combinedText);
 
-    // Then pass it into the Sanity document
     const result = await client.create({
       _type: "contactForm",
       name,
@@ -58,11 +61,11 @@ export async function POST(req: Request) {
       recaptcha_value,
       page_name,
       clientType,
-      submitted_at: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     });
 
-
     return NextResponse.json({ message: "Form submitted successfully", result }, { status: 200 });
+
   } catch (error) {
     return NextResponse.json({ message: "Error submitting form", error }, { status: 500 });
   }
