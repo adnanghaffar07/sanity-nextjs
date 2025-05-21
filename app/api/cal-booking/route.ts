@@ -1,3 +1,4 @@
+// app/api/webhook/route.ts
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -67,9 +68,21 @@ export async function POST(req: Request) {
       });
     }
 
+    // ✅ If allowed, forward to /api/save-booking
+    const forward = await fetch('https://codeautomation.dev/api/webhook', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    const saveResult = await forward.json();
+
     return NextResponse.json({
-      status: 'Booking allowed – no cancellation needed',
+      status: 'Booking allowed and forwarded to /api/save-booking',
       phoneNumber,
+      saveResult,
     });
   } catch (error) {
     console.error('❌ Webhook error:', error);
