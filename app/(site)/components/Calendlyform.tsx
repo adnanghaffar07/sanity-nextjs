@@ -1,52 +1,50 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 import CalendlyProjectForm from "./CalendlyProjectFooterForm";
 
-declare global {
-  interface Window {
-    Calendly: any;
-  }
-}
-
 const CalendlyForm: React.FC = () => {
-  const calendlyWidgetRef = useRef<HTMLDivElement | null>(null);
-  const [widgetWidth, setWidgetWidth] = useState<string>("86%");
+  const calendarSectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const calendlyScriptId = "calendly-widget-script";
-    const existingScript = document.getElementById(calendlyScriptId);
+    (async function () {
+      const cal = await getCalApi({ namespace: "30min" });
 
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.id = calendlyScriptId;
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      document.body.appendChild(script);
+      cal("ui", {
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#1d92fb" },
+          dark: { "cal-brand": "#1d92fb" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
 
-      script.onload = () => {
-        if (window.Calendly && calendlyWidgetRef.current) {
-          window.Calendly.initInlineWidget({
-            url: "https://calendly.com/adnanghaffar/30min?timezone=America/New_York",
-            parentElement: calendlyWidgetRef.current,
+      // Wait for DOM to mount and detect slot container
+      const interval = setInterval(() => {
+        const slotContainer = document.querySelector(
+          '[data-cal-com-event-type-container]'
+        );
+        if (slotContainer) {
+          const observer = new MutationObserver(() => {
+            const scrollTarget = document.getElementById("calendar-scroll-target");
+            if (scrollTarget) {
+              scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
           });
+
+          observer.observe(slotContainer, {
+            childList: true,
+            subtree: true,
+          });
+
+          clearInterval(interval);
         }
-      };
+      }, 500);
 
-      script.onerror = () => {
-        console.error("Failed to load Calendly script.");
-      };
-    } else {
-      // Initialize Calendly widget if the script is already loaded
-      if (window.Calendly && calendlyWidgetRef.current) {
-        window.Calendly.initInlineWidget({
-          url: "https://calendly.com/adnanghaffar/30min?timezone=America/New_York",
-          parentElement: calendlyWidgetRef.current,
-        });
-      }
-    }
-
-  },[]);
+      return () => clearInterval(interval);
+    })();
+  }, []);
 
   return (
     <div className="relative flex flex-col w-full mx-auto max-md:max-w-full">
@@ -64,19 +62,16 @@ const CalendlyForm: React.FC = () => {
 
           {/* Right Side: Calendar */}
           <div className="flex flex-col w-full lg:w-[50%]">
-            <div className="flex flex-col flex-center md:flex-end">
-              <h3 className="text-2xl md:text-3xl text-left leading-[52px] text-[#3C3C3C] font-poppins">
-                Book a Meeting
-              </h3>
+            <div className="flex flex-col items-start md:items-end w-full">
+              {/* Scroll Target */}
+              <div id="calendar-scroll-target" className="h-0" />
 
-              <div
-                ref={calendlyWidgetRef}
-                className="mt-4 p-2 bg-white shadow-lg shadow-slate-500 rounded-[24px] max-md:px-5 border border-slate-300"
-                style={{
-                  height: "860px",
-                  maxWidth: widgetWidth,
-                }}
-              ></div>
+              <Cal
+                namespace="30min"
+                calLink="adnan-ghaffar/30min"
+                style={{ width: "100%", height: "790px", overflow: "scroll" }}
+                config={{ layout: "month_view", theme: "auto" }}
+              />
             </div>
           </div>
         </div>
