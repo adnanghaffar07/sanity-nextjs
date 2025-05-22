@@ -281,7 +281,6 @@ const CaseStudy = () => {
 
         <section
           className="mx-auto relative max-w-[1740px] mt-10 px-5"
-
         >
           <div className="md:grid md:grid-cols-3 grid grid-cols-1 gap-7 sm:gap-10 md:gap-10">
             {paginatedItems.map((item: any, index: any) => (
@@ -350,24 +349,24 @@ const CaseStudy = () => {
           <div className="flex gap-2 my-4 md:mt-0">
             {Array.from({ length: totalPages }, (_, index) => (
               <ScrollLink
-                key={index} 
-              to="gridSection"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-            >
-              <button
                 key={index}
-                onClick={() => setCurrentPage(index)}
-                className={`w-10 h-10 flex items-center justify-center px-4 py-1 rounded-md border transition-colors ${currentPage === index
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-white text-[#1D92FB] border-[#1D92FB]"
-                  }`}
-                style={{ minWidth: '40px', minHeight: '40px' }} // Optional: If you need exact pixel dimensions
+                to="gridSection"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
               >
-                {index + 1}
-              </button>
+                <button
+                  key={index}
+                  onClick={() => setCurrentPage(index)}
+                  className={`w-10 h-10 flex items-center justify-center px-4 py-1 rounded-md border transition-colors ${currentPage === index
+                    ? "bg-[#1D92FB] text-white"
+                    : "bg-white text-[#1D92FB] border-[#1D92FB]"
+                    }`}
+                  style={{ minWidth: '40px', minHeight: '40px' }} // Optional: If you need exact pixel dimensions
+                >
+                  {index + 1}
+                </button>
               </ScrollLink>
             ))}
           </div>
