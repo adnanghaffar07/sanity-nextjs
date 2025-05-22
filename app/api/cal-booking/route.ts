@@ -89,8 +89,8 @@ export async function POST(req: Request) {
     }
 
     // ✅ Extract info to save to Sanity
-    const name = payload.name || payload.reschedulee?.name || '';
-    const email = payload.email || payload.reschedulee?.email || '';
+    const name = payload.responses?.name?.value || payload.attendees?.[0]?.name || '';
+    const email = payload.responses?.email?.value || payload.attendees?.[0]?.email || '';
     const notesRaw =
       payload?.responses?.notes?.value ||
       payload?.userFieldsResponses?.notes?.value ||
