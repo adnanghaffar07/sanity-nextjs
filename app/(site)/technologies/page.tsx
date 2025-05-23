@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
@@ -57,10 +58,26 @@ export default async function Technologies() {
             <h1 className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
               Technology
             </h1>
-            <h2 className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
+            <h2 className="lg:text-2xl text-center mt-4 max-w-7xl lg:px-32">
               We offer only well-recognized and time-tested technologies to
               bring advancement to any of your business goals.
             </h2>
+            <div className="flex flex-col sm:flex-row mx-auto pt-8 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
+              <Link
+                href="/case-studies"
+                className="bg-[#1d92fb] text-white  py-3 px-5 font-semibold rounded-lg shadow-lg text-center w-full sm:w-48"
+              >
+                Our Case Studies
+              </Link>
+              <Link
+                href="https://calendly.com/adnanghaffar"
+                className="bg-[#f7e022]  text-black  font-semibold py-3 px-5 rounded-lg shadow-lg text-center w-full sm:w-48"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Schedule a Call
+              </Link>
+            </div>
           </div>
         </div>
       </div>

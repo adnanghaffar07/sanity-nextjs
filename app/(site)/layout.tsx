@@ -53,6 +53,44 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
 
+          {/* Tiktok */}
+          <Script id="tiktok-pixel" strategy="afterInteractive">
+            {`
+            !function (w, d, t) {
+              w.TiktokAnalyticsObject=t;
+              var ttq=w[t]=w[t]||[];
+              ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+              ttq.setAndDefer=function(t,e){
+                t[e]=function(){
+                  t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+                }
+              };
+              for(var i=0;i<ttq.methods.length;i++) ttq.setAndDefer(ttq,ttq.methods[i]);
+              ttq.instance=function(t){
+                for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);
+                return e
+              };
+              ttq.load=function(e,n){
+                var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;
+                ttq._i=ttq._i||{};
+                ttq._i[e]=[];
+                ttq._i[e]._u=r;
+                ttq._t=ttq._t||{};
+                ttq._t[e]=+new Date;
+                ttq._o=ttq._o||{};
+                ttq._o[e]=n||{};
+                n=document.createElement("script");
+                n.type="text/javascript";
+                n.async=!0;
+                n.src=r+"?sdkid="+e+"&lib="+t;
+                e=document.getElementsByTagName("script")[0];
+                e.parentNode.insertBefore(n,e)
+              };
+              ttq.load('D0N3L93C77U7M2KJ8B60');
+              ttq.page();
+            }(window, document, 'ttq');
+          `}
+          </Script>
           {/* ✅ Lazy Load Google Tag Manager */}
           <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
           <Script strategy="lazyOnload" id="google-analytics">
@@ -76,14 +114,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               fbq('init', '1960013544428790'); fbq('track', 'PageView');
             `}
           </Script>
-
-          {/* ✅ Lazy Load Stripe & Calendly (Only When Needed) */}
-          {/* {typeof window !== "undefined" && (
-            <>
-              <Script strategy="lazyOnload" src="https://js.stripe.com/v3" />
-              <Script strategy="lazyOnload" src="https://assets.calendly.com/assets/external/widget.js" />
-            </>
-          )} */}
 
           {/* ✅ Main Content */}
           <div className="flex flex-col bg-white relative">
