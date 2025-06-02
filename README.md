@@ -7,7 +7,7 @@ This project is a Next.js application initialized using [`create-next-app`](http
 Before you begin, ensure you have the following installed on your system:  
 
 - Node.js 20.12.2 or later   
-- A package manager like npm, yarn, pnpm, or bun  
+- A package manager like npm, yarn, pnpm, or bun   
   
 ## Getting Started
 
