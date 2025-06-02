@@ -8,7 +8,7 @@ interface SanityWebhookBody {
   title: string;
   slug: string;
   introductionheading: string;
- audience : [];
+  audience: [];
   heroimage: {
     _type: string;
     alt: string;
@@ -34,14 +34,17 @@ function urlForImage(source: any) {
 async function fetchRecipients(audience: string[]) {
   const contactFormQuery = `*[_type == 'contactForm' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
   const calendlyQuery = `*[_type == 'calendlyMeeting' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
+  const LeadsQuery = `*[_type == 'fbMetaLead' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
 
   try {
-    const [formData, calendlyData] = await Promise.all([
+    const [formData, calendlyData, leadsData] = await Promise.all([
       client.fetch(contactFormQuery, { audience }),
       client.fetch(calendlyQuery, { audience }),
+      client.fetch(LeadsQuery, { audience }),
+
     ]);
 
-    const allRecipients = [...formData, ...calendlyData];
+    const allRecipients = [...formData, ...calendlyData, ...leadsData];
     return Array.from(new Map(allRecipients.map((r) => [r.email, r])).values()); // Deduplicate
   } catch (error) {
     console.error("Error fetching recipients:", error);
@@ -71,7 +74,7 @@ export async function POST(req: NextRequest) {
       }
       console.log('Received audience:', body.audience);
       console.log('Fetched recipients:', recipients);
-      
+
       // Configure email transporter
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
