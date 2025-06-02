@@ -12,5 +12,11 @@ export default {
     { name: 'phoneNumber', title: 'Phone Number', type: 'string' },
     { name: 'date', title: 'Date', type: 'date' }, // Optional general date
     { name: 'bookingTime', title: 'Booking Time', type: 'string' }, // ✅ New time field
+    {
+      name: "isUnsubscribed",
+      title: "Unsubscribed",
+      type: "boolean",
+      default: false,
+    }
   ],
 };
