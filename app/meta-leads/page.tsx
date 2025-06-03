@@ -7,15 +7,23 @@ export default function LeadForm() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        phoneNumber: '',
         companyName: '',
+        work: '',
         campaignName: '',
         creationDate: '',
-        bookingTime: '', // ✅ New time field
-        phoneNumber: '',
+        bookingTime: '',
+        appType: '',
+        appStage: '',
+        estimatedBudget: '',
+        projectStartTime: '',
+        preferredContactMethod: '',
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const target = e.target as HTMLInputElement;
+        const { name, type, value } = target;
+        setFormData({ ...formData, [name]: type === 'checkbox' ? target.checked : value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -23,6 +31,9 @@ export default function LeadForm() {
 
         const res = await fetch('/api/meta-submit-lead', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(formData),
         });
 
@@ -31,11 +42,17 @@ export default function LeadForm() {
             setFormData({
                 name: '',
                 email: '',
+                phoneNumber: '',
                 companyName: '',
+                work: '',
                 campaignName: '',
                 creationDate: '',
-                bookingTime: '', // ✅ Reset bookingTime
-                phoneNumber: '',
+                bookingTime: '',
+                appType: '',
+                appStage: '',
+                estimatedBudget: '',
+                projectStartTime: '',
+                preferredContactMethod: '',
             });
         } else {
             alert('Something went wrong!');
@@ -51,64 +68,19 @@ export default function LeadForm() {
                 <h2 className="text-2xl font-bold text-center text-gray-800">Submit Your Lead</h2>
 
                 <div className="grid grid-cols-1 gap-4">
-                    <input
-                        name="name"
-                        onChange={handleChange}
-                        value={formData.name}
-                        placeholder="Name"
-                        required
-                        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                    <input
-                        name="email"
-                        type="email"
-                        onChange={handleChange}
-                        value={formData.email}
-                        placeholder="Email"
-                        required
-                        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                    <input
-                        name="companyName"
-                        onChange={handleChange}
-                        value={formData.companyName}
-                        placeholder="Company Name"
-                        required
-                        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                    <input
-                        name="campaignName"
-                        onChange={handleChange}
-                        value={formData.campaignName}
-                        placeholder="Campaign Name"
-                        required
-                        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                    <input
-                        name="creationDate"
-                        type="date"
-                        onChange={handleChange}
-                        value={formData.creationDate}
-                        required
-                        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                    <input
-                        name="bookingTime"
-                        type="text" // or "string" input
-                        placeholder="e.g. 2:00 PM – 3:30 PM"
-                        onChange={handleChange}
-                        value={formData.bookingTime}
-                        required
-                        className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                    <input
-                        name="phoneNumber"
-                        onChange={handleChange}
-                        value={formData.phoneNumber}
-                        placeholder="Phone Number"
-                        required
-                        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
+                    <input name="name" onChange={handleChange} value={formData.name} placeholder="Name" required className="input" />
+                    <input name="email" type="email" onChange={handleChange} value={formData.email} placeholder="Email" required className="input" />
+                    <input name="phoneNumber" onChange={handleChange} value={formData.phoneNumber} placeholder="Phone Number" required className="input" />
+                    <input name="companyName" onChange={handleChange} value={formData.companyName} placeholder="Company Name" className="input" />
+                    <input name="work" onChange={handleChange} value={formData.work} placeholder="Work" className="input" />
+                    <input name="campaignName" onChange={handleChange} value={formData.campaignName} placeholder="Campaign Name" className="input" />
+                    <input name="creationDate" type="date" onChange={handleChange} value={formData.creationDate} className="input" />
+                    <input name="bookingTime" onChange={handleChange} value={formData.bookingTime} placeholder="Booking Time (e.g. 2:00 PM)" className="input" />
+                    <input name="appType" onChange={handleChange} value={formData.appType} placeholder="Type of App You Need" className="input" />
+                    <input name="appStage" onChange={handleChange} value={formData.appStage} placeholder="App Idea Stage" className="input" />
+                    <input name="estimatedBudget" onChange={handleChange} value={formData.estimatedBudget} placeholder="Estimated Budget" className="input" />
+                    <input name="projectStartTime" onChange={handleChange} value={formData.projectStartTime} placeholder="Project Start Time" className="input" />
+                    <input name="preferredContactMethod" onChange={handleChange} value={formData.preferredContactMethod} placeholder="Preferred Contact Method" className="input" />
                 </div>
 
                 <button
@@ -121,3 +93,6 @@ export default function LeadForm() {
         </div>
     );
 }
+
+// Utility className to apply consistent styling
+const inputClass = "border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400";
