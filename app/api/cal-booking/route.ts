@@ -120,6 +120,7 @@ export async function POST(req: Request) {
       _type: 'fbMetaLead',
       clientType: detectedType,
       name,
+      phoneNumber, // ✅ Add this line
       email,
       notes: notesArray,
       // meetingStart,

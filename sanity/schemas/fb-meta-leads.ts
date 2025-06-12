@@ -37,17 +37,17 @@ export default {
         layout: "dropdown",
       },
     },
-     {
-        name: 'notes',
-        title: 'Notes',
-        type: 'array',
-        of: [
-          {
-            type: 'text', // You can change this to 'string' if it's simple text input.
-          },
-        ],
-        description: 'Any notes provided by the user during booking.',
-      },
+    {
+      name: 'notes',
+      title: 'Notes',
+      type: 'array',
+      of: [
+        {
+          type: 'text', // You can change this to 'string' if it's simple text input.
+        },
+      ],
+      description: 'Any notes provided by the user during booking.',
+    },
     // 🔹 Lead Qualification Questions
     {
       name: 'appType',
