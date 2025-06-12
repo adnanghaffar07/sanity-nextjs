@@ -34,7 +34,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const teamEmail = 'adnan@codeautomation.dev';
+    const teamEmail = ['adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
     const clientEmail = body.email;
 
     // Send email to the team with full lead info

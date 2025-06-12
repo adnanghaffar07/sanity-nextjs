@@ -167,11 +167,11 @@ export default function HomePageForm() {
         body: JSON.stringify({
           name: values.name,
           email: values.email,
-          contact_number: values.contact_number,
-          looking: values.looking,
-          message: values.message,
+          phoneNumber: values.contact_number,
+          work: values.looking,
+          appType: values.message,
           recaptcha_value: recaptchaValue,
-          page_name: pageName,
+
         }),
       });
 

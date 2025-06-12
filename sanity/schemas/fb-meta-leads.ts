@@ -16,7 +16,38 @@ export default {
     { name: 'campaignName', title: 'Campaign Name', type: 'string' },
     { name: 'creationDate', title: 'Creation Date', type: 'date' },
     { name: 'bookingTime', title: 'Booking Time', type: 'string' },
-
+    {
+      name: "clientType",
+      title: "Client Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Website Development", value: "web" },
+          { title: "Design", value: "design" },
+          { title: "Search Engine Optimization", value: "seo" },
+          { title: "Mobile App Development", value: "app" },
+          { title: "Software Development", value: "software" },
+          { title: "E-commerce Solutions", value: "ecommerce" },
+          { title: "Shopify Development", value: "shopify" },
+          { title: "AI & Automation", value: "ai" },
+          { title: "ML & Automation", value: "ml" },
+          { title: "Digital Marketing", value: "marketing" },
+          { title: "Other", value: "other" },
+        ],
+        layout: "dropdown",
+      },
+    },
+     {
+        name: 'notes',
+        title: 'Notes',
+        type: 'array',
+        of: [
+          {
+            type: 'text', // You can change this to 'string' if it's simple text input.
+          },
+        ],
+        description: 'Any notes provided by the user during booking.',
+      },
     // 🔹 Lead Qualification Questions
     {
       name: 'appType',
@@ -43,7 +74,6 @@ export default {
       title: 'How would you prefer we contact you?',
       type: 'string',
     },
-
     // 🔹 Opt-Out Field
     {
       name: 'isUnsubscribed',

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, contact_number, looking, message, recaptcha_value, page_name } = await req.json();
+    const { name, email, phoneNumber, work, appType, recaptcha_value} = await req.json();
 
     // Check ReCAPTCHA
     if (!recaptcha_value) {
@@ -11,12 +11,12 @@ export async function POST(req: Request) {
     }
 
     // Skip if phone number is from Pakistan
-    if (contact_number && contact_number.startsWith("+92")) {
+    if (phoneNumber && phoneNumber.startsWith("+92")) {
       return NextResponse.json({ message: "Form submitted successfully, but data will not be stored." }, { status: 200 });
     }
 
     // Check for job/internship spam
-    const combinedText = `${looking} ${message}`.toLowerCase();
+    const combinedText = `${work} ${appType}`.toLowerCase();
     if (combinedText.includes("job") || combinedText.includes("internship")) {
       return NextResponse.json({ message: "Submission ignored (job/internship detected)." }, { status: 200 });
     }
@@ -52,16 +52,14 @@ export async function POST(req: Request) {
     const clientType = detectClientType(combinedText);
 
     const result = await client.create({
-      _type: "contactForm",
+      _type: "fbMetaLead",
       name,
-      contact_number,
+      phoneNumber,
       email,
-      looking,
-      message,
-      recaptcha_value,
-      page_name,
+      work,
+      appType,
       clientType,
-      createdAt: new Date().toISOString(),
+      creationDate: new Date().toISOString(),
     });
 
     return NextResponse.json({ message: "Form submitted successfully", result }, { status: 200 });
