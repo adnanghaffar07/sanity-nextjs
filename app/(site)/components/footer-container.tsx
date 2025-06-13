@@ -15,6 +15,8 @@ export default function FooterContainer() {
     { src: "/instagram-icon.svg", alt: "Instagram", link: "https://www.instagram.com/codeautomation.ai/" },
     { src: "/twitter-new.svg", alt: "twitter", link: "https://twitter.com/codeautomation" },
     { src: "/linkedin-icon.svg", alt: "Linkedin", link: "https://www.linkedin.com/company/codeautomationai/" },
+    { src: "/youtube.png", alt: "Youtube", link: "https://www.youtube.com/@codeautomation-ai" },
+
   ];
 
   const services = [

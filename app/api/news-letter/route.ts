@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         const { subject, recipientGroups, headline, introText, offerPrice, offerDetails, projectsList, pricingTable } = await req.json();
 
         // Validate that the required fields are present in the request body
-        if (!subject || !headline || !introText || !offerPrice || !offerDetails || !projectsList || !pricingTable) {
+        if (!subject || !headline || !introText || !offerPrice || !offerDetails) {
             return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
         }
 
@@ -115,72 +115,100 @@ export async function POST(req: NextRequest) {
 
                         </style>
                     </head>
-                    <body>
-                        <div class="email-container">
-                            <div class="email-header">
-                                <h1>${headline}</h1>
-                            </div>
-                            <div class="email-body">
-                                <p>Hi ${recipient.name},</p>
-                                <p>${introText}</p>
-                                <h3>Special Offer: Get Your Mobile App for ${offerPrice}</h3>
-                                <p>${offerDetails}</p>
-                                <h3>Recent Projects:</h3>
-                                <ul>
-                                    ${projectsList.map((project: any) => `<li>${project}</li>`).join('')}
-                                </ul>
-                                      <a href="https://codeautomation.ai/case-studies" target="_blank" class="cta-button">See More Projects</a>
-
-                                <h3>Pricing:</h3>
-                                <table class="pricing-table">
-                                    <tr>
-                                        <th>Service</th>
-                                        <th>One-Time Cost</th>
-                                        <th>Monthly Cost</th>
-                                    </tr>
-                                    ${pricingTable.map((item: { service: any; setupCost: any; monthlyCost: any; }) => `
-                                        <tr>
-                                            <td>${item.service}</td>
-                                            <td class="highlight-cell">${item.setupCost}</td>
-                                            <td class="highlight-cell">${item.monthlyCost}</td>
-                                        </tr>
-                                    `).join('')}
-                                </table>
-                                 <p>This pricing is available for a limited time. Secure your app development today!</p>
-      <p>I’d love to discuss how we can make your app a reality. Let’s set up a quick call, when would be a good time for you?</p>
-      <a href="https://calendly.com/adnanghaffar" target="_blank" class="cta-button">Let’s Get Started</a>
-      <p>Looking forward to hearing from you!</p>
+                 <body>
+  <div class="email-container">
+    <div class="email-header">
+      <h1>${headline}</h1>
     </div>
 
-   <!-- Footer Section -->
-<div class="email-footer">
-    <div class="social-icons">
+    <div class="email-body">
+      <p>Hi ${recipient.name},</p>
+      <p>${introText}</p>
+
+      <h3>Special Offer: Get Your Mobile App for ${offerPrice}</h3>
+      <p>${offerDetails}</p>
+
+      ${
+        projectsList && projectsList.length
+          ? `
+        <h3>Recent Projects:</h3>
+        <ul>
+          ${projectsList.map((project: any) => `<li>${project}</li>`).join('')}
+        </ul>
+        <a href="https://codeautomation.ai/case-studies" target="_blank" class="cta-button">See More Projects</a>
+        `
+          : ''
+      }
+
+      ${
+        pricingTable && pricingTable.length
+          ? `
+        <h3>Pricing:</h3>
+        <table class="pricing-table">
+          <tr>
+            <th>Service</th>
+            <th>One-Time Cost</th>
+            <th>Monthly Cost</th>
+          </tr>
+          ${pricingTable
+            .map(
+              (item: { service: any; setupCost: any; monthlyCost: any }) => `
+            <tr>
+              <td>${item.service}</td>
+              <td class="highlight-cell">${item.setupCost}</td>
+              <td class="highlight-cell">${item.monthlyCost}</td>
+            </tr>
+          `
+            )
+            .join('')}
+        </table>
+        <p>This pricing is available for a limited time. Secure your app development today!</p>
+        `
+          : ''
+      }
+
+      <p>I’d love to discuss how we can make your app a reality. Let’s set up a quick call. When would be a good time for you?</p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin: 30px 0;">
+  <a href="https://calendly.com/adnanghaffar" target="_blank"
+     style="display: inline-block; padding: 10px 24px; background-color: #1a73e8; color: #ffffff; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 6px;">
+    Let’s Get Started
+  </a>
+  <a href="https://app.gohighlevel.com/v2/preview/pdNP7Pan14BkCUeYWecw?notrack=true" target="_blank"
+     style="display: inline-block; padding: 10px 24px; background-color: #f7e022; color: #000000; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 6px;">
+    Explore Our Funnel
+  </a>
+</div>
+
+
+    <!-- Footer Section -->
+    <div class="email-footer">
+      <div class="social-icons">
         <a href="https://www.facebook.com/Codeautomationai/" target="_blank">
-            <img src="https://codeautomation.ai/facebook.png" alt="Facebook">
+          <img src="https://codeautomation.ai/facebook.png" alt="Facebook">
         </a>
         <a href="https://www.instagram.com/codeautomation.ai/" target="_blank">
-            <img src="https://codeautomation.ai/instagram.png" alt="Instagram">
+          <img src="https://codeautomation.ai/instagram.png" alt="Instagram">
         </a>
         <a href="https://twitter.com/codeautomation" target="_blank">
-            <img src="https://codeautomation.ai/twitter.png" alt="Twitter">
+          <img src="https://codeautomation.ai/twitter.png" alt="Twitter">
         </a>
         <a href="https://www.linkedin.com/company/codeautomationai/" target="_blank">
-            <img src="https://codeautomation.ai/linkedin.png" alt="LinkedIn">
+          <img src="https://codeautomation.ai/linkedin.png" alt="LinkedIn">
         </a>
-    </div>
+      </div>
 
-    <p>&copy; ${new Date().getFullYear()} CodeAutomation.ai LLC. All Rights Reserved.</p>
+      <p>&copy; ${new Date().getFullYear()} CodeAutomation.ai LLC. All Rights Reserved.</p>
 
-    <p class="unsubscribe">
+      <p class="unsubscribe">
         Don't want to receive these emails? 
         <a href="https://codeautomation.ai/api/unsubscribe?email=${recipient.email}" style="color: #0a66c2;">
-            Unsubscribe
+          Unsubscribe
         </a>.
-    </p>
-</div>
- </div>
-                        </div>
-                    </body>
+      </p>
+    </div>
+  </div>
+</body>
+
                     </html>
                     `,
                 });
