@@ -32,6 +32,7 @@ import fbMetaLeads from "./schemas/fb-meta-leads";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    fbMetaLeads,
     blog,
     careers,
     technologies,
@@ -50,11 +51,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueDiscoveryProcessPage,
     table,
     user,
-    contactForm,
-    calendlyMeeting,
     newsLetter,
     paymentProposal,
     testing,
-    paymentPlan, youtubeEmbed,  blockContent,metaLeads, fbMetaLeads
+    paymentPlan, youtubeEmbed,  blockContent,  contactForm,
+    calendlyMeeting,
   ],
 };

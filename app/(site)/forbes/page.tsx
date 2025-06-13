@@ -22,7 +22,7 @@ const forbesArticles = [
     articleUrl: 'https://www.forbes.com/councils/forbesbusinesscouncil/2025/03/27/automation-is-no-longer-optional-getting-your-business-ready-for-ai/',
     description: 'How quickly can you embrace AI before the competition gets ahead?',
   },
-  {
+ {
     title: 'How To Implement AI-Driven Automation For Revenue Generation',
     imageUrl: 'https://imageio.forbes.com/specials-images/imageserve/6363be26d666fe5483dd299d/Woman-Working-In-Busy-Green-Office-Space-With-Lots-Of-Plants/960x0.jpg?format=jpg&width=1440',
     articleUrl: 'https://www.forbes.com/councils/forbesbusinesscouncil/2025/05/27/how-to-implement-ai-driven-automation-for-revenue-generation/',

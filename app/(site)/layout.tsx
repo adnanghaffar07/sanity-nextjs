@@ -48,11 +48,42 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        {/* JSON-LD structured data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "CodeAutomation",
+              "image": "https://www.codeautomation.ai/logo.png",
+              "url": "https://www.codeautomation.ai",
+              "telephone": "+1-815-614-8480",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Office 254, 1755 Park St Suite 200",
+                "addressLocality": "Naperville",
+                "addressRegion": "IL",
+                "postalCode": "60563",
+                "addressCountry": "US"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "41.7906",
+                "longitude": "-88.1535"
+              },
+              "openingHours": "Mo-Fr 09:00-17:00",
+              "sameAs": [
+                "https://www.linkedin.com/company/codeautomation",
+                "https://www.facebook.com/codeautomation"
+              ]
+            })
+          }}
+        />
       </head>
       <body className={inter.className}>
-
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
-
           {/* Tiktok */}
           <Script id="tiktok-pixel" strategy="afterInteractive">
             {`
