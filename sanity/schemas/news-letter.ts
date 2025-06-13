@@ -1,32 +1,39 @@
+import { Rule } from 'sanity';
+
 export default {
   name: 'newsletter',
-  title: 'Newsletter',
+  title: 'Content Machine',
   type: 'document',
   fields: [
     {
       name: 'subject',
       title: 'Subject',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required().error('Subject is required'),
     },
     {
       name: 'headline',
       title: 'Headline',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required().error('Headline is required'),
     },
     {
       name: 'introText',
       title: 'Introductory Text',
       type: 'text',
+      validation: (Rule: Rule) => Rule.required().error('Introductory text is required'),
     },
     {
       name: 'offerPrice',
       title: 'Offer Price',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required().error('Offer price is required'),
     },
     {
       name: 'offerDetails',
       title: 'Offer Details',
       type: 'text',
+      validation: (Rule: Rule) => Rule.required().error('Offer details are required'),
     },
     {
       name: 'projectsList',
@@ -59,8 +66,9 @@ export default {
           { title: 'All Contacts', value: 'contactForm' },
           { title: 'All Calendly Meetings', value: 'calendlyMeeting' },
           { title: 'All Testing', value: 'testing' },
+          { title: 'All Leads', value: 'fbMetaLead' },
         ],
-        layout: 'checkbox', // Displays checkboxes for multiple selections
+        layout: 'checkbox',
       },
     },
   ],
