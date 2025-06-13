@@ -27,13 +27,15 @@ export async function POST(req: Request) {
     await client.create(lead);
 
     const transporter = nodemailer.createTransport({
-      service: 'Gmail',
+      name: "SMTP",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
-
     const teamEmail = ['adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
     const clientEmail = body.email;
 
