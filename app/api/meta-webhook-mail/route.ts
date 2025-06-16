@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const teamEmail = ['ayesha@codeautomation.dev'];
+    const teamEmail = ['adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
     // const clientEmail = body.email;
 
     // Send to internal team
