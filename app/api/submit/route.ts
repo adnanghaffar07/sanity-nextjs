@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       work,
       appType,
       clientType,
-      creationDate: new Date().toISOString(),
+      creationDate: new Date(),
     });
 
     return NextResponse.json({ message: "Form submitted successfully", result }, { status: 200 });

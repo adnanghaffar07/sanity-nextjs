@@ -53,11 +53,7 @@ export default {
       title: 'What type of app do you need?',
       type: 'string',
     },
-    {
-      name: 'appStage',
-      title: 'What stage are you at with your app idea?',
-      type: 'string',
-    },
+ 
     // 🔹 Opt-Out Field
     {
       name: 'isUnsubscribed',

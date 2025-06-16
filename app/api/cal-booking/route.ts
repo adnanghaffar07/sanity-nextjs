@@ -123,8 +123,6 @@ export async function POST(req: Request) {
       phoneNumber, // ✅ Add this line
       email,
       notes: notesArray,
-      // meetingStart,
-      // meetingEnd,
       appType,
       isUnsubscribed: false,
     });
