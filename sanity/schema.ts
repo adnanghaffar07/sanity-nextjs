@@ -29,6 +29,7 @@ import youtubeEmbed from "./schemas/youtubeEmbed";
 import blockContent from "./schemas/blockContent";
 import metaLeads from "./schemas/metaLeads";
 import fbMetaLeads from "./schemas/fb-meta-leads";
+import resume from "./schemas/resume";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -55,6 +56,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     paymentProposal,
     testing,
     paymentPlan, youtubeEmbed,  blockContent,  contactForm,
-    calendlyMeeting,
+    calendlyMeeting, resume
   ],
 };

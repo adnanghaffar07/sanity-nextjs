@@ -1,4 +1,4 @@
-# README for ca-nextjs-and-sanity Project
+# README for ca-nextjs-and-sanity Project 
 
 This project is a Next.js application initialized using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It features a simple setup to get started with Next.js along with some integrated font optimization using [`next/font`](https://nextjs.org/docs/basic-features/font-optimization).
 

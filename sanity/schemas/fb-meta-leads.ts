@@ -15,7 +15,6 @@ export default {
     // 🔹 Meta Campaign Info
     { name: 'campaignName', title: 'Campaign Name', type: 'string' },
     { name: 'creationDate', title: 'Creation Date', type: 'date' },
-    { name: 'bookingTime', title: 'Booking Time', type: 'string' },
     {
       name: "clientType",
       title: "Client Type",
@@ -54,26 +53,7 @@ export default {
       title: 'What type of app do you need?',
       type: 'string',
     },
-    {
-      name: 'appStage',
-      title: 'What stage are you at with your app idea?',
-      type: 'string',
-    },
-    {
-      name: 'estimatedBudget',
-      title: 'What is your estimated budget?',
-      type: 'string',
-    },
-    {
-      name: 'projectStartTime',
-      title: 'When do you want to start the project?',
-      type: 'string',
-    },
-    {
-      name: 'preferredContactMethod',
-      title: 'How would you prefer we contact you?',
-      type: 'string',
-    },
+ 
     // 🔹 Opt-Out Field
     {
       name: 'isUnsubscribed',
