@@ -1,46 +1,44 @@
-import nodemailer from "nodemailer";
+import { client } from '@/sanity/lib/client';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: any): Promise<any> {
-  const completeFormData = await request.formData();
-
-  const formTitle = completeFormData.get("title");
-  const fileBuffer = completeFormData.get("fileBuffer");
-  const fileName = completeFormData.get("fileName");
-
-  const transporter = nodemailer.createTransport({
-    name: "SMTP",
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: "hr@codeautomation.ai",
-    subject: `Resume Uploaded for ${formTitle}` ,
-    attachments: [
-      {
-        filename: fileName,
-        content: fileBuffer,
-        encoding: "base64",
-      },
-    ],
-  };
-
+export async function POST(req: Request) {
   try {
-    const checkResponse = await transporter.sendMail(mailOptions);
-    return Response.json(
-      { message: "Resume uploaded and email sent successfully" },
-      { status: 200 }
-    );
+    const formData = await req.formData();
+
+    const file = formData.get('file') as File;
+    const title = formData.get('title') as string;
+
+    if (!file) {
+      return NextResponse.json(
+        { success: false, error: 'No file uploaded' },
+        { status: 400 }
+      );
+    }
+
+    // ✅ Upload file directly (no need for buffer conversion)
+    const uploadedFile = await client.assets.upload('file', file, {
+      filename: file.name,
+      contentType: file.type,
+    });
+
+    // ✅ Create document referencing uploaded file
+    await client.create({
+      _type: 'resumeSubmission',
+      title,
+      file: {
+        _type: 'file',
+        asset: {
+          _type: 'reference',
+          _ref: uploadedFile._id,
+        },
+      },
+    });
+
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error sending email:", error);
-    return Response.json(
-      { message: "Error in sending email" },
+    console.error('Upload error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to upload resume' },
       { status: 500 }
     );
   }
