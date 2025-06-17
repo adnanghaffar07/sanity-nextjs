@@ -1,6 +1,5 @@
 "use client";
 
-import PreventCopy from "@/app/(site)/components/PreventCopy";
 import { StudioProvider, defineConfig } from "sanity"; // ✅ Use defineConfig
 import { deskTool } from "sanity/desk";
 

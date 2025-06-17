@@ -8,16 +8,14 @@ import HomeNavigationContainer from "./components/home-navigation-container";
 import CookieConsent from "./components/CookieConsent";
 import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" }); // ✅ Prevent Render Blocking
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-// Dynamically Import Components
+// Dynamically import components with SSR disabled where possible
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
 const FooterContainer = dynamic(() => import("./components/footer-container"), { suspense: true });
-const FormDisplay = dynamic(() => import("./components/FormDisplay"), { suspense: true });
-const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { suspense: true });
-const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true });
-const GoogleFonts = dynamic(() => import("./components/GoogleFonts"), { ssr: false });
-
+const FormDisplay = dynamic(() => import("./components/FormDisplay"), { suspense: true, ssr: false });
+const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { suspense: true, ssr: false });
+const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
 
 export const metadata: Metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
@@ -39,111 +37,61 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <GoogleFonts />
         {/* ✅ Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-        {/* JSON-LD structured data for SEO */}
-        <script
+        {/* ✅ Lazy load JSON-LD Structured Data */}
+        <Script
+          id="ld-business"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "CodeAutomation",
-              "image": "https://www.codeautomation.ai/logo.png",
-              "url": "https://www.codeautomation.ai",
-              "telephone": "+1-815-614-8480",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Office 254, 1755 Park St Suite 200",
-                "addressLocality": "Naperville",
-                "addressRegion": "IL",
-                "postalCode": "60563",
-                "addressCountry": "US"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "41.7906",
-                "longitude": "-88.1535"
-              },
-              "openingHours": "Mo-Fr 09:00-17:00",
-              "sameAs": [
-                "https://www.linkedin.com/company/codeautomation",
-                "https://www.facebook.com/codeautomation"
-              ]
-            })
-          }}
-        />
+          strategy="lazyOnload"
+        >{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "CodeAutomation",
+          "image": "https://www.codeautomation.ai/logo.png",
+          "url": "https://www.codeautomation.ai",
+          "telephone": "+1-815-614-8480",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Office 254, 1755 Park St Suite 200",
+            "addressLocality": "Naperville",
+            "addressRegion": "IL",
+            "postalCode": "60563",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "41.7906",
+            "longitude": "-88.1535"
+          },
+          "openingHours": "Mo-Fr 09:00-17:00",
+          "sameAs": [
+            "https://www.linkedin.com/company/codeautomation",
+            "https://www.facebook.com/codeautomation"
+          ]
+        })}</Script>
       </head>
       <body className={inter.className}>
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
-          {/* Tiktok */}
-          <Script id="tiktok-pixel" strategy="afterInteractive">
-            {`
-            !function (w, d, t) {
-              w.TiktokAnalyticsObject=t;
-              var ttq=w[t]=w[t]||[];
-              ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
-              ttq.setAndDefer=function(t,e){
-                t[e]=function(){
-                  t.push([e].concat(Array.prototype.slice.call(arguments,0)))
-                }
-              };
-              for(var i=0;i<ttq.methods.length;i++) ttq.setAndDefer(ttq,ttq.methods[i]);
-              ttq.instance=function(t){
-                for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);
-                return e
-              };
-              ttq.load=function(e,n){
-                var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;
-                ttq._i=ttq._i||{};
-                ttq._i[e]=[];
-                ttq._i[e]._u=r;
-                ttq._t=ttq._t||{};
-                ttq._t[e]=+new Date;
-                ttq._o=ttq._o||{};
-                ttq._o[e]=n||{};
-                n=document.createElement("script");
-                n.type="text/javascript";
-                n.async=!0;
-                n.src=r+"?sdkid="+e+"&lib="+t;
-                e=document.getElementsByTagName("script")[0];
-                e.parentNode.insertBefore(n,e)
-              };
-              ttq.load('D0N3L93C77U7M2KJ8B60');
-              ttq.page();
-            }(window, document, 'ttq');
-          `}
-          </Script>
-          {/* ✅ Lazy Load Google Tag Manager */}
-          <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
-          <Script strategy="lazyOnload" id="google-analytics">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-11436659671');
-            `}
+          {/* ✅ Third-party pixels (lazy loaded) */}
+          <Script id="tiktok-pixel" strategy="lazyOnload">
+            {`!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D0N3L93C77U7M2KJ8B60');ttq.page();}(window, document, 'ttq');`}
           </Script>
 
-          {/* ✅ Defer Facebook Pixel */}
+          <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=AW-11436659671" />
+          <Script strategy="lazyOnload" id="google-analytics">
+            {`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'AW-11436659671');`}
+          </Script>
+
           <Script id="facebook-pixel" strategy="lazyOnload">
-            {`
-              !function(f,b,e,v,n,t,s){
-                if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-                s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
-              }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1960013544428790'); fbq('track', 'PageView');
-            `}
+            {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1960013544428790'); fbq('track', 'PageView');`}
           </Script>
 
           {/* ✅ Main Content */}
@@ -151,25 +99,25 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <HomeNavigationContainer />
             <CookieConsent />
             {children}
-            <Suspense fallback={<p>Loading form...</p>}>
+            <Suspense fallback={<div className="h-[150px] bg-gray-100 animate-pulse" />}>
               <FormDisplay />
             </Suspense>
-            <Suspense fallback={<p>Loading footer...</p>}>
+            <Suspense fallback={<div className="h-[300px] bg-gray-100 animate-pulse" />}>
               <FooterContainer />
             </Suspense>
-            <Suspense fallback={<p>Loading scroll-to-top...</p>}>
+            <Suspense fallback={<div className="h-[60px] w-[60px] fixed bottom-5 right-5 rounded-full bg-gray-200 animate-pulse" />}>
               <ScrollToTop />
             </Suspense>
-            <Suspense fallback={<p>Loading popup...</p>}>
+            <Suspense fallback={<div className="h-[250px] bg-gray-100 animate-pulse" />}>
               <GreetingPopup />
             </Suspense>
           </div>
         </GoogleOAuthProvider>
 
-        {/* ✅ Lazy Load Google Tag Manager */}
+        {/* ✅ GTM Client (deferred) */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
 
-        {/* ✅ JSON-LD Structured Data */}
+        {/* ✅ Additional JSON-LD for SEO */}
         <Script type="application/ld+json" strategy="lazyOnload" id="json-ld">
           {JSON.stringify({
             "@context": "http://schema.org",
