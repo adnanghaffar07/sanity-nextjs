@@ -179,7 +179,7 @@ export async function POST(req: NextRequest) {
           : ''
       }
 
-      <p>I’d love to discuss how we can make your app a reality. Let’s set up a quick call. When would be a good time for you?</p>
+      <p>We’d love to discuss how we can make your app a reality. Let’s set up a quick call. When would be a good time for you?</p>
     <div style="display: flex; gap: 10px; justify-content: center; margin: 30px 0;">
   <a href="https://calendly.com/adnanghaffar" target="_blank"
      style="display: inline-block; padding: 10px 24px; background-color: #1a73e8; color: #ffffff; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 6px;">
