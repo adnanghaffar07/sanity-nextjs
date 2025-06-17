@@ -128,8 +128,6 @@ export async function POST(req: Request) {
   `,
     });
 
-
-
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error submitting lead or sending emails:', error);
