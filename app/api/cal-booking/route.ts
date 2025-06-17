@@ -104,7 +104,7 @@ export async function POST(req: Request) {
 
     // const meetingStart = payload?.startTime || null;
     // const meetingEnd = payload?.endTime || null;
-    const appType = payload?.eventType?.name || '';
+    const eventName = payload?.eventType?.name || '';
 
     // 🔍 Detect clientType from notes
     let detectedType = 'other';
@@ -117,13 +117,13 @@ export async function POST(req: Request) {
 
     // 📝 Create in Sanity
     const created = await client.create({
-      _type: 'fbMetaLead',
+      _type: 'calendlyMeeting',
       clientType: detectedType,
       name,
       phoneNumber, // ✅ Add this line
       email,
       notes: notesArray,
-      appType,
+      eventName,
       isUnsubscribed: false,
     });
 

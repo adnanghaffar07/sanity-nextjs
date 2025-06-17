@@ -167,9 +167,9 @@ export default function HomePageForm() {
         body: JSON.stringify({
           name: values.name,
           email: values.email,
-          phoneNumber: values.contact_number,
-          work: values.looking,
-          appType: values.message,
+          contact_number: values.contact_number,
+          looking: values.looking,
+          message: values.message,
           recaptcha_value: recaptchaValue,
 
         }),
@@ -184,8 +184,8 @@ export default function HomePageForm() {
           form: "contactForm",
         });
 
-        // Redirect to meeting page for real clients
-        window.location.href = "https://calendly.com/adnanghaffar";
+// Open meeting page in a new tab for real clients
+window.open("https://calendly.com/adnanghaffar", "_blank");
 
         resetForm();
         recaptchaRef?.current?.reset();

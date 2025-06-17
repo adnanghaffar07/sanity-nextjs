@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"Meta Lead Bot" <${process.env.EMAIL_USER}>`,
       to: teamEmail,
-      subject: '🚨 New Lead Submitted (Webhook)',
+      subject: '🚨 New Lead Submitted',
        html: `
       <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 40px;">
         <table style="max-width: 700px; margin: auto; background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">

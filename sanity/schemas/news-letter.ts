@@ -65,8 +65,9 @@ export default {
         list: [
           { title: 'All Contacts', value: 'contactForm' },
           { title: 'All Calendly Meetings', value: 'calendlyMeeting' },
+          { title: 'FB Meta Leads', value: 'fbMetaLead' },
           { title: 'All Testing', value: 'testing' },
-          { title: 'All Leads', value: 'fbMetaLead' },
+
         ],
         layout: 'checkbox',
       },

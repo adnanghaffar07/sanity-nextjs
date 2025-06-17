@@ -45,16 +45,12 @@ export default {
         ],
         description: 'Any notes provided by the user during booking.',
       },
-      {
-        name: "meetingStart",
-        title: "Meeting Start",
-        type: "datetime",
+       {
+        name: "phoneNumber",
+        title: "Phone Number",
+        type: "string",
       },
-      {
-        name: "meetingEnd",
-        title: "Meeting End",
-        type: "datetime",
-      },
+  
       {
         name: "eventName",
         title: "Event Name",
