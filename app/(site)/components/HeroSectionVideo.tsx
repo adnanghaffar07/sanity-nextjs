@@ -29,7 +29,7 @@ const HeroVideo = () => {
       autoPlay
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       poster="/hero.jpg"
     >
       <source src="/hero-sec-video.webm" type="video/webm" />
