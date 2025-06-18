@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { usePathname, useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import dynamic from "next/dynamic";
 
 const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
@@ -56,6 +58,9 @@ export default function HomePageForm() {
     handleChange,
     handleSubmit,
     resetForm,
+    setFieldValue, // ✅ Add this
+    setFieldTouched,
+
   } = useFormik({
     initialValues: initialValues,
     validationSchema: contactSchema,
@@ -165,7 +170,7 @@ export default function HomePageForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-           name: values.name,
+          name: values.name,
           email: values.email,
           contact_number: values.contact_number,
           looking: values.looking,
@@ -183,8 +188,8 @@ export default function HomePageForm() {
           form: "contactForm",
         });
 
-// Open meeting page in a new tab for real clients
-window.open("https://calendly.com/adnanghaffar", "_blank");
+        // Open meeting page in a new tab for real clients
+        window.open("https://calendly.com/adnanghaffar", "_blank");
 
         resetForm();
         recaptchaRef?.current?.reset();
@@ -261,14 +266,19 @@ window.open("https://calendly.com/adnanghaffar", "_blank");
             ) : null}
           </div>
           <div className="mt-4">
-            <input
-              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
-              placeholder={"Contact Number"}
-              name="contact_number"
+            <PhoneInput
+              country={'us'}
               value={values.contact_number}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              onChange={(value) => setFieldValue('contact_number', value)}
+              onBlur={() => setFieldTouched('contact_number', true)} // ✅ manually mark as touched
+              inputClass="!w-full border-2 px-4 !py-3 !rounded-lg !shadow-sm !text-black !text-sm !placeholder-black"
+              containerClass="!w-full"
+              buttonClass="!bg-white !border-gray-300"
+              specialLabel=""
+              placeholder="Enter your phone number"
+
             />
+
             {errors.contact_number && touched.contact_number ? (
               <p className="form-error">{errors.contact_number}</p>
             ) : null}

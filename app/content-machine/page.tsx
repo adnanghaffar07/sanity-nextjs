@@ -11,13 +11,14 @@ const recipientOptions = [
 
 export default function NewsletterForm() {
   type PricingItem = { service: string; setupCost: string; monthlyCost: string };
+  type ContentBlock = { heading: string; description: string };
 
   interface FormData {
     subject: string;
-    headline: string;
     introText: string;
     offerPrice: string;
     offerDetails: string;
+    contentBlocks: ContentBlock[];
     projectsList: string[];
     pricingTable: PricingItem[];
     recipientGroups: string[];
@@ -25,10 +26,10 @@ export default function NewsletterForm() {
 
   const defaultFormData: FormData = {
     subject: '',
-    headline: '',
     introText: '',
     offerPrice: '',
     offerDetails: '',
+    contentBlocks: [{ heading: '', description: '' }],
     projectsList: [],
     pricingTable: [],
     recipientGroups: [],
@@ -49,6 +50,12 @@ export default function NewsletterForm() {
     setFormData({ ...formData, pricingTable: updated });
   };
 
+  const updateContentBlock = (index: number, key: keyof ContentBlock, value: string) => {
+    const updated = [...formData.contentBlocks];
+    updated[index][key] = value;
+    setFormData({ ...formData, contentBlocks: updated });
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
@@ -63,7 +70,7 @@ export default function NewsletterForm() {
       alert(data.message);
 
       if (res.ok) {
-        setFormData(defaultFormData); // Reset form after success
+        setFormData(defaultFormData);
       }
     } catch (error) {
       console.error('Error sending newsletter:', error);
@@ -86,15 +93,6 @@ export default function NewsletterForm() {
         required
       />
 
-      <input
-        type="text"
-        placeholder="Headline"
-        value={formData.headline}
-        onChange={(e) => setFormData({ ...formData, headline: e.target.value })}
-        className="w-full border p-2 rounded"
-        required
-      />
-
       <textarea
         placeholder="Intro Text"
         value={formData.introText}
@@ -102,6 +100,56 @@ export default function NewsletterForm() {
         className="w-full border p-2 rounded"
         required
       />
+
+      {/* 📝 Content Blocks */}
+      <div>
+        <label className="font-semibold">Content Sections:</label>
+        {formData.contentBlocks.map((block, idx) => (
+          <div key={idx} className="mt-4 space-y-2 border p-4 rounded-lg">
+            <input
+              type="text"
+              placeholder={`Heading ${idx + 1}`}
+              value={block.heading}
+              onChange={(e) => updateContentBlock(idx, 'heading', e.target.value)}
+              className="w-full border p-2 rounded font-medium"
+            />
+            <textarea
+              placeholder={`Description ${idx + 1}`}
+              value={block.description}
+              onChange={(e) => updateContentBlock(idx, 'description', e.target.value)}
+              className="w-full border p-2 rounded"
+              rows={3}
+            />
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData({
+                    ...formData,
+                    contentBlocks: formData.contentBlocks.filter((_, i) => i !== idx),
+                  })
+                }
+                className="text-red-500 text-sm"
+                disabled={formData.contentBlocks.length <= 1}
+              >
+                Remove Section
+              </button>
+            </div>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() =>
+            setFormData({
+              ...formData,
+              contentBlocks: [...formData.contentBlocks, { heading: '', description: '' }],
+            })
+          }
+          className="mt-2 text-sm text-blue-600"
+        >
+          + Add Content Section
+        </button>
+      </div>
 
       <input
         type="text"

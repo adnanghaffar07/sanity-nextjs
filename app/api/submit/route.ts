@@ -3,25 +3,35 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, contact_number, looking, message, recaptcha_value} = await req.json();
+    const { name, email, contact_number, looking, message, recaptcha_value } = await req.json();
 
-    // Check ReCAPTCHA
+    // ✅ ReCAPTCHA check
     if (!recaptcha_value) {
       return NextResponse.json({ message: "ReCAPTCHA verification failed." }, { status: 400 });
     }
 
-    // Skip if phone number is from Pakistan
-    if (contact_number && contact_number.startsWith("+92")) {
-      return NextResponse.json({ message: "Form submitted successfully, but data will not be stored." }, { status: 200 });
+    // ✅ Normalize contact number and block +92 / +91 / 92 / 91
+    const cleanedNumber = contact_number.replace(/\s|-/g, "").trim(); // remove spaces/dashes
+
+    const isBlockedCountry =
+      cleanedNumber.startsWith("+92") ||
+      cleanedNumber.startsWith("92") ||
+      cleanedNumber.startsWith("+91") ||
+      cleanedNumber.startsWith("91");
+
+    if (isBlockedCountry) {
+      return NextResponse.json({
+        message: "Form submitted successfully, but data will not be stored due to restricted region.",
+      }, { status: 200 });
     }
 
-    // Check for job/internship spam
+    // ✅ Block job/internship spam
     const combinedText = `${looking} ${message}`.toLowerCase();
     if (combinedText.includes("job") || combinedText.includes("internship")) {
       return NextResponse.json({ message: "Submission ignored (job/internship detected)." }, { status: 200 });
     }
 
-    // Keyword → Service map
+    // ✅ Service keyword → type mapping
     const serviceKeywordMap: Record<string, string> = {
       mobile: "app",
       android: "app",
@@ -51,6 +61,7 @@ export async function POST(req: Request) {
 
     const clientType = detectClientType(combinedText);
 
+    // ✅ Save to Sanity
     const result = await client.create({
       _type: "contactForm",
       name,
