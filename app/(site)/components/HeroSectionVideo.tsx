@@ -1,23 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const HeroVideo = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    setMounted(true);
   }, []);
 
-  if (isMobile) {
+  if (!mounted) {
     return (
-      <Image
+      <img
         src="/hero.jpg"
         alt="hero background"
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        width="1920"
+        height="1080"
       />
     );
   }
@@ -31,9 +29,10 @@ const HeroVideo = () => {
       autoPlay
       loop
       playsInline
-      preload="metadata" // ✅ Better than "none" for LCP
+      preload="metadata"
       poster="/hero.jpg"
     >
+      {/* <source src="/hero-sec-video.webm" type="video/webm" /> */}
       <source src="/hero-sec-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
