@@ -49,9 +49,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-        {/* ✅ Preload hero image if you know it */}
-        <link rel="preload" as="image" href="/hero.jpg" />
-
         {/* ✅ JSON-LD business info */}
         <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
           {JSON.stringify({
@@ -106,7 +103,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               });
             `}
           </Script>
-
           {/* ✅ Page Content */}
           <div className="flex flex-col bg-white relative">
             <HomeNavigationContainer />
@@ -126,7 +122,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Suspense>
           </div>
         </GoogleOAuthProvider>
-
         {/* ✅ GTM (if needed) */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
 
