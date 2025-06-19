@@ -6,13 +6,12 @@ import Script from "next/script";
 import "../globals.css";
 import HomeNavigationContainer from "./components/home-navigation-container";
 import CookieConsent from "./components/CookieConsent";
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 
 // ✅ Replace Google Fonts with `next/font`
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
+  display: "swap", // Makes font swap non-blocking
 });
 
 // ✅ Dynamic imports
@@ -83,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           })}
         </Script>
       </head>
-      <body className={poppins.className}>
+      <body className={inter.className}>
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
           {/* ✅ Lazy load third-party scripts post-LCP */}
           <Script id="defer-scripts" strategy="afterInteractive">

@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 
 export async function GET(req: any) {
   const { searchParams } = new URL(req.url);
@@ -18,9 +18,9 @@ export async function GET(req: any) {
 
     // Fetch documents from both collections
     const [contactDocuments, calendlyDocuments, metayDocuments] = await Promise.all([
-      client.fetch(contactQuery, params),
-      client.fetch(calendlyQuery, params),
-      client.fetch(metaQuery, params),
+      serverClient.fetch(contactQuery, params),
+      serverClient.fetch(calendlyQuery, params),
+      serverClient.fetch(metaQuery, params),
 
     ]);
 
@@ -33,7 +33,7 @@ export async function GET(req: any) {
 
     // Update all matching documents
     const updatePromises = documents.map((doc) =>
-      client
+      serverClient
         .patch(doc._id)
         .set({ isUnsubscribed: true })
         .commit()

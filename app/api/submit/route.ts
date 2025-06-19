@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     const clientType = detectClientType(combinedText);
 
     // ✅ Save to Sanity
-    const result = await client.create({
+    const result = await serverClient.create({
       _type: "contactForm",
       name,
       contact_number,

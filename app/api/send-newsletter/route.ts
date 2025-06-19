@@ -1,15 +1,15 @@
 // /app/api/send-newsletter/route.ts
-import { client } from '@/sanity/lib/client';
 import { v4 as uuidv4 } from 'uuid';
 import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 
 async function fetchRecipients(groups: string[]) {
   const queries = groups.map(
     (group) => `*[_type == '${group}' && isUnsubscribed != true]{ name, email }`
   );
 
-  const results = await Promise.all(queries.map((q) => client.fetch(q)));
+  const results = await Promise.all(queries.map((q) => serverClient.fetch(q)));
   return Array.from(new Map(results.flat().map((r) => [r.email, r])).values());
 }
 
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Save newsletter content in Sanity
     const newsletterId = uuidv4();
-    await client.create({
+    await serverClient.create({
       _type: 'newsletter',
       _id: newsletterId,
       subject,
