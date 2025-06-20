@@ -22,6 +22,7 @@ const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToT
 const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://codeautomation.ai"), // ✅ Add this line
   title: "Software Development Company in the USA | CodeAutomation",
   description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
   keywords: ["CodeAutomation", "software development company", "software development services"],
