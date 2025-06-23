@@ -19,7 +19,7 @@ export async function POST(req: Request) {
         // ✅ Compose email
         const mailOptions = {
             from: `"CA Website Mobile Service Form" <${process.env.TEAM_EMAIL_USER}>`,
-            to: ["ayesha@codeautomation.dev"], // 💡 Add your team emails here
+            to: ["adnan@codeautomation.dev"], // 💡 Add your team emails here
             subject: `New Contact Form Submission - ${name}`,
             html: `
         <h2>New Mobile Service Form Submission</h2>
