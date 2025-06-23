@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollAnimation from "../components/ScrollAnimation";
@@ -7,16 +6,16 @@ import { client } from "../../../sanity/lib/client";
 
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
- description:
-   "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-   keywords: [
-     "CodeAutomation",
-     "software development company",
-     "software development services",
-   ],
- alternates: {
-   canonical: "https://codeautomation.ai/services", // ✅ Fixes the canonical error
- },
+  description:
+    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
+  alternates: {
+    canonical: "https://codeautomation.ai/services", // ✅ Fixes the canonical error
+  },
 };
 
 async function getData() {
@@ -248,11 +247,11 @@ const Services = async () => {
               </div>
 
               <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-              <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-8 drop-shadow-serviceCard">
-              02
+                <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-8 drop-shadow-serviceCard">
+                  02
                 </div>
                 <div className="flex flex-col px-4 mt-2">
-                <div className="text-base font-medium leading-6">
+                  <div className="text-base font-medium leading-6">
                     Thorough Research & Analysis
                   </div>
                   <div className="mt-3 text-sm font-light tracking-normal leading-5  max-w-[200px]">
@@ -262,11 +261,11 @@ const Services = async () => {
               </div>
 
               <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-              <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-7 drop-shadow-serviceCard">
-              03
+                <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-7 drop-shadow-serviceCard">
+                  03
                 </div>
                 <div className="flex flex-col px-4 mt-2">
-                <div className="text-base font-medium leading-6">
+                  <div className="text-base font-medium leading-6">
                     Concept Development & Iteration
                   </div>
                   <div className="mt-3 text-sm font-light tracking-normal leading-5  max-w-[200px]">
@@ -276,11 +275,11 @@ const Services = async () => {
               </div>
 
               <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-              <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-7 drop-shadow-serviceCard">
-              04
+                <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-7 drop-shadow-serviceCard">
+                  04
                 </div>
                 <div className="flex flex-col px-4 mt-2">
-                <div className="text-base font-medium leading-6">
+                  <div className="text-base font-medium leading-6">
                     Attention to Details & Quality Assurance
                   </div>
                   <div className="mt-3 text-sm font-light tracking-normal leading-5  max-w-[200px]">
@@ -290,11 +289,11 @@ const Services = async () => {
               </div>
 
               <div className="flex flex-col justify-center bg-[#EDECEC] rounded-3xl shadow-sm z-10 relative w-[234px] h-[196px]">
-              <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-7 drop-shadow-serviceCard">
-              05
+                <div className="flex justify-center items-center px-5 mt-0 text-3xl font-semibold tracking-tight leading-4 text-justify whitespace-nowrap bg-white rounded-full h-[62px] w-[62px] absolute -right-2 -top-7 drop-shadow-serviceCard">
+                  05
                 </div>
                 <div className="flex flex-col px-4 mt-2">
-                <div className="text-base font-medium leading-6">
+                  <div className="text-base font-medium leading-6">
                     Timely Delivery & Client Satisfaction
                   </div>
                   <div className="mt-3 text-sm font-light tracking-normal leading-5  max-w-[200px]">

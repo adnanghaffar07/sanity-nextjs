@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import ButtonScrollToSection from './ButtonScrollToSection';
 
 const portfolioImages = [
   '/portfolio-1.png',
@@ -30,15 +31,15 @@ export default function PortfolioSection() {
         Our Portfolio
       </h2>
 
-      {/* Image Slider with side buttons */}
-      <div className="relative max-w-3xl mx-auto">
+      {/* Image Slider Container */}
+      <div className="relative max-w-3xl mx-auto flex items-center justify-center">
         {/* Left Arrow Button */}
         <button
           onClick={handlePrev}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition z-10"
+          className="absolute left-[10px] md:left-[-60px] top-1/2 transform -translate-y-1/2 z-10"
           aria-label="Previous Slide"
         >
-          ←
+          <Image src="/left-btn.png" alt="Previous" width={40} height={40} />
         </button>
 
         {/* Image */}
@@ -55,21 +56,21 @@ export default function PortfolioSection() {
         {/* Right Arrow Button */}
         <button
           onClick={handleNext}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition z-10"
+          className="absolute right-[10px] md:right-[-60px] top-1/2 transform -translate-y-1/2 z-10"
           aria-label="Next Slide"
         >
-          →
+          <Image src="/right-btn.png" alt="Next" width={40} height={40} />
         </button>
       </div>
 
       {/* Contact Button */}
       <div className="mt-10">
-        <a
-          href="#contact-box"
-          className="bg-[#F7E022] hover:bg-yellow-400 text-black font-semibold px-8 py-3 rounded-full transition duration-300"
-        >
-          Contact Us
-        </a>
+          <ButtonScrollToSection
+          classes="bg-[#1D92FB] hover:bg-blue-700 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300"
+            content="Contact Us"
+            key="first-button"
+            destination="contact-box"
+          />
       </div>
     </section>
   );
