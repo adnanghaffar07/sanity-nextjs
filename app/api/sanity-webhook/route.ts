@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
-import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 
 interface SanityWebhookBody {
   pageType: string;
@@ -25,7 +25,7 @@ type Recipient = {
 };
 
 // Initialize Sanity image builder
-const builder = imageUrlBuilder(client);
+const builder = imageUrlBuilder(serverClient);
 
 function urlForImage(source: any) {
   return source ? builder.image(source).url() : "";
@@ -38,9 +38,9 @@ async function fetchRecipients(audience: string[]) {
 
   try {
     const [formData, calendlyData, leadsData] = await Promise.all([
-      client.fetch(contactFormQuery, { audience }),
-      client.fetch(calendlyQuery, { audience }),
-      client.fetch(LeadsQuery, { audience }),
+      serverClient.fetch(contactFormQuery, { audience }),
+      serverClient.fetch(calendlyQuery, { audience }),
+      serverClient.fetch(LeadsQuery, { audience }),
 
     ]);
 

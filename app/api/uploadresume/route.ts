@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -16,13 +16,13 @@ export async function POST(req: Request) {
     }
 
     // ✅ Upload file directly (no need for buffer conversion)
-    const uploadedFile = await client.assets.upload('file', file, {
+    const uploadedFile = await serverClient.assets.upload('file', file, {
       filename: file.name,
       contentType: file.type,
     });
 
     // ✅ Create document referencing uploaded file
-    await client.create({
+    await serverClient.create({
       _type: 'resumeSubmission',
       title,
       file: {

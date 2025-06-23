@@ -1,23 +1,25 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import "../globals.css";
 
+// Pre-defined options to avoid re-renders
 const recipientOptions = [
   { label: 'Contact Form', value: 'contactForm' },
   { label: 'Calendly Meeting', value: 'calendlyMeeting' },
   { label: 'FB Meta Leads', value: 'fbMetaLead' },
   { label: 'Testing', value: 'testing' },
-];
+] as const;
 
 export default function NewsletterForm() {
   type PricingItem = { service: string; setupCost: string; monthlyCost: string };
+  type ContentBlock = { heading: string; description: string };
 
   interface FormData {
     subject: string;
-    headline: string;
     introText: string;
     offerPrice: string;
     offerDetails: string;
+    contentBlocks: ContentBlock[];
     projectsList: string[];
     pricingTable: PricingItem[];
     recipientGroups: string[];
@@ -25,10 +27,10 @@ export default function NewsletterForm() {
 
   const defaultFormData: FormData = {
     subject: '',
-    headline: '',
     introText: '',
     offerPrice: '',
     offerDetails: '',
+    contentBlocks: [{ heading: '', description: '' }],
     projectsList: [],
     pricingTable: [],
     recipientGroups: [],
@@ -49,6 +51,12 @@ export default function NewsletterForm() {
     setFormData({ ...formData, pricingTable: updated });
   };
 
+  const updateContentBlock = (index: number, key: keyof ContentBlock, value: string) => {
+    const updated = [...formData.contentBlocks];
+    updated[index][key] = value;
+    setFormData({ ...formData, contentBlocks: updated });
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
@@ -63,7 +71,7 @@ export default function NewsletterForm() {
       alert(data.message);
 
       if (res.ok) {
-        setFormData(defaultFormData); // Reset form after success
+        setFormData(defaultFormData);
       }
     } catch (error) {
       console.error('Error sending newsletter:', error);
@@ -73,26 +81,23 @@ export default function NewsletterForm() {
     }
   };
 
+  const handleInputChange = useCallback((field: keyof FormData, value: any) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  }, []);
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto p-6 bg-white rounded-xl shadow">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto p-6 bg-white rounded-xl shadow" style={{ minHeight: '600px' }}>
       <h2 className="text-xl font-semibold">Send Emails to Leads</h2>
 
       <input
         type="text"
         placeholder="Subject"
         value={formData.subject}
-        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+        onChange={(e) => handleInputChange('subject', e.target.value)}
         className="w-full border p-2 rounded"
         required
-      />
-
-      <input
-        type="text"
-        placeholder="Headline"
-        value={formData.headline}
-        onChange={(e) => setFormData({ ...formData, headline: e.target.value })}
-        className="w-full border p-2 rounded"
-        required
+        style={{ height: '42px' }}
+        aria-label="Email subject"
       />
 
       <textarea
@@ -102,6 +107,56 @@ export default function NewsletterForm() {
         className="w-full border p-2 rounded"
         required
       />
+
+      {/* 📝 Content Blocks */}
+      <div>
+        <label className="font-semibold">Content Sections:</label>
+        {formData.contentBlocks.map((block, idx) => (
+          <div key={idx} className="mt-4 space-y-2 border p-4 rounded-lg">
+            <input
+              type="text"
+              placeholder={`Heading ${idx + 1}`}
+              value={block.heading}
+              onChange={(e) => updateContentBlock(idx, 'heading', e.target.value)}
+              className="w-full border p-2 rounded font-medium"
+            />
+            <textarea
+              placeholder={`Description ${idx + 1}`}
+              value={block.description}
+              onChange={(e) => updateContentBlock(idx, 'description', e.target.value)}
+              className="w-full border p-2 rounded"
+              rows={3}
+            />
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData({
+                    ...formData,
+                    contentBlocks: formData.contentBlocks.filter((_, i) => i !== idx),
+                  })
+                }
+                className="text-red-500 text-sm"
+                disabled={formData.contentBlocks.length <= 1}
+              >
+                Remove Section
+              </button>
+            </div>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() =>
+            setFormData({
+              ...formData,
+              contentBlocks: [...formData.contentBlocks, { heading: '', description: '' }],
+            })
+          }
+          className="mt-2 text-sm text-blue-600"
+        >
+          + Add Content Section
+        </button>
+      </div>
 
       <input
         type="text"

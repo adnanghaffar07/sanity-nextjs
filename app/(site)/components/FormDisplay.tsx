@@ -8,9 +8,6 @@ const CalendlyForm = dynamic(
     suspense: true,
   }
 );
-const PartnershipForm = dynamic(() => import("./PartnershipForm"), {
-  suspense: true,
-});
 
 const FormDisplay = () => {
   const currentPath = usePathname();
@@ -20,10 +17,7 @@ const FormDisplay = () => {
     </Suspense>
   ) : (
     <Suspense fallback={<p>Loading Form ...</p>}>
-      {/* <div className="lg:max-w[506px] ml-auto mr-auto -mb-12 relative z-10 lg:px-0 px-5"> */}
-      {/* <PartnershipForm /> */}
       <CalendlyForm />
-      {/* </div> */}
     </Suspense>
   );
 };

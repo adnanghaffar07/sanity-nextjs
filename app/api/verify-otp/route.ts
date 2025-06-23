@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Fetch user document from Sanity by email
-    const user = await client.fetch(`*[_type == "user" && email == $email][0]`, { email });
+    const user = await serverClient.fetch(`*[_type == "user" && email == $email][0]`, { email });
 
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found." }, { status: 404 });
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
 
     // OTP is correct, remove it from the Sanity document
-    await client.patch(user._id).set({ otp: null, otpExpiration: null }).commit();
+    await serverClient.patch(user._id).set({ otp: null, otpExpiration: null }).commit();
 
     console.log(`OTP for ${email} verified successfully and removed from Sanity.`);
 

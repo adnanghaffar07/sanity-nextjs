@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     };
 
     // Save to Sanity
-    await client.create(lead);
+    await serverClient.create(lead);
 
     const transporter = nodemailer.createTransport({
       name: "SMTP",

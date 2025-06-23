@@ -1,5 +1,5 @@
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 import { NextResponse } from "next/server";
-import { client } from "@/sanity/lib/client";
 import nodemailer from "nodemailer";
 
 // Function to send email using Nodemailer
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
         const formData = await req.json();
 
         // Store in Sanity
-        await client.create({
+        await serverClient.create({
             _type: "paymentPropsal",
             ...formData,
             createdAt: new Date().toISOString(),

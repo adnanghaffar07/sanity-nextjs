@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       appType: body.appType || '',
     };
 
-    const result = await client.create(lead);
+    const result = await serverClient.create(lead);
 
     return NextResponse.json({ success: true, data: result });
   } catch (error) {

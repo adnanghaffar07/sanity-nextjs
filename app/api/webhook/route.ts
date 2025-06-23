@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 import { NextRequest, NextResponse } from "next/server";
 
 const serviceKeywordMap: Record<string, string> = {
@@ -30,13 +30,13 @@ function detectClientType(text: string): string {
 
 async function deletePakistaniMeetings() {
   try {
-    const meetingIds = await client.fetch(
+    const meetingIds = await serverClient.fetch(
       `*[_type == "calendlyMeeting" && array::join(notes, " ") match "*+92*"]._id`
     );
 
     if (meetingIds.length > 0) {
       console.log("🗑️ Deleting Pakistani meetings:", meetingIds);
-      await client.delete(meetingIds);
+      await serverClient.delete(meetingIds);
     }
   } catch (error) {
     console.error("❌ Error deleting Pakistani meetings:", error);
@@ -68,7 +68,7 @@ async function processMeeting(meetingData: any) {
 
   console.log("📤 Creating document in Sanity:", meetingDoc);
 
-  return client.create(meetingDoc);
+  return serverClient.create(meetingDoc);
 }
 
 export async function POST(req: NextRequest) {

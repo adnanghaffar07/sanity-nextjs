@@ -1,5 +1,5 @@
 // app/api/webhook/route.ts
-import { client } from '@/sanity/lib/client';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 import { NextResponse } from 'next/server';
 
 const clientTypeMap: Record<string, string> = {
@@ -116,7 +116,7 @@ export async function POST(req: Request) {
     }
 
     // 📝 Create in Sanity
-    const created = await client.create({
+    const created = await serverClient.create({
       _type: 'calendlyMeeting',
       clientType: detectedType,
       name,

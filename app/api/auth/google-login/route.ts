@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library"; // Correct import
-import { client } from "@/sanity/lib/client";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const JWT_SECRET = process.env.JWT_SECRET!;
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     // Check if the user exists in Sanity
     const query = `*[_type == "user" && email == $email][0]`;
-    const existingUser = await client.fetch(query, { email });
+    const existingUser = await serverClient.fetch(query, { email });
 
     let userId = existingUser?._id;
 
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
         googleId: sub,
       };
 
-      const createdUser = await client.create(newUser);
+      const createdUser = await serverClient.create(newUser);
       userId = createdUser._id;
     }
 

@@ -1,15 +1,15 @@
 // /app/api/send-newsletter/route.ts
-import { client } from '@/sanity/lib/client';
 import { v4 as uuidv4 } from 'uuid';
 import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 
 async function fetchRecipients(groups: string[]) {
   const queries = groups.map(
     (group) => `*[_type == '${group}' && isUnsubscribed != true]{ name, email }`
   );
 
-  const results = await Promise.all(queries.map((q) => client.fetch(q)));
+  const results = await Promise.all(queries.map((q) => serverClient.fetch(q)));
   return Array.from(new Map(results.flat().map((r) => [r.email, r])).values());
 }
 
@@ -18,8 +18,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const {
       subject,
-      headline,
       introText,
+      contentBlocks,
       offerPrice,
       offerDetails,
       projectsList,
@@ -35,19 +35,22 @@ export async function POST(req: NextRequest) {
 
     // 2. Save newsletter content in Sanity
     const newsletterId = uuidv4();
-    await client.create({
+    await serverClient.create({
       _type: 'newsletter',
       _id: newsletterId,
       subject,
-      headline,
       introText,
+      contentBlocks: contentBlocks.map((item: any) => ({
+        ...item,
+        _key: uuidv4(),
+      })),
       offerPrice,
       offerDetails,
       projectsList,
-        pricingTable: pricingTable.map((item: any) => ({
-    ...item,
-    _key: uuidv4(),
-  })),
+      pricingTable: pricingTable.map((item: any) => ({
+        ...item,
+        _key: uuidv4(),
+      })),
       recipientGroups,
     });
 
@@ -64,13 +67,13 @@ export async function POST(req: NextRequest) {
 
     // 4. Send emails (batch if needed)
     const sendBatch = async (batch: any[]) => {
-            await Promise.all(batch.map(async (recipient) => {
-            try {
-                await transporter.sendMail({
-                    from: `"CodeAutomation.ai LLC" <${process.env.EMAIL_USER}>`,
-                    to: recipient.email,
-                    subject: subject,
-                    html: `
+      await Promise.all(batch.map(async (recipient) => {
+        try {
+          await transporter.sendMail({
+            from: `"CodeAutomation.ai LLC" <${process.env.EMAIL_USER}>`,
+            to: recipient.email,
+            subject: subject,
+            html: `
                     <!DOCTYPE html>
                     <html lang="en">
                     <head>
@@ -130,31 +133,32 @@ export async function POST(req: NextRequest) {
                  <body>
   <div class="email-container">
     <div class="email-header">
-      <h1>${headline}</h1>
+      <h1>${subject}</h1>
     </div>
 
     <div class="email-body">
       <p>Hi ${recipient.name},</p>
       <p>${introText}</p>
-
+   ${contentBlocks.map((block: { heading: string; description: string; }) => `
+        <h2>${block.heading}</h2>
+        <p>${block.description}</p>
+      `).join('')}
       <h3>${offerPrice}</h3>
       <p>${offerDetails}</p>
 
-      ${
-        projectsList && projectsList.length
-          ? `
+      ${projectsList && projectsList.length
+                ? `
         <h3>Recent Projects:</h3>
         <ul>
           ${projectsList.map((project: any) => `<li>${project}</li>`).join('')}
         </ul>
         <a href="https://codeautomation.ai/case-studies" target="_blank" class="cta-button">See More Projects</a>
         `
-          : ''
-      }
+                : ''
+              }
 
-      ${
-        pricingTable && pricingTable.length
-          ? `
+      ${pricingTable && pricingTable.length
+                ? `
         <h3>Pricing:</h3>
         <table class="pricing-table">
           <tr>
@@ -163,23 +167,23 @@ export async function POST(req: NextRequest) {
             <th>Monthly Cost</th>
           </tr>
           ${pricingTable
-            .map(
-              (item: { service: any; setupCost: any; monthlyCost: any }) => `
+                  .map(
+                    (item: { service: any; setupCost: any; monthlyCost: any }) => `
             <tr>
               <td>${item.service}</td>
               <td class="highlight-cell">${item.setupCost}</td>
               <td class="highlight-cell">${item.monthlyCost}</td>
             </tr>
           `
-            )
-            .join('')}
+                  )
+                  .join('')}
         </table>
         <p>This pricing is available for a limited time. Secure your app development today!</p>
         `
-          : ''
-      }
+                : ''
+              }
 
-      <p>I’d love to discuss how we can make your app a reality. Let’s set up a quick call. When would be a good time for you?</p>
+      <p>We’d love to discuss how we can make your app a reality. Let’s set up a quick call. When would be a good time for you?</p>
     <div style="display: flex; gap: 10px; justify-content: center; margin: 30px 0;">
   <a href="https://calendly.com/adnanghaffar" target="_blank"
      style="display: inline-block; padding: 10px 24px; background-color: #1a73e8; color: #ffffff; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 6px;">
@@ -190,8 +194,6 @@ export async function POST(req: NextRequest) {
     Claim Your Offer
   </a>
 </div>
-
-
     <!-- Footer Section -->
     <div class="email-footer">
       <div class="social-icons">
@@ -223,11 +225,11 @@ export async function POST(req: NextRequest) {
 
                     </html>
                     `,
-                });
-            } catch (error) {
-                console.error(`Failed to send email to ${recipient.email}:`, error);
-            }
-        }));
+          });
+        } catch (error) {
+          console.error(`Failed to send email to ${recipient.email}:`, error);
+        }
+      }));
     };
 
     const BATCH_SIZE = 10;
@@ -236,9 +238,9 @@ export async function POST(req: NextRequest) {
     }
 
     console.log(
-  `📧 Successfully attempted sending to ${recipients.length} recipients:\n`,
-  recipients.map((r) => r.email).join(', ')
-);
+      `📧 Successfully attempted sending to ${recipients.length} recipients:\n`,
+      recipients.map((r) => r.email).join(', ')
+    );
 
     return NextResponse.json({ message: 'Newsletter sent and saved.' }, { status: 200 });
   } catch (error) {

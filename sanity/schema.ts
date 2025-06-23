@@ -27,7 +27,6 @@ import paymentPlan from "./schemas/payment-plan";
 import table from "./schemas/table";
 import youtubeEmbed from "./schemas/youtubeEmbed";
 import blockContent from "./schemas/blockContent";
-import metaLeads from "./schemas/metaLeads";
 import fbMetaLeads from "./schemas/fb-meta-leads";
 import resume from "./schemas/resume";
 

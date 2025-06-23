@@ -32,7 +32,7 @@ const HeroVideo = () => {
       preload="metadata"
       poster="/hero.jpg"
     >
-      <source src="/hero-sec-video.webm" type="video/webm" />
+      {/* <source src="/hero-sec-video.webm" type="video/webm" /> */}
       <source src="/hero-sec-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
