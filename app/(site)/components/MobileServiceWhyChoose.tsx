@@ -48,7 +48,7 @@ export default function WhyChoose() {
   return (
     <section className="bg-[#E6F3FF] py-16 px-4 text-center">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Why Choose Code Automation?</h2>
-      <p className="text-gray-700 mb-10 text-lg">Here's What You Get:</p>
+      <p className="text-gray-700 mb-10 text-lg">Here&apos;s What You Get:</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {features.map((feature, index) => (
