@@ -194,8 +194,6 @@ export async function POST(req: NextRequest) {
     Claim Your Offer
   </a>
 </div>
-
-
     <!-- Footer Section -->
     <div class="email-footer">
       <div class="social-icons">
