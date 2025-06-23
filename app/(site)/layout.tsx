@@ -22,6 +22,7 @@ const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToT
 const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://codeautomation.ai"), // ✅ Add this line
   title: "Software Development Company in the USA | CodeAutomation",
   description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
   keywords: ["CodeAutomation", "software development company", "software development services"],
@@ -84,25 +85,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* ✅ Lazy load third-party scripts post-LCP */}
           <Script id="defer-scripts" strategy="afterInteractive">
             {`
-              requestIdleCallback(() => {
-                // TikTok
-                !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D0N3L93C77U7M2KJ8B60');ttq.page();
-                
-                // Facebook
-                !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1960013544428790'); fbq('track', 'PageView');
+    requestIdleCallback(() => {
+      // TikTok
+      !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D0N3L93C77U7M2KJ8B60');ttq.page();
 
-                // Google Analytics
-                const gtagScript = document.createElement("script");
-                gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=AW-11436659671";
-                gtagScript.async = true;
-                document.head.appendChild(gtagScript);
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'AW-11436659671');
-              });
-            `}
+      // Facebook
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1960013544428790'); fbq('track', 'PageView');
+
+     // Google Tag (gtag.js) for G-5B9TVBY53Q
+const gtagScript = document.createElement("script");
+gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-5B9TVBY53Q";
+gtagScript.async = true;
+document.head.appendChild(gtagScript);
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-5B9TVBY53Q');
+
+    });
+  `}
           </Script>
+
           {/* ✅ Page Content */}
           <div className="flex flex-col bg-white relative">
             <HomeNavigationContainer />
