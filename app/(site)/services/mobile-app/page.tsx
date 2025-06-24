@@ -191,15 +191,13 @@ export default function HeroSection() {
         <div className="relative z-10 px-6 md:px-16 lg:px-24 mt-24 grid grid-cols-1 lg:grid-cols-3 gap-10 items-center min-h-[90vh]">
           {/* Left - Video or Image */}
           <div className="flex justify-center items-center">
-            <video
+            <img
               className="w-[300px] md:w-[400px] lg:w-[450px]"
-              src="/banner video.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
+              src="/mobile-banner-image.png" // Replace with your actual image path
+              alt="Banner"
             />
           </div>
+
 
           {/* Middle - Text Content */}
           <div className="text-white space-y-6 text-center md:mt-12 2xl:mt-3 lg:text-left">
@@ -494,7 +492,7 @@ export default function HeroSection() {
             <h3 className="text-xl max-w-sm font-bold">Limited slots available — claim your free consultation now.</h3>
             <p className="text-gray-600 mb-6 max-w-md">
               Our calendar fills up fast because startups trust us to deliver fast, reliable results.      </p>
-            <div className="flex gap-4 flex-wrap">              
+            <div className="flex gap-4 flex-wrap">
               <a
                 href="https://calendly.com/adnanghaffar"
                 target="_blank"
