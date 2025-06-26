@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     // Send to internal team
     await transporter.sendMail({
       from: `"Meta Lead Bot" <${process.env.EMAIL_USER}>`,
-      to: "ayesha@codeautomation.dev",
+      to: teamEmail,
       subject: '🚨 New Lead Submitted',
       html: `
       <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 40px;">
