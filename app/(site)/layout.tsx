@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           })}
         </Script>
         {/* Tawk.to Live Chat */}
-        <Script
+{/*         <Script
           id="tawkto-widget"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               })();
             `,
           }}
-        />
+        /> */}
       </head>
       <body className={inter.className}>
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
