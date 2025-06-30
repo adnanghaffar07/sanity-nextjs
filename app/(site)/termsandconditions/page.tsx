@@ -78,6 +78,7 @@ const TermsPage = async () => {
 
       {/* Content Section */}
       <div className="mt-10 max-w-4xl mx-auto px-6 py-10 bg-white shadow-md rounded-lg mb-10">
+        <h1 className="text-center text-4xl font-bold mb-6">{data.title}</h1>
         {data.lastUpdated && (
           <p className="text-gray-600 mb-4">
             Last updated: {format(new Date(data.lastUpdated), 'MMMM dd, yyyy')}
