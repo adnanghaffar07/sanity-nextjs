@@ -29,10 +29,12 @@ import youtubeEmbed from "./schemas/youtubeEmbed";
 import blockContent from "./schemas/blockContent";
 import fbMetaLeads from "./schemas/fb-meta-leads";
 import resume from "./schemas/resume";
+import terms from "./schemas/terms";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     fbMetaLeads,
+    terms,
     blog,
     careers,
     technologies,
