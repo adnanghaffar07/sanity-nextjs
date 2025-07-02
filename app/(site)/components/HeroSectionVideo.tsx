@@ -1,7 +1,20 @@
-"use client";
-import { useEffect, useState } from "react";
+// "use client";
+// import { useEffect, useState } from "react";
 
 const HeroVideo = () => {
+  // Temporarily force image to test performance
+  return (
+    <img
+      src="/ca-banner.jpg"
+      alt="hero background"
+      className="absolute top-0 left-0 w-full h-full object-cover"
+      width="1920"
+      height="1080"
+    />
+  );
+
+  // 👇 This is the original code, commented out for now
+  /*
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,11 +45,11 @@ const HeroVideo = () => {
       preload="metadata"
       poster="/hero.jpg"
     >
-      {/* <source src="/hero-sec-video.webm" type="video/webm" /> */}
       <source src="/hero-sec-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );
+  */
 };
 
 export default HeroVideo;

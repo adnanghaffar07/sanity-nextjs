@@ -30,6 +30,8 @@ import blockContent from "./schemas/blockContent";
 import fbMetaLeads from "./schemas/fb-meta-leads";
 import resume from "./schemas/resume";
 import terms from "./schemas/terms";
+import mobileQuoteLead from "./schemas/mobile-quote-lead";
+import mobileServiceHeroForm from "./schemas/mobileServiceHeroForm";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -56,7 +58,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     newsLetter,
     paymentProposal,
     testing,
-    paymentPlan, youtubeEmbed,  blockContent,  contactForm,
-    calendlyMeeting, resume
+    paymentPlan, youtubeEmbed, blockContent, contactForm,
+    calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm
   ],
 };

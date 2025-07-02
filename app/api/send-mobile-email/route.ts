@@ -1,9 +1,23 @@
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
     try {
         const { name, email, contact_number, looking, message } = await req.json();
+
+  // 1. Save to Sanity
+    await serverClient.create({
+      _type: 'mobileServiceHero',
+      name,
+      email,
+      contact_number,
+      looking,
+      message,
+      source: "Mobile Service Hero Form", // ✅ Specific source
+      submittedAt: new Date().toISOString(),
+    });
+
 
         // ✅ Configure transporter
         const transporter = nodemailer.createTransport({

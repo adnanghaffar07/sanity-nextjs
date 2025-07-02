@@ -1,5 +1,9 @@
 // components/WhyChoose.tsx
+'use client';
 import Image from 'next/image';
+import QuoteModal from './MobileQuoteModal';
+import { useState } from 'react';
+
 
 const features = [
   {
@@ -45,6 +49,8 @@ const features = [
 ];
 
 export default function WhyChoose() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return (
     <section className="bg-[#E6F3FF] py-16 px-4 text-center">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Why Choose Code Automation?</h2>
@@ -69,15 +75,14 @@ export default function WhyChoose() {
           </div>
         ))}
       </div>
-      <a
-        href="https://calendly.com/adnanghaffar"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="mt-10 px-6 py-3 bg-[#2196f3] hover:bg-blue-600 text-white font-semibold rounded-md"
       >
-        <button className="mt-10 px-6 py-3 bg-[#2196f3] hover:bg-blue-600 text-white font-semibold rounded-md">
-          Get Your Free Consultation
-        </button>
-      </a>
+        Get Your Free Consultation
+      </button>
+       <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      
     </section>
   );
 }
