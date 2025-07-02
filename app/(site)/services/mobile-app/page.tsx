@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import Image from "next/image";
 import MobileForm from "../../components/mobile-service-form";
@@ -6,8 +7,9 @@ import PortfolioSection from "../../components/MobilePortfolioSection";
 import WhyChoose from "../../components/MobileServiceWhyChoose";
 import CategoryTabs from "../../components/MobileServiceApps";
 import FaqSection from "../../components/MobileServiceFaq";
-import ButtonScrollToSection from "../../components/ButtonScrollToSection";
-
+import { useState } from 'react';
+import QuoteModal from "../../components/MobileQuoteModal";
+import LiveChatTawk from "../../components/LiveChatTawk";
 
 const categories = {
   "On Demand": [
@@ -178,44 +180,46 @@ const techCategories = {
 
 
 export default function HeroSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
+  const [isFloatingDrawerOpen, setIsFloatingDrawerOpen] = useState(false);
+
+
 
   return (
     <section>
-
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+      <LiveChatTawk />
+      <div className="relative w-full font-light text-white overflow-hidden pb-12 lg:min-h-[700px]">
         <img
-          className="absolute top-0 left-0 object-cover inset-0 size-full"
+          className="absolute top-0 left-0 w-full h-full object-cover"
           src="/mobile-app-bg.jpeg"
           alt="Services"
         />
-        <div className="relative z-10 px-6 md:px-16 lg:px-24 mt-24 grid grid-cols-1 lg:grid-cols-3 gap-10 items-center min-h-[90vh]">
-          {/* Left - Video or Image */}
+
+        <div className="relative z-10 px-4 sm:px-6 md:px-16 lg:px-24 mt-32 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start min-h-[60vh]">
+          {/* Left - Image */}
           <div className="flex justify-center items-center">
             <img
-              className="w-[300px] md:w-[400px] lg:w-[450px]"
-              src="/mobile-banner-image.png" // Replace with your actual image path
+              className="w-[250px] sm:w-[300px] md:w-[400px] lg:w-[450px] lg:-mb-[180px]"
+              src="/mobile-banner-image.png"
               alt="Banner"
             />
           </div>
 
-
-          {/* Middle - Text Content */}
-          <div className="text-white space-y-6 text-center md:mt-12 2xl:mt-3 lg:text-left">
-            <h1 className="text-3xl md:text-4xl text-center text-white font-bold">
+          {/* Middle - Text */}
+          <div className="text-white space-y-6 text-center lg:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
               Custom Mobile App Development Services
             </h1>
-            <p className="text-lg md:text-xl text-center">
+            <p className="text-base sm:text-lg md:text-xl">
               We help entrepreneurs and businesses turn <span className="font-semibold">APP</span> ideas into reality.
             </p>
 
             <div className="grid grid-cols-1 gap-4 text-sm">
               {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-start space-x-2"
-                >
-                  <div className="w-5 h-5 mt-1 text-yellow-400">
-                    <Image src={feature.icon ?? "/default-icon.png"} alt={feature.tag} width={32} height={32} />
+                <div key={index} className="flex items-start space-x-2">
+                  <div className="w-8 h-8 text-yellow-400">
+                    <Image src={feature.icon ?? "/default-icon.png"} alt={feature.tag} width={52} height={52} />
                   </div>
                   <div>
                     <span className="inline-block bg-[#F7E022] text-black font-medium text-xs px-2 py-0.5 rounded">
@@ -226,13 +230,17 @@ export default function HeroSection() {
                 </div>
               ))}
             </div>
-            <a href="tel:+18505584691" className="text-xl mt-6 flex items-center text-white space-x-2 hover:text-yellow-400 transition-colors">
+
+            <a
+              href="tel:+18505584691"
+              className="text-lg sm:text-xl mt-6 flex font-bold items-center justify-center lg:justify-start space-x-2 text-white hover:text-yellow-400 transition-colors"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                className="w-6 h-6 text-white"
+                className="w-6 sm:w-8 h-6 sm:h-8"
               >
                 <path
                   strokeLinecap="round"
@@ -244,14 +252,105 @@ export default function HeroSection() {
               <span>+1-850-558-4691</span>
             </a>
 
+            <div className="mt-2 flex flex-row items-center justify-center lg:justify-start space-x-3 text-white text-base">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
+                    (window as any).Tawk_API.toggle();
+                  } else {
+                    console.warn('Tawk_API not ready yet.');
+                  }
+                }}
+                className="hover:text-yellow-400 underline transition-colors mb-2  text-center sm:text-left"
+              >
+                Start A Live Chat
+              </a>
+              <span className="sm:inline">|</span>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="hover:text-yellow-400 mb-2 underline transition-colors text-left"
+              >
+                Request a Free Quote
+              </button>
+            </div>
+
+            <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
 
           {/* Right - Contact Form */}
-          <MobileForm />
+          <section id="form" className="w-full">
+            <MobileForm />
+          </section>
+
         </div>
       </div>
+
+      {/* Notification */}
+
+      {!isModalOpen && !isFloatingDrawerOpen && showNotification && (
+        <div className="fixed bottom-6 left-6 z-[9999] bg-white rounded-2xl shadow-xl border border-gray-300 p-4 w-[250px] sm:w-[360px]">
+          {/* ❌ Close Button */}
+          <button
+            onClick={() => setShowNotification(false)}
+            className="absolute top-2 right-3 text-gray-500 hover:text-black text-xl"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+
+          {/* Header */}
+          <h3 className="text-lg font-semibold text-gray-800 mb-3">Need Help?</h3>
+
+          {/* Body */}
+          <div className="flex items-center">
+            <img
+              src="/ceo-adnan.png"
+              alt="CEO"
+              className="w-14 h-14 rounded-full object-cover border-2 border-yellow-400 mb-4 mr-4"
+            />
+
+            <div className="flex">
+              <p className="text-sm text-gray-700 mb-3">
+                Our CEO is happy to assist you directly. Start a chat or schedule a call now.
+              </p>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
+                  (window as any).Tawk_API.toggle();
+                } else {
+                  alert("Chat is loading, please try again shortly.");
+                }
+              }}
+              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"
+            >
+              💬 Start Chat
+            </button>
+
+            <a
+              href="https://cal.com/adnan-ghaffar/mobile-service"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-medium py-2 px-4 rounded-lg text-center transition"
+            >
+              Book a Meeting
+            </a>
+          </div>
+        </div>
+      )}
+
       {/* Sticky Floating Button */}
-      <FloatingConsultButton />
+      <FloatingConsultButton
+        isModalOpen={isModalOpen}
+        setIsFloatingDrawerOpen={setIsFloatingDrawerOpen}
+      />
+
 
       <section className="bg-white py-16 px-4 lg:px-20 text-center">
         <h3 className="text-lg text-gray-600 mb-1">Our Services</h3>
@@ -308,12 +407,12 @@ export default function HeroSection() {
         {/* CTA Button */}
         <div className="mt-12">
           <a
-            href="https://calendly.com/adnanghaffar"
+            href="https://cal.com/adnan-ghaffar/mobile-service"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#1D92FB] hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-md transition duration-300"
           >
-            Contact Us
+            Schedule a Call
           </a>
         </div>
       </section>
@@ -357,15 +456,13 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="mt-16">
-          <ButtonScrollToSection
-            classes="bg-[#1D92FB] hover:bg-blue-600 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300"
-            content="LET’S TALK"
-            key="first-button"
-            destination="contact-box"
-          />
-        </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-[#1D92FB] hover:bg-blue-600 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300"
+        >
+          LET’S TALK
+        </button>
+
       </section>
       <PortfolioSection />
       {/* Expert in Android & iOS App Development Services */}
@@ -407,15 +504,11 @@ export default function HeroSection() {
         <p className="text-gray-700 mt-12 font-bold">
           Our cross-platform app development approach ensures scalable, secure, and user-friendly apps across these categories.
         </p>
-        <a
-          href="https://calendly.com/adnanghaffar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
-            LET’S TALK
-          </button>
-        </a>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
+          LET’S TALK
+        </button>
       </section>
       <WhyChoose />
       {/* TEch STack */}
@@ -449,16 +542,11 @@ export default function HeroSection() {
             </div>
           ))}
         </div>
-
-        <a
-          href="https://calendly.com/adnanghaffar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
-            LET’S TALK
-          </button>
-        </a>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
+          LET’S TALK
+        </button>
       </section>
       <CategoryTabs />
       {/* Call to Action */}
@@ -494,26 +582,33 @@ export default function HeroSection() {
               Our calendar fills up fast because startups trust us to deliver fast, reliable results.      </p>
             <div className="flex gap-4 flex-wrap">
               <a
-                href="https://calendly.com/adnanghaffar"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
+                    (window as any).Tawk_API.toggle(); // Open/close the widget
+                  } else {
+                    console.warn('Tawk_API not ready yet.');
+                  }
+                }}
+                className="bg-[#1D92FB] text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+              >
+                Start Live Chat
+              </a>
+              <a
+                href="https://cal.com/adnan-ghaffar/mobile-service"
                 target="_blank"
+                className="bg-[#F7E022] text-black px-6 py-3 cursor-pointer rounded-md font-semibold hover:bg-yellow-300 transition"
                 rel="noopener noreferrer"
               >
-                <button className="bg-[#1D92FB] text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition">
-                  Get Your Free Consultation
-                </button>
+                Talk to an Expert Now
               </a>
-              <ButtonScrollToSection
-                classes="bg-[#F7E022] text-black px-6 py-3 cursor-pointer rounded-md font-semibold hover:bg-yellow-300 transition"
-                content=" Talk to an Expert Now"
-                key="first-button"
-                destination="contact-box"
-              />
             </div>
           </div>
         </div>
 
         {/* Mobile Image (outside the container, overlaps downward) */}
-        <div className="absolute bottom-0 right-32 translate-y-1/12 hidden md:block z-20">
+        <div className="absolute bottom-0 right-32 translate-y-1/12 hidden md:block z-10">
           <Image
             src="/cta-mobile.png"
             alt="Mobile device"
@@ -526,7 +621,7 @@ export default function HeroSection() {
       {/* Faq Section */}
       <FaqSection />
 
-    </section>
+    </section >
 
   );
 }

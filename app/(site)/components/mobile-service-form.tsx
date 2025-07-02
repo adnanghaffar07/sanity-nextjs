@@ -93,14 +93,14 @@ export default function MobileForm() {
   });
 
   return (
-    <div className="flex justify-center items-center px-6 pt-6 pb-6 bg-[#001E6B] shadow-lg rounded-[24px] border border-slate-300">
-      <div className="flex flex-col w-full max-w-[700px]">
-        <p className="text-2xl font-medium text-white">Need a Consultation?</p>
+    <div className="flex justify-center items-center max-w-[400px] mx-auto bg-[#001E6B] shadow-lg rounded-[18px] border border-slate-300">
+      <div className="w-full max-w-md mx-auto px-3 py-6 shadow-lg rounded-2xl sm:px-4">
+        <p className="text-2xl font-medium text-white">Let&apos;s Start your Project</p>
         <p className="text-lg font-medium text-white mb-2">Drop us a line!</p>
 
         <form onSubmit={formik.handleSubmit} className="space-y-4">
           <input
-            className="border-2 px-4 py-3 rounded-lg shadow-sm w-full text-sm text-black"
+            className="border-2 px-4 py-1 rounded-lg shadow-sm w-full text-sm text-black"
             placeholder="Name"
             name="name"
             value={formik.values.name}
@@ -115,7 +115,7 @@ export default function MobileForm() {
               value={formik.values.contact_number}
               onChange={(value) => formik.setFieldValue("contact_number", value)}
               onBlur={() => formik.setFieldTouched("contact_number", true)}
-              inputClass="!w-full border-2 px-4 !py-3 !rounded-lg !shadow-sm !text-black !text-sm"
+              inputClass="!w-full border-2 px-4 !py-1 !rounded-lg !shadow-sm !text-black !text-sm"
               containerClass="!w-full"
               buttonClass="!bg-white !border-gray-300"
               placeholder="Enter your phone number"
@@ -126,7 +126,7 @@ export default function MobileForm() {
           </div>
 
           <input
-            className="border-2 px-4 py-3 rounded-lg shadow-sm w-full text-sm text-black"
+            className="border-2 px-4 py-1 rounded-lg shadow-sm w-full text-sm text-black"
             placeholder="Email"
             name="email"
             value={formik.values.email}
@@ -136,7 +136,7 @@ export default function MobileForm() {
           />
 
           <input
-            className="border-2 px-4 py-3 rounded-lg shadow-sm w-full text-sm text-black"
+            className="border-2 px-4 py-1 rounded-lg shadow-sm w-full text-sm text-black"
             placeholder="What are you looking for?"
             name="looking"
             value={formik.values.looking}
@@ -146,7 +146,7 @@ export default function MobileForm() {
           />
 
           <textarea
-            className="border-2 px-4 py-3 rounded-lg shadow-sm w-full text-sm text-black resize-none"
+            className="border-2 px-4 py-1 rounded-lg shadow-sm w-full text-sm text-black resize-none"
             placeholder="Your Message"
             name="message"
             value={formik.values.message}
@@ -167,9 +167,8 @@ export default function MobileForm() {
           <button
             type="submit"
             disabled={uploading}
-            className={`w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-xl text-lg font-semibold shadow-md ${
-              uploading ? "cursor-not-allowed opacity-70" : ""
-            }`}
+            className={`w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2 rounded-xl text-lg font-semibold shadow-md ${uploading ? "cursor-not-allowed opacity-70" : ""
+              }`}
           >
             {uploading ? "Submitting..." : "Submit"}
           </button>

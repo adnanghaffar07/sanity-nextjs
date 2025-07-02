@@ -36,7 +36,23 @@ const HomePageSlider = () => {
           </p>
         </div>
       </SwiperSlide>
-
+      {/* ✅ New Slide: AI Agent Developers */}
+      <SwiperSlide>
+        <div>
+          <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
+            <h2 className="title capitalize" style={{ lineHeight: "1" }}>
+              AI Agent Developers for Next-Gen Automation
+            </h2>
+          </div>
+          <p
+            className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
+            style={{ lineHeight: "1.3" }}
+          >
+            Leverage cutting-edge AI agents to automate tasks, boost productivity,
+            and power intelligent decision-making with CodeAutomation.ai’s expert AI developers.
+          </p>
+        </div>
+      </SwiperSlide>
       <SwiperSlide>
         <div>
           <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">

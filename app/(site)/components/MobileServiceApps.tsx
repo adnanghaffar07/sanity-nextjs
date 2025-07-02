@@ -92,12 +92,12 @@ export default function CategoryTabs() {
                     <p className="text-gray-700">{tabs[activeIndex].description}</p>
                 </div>
                 <div className="mt-16">
-                    <ButtonScrollToSection
-                        classes="bg-[#1D92FB] hover:bg-blue-600 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300"
-                        content="Contact Us"
-                        key="first-button"
-                        destination="contact-box"
-                    />
+                    <a
+                        href="tel:+18505584691"
+                        className="bg-[#1D92FB] hover:bg-blue-600 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300 inline-block"
+                    >
+                        Contact Us
+                    </a>
                 </div>
             </div>
 
