@@ -1,0 +1,14 @@
+User-agent: *
+
+# Disallow sensitive or non-public folders
+Disallow: /studio/
+Disallow: /api/
+
+# Allow everything else
+Allow: /
+
+# Host
+Host: https://www.codeautomation.ai
+
+# Sitemap
+Sitemap: https://www.codeautomation.ai/sitemap.xml
