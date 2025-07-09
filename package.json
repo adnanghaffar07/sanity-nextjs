@@ -76,6 +76,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/estree": "^1.0.8",
     "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "20.12.7",
@@ -86,6 +87,7 @@
     "@types/react-scroll": "^1.8.10",
     "@types/react-slick": "^0.23.13",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@types/tedious": "^18.0.0",
     "autoprefixer": "^10.4.17",
     "eslint": "^8",
     "eslint-config-next": "^14.1.3",

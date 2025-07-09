@@ -46,6 +46,11 @@ const nextConfig = {
         destination: "/services/custom-cms-development-services",
         permanent: true,
       },
+       {
+        source: "/services/custom-web-cms",
+        destination: "/services/custom-cms-development-services",
+        permanent: true,
+      },
       {
         source: "/services/headless-cms",
         destination: "/services/headless-cms-development-services",
@@ -69,6 +74,11 @@ const nextConfig = {
       {
         source: "/services/mobile-app-development",
         destination: "/services/mobile-app-development-services",
+        permanent: true,
+      },
+        {
+        source: "/services/mobile-app-development-services",
+        destination: "/services/mobile-app",
         permanent: true,
       },
       {
