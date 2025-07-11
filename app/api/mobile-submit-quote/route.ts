@@ -27,14 +27,14 @@ export async function POST(req: Request) {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Use App Password
+        user: 'ayesha@codeautomation.dev',
+        pass: 'eexg jiwa qqki mtyx',
       },
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "ayesha@codeautomation.dev",
+      from: 'ayesha@codeautomation.dev',
+      to: "adnan@codeautomation.dev",
       subject: 'New Quote Request',
       html: `
         <h3>New Quote Request via ${source}</h3>

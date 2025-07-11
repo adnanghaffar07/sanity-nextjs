@@ -6,6 +6,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { useRouter } from 'next/navigation';
+
 
 // ✅ Dynamic import for reCAPTCHA
 const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
@@ -18,7 +20,7 @@ export default function MobileForm() {
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [isRecaptchaVisible] = useState(true);
-
+  const router = useRouter();
   const onRecaptchaChange = (value: string | null) => {
     if (!value) {
       setErrorRecaptcha("Please verify the reCAPTCHA.");
@@ -58,38 +60,31 @@ export default function MobileForm() {
 
       setUploading(true);
       try {
-        const formData = new FormData();
-        formData.append("name", values.name);
-        formData.append("email", values.email);
-        formData.append("number", values.contact_number);
-        formData.append("looking", values.looking);
-        formData.append("message", values.message);
-
-        // Send email
-        await fetch("/api/send-mobile-email", {
+        const res = await fetch("/api/send-mobile-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...values }),
         });
 
-        // Save to Sanity
-        await fetch("/api/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...values, recaptcha_value: recaptchaValue }),
-        });
+        if (res.ok) {
+          router.push("/thank-you-mobile-app");
+        } else {
+          const error = await res.json();
+          console.error("Submission failed:", error);
+          alert("Something went wrong. Please try again.");
+        }
 
         resetForm();
         setRecaptchaValue("");
         recaptchaRef.current?.reset();
-        // alert("Form submitted!");
       } catch (error) {
         alert("Submission failed.");
         console.error(error);
       } finally {
         setUploading(false);
       }
-    },
+    }
+
   });
 
   return (

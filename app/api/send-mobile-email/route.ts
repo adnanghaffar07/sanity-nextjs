@@ -6,17 +6,17 @@ export async function POST(req: Request) {
     try {
         const { name, email, contact_number, looking, message } = await req.json();
 
-  // 1. Save to Sanity
-    await serverClient.create({
-      _type: 'mobileServiceHero',
-      name,
-      email,
-      contact_number,
-      looking,
-      message,
-      source: "Mobile Service Hero Form", // ✅ Specific source
-      submittedAt: new Date().toISOString(),
-    });
+        // 1. Save to Sanity
+        await serverClient.create({
+            _type: 'mobileServiceHero',
+            name,
+            email,
+            contact_number,
+            looking,
+            message,
+            source: "Mobile Service Hero Form", // ✅ Specific source
+            submittedAt: new Date().toISOString(),
+        });
 
 
         // ✅ Configure transporter
@@ -25,14 +25,14 @@ export async function POST(req: Request) {
             port: 465,
             secure: true,
             auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
+                user: 'ayesha@codeautomation.dev',
+                pass: 'eexg jiwa qqki mtyx',
             },
         });
 
         // ✅ Compose email
         const mailOptions = {
-            from: `"CA Website Mobile Service Form" <${process.env.TEAM_EMAIL_USER}>`,
+            from: `"CA Website Mobile Service Form" <ayesha@codeautomation.dev>`,
             to: ["adnan@codeautomation.dev"], // 💡 Add your team emails here
             subject: `New Contact Form Submission - ${name}`,
             html: `
@@ -48,11 +48,17 @@ export async function POST(req: Request) {
 
         // ✅ Send email
         await transporter.sendMail(mailOptions);
+        const result = await transporter.sendMail(mailOptions);
+        console.log("Nodemailer response:", result);
 
         return NextResponse.json({ message: "Email sent to team successfully." }, { status: 200 });
 
-    } catch (error) {
-        console.error("Failed to send email:", error);
-        return NextResponse.json({ message: "Failed to send email.", error }, { status: 500 });
+    } catch (error: any) {
+        console.error("Failed to send email:", error?.message || error);
+        return NextResponse.json({
+            message: "Failed to send email.",
+            error: error?.message || "Unknown error"
+        }, { status: 500 });
     }
+
 }
