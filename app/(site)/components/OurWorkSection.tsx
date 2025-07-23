@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { number } from "yup";
 
 const OurWorkSection = () => {
   const [startIndex, setStartIndex] = useState(0);
