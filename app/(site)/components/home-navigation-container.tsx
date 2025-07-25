@@ -121,7 +121,7 @@ export default function HomeNavigationContainer() {
               onClick={toggleMenu}
               className="flex flex-row items-center w-full text-lg px-4 py-2 mt-2 md:w-auto md:inline md:mt-0"
             >
-                <span className="hover:underline text-white cursor-pointer ">Services</span>
+              <span className="hover:underline text-white cursor-pointer ">Services</span>
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
@@ -379,7 +379,7 @@ export default function HomeNavigationContainer() {
               onClick={toggleAbout}
               className="flex flex-row items-center text-lg w-full px-4 py-2 mt-2 md:w-auto md:inline md:mt-0"
             >
-                <span className="hover:underline text-white cursor-pointer">About Us</span>
+              <span className="hover:underline text-white cursor-pointer">About Us</span>
               <svg
                 fill="white"
                 viewBox="0 0 20 20"
@@ -453,7 +453,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
                         </div>
                       </Link> */}
-                        <Link
+                      <Link
                         href="/about/industries"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -523,6 +523,24 @@ export default function HomeNavigationContainer() {
                         <div className="ml-3">
                           <p className="text-base font-medium text-black">Happy Clients</p>
                           <p className="mt-1 text-sm text-gray-500">Trusted Partnerships</p>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/about/ai-tools-for-website-and-app-development"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/aperture-sharp.svg"
+                            alt="AI Tools"
+                            height={12}
+                            width={12}
+                            className="text-black size-8 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-base font-medium text-black">AI Tools</p>
+                          <p className="mt-1 text-sm text-gray-500">Web & App Dev</p>
                         </div>
                       </Link>
                     </div>
@@ -843,6 +861,23 @@ export default function HomeNavigationContainer() {
                                   </Link>
                                 </p>
                               </li> */}
+                                <li>
+                                <Link
+                                  href="/about/ai-tools-for-website-and-app-development"
+                                  className="heading"
+                                  onClick={handleToggleMenuIcon}
+                                >
+                                  AI Tools
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/about/ai-tools-for-website-and-app-development"
+                                    onClick={handleToggleMenuIcon}
+                                  >
+                                    Web & App Dev
+                                  </Link>
+                                </p>
+                              </li>
                               <li>
                                 <Link
                                   href="/partnership-program"
