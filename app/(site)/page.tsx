@@ -297,7 +297,7 @@ export default function Home() {
         <img
           loading="lazy"
           src="/ellipse-1.png"
-          className="aspect-[1.22] absolute left-0 top-0 lg:block hidden"
+          className="w-40 absolute left-0 top-0 lg:block hidden"
           alt="ellipse"
         />
         <img
