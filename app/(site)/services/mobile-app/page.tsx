@@ -290,33 +290,23 @@ export default function HeroSection() {
       {/* Notification */}
 
       {!isModalOpen && !isFloatingDrawerOpen && showNotification && (
-        <div className="fixed bottom-6 left-6 z-[9999] bg-white rounded-2xl shadow-xl border border-gray-300 p-4 w-[250px] sm:w-[360px]">
+        <div className="fixed bottom-6 left-6 z-[9999] bg-white rounded-2xl shadow-lg border border-gray-200 p-5 w-[250px] sm:w-[360px]">
           {/* ❌ Close Button */}
           <button
             onClick={() => setShowNotification(false)}
-            className="absolute top-2 right-3 text-gray-500 hover:text-black text-xl"
+            className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl"
             aria-label="Close"
           >
             &times;
           </button>
 
           {/* Header */}
-          <h3 className="text-lg font-semibold text-gray-800 mb-3">Need Help?</h3>
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Need Help?</h3>
 
           {/* Body */}
-          <div className="flex items-center">
-            <img
-              src="/ceo-adnan.png"
-              alt="CEO"
-              className="w-14 h-14 rounded-full object-cover border-2 border-yellow-400 mb-4 mr-4"
-            />
-
-            <div className="flex">
-              <p className="text-sm text-gray-700 mb-3">
-                Our CEO is happy to assist you directly. Start a chat or schedule a call now.
-              </p>
-            </div>
-          </div>
+          <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+            Talk to our team. Start a chat or schedule a call now.
+          </p>
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
@@ -328,8 +318,7 @@ export default function HeroSection() {
                   alert("Chat is loading, please try again shortly.");
                 }
               }}
-              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"
-            >
+              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"    >
               💬 Start Chat
             </button>
 
@@ -337,12 +326,13 @@ export default function HeroSection() {
               href="https://cal.com/adnan-ghaffar/mobile-service"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-medium py-2 px-4 rounded-lg text-center transition"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-medium py-2 px-4 rounded-lg text-center shadow-md transition"
             >
               Book a Meeting
             </a>
           </div>
         </div>
+
       )}
 
       {/* Sticky Floating Button */}
