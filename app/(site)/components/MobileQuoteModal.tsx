@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 type QuoteModalProps = {
   isOpen: boolean;
@@ -18,6 +20,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const router = useRouter();
+
 
   useEffect(() => {
     if (isOpen) {
@@ -39,38 +43,42 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const { name, email, phone, message } = form;
-    if (!name || !email || !phone || !message) {
-      setError('Please fill in all fields.');
-      return;
-    }
+  const { name, email, phone, message } = form;
+  if (!name || !email || !phone || !message) {
+    setError('Please fill in all fields.');
+    return;
+  }
 
-    setSubmitting(true);
-    setError('');
-    setSuccess(false);
+  setSubmitting(true);
+  setError('');
+  setSuccess(false);
 
-    try {
-      const res = await fetch('/api/mobile-submit-quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          source: 'Request Free Quote Modal',
-        }),
-      });
+  try {
+    const res = await fetch('/api/mobile-submit-quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...form,
+        source: 'Request Free Quote Modal',
+      }),
+    });
 
-      if (!res.ok) throw new Error('Failed to submit form');
+    if (!res.ok) throw new Error('Failed to submit form');
 
-      setSuccess(true);
-      setForm({ name: '', email: '', phone: '', message: '' });
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    setSuccess(true);
+    setForm({ name: '', email: '', phone: '', message: '' });
+
+    // ✅ Redirect after success
+    router.push('/thank-you-mobile-app');
+  } catch (err) {
+    setError('Something went wrong. Please try again.');
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   if (!isOpen) return null;
 

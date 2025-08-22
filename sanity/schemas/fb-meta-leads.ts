@@ -3,32 +3,60 @@ export default {
   title: 'FB Meta Leads',
   type: 'document',
   fields: [
-    // 🔹 Basic Contact Info
+    // 🔹 Date
+    { 
+      name: 'creationDate', 
+      title: 'Date', 
+      type: 'datetime' 
+    },
+
+    // 🔹 Lead Information
     { name: 'name', title: 'Name', type: 'string' },
     { name: 'email', title: 'Email', type: 'string' },
     { name: 'phoneNumber', title: 'Phone Number', type: 'string' },
+    { name: 'company', title: 'Company', type: 'string' },
 
-    // 🔹 Business Info
-    { name: 'companyName', title: 'Company Name', type: 'string' },
-    { name: 'work', title: 'Work', type: 'string' }, // ✅ New: Work field
+    // 🔹 Lead Qualification Questions
+    { 
+      name: 'interests', 
+      title: 'People are interested in', 
+      type: 'string' 
+    },
+    { 
+      name: 'appType', 
+      title: 'What type of app do you need?', 
+      type: 'string' 
+    },
+    { 
+      name: 'appStage', 
+      title: 'What stage are you at with your app idea?', 
+      type: 'string' 
+    },
+    { 
+      name: 'budget', 
+      title: 'What is your estimated budget?', 
+      type: 'string' 
+    },
+    { 
+      name: 'startTimeline', 
+      title: 'When do you want to start the project?', 
+      type: 'string' 
+    },
+    { 
+      name: 'preferredContact', 
+      title: 'How would you prefer we contact you?', 
+      type: 'string' 
+    },
 
     // 🔹 Meta Campaign Info
     { name: 'campaignName', title: 'Campaign Name', type: 'string' },
-    { name: 'creationDate', title: 'Creation Date', type: 'date' },
 
-    // 🔹 Lead Qualification Questions
-    {
-      name: 'appType',
-      title: 'What type of app do you need?',
-      type: 'string',
-    },
- 
     // 🔹 Opt-Out Field
     {
       name: 'isUnsubscribed',
       title: 'Unsubscribed',
       type: 'boolean',
-      initialValue: false, // ✅ Better than default
+      initialValue: false,
     },
   ],
 };

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Phone } from 'lucide-react'; // or use any phone icon
+import { useRouter } from 'next/navigation';
+
 
 export default function FloatingConsultDrawer({
   isModalOpen,
@@ -22,6 +24,7 @@ export default function FloatingConsultDrawer({
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setIsVisible(window.scrollY > 300);
@@ -49,38 +52,42 @@ export default function FloatingConsultDrawer({
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const { name, email, phone, message } = form;
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const { name, email, phone, message } = form;
 
-    if (!name || !email || !phone || !message) {
-      setError('All fields are required');
-      return;
-    }
+  if (!name || !email || !phone || !message) {
+    setError('All fields are required');
+    return;
+  }
 
-    setSubmitting(true);
-    setError('');
+  setSubmitting(true);
+  setError('');
 
-    try {
-      const res = await fetch('/api/mobile-submit-quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          source: 'Floating Consultation Drawer',
-        }),
-      });
+  try {
+    const res = await fetch('/api/mobile-submit-quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...form,
+        source: 'Floating Consultation Drawer',
+      }),
+    });
 
-      if (!res.ok) throw new Error('Failed');
+    if (!res.ok) throw new Error('Failed');
 
-      setSuccess(true);
-      setForm({ name: '', email: '', phone: '', message: '' });
-    } catch (err) {
-      setError('Submission failed');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    setSuccess(true);
+    setForm({ name: '', email: '', phone: '', message: '' });
+
+    // ✅ Redirect to thank you page
+    router.push('/thank-you-mobile-app');
+  } catch (err) {
+    setError('Submission failed');
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   if (!isVisible || isModalOpen) return null; // 🛑 Hide entire drawer & call button if modal is open
 

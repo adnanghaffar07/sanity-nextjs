@@ -28,6 +28,13 @@ const forbesArticles = [
     articleUrl: 'https://www.forbes.com/councils/forbesbusinesscouncil/2025/05/27/how-to-implement-ai-driven-automation-for-revenue-generation/',
     description: 'One tool that is helping business leaders overcome these challenges is AI automation.',
   },
+   {
+    title: 'The Hidden Costs Of Manual Processes: Investing In Automation',
+    imageUrl: 'https://specials-images.forbesimg.com/imageserve/687f9ba620b6ebf161b14248/Man-using-calculator--analyzing-financial-data--Focused-on--work-and-working-on/960x0.jpg?fit=scale',
+    articleUrl: 'https://www.forbes.com/councils/forbesbusinesscouncil/2025/07/23/the-hidden-costs-of-manual-processes-investing-in-automation/',
+    description: 'Ultimately, manual processes demonstrate that businesses are trapped in the past. Automation is about more than just saving money',
+  },
+
 ];
 
 export default function ForbesPage() {
