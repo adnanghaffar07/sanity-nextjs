@@ -24,16 +24,13 @@ export async function POST(req: NextRequest) {
 
       // 🔹 Campaign Info
       campaignName: body.campaignName || '',
-      creationDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD
-
-      // 🔹 Lead Questions
-      date: body.date || '', // "Date"
-      peopleInterestedIn: body.peopleInterestedIn || '', // "People are interested In"
-      appType: body.appType || '', // "What Type of App Do you Need?"
-      appStage: body.appStage || '', // "What Stage are you at with your app idea?"
-      estimatedBudget: body.estimatedBudget || '', // "What is your Estimated Budget?"
-      projectStartTime: body.projectStartTime || '', // "When do you want to Start the Project?"
-      preferredContact: body.preferredContact || '', // "How would you prefer we contact you?"
+      creationDate: new Date().toISOString().split('T')[0],
+      peopleInterestedIn: body.peopleInterestedIn || '',
+      appType: body.appType || '',
+      appStage: body.appStage || '',
+      estimatedBudget: body.estimatedBudget || '',
+      projectStartTime: body.projectStartTime || '',
+      preferredContact: body.preferredContact || '',
 
       // 🔹 Opt-out
       isUnsubscribed: body.isUnsubscribed || false,
