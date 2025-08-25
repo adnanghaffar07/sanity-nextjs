@@ -5,18 +5,32 @@ Disallow: /studio/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /drafts
+
+# Disallow query parameters (attachments, tracking, misc)
 Disallow: /*?attachment_id=
 Disallow: /*?trk=
+Disallow: /*?ts=
+Disallow: /*?utm_
+
+# Disallow feeds or legacy WordPress paths
 Disallow: /*/feed/
 Disallow: /wp-content/
+
+# Disallow static/media assets
 Disallow: /*.webm$
 Disallow: /*.woff2$
-Disallow: /favicon.ico
+Disallow: /*.ttf$
+Disallow: /*.eot$
+Disallow: /*.otf$
+Disallow: /*.ico$
+Disallow: /_next/static/
+Disallow: /cdn-cgi/
+Disallow: /cdn.sanity.io/
 
 # Allow everything else
 Allow: /
 
-# Preferred Host (use non-www, since your site resolves there)
+# Preferred Host
 Host: https://codeautomation.ai
 
 # Sitemap
