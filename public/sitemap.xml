@@ -407,16 +407,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://codeautomation.ai/privacypolicy</loc>
-  <lastmod>2024-11-20T14:40:32+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://codeautomation.ai/termsandconditions</loc>
-  <lastmod>2024-11-20T14:40:32+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://codeautomation.ai/services/headless-cms-development-services/sanity-headless</loc>
   <lastmod>2024-11-20T14:40:32+00:00</lastmod>
   <priority>0.64</priority>

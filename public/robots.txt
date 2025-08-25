@@ -3,12 +3,21 @@ User-agent: *
 # Disallow sensitive or non-public folders
 Disallow: /studio/
 Disallow: /api/
+Disallow: /_next/
+Disallow: /drafts
+Disallow: /*?attachment_id=
+Disallow: /*?trk=
+Disallow: /*/feed/
+Disallow: /wp-content/
+Disallow: /*.webm$
+Disallow: /*.woff2$
+Disallow: /favicon.ico
 
 # Allow everything else
 Allow: /
 
-# Host
-Host: https://www.codeautomation.ai
+# Preferred Host (use non-www, since your site resolves there)
+Host: https://codeautomation.ai
 
 # Sitemap
-Sitemap: https://www.codeautomation.ai/sitemap.xml
+Sitemap: https://codeautomation.ai/sitemap.xml
