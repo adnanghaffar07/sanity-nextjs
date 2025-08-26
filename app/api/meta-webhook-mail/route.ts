@@ -11,17 +11,17 @@ export async function POST(req: Request) {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: "ayesha@codeautomation.dev",
+        pass: "brja ybzn vmbb qbzg",
       },
     });
 
-    const teamEmail = ['adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
+    const teamEmail = ['ayesha@codeautomation.dev'];
     // const clientEmail = body.email;
     const clientEmail = body.email;
     // Send to internal team
     await transporter.sendMail({
-      from: `"Meta Lead Bot" <${process.env.EMAIL_USER}>`,
+      from: `"Meta Lead Bot" <ayesha@codeautomation.dev>`,
       to: teamEmail,
       subject: '🚨 New Lead Submitted',
       html: `
@@ -32,10 +32,8 @@ export async function POST(req: Request) {
           <tr><td><strong>Email:</strong></td><td>${body.email || 'N/A'}</td></tr>
           <tr><td><strong>Phone Number:</strong></td><td>${body.phoneNumber || 'N/A'}</td></tr>
           <tr><td><strong>Company Name:</strong></td><td>${body.companyName || 'N/A'}</td></tr>
-          <tr><td><strong>Work:</strong></td><td>${body.work || 'N/A'}</td></tr>
-          <tr><td><strong>Campaign Name:</strong></td><td>${body.campaignName || 'N/A'}</td></tr>
-          <tr><td><strong>Creation Date:</strong></td><td>${body.creationDate || 'N/A'}</td></tr>
           <tr><td><strong>App Type:</strong></td><td>${body.appType || 'N/A'}</td></tr>
+          <tr><td><strong>Estimated Budget:</strong></td><td>${body.estimatedBudget || 'N/A'}</td></tr>
           <tr><td colspan="2" style="padding-top: 20px; text-align: center;">
             <a href="https://codeautomation.sanity.studio/studio/structure/fbMetaLead" style="padding: 10px 20px; background: #1d4ed8; color: #fff; border-radius: 6px; text-decoration: none;">View in Sanity</a>
           </td></tr>

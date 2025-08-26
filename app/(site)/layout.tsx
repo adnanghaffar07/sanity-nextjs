@@ -50,6 +50,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+        {/* 🚀 Preconnects for 3rd-party domains */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://analytics.tiktok.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://accounts.google.com" crossOrigin="anonymous" />
+
         {/* ✅ JSON-LD business info */}
         <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
           {JSON.stringify({
