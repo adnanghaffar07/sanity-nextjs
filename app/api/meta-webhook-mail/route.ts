@@ -71,7 +71,7 @@ export async function POST(req: Request) {
 
           <!-- Call to Action -->
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://cal.com/adnan-ghaffar/30min" style="padding: 14px 28px; background: #1d92fb; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
+            <a href="https://calendly.com/adnanghaffar" style="padding: 14px 28px; background: #1d92fb; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
               Book a Quick Call
             </a>
           </div>
