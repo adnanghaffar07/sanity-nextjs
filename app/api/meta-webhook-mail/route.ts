@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const teamEmail = ['ayesha@codeautomation.dev'];
+    const teamEmail = ['ayesha@codeautomation.dev', 'adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
     // const clientEmail = body.email;
     const clientEmail = body.email;
     // Send to internal team
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       <!-- Header -->
       <tr>
         <td style="background-color: #1d92fb; padding: 24px 40px; text-align: center;">
-          <h1 style="color: #ffffff; font-size: 24px; margin: 0;">Let’s Build Your Dream App Together!</h1>
+          <h1 style="color: #ffffff; font-size: 24px; margin: 0;">Thanks for Connecting with CodeAutomation!</h1>
         </td>
       </tr>
 
@@ -60,16 +60,13 @@ export async function POST(req: Request) {
       <tr>
         <td style="padding: 32px 40px; color: #333;">
           <p style="font-size: 16px; line-height: 1.6;">
-            Thanks for submitting your details through our Meta campaign! You've shown interest in <strong>CodeAutomation.ai’s</strong> mobile app development services, and we’re excited to help bring your ideas to life.
+            We’re excited to learn more about your goals and how our team at <strong>CodeAutomation.ai</strong> can support your vision. 
           </p>
           <p style="font-size: 16px; line-height: 1.6;">
-            We’re ready to discuss your vision and how we can create a high-quality, scalable mobile app that aligns with your business needs.
+            Our mission is to help businesses like yours build reliable, scalable, and innovative digital solutions that drive growth and success. 
           </p>
           <p style="font-size: 16px; line-height: 1.6;">
-            At CodeAutomation.ai, we deliver fast, reliable, and scalable mobile apps using technologies like <strong>React Native</strong>, <strong>Flutter</strong>, and <strong>AWS</strong>. We've built successful platforms such as <em>Apollo (Sports)</em>, <em>Yakka (Social)</em>, and <em>Impakt (Fitness)</em> — all engineered for growth.
-          </p>
-          <p style="font-size: 16px; line-height: 1.6;">
-            Ready to turn your app vision into reality? Let’s discuss how we can build an app that’s fast, scalable, and tailored to your business goals.
+            Let’s schedule a quick chat to discuss your needs and how we can work together to bring your ideas to life.
           </p>
 
           <!-- Call to Action -->
@@ -80,7 +77,7 @@ export async function POST(req: Request) {
           </div>
 
           <p style="font-size: 14px; color: #555; margin-top: 30px;">
-            Have questions? Just reply to this email — we’re happy to help.
+            Have any questions? Just reply to this email — our team is happy to help.
           </p>
           <p style="font-size: 14px; margin-top: 8px;">
             Best regards,<br/>
@@ -114,7 +111,8 @@ export async function POST(req: Request) {
       </tr>
     </table>
   </div>
-  `,
+`
+
     });
 
     return NextResponse.json({ success: true });
