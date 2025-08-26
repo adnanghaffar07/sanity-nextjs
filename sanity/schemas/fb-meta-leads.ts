@@ -14,11 +14,11 @@ export default {
     { name: 'name', title: 'Name', type: 'string' },
     { name: 'email', title: 'Email', type: 'string' },
     { name: 'phoneNumber', title: 'Phone Number', type: 'string' },
-    { name: 'company', title: 'Company', type: 'string' },
+    { name: 'companyName', title: 'Company', type: 'string' },
 
     // 🔹 Lead Qualification Questions
     { 
-      name: 'interests', 
+      name: 'peopleInterestedIn', 
       title: 'People are interested in', 
       type: 'string' 
     },
@@ -33,12 +33,12 @@ export default {
       type: 'string' 
     },
     { 
-      name: 'budget', 
+      name: 'estimatedBudget', 
       title: 'What is your estimated budget?', 
       type: 'string' 
     },
     { 
-      name: 'startTimeline', 
+      name: 'projectStartTime', 
       title: 'When do you want to start the project?', 
       type: 'string' 
     },

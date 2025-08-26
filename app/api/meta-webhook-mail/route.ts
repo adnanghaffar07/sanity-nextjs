@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const teamEmail = ['ayesha@codeautomation.dev', 'adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
+    const teamEmail = ['roia@codeautomation.dev', 'adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
     // const clientEmail = body.email;
     const clientEmail = body.email;
     // Send to internal team
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"CodeAutomation" <${process.env.EMAIL_USER}>`,
       to: clientEmail,
-      subject: 'Tired of Searching for the Right App Development Team? Guaranteed Quality, Delivered as Promised!',
+      subject: 'Tired of Searching Right Development Team? Guaranteed Quality, Delivered as Promised!',
       html: `
   <div style="font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f4f4; padding: 40px 0;">
     <table width="100%" style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden;">
@@ -90,7 +90,7 @@ export async function POST(req: Request) {
       <tr>
         <td style="background:rgb(223, 223, 223); padding: 20px; text-align: center;">
           <div style="margin-bottom: 10px;">
-            <a href="https://www.facebook.com/Codeautomationai/" target="_blank" style="margin: 0 8px;">
+            <a href="https://www.facebook.com/tlillard.kio.39" target="_blank" style="margin: 0 8px;">
               <img src="https://codeautomation.ai/facebook.png" alt="Facebook" width="24" />
             </a>
             <a href="https://www.instagram.com/codeautomation.ai/" target="_blank" style="margin: 0 8px;">
