@@ -29,7 +29,7 @@ export async function DELETE() {
 
     return NextResponse.json({
       message: `Deleted ${leadsToDelete.length} leads.`,
-      deletedEmails: leadsToDelete.map((l:any) => l.email),
+      deletedEmails: leadsToDelete.map((l: any) => l.email),
     });
   } catch (error) {
     console.error("Error deleting leads:", error);
