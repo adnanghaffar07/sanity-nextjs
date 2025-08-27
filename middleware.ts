@@ -13,7 +13,7 @@ export function middleware(req: NextRequest) {
         'Access-Control-Max-Age': '86400',
       },
     });
-  }
+  } 
 
   const country = req.geo?.country || "Unknown"; // Get country code
 
