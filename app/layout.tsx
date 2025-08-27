@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
   description:
     "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-    keywords: [
-      "CodeAutomation",
-      "software development company",
-      "software development services",
-    ],
-  
-  };
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
+
+};
 
 export default function RootLayout({
   children,
