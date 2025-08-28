@@ -88,7 +88,7 @@ export default function HomeNavigationContainer() {
   }, [menuState.open, menuState.aboutOpen]);
 
   return (
-    <div className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow relative top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
+    <div className="flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow relative top-0 z-20 xl:bg-transparent xl:h-auto h-[72px] -mb-[72px] md:-mb-[116px]">
       <div className="flex gap-5 justify-between items-center px-8 py-3.5 w-full border border-solid shadow-md backdrop-blur-[36px] bg-black bg-opacity-20 border-white border-opacity-10 rounded-[62px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
         <div className="relative" style={{ zIndex: 1000 }}>
           <Link href={`/`} className="hover:underline my-auto">
