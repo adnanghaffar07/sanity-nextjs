@@ -52,37 +52,53 @@ export default function WhyChoose() {
     const [isModalOpen, setIsModalOpen] = useState(false);
   
   return (
-    <section className="bg-[#E6F3FF] py-16 px-4 text-center">
-      <h2 className="text-2xl md:text-3xl font-bold mb-2">Why Choose Code Automation?</h2>
-      <p className="text-gray-700 mb-10 text-lg">Here&apos;s What You Get:</p>
+ <section className="relative bg-[#E6F3FF] py-16 px-4 text-center overflow-hidden">
+  {/* Illustration Image (top-right) */}
+  <div className="absolute top-0 right-0 h-40 md:h-60">
+    <Image 
+      src="/why-ca.png"  // replace with your illustration path
+      alt="Illustration"
+      width={180}
+      height={180}
+      className="object-contain"
+    />
+  </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="group bg-[#2196f3] text-white rounded-xl p-5 transition-all duration-300 hover:bg-white hover:text-[#2196f3] shadow-md"
-          >
-            <div className="w-12 h-12 mb-4 rounded-md bg-white group-hover:bg-[#2196f3] flex items-center justify-center transition-all duration-300">
-              <Image
-                src={`/${feature.icon}`}
-                alt={feature.title}
-                width={32}
-                height={32}
-              />
-            </div>
-            <h4 className="font-semibold text-base mb-2 text-left">{feature.title}</h4>
-            <p className="text-sm text-left">{feature.desc}</p>
-          </div>
-        ))}
-      </div>
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="mt-10 px-6 py-3 bg-[#2196f3] hover:bg-blue-600 text-white font-semibold rounded-md"
+  {/* Heading */}
+  <h2 className="text-2xl md:text-3xl font-bold mb-2">Why Choose Code Automation?</h2>
+  <p className="text-gray-700 mb-10 text-lg">Here&apos;s What You Get:</p>
+
+  {/* Features Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto relative z-10">
+    {features.map((feature, index) => (
+      <div
+        key={index}
+        className="group bg-[#2196f3] text-white rounded-xl py-6 px-4 transition-all duration-300 hover:bg-white hover:text-[#2196f3] shadow-md"
       >
-        Get Your Free Consultation
-      </button>
-       <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      
-    </section>
+        <div className="w-12 h-12 mb-4 rounded-md bg-white group-hover:bg-[#2196f3] flex items-center justify-center transition-all duration-300">
+          <Image
+            src={`/${feature.icon}`}
+            alt={feature.title}
+            width={40}
+            height={40}
+          />
+        </div>
+        <h4 className="font-semibold text-base mb-2 text-left">{feature.title}</h4>
+        <p className="text-sm text-left">{feature.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  {/* CTA Button */}
+  <button
+    onClick={() => setIsModalOpen(true)}
+    className="mt-10 px-6 py-3 bg-[#2196f3] hover:bg-blue-600 text-white font-semibold rounded-md relative z-10"
+  >
+    Get Your Free Consultation
+  </button>
+
+  <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+</section>
+
   );
 }
