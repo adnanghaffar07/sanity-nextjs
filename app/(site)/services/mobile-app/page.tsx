@@ -539,7 +539,7 @@ export default function HeroSection() {
 
       <PortfolioSection />
       {/* Expert in Android & iOS App Development Services */}
-      <section className="py-16 px-4 bg-white max-w-7xl mx-auto text-center">
+      {/* <section className="py-16 px-4 bg-white max-w-7xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
           Expert in Android & iOS App Development Services
         </h2>
@@ -582,7 +582,7 @@ export default function HeroSection() {
           className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
           LET’S TALK
         </button>
-      </section>
+      </section> */}
       <WhyChoose />
       {/* TEch STack */}
       <section className="py-16 px-4 bg-white max-w-6xl mx-auto text-center">
