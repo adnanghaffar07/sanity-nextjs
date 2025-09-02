@@ -307,42 +307,42 @@ export default function Home() {
           alt="ellipse"
         />
         {/* <ScrollAnimation> */}
-          <div className="px-6 md:px-16 mt-16 max-w-[1534px] mx-auto">
-            <div className="flex flex-col md:flex-row gap-5 pb-16">
-              {/* Left Content Column */}
-              <div className="md:w-[58%]">
-                <CoreExpertise />
+        <div className="px-6 md:px-16 mt-16 max-w-[1534px] mx-auto">
+          <div className="flex flex-col md:flex-row gap-5 pb-16">
+            {/* Left Content Column */}
+            <div className="md:w-[58%]">
+              <CoreExpertise />
 
-                <p className="text-xl font-medium text-left mt-12">
-                  Partner with us to access unmatched expertise and support
-                  in these areas, empowering your business with advanced
-                  technologies and driving your growth to new heights.
-                </p>
+              <p className="text-xl font-medium text-left mt-12">
+                Partner with us to access unmatched expertise and support
+                in these areas, empowering your business with advanced
+                technologies and driving your growth to new heights.
+              </p>
 
-                <div className="mt-12 max-w-[450px]">
-                  <a
-                    href="/technologies"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#F7E022] rounded-lg shadow-md font-medium text-base lg:text-lg xl:text-xl"
-                  >
-                    <span>Explore Our Technologies</span>
-                    <img
-                      loading="lazy"
-                      src="/btn-arrow.svg"
-                      className="w-[22px] h-[26.8px]"
-                      alt="arrow-icon"
-                    />
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Form Column */}
-              <div className="md:w-[38%] mt-6 md:mt-0">
-                <HomePageForm />
+              <div className="mt-12 max-w-[450px]">
+                <a
+                  href="/technologies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#F7E022] rounded-lg shadow-md font-medium text-base lg:text-lg xl:text-xl"
+                >
+                  <span>Explore Our Technologies</span>
+                  <img
+                    loading="lazy"
+                    src="/btn-arrow.svg"
+                    className="w-[22px] h-[26.8px]"
+                    alt="arrow-icon"
+                  />
+                </a>
               </div>
             </div>
+
+            {/* Right Form Column */}
+            <div className="md:w-[38%] mt-6 md:mt-0">
+              <HomePageForm />
+            </div>
           </div>
+        </div>
         {/* </ScrollAnimation> */}
         <ScrollAnimation>
           <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
@@ -568,10 +568,13 @@ export default function Home() {
               </div>
 
               <div className="md:w-1/2 flex justify-center">
-                <img
+                <Image
                   src="/choose-us.png"
                   alt="Software Development Services"
+                  height={600}
+                  width={400}
                   className="w-3/4 rounded-lg shadow-lg z-10 md:mt-0 mt-6"
+                  priority={false} // default: lazy load
                 />
               </div>
             </div>
@@ -862,8 +865,15 @@ export default function Home() {
         </ScrollAnimation>
 
         <div className="flex flex-col bg-[#F3F3F3] py-16 px-6 relative  overflow-hidden">
-          <div className="absolute inset-0 z-0 bg-[url('/Testimonials.png')] bg-cover bg-center backdrop-blur-md"></div>
-
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/Testimonial.jpeg"
+              alt="Testimonials background"
+              fill
+              className="object-cover"
+              priority={false} // ✅ let it lazy load
+            />
+          </div>
           <ScrollAnimation>
             <div className="relative z-10 flex flex-col items-center">
               <h3 className="w-full xl:text-4xl text-2xl font-medium text-white text-center">
@@ -893,13 +903,13 @@ export default function Home() {
             <img
               loading="lazy"
               src="/ellipse-2.png"
-              className="aspect-[1.22] absolute right-0 top-80"
+              className="w-[260px] absolute right-0 top-[30px]"
               alt="ellipse"
             />
             <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10 xl:container xl:mx-auto">
-              <h5 className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
+              <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
-              </h5>
+              </h2>
               <Suspense fallback={<p>Loading FAQs Section...</p>}>
                 <Faqs />
               </Suspense>

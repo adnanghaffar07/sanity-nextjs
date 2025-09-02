@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import BlogList from "../components/BlogList";
 
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
@@ -64,65 +65,7 @@ export default async function Blogs() {
           alt="icon"
           className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
         />
-
-        <div className="flex flex-col self-center py-10 w-full xl:max-w-[1272px] max-w-[991px] max-md:max-w-full relative z-10 mx-auto">
-          <div className="lg:px-10 px-5 w-full">
-            {data.map((item: any) => (
-              <Link
-                key={item._id}
-                href={`/blogs/${item.slug}`}
-                className="w-full mb-10"
-              >
-                <div className="rounded-3xl mb-10 shadow-md xl:h-[400px] shadow-slate-400 bg-[#F3F3F3]">
-                  <div className="xl:flex gap-5">
-                    <div className="xl:w-7/12">
-                      <img
-                        loading="lazy"
-                        src={urlForImage(item.heroimage).toString()}
-                        alt={item.title}
-                        width={683}
-                        height={207}
-                        className="w-full xl:h-[400px] rounded-3xl hidden xl:block"
-                      />
-                      <img
-                        loading="lazy"
-                        src={urlForImage(item.heroimage).toString()}
-                        alt={item.title}
-                        width={911}
-                        height={636}
-                        className="w-full xl:h-[400px] rounded-3xl block xl:hidden"
-
-                      />
-
-                    </div>
-                    <div className="xl:w-5/12 self-center xl:py-3 py-10 xl:pr-10 xl:pl-0 px-5">
-                      <p className="text-xs sm:text-lg mb-4">{item.subtitle}</p>
-                      <h3 className="text-2xl  sm:text-xl text-base font-medium">
-                        {item.title}
-                      </h3>
-                      <div>
-                        <hr className="bg-black my-5 h-px   w-full border-0" />
-                      </div>
-                      <div>
-                        <p className="font-light text-sm sm:text-lg  leading-7">
-                          {item.introductionheading
-                            ? item.introductionheading
-                              .split(" ")
-                              .slice(0, 30)
-                              .join(" ")
-                              .concat(
-                                item.introductionheading.split(" ").length > 30 ? "..." : ""
-                              )
-                            : ""}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
+      <BlogList data={data} pageSize={6} />
         <img
           loading="lazy"
           src="/ellipse-2.png"

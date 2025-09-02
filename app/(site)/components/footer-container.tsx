@@ -52,7 +52,6 @@ export default function FooterContainer() {
                     alt="logo"
                     width={250}
                     height={50}
-                    priority
                   />
                 </div>
                 <p className="mt-5 max-w-sm">

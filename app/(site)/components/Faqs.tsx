@@ -24,9 +24,9 @@ const Faqs = async () => {
               <details className="group">
                 <summary className="flex justify-between items-center flex-grow">
                   <div className="w-11/12 text-base">
-                    <span className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-base md:text-lg xl:text-xl flex flex-grow">
+                    <h3 className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-base md:text-lg xl:text-xl flex flex-grow">
                       {faq.title}
-                    </span>
+                    </h3>
                   </div>
 
                   <div className="w-1/12 justify-center align-center flex hover:cursor-pointer">
