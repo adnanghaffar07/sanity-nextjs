@@ -49,7 +49,7 @@ export default function PortfolioSection() {
             alt={`Portfolio ${currentIndex + 1}`}
             width={850}
             height={500}
-            className="object-cover w-full h-[290px] md:h-[500px]"
+            className="object-cover w-full h-[290px] md:h-[570px]"
           />
         </div>
 

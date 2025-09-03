@@ -272,12 +272,20 @@ export default function HeroSection() {
 
             <div className="grid grid-cols-1 gap-4 text-sm">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-2">
-                  <div className="w-8 h-8 text-yellow-400">
-                    <Image src={feature.icon ?? "/default-icon.png"} alt={feature.tag} width={52} height={52} />
+                <div
+                  key={index}
+                  className="flex items-start space-x-2 text-left"
+                >
+                  <div className="w-8 h-8 mb-3 text-yellow-400 flex-shrink-0">
+                    <Image
+                      src={feature.icon ?? "/default-icon.png"}
+                      alt={feature.tag}
+                      width={52}
+                      height={52}
+                    />
                   </div>
                   <div>
-                    <span className="inline-block bg-[#F7E022] text-black font-medium text-xs px-2 py-0.5 rounded">
+                    <span className="inline-block text-center bg-[#F7E022] text-black w-[120px] font-medium text-xs px-2 py-0.5 rounded">
                       {feature.tag}
                     </span>
                     <span className="ml-2 text-white">— {feature.description}</span>
@@ -285,6 +293,7 @@ export default function HeroSection() {
                 </div>
               ))}
             </div>
+
 
             <a
               href="tel:+18505584691"
@@ -646,7 +655,7 @@ export default function HeroSection() {
           />
 
           {/* Left Content */}
-          <div className="flex-1 z-10 md:py-10 pl-10">
+          <div className="flex-1 z-10 md:py-10 md:pl-10">
             <h2 className="text-2xl md:text-3xl max-w-sm font-bold mb-4">
               Don’t Let Your Competitors Get Ahead While You Wait
             </h2>

@@ -68,14 +68,16 @@ export default function WhyChoose() {
   <h2 className="text-2xl md:text-3xl font-bold mb-2">Why Choose Code Automation?</h2>
   <p className="text-gray-700 mb-10 text-lg">Here&apos;s What You Get:</p>
 
-  {/* Features Grid */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto relative z-10">
-    {features.map((feature, index) => (
-      <div
-        key={index}
-        className="group bg-[#2196f3] text-white rounded-xl py-6 px-4 transition-all duration-300 hover:bg-white hover:text-[#2196f3] shadow-md"
-      >
-        <div className="w-12 h-12 mb-4 rounded-md bg-white group-hover:bg-[#2196f3] flex items-center justify-center transition-all duration-300">
+ {/* Features Grid */}
+<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 max-w-5xl mx-auto relative z-10">
+  {features.map((feature, index) => (
+    <div
+      key={index}
+      className="group bg-[#2196f3] text-white rounded-xl py-5 md:py-6  px-3 md:px-4 transition-all duration-300 hover:bg-white hover:text-[#2196f3] shadow-md"
+    >
+      {/* Wrapper for icon + title */}
+      <div className="flex items-center gap-2 md:gap-3 mb-2">
+        <div className="w-12 h-10 md:w-12 md:h-12 rounded-md bg-white group-hover:bg-[#2196f3] flex items-center justify-center transition-all duration-300">
           <Image
             src={`/${feature.icon}`}
             alt={feature.title}
@@ -83,11 +85,14 @@ export default function WhyChoose() {
             height={40}
           />
         </div>
-        <h4 className="font-semibold text-base mb-2 text-left">{feature.title}</h4>
-        <p className="text-sm text-left">{feature.desc}</p>
+        <h4 className="font-semibold text-sm text-left md:text-base">{feature.title}</h4>
       </div>
-    ))}
-  </div>
+      {/* Description always below */}
+      <p className="text-xs md:text-sm text-left">{feature.desc}</p>
+    </div>
+  ))}
+</div>
+
 
   {/* CTA Button */}
   <button

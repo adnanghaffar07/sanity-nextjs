@@ -57,7 +57,7 @@ const CalendlyForm: React.FC = () => {
                 <Cal
                   namespace="30min"
                   calLink="adnan-ghaffar/30min"
-                  style={{ width: "100%", height: "790px", overflow: "scroll" }}
+                  style={{ width: "100%", height: "750px", overflow: "scroll" }}
                   config={{ layout: "month_view", theme: "auto" }}
                 />
               )}
