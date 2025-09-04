@@ -101,9 +101,9 @@ export default function TechStackSection() {
               <Image
                 src={tech.logo}
                 alt={tech.name}
-                width={100}
+                width={150}
                 height={100}
-                className="object-contain h-10 md:h-[60px] md:w-[120px]"
+                className="object-contain h-8 md:h-[50px]"
               />
             </div>
           ))}

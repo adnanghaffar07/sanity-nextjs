@@ -228,18 +228,26 @@ export default function HeroSection() {
   return (
     <section>
       <LiveChatTawk />
-      <div className="relative w-full font-light text-white overflow-hidden pb-12 lg:min-h-[700px]">
+      <div className="relative w-full font-light text-white overflow-hidden pb-12 md:pb-0 lg:min-h-[700px] pt-[80px] md:pt-[100px]">
+        {/* Background */}
         <img
           className="absolute top-0 left-0 w-full h-full object-cover"
           src="/mobile-app-bg.png"
           alt="Services"
         />
 
-        <div className="relative z-10 px-4 sm:px-6 md:px-16 lg:px-24 mt-32 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start min-h-[60vh]">
-          {/* Left - Image */}
-          <div className="hidden md:flex justify-center items-end">
+        {/* Heading */}
+        <h1 className="relative z-10 text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center pt-10">
+          Custom Mobile App Development Services
+        </h1>
+
+        {/* Main Grid */}
+        <div className="relative z-10 px-4 sm:px-6 md:px-16 lg:px-24 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+
+          {/* Left - Image (Desktop Only) */}
+          <div className="hidden md:flex justify-center">
             <img
-              className="w-[250px] sm:w-[300px] md:w-[400px] lg:w-[450px] lg:-mb-[180px]"
+              className=" md:w-[400px] 2xl:w-[500px] object-contain"
               src="/mobile-banner-image.png"
               alt="Banner"
             />
@@ -247,25 +255,24 @@ export default function HeroSection() {
 
           {/* Middle - Text */}
           <div className="text-white space-y-6 text-center lg:text-left">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              Custom Mobile App Development Services
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl">
+            <p className="lg:text-center text-left sm:text-lg md:text-xl">
               We help entrepreneurs and businesses turn <span className="font-semibold">APP</span> ideas into reality.
             </p>
 
+            {/* Features */}
             <div className="grid grid-cols-1 gap-4 text-sm">
               {features.map((feature, index) => (
                 <div
                   key={index}
                   className="flex items-start space-x-2 text-left"
                 >
-                  <div className="w-8 h-8 mb-3 text-yellow-400 flex-shrink-0">
+                  <div className="w-8 h-8 md:mb-4 text-yellow-400 flex-shrink-0">
                     <Image
                       src={feature.icon ?? "/default-icon.png"}
                       alt={feature.tag}
                       width={52}
                       height={52}
+                      className="-mt-1"
                     />
                   </div>
                   <div>
@@ -277,6 +284,8 @@ export default function HeroSection() {
                 </div>
               ))}
             </div>
+
+            {/* Phone */}
             <a
               href="tel:+18505584691"
               className="text-lg sm:text-xl mt-6 flex font-bold items-center justify-center space-x-2 text-white hover:text-yellow-400 transition-colors"
@@ -298,6 +307,7 @@ export default function HeroSection() {
               <span>+1-850-558-4691</span>
             </a>
 
+            {/* Chat & Quote */}
             <div className="mt-2 flex flex-row items-center justify-center space-x-3 text-white text-base">
               <a
                 href="#"
@@ -309,14 +319,14 @@ export default function HeroSection() {
                     console.warn('Tawk_API not ready yet.');
                   }
                 }}
-                className="hover:text-yellow-400 underline transition-colors mb-2  text-center sm:text-left"
+                className="hover:text-yellow-400 underline transition-colors mb-2"
               >
                 Start A Live Chat
               </a>
-              <span className="sm:inline">|</span>
+              <span className="hidden sm:inline">|</span>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="hover:text-yellow-400 mb-2 underline transition-colors text-left"
+                className="hover:text-yellow-400 mb-2 underline transition-colors"
               >
                 Request a Free Quote
               </button>
@@ -329,9 +339,9 @@ export default function HeroSection() {
           <section id="form" className="w-full">
             <MobileForm />
           </section>
-
         </div>
       </div>
+
       {/* Stats Section */}
       <StatsSection />
       {/* Industries We Serve */}
@@ -410,9 +420,9 @@ export default function HeroSection() {
                 <Image
                   src={service.icon ?? "/default-icon.png"}
                   alt={service.title}
-                  width={60}
+                  width={90}
                   height={60}
-                  className="md:block hidden"
+                  className="md:block hidden h-12 w-12 objetct-contain"
                 />
                 <div className="text-left space-y-1">
                   <h4 className="font-bold text-white text-lg">{service.title}</h4>
@@ -444,7 +454,7 @@ export default function HeroSection() {
                   alt={service.title}
                   width={60}
                   height={60}
-                  className="md:block hidden"
+                  className="md:block hidden h-12 w-12 objetct-contain"
                 />
 
                 <div className="text-left space-y-1">
