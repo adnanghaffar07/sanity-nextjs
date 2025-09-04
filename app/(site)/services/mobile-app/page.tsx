@@ -7,10 +7,12 @@ import PortfolioSection from "../../components/MobilePortfolioSection";
 import WhyChoose from "../../components/MobileServiceWhyChoose";
 import CategoryTabs from "../../components/MobileServiceApps";
 import FaqSection from "../../components/MobileServiceFaq";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import QuoteModal from "../../components/MobileQuoteModal";
 import LiveChatTawk from "../../components/LiveChatTawk";
 import MobileIndustries from "../../components/Mobile-App-Industries";
+import TechStackSection from "../../components/MobileServiceTechStackSection";
+import StatsSection from "../../components/StatsSection";
 
 const categories = {
   "On Demand": [
@@ -59,30 +61,6 @@ const leftSteps = [
       "Our QA team ensures a seamless, bug-free experience, while our DevOps experts handle deployment on both the App Store and Google Play for a smooth, successful launch.",
   },
 ];
-
-const stats = [
-  {
-    icon: "/industries.png", // replace with your image path
-    number: "15+",
-    label: "Industries Served",
-  },
-  {
-    icon: "/clients.png",
-    number: "80+",
-    label: "Global Clients",
-  },
-  {
-    icon: "/projects.png",
-    number: "100+",
-    label: "Successful Project",
-  },
-  {
-    icon: "/experience.png",
-    number: "10+",
-    label: "Years of Experience",
-  },
-];
-
 const steps = [
   {
     step: "Step 1",
@@ -236,9 +214,15 @@ const techCategories = {
 
 export default function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
   const [isFloatingDrawerOpen, setIsFloatingDrawerOpen] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNotification(true);
+    }, 5000); // 👈 3 seconds delay
 
+    return () => clearTimeout(timer);
+  }, []);
 
 
   return (
@@ -293,8 +277,6 @@ export default function HeroSection() {
                 </div>
               ))}
             </div>
-
-
             <a
               href="tel:+18505584691"
               className="text-lg sm:text-xl mt-6 flex font-bold items-center justify-center space-x-2 text-white hover:text-yellow-400 transition-colors"
@@ -350,37 +332,11 @@ export default function HeroSection() {
 
         </div>
       </div>
-      <section className="bg-[#001E6B] py-10">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 text-white">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center sm:flex-row sm:text-left sm:items-center sm:space-x-4"
-              >
-                {/* Icon */}
-                <img
-                  src={stat.icon}
-                  alt={stat.label}
-                  className="h-12 w-12 object-contain mb-2 sm:mb-0"
-                />
-
-                {/* Text */}
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold">{stat.number}</h3>
-                  <p className="text-sm">{stat.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
+      {/* Stats Section */}
+      <StatsSection />
       {/* Industries We Serve */}
       <MobileIndustries />
       {/* Notification */}
-
       {!isModalOpen && !isFloatingDrawerOpen && showNotification && (
         <div className="fixed bottom-6 left-6 z-[9999] bg-white rounded-2xl shadow-lg border border-gray-200 p-5 w-[250px] sm:w-[360px]">
           {/* ❌ Close Button */}
@@ -393,7 +349,9 @@ export default function HeroSection() {
           </button>
 
           {/* Header */}
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">Need Help?</h3>
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            Need Help?
+          </h3>
 
           {/* Body */}
           <p className="text-sm text-gray-600 mb-4 leading-relaxed">
@@ -404,13 +362,17 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
             <button
               onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
+                if (
+                  typeof window !== "undefined" &&
+                  (window as any).Tawk_API?.toggle
+                ) {
                   (window as any).Tawk_API.toggle();
                 } else {
                   alert("Chat is loading, please try again shortly.");
                 }
               }}
-              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"    >
+              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"
+            >
               💬 Start Chat
             </button>
 
@@ -424,38 +386,35 @@ export default function HeroSection() {
             </a>
           </div>
         </div>
-
       )}
-
       {/* Sticky Floating Button */}
       <FloatingConsultButton
         isModalOpen={isModalOpen}
         setIsFloatingDrawerOpen={setIsFloatingDrawerOpen}
       />
-
-
       <section
-        className="bg-[url('/what-we-do.png')] bg-cover bg-center py-16 px-4 lg:px-20 text-center"
+        className="bg-[url('/what-we-do.jpeg')] bg-cover bg-center py-16 px-4 lg:px-20 text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
           Our Services
         </h2>
-        <h3 className="text-lg text-white mb-10">What We Do</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center max-w-7xl mx-auto">
+        <h3 className="text-lg text-white mb-6 md:mb-10">What We Do</h3>
+        <div className="hidden md:flex flex-col gap-10 items-center max-w-7xl mx-auto">
           {/* Left services */}
-          <div className="space-y-10 text-right">
+          <div className="flex flex-col md:flex-row text-right gap-6">
             {servicesLeft.map((service, index) => (
               <div
                 key={index}
-                className="flex md:flex-row-reverse items-start space-x-4 md:space-x-reverse"
+                className="flex flex-row items-start space-x-4"
               >
                 <Image
                   src={service.icon ?? "/default-icon.png"}
                   alt={service.title}
-                  width={30}
-                  height={30}
+                  width={60}
+                  height={60}
+                  className="md:block hidden"
                 />
-                <div className="text-left md:text-right space-y-3">
+                <div className="text-left space-y-1">
                   <h4 className="font-bold text-white text-lg">{service.title}</h4>
                   <p className="text-white text-sm">{service.description}</p>
                 </div>
@@ -465,26 +424,96 @@ export default function HeroSection() {
           {/* Center Phone Image */}
           <div className="flex justify-center">
             <Image
-              src="/mobile-service.png"
+              src="/process-img-home.png"
               alt="Mobile App Preview"
-              width={280}
-              height={600}
-              className="mx-auto"
+              width={1000}
+              height={100}
+              className="mx-auto h-8 w-[300px] md:h-[250px] md:w-[1000px] object-contain"
             />
           </div>
 
           {/* Right services */}
-          <div className="space-y-10 text-left">
+          <div className="flex flex-col md:flex-row text-right gap-6 mb-10">
             {servicesRight.map((service, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <Image src={service.icon ?? "/default-icon.png"} alt={service.title} width={30} height={30} />
-                <div className="space-y-3">
+              <div
+                key={index}
+                className="flex flex-row items-start space-x-4"
+              >
+                <Image
+                  src={service.icon ?? "/default-icon.png"}
+                  alt={service.title}
+                  width={60}
+                  height={60}
+                  className="md:block hidden"
+                />
+
+                <div className="text-left space-y-1">
                   <h4 className="font-bold text-white text-lg">{service.title}</h4>
                   <p className="text-white text-sm">{service.description}</p>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+        {/* Mobile View */}
+        <div className="md:hidden flex-col gap-10 items-center max-w-7xl mx-auto">
+          {/* Center Phone Image */}
+          <div className="md:hidden flex justify-center">
+            <Image
+              src="/process-img-home.png"
+              alt="Mobile App Preview"
+              width={1000}
+              height={300}
+              className="mx-auto mb-6 h-16 w-[300px] md:h-[250px] md:w-[1000px] object-contain"
+            />
+          </div>
+
+          <div className="flex flex-row gap-10 ">
+            {/* Left services */}
+            <div className="flex flex-col md:flex-row text-right gap-6">
+              {servicesLeft.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-start space-x-4"
+                >
+                  <Image
+                    src={service.icon ?? "/default-icon.png"}
+                    alt={service.title}
+                    width={60}
+                    height={60}
+                    className="md:block hidden"
+                  />
+                  <div className="text-left space-y-1">
+                    <h4 className="font-bold text-white text-md">{service.title}</h4>
+                    <p className="text-white text-xs">{service.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Right services */}
+            <div className="flex flex-col md:flex-row text-right gap-6">
+              {servicesRight.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-start space-x-4"
+                >
+                  <Image
+                    src={service.icon ?? "/default-icon.png"}
+                    alt={service.title}
+                    width={60}
+                    height={60}
+                    className="md:block hidden"
+                  />
+
+                  <div className="text-left space-y-1">
+                    <h4 className="font-bold text-white text-md">{service.title}</h4>
+                    <p className="text-white text-xs">{service.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* CTA Button */}
@@ -547,89 +576,8 @@ export default function HeroSection() {
       </section>
 
       <PortfolioSection />
-      {/* Expert in Android & iOS App Development Services */}
-      {/* <section className="py-16 px-4 bg-white max-w-7xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Expert in Android & iOS App Development Services
-        </h2>
-        <p className="text-gray-600 max-w-4xl mx-auto mb-12">
-          With over 13 years of hands-on experience, CodeAutomation has delivered mobile app solutions across a wide range of industries.
-          From Healthcare and Fintech to AR/VR, Logistics, Real Estate and IoT, our expertise spans diverse verticals.
-          We adapt quickly to your market needs and showcase proven results with apps tailored to each domain’s unique challenges.
-          Whether it’s an enterprise-grade app or a nimble startup MVP, we bring deep industry knowledge to fuel your success.
-        </p>
-
-        <h3 className="text-xl md:text-2xl font-semibold mb-10">Mobile App Categories</h3>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-left text-sm md:text-base">
-          {Object.entries(categories).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="font-semibold mb-3">{category}</h4>
-              <ul className="space-y-0">
-                {items.map((item) => (
-                  <li key={item.label} className="flex items-center space-x-2">
-                    <Image
-                      src={`/${item.icon}`}
-                      alt={item.label}
-                      width={30}
-                      height={30}
-                      className="shrink-0 h-16 object-contain"
-                    />
-                    <span>{item.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-gray-700 mt-12 font-bold">
-          Our cross-platform app development approach ensures scalable, secure, and user-friendly apps across these categories.
-        </p>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
-          LET’S TALK
-        </button>
-      </section> */}
       <WhyChoose />
-      {/* TEch STack */}
-      <section className="py-16 px-4 bg-white max-w-6xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Cutting-Edge Tech Stack to Power Your Mobile App
-        </h2>
-        <p className="text-gray-600 max-w-3xl mx-auto mb-12">
-          We leverage these technologies to deliver mobile apps that are scalable, secure, and tailored to your startup’s needs
-          combining native performance with cross-platform flexibility to maximize reach and ROI.
-        </p>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-left text-sm md:text-base">
-          {Object.entries(techCategories).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="font-semibold mb-4">{category}</h4>
-              <ul className="space-y-6">
-                {items.map((item) => (
-                  <li key={item.name} className="flex items-center gap-3">
-                    <Image
-                      src={`/${item.icon}`}
-                      alt={item.name}
-                      width={20}
-                      height={20}
-                      className="shrink-0"
-                    />
-                    <span>{item.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
-          LET’S TALK
-        </button>
-      </section>
+      <TechStackSection />
       <CategoryTabs />
       {/* Call to Action */}
       <section className="relative py-20 px-4 max-w-7xl mx-auto flex justify-center">

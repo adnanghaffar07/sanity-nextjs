@@ -9,7 +9,11 @@ const CookieConsent = () => {
   useEffect(() => {
     const consent = Cookies.get("cookieConsent");
     if (!consent) {
-      setShowBanner(true);
+      const timer = setTimeout(() => {
+        setShowBanner(true);
+      }, 8000); // 👈 delay in ms (3 seconds)
+
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -20,19 +24,21 @@ const CookieConsent = () => {
 
   const declineCookies = () => {
     setShowBanner(false);
-    // Optionally: Cookies.set("cookieConsent", "declined", { expires: 365 });
+    // Optionally save decline choice:
+    // Cookies.set("cookieConsent", "declined", { expires: 365 });
   };
 
   return (
     showBanner && (
-      <div className="fixed bottom-0 z-[999] w-full bg-[#111827] text-white px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="fixed bottom-0 z-[999] w-full bg-[#111827] text-white px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-6 transition-opacity duration-500">
         {/* Text Section */}
         <div className="max-w-3xl">
           <h2 className="font-bold text-xl md:text-2xl mb-2">We Use Cookies</h2>
           <p className="text-sm md:text-base leading-relaxed">
             We use cookies to personalize content, provide social media
-            features, and analyze our traffic. By clicking <strong>‘Accept’</strong>, 
-            you agree to our use of cookies as described in our{" "}
+            features, and analyze our traffic. By clicking{" "}
+            <strong>‘Accept’</strong>, you agree to our use of cookies as
+            described in our{" "}
             <Link
               href="/cookies-policy"
               target="_blank"
@@ -54,7 +60,8 @@ const CookieConsent = () => {
           </button>
           <button
             onClick={declineCookies}
-            className="px-6 py-2 rounded-lg border border-gray-400 text-white font-medium hover:bg-gray-100 transition hover:text-black"          >
+            className="px-6 py-2 rounded-lg border border-gray-400 text-white font-medium hover:bg-gray-100 transition hover:text-black"
+          >
             I refuse cookies
           </button>
         </div>

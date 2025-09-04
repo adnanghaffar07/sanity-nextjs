@@ -69,7 +69,7 @@ export default function CategoryTabs() {
                             <button
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
-                                className={`flex items-center justify-center gap-2 w-[150px] md:w-[300px] py-2 px-2 md:py-3 rounded-md border-b-4 shadow-sm transition-all duration-200 ${isActive
+                                className={`flex items-center justify-center gap-2 w-[150px] md:w-[280px] py-2 px-2 rounded-md border-b-4 shadow-sm transition-all duration-200 ${isActive
                                         ? 'bg-[#0A8FFC] text-white border-[#0A8FFC]'
                                         : 'bg-white text-black border-transparent hover:border-blue-500'
                                     }`}

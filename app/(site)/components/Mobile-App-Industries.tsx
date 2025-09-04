@@ -39,13 +39,13 @@ const MobileIndustries = () => {
                 {industries.map((industry, index) => (
                     <div
                         key={index}
-                        className="flex items-center text-center flex-row text-left sm:items-center gap-3 bg-[#F3F6F7] py-2 md:py-4 px-4 rounded-lg shadow-lg hover:shadow-xl transition"
+                        className="flex items-center text-center flex-row text-left sm:items-center gap-3 bg-[#F3F6F7] py-2 md:py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition"
                     >
                         {/* Icon */}
                         <img
                             src={industry.icon}
                             alt={industry.name}
-                            className="h-6 w-6 md:h-10 md:w-10 object-contain"
+                            className="h-6 w-6 md:h-8 md:w-8 object-contain"
                         />
 
                         {/* Name */}
