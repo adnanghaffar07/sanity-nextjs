@@ -30,7 +30,7 @@ const CookieConsent = () => {
 
   return (
     showBanner && (
-      <div className="fixed bottom-0 z-[999] w-full bg-[#111827] text-white px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-6 transition-opacity duration-500">
+      <div className="fixed bottom-0 z-[2147483647] w-full bg-[#111827] text-white px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-6 transition-opacity duration-500">
         {/* Text Section */}
         <div className="max-w-3xl">
           <h2 className="font-bold text-xl md:text-2xl mb-2">We Use Cookies</h2>
@@ -54,13 +54,13 @@ const CookieConsent = () => {
         <div className="flex flex-row md:flex-col gap-3">
           <button
             onClick={acceptCookies}
-            className="px-6 py-2 rounded-lg bg-[#1D92FB] text-white font-medium shadow-md hover:bg-[#1477d9] transition"
+            className="px-3 md:px-6 py-2 rounded-lg bg-[#1D92FB] text-white font-sm md:font-medium shadow-md hover:bg-[#1477d9] transition"
           >
             I accept cookies
           </button>
           <button
             onClick={declineCookies}
-            className="px-6 py-2 rounded-lg border border-gray-400 text-white font-medium hover:bg-gray-100 transition hover:text-black"
+            className="px-3 md:px-6 py-2 rounded-lg border border-gray-400 text-white font-sm md:font-medium hover:bg-gray-100 transition hover:text-black"
           >
             I refuse cookies
           </button>

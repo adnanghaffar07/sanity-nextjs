@@ -54,7 +54,7 @@ export default function TechStackSection() {
 
   return (
     <section
-      className="relative bg-cover bg-center bg-no-repeat py-16 px-4 lg:px-20 text-center"
+      className="relative bg-cover bg-center bg-no-repeat py-10 md:py-16 px-4 lg:px-20 text-center"
       style={{ backgroundImage: "url('/mobile-tech-bg.jpeg')" }}
     >
       {/* Content wrapper */}
@@ -103,7 +103,7 @@ export default function TechStackSection() {
                 alt={tech.name}
                 width={150}
                 height={100}
-                className="object-contain h-8 md:h-[50px]"
+                className="object-contain h-10 w-24 md:h-[50px]"
               />
             </div>
           ))}

@@ -42,7 +42,7 @@ const CalendlyForm: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-20 2xl:gap-32 max-w-7xl mx-auto">
           {/* Left Side: Form */}
           <div className="flex flex-col w-full lg:w-[45%] self-center md:pb-0 pb-10 md:ml-24">
-            <div className="flex flex-col text-black mt-10 mb-10 md:mt-0 max-w-full md:ml-3">
+            <div className="flex flex-col text-black mt-10 md:mb-10 md:mt-0 max-w-full md:ml-3">
               <div className="max-w-[500px]">
                 <CalendlyProjectForm />
               </div>

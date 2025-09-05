@@ -242,19 +242,19 @@ export default function HeroSection() {
         </h1>
 
         {/* Main Grid */}
-        <div className="relative z-10 px-4 sm:px-6 md:px-16 lg:px-24 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+        <div className="relative z-10 px-4 sm:px-6 md:px-10 2xl:px-20 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4 2xl:gap-10 items-start">
 
           {/* Left - Image (Desktop Only) */}
           <div className="hidden md:flex justify-center">
             <img
-              className=" md:w-[400px] 2xl:w-[500px] object-contain"
+              className=" md:h-[400px] lg:h-[600px] object-contain"
               src="/mobile-banner-image.png"
               alt="Banner"
             />
           </div>
 
           {/* Middle - Text */}
-          <div className="text-white space-y-6 text-center lg:text-left">
+          <div className="text-white space-y-3 text-center lg:text-left">
             <p className="lg:text-center text-left sm:text-lg md:text-xl">
               We help entrepreneurs and businesses turn <span className="font-semibold">APP</span> ideas into reality.
             </p>
@@ -266,7 +266,7 @@ export default function HeroSection() {
                   key={index}
                   className="flex items-start space-x-2 text-left"
                 >
-                  <div className="w-8 h-8 md:mb-4 text-yellow-400 flex-shrink-0">
+                  <div className="w-8 h-8 md:mb-2 text-yellow-400 flex-shrink-0">
                     <Image
                       src={feature.icon ?? "/default-icon.png"}
                       alt={feature.tag}
@@ -288,7 +288,7 @@ export default function HeroSection() {
             {/* Phone */}
             <a
               href="tel:+18505584691"
-              className="text-lg sm:text-xl mt-6 flex font-bold items-center justify-center space-x-2 text-white hover:text-yellow-400 transition-colors"
+              className="text-lg sm:text-xl mt-4 flex font-bold items-center justify-center space-x-2 text-white hover:text-yellow-400 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -308,7 +308,7 @@ export default function HeroSection() {
             </a>
 
             {/* Chat & Quote */}
-            <div className="mt-2 flex flex-row items-center justify-center space-x-3 text-white text-base">
+            <div className="mt-1 flex flex-row items-center justify-center space-x-3 text-white text-base">
               <a
                 href="#"
                 onClick={(e) => {
@@ -348,7 +348,7 @@ export default function HeroSection() {
       <MobileIndustries />
       {/* Notification */}
       {!isModalOpen && !isFloatingDrawerOpen && showNotification && (
-        <div className="fixed bottom-6 left-6 z-[9999] bg-white rounded-2xl shadow-lg border border-gray-200 p-5 w-[250px] sm:w-[360px]">
+        <div className="fixed bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 sm:bottom-6 sm:left-6 sm:translate-x-0 sm:translate-y-0 z-[9999] bg-white rounded-2xl shadow-lg border border-gray-200 p-5 w-[250px] sm:w-[360px]">
           {/* ❌ Close Button */}
           <button
             onClick={() => setShowNotification(false)}
@@ -403,7 +403,7 @@ export default function HeroSection() {
         setIsFloatingDrawerOpen={setIsFloatingDrawerOpen}
       />
       <section
-        className="bg-[url('/what-we-do.jpeg')] bg-cover bg-center py-16 px-4 lg:px-20 text-center"
+        className="bg-[url('/what-we-do.jpeg')] bg-cover bg-center py-10 md:py-16 px-4 lg:px-20 text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
           Our Services
@@ -478,7 +478,7 @@ export default function HeroSection() {
             />
           </div>
 
-          <div className="flex flex-row gap-10 ">
+          <div className="flex flex-row gap-4">
             {/* Left services */}
             <div className="flex flex-col md:flex-row text-right gap-6">
               {servicesLeft.map((service, index) => (
@@ -494,7 +494,7 @@ export default function HeroSection() {
                     className="md:block hidden"
                   />
                   <div className="text-left space-y-1">
-                    <h4 className="font-bold text-white text-md">{service.title}</h4>
+                    <h4 className="font-bold text-white text-sm">{service.title}</h4>
                     <p className="text-white text-xs">{service.description}</p>
                   </div>
                 </div>
@@ -516,7 +516,7 @@ export default function HeroSection() {
                   />
 
                   <div className="text-left space-y-1">
-                    <h4 className="font-bold text-white text-md">{service.title}</h4>
+                    <h4 className="font-bold text-white text-sm">{service.title}</h4>
                     <p className="text-white text-xs">{service.description}</p>
                   </div>
                 </div>
@@ -540,7 +540,7 @@ export default function HeroSection() {
       </section>
 
       {/* How we DO Section */}
-      <section className="py-20 bg-white text-center px-4">
+      <section className="py-10 md:py-20 bg-white text-center px-4">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           How We Do It
@@ -571,8 +571,6 @@ export default function HeroSection() {
                 {step.description}
               </p>
             </div>
-
-
           ))}
         </div>
 
@@ -590,7 +588,7 @@ export default function HeroSection() {
       <TechStackSection />
       <CategoryTabs />
       {/* Call to Action */}
-      <section className="relative py-20 px-4 max-w-7xl mx-auto flex justify-center">
+      <section className="relative py-10 md:py-20 px-4 max-w-7xl mx-auto flex justify-center">
         {/* Container Box */}
         <div className="relative bg-[#DAEEFF] rounded-2xl shadow-lg max-w-6xl w-full flex flex-col md:flex-row px-8 py-12 overflow-hidden z-10">
 

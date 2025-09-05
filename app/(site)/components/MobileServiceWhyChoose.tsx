@@ -52,7 +52,7 @@ export default function WhyChoose() {
     const [isModalOpen, setIsModalOpen] = useState(false);
   
   return (
- <section className="relative bg-[#E6F3FF] py-16 px-4 text-center overflow-hidden">
+ <section className="relative bg-[#E6F3FF] py-10 md:py-16 px-4 text-center overflow-hidden">
   {/* Illustration Image (top-right) */}
   <div className="absolute top-0 right-0 h-40 md:h-60">
     <Image 

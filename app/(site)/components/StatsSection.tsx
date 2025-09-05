@@ -33,30 +33,30 @@ export default function StatsSection() {
   });
 
   return (
-    <section className="bg-[#001E6B] py-10" ref={ref}>
+    <section className="bg-[#001E6B] py-8 md:py-10" ref={ref}>
       <div className="container max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 text-white">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-8 text-white">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-center sm:flex-row sm:text-left sm:items-center sm:space-x-4"
+              className="flex items-center flex-row text-center md:text-left sm:items-center space-x-4"
             >
               {/* Icon */}
               <img
                 src={stat.icon}
                 alt={stat.label}
-                className="h-12 w-12 object-contain mb-2 sm:mb-0"
+                className="h-10 w-10 md:h-12 md:w-12 object-contain mb-2 sm:mb-0"
               />
 
               {/* Number + Label */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold flex items-center">
+                <h3 className="text-xl sm:text-2xl font-bold flex text-center items-center">
                   {inView && (
                     <CountUp end={stat.number} duration={2.5} />
                   )}
                   <span className="ml-1">+</span>
                 </h3>
-                <p className="text-sm">{stat.label}</p>
+                <p className="text-xs md:text-sm">{stat.label}</p>
               </div>
             </div>
           ))}

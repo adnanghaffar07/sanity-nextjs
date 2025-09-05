@@ -23,7 +23,7 @@ const MobileIndustries = () => {
     ];
 
     return (
-        <section className="py-16 px-4 bg-[#DAEEFF] text-center">
+        <section className="py-10 md:py-16 px-4 bg-[#DAEEFF] text-center">
             {/* Heading */}
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Industries We Serve
