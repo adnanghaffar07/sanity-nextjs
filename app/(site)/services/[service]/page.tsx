@@ -273,7 +273,7 @@ export default async function service({
               {data.clientsSection.clientLogos.map((logo: any, index: any) => (
                 <img
                   key={index}
-                  src={urlForImage(logo.asset).toString()}
+                  src={urlForImage(logo).toString()}
                   alt={logo.altText}
                   className="object-cover h-8 xl:h-11 "
                 />

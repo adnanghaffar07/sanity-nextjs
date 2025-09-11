@@ -8,13 +8,13 @@ import HomeNavigationContainer from "./components/home-navigation-container";
 import CookieConsent from "./components/CookieConsent";
 import { Inter } from "next/font/google";
 
-// Use next/font (non-blocking with display: swap)
+// ✅ Replace Google Fonts with `next/font`
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
+  display: "swap", // Makes font swap non-blocking
 });
 
-// Dynamic imports (non-SSR for heavy/3rd-party UI)
+// ✅ Dynamic imports
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
 const FooterContainer = dynamic(() => import("./components/footer-container"), { suspense: true });
 const DeferredFormDisplay = dynamic(() => import("./components/DeferredFormDisplay"), { ssr: false, loading: () => null });
@@ -22,7 +22,7 @@ const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToT
 const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codeautomation.ai"),
+  metadataBase: new URL("https://codeautomation.ai"), // ✅ Add this line
   title: "Software Development Company in the USA | CodeAutomation",
   description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
   keywords: ["CodeAutomation", "software development company", "software development services"],
@@ -50,112 +50,124 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-        {/* Preconnects - keep to the most important origins (max ~4) */}
-        <link rel="preconnect" href="https://ld8m6d0z.apicdn.sanity.io" crossOrigin="anonymous" />
+        {/* 🚀 Preconnects for 3rd-party domains */}
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://analytics.tiktok.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://accounts.google.com" crossOrigin="anonymous" />
 
-        {/* dns-prefetch as a cheap fallback */}
-        <link rel="dns-prefetch" href="https://ld8m6d0z.apicdn.sanity.io" />
-
-        {/* Preload hero/main images used above-the-fold to improve LCP. Ensure paths match what you serve. */}
-        <link rel="preload" as="image" href="/who-we-are.png" />
-        {/* If you have a hero background or other critical image, add it here. */}
-
-        {/* Avoid blocking the main thread: keep embedded JSON-LD lazy */}
+        {/* ✅ JSON-LD business info */}
+        <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "CodeAutomation",
+            "image": "https://www.codeautomation.ai/logo.png",
+            "url": "https://www.codeautomation.ai",
+            "telephone": "+1-815-614-8480",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Office 254, 1755 Park St Suite 200",
+              "addressLocality": "Naperville",
+              "addressRegion": "IL",
+              "postalCode": "60563",
+              "addressCountry": "US",
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "41.7906",
+              "longitude": "-88.1535",
+            },
+            "openingHours": "Mo-Fr 09:00-17:00",
+            "sameAs": [
+              "https://www.linkedin.com/company/codeautomation",
+              "https://www.facebook.com/codeautomation",
+            ],
+          })}
+        </Script>
       </head>
       <body className={inter.className}>
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
+          {/* ✅ Lazy load third-party scripts post-LCP */}
+          <Script id="defer-scripts" strategy="afterInteractive">
+            {`
+  requestIdleCallback(() => {
+    // TikTok
+    !function(w,d,t){
+      w.TiktokAnalyticsObject=t;
+      var ttq=w[t]=w[t]||[];
+      ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+      ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};};
+      for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+      ttq.instance=function(t){
+        for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);
+        return e;
+      };
+      ttq.load=function(e,n){
+        var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;
+        ttq._i=ttq._i||{};
+        ttq._i[e]=[];
+        ttq._i[e]._u=r;
+        ttq._t=ttq._t||{};
+        ttq._t[e]=+new Date;
+        ttq._o=ttq._o||{};
+        ttq._o[e]=n||{};
+        n=document.createElement("script");
+        n.type="text/javascript";
+        n.async=!0;
+        n.src=r+"?sdkid="+e+"&lib="+t;
+        e=document.getElementsByTagName("script")[0];
+        e.parentNode.insertBefore(n,e)
+      };
+      ttq.load('D0N3L93C77U7M2KJ8B60');
+      ttq.page();
+    }
 
-          {/*
-            Defer third-party tracking until after interaction / idle to avoid blocking LCP.
-            Using `afterInteractive` + requestIdleCallback keeps these off the critical path.
-          */}
-          <Script id="defer-tracking" strategy="afterInteractive">
-            {`(function(){
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(initTracking, {timeout: 3000});
-  } else {
-    setTimeout(initTracking, 2000);
-  }
+    // Facebook
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){
+        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+      };
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1960013544428790');
+    fbq('track', 'PageView');
+  });
+`}  </Script>
 
-  function initTracking(){
-    try{
-      // Load Facebook Pixel async and initialize
-      var fb = document.createElement('script');
-      fb.async = true;
-      fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      document.head.appendChild(fb);
-      fb.onload = function(){
-        try{ window.fbq('init','1960013544428790'); window.fbq('track','PageView'); }catch(e){}
-      }
-
-      // Load TikTok Pixel async
-      var tt = document.createElement('script');
-      tt.async = true;
-      tt.src = 'https://analytics.tiktok.com/i18n/pixel/events.js';
-      document.head.appendChild(tt);
-      tt.onload = function(){
-        try{ /* initialize tiktok pixel if needed via their API */ }catch(e){}
-      }
-    }catch(e){console.warn('tracking init failed',e)}
-  }
-})();`}
-          </Script>
-
-          {/* JSON-LD (lazy load) */}
-          <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "CodeAutomation",
-              image: "https://www.codeautomation.ai/logo.png",
-              url: "https://www.codeautomation.ai",
-              telephone: "+1-815-614-8480",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Office 254, 1755 Park St Suite 200",
-                addressLocality: "Naperville",
-                addressRegion: "IL",
-                postalCode: "60563",
-                addressCountry: "US",
-              },
-              geo: { "@type": "GeoCoordinates", latitude: "41.7906", longitude: "-88.1535" },
-              openingHours: "Mo-Fr 09:00-17:00",
-              sameAs: ["https://www.linkedin.com/company/codeautomation","https://www.facebook.com/codeautomation"],
-            })}
-          </Script>
-
+          {/* ✅ Page Content */}
           <div className="flex flex-col bg-white relative">
             <HomeNavigationContainer />
             <CookieConsent />
-
             {children}
-
-            {/* non-critical UI deferred with Suspense */}
             <Suspense fallback={null}>
               <DeferredFormDisplay />
             </Suspense>
-
             <Suspense fallback={<div className="h-[300px] bg-gray-100 animate-pulse" />}>
               <FooterContainer />
             </Suspense>
-
             <Suspense fallback={null}>
               <DeferredScrollToTop />
             </Suspense>
-
             <Suspense fallback={<div className="h-[250px] bg-gray-100 animate-pulse" />}>
               <GreetingPopup />
             </Suspense>
           </div>
         </GoogleOAuthProvider>
-
-        {/* Keep GTM client as a dynamic component (non-SSR) so it doesn't block render */}
+        {/* ✅ GTM (if needed) */}
         <GoogleTagManagerClient gtmId="GTM-MJG35754" />
 
-        {/* Additional WebPage JSON-LD - lazy */}
+        {/* ✅ Additional JSON-LD */}
         <Script type="application/ld+json" strategy="lazyOnload" id="json-ld">
           {JSON.stringify({
             "@context": "http://schema.org",

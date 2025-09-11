@@ -450,9 +450,11 @@ export default function Home() {
             <div className="mx-auto flex flex-col lg:flex-row items-center gap-12">
               {/* Image */}
               <div className="lg:w-[50%] md:px-4">
-                <img
-                  src="/who-we-are.png"
+                <Image
+                  src="/who-we-ar.jpeg"
                   alt="Software Development Company"
+                  width={600}
+                  height={400}
                   className="w-full h-auto rounded-lg shadow-lg object-cover"
                 />
               </div>
@@ -462,7 +464,7 @@ export default function Home() {
                 <h4 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
                   Who We Are
                 </h4>
-                <p className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full tracking-normal">
+                <p className="xl:mt-11 lg:text-lg text-base font-light mt-5 max-md:max-w-full tracking-normal">
                   We are a leading IT software development company specializing
                   in crafting and managing high-performing remote software
                   engineering teams. Since our inception, we have dedicated
@@ -585,7 +587,7 @@ export default function Home() {
           <div
             className="w-full px-6 py-10 md:px-16 md:py-20 shadow-lg flex flex-col md:flex-row items-center text-white"
             style={{
-              backgroundImage: "url(/Container.png)",
+              backgroundImage: "url(/Container.jpeg)",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
