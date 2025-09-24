@@ -50,15 +50,15 @@ export default function CtaWithStats() {
         <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
           {stats.map((stat, index) => (
             <div key={index} className="w-[45%] flex items-center">
-              <img src={stat.icon} alt={stat.label} className="w-14 h-14 mr-4" />
+              <img src={stat.icon} alt={stat.label} className="w-10 h-10 md:w-14 md:h-14 mr-2 md:mr-4" />
               <div>
-                <p className="text-4xl font-bold">
+                <p className="text-3xl md:text-4xl font-bold">
                   {inView && (
                     <CountUp end={stat.number} duration={2.5} />
                   )}
                   {stat.suffix}
                 </p>
-                <p className="text-lg text-white font-light mt-2">{stat.label}</p>
+                <p className="text-sm md:text-lg text-white font-light mt-1 md:mt-2">{stat.label}</p>
               </div>
             </div>
           ))}

@@ -18,6 +18,7 @@ import HeroVideo from "./components/HeroSectionVideo";
 import Image from "next/image";
 import StatsSection from "./components/StatsSection";
 import CtaWithStats from "./components/CTAwithstats";
+import ProcessScroller from "./components/ProcessScroller";
 
 // StatItem Component
 const StatItem = ({
@@ -263,7 +264,7 @@ export default function Home() {
 
         </div>
       </div>
-      <StatsSection/>
+      <StatsSection />
       <ScrollAnimation>
         <section className="relative flex justify-center items-center px-6 md:px-16 md:py-16 py-10">
           <div className="absolute inset-0 bg-[#1D92FB]"></div>
@@ -501,17 +502,16 @@ export default function Home() {
             {/* <div className="absolute inset-0 bg-[#1D92FB] opacity-20"></div> */}
             <div className="justify-center text-center relative z-10 pb-10 max-w-7xl mx-auto" >
               <div>
-                <h3 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
+                <h3 className="justify-center text-left md:text-center text-2xl md:text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
                   Why Choose Us for Your Software Development Services?
                 </h3>
-                <p className=" justify-center text-center text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
+                <p className=" justify-center text-left md:text-center text-lg font-medium text-[#3C3C3C] mx-auto max-w-4xl">
                   Outsource with us for real experience in custom software
                   development and top-line software solutions that will bring
                   innovative results to your business.
                 </p>
               </div>
             </div>
-
             <div className="relative flex flex-col md:flex-row items-center justify-between z-10 max-w-7xl mx-auto">
               <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 md:pl-12 ">
                 <div className="space-y-8">
@@ -589,7 +589,7 @@ export default function Home() {
           </section>
         </ScrollAnimation>
         <ScrollAnimation>
-        <CtaWithStats/>
+          <CtaWithStats />
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
@@ -667,61 +667,8 @@ export default function Home() {
             </div>
           </div>
         </ScrollAnimation>
-
         <ScrollAnimation>
-          <div className="overflow-hidden w-full md:py-16 py-6">
-            <div className="flex animate-marquee space-x-6 md:space-x-12">
-              {[...Array(2)].map((_, i) => ( // duplicate items for infinite loop
-                [
-                  {
-                    title: "Project Initiation",
-                    text: "Our team of development, UX design, and analysis experts can assist in creating new product concepts or improving existing performance.",
-                    icon: "/4.png",
-                  },
-                  {
-                    title: "Design",
-                    text: "Our talented design team creates visually appealing digital user experiences to solve practical issues and enhance key business metrics.",
-                    icon: "/3.png",
-                  },
-                  {
-                    title: "Development",
-                    text: "We create efficient, secure apps for your company, by product strategy, assembling a skilled team, and starting coding to give your brand a competitive edge.",
-                    icon: "/development-icon.svg",
-                  },
-                  {
-                    title: "Automate",
-                    text: "Product testing, also known as consumer or comparative testing, measures a product’s characteristics or capabilities to develop goods that meet specific technical criteria.",
-                    icon: "/automate-icon.svg",
-                  },
-                  {
-                    title: "Launch",
-                    text: "The final product is launched after client approval, fostering growth for both companies. Our industry continuously improves, and we ensure project safety.",
-                    icon: "/6.png",
-                  },
-                  {
-                    title: "Archives and Artifacts",
-                    text: "You are the project owner, entitled to our as-built documentation, specifications, test scripts, and release scripts for future analysis or development.",
-                    icon: "/5.png",
-                  },
-                ].map((item, index) => (
-                  <div
-                    key={`${i}-${index}`}
-                    className="flex flex-col items-start p-6 min-w-[300px] border border-blue-400 bg-[#FAFAFA] rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                  >
-                    <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full border border-gray-300 shadow mb-4">
-                      <img src={item.icon} alt={item.title} className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-blue-500 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-600">{item.text}</p>
-                  </div>
-                ))
-              ))}
-            </div>
-          </div>
-
-
+          <ProcessScroller />
         </ScrollAnimation>
 
         <div className="flex flex-col bg-[#F3F3F3] py-16 px-6 relative  overflow-hidden">
@@ -766,7 +713,7 @@ export default function Home() {
               className="w-[260px] absolute right-0 top-[30px]"
               alt="ellipse"
             />
-            <div className="flex flex-col flex-1 px-5 text-xl ml-8 relative z-10 xl:container xl:mx-auto">
+            <div className="flex flex-col flex-1 px-5 text-xl relative z-10 xl:container xl:mx-auto">
               <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
                 Our FAQs
               </h2>
