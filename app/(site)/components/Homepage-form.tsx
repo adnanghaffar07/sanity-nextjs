@@ -334,7 +334,7 @@ export default function HomePageForm() {
           <button
             type="submit"
             disabled={uploading}
-            className={`self-center mt-6 shadow-md text-base xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center items-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
+            className={`self-center mt-6 shadow-md text-base font-medium xl:text-1xl lg:text-xl text-center text-black max-md:mt-10 bg-[#F7E022] flex w-full justify-center items-center rounded-xl py-2 ${uploading ? "cursor-not-allowed" : "cursor-pointer"
               }`}
           >
             {uploading ? (

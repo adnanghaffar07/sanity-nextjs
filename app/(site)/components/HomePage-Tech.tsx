@@ -74,7 +74,7 @@ const TechnologiesSection = () => {
   return (
     <div className="bg-[#1D92FB] bg-opacity-10">
       <div className="max-w-7xl mx-auto px-6 py-10 md:px-16 md:py-16">
-        <h2 className="w-full xl:text-4xl text-2xl font-medium text-black pb-6 md:pb-10 text-center">
+        <h2 className="w-full xl:text-4xl text-2xl font-medium text-[#3C3C3C] pb-6 md:pb-10 text-center">
           Technologies We Use
         </h2>
         <div className="flex flex-wrap justify-center md:mb-12 mb-8 gap-4">

@@ -16,18 +16,22 @@ import TechnologiesSection from "./components/HomePage-Tech";
 import Script from "next/script";
 import HeroVideo from "./components/HeroSectionVideo";
 import Image from "next/image";
+import StatsSection from "./components/StatsSection";
+import CtaWithStats from "./components/CTAwithstats";
 
 // StatItem Component
 const StatItem = ({
   imageSrc,
   text,
   alt,
+  classname
 }: {
   imageSrc: string;
   text: string;
   alt: string;
+  classname?: string;
 }) => (
-  <div className="flex flex-col py-4 text-lg font-light leading-6  text-center w-[290px] xl:w-[270px] 2xl:w-[270px] h-[220px] transition-shadow ease-in-out duration-500">
+  <div className={`flex flex-col py-4 text-lg font-light leading-6  text-center w-[290px] xl:w-[270px] 2xl:w-[270px] h-[220px] transition-shadow ease-in-out duration-500 ${classname}`}>
     <img
       loading="lazy"
       src={imageSrc}
@@ -259,16 +263,17 @@ export default function Home() {
 
         </div>
       </div>
+      <StatsSection/>
       <ScrollAnimation>
         <section className="relative flex justify-center items-center px-6 md:px-16 md:py-16 py-10">
-          <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+          <div className="absolute inset-0 bg-[#1D92FB]"></div>
           <div className="relative z-10">
             <div className="max-w-[1920px] mx-auto">
               <div className="flex flex-col items-center justify-center text-center mb-6">
-                <h1 className="text-2xl md:text-4xl font-semibold mb-4">
+                <h1 className="text-2xl md:text-4xl text-white font-semibold mb-4">
                   Why Our Software Development Trusted by Industry Leaders
                 </h1>
-                <h3 className="text-lg md:text-2xl font-medium max-w-4xl text-[#3C3C3C]">
+                <h3 className="text-lg md:text-2xl text-white font-medium max-w-4xl text-[#3C3C3C]">
                   Businesses trust us for our top-notch software development
                   services, proven expertise, and reliable solutions tailored to
                   their needs
@@ -279,12 +284,13 @@ export default function Home() {
                 {stats.map((stat, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-lg shadow-lg pt-0 p-4 transform transition-transform duration-300 ease-in-out hover:scale-105"
+                    className="bg-white rounded-lg shadow-xl pt-0 p-4 transform transition-transform duration-300 ease-in-out hover:scale-105"
                   >
                     <StatItem
                       imageSrc={stat.imageSrc}
                       text={stat.text}
                       alt={stat.alt}
+                      classname="font-semibold text-gray-700"
                     />
                   </div>
                 ))}
@@ -346,15 +352,15 @@ export default function Home() {
         {/* </ScrollAnimation> */}
         <ScrollAnimation>
           <div className="relative flex justify-center items-center py-10 mx-auto px-6 lg:px-10">
-            <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+            <div className="absolute inset-0 bg-[#001E6B]"></div>
             <div className="relative z-10 max-w-7xl mx-auto">
               {/* Section Heading */}
-              <h3 className="text-2xl md:text-4xl text-center font-semibold mb-4">
+              <h3 className="text-2xl md:text-4xl text-center text-white font-semibold mb-4">
                 Complete End-to-End Software Development Services
               </h3>
 
               {/* Section Description */}
-              <p className="text-lg xl:text-xl text-gray-600 text-center max-w-4xl mx-auto mb-16">
+              <p className="text-lg xl:text-xl text-white text-center max-w-4xl mx-auto mb-16">
                 Over years of experience, we know that all businesses work within
                 a specific software and hardware setup. We offer a wide range of
                 software development services that are available to suit the
@@ -364,7 +370,7 @@ export default function Home() {
 
               {/* Services Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left px:6 md:px-16 ">
-                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                <div className="flex bg-white p-4 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
                   <div className="mr-6 flex-shrink-0">
                     <img
                       src="/end-to-end-1.png"
@@ -376,14 +382,14 @@ export default function Home() {
                     <h3 className="text-2xl font-semibold mb-2">
                       Custom Software Development
                     </h3>
-                    <p className="text-lg text-gray-700">
+                    <p className="text-md text-gray-700">
                       Custom Software Solutions To Power Innovation And Efficiency
                       In Your Business.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                <div className="flex bg-white p-4 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
                   <div className="mr-6 flex-shrink-0">
                     <img
                       src="end-to-end-2.png"
@@ -395,7 +401,7 @@ export default function Home() {
                     <h3 className="text-2xl font-semibold mb-2">
                       Offshore Software Development
                     </h3>
-                    <p className="text-lg text-gray-700">
+                    <p className="text-md text-gray-700">
                       Ensure premium results, coupled with seamless project
                       management by the leverage of cost-effective offshore
                       development services to hire top global talent.
@@ -403,7 +409,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                <div className="flex bg-white p-4 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
                   <div className="mr-6 flex-shrink-0">
                     <img
                       src="end-to-end-3.png"
@@ -415,14 +421,14 @@ export default function Home() {
                     <h3 className="text-2xl font-semibold mb-2">
                       Enterprise Software Development
                     </h3>
-                    <p className="text-lg text-gray-700">
+                    <p className="text-md text-gray-700">
                       Scalable, secure enterprise solutions that enhance
                       productivity and support complex business operations.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex bg-white p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+                <div className="flex bg-white p-4 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
                   <div className="mr-6 flex-shrink-0">
                     <img
                       src="/end-to-end-4.png"
@@ -434,7 +440,7 @@ export default function Home() {
                     <h3 className="text-2xl font-semibold mb-2">
                       Software Integration
                     </h3>
-                    <p className="text-lg text-gray-700">
+                    <p className="text-md text-gray-700">
                       Software application alignment with a single point-to-point
                       connection removing data silos and optimizing business
                       workflow
@@ -461,10 +467,10 @@ export default function Home() {
 
               {/* Text Content */}
               <div className="lg:w-[50%] ">
-                <h4 className="xl:text-4xl lg:text-3xl text-3xl font-medium">
+                <h4 className="xl:text-4xl lg:text-3xl text-[#3C3C3C] text-3xl font-semibold">
                   Who We Are
                 </h4>
-                <p className="xl:mt-11 lg:text-lg text-base font-light mt-5 max-md:max-w-full tracking-normal">
+                <p className="xl:mt-11 lg:text-lg text-base text-[#3C3C3C] mt-5 max-md:max-w-full tracking-normal">
                   We are a leading IT software development company specializing
                   in crafting and managing high-performing remote software
                   engineering teams. Since our inception, we have dedicated
@@ -492,7 +498,7 @@ export default function Home() {
 
         <ScrollAnimation>
           <section className="relative px-6 py-10 md:px-16 md:py-16">
-            <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+            {/* <div className="absolute inset-0 bg-[#1D92FB] opacity-20"></div> */}
             <div className="justify-center text-center relative z-10 pb-10 max-w-7xl mx-auto" >
               <div>
                 <h3 className="justify-center text-center text-3xl font-bold text-[#3C3C3C] mb-4 mx-auto max-w-3xl">
@@ -583,77 +589,14 @@ export default function Home() {
           </section>
         </ScrollAnimation>
         <ScrollAnimation>
-          {/* Call to Action (CTA) Section */}
-          <div
-            className="w-full px-6 py-10 md:px-16 md:py-20 shadow-lg flex flex-col md:flex-row items-center text-white"
-            style={{
-              backgroundImage: "url(/Container.jpeg)",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
-              {/* Left Content */}
-              <div className="w-full md:w-1/2 text-left">
-                <h4 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
-                  Want To Develop A Custom Software Solution?
-                </h4>
-                <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
-                  <Link
-                    href="https://join.skype.com/invite/crU4cXW4bttb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
-                  >
-                    <p className="relative grow self-center text-black font-semibold text-lg">
-                      Get Started Today
-                    </p>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Stats */}
-              <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
-                {/* Stats Items */}
-                <div className="w-[45%] flex items-center">
-                  <img src="/cta-1.png" alt="Icon" className="w-14 h-14 mr-4" />
-                  <div>
-                    <p className="text-4xl font-bold">500+</p>
-                    <p className="text-lg text-white font-light mt-2">Clients Served</p>
-                  </div>
-                </div>
-                <div className="w-[45%] flex items-center">
-                  <img src="/cta-2.png" alt="Icon" className="w-14 h-14 mr-4" />
-                  <div>
-                    <p className="text-4xl font-bold">10+</p>
-                    <p className="text-lg text-white font-light mt-2">Years in Business</p>
-                  </div>
-                </div>
-                <div className="w-[45%] flex items-center">
-                  <img src="/cta-3.png" alt="Icon" className="w-14 h-14 mr-4" />
-                  <div>
-                    <p className="text-4xl font-bold">350+</p>
-                    <p className="text-lg text-white font-light mt-2">Industries Served</p>
-                  </div>
-                </div>
-                <div className="w-[45%] flex items-center">
-                  <img src="/cta-4.png" alt="Icon" className="w-14 h-14 mr-4" />
-                  <div>
-                    <p className="text-4xl font-bold">200+</p>
-                    <p className="text-lg text-white font-light mt-2">Global Clients</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <CtaWithStats/>
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
-            <h4 className="self-center text-center font-bold text-black xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
+            <h4 className="self-center text-center font-bold text-[#3C3C3C] xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
               Transformative Software Development Case Studies
             </h4>
-            <p className="lg:mt-8 mt-4 text-lg  md:text-xl font-light text-center text-black lg:px-10 md:px-5 max-w-[1582px] mx-auto">
+            <p className="lg:mt-8 mt-4 text-lg md:text-xl font-medium text-center text-[#3C3C3C] lg:px-10 md:px-5 max-w-[1582px] mx-auto">
               Explore the impactful results of our expertise in software
               development. Each project in our portfolio reflects our commitment
               to excellence. Discover how we&rsquo;ve driven success for
@@ -668,15 +611,15 @@ export default function Home() {
         <ScrollAnimation>
           <div className="relative max-md:max-w-full md:px-16 px-6 md:py-16 py-6">
             {/* Background layer with color and opacity */}
-            <div className="absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+            <div className="absolute inset-0 bg-[#001E6B]"></div>
 
             <div className="relative flex gap-5 max-md:flex-col max-md:gap-0 max-w-7xl mx-auto">
               <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center md:px-4">
-                <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
+                <div className="flex flex-col text-white max-md:mt-10 max-md:max-w-full">
                   <h3 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
                     Our Development Approach
                   </h3>
-                  <div className="xl:mt-11 lg:text-xl text-base font-light mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
+                  <div className="xl:mt-11 lg:text-xl text-base mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                     <p>
                       At CodeAutomation, we blend collaboration, creativity, and
                       precision to deliver exceptional results. Our unique
@@ -698,7 +641,7 @@ export default function Home() {
                   <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
                     <Link
                       href="/services"
-                      className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center bg-[#F7E022] rounded-lg shadow-md"
+                      className="cursor flex overflow-hidden relative gap-2 px-6 py-3 items-center text-black bg-[#F7E022] rounded-lg shadow-md"
                     >
                       <p className="relative grow self-center">
                         Launch Your Software
@@ -706,7 +649,7 @@ export default function Home() {
                       <img
                         loading="lazy"
                         src="/btn-arrow.svg"
-                        className="w-[22px] h-[26.8px]"
+                        className="w-[22px] h-[26.8px] text-black"
                         alt="arrow icon"
                       />
                     </Link>
@@ -726,150 +669,65 @@ export default function Home() {
         </ScrollAnimation>
 
         <ScrollAnimation>
-          <div className="grid xl:grid-cols-3 grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-10 lg:gap-12 md:px-16 px-6 md:py-16 py-6 lg:mt-11 w-full max-md:mt-10 max-md:max-w-full mb-10">
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full ">
-              <div className="flex flex-col grow px-5 py-7  mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 gap-5  justify-between items-start mt-0">
-                  <h3 className="flex-auto self-end  text-2xl font-medium leading-6 text-black ">
-                    Project Initiation
-                  </h3>
-                  <div className="flex flex-col flex-1 justify-center self-start absolute -top-10 right-5">
-                    <div className="flex justify-center items-center px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300">
-                      <img
-                        loading="lazy"
-                        src="/4.png"
-                        className="w-full"
-                        alt="Code automation Project Initiation"
-                      />
+          <div className="overflow-hidden w-full md:py-16 py-6">
+            <div className="flex animate-marquee space-x-6 md:space-x-12">
+              {[...Array(2)].map((_, i) => ( // duplicate items for infinite loop
+                [
+                  {
+                    title: "Project Initiation",
+                    text: "Our team of development, UX design, and analysis experts can assist in creating new product concepts or improving existing performance.",
+                    icon: "/4.png",
+                  },
+                  {
+                    title: "Design",
+                    text: "Our talented design team creates visually appealing digital user experiences to solve practical issues and enhance key business metrics.",
+                    icon: "/3.png",
+                  },
+                  {
+                    title: "Development",
+                    text: "We create efficient, secure apps for your company, by product strategy, assembling a skilled team, and starting coding to give your brand a competitive edge.",
+                    icon: "/development-icon.svg",
+                  },
+                  {
+                    title: "Automate",
+                    text: "Product testing, also known as consumer or comparative testing, measures a product’s characteristics or capabilities to develop goods that meet specific technical criteria.",
+                    icon: "/automate-icon.svg",
+                  },
+                  {
+                    title: "Launch",
+                    text: "The final product is launched after client approval, fostering growth for both companies. Our industry continuously improves, and we ensure project safety.",
+                    icon: "/6.png",
+                  },
+                  {
+                    title: "Archives and Artifacts",
+                    text: "You are the project owner, entitled to our as-built documentation, specifications, test scripts, and release scripts for future analysis or development.",
+                    icon: "/5.png",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={`${i}-${index}`}
+                    className="flex flex-col items-start p-6 min-w-[300px] border border-blue-400 bg-[#FAFAFA] rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                  >
+                    <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full border border-gray-300 shadow mb-4">
+                      <img src={item.icon} alt={item.title} className="w-8 h-8" />
                     </div>
+                    <h3 className="text-lg font-semibold text-blue-500 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-600">{item.text}</p>
                   </div>
-                </div>
-                <p className="mt-3 text-sm font-light text-justify text-black">
-                  Our team of development, UX design, and analysis experts can
-                  assist in creating new product concepts or improving existing
-                  performance.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow px-7 pb-7 mx-auto w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:pl-5 max-md:mt-10 relative">
-                <div className="flex z-10 gap-5 justify-between items-start mt-0">
-                  <h3 className="self-end mt-10 text-2xl font-medium leading-6 text-black max-md:mt-10">
-                    Design
-                  </h3>
-                  <div className="flex justify-center items-center self-start px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:pl-5 absolute -top-10 right-5">
-                    <img
-                      loading="lazy"
-                      src="/3.png"
-                      className="w-full"
-                      alt="Code Automation Software Design"
-                    />
-                  </div>
-                </div>
-                <p className="mt-3 text-sm font-light text-justify text-black">
-                  Our talented design team creates visually appealing digital
-                  user experiences to solve practical issues and enhance key
-                  business metrics.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 justify-center items-center self-end px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:pr-5 absolute -top-10 right-5">
-                  <img
-                    loading="lazy"
-                    src="/development-icon.svg"
-                    className="w-full aspect-[1.02]"
-                    alt="Code Automation Software Development"
-                  />
-                </div>
-                <div className="flex flex-col px-7 text-black max-md:px-5">
-                  <h3 className="text-2xl font-medium leading-6 mt-10">
-                    Development
-                  </h3>
-                  <p className="mt-3 text-sm font-light text-justify">
-                    We create efficient, secure apps for your company, by a
-                    product strategy, assembling a skilled team, and starting
-                    coding to give your brand a competitive edge.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 justify-center items-center self-end px-4 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 absolute -top-10 right-5">
-                  <img
-                    loading="lazy"
-                    src="/automate-icon.svg"
-                    className="w-full aspect-[1.02]"
-                    alt="Code Automation Automate Your Business"
-                  />
-                </div>
-                <div className="flex flex-col px-5 text-black">
-                  <h3 className="text-2xl font-medium leading-6 mt-10">
-                    Automate
-                  </h3>
-                  <p className="mt-3 text-sm font-light text-justify">
-                    Product testing, also known as consumer or comparative
-                    testing, measures a product&rsquo;s characteristics or
-                    capabilities to develop goods that meet specific technical
-                    criteria.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 justify-center items-center self-end px-3 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 max-md:px-5 absolute -top-10 right-5">
-                  <img
-                    loading="lazy"
-                    src="/6.png"
-                    className="w-full"
-                    alt="Launch"
-                  />
-                </div>
-                <div className="flex flex-col pr-3.5 pl-7 text-black max-md:pl-5">
-                  <h3 className="text-2xl font-medium leading-6 mt-10">
-                    Launch
-                  </h3>
-                  <p className="mt-3 text-sm font-light text-justify">
-                    The final product is launched after client approval,
-                    fostering growth for both companies. Our industry
-                    continuously improves, and we ensure project safety.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow pb-6 w-full bg-gray-200 rounded-3xl shadow-sm backdrop-blur-[6.5px] max-md:mt-10 relative">
-                <div className="flex z-10 justify-center items-center self-end px-5 w-20 h-20 bg-white rounded-full shadow shadow-slate-500 border border-slate-300 absolute -top-10 right-5">
-                  <img
-                    loading="lazy"
-                    src="/5.png"
-                    className="w-full aspect-[1.02]"
-                    alt="Archives and Artifacts"
-                  />
-                </div>
-                <div className="flex flex-col px-7 text-black max-md:px-5">
-                  <h3 className="text-2xl font-medium leading-6 mt-10">
-                    Archives and Artifacts
-                  </h3>
-                  <p className="mt-3 text-sm font-light text-justify">
-                    You are the project owner, entitled to our as-built
-                    documentation, specifications, test scripts, and release
-                    scripts for future analysis or development.
-                  </p>
-                </div>
-              </div>
+                ))
+              ))}
             </div>
           </div>
+
+
         </ScrollAnimation>
 
         <div className="flex flex-col bg-[#F3F3F3] py-16 px-6 relative  overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/Testimonial.jpeg"
+              src="/testimonial.png"
               alt="Testimonials background"
               fill
               className="object-cover"

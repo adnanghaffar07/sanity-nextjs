@@ -45,12 +45,12 @@ export default function StatsSection() {
               <img
                 src={stat.icon}
                 alt={stat.label}
-                className="h-10 w-10 md:h-12 md:w-12 object-contain mb-2 sm:mb-0"
+                className="h-10 w-10 md:h-14 md:w-14 object-contain mb-2 sm:mb-0"
               />
 
               {/* Number + Label */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold flex text-center items-center">
+                <h3 className="text-2xl sm:text-2xl font-bold flex text-center items-center">
                   {inView && (
                     <CountUp end={stat.number} duration={2.5} />
                   )}

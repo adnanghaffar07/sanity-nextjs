@@ -6,6 +6,17 @@ body {
   overflow-x: hidden;
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 25s linear infinite;
+}
+
+
 /* Add this to your global CSS or in a <style> tag */
 .technology-item::before {
   content: "";

@@ -39,11 +39,17 @@ const Testimonials = () => {
     <div className="relative max-w-7xl mx-auto">
       {/* Swiper section */}
       <Swiper
-        effect={"coverflow"}
+        effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={3}
-        initialSlide={1}
+        loop={true}
+        speed={1500}
+        autoplay={{
+          delay: 2500,
+          pauseOnMouseEnter: false,   // keep it moving
+          disableOnInteraction: false, // resume autoplay immediately
+        }}
         coverflowEffect={{
           depth: 0,
           rotate: 40,
@@ -52,32 +58,11 @@ const Testimonials = () => {
           modifier: 1,
           slideShadows: false,
         }}
-        autoplay={{
-          delay: 2500,
-          pauseOnMouseEnter: true,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        speed={2000}
-        pagination={false}
-        watchSlidesProgress={true}
-        watchOverflow={true}
-        modules={[EffectCoverflow, Pagination, Autoplay]}
-        className="mySwiper w-full"
+        modules={[EffectCoverflow, Autoplay]}
         breakpoints={{
-          0: {
-            slidesPerView: 1,
-            centeredSlides: true,
-            coverflowEffect: {
-              scale: 0.9,
-            },
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
+          0: { slidesPerView: 1, centeredSlides: true },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
         }}
       >
         {data.map((testimonial, index) => (
