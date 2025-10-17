@@ -101,7 +101,7 @@ export default async function LifeAtCA() {
               {data.extraImages?.slice(0, 2).map((image: any, index: number) => (
                 <Image
                   key={index}
-                  src={urlForImage(image.asset).toString()}
+                  src={urlForImage(image).toString()}
                   alt={`Extra Image ${index + 1}`}
                   className={`w-full grow md:aspect-[2.5] md:object-contain ${index > 0 ? "mt-2" : ""}`}
                 />
@@ -118,7 +118,7 @@ export default async function LifeAtCA() {
                     className={`flex mb-2 flex-col w-1/4 max-md:w-full ${index > 0 ? "ml-2" : ""}`}
                   >
                     <Image
-                      src={urlForImage(image.asset).toString()}
+                      src={urlForImage(image).toString()}
                       alt={`Extra Image ${index + 3}`}
                       className="w-full h-full"
                     />
@@ -129,7 +129,7 @@ export default async function LifeAtCA() {
                 {data.extraImages?.[4] && (
                   <div className="flex flex-col mb-2 w-2/5 max-md:w-full ml-2 flex-grow">
                     <Image
-                      src={urlForImage(data.extraImages[4].asset).toString()}
+                      src={urlForImage(data.extraImages[4]).toString()}
                       alt="Extra Image 5"
                       className="w-full h-full md:aspect-[2.5] md:object-contain"
                     />
@@ -150,7 +150,7 @@ export default async function LifeAtCA() {
               <div className="flex flex-col w-2/5 max-md:ml-0 max-md:w-full">
                 {section.images && section.images[0] && (
                   <Image
-                    src={urlForImage(section.images[0].asset).toString()}
+                    src={urlForImage(section.images[0]).toString()}
                     alt='image6'
                     className="grow w-full aspect-[1.04] max-md:mt-5 max-md:max-w-full"
                   />
@@ -166,7 +166,7 @@ export default async function LifeAtCA() {
                           className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full"
                         >
                           <Image
-                            src={urlForImage(image.asset).toString()}
+                            src={urlForImage(image).toString()}
                             alt={image.alt}
                             className="grow w-full aspect-[1.54] max-md:mt-9"
                           />
@@ -182,7 +182,7 @@ export default async function LifeAtCA() {
                           className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full"
                         >
                           <Image
-                            src={urlForImage(image.asset).toString()}
+                            src={urlForImage(image).toString()}
                             alt={image.alt}
                             className="grow w-full aspect-[1.54] max-md:mt-9"
                           />
@@ -206,7 +206,7 @@ export default async function LifeAtCA() {
                   {section.images.slice(5, 8).map((image: any, index: any) => (
                     <Image
                       key={index}
-                      src={urlForImage(image.asset).toString()}
+                      src={urlForImage(image).toString()}
                       alt={image.alt}
                       className={`w-full aspect-[2.08] max-md:max-w-full ${index > 0 ? "mt-3" : ""
                         } ${index === 2 ? "mt-3.5" : ""}`}
@@ -225,7 +225,7 @@ export default async function LifeAtCA() {
                             } max-md:ml-0 max-md:w-full`}
                         >
                           <Image
-                            src={urlForImage(image.asset).toString()}
+                            src={urlForImage(image).toString()}
                             alt={image.alt}
                             className="grow w-full aspect-[0.75] max-md:mt-7"
                           />
@@ -242,7 +242,7 @@ export default async function LifeAtCA() {
                             } max-md:ml-0 max-md:w-full`}
                         >
                           <Image
-                            src={urlForImage(image.asset).toString()}
+                            src={urlForImage(image).toString()}
                             alt={image.alt}
                             className="grow w-full aspect-[0.75] max-md:mt-7"
                           />
