@@ -157,8 +157,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <FooterContainer />
             </Suspense>
             <Suspense fallback={null}>
-              <DeferredScrollToTop />
-            </Suspense>
+              <DeferredScrollToTop /> 
+            </Suspense> 
             <Suspense fallback={<div className="h-[250px] bg-gray-100 animate-pulse" />}>
               <GreetingPopup />
             </Suspense>

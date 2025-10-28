@@ -472,25 +472,10 @@ export default function Home() {
                   Who We Are
                 </h4>
                 <p className="xl:mt-11 lg:text-lg text-base text-[#3C3C3C] mt-5 max-md:max-w-full tracking-normal">
-                  We are a leading IT software development company specializing
-                  in crafting and managing high-performing remote software
-                  engineering teams. Since our inception, we have dedicated
-                  ourselves to delivering tailored software solutions and
-                  exceptional service to our clients. Our commitment to
-                  excellence and innovation drives our mission to empower
-                  businesses with cutting-edge technology and reliable support.
+               We are a professional IT software development company specializing in building and managing high-performing remote software engineering teams. Since our establishment in 2018, we have been committed to delivering customized software solutions designed to meet the specific business objectives of our clients.
                   <br />
                   <br />
-                  We are a high-performing IT Software Development Company
-                  founded in 2018 and we build & manage dedicated software
-                  development teams, which is based on your specific business
-                  needs. From day one, we have committed to delivering custom
-                  software solutions and exceptional service way beyond the
-                  industry standard. Our commitment to excellence and
-                  innovation, pushing us to not only help businesses grow with
-                  the true cutting-edge technology but also ensuring that we
-                  source/develop products/applications through thorough R&D
-                  providing cutting-edge technology and reliable support.
+             Driven by excellence and innovation, we combine deep technical expertise with a client-centric approach to deliver reliable, scalable, and efficient digital solutions. Through continuous research and development, we ensure that every product and application we create leverages the latest technologies to provide lasting value and measurable results.
                 </p>
               </div>
             </div>
@@ -621,21 +606,10 @@ export default function Home() {
                   </h3>
                   <div className="xl:mt-11 lg:text-xl text-base mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                     <p>
-                      At CodeAutomation, we blend collaboration, creativity, and
-                      precision to deliver exceptional results. Our unique
-                      project execution combines advanced technology with a
-                      personal touch, driven by our certified experts. We focus
-                      on crafting innovative solutions that empower businesses
-                      to achieve their growth objectives in the digital age.{" "}
+             At CodeAutomation, we combine collaboration, creativity, and technical precision to deliver outstanding results. Every project we undertake is driven by a deep understanding of our clients’ goals, ensuring that our solutions are not only innovative but also strategically aligned with their business objectives. Our certified experts bring a perfect balance of expertise and passion, enabling us to craft solutions that truly make an impact.{" "}
                       <br />
                       <br />
-                      Here at CodeAutomation, we mix collaboration with
-                      creativity and precision to achieve remarkable results.
-                      Business Excellence- Our efficient project execution uses
-                      a mix of high-end technology combined with the human
-                      touch; driven by our certified experts. We focus on
-                      crafting innovative solutions that empower businesses to
-                      achieve their growth objectives in the digital age.{" "}
+                  We believe that business excellence stems from the seamless integration of advanced technology and the human touch. Our project execution model emphasizes efficiency, transparency, and quality at every stage. By leveraging the latest tools and methodologies, we empower businesses to achieve sustainable growth and stay ahead in the ever-evolving digital landscape.{" "}
                     </p>
                   </div>
                   <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
