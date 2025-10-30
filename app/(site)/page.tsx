@@ -259,6 +259,20 @@ export default function Home() {
                   className="mb-3"
                 />
               </a>
+                <a
+                href="https://www.brainzmagazine.com/executive-contributor/adnan-ghaffar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center"
+              >
+                <Image
+                  src="/brainz.png"
+                  alt="brainz-icon"
+                  width={60}
+                  height={10}
+                  className="mb-3"
+                />
+              </a>
             </div>
           </div>
 
@@ -472,10 +486,10 @@ export default function Home() {
                   Who We Are
                 </h4>
                 <p className="xl:mt-11 lg:text-lg text-base text-[#3C3C3C] mt-5 max-md:max-w-full tracking-normal">
-               We are a professional IT software development company specializing in building and managing high-performing remote software engineering teams. Since our establishment in 2018, we have been committed to delivering customized software solutions designed to meet the specific business objectives of our clients.
+                  We are a professional IT software development company specializing in building and managing high-performing remote software engineering teams. Since our establishment in 2018, we have been committed to delivering customized software solutions designed to meet the specific business objectives of our clients.
                   <br />
                   <br />
-             Driven by excellence and innovation, we combine deep technical expertise with a client-centric approach to deliver reliable, scalable, and efficient digital solutions. Through continuous research and development, we ensure that every product and application we create leverages the latest technologies to provide lasting value and measurable results.
+                  Driven by excellence and innovation, we combine deep technical expertise with a client-centric approach to deliver reliable, scalable, and efficient digital solutions. Through continuous research and development, we ensure that every product and application we create leverages the latest technologies to provide lasting value and measurable results.
                 </p>
               </div>
             </div>
@@ -606,10 +620,10 @@ export default function Home() {
                   </h3>
                   <div className="xl:mt-11 lg:text-xl text-base mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                     <p>
-             At CodeAutomation, we combine collaboration, creativity, and technical precision to deliver outstanding results. Every project we undertake is driven by a deep understanding of our clients’ goals, ensuring that our solutions are not only innovative but also strategically aligned with their business objectives. Our certified experts bring a perfect balance of expertise and passion, enabling us to craft solutions that truly make an impact.{" "}
+                      At CodeAutomation, we combine collaboration, creativity, and technical precision to deliver outstanding results. Every project we undertake is driven by a deep understanding of our clients’ goals, ensuring that our solutions are not only innovative but also strategically aligned with their business objectives. Our certified experts bring a perfect balance of expertise and passion, enabling us to craft solutions that truly make an impact.{" "}
                       <br />
                       <br />
-                  We believe that business excellence stems from the seamless integration of advanced technology and the human touch. Our project execution model emphasizes efficiency, transparency, and quality at every stage. By leveraging the latest tools and methodologies, we empower businesses to achieve sustainable growth and stay ahead in the ever-evolving digital landscape.{" "}
+                      We believe that business excellence stems from the seamless integration of advanced technology and the human touch. Our project execution model emphasizes efficiency, transparency, and quality at every stage. By leveraging the latest tools and methodologies, we empower businesses to achieve sustainable growth and stay ahead in the ever-evolving digital landscape.{" "}
                     </p>
                   </div>
                   <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
