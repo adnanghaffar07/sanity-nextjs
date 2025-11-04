@@ -85,7 +85,7 @@ const scholarArticles = [
     link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=3loqVSYAAAAJ&citation_for_view=3loqVSYAAAAJ:IjCSPb-OGe4C",
   },
   {
-    title: "Integrating AI into Business Automation: Practical Frameworks for Streamlining Operation",
+    title: "Integrating AI into Busine ss Automation: Practical Frameworks for Streamlining Operation",
     authors: "Adnan Ghaffar, Chirag Gajiwala, Syed Basha, Bruce William",
     journal: "MS in Data Science and Analytics, CEO of CodeAutomation.ai",
     description:
