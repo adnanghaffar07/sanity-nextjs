@@ -34,6 +34,7 @@ export async function POST(req: Request) {
 
     let userId = existingUser?._id;
 
+
     if (!existingUser) {
       // Create new user in Sanity
       const newUser = {
