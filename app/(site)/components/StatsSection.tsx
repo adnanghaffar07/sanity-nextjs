@@ -21,15 +21,14 @@ export default function StatsSection() {
     },
     {
       icon: "/experience.png",
-      number: 10,
+      number: 7, // FIXED
       label: "Years of Experience",
-    },
+    }
   ];
 
-  // Hook to detect when section is in view
   const { ref, inView } = useInView({
-    triggerOnce: true, // run only once
-    threshold: 0.3, // start when 30% visible
+    triggerOnce: true,
+    threshold: 0.1, // FIXED
   });
 
   return (
@@ -39,20 +38,22 @@ export default function StatsSection() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="flex items-center flex-row text-center md:text-left sm:items-center space-x-4"
+              className="flex items-center flex-row space-x-4"
             >
-              {/* Icon */}
               <img
                 src={stat.icon}
                 alt={stat.label}
-                className="h-10 w-10 md:h-14 md:w-14 object-contain mb-2 sm:mb-0"
+                className="h-10 w-10 md:h-14 md:w-14 object-contain"
               />
 
-              {/* Number + Label */}
               <div>
-                <h3 className="text-2xl sm:text-2xl font-bold flex text-center items-center">
+                <h3 className="text-2xl sm:text-2xl font-bold flex items-center">
                   {inView && (
-                    <CountUp end={stat.number} duration={2.5} />
+                    <CountUp
+                      end={stat.number}
+                      duration={2.5}
+                      formattingFn={(value) => value.toString().padStart(2, "0")}
+                    />
                   )}
                   <span className="ml-1">+</span>
                 </h3>
