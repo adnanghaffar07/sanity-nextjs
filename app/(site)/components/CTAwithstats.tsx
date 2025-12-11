@@ -11,7 +11,7 @@ export default function CtaWithStats() {
 
   const stats = [
     { icon: "/cta-1.png", number: 500, label: "Clients Served", suffix: "+" },
-    { icon: "/cta-2.png", number: 10, label: "Years in Business", suffix: "+" },
+    { icon: "/cta-2.png", number: 7, label: "Years in Business", suffix: "+" },
     { icon: "/cta-3.png", number: 350, label: "Industries Served", suffix: "+" },
     { icon: "/cta-4.png", number: 200, label: "Global Clients", suffix: "+" },
   ];
@@ -53,8 +53,12 @@ export default function CtaWithStats() {
               <img src={stat.icon} alt={stat.label} className="w-10 h-10 md:w-14 md:h-14 mr-2 md:mr-4" />
               <div>
                 <p className="text-3xl md:text-4xl font-bold">
-                  {inView && (
-                    <CountUp end={stat.number} duration={2.5} />
+                {inView && (
+                    <CountUp
+                      end={stat.number}
+                      duration={2.5}
+                      formattingFn={(value) => value.toString().padStart(2, "0")}
+                    />
                   )}
                   {stat.suffix}
                 </p>
