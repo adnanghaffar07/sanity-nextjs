@@ -131,6 +131,97 @@ const nextConfig = {
         permanent: true,
       },
 
+      // Add these inside your existing async redirects() { return [ ... ]; } array in next.config.js
+
+      // 🔐 Authentication & Support
+      {
+        source: '/forgot_password',
+        destination: '/', // or your actual auth page
+        permanent: true,
+      },
+
+      // 🏠 Home & Top-Level Pages
+      {
+        source: '/Home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/service',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/Software',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/Other',
+        destination: '/services',
+        permanent: true,
+      },
+
+      // 📚 Blog & Article Redirects
+      {
+        source: '/a-brief-guide-on-cross-browser-and-parallel-testing',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/mobile-security-and-vulnerability-tools',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/which-programming-language-is-best-for-selenium-web-driver-browser-automation',
+        destination: '/blogs',
+        permanent: true,
+      },
+
+      // 🛠️ Technology & General Expertise
+      {
+        source: '/rapid-application-development',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/technologies/reactjs-development',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/algolia',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/fingerprint-security',
+        destination: '/services',
+        permanent: true,
+      },
+
+      // 💳 Specific Sub-Services (Pattern-based example)
+      // You can redirect groups of similar paths using a pattern
+      {
+        source: '/sub-services/:path*',
+        destination: '/services',
+        permanent: true,
+      },
+      // If the above generic rule doesn't work, add specific ones like:
+      {
+        source: '/sub-services/automation-testing',
+        destination: '/services',
+        permanent: true,
+      },
+
+      // 💰 Billing & Plans
+      {
+        source: '/month',
+        destination: '/about/service-summary', // Page discussing billing cycles
+        permanent: true,
+      },
+
       // 🆕 Query junk cleanup (attachment_id, trk, ts)
       {
         source: "/",
