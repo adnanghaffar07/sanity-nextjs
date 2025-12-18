@@ -22,21 +22,21 @@ const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToT
 const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codeautomation.ai"), // ✅ Add this line
-  title: "Custom Mobile and Web App Development Company in Chicago, USA",
+  metadataBase: new URL("https://codeautomation.ai"), 
+  title: "",
   description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
   keywords: ["CodeAutomation", "software development company", "software development services"],
   alternates: { canonical: "https://codeautomation.ai" },
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai",
-    title: "Custom Mobile and Web App Development Company in Chicago, USA",
+    title: "",
     description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
     images: [{ url: "https://codeautomation.ai/thankyou.jpg", width: 1200, height: 630, alt: "CodeAutomation Logo" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Mobile and Web App Development Company in Chicago, USA | CodeAutomation",
+    title: "",
     description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
