@@ -1222,7 +1222,7 @@ const Page = () => {
                     </div>
 
                     {/* Recognition Timeline */}
-                    <div className="max-w-4xl mx-auto">
+                    {/* <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-full mb-4">
                                 <FaTrophy className="text-lg" />
@@ -1235,10 +1235,8 @@ const Page = () => {
                         </div>
 
                         <div className="relative">
-                            {/* Timeline line */}
                             <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 via-orange-500 to-yellow-500 rounded-full"></div>
 
-                            {/* Timeline items */}
                             <div className="space-y-12 relative">
                                 {[
                                     {
@@ -1261,10 +1259,8 @@ const Page = () => {
                                         key={index}
                                         className={`relative ${index % 2 === 0 ? 'md:pr-8 md:pl-0 md:text-right' : 'md:pl-8'}`}
                                     >
-                                        {/* Timeline node */}
                                         <div className={`absolute left-0 md:left-1/2 -translate-x-1/2 md:-translate-x-1/2 w-6 h-6 bg-white border-4 border-red-500 rounded-full z-10`}></div>
 
-                                        {/* Content card */}
                                         <div className={`ml-8 md:ml-0 ${index % 2 === 0 ? 'md:mr-1/2 md:pr-8' : 'md:ml-1/2 md:pl-8'}`}>
                                             <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
                                                 <div className="flex justify-between items-start mb-4">
@@ -1292,7 +1288,7 @@ const Page = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
