@@ -21,6 +21,7 @@ import {
     FaCheckCircle, FaBolt, FaLock, FaTools,
     FaBookOpen
 } from 'react-icons/fa'
+import FAQComponent from '../components/Ceo-FAQ'
 
 export const metadata = {
   title: "Adnan Ghaffar CEO of CodeAutomation AI Software Company USA",
@@ -32,7 +33,7 @@ export const metadata = {
      "software development services",
    ],
  alternates: {
-   canonical: "https://codeautomation.ai/forbes", // ✅ Fixes the canonical error
+   canonical: "https://codeautomation.ai/adnan-ghaffar-ceo-codeautomation", // ✅ Fixes the canonical error
  },
 };
 
@@ -213,7 +214,7 @@ const Page = () => {
                             {/* Action Buttons */}
                             <div className="flex flex-wrap gap-4">
                                 <a
-                                    href="https://linkedin.com/in/adnan-ghaffar"
+                                    href="https://www.linkedin.com/in/adnanghaffar007/"
                                     className="group inline-flex items-center gap-3 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-sm hover:shadow"
                                 >
                                     <FaLinkedin className="text-lg" />
@@ -1208,9 +1209,9 @@ const Page = () => {
                                                         <div className="font-bold text-gray-900">{highlight.source}</div>
                                                         <div className="text-sm text-gray-600">{highlight.category}</div>
                                                     </div>
-                                                    <div className="text-red-600 group-hover:translate-x-2 transition-transform">
+                                                    {/* <div className="text-red-600 group-hover:translate-x-2 transition-transform">
                                                         →
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -1519,30 +1520,32 @@ const Page = () => {
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
                                     <a
-                                        href="mailto:adnan@codeautomation.ai"
+                                        href="mailto:adnan@codeautomation.dev"
                                         className="text-blue-600 hover:text-blue-700 font-medium px-4 py-2 hover:bg-blue-50 rounded-lg transition"
                                     >
-                                        adnan@codeautomation.ai
+                                        adnan@codeautomation.dev
                                     </a>
                                     <div className="hidden sm:block w-1 h-1 bg-gray-300 rounded-full"></div>
                                     <a
-                                        href="https://linkedin.com/in/adnan-ghaffar"
+                                        href="https://www.linkedin.com/in/adnanghaffar007/"
                                         className="text-blue-600 hover:text-blue-700 font-medium px-4 py-2 hover:bg-blue-50 rounded-lg transition"
                                     >
                                         LinkedIn Profile
                                     </a>
                                     <div className="hidden sm:block w-1 h-1 bg-gray-300 rounded-full"></div>
                                     <a
-                                        href="tel:+13125551234"
+                                        href="tel:+18505584691"
                                         className="text-blue-600 hover:text-blue-700 font-medium px-4 py-2 hover:bg-blue-50 rounded-lg transition"
                                     >
-                                        +1 (312) 555-1234
+                                        +1 (850) 055-84691
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <FAQComponent/>
             </section>
         </div>
     )

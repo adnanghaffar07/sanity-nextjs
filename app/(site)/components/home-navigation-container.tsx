@@ -528,6 +528,24 @@ export default function HomeNavigationContainer() {
                     </div>
                     <div className="grid grid-cols-1 gap-6">
                       <Link
+                        href="/adnan-ghaffar-ceo-codeautomation"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/person-sharp.svg"
+                            alt="About CEO"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">About CEO</p>
+                          <p className="mt-1 text-sm text-gray-500">Founder & AI Leader</p>
+                        </div>
+                      </Link>
+                      <Link
                         href="/about/discovery-process"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -563,7 +581,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Success Stories</p>
                         </div>
                       </Link>
-                       <Link
+                      <Link
                         href="/lifeatca"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -827,6 +845,23 @@ export default function HomeNavigationContainer() {
                         <div className="content mt-4 mb-0">
                           <div>
                             <ul className="mega-links-mb">
+                                  <li>
+                                <Link
+                                  href="/adnan-ghaffar-ceo-codeautomation"
+                                  className=""
+                                  onClick={handleToggleMenuIcon}
+                                >
+                                  About CEO
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/adnan-ghaffar-ceo-codeautomation"
+                                    onClick={handleToggleMenuIcon}
+                                  >
+                                    Founder & AI Leader
+                                  </Link>
+                                </p>
+                              </li>
                               <li>
                                 <Link
                                   href="/about/service-summary"
@@ -861,7 +896,7 @@ export default function HomeNavigationContainer() {
                                   </Link>
                                 </p>
                               </li>
-                                <li>
+                              <li>
                                 <Link
                                   href="/about/ai-tools-for-website-and-app-development"
                                   className="heading"
