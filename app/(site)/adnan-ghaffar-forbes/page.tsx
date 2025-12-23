@@ -3,9 +3,9 @@
 import ForbesArticleCard from "../components/ForbesArticleCard";
 
 export const metadata = {
-  title: "Adnan Ghaffar in Forbes Councils | AI & Tech Insights | CodeAutomation",
+  title: "Adnan Ghaffar in Forbes | AI & Tech Insights | CodeAutomation",
  description:
-   "Explore CEO Adnan Ghaffar’s Forbes Councils articles on AI innovation, tech trends, and business automation. Discover expert insights driving CodeAutomation’s industry-leading solutions.",
+   "Explore CEO Adnan Ghaffar’s Forbes articles on AI innovation, tech trends, and business automation. Discover expert insights driving CodeAutomation’s industry-leading solutions.",
    keywords: [
      "CodeAutomation",
      "software development company",
@@ -52,7 +52,7 @@ export default function ForbesPage() {
           <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">
             <h1 className="text-2xl font-bold capitalize lg:text-4xl">Featured in Forbes </h1>
             <h2 className="mt-4 text-base lg:text-2xl lg:px-32">
-            Our CEO, Adnan Ghaffar, is a recognized thought leader in tech and automation. Explore his ground-breaking insights published in Forbes Councils.            </h2>
+            Our CEO, Adnan Ghaffar, is a recognized thought leader in tech and automation. Explore his ground-breaking insights published in Forbes.            </h2>
           </div>
         </div>
       </div>

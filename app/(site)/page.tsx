@@ -232,7 +232,7 @@ export default function Home() {
                 />
               </a>
               <a
-                href="/forbes"
+                href="/adnan-ghaffar-forbes"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-center"
@@ -259,7 +259,7 @@ export default function Home() {
                   className="mb-3"
                 />
               </a>
-                <a
+              <a
                 href="https://www.brainzmagazine.com/executive-contributor/adnan-ghaffar"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -26,8 +26,8 @@ const FAQComponent: React.FC = () => {
             answer: "Yes, Adnan Ghaffar has published more than 20 research papers in the fields of artificial intelligence, automation, and applied machine learning. His research emphasizes practical industry use cases and the real-world implementation of intelligent systems."
         },
         {
-            question: "Is Adnan Ghaffar a member of the Forbes Councils?",
-            answer: "Yes, Adnan Ghaffar is a member of the Forbes Councils, an invitation-only community of senior executives and industry leaders. He contributes insights on AI adoption, business automation, and digital transformation for modern organizations."
+            question: "Is Adnan Ghaffar a member of the Forbes?",
+            answer: "Yes, Adnan Ghaffar is a member of the Forbes, an invitation-only community of senior executives and industry leaders. He contributes insights on AI adoption, business automation, and digital transformation for modern organizations."
         },
         {
             question: "Has Adnan Ghaffar been featured in major publications?",

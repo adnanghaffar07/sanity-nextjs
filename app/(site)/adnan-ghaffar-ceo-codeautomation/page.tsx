@@ -841,12 +841,12 @@ const Page = () => {
                                                     <FaNetworkWired className="mr-2" />
                                                     Executive Network
                                                 </div>
-                                                <h3 className="text-2xl font-bold">Forbes Councils</h3>
+                                                <h3 className="text-2xl font-bold">Forbes</h3>
                                             </div>
                                         </div>
 
                                         <p className="text-gray-300 leading-relaxed mb-6">
-                                            Adnan is a member of the Forbes Councils, where he contributes insights on AI adoption,
+                                            Adnan is a member of the Forbes, where he contributes insights on AI adoption,
                                             automation strategy, and digital transformation for modern organizations.
                                         </p>
 
