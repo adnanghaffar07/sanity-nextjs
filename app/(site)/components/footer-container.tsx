@@ -164,7 +164,9 @@ export default function FooterContainer() {
         </div>
 
         <div className="mt-7 w-full bg-white min-h-[1px]" />
-        <div className="mt-5 text-md font-light text-center text-white">Copyright @2025 - by Codeautomation.ai</div>
+<div className="mt-5 text-md font-light text-center text-white">
+  © {new Date().getFullYear()} — by Codeautomation.ai
+</div>
       </div>
     </div>
   );
