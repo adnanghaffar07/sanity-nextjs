@@ -1,37 +1,60 @@
+# --- Allow AI + Search Crawlers Explicitly ---
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+
+# --- Default rules for all other crawlers ---
+
 User-agent: *
 
-# Disallow sensitive or non-public folders
+# Block non-public app areas
 Disallow: /studio/
 Disallow: /api/
-Disallow: /_next/
-Disallow: /drafts
+Disallow: /drafts/
 
-# Disallow query parameters (attachments, tracking, misc)
+# Allow static assets for search rendering
+Allow: /_next/static/
+Allow: /*.js$
+Allow: /*.css$
+
+# Block unhelpful duplicate paths
 Disallow: /*?attachment_id=
 Disallow: /*?trk=
 Disallow: /*?ts=
-Disallow: /*?utm_
 
-# Disallow feeds or legacy WordPress paths
+# Do NOT block utm tracking queries (SEO prefers canonical instead)
+
+# Block legacy WP paths
 Disallow: /*/feed/
 Disallow: /wp-content/
-
-# Disallow static/media assets
-Disallow: /*.webm$
-Disallow: /*.woff2$
-Disallow: /*.ttf$
-Disallow: /*.eot$
-Disallow: /*.otf$
-Disallow: /*.ico$
-Disallow: /_next/static/
-Disallow: /cdn-cgi/
-Disallow: /cdn.sanity.io/
 
 # Allow everything else
 Allow: /
 
-# Preferred Host
-Host: https://codeautomation.ai
 
-# Sitemap
+# --- Host + Sitemap Directives ---
+
+Host: https://codeautomation.ai
 Sitemap: https://codeautomation.ai/sitemap.xml
