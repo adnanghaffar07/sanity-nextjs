@@ -142,6 +142,24 @@ export default function HomeNavigationContainer() {
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-8">
                       <Link
+                        href={`/services/${linkAI}`}
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/logo-web-component.svg"
+                            alt="AI Development Services"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">AI Development Services</p>
+                          <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
+                        </div>
+                      </Link>
+                      <Link
                         href={`/services/${linkUrlSoft}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -197,24 +215,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Customized Headless-CMS</p>
                         </div>
                       </Link>
-                      <Link
-                        href={`/services/${linkUrlDigital}`}
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/logo-figma.svg"
-                            alt="Design Services"
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">Design Services</p>
-                          <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
-                        </div>
-                      </Link>
+
                       <Link href="/services">
                         <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
                           View all
@@ -268,21 +269,21 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link
-                        href={`/services/${linkAI}`}
+                        href={`/services/${linkUrlDigital}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
                           <Image
-                            src="/logo-web-component.svg"
-                            alt="AI Development Services"
+                            src="/logo-figma.svg"
+                            alt="Design Services"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">AI Development Services</p>
-                          <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
+                          <p className="text-base font-medium text-black">Design Services</p>
+                          <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
                         </div>
                       </Link>
                       <Link
@@ -845,7 +846,7 @@ export default function HomeNavigationContainer() {
                         <div className="content mt-4 mb-0">
                           <div>
                             <ul className="mega-links-mb">
-                                  <li>
+                              <li>
                                 <Link
                                   href="/adnan-ghaffar-ceo-codeautomation"
                                   className=""

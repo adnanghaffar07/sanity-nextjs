@@ -3,9 +3,9 @@ import MobileApp from '../components/MobileApp';
 
 
 export const metadata = {
-  title: "Custom App Development Company | App Development for Startups",
+  title: "Custom Mobile App Development Services - Codeautomation",
   description:
-    "A mobile application development company with 07 years of expertise, We create user-friendly and scalable solutions. Turn your vision into reality with us!.",
+    "We help entrepreneurs turn app ideas into scalable, secure mobile apps using native and cross-platform tech to maximize reach and ROI.",
   keywords: [
     "CodeAutomation",
     "software development company",
