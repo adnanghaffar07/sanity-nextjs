@@ -6,7 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
 
-const linkAI = "ai-software-development-services";
+const linkAI = "ai-agent";
 const linkML = "ml-services";
 const devops = "ai-devops";
 const linkUrlCMS1 = "custom-cms-development-services";
@@ -155,7 +155,7 @@ export default function HomeNavigationContainer() {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">AI Development Services</p>
+                          <p className="text-base font-medium text-black">AI Agent Development Company</p>
                           <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
                         </div>
                       </Link>
