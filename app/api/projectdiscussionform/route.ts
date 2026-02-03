@@ -83,7 +83,7 @@ export async function POST(request: Request): Promise<Response> {
     // Email to team
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-       to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev", "katrina@codeautomation.dev"],
+      to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev", "katrina@codeautomation.dev"],
       subject: `CA Website Contact Form - ${pageName} Page`,
       html: `
         <html>

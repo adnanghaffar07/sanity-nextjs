@@ -106,7 +106,7 @@ export default {
             fields: [
               {
                 name: 'images',
-                title: 'Images',
+                title: 'Images', 
                 type: 'array',
                 of: [
                   {

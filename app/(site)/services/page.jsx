@@ -3,6 +3,7 @@ import Link from "next/link";
 import ScrollAnimation from "../components/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
+import ServicesCard from "../components/Services-Cards";
 
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
@@ -84,7 +85,7 @@ const Services = async () => {
 
       <ScrollAnimation>
         <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-blue-50 max-md:px-5 max-md:max-w-full">
-          <h3 className="text-2xl sm:text-5xl tracking-tight capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
+          <h3 className="text-2xl sm:text-5xl tracking-tight font-semibold capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
             Your Partner for all your digital needs
           </h3>
 
@@ -100,7 +101,7 @@ const Services = async () => {
       </ScrollAnimation>
 
       {/* Services Card */}
-      <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-[70px] sm:gap-[80px] 2xl:gap-[120px] max-w-[1440px] my-12 sm:mt-40 mx-auto">
+      {/* <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-[70px] sm:gap-[80px] 2xl:gap-[120px] max-w-[1440px] my-12 sm:mt-40 mx-auto">
         {data.map((service) => (
           <ScrollAnimation key={service._id}>
             <Link
@@ -151,7 +152,9 @@ const Services = async () => {
             </Link>
           </ScrollAnimation>
         ))}
-      </section>
+      </section> */}
+
+      <ServicesCard data={data} />
 
       <ScrollAnimation>
         <section className="relative overflow-hidden px-6 md:px-16 max-w-7xl mx-auto">

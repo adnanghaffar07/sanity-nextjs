@@ -5,16 +5,16 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Custom Mobile and Web App Development Company in Chicago, USA",
   description:
     "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-    keywords: [
-      "CodeAutomation",
-      "software development company",
-      "software development services",
-    ],
-  
-  };
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+  ],
+
+};
 
 export default function RootLayout({
   children,

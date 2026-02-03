@@ -452,7 +452,7 @@ const Industries = () => {
             <section
                 className="px-6 md:px-16 py-10 md:py-16 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: "url(/Container.png)",
+                    backgroundImage: "url(/Container.jpeg)",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}

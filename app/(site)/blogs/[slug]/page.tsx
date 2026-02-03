@@ -1,4 +1,4 @@
-import { PortableText, PortableTextReactComponents } from "@portabletext/react";
+import { PortableText, PortableTextMarkComponentProps, PortableTextReactComponents } from "@portabletext/react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { client } from "../../../../sanity/lib/client";
@@ -6,6 +6,8 @@ import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
 import AuthorBio from "../../components/AuthorBio";
+import Link from "next/link";
+import Script from "next/script";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -94,8 +96,33 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
   };
 }
+// For the Link mark component
+const LinkMark = ({ value, children }: PortableTextMarkComponentProps) => {
+  const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
+  return (
+    <a
+      href={value?.href}
+      target={target}
+      className="text-blue-600 font-light underline"
+      rel={target === '_blank' ? 'noindex nofollow' : ''}
+    >
+      {children}
+    </a>
+  )
+}
 
+// For the InternalLink mark component  
+const InternalLinkMark = ({ value, children }: PortableTextMarkComponentProps) => {
+  return <Link href={`/blogs/${value?.slug}`}>{children}</Link>
+}
 const portableTextComponents: Partial<PortableTextReactComponents> = {
+   marks: {
+    link: LinkMark,
+    internalLink: InternalLinkMark,
+    //  strong: ({ children }: { children?: React.ReactNode }) => (
+    //    <span className="font-bold">{children}</span> // No `<strong>` tag, only class-based styling
+    //  ),
+  },
   types: {
     image: ({ value }: { value: any }) => (
       <img
@@ -183,11 +210,9 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
     ),
   },
 
-  marks: {
-    strong: ({ children }: { children?: React.ReactNode }) => (
-      <span className="">{children}</span> // No `<strong>` tag, only class-based styling
-    ),
-  },
+  // marks: {
+  //  
+  // },
 
 };
 
@@ -198,6 +223,13 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
+      {data?.jsonLd && (
+        <Script
+          id="blog-post-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: data.jsonLd }}
+        />
+      )}
       <div className="relative flex flex-col pb-12 w-full font-light text-white lg:min-h-[700px] bg-[ #020C16]">
         {data.heroimage && (
           <img

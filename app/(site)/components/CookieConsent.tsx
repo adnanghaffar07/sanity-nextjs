@@ -7,83 +7,60 @@ const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Check if the cookie consent has already been given
     const consent = Cookies.get("cookieConsent");
-    // Show the banner only if the cookie does not exist
     if (!consent) {
-      setShowBanner(true);
+      const timer = setTimeout(() => {
+        setShowBanner(true);
+      }, 8000); // 👈 delay in ms (3 seconds)
+
+      return () => clearTimeout(timer);
     }
   }, []);
 
   const acceptCookies = () => {
-    // Set the cookie to indicate consent
-    Cookies.set("cookieConsent", "true", { expires: 365 }); // Cookie expires in 1 year
-    setShowBanner(false); // Hide the banner after acceptance
+    Cookies.set("cookieConsent", "true", { expires: 365 });
+    setShowBanner(false);
   };
 
   const declineCookies = () => {
-    setShowBanner(false); // Hide the banner when cookies are declined
-    // Optionally, you could also set a cookie to remember the decline (e.g., Cookies.set("cookieConsent", "declined", { expires: 365 });)
+    setShowBanner(false);
+    // Optionally save decline choice:
+    // Cookies.set("cookieConsent", "declined", { expires: 365 });
   };
 
   return (
     showBanner && (
-      <div
-        className="flex-col md:flex-row gap-10"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          zIndex: "999",
-          width: "100%",
-          padding: "15px 20px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          color: "white",
-          textAlign: "left",
-        }}
-      >
-        <div className="max-w-4xl text-xl" style={{ flex: "1" }}>
-          <h3 className="font-bold text-2xl my-4">We Use Cookies</h3>
-          <p style={{ margin: 0, marginBottom: 6 }}>
-            We use cookies to personalize content, to provide social media
-            features, and to analyze our traffic. By clicking ‘Accept’, you
-            agree to our use of cookies as described in our Cookie Policy. You
-            can manage your preferences or decline at any time. For more
-            information, please review our{" "}
-            <Link href="/cookies-policy" className="cursor-pointer underline" target="_blank" rel="noopener noreferrer">
+      <div className="fixed bottom-0 z-[2147483647] w-full bg-[#111827] text-white px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-6 transition-opacity duration-500">
+        {/* Text Section */}
+        <div className="max-w-3xl">
+          <h2 className="font-bold text-xl md:text-2xl mb-2">We Use Cookies</h2>
+          <p className="text-sm md:text-base leading-relaxed">
+            We use cookies to personalize content, provide social media
+            features, and analyze our traffic. By clicking{" "}
+            <strong>‘Accept’</strong>, you agree to our use of cookies as
+            described in our{" "}
+            <Link
+              href="/cookies-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-[#60A5FA] hover:text-[#3B82F6]"
+            >
               Cookie Policy
             </Link>.
           </p>
         </div>
-        <div
-          className="flex-row md:flex-col"
-          style={{ display: "flex", gap: "16px" }}
-        >
+
+        {/* Action Buttons */}
+        <div className="flex flex-row md:flex-col gap-3">
           <button
             onClick={acceptCookies}
-            style={{
-              borderRadius: "10px",
-              backgroundColor: "black",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              cursor: "pointer",
-            }}
+            className="px-3 md:px-6 py-2 rounded-lg bg-[#1D92FB] text-white font-sm md:font-medium shadow-md hover:bg-[#1477d9] transition"
           >
             I accept cookies
           </button>
           <button
             onClick={declineCookies}
-            style={{
-              borderRadius: "10px",
-              backgroundColor: "black",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              cursor: "pointer",
-            }}
+            className="px-3 md:px-6 py-2 rounded-lg border border-gray-400 text-white font-sm md:font-medium hover:bg-gray-100 transition hover:text-black"
           >
             I refuse cookies
           </button>

@@ -16,54 +16,34 @@ const Faqs = async () => {
   const data = await getData();
 
   return (
-    <ul className="mt-10 flex flex-col gap-4">
+    <ul className="mt-10 flex flex-col mx-auto gap-4 w-full max-w-6xl">
       {data &&
         data.map((faq: any) => {
           return (
             <li key={faq._id}>
-              <details className="group">
-                <summary className="flex justify-between items-center flex-grow">
-                  <div className="w-11/12 text-base">
-                    <span className="px-6 py-7 rounded-xl bg-[#1D92FB] bg-opacity-80 max-md:px-5 max-md:max-w-full gap-3 text-white font-normal marker:content-none hover:cursor-pointer justify-between text-base md:text-lg xl:text-xl flex flex-grow">
-                      {faq.title}
-                    </span>
-                  </div>
+              <details className="group border border-gray-200 rounded-xl overflow-hidden">
+                {/* Always same height for the summary */}
+                <summary className="flex justify-between items-center cursor-pointer px-6 py-5 bg-[#1D92FB] bg-opacity-80 text-white text-base md:text-lg xl:text-xl rounded-xl">
+                  <span>{faq.title}</span>
 
-                  <div className="w-1/12 justify-center align-center flex hover:cursor-pointer">
-                    <svg
-                      className="block group-open:hidden"
-                      width="21"
-                      height="21"
-                      viewBox="0 0 21 21"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.8704 13.2H13.3104V20.96H8.03043V13.2H0.47043V8.32H8.03043V0.56H13.3104V8.32H20.8704V13.2Z"
-                        fill="#002244"
-                      />
-                    </svg>
-
-                    <svg
-                      className="hidden group-open:block"
-                      width="17"
-                      height="6"
-                      viewBox="0 0 17 6"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16.9904 0.36V5.08H0.0304298V0.36H16.9904Z"
-                        fill="#002244"
-                      />
-                    </svg>
-                  </div>
+                  {/* Chevron that rotates */}
+                  <svg
+                    className="w-5 h-5 transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </summary>
-                <article className="px-4 py-4">
-                  <div className="w-11/12 text-xs sm:text-base">
-                    <p className="mb-2">{faq.content}</p>
-                  </div>
-                </article>
+
+                {/* Animated dropdown */}
+                <div className="overflow-hidden transition-[max-height] duration-500 ease-in-out max-h-0 group-open:max-h-96">
+                  <article className="px-6 py-4 bg-white text-gray-700 text-sm sm:text-base">
+                    <p>{faq.content}</p>
+                  </article>
+                </div>
               </details>
             </li>
           );
@@ -71,4 +51,5 @@ const Faqs = async () => {
     </ul>
   );
 };
+
 export default Faqs;

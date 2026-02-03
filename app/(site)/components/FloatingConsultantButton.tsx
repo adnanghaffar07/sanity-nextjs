@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Phone } from 'lucide-react'; // or use any phone icon
 import { useRouter } from 'next/navigation';
 
 
@@ -24,7 +23,7 @@ export default function FloatingConsultDrawer({
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
-const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setIsVisible(window.scrollY > 300);
@@ -45,51 +44,53 @@ const router = useRouter();
     };
   }, [openDrawer]);
   useEffect(() => {
-  setIsFloatingDrawerOpen(openDrawer);
-}, [openDrawer]);
+    setIsFloatingDrawerOpen(openDrawer);
+  }, [openDrawer]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const { name, email, phone, message } = form;
+  
 
-  if (!name || !email || !phone || !message) {
-    setError('All fields are required');
-    return;
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { name, email, phone, message } = form;
 
-  setSubmitting(true);
-  setError('');
+    if (!name || !email || !phone || !message) {
+      setError('All fields are required');
+      return;
+    }
 
-  try {
-    const res = await fetch('/api/mobile-submit-quote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...form,
-        source: 'Floating Consultation Drawer',
-      }),
-    });
+    setSubmitting(true);
+    setError('');
 
-    if (!res.ok) throw new Error('Failed');
+    try {
+      const res = await fetch('/api/mobile-submit-quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          source: 'Floating Consultation Drawer',
+        }),
+      });
 
-    setSuccess(true);
-    setForm({ name: '', email: '', phone: '', message: '' });
+      if (!res.ok) throw new Error('Failed');
 
-    // ✅ Redirect to thank you page
-    router.push('/thank-you-mobile-app');
-  } catch (err) {
-    setError('Submission failed');
-  } finally {
-    setSubmitting(false);
-  }
-};
+      setSuccess(true);
+      setForm({ name: '', email: '', phone: '', message: '' });
+
+      // ✅ Redirect to thank you page
+      router.push('/thank-you-mobile-app');
+    } catch (err) {
+      setError('Submission failed');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
 
-  if (!isVisible || isModalOpen) return null; // 🛑 Hide entire drawer & call button if modal is open
+  if (!isVisible || isModalOpen) return null;
 
 
   return (
@@ -97,18 +98,21 @@ const router = useRouter();
       {/* Call Button */}
       <a
         href="tel:+18505584691"
-        className="fixed top-[25%] sm:top-[20%] right-2 z-[999] bg-[#1D92FB] text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+        className="hidden md:fixed top-[25%] sm:top-[21%] right-2 z-[999] bg-[#F7E022] text-black p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
         title="Call Now"
       >
-        <Phone className="w-6 h-6" />
+        <img
+          src="/phone-call.png"
+          alt="Call Icon"
+          className="w-6 h-6"
+        />
       </a>
-
       {/* Floating Tab */}
       <button
         onClick={() => setOpenDrawer(true)}
-        className="fixed top-3/4 right-0 transform -translate-y-1/2 z-[999] rotate-90 origin-top-right bg-[#1D92FB] text-white text-2xl px-6 py-2 rounded-l-none rounded-r-full shadow-md hover:bg-blue-600"
+        className="hidden md:fixed top-3/4 right-0 transform -translate-y-1/2 z-[999] rotate-90 origin-top-right bg-[#F7E022] text-black text-xl px-6 py-2 rounded-l-none rounded-r-full shadow-md"
       >
-        Get Upto <span className="text-black">20%</span> Discount
+        Get Your Free Consultation
       </button>
 
       {/* Drawer */}
@@ -121,13 +125,13 @@ const router = useRouter();
 
       {/* Horizontal Side Drawer */}
       <div
-        className={`fixed top-36 right-0 h-[500px] lg:h-[400px] w-[90%] max-w-2xl z-[999] bg-[#002E5B] text-white flex transform transition-transform duration-500 ease-in-out ${openDrawer ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-[156px] right-0 h-[500px] lg:h-[410px] w-[90%] max-w-2xl z-[999] bg-[#002E5B] text-white flex transform transition-transform duration-500 ease-in-out ${openDrawer ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         {/* Vertical Banner */}
-        <div className="bg-[#007BFF] w-10 sm:w-12 flex items-center justify-center rotate-180 text-xs font-semibold tracking-wider text-center whitespace-nowrap writing-vertical px-2">
-          <span className="transform text-xl rotate-90 whitespace-nowrap text-white">
-            GET UPTO 20% DISCOUNT
+        <div className="bg-[#F7E022] w-10 sm:w-12 flex items-center justify-center rotate-180 text-xs font-semibold tracking-wider text-center whitespace-nowrap writing-vertical px-2">
+          <span className="transform text-xl rotate-90 whitespace-nowrap text-black">
+            Get Your Free Consultation
           </span>
         </div>
 

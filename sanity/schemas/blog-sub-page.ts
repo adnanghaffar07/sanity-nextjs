@@ -3,7 +3,12 @@ const blog = {
     title: 'Blog(Sub Page)',
     type: 'document',
     fields: [
-   
+        {
+            name: 'jsonLd',
+            title: 'JSON-LD Schema',
+            type: 'text',
+            description: 'Add structured data (schema.org) for better SEO. Example: Article, BlogPosting, etc.'
+        },
         {
             name: 'blogTitleBaner',
             title: 'Blog Title Banner',

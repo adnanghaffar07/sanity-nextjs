@@ -6,6 +6,53 @@ body {
   overflow-x: hidden;
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseTimeline {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-fade-scale {
+  animation: fadeInScale 0.6s ease-out forwards;
+}
+
+.timeline-node {
+  animation: pulseTimeline 2s ease-in-out infinite;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+
+
 /* Add this to your global CSS or in a <style> tag */
 .technology-item::before {
   content: "";
@@ -17,13 +64,16 @@ body {
   height: 0;
   border-left: 1rem solid transparent;
   border-right: 1rem solid transparent;
-  border-top: 1rem solid #f3f4f6; /* Adjust the color to match the background */
+  border-top: 1rem solid #f3f4f6;
+  /* Adjust the color to match the background */
   z-index: -1;
 }
 
 .loader {
-  border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #3498db; /* Blue */
+  border: 4px solid #f3f3f3;
+  /* Light grey */
+  border-top: 4px solid #3498db;
+  /* Blue */
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -35,6 +85,7 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -42,12 +93,14 @@ body {
 
 
 .greetings {
-  height: 65%; /* Default for larger screens */
+  height: 65%;
+  /* Default for larger screens */
 }
 
 @media (max-width: 640px) {
   .greetings {
-    height: 90%; /* Override for smaller screens */
+    height: 90%;
+    /* Override for smaller screens */
   }
 }
 
@@ -100,6 +153,7 @@ body {
 .resize-none {
   resize: none;
 }
+
 .form-error {
   font-size: 12px;
   color: red;
@@ -108,8 +162,10 @@ body {
 
 .popup-message {
   position: fixed;
-  top: 20px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
+  top: 20px;
+  /* Adjust as needed */
+  right: 20px;
+  /* Adjust as needed */
   background-color: #1d92fb;
   padding: 10px 20px;
   border-radius: 8px;
@@ -119,25 +175,32 @@ body {
 
 .message {
   font-size: 16px;
-  color: #fff; /* Blue color */
+  color: #fff;
+  /* Blue color */
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
-  animation: fadeOut 3s forwards; /* Animation duration */
+  animation: fadeOut 3s forwards;
+  /* Animation duration */
 }
 
 .loading-line {
   width: 100%;
-  height: 3px; /* Adjust thickness as needed */
-  background-color: #fff; /* Blue color */
-  margin-bottom: 8px; /* Adjust spacing from message */
-  animation: loading 3s linear forwards; /* Animation duration */
+  height: 3px;
+  /* Adjust thickness as needed */
+  background-color: #fff;
+  /* Blue color */
+  margin-bottom: 8px;
+  /* Adjust spacing from message */
+  animation: loading 3s linear forwards;
+  /* Animation duration */
 }
 
 @keyframes loading {
   0% {
     width: 0;
   }
+
   100% {
     width: 100%;
   }
@@ -152,6 +215,7 @@ body {
 .image-container:hover .overlay {
   transform: translateY(0);
 }
+
 /* Add this CSS to your global stylesheet or a CSS module */
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -159,8 +223,10 @@ body {
 }
 
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .overlay {
@@ -250,7 +316,8 @@ body {
   visibility: hidden;
 
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* This line adds a box shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* This line adds a box shadow */
 }
 
 .mega-box.visible {
@@ -271,12 +338,12 @@ body {
   display: flex;
 }
 
-.content > div {
+.content>div {
   flex: 1;
   margin-right: 10px;
 }
 
-.content > div:last-child {
+.content>div:last-child {
   margin-right: 0;
 }
 
@@ -305,12 +372,14 @@ body {
 .mega-links-mb li {
   margin-bottom: 13px;
 }
+
 .mega-links-mb li a {
   color: rgb(0, 0, 0);
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  transition: color 0.3s, transform 0.3s; /* Add smooth transition */
+  transition: color 0.3s, transform 0.3s;
+  /* Add smooth transition */
 }
 
 .mega-links li a {
@@ -318,14 +387,17 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
-  transition: color 0.3s, transform 0.3s; /* Add smooth transition */
+  transition: color 0.3s, transform 0.3s;
+  /* Add smooth transition */
 }
+
 .mega-links-mb li p a {
   font-size: 12px;
   font-weight: 300;
   color: rgb(141, 137, 137);
   cursor: pointer;
 }
+
 .mega-links li p a {
   font-size: 12px;
   font-weight: 300;
@@ -345,6 +417,7 @@ body {
   font-weight: 400;
   transform: scale(1.1);
 }
+
 .mega-links li:hover .heading {
   color: #0a8ffc;
   transform: scale(1.1);
@@ -355,6 +428,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -363,6 +437,3 @@ body {
 .animate-scroll {
   animation: scroll 25s linear infinite;
 }
-
-
-

@@ -6,7 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
 
-const linkAI = "ai-software-development-services";
+const linkAI = "ai-agent";
 const linkML = "ml-services";
 const devops = "ai-devops";
 const linkUrlCMS1 = "custom-cms-development-services";
@@ -88,7 +88,7 @@ export default function HomeNavigationContainer() {
   }, [menuState.open, menuState.aboutOpen]);
 
   return (
-    <div className="navbar flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow relative top-0 z-20 xl:bg-transparent xl:h-auto h-[72px]">
+    <div className="flex flex-col items-center lg:px-10 px-5 lg:pb-0 py-4 xl:pt-8 w-full max-md:px-4 max-md:max-w-full flex-grow relative top-0 z-20 xl:bg-transparent xl:h-auto h-[72px] -mb-[72px] md:-mb-[116px]">
       <div className="flex gap-5 justify-between items-center px-8 py-3.5 w-full border border-solid shadow-md backdrop-blur-[36px] bg-black bg-opacity-20 border-white border-opacity-10 rounded-[62px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
         <div className="relative" style={{ zIndex: 1000 }}>
           <Link href={`/`} className="hover:underline my-auto">
@@ -141,6 +141,24 @@ export default function HomeNavigationContainer() {
                 <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div className="grid grid-cols-1 gap-8">
+                      <Link
+                        href={`/services/${linkAI}`}
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/logo-web-component.svg"
+                            alt="AI Development Services"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">AI Agent Development Company</p>
+                          <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
+                        </div>
+                      </Link>
                       <Link
                         href={`/services/${linkUrlSoft}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -197,24 +215,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Customized Headless-CMS</p>
                         </div>
                       </Link>
-                      <Link
-                        href={`/services/${linkUrlDigital}`}
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/logo-figma.svg"
-                            alt="Design Services"
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">Design Services</p>
-                          <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
-                        </div>
-                      </Link>
+
                       <Link href="/services">
                         <p className="flex gap-3 text-sm font-bold text-black hover:text-[#0a8ffc] hover:underline mt-8">
                           View all
@@ -268,21 +269,21 @@ export default function HomeNavigationContainer() {
                         </div>
                       </Link>
                       <Link
-                        href={`/services/${linkAI}`}
+                        href={`/services/${linkUrlDigital}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
                         <div className="">
                           <Image
-                            src="/logo-web-component.svg"
-                            alt="AI Development Services"
+                            src="/logo-figma.svg"
+                            alt="Design Services"
                             height={12}
                             width={12}
                             className="text-black size-6 md hydrated"
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-base font-medium text-black">AI Development Services</p>
-                          <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
+                          <p className="text-base font-medium text-black">Design Services</p>
+                          <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
                         </div>
                       </Link>
                       <Link
@@ -435,24 +436,6 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Join our Team</p>
                         </div>
                       </Link>
-                      {/* <Link
-                        href="/lifeatca"
-                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                      >
-                        <div className="">
-                          <Image
-                            src="/images.svg"
-                            alt="Life At CA"
-                            height={12}
-                            width={12}
-                            className="text-black size-6 md hydrated"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-black">Life At CA</p>
-                          <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
-                        </div>
-                      </Link> */}
                       <Link
                         href="/about/industries"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -546,6 +529,24 @@ export default function HomeNavigationContainer() {
                     </div>
                     <div className="grid grid-cols-1 gap-6">
                       <Link
+                        href="/adnan-ghaffar-ceo-codeautomation"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/person-sharp.svg"
+                            alt="About CEO"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">About CEO</p>
+                          <p className="mt-1 text-sm text-gray-500">Founder & AI Leader</p>
+                        </div>
+                      </Link>
+                      <Link
                         href="/about/discovery-process"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -579,6 +580,24 @@ export default function HomeNavigationContainer() {
                         <div className="ml-4">
                           <p className="text-base font-medium text-black">Case-Studies</p>
                           <p className="mt-1 text-sm text-gray-500">Success Stories</p>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/lifeatca"
+                        className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                      >
+                        <div className="">
+                          <Image
+                            src="/images.svg"
+                            alt="Life At CA"
+                            height={12}
+                            width={12}
+                            className="text-black size-6 md hydrated"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <p className="text-base font-medium text-black">Life At CA</p>
+                          <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
                         </div>
                       </Link>
                       {/* OFFFShore Development */}
@@ -829,6 +848,23 @@ export default function HomeNavigationContainer() {
                             <ul className="mega-links-mb">
                               <li>
                                 <Link
+                                  href="/adnan-ghaffar-ceo-codeautomation"
+                                  className=""
+                                  onClick={handleToggleMenuIcon}
+                                >
+                                  About CEO
+                                </Link>
+                                <p>
+                                  <Link
+                                    href="/adnan-ghaffar-ceo-codeautomation"
+                                    onClick={handleToggleMenuIcon}
+                                  >
+                                    Founder & AI Leader
+                                  </Link>
+                                </p>
+                              </li>
+                              <li>
+                                <Link
                                   href="/about/service-summary"
                                   className=""
                                   onClick={handleToggleMenuIcon}
@@ -844,7 +880,7 @@ export default function HomeNavigationContainer() {
                                   </Link>
                                 </p>
                               </li>
-                              {/* <li>
+                              <li>
                                 <Link
                                   href="/lifeatca"
                                   className="heading"
@@ -860,8 +896,8 @@ export default function HomeNavigationContainer() {
                                     Employee Experiences
                                   </Link>
                                 </p>
-                              </li> */}
-                                <li>
+                              </li>
+                              <li>
                                 <Link
                                   href="/about/ai-tools-for-website-and-app-development"
                                   className="heading"

@@ -7,9 +7,12 @@ import PortfolioSection from "../../components/MobilePortfolioSection";
 import WhyChoose from "../../components/MobileServiceWhyChoose";
 import CategoryTabs from "../../components/MobileServiceApps";
 import FaqSection from "../../components/MobileServiceFaq";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import QuoteModal from "../../components/MobileQuoteModal";
 import LiveChatTawk from "../../components/LiveChatTawk";
+import MobileIndustries from "../../components/Mobile-App-Industries";
+import TechStackSection from "../../components/MobileServiceTechStackSection";
+import StatsSection from "../../components/StatsSection";
 
 const categories = {
   "On Demand": [
@@ -56,6 +59,36 @@ const leftSteps = [
     title: "QA & Deployment",
     description:
       "Our QA team ensures a seamless, bug-free experience, while our DevOps experts handle deployment on both the App Store and Google Play for a smooth, successful launch.",
+  },
+];
+const steps = [
+  {
+    step: "Step 1",
+    title: "Requirements Analysis",
+    description:
+      "We start by understanding your vision, gathering detailed requirements, and brainstorming creative solutions to build a solid foundation for your app.",
+    icon: "/step1.png", // Replace with your icon path
+  },
+  {
+    step: "Step 2",
+    title: "App Storyboard Design",
+    description:
+      "Our talented designers create visually captivating app screens that reflect your brand’s identity, ensuring user-centric designs that exceed expectations.",
+    icon: "/step2.png",
+  },
+  {
+    step: "Step 3",
+    title: "Development",
+    description:
+      "Our experienced developers bring your design to life, building a fully functional app and keeping you updated throughout every stage of the process.",
+    icon: "/step3.png",
+  },
+  {
+    step: "Step 4",
+    title: "QA & Deployment",
+    description:
+      "Our QA team ensures a seamless, bug-free experience, while our DevOps experts handle deployment on both the App Store and Google Play for a smooth, successful launch.",
+    icon: "/step4.png",
   },
 ];
 
@@ -181,48 +214,69 @@ const techCategories = {
 
 export default function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
   const [isFloatingDrawerOpen, setIsFloatingDrawerOpen] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNotification(true);
+    }, 5000); // 👈 3 seconds delay
 
+    return () => clearTimeout(timer);
+  }, []);
 
 
   return (
     <section>
       <LiveChatTawk />
-      <div className="relative w-full font-light text-white overflow-hidden pb-12 lg:min-h-[700px]">
+      <div className="relative w-full font-light text-white overflow-hidden pb-12 md:pb-0 lg:min-h-[700px] pt-[80px] md:pt-[100px]">
+        {/* Background */}
         <img
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src="/mobile-app-bg.jpeg"
+          src="/mobile-app-bg.png"
           alt="Services"
         />
 
-        <div className="relative z-10 px-4 sm:px-6 md:px-16 lg:px-24 mt-32 grid grid-cols-1 lg:grid-cols-3 gap-10 items-start min-h-[60vh]">
-          {/* Left - Image */}
-          <div className="flex justify-center items-center">
+        {/* Heading */}
+        <h1 className="relative z-10 text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center pt-10">
+          Custom Mobile App Development Services
+        </h1>
+
+        {/* Main Grid */}
+        <div className="relative z-10 px-4 sm:px-6 md:px-10 2xl:px-20 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4 2xl:gap-10 items-start">
+
+          {/* Left - Image (Desktop Only) */}
+          <div className="hidden md:flex justify-center">
             <img
-              className="w-[250px] sm:w-[300px] md:w-[400px] lg:w-[450px] lg:-mb-[180px]"
+              className=" md:h-[400px] lg:h-[600px] object-contain"
               src="/mobile-banner-image.png"
               alt="Banner"
             />
           </div>
 
           {/* Middle - Text */}
-          <div className="text-white space-y-6 text-center lg:text-left">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              Custom Mobile App Development Services
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl">
+          <div className="text-white space-y-3 text-center lg:text-left">
+            <p className="lg:text-center text-left sm:text-lg md:text-xl">
               We help entrepreneurs and businesses turn <span className="font-semibold">APP</span> ideas into reality.
             </p>
 
+            {/* Features */}
             <div className="grid grid-cols-1 gap-4 text-sm">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-2">
-                  <div className="w-8 h-8 text-yellow-400">
-                    <Image src={feature.icon ?? "/default-icon.png"} alt={feature.tag} width={52} height={52} />
+                <div
+                  key={index}
+                  className="flex items-start space-x-2 text-left"
+                >
+                  <div className="w-8 h-8 md:mb-2 text-yellow-400 flex-shrink-0">
+                    <Image
+                      src={feature.icon ?? "/default-icon.png"}
+                      alt={feature.tag}
+                      width={52}
+                      height={52}
+                      className="-mt-1"
+                    />
                   </div>
                   <div>
-                    <span className="inline-block bg-[#F7E022] text-black font-medium text-xs px-2 py-0.5 rounded">
+                    <span className="inline-block text-center bg-[#F7E022] text-black w-[120px] font-medium text-xs px-2 py-0.5 rounded">
                       {feature.tag}
                     </span>
                     <span className="ml-2 text-white">— {feature.description}</span>
@@ -231,9 +285,10 @@ export default function HeroSection() {
               ))}
             </div>
 
+            {/* Phone */}
             <a
               href="tel:+18505584691"
-              className="text-lg sm:text-xl mt-6 flex font-bold items-center justify-center lg:justify-start space-x-2 text-white hover:text-yellow-400 transition-colors"
+              className="text-lg sm:text-xl mt-4 flex font-bold items-center justify-center space-x-2 text-white hover:text-yellow-400 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +307,8 @@ export default function HeroSection() {
               <span>+1-850-558-4691</span>
             </a>
 
-            <div className="mt-2 flex flex-row items-center justify-center lg:justify-start space-x-3 text-white text-base">
+            {/* Chat & Quote */}
+            <div className="mt-1 flex flex-row items-center justify-center space-x-3 text-white text-base">
               <a
                 href="#"
                 onClick={(e) => {
@@ -263,14 +319,14 @@ export default function HeroSection() {
                     console.warn('Tawk_API not ready yet.');
                   }
                 }}
-                className="hover:text-yellow-400 underline transition-colors mb-2  text-center sm:text-left"
+                className="hover:text-yellow-400 underline transition-colors mb-2"
               >
                 Start A Live Chat
               </a>
-              <span className="sm:inline">|</span>
+              <span className="hidden sm:inline">|</span>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="hover:text-yellow-400 mb-2 underline transition-colors text-left"
+                className="hover:text-yellow-400 mb-2 underline transition-colors"
               >
                 Request a Free Quote
               </button>
@@ -283,14 +339,16 @@ export default function HeroSection() {
           <section id="form" className="w-full">
             <MobileForm />
           </section>
-
         </div>
       </div>
 
+      {/* Stats Section */}
+      <StatsSection />
+      {/* Industries We Serve */}
+      <MobileIndustries />
       {/* Notification */}
-
       {!isModalOpen && !isFloatingDrawerOpen && showNotification && (
-        <div className="fixed bottom-6 left-6 z-[9999] bg-white rounded-2xl shadow-lg border border-gray-200 p-5 w-[250px] sm:w-[360px]">
+        <div className="fixed bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 sm:bottom-6 sm:left-6 sm:translate-x-0 sm:translate-y-0 z-[9999] bg-white rounded-2xl shadow-lg border border-gray-200 p-5 w-[250px] sm:w-[360px]">
           {/* ❌ Close Button */}
           <button
             onClick={() => setShowNotification(false)}
@@ -301,7 +359,9 @@ export default function HeroSection() {
           </button>
 
           {/* Header */}
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">Need Help?</h3>
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            Need Help?
+          </h3>
 
           {/* Body */}
           <p className="text-sm text-gray-600 mb-4 leading-relaxed">
@@ -312,13 +372,17 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
             <button
               onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
+                if (
+                  typeof window !== "undefined" &&
+                  (window as any).Tawk_API?.toggle
+                ) {
                   (window as any).Tawk_API.toggle();
                 } else {
                   alert("Chat is loading, please try again shortly.");
                 }
               }}
-              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"    >
+              className="bg-[#1D92FB] hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"
+            >
               💬 Start Chat
             </button>
 
@@ -332,39 +396,37 @@ export default function HeroSection() {
             </a>
           </div>
         </div>
-
       )}
-
       {/* Sticky Floating Button */}
       <FloatingConsultButton
         isModalOpen={isModalOpen}
         setIsFloatingDrawerOpen={setIsFloatingDrawerOpen}
       />
-
-
-      <section className="bg-white py-16 px-4 lg:px-20 text-center">
-        <h3 className="text-lg text-gray-600 mb-1">Our Services</h3>
-        <h2 className="text-3xl md:text-4xl font-bold text-black mb-10">
-          What We Do
+      <section
+        className="bg-[url('/what-we-do.jpeg')] bg-cover bg-center py-10 md:py-16 px-4 lg:px-20 text-center"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Our Services
         </h2>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center max-w-7xl mx-auto">
+        <h3 className="text-lg text-white mb-6 md:mb-10">What We Do</h3>
+        <div className="hidden md:flex flex-col gap-10 items-center max-w-7xl mx-auto">
           {/* Left services */}
-          <div className="space-y-10 text-right">
+          <div className="flex flex-col md:flex-row text-right gap-6">
             {servicesLeft.map((service, index) => (
               <div
                 key={index}
-                className="flex flex-row-reverse items-start space-x-4 space-x-reverse"
+                className="flex flex-row items-start space-x-4"
               >
                 <Image
                   src={service.icon ?? "/default-icon.png"}
                   alt={service.title}
-                  width={30}
-                  height={30}
+                  width={90}
+                  height={60}
+                  className="md:block hidden h-12 w-12 objetct-contain"
                 />
-                <div className="text-right">
-                  <h4 className="font-bold text-[#001E6B] text-lg">{service.title}</h4>
-                  <p className="text-gray-700 text-sm">{service.description}</p>
+                <div className="text-left space-y-1">
+                  <h4 className="font-bold text-white text-lg">{service.title}</h4>
+                  <p className="text-white text-sm">{service.description}</p>
                 </div>
               </div>
             ))}
@@ -372,26 +434,96 @@ export default function HeroSection() {
           {/* Center Phone Image */}
           <div className="flex justify-center">
             <Image
-              src="/mobile-service.jpeg"
+              src="/process-img-home.png"
               alt="Mobile App Preview"
-              width={280}
-              height={600}
-              className="mx-auto"
+              width={1000}
+              height={100}
+              className="mx-auto h-8 w-[300px] md:h-[250px] md:w-[1000px] object-contain"
             />
           </div>
 
           {/* Right services */}
-          <div className="space-y-10 text-left">
+          <div className="flex flex-col md:flex-row text-right gap-6 mb-10">
             {servicesRight.map((service, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <Image src={service.icon ?? "/default-icon.png"} alt={service.title} width={30} height={30} />
-                <div>
-                  <h4 className="font-bold text-[#001E6B] text-lg">{service.title}</h4>
-                  <p className="text-gray-700 text-sm">{service.description}</p>
+              <div
+                key={index}
+                className="flex flex-row items-start space-x-4"
+              >
+                <Image
+                  src={service.icon ?? "/default-icon.png"}
+                  alt={service.title}
+                  width={60}
+                  height={60}
+                  className="md:block hidden h-12 w-12 objetct-contain"
+                />
+
+                <div className="text-left space-y-1">
+                  <h4 className="font-bold text-white text-lg">{service.title}</h4>
+                  <p className="text-white text-sm">{service.description}</p>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+        {/* Mobile View */}
+        <div className="md:hidden flex-col gap-10 items-center max-w-7xl mx-auto">
+          {/* Center Phone Image */}
+          <div className="md:hidden flex justify-center">
+            <Image
+              src="/process-img-home.png"
+              alt="Mobile App Preview"
+              width={1000}
+              height={300}
+              className="mx-auto mb-6 h-16 w-[300px] md:h-[250px] md:w-[1000px] object-contain"
+            />
+          </div>
+
+          <div className="flex flex-row gap-4">
+            {/* Left services */}
+            <div className="flex flex-col md:flex-row text-right gap-6">
+              {servicesLeft.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-start space-x-4"
+                >
+                  <Image
+                    src={service.icon ?? "/default-icon.png"}
+                    alt={service.title}
+                    width={60}
+                    height={60}
+                    className="md:block hidden"
+                  />
+                  <div className="text-left space-y-1">
+                    <h4 className="font-bold text-white text-sm">{service.title}</h4>
+                    <p className="text-white text-xs">{service.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Right services */}
+            <div className="flex flex-col md:flex-row text-right gap-6">
+              {servicesRight.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-start space-x-4"
+                >
+                  <Image
+                    src={service.icon ?? "/default-icon.png"}
+                    alt={service.title}
+                    width={60}
+                    height={60}
+                    className="md:block hidden"
+                  />
+
+                  <div className="text-left space-y-1">
+                    <h4 className="font-bold text-white text-sm">{service.title}</h4>
+                    <p className="text-white text-xs">{service.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* CTA Button */}
@@ -400,147 +532,63 @@ export default function HeroSection() {
             href="https://cal.com/adnan-ghaffar/mobile-service"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#1D92FB] hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-md transition duration-300"
+            className="text-[#1D92FB] hover:bg-blue-700 hover:text-white bg-white font-semibold px-8 py-3 rounded-md transition duration-300"
           >
             Schedule a Call
           </a>
         </div>
       </section>
-      {/* How We DO IT Section */}
-      <section className="bg-[#002366] text-white py-20 px-4 lg:px-16 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">How We Do It</h2>
-        <p className="max-w-3xl mx-auto text-sm md:text-base mb-16">
-          Our clear and transparent process turns your ideas into successful mobile apps, guiding you every step of the way.
+
+      {/* How we DO Section */}
+      <section className="py-10 md:py-20 bg-white text-center px-4">
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          How We Do It
+        </h2>
+        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+          Our clear and transparent process turns your ideas into successful mobile apps,
+          guiding you every step of the way.
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center max-w-7xl mx-auto">
-          {/* Left side */}
-          <div className="space-y-16 text-right col-span-12 lg:col-span-3">
-            {leftSteps.map((step, index) => (
-              <div key={index}>
-                <h4 className="font-bold text-lg">{step.title}</h4>
-                <p className="text-sm text-gray-200">{step.description}</p>
+        {/* Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="bg-white border-t-2 border-b-2 border-[#0A8FFC] rounded-xl shadow-lg hover:shadow-xl transition py-10 px-6 text-left"
+            >
+              {/* Step number + Icon */}
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-sm text-gray-500">{step.step}</p>
+                <img src={step.icon} alt={step.title} className="object-contain h-8" />
               </div>
-            ))}
-          </div>
 
-          {/* Center Image */}
-          <div className="relative flex justify-center col-span-12 lg:col-span-6">
-            <img
-              src="/how-we-do.png"
-              alt="Process Preview"
-              width={400}
-              height={800}
-              className="mx-auto"
-            />
-          </div>
+              {/* Step title */}
+              <h3 className="font-semibold text-[#0A8FFC] mb-2">{step.title}</h3>
 
-          {/* Right side */}
-          <div className="space-y-16 text-left col-span-12 lg:col-span-3">
-            {rightSteps.map((step, index) => (
-              <div key={index}>
-                <h4 className="font-bold text-lg">{step.title}</h4>
-                <p className="text-sm text-gray-200">{step.description}</p>
-              </div>
-            ))}
-          </div>
+              {/* Description */}
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
         </div>
 
+        {/* CTA Button */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-[#1D92FB] hover:bg-blue-600 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300"
+          className="bg-[#1D92FB] hover:bg-blue-600 cursor-pointer text-white font-semibold px-8 py-3 mt-10 rounded-md transition duration-300"
         >
           LET’S TALK
         </button>
-
       </section>
+
       <PortfolioSection />
-      {/* Expert in Android & iOS App Development Services */}
-      <section className="py-16 px-4 bg-white max-w-7xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Expert in Android & iOS App Development Services
-        </h2>
-        <p className="text-gray-600 max-w-4xl mx-auto mb-12">
-          With over 13 years of hands-on experience, CodeAutomation has delivered mobile app solutions across a wide range of industries.
-          From Healthcare and Fintech to AR/VR, Logistics, Real Estate and IoT, our expertise spans diverse verticals.
-          We adapt quickly to your market needs and showcase proven results with apps tailored to each domain’s unique challenges.
-          Whether it’s an enterprise-grade app or a nimble startup MVP, we bring deep industry knowledge to fuel your success.
-        </p>
-
-        <h3 className="text-xl md:text-2xl font-semibold mb-10">Mobile App Categories</h3>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-left text-sm md:text-base">
-          {Object.entries(categories).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="font-semibold mb-3">{category}</h4>
-              <ul className="space-y-0">
-                {items.map((item) => (
-                  <li key={item.label} className="flex items-center space-x-2">
-                    <Image
-                      src={`/${item.icon}`}
-                      alt={item.label}
-                      width={30}
-                      height={30}
-                      className="shrink-0 h-16 object-contain"
-                    />
-                    <span>{item.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-gray-700 mt-12 font-bold">
-          Our cross-platform app development approach ensures scalable, secure, and user-friendly apps across these categories.
-        </p>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
-          LET’S TALK
-        </button>
-      </section>
       <WhyChoose />
-      {/* TEch STack */}
-      <section className="py-16 px-4 bg-white max-w-7xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Cutting-Edge Tech Stack to Power Your Mobile App
-        </h2>
-        <p className="text-gray-600 max-w-3xl mx-auto mb-12">
-          We leverage these technologies to deliver mobile apps that are scalable, secure, and tailored to your startup’s needs
-          combining native performance with cross-platform flexibility to maximize reach and ROI.
-        </p>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-left text-sm md:text-base">
-          {Object.entries(techCategories).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="font-semibold mb-4">{category}</h4>
-              <ul className="space-y-6">
-                {items.map((item) => (
-                  <li key={item.name} className="flex items-center gap-3">
-                    <Image
-                      src={`/${item.icon}`}
-                      alt={item.name}
-                      width={20}
-                      height={20}
-                      className="shrink-0"
-                    />
-                    <span>{item.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="mt-8 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
-          LET’S TALK
-        </button>
-      </section>
+      <TechStackSection />
       <CategoryTabs />
       {/* Call to Action */}
-      <section className="relative py-20 px-4 max-w-7xl mx-auto flex justify-center">
+      <section className="relative py-10 md:py-20 px-4 max-w-7xl mx-auto flex justify-center">
         {/* Container Box */}
         <div className="relative bg-[#DAEEFF] rounded-2xl shadow-lg max-w-6xl w-full flex flex-col md:flex-row px-8 py-12 overflow-hidden z-10">
 
@@ -563,7 +611,7 @@ export default function HeroSection() {
           />
 
           {/* Left Content */}
-          <div className="flex-1 z-10 md:py-10 pl-10">
+          <div className="flex-1 z-10 md:py-10 md:pl-10">
             <h2 className="text-2xl md:text-3xl max-w-sm font-bold mb-4">
               Don’t Let Your Competitors Get Ahead While You Wait
             </h2>
@@ -602,8 +650,8 @@ export default function HeroSection() {
           <Image
             src="/cta-mobile.png"
             alt="Mobile device"
-            width={240}
-            height={600}
+            width={500}
+            height={400}
             className="h-[500px] object-contain"
           />
         </div>

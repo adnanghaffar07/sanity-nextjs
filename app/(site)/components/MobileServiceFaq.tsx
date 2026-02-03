@@ -64,8 +64,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="py-20 px-4 max-w-4xl mx-auto">
-      <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
+    <section className="py-10 md:py-20 px-4 max-w-4xl mx-auto">
+      <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-10">
         Frequently Asked Questions
       </h2>
       <div className="space-y-4">

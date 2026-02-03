@@ -61,7 +61,7 @@ export default function CategoryTabs() {
 
     return (
         <section className="bg-[#C5E4FF]">
-            <div className="py-16 bg-[#C5E4FF] px-4 max-w-5xl mx-auto text-center">
+            <div className="py-10 md:py-16 bg-[#C5E4FF] px-4 max-w-5xl mx-auto text-center">
                 <div className="flex flex-wrap justify-center gap-4 mb-10">
                     {tabs.map((tab, index) => {
                         const isActive = index === activeIndex;
@@ -69,7 +69,7 @@ export default function CategoryTabs() {
                             <button
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
-                                className={`flex items-center gap-2 px-6 py-4 rounded-md border-b-4 shadow-sm transition-all duration-200 ${isActive
+                                className={`flex items-center justify-center gap-2 w-[150px] md:w-[280px] py-2 px-2 rounded-md border-b-4 shadow-sm transition-all duration-200 ${isActive
                                     ? 'bg-[#0A8FFC] text-white border-[#0A8FFC]'
                                     : 'bg-white text-black border-transparent hover:border-blue-500'
                                     }`}
@@ -79,14 +79,13 @@ export default function CategoryTabs() {
                                     alt={tab.name}
                                     width={20}
                                     height={20}
-                                    className='object-contain'
+                                    className="object-contain h-6 md:h-8 md:w-8"
                                 />
-                                <span className="text-slgm font-bold">{tab.name}</span>
+                                <span className="text-sm text-left md:text-lg font-semibold md:font-bold">{tab.name}</span>
                             </button>
                         );
                     })}
                 </div>
-
                 <div className="max-w-3xl mx-auto text-center">
                     <h3 className="text-xl md:text-2xl font-bold mb-4">{tabs[activeIndex].heading}</h3>
                     <p className="text-gray-700">{tabs[activeIndex].description}</p>
@@ -100,7 +99,6 @@ export default function CategoryTabs() {
                     </a>
                 </div>
             </div>
-
         </section>
     );
 }

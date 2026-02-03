@@ -152,11 +152,11 @@ const GreetingPopup: React.FC = () => {
         className={`greetings overflow-hidden gap-4 rounded-lg pl-3 md:pl-0 pr-3 pt-3 pb-3 bg-white flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
           }`}
       >
-        {data?.image?.asset && (
+        {data?.image && (
           <div className="hidden sm:block w-[290px] md:w-[340px] h-full">
             <img
               loading="lazy"
-              src={urlForImage(data.image.asset)}
+              src={urlForImage(data.image).toString()}
               alt={data.image.alt}
               className="h-full w-full object-cover"
             />
@@ -170,20 +170,20 @@ const GreetingPopup: React.FC = () => {
         </button>
         <div className="flex border-2 border-gray-300 rounded-lg p-2 flex-col justify-center text-neutral-600 text-opacity-90">
           <div className="block sm:hidden w-[230px] mx-auto pt-4">
-            {data?.image?.asset && (
+            {data?.image && (
               <img
                 loading="lazy"
-                src={urlForImage(data.image.asset)}
+                src={urlForImage(data.image).toString()}
                 alt={data.image.alt}
                 className="object-cover"
               />
             )}
           </div>
           <div className="px-5 py-2 flex flex-col items-center">
-            {data?.icon?.asset && (
+            {data?.icon && (
               <img
                 loading="lazy"
-                src={urlForImage(data.icon.asset)}
+                src={urlForImage(data.icon).toString()}
                 alt={data.icon.alt}
                 className="h-8 hidden sm:block"
               />

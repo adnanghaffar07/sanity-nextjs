@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import ButtonScrollToSection from './ButtonScrollToSection';
 
 const portfolioImages = [
   '/portfolio-1.png',
@@ -26,8 +25,9 @@ export default function PortfolioSection() {
   };
 
   return (
-    <section className="py-20 bg-white text-center px-4">
-      <h2 className="text-3xl md:text-4xl font-bold text-[#001E6B] mb-10">
+    <section className="py-10 md:py-20 bg-cover bg-center text-center px-4"
+      style={{ backgroundImage: "url('/bg-portfolio.png')" }}>
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
         Our Portfolio
       </h2>
 
@@ -39,7 +39,7 @@ export default function PortfolioSection() {
           className="absolute left-[10px] md:left-[-60px] top-1/2 transform -translate-y-1/2 z-10"
           aria-label="Previous Slide"
         >
-          <Image src="/left-btn.png" alt="Previous" width={40} height={40} />
+          <Image src="/left-btn.png" alt="Previous" width={40} height={40} className='h-6 w-6 md:h-10 md:w-10' />
         </button>
 
         {/* Image */}
@@ -47,9 +47,9 @@ export default function PortfolioSection() {
           <Image
             src={portfolioImages[currentIndex]}
             alt={`Portfolio ${currentIndex + 1}`}
-            width={800}
+            width={850}
             height={500}
-            className="object-cover w-full h-auto"
+            className="object-cover w-full h-[290px] md:h-[570px]"
           />
         </div>
 
@@ -59,7 +59,7 @@ export default function PortfolioSection() {
           className="absolute right-[10px] md:right-[-60px] top-1/2 transform -translate-y-1/2 z-10"
           aria-label="Next Slide"
         >
-          <Image src="/right-btn.png" alt="Next" width={40} height={40} />
+          <Image src="/right-btn.png" alt="Next" width={40} height={40} className='h-6 w-6 md:h-10 md:w-10' />
         </button>
       </div>
 
