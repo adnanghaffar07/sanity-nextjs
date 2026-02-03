@@ -3,6 +3,7 @@ import { client } from "../../../../sanity/lib/client";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
+import Script from "next/script";
 
 async function getData(urlService: string) {
   const query = `*[_type == 'portfolio' && slug == '${urlService}'][0]`;
@@ -99,6 +100,13 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
 
   return (
     <div className="">
+      {data?.jsonLd && (
+        <Script
+          id="case-study-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: data.jsonLd }}
+        />
+      )}
       <section className="flex overflow-hidden relative flex-col md:pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.cardimage && (
           <img

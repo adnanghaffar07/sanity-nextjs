@@ -4,6 +4,12 @@ const portfolioSchema = {
   type: "document",
   fields: [
     {
+      name: 'jsonLd',
+      title: 'JSON-LD Schema',
+      type: 'text',
+      description: 'Add structured data (schema.org) for better SEO. Example: Article, CaseStudy, etc.'
+    },
+    {
       name: "title",
       title: "Title",
       type: "string",

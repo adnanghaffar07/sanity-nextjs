@@ -7,6 +7,7 @@ import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
 import AuthorBio from "../../components/AuthorBio";
 import Link from "next/link";
+import Script from "next/script";
 
 async function getValueData(slug: string) {
   const queryValue = `*[_type == 'portfolio' && slug == '${slug}'][0]`;
@@ -222,6 +223,13 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
+      {data?.jsonLd && (
+        <Script
+          id="blog-post-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: data.jsonLd }}
+        />
+      )}
       <div className="relative flex flex-col pb-12 w-full font-light text-white lg:min-h-[700px] bg-[ #020C16]">
         {data.heroimage && (
           <img
