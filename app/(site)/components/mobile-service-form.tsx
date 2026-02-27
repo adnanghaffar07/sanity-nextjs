@@ -23,7 +23,7 @@ export default function MobileForm() {
   const generateCaptcha = () => {
     const n1 = Math.floor(Math.random() * 20) + 1;
     const n2 = Math.floor(Math.random() * 20) + 1;
-    const operators: MathOperator[] = ['+', '-', '×'];
+    const operators: MathOperator[] = ['+'];
     const op = operators[Math.floor(Math.random() * operators.length)];
     setNum1(n1);
     setNum2(n2);
@@ -39,8 +39,6 @@ export default function MobileForm() {
   const calculateAnswer = () => {
     switch (operator) {
       case '+': return num1 + num2;
-      case '-': return num1 - num2;
-      case '×': return num1 * num2;
       default: return num1 + num2;
     }
   };
