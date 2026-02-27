@@ -1,77 +1,126 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-const portfolioImages = [
+const images = [
   '/portfolio-1.png',
   '/portfolio-2.png',
   '/portfolio-3.png',
 ];
 
 export default function PortfolioSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [transition, setTransition] = useState(true);
+  const sliderRef = useRef(null);
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? portfolioImages.length - 1 : prevIndex - 1
-    );
-  };
+  // Clone slides
+  const sliderImages = [
+    images[images.length - 1], // last clone at beginning
+    ...images,
+    images[0], // first clone at end
+  ];
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === portfolioImages.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  // Auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handle infinite effect
+  useEffect(() => {
+    if (currentIndex === sliderImages.length - 1) {
+      setTimeout(() => {
+        setTransition(false);
+        setCurrentIndex(1);
+      }, 700);
+    }
+
+    if (currentIndex === 0) {
+      setTimeout(() => {
+        setTransition(false);
+        setCurrentIndex(images.length);
+      }, 700);
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (!transition) {
+      setTimeout(() => setTransition(true), 50);
+    }
+  }, [transition]);
 
   return (
-    <section className="py-10 md:py-20 bg-cover bg-center text-center px-4"
-      style={{ backgroundImage: "url('/bg-portfolio.png')" }}>
+    <section
+      className="py-10 md:py-20 bg-cover bg-center text-center px-4"
+      style={{ backgroundImage: "url('/bg-portfolio.png')" }}
+    >
       <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
         Our Portfolio
       </h2>
 
-      {/* Image Slider Container */}
-      <div className="relative max-w-3xl mx-auto flex items-center justify-center">
-        {/* Left Arrow Button */}
-        <button
+      <div className="relative max-w-3xl mx-auto overflow-hidden">
+        
+        {/* Slider Track */}
+    <div
+        ref={sliderRef}
+        className="flex"
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+          transition: transition ? 'transform 0.7s ease-in-out' : 'none',
+        }}
+      >
+        {sliderImages.map((img, index) => (
+          <div key={index} className="min-w-full">
+            <Image
+              src={img}
+              alt={`Slide ${index}`}
+              width={850}
+              height={500}
+              className="object-cover w-full h-[290px] md:h-[570px]"
+            />
+          </div>
+        ))}
+      </div>
+        {/* Left Button */}
+        {/* <button
           onClick={handlePrev}
-          className="absolute left-[10px] md:left-[-60px] top-1/2 transform -translate-y-1/2 z-10"
-          aria-label="Previous Slide"
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10"
         >
-          <Image src="/left-btn.png" alt="Previous" width={40} height={40} className='h-6 w-6 md:h-10 md:w-10' />
-        </button>
-
-        {/* Image */}
-        <div className="rounded-lg overflow-hidden">
           <Image
-            src={portfolioImages[currentIndex]}
-            alt={`Portfolio ${currentIndex + 1}`}
-            width={850}
-            height={500}
-            className="object-cover w-full h-[290px] md:h-[570px]"
+            src="/left-btn.png"
+            alt="Previous"
+            width={40}
+            height={40}
+            className="h-6 w-6 md:h-10 md:w-10"
           />
-        </div>
+        </button> */}
 
-        {/* Right Arrow Button */}
-        <button
+        {/* Right Button */}
+        {/* <button
           onClick={handleNext}
-          className="absolute right-[10px] md:right-[-60px] top-1/2 transform -translate-y-1/2 z-10"
-          aria-label="Next Slide"
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10"
         >
-          <Image src="/right-btn.png" alt="Next" width={40} height={40} className='h-6 w-6 md:h-10 md:w-10' />
-        </button>
+          <Image
+            src="/right-btn.png"
+            alt="Next"
+            width={40}
+            height={40}
+            className="h-6 w-6 md:h-10 md:w-10"
+          />
+        </button> */}
       </div>
 
-      {/* Contact Button */}
       <div className="mt-10">
         <a
           href="tel:+18505584691"
-          className="bg-[#1D92FB] hover:bg-blue-700 cursor-pointer text-white font-semibold px-8 py-3 rounded-md transition duration-300 inline-block"
+          className="bg-[#1D92FB] hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-md transition duration-300 inline-block"
         >
           Contact Us
         </a>
-
       </div>
     </section>
   );

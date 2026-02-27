@@ -25,15 +25,15 @@ export async function POST(req: Request) {
             port: 465,
             secure: true,
             auth: {
-                user: 'ayesha@codeautomation.dev',
-                pass: 'eexg jiwa qqki mtyx',
+                user: 'adnan.qat123@gmail.com',
+                pass: 'hvuk bpne rdsd vttv',
             },
         });
 
         // ✅ Compose email
         const mailOptions = {
-            from: `"CA Website Mobile Service Form" <ayesha@codeautomation.dev>`,
-            to: ["adnan@codeautomation.dev"], // 💡 Add your team emails here
+            from: `"CA Website Mobile Service Form" <adnan.qat123@gmail.com>`,
+            to: ["ayesha@codeautomation.dev"], // 💡 Add your team emails here
             subject: `New Contact Form Submission - ${name}`,
             html: `
         <h2>New Mobile Service Form Submission</h2>

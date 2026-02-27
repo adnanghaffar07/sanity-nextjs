@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -37,19 +37,24 @@ const techStack: Record<Category, { name: string; logo: string }[]> = {
 
 export default function TechStackSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("Frameworks");
+  const [fade, setFade] = useState(true);
 
-  // Auto-rotate only on mobile
+  // Auto-rotate tabs
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      const interval = setInterval(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+
+      setTimeout(() => {
         setActiveCategory((prev) => {
           const currentIndex = categories.indexOf(prev);
           const nextIndex = (currentIndex + 1) % categories.length;
           return categories[nextIndex];
         });
-      }, 4000); // change every 4s
-      return () => clearInterval(interval);
-    }
+        setFade(true);
+      }, 200); // fade duration
+    }, 4000); // change every 4 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -75,7 +80,7 @@ export default function TechStackSection() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 text-sm md:text-base font-semibold ${
+              className={`px-3 text-sm md:text-base font-semibold transition-colors duration-300 ${
                 activeCategory === cat
                   ? "text-yellow-400 border-b-2 border-yellow-400"
                   : "text-white hover:text-yellow-400"
@@ -92,12 +97,13 @@ export default function TechStackSection() {
         </div>
 
         {/* Logos */}
-        <div className="flex flex-col md:flex-row md:flex-wrap py-6 md:py-0 bg-white rounded-bl-lg rounded-br-lg md:bg-transparent max-w-[70%] md:max-w-3xl mx-auto justify-center items-center gap-6 md:gap-16 transition-all duration-500 ease-in-out">
+        <div
+          className={`flex flex-col md:flex-row md:flex-wrap py-6 md:py-0 bg-white rounded-bl-lg rounded-br-lg md:bg-transparent max-w-[70%] md:max-w-3xl mx-auto justify-center items-center gap-6 md:gap-16 transition-opacity duration-500 ease-in-out ${
+            fade ? "opacity-100" : "opacity-0"
+          }`}
+        >
           {techStack[activeCategory]?.map((tech) => (
-            <div
-              key={tech.name}
-              className="flex flex-col items-center space-y-2 animate-fadeIn"
-            >
+            <div key={tech.name} className="flex flex-col items-center space-y-2">
               <Image
                 src={tech.logo}
                 alt={tech.name}
