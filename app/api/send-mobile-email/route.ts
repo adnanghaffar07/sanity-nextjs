@@ -24,16 +24,16 @@ export async function POST(req: Request) {
             host: "smtp.gmail.com",
             port: 465,
             secure: true,
-            auth: {
-                user: 'adnan.qat123@gmail.com',
-                pass: 'hvuk bpne rdsd vttv',
-            },
+       auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
         });
 
         // ✅ Compose email
         const mailOptions = {
-            from: `"CA Website Mobile Service Form" <adnan.qat123@gmail.com>`,
-            to: ["ayesha@codeautomation.dev"], // 💡 Add your team emails here
+            from: `"CA Website Mobile Service Form" <${process.env.EMAIL_USER}>`,
+            to: ["adnan@codeautomation.dev"], // 💡 Add your team emails here
             subject: `New Contact Form Submission - ${name}`,
             html: `
         <h2>New Mobile Service Form Submission</h2>

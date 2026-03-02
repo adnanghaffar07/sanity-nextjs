@@ -18,7 +18,7 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-<MobileApp/>
+      <MobileApp />
     </div>
   )
 }

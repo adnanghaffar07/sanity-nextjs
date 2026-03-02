@@ -33,7 +33,7 @@ async function getLogoData() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const data = await getValueData(params.slug);
 
-  const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
+  const defaultTitle = "Codeautomation - Custom Software and Mobile Development Company in USA";
   const defaultDescription = "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
   const canonicalUrl = `https://codeautomation.ai/blogs/${params.slug}`; // ✅ Dynamic Canonical URL
