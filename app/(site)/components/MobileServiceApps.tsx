@@ -324,7 +324,7 @@ export default function CategoryTabs() {
                                 </svg>
                             </div>
                             <div>
-                                <div className="font-bold text-gray-900">500+</div>
+                                <div className="font-bold text-gray-900">80+</div>
                                 <div className="text-sm text-gray-500">Enterprise Clients</div>
                             </div>
                         </div>
@@ -348,7 +348,7 @@ export default function CategoryTabs() {
                                 </svg>
                             </div>
                             <div>
-                                <div className="font-bold text-gray-900">150+</div>
+                                <div className="font-bold text-gray-900">100+</div>
                                 <div className="text-sm text-gray-500">Projects Delivered</div>
                             </div>
                         </div>
@@ -360,7 +360,7 @@ export default function CategoryTabs() {
                                 </svg>
                             </div>
                             <div>
-                                <div className="font-bold text-gray-900">5+ Years</div>
+                                <div className="font-bold text-gray-900">7+ Years</div>
                                 <div className="text-sm text-gray-500">Market Presence</div>
                             </div>
                         </div>

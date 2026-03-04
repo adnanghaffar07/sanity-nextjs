@@ -54,6 +54,11 @@ const nextConfig = {
         destination: "/services/custom-cms-development-services",
         permanent: true,
       },
+       {
+        source: "/services/gohighlevel-crm-automation-customization.",
+        destination: "/services/gohighlevel-crm-automation-customization",
+        permanent: true,
+      },
       {
         source: "/services/headless-cms",
         destination: "/services/headless-cms-development-services",

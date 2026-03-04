@@ -60,15 +60,15 @@ const MobileIndustries = () => {
                         {/* Key Stats */}
                         <div className="flex flex-wrap items-center justify-center gap-8 mt-8 pt-8 border-t border-blue-100">
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-[#1D92FB]">16+</div>
+                                <div className="text-3xl font-bold text-[#1D92FB]">15+</div>
                                 <div className="text-sm text-gray-500">Industries Covered</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-[#1D92FB]">200+</div>
+                                <div className="text-3xl font-bold text-[#1D92FB]">100+</div>
                                 <div className="text-sm text-gray-500">Projects Delivered</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-[#1D92FB]">95%</div>
+                                <div className="text-3xl font-bold text-[#1D92FB]">98%</div>
                                 <div className="text-sm text-gray-500">Client Satisfaction</div>
                             </div>
                         </div>
