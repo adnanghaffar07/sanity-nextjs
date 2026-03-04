@@ -15,6 +15,7 @@ import TechStackSection from "../../components/MobileServiceTechStackSection";
 import StatsSection from "../../components/StatsSection";
 import Testimonials from "../../components/MobileTestimonials";
 import FreeTrial from "../../components/MobileFreeTrial";
+import MobileAppHeader from "../../components/MobileAppHeader";
 
 const categories = {
   "On Demand": [
@@ -228,7 +229,8 @@ export default function HeroSection() {
 
 
   return (
-    <section>
+    <>
+      <MobileAppHeader />
       <LiveChatTawk />
       <div className="relative w-full font-light text-white overflow-hidden pb-12 md:pb-0 lg:min-h-[700px] pt-[80px] md:pt-[100px]">
         {/* Background */}
@@ -347,7 +349,9 @@ export default function HeroSection() {
       {/* Stats Section */}
       <StatsSection />
       {/* Industries We Serve */}
-      <MobileIndustries />
+      <div id="industries">
+        <MobileIndustries />
+      </div>
       {/* Notification */}
     {!isModalOpen && !isFloatingDrawerOpen && showNotification && (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-6 sm:translate-x-0 z-[9999] w-[300px] sm:w-[320px]">
@@ -471,6 +475,7 @@ export default function HeroSection() {
         setIsFloatingDrawerOpen={setIsFloatingDrawerOpen}
       />
       <section
+        id="services"
         className="bg-[url('/what-we-do.jpeg')] bg-cover bg-center py-10 md:py-16 px-4 lg:px-20 text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -651,7 +656,9 @@ export default function HeroSection() {
         </button>
       </section>
 
-      <PortfolioSection />
+      <div id="portfolio">
+        <PortfolioSection />
+      </div>
       <WhyChoose />
       <TechStackSection />
       <CategoryTabs />
@@ -728,8 +735,6 @@ export default function HeroSection() {
       <Testimonials />
       {/* Faq Section */}
       <FaqSection />
-
-    </section >
-
+    </>
   );
 }

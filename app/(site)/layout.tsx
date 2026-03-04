@@ -4,7 +4,8 @@ import React, { Suspense } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Script from "next/script";
 import "../globals.css";
-import HomeNavigationContainer from "./components/home-navigation-container";
+import ConditionalNavigation from "./components/ConditionalNavigation";
+import ConditionalFooter from "./components/ConditionalFooter";
 import CookieConsent from "./components/CookieConsent";
 import { Inter } from "next/font/google";
 
@@ -16,7 +17,6 @@ const inter = Inter({
 
 // ✅ Dynamic imports
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
-const FooterContainer = dynamic(() => import("./components/footer-container"), { suspense: true });
 const DeferredFormDisplay = dynamic(() => import("./components/DeferredFormDisplay"), { ssr: false, loading: () => null });
 const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToTop"), { ssr: false, loading: () => null });
 const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
@@ -159,15 +159,13 @@ fbq('track', 'PageView');
 
           {/* ✅ Page Content */}
           <div className="flex flex-col bg-white relative">
-            <HomeNavigationContainer />
+            <ConditionalNavigation />
             <CookieConsent />
             {children}
             <Suspense fallback={null}>
               <DeferredFormDisplay />
             </Suspense>
-            <Suspense fallback={<div className="h-[300px] bg-gray-100 animate-pulse" />}>
-              <FooterContainer />
-            </Suspense>
+            <ConditionalFooter />
             <Suspense fallback={null}>
               <DeferredScrollToTop />
             </Suspense>
