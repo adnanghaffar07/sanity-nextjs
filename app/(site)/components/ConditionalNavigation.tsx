@@ -6,8 +6,8 @@ import HomeNavigationContainer from './home-navigation-container';
 export default function ConditionalNavigation() {
   const pathname = usePathname();
 
-  // Hide navigation for mobile app service page
-  if (pathname?.includes('/services/mobile-app')) {
+  // Hide navigation only for /services/mobile-app (not /services/mobile-app-development-services)
+  if (pathname?.match(/^\/services\/mobile-app(?:\/|$)/)) {
     return null;
   }
 
