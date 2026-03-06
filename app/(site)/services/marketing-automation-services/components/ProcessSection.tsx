@@ -94,7 +94,7 @@ const ProcessSection = () => {
             <span className="text-sm font-semibold text-[#1d92fb] tracking-wide">OUR APPROACH</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-[#020C16] mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#020C16] mb-6 tracking-tight">
             From Strategy to Live Automation<br />
             <span className="text-[#1d92fb]">in 4 Structured Phases</span>
           </h2>

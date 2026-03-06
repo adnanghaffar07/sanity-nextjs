@@ -122,7 +122,7 @@ const IndustriesSection = () => {
             <span className="text-sm font-semibold text-[#1d92fb] tracking-wide">INDUSTRIES WE SERVE</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-[#020C16] mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#020C16] mb-6 tracking-tight">
             Marketing Automation Expertise<br />
             <span className="text-[#1d92fb]">Across Every Sector</span>
           </h2>

@@ -81,7 +81,7 @@ const ResultsSection = () => {
             <span className="text-sm font-semibold text-[#1d92fb] tracking-wide">PROVEN RESULTS</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-[#020C16] mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#020C16] mb-4 tracking-tight">
             The Numbers Behind<br />
             <span className="text-[#1d92fb]">Our Automation</span>
           </h2>

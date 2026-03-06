@@ -107,7 +107,7 @@ const ChannelCoverageSection = () => {
             <span className="text-sm font-semibold text-[#1d92fb] tracking-wide">CHANNEL COVERAGE</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-[#020C16] mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#020C16] mb-6 tracking-tight">
             Automate Every Customer<br />
             <span className="text-[#1d92fb]">Touchpoint</span>
           </h2>

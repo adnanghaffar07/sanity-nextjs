@@ -96,7 +96,7 @@ const PainPointsSection = () => {
             <span className="text-sm font-semibold text-[#1d92fb] tracking-wide">THE PROBLEM</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-[#020C16] mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#020C16] mb-4 tracking-tight">
             Your Marketing Team Deserves Better<br />
             <span className="text-[#1d92fb]">Than Manual Work</span>
           </h2>

@@ -146,7 +146,7 @@ const TechStackSection = () => {
             <span className="text-sm font-semibold text-[#1d92fb] tracking-wide">TECHNOLOGY STACK</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-[#020C16] mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#020C16] mb-6 tracking-tight">
             We Work With Every<br />
             <span className="text-[#1d92fb]">Major Platform</span>
           </h2>

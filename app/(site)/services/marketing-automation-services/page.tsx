@@ -14,6 +14,7 @@ import CTABannerSection from './components/CTABannerSection';
 import LiveChatTawk from '../../components/LiveChatTawk';
 import MarketingHeader from './components/Header';
 import ContactFormSection from './components/ContactFormSection';
+import StatsSection from '../../components/StatsSection';
 
 export default function MarketingAutomationPage() {
   return (
@@ -24,7 +25,7 @@ export default function MarketingAutomationPage() {
 
       {/* Hero Section */}
       <MarketingAutomationHero />
-
+      <StatsSection />
       {/* Pain Points Section */}
       <PainPointsSection />
 
@@ -53,7 +54,7 @@ export default function MarketingAutomationPage() {
       <CTABannerSection />
 
       {/* Contact Form Section */}
-      <ContactFormSection/>
+      <ContactFormSection />
 
       {/* Floating Components */}
       {/* <FloatingConsultButton setIsModalOpen={setIsModalOpen} />
