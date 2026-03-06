@@ -1,7 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
-import { usePathname } from "next/navigation";
 const CalendlyForm = dynamic(
   () => import("./Calendlyform"),
   {
@@ -10,12 +9,7 @@ const CalendlyForm = dynamic(
 );
 
 const FormDisplay = () => {
-  const currentPath = usePathname();
-  return currentPath !== "/partnership-program" ? (
-    <Suspense fallback={<p>Loading Form ...</p>}>
-      <CalendlyForm />
-    </Suspense>
-  ) : (
+  return (
     <Suspense fallback={<p>Loading Form ...</p>}>
       <CalendlyForm />
     </Suspense>

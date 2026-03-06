@@ -208,7 +208,7 @@ const IndustriesSection = () => {
                 Deep Industry Knowledge, Tailored Solutions
               </h3>
               <p className="text-white/80 leading-relaxed mb-6">
-                We don't just know marketing automation — we understand the unique challenges 
+                We don&apos;t just know marketing automation — we understand the unique challenges 
                 and opportunities in your specific industry. From healthcare compliance to 
                 eCommerce seasonality, we build systems that work for your market.
               </p>

@@ -102,7 +102,7 @@ const PainPointsSection = () => {
           </h2>
           
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Most businesses are leaving revenue on the table because their marketing isn't automated.
+            Most businesses are leaving revenue on the table because their marketing isn&apos;t automated.
           </p>
         </div>
 

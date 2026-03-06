@@ -16,6 +16,7 @@ import StatsSection from "../../components/StatsSection";
 import Testimonials from "../../components/MobileTestimonials";
 import FreeTrial from "../../components/MobileFreeTrial";
 import MobileAppHeader from "../../components/MobileAppHeader";
+import CtaSection from "../../components/CTASection";
 
 const categories = {
   "On Demand": [
@@ -663,75 +664,7 @@ export default function HeroSection() {
       <TechStackSection />
       <CategoryTabs />
       <FreeTrial />
-      {/* Call to Action */}
-      <section className="relative py-10 md:py-20 px-4 max-w-7xl mx-auto flex justify-center">
-        {/* Container Box */}
-        <div className="relative bg-[#DAEEFF] rounded-2xl shadow-lg max-w-6xl w-full flex flex-col md:flex-row px-8 py-12 overflow-hidden z-10">
-
-          {/* Top-left floating image */}
-          <Image
-            src="/vector-top.png"
-            alt="Top left shape"
-            width={200}
-            height={200}
-            className="absolute top-0 left-0 -translate-x-1/3 -translate-y-1/3"
-          />
-
-          {/* Bottom-left floating image */}
-          <Image
-            src="/vector-bottom.png"
-            alt="Bottom left shape"
-            width={600}
-            height={600}
-            className="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3"
-          />
-
-          {/* Left Content */}
-          <div className="flex-1 z-10 md:py-10 md:pl-10">
-            <h2 className="text-2xl md:text-3xl max-w-sm font-bold mb-4">
-              Don’t Let Your Competitors Get Ahead While You Wait
-            </h2>
-            <h3 className="text-xl max-w-sm font-bold">Limited slots available — claim your free consultation now.</h3>
-            <p className="text-gray-600 mb-6 max-w-md">
-              Our calendar fills up fast because startups trust us to deliver fast, reliable results.      </p>
-            <div className="flex gap-4 flex-wrap">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
-                    (window as any).Tawk_API.toggle(); // Open/close the widget
-                  } else {
-                    console.warn('Tawk_API not ready yet.');
-                  }
-                }}
-                className="bg-[#1D92FB] text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
-              >
-                Start Live Chat
-              </a>
-              <a
-                href="https://calendly.com/adnanghaffar/30min"
-                target="_blank"
-                className="bg-[#F7E022] text-black px-6 py-3 cursor-pointer rounded-md font-semibold hover:bg-yellow-300 transition"
-                rel="noopener noreferrer"
-              >
-                Talk to an Expert Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Image (outside the container, overlaps downward) */}
-        <div className="absolute bottom-0 right-32 translate-y-1/12 hidden md:block z-10">
-          <Image
-            src="/cta-mobile.png"
-            alt="Mobile device"
-            width={500}
-            height={400}
-            className="h-[500px] object-contain"
-          />
-        </div>
-      </section>
+     <CtaSection/>
       <Testimonials />
       {/* Faq Section */}
       <FaqSection />

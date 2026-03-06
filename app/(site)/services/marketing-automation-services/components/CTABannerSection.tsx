@@ -36,7 +36,7 @@ const CTABannerSection = () => {
 
         {/* Headline - smaller */}
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
-          Let's Build Your Marketing<br />
+          Let&apos; Build Your Marketing<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f7e022] to-white">
             Engine Together
           </span>
@@ -44,7 +44,7 @@ const CTABannerSection = () => {
 
         {/* Description - smaller */}
         <p className="text-base text-white/80 mb-6 max-w-2xl mx-auto leading-relaxed">
-          Book a free 30-minute strategy call. We'll audit your current marketing workflow, 
+          Book a free 30-minute strategy call. We&apos;ll audit your current marketing workflow, 
           identify your biggest automation opportunities, and outline a roadmap — 
           <span className="text-[#f7e022] font-semibold"> at no cost, no obligation.</span>
         </p>

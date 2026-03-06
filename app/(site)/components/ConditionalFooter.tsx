@@ -10,8 +10,11 @@ const FooterContainer = dynamic(() => import('./footer-container'), { suspense: 
 export default function ConditionalFooter() {
   const pathname = usePathname();
 
-  // Show custom footer only for /services/mobile-app (not /services/mobile-app-development-services)
-  if (pathname?.match(/^\/services\/mobile-app(?:\/|$)/)) {
+  // Show custom footer for /services/mobile-app and /services/marketing-automation-services
+  if (
+    pathname?.match(/^\/services\/mobile-app(?:\/|$)/) ||
+    pathname?.includes('/marketing-automation-services')
+  ) {
     return <MobileAppFooter />;
   }
 

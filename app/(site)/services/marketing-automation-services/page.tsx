@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MarketingAutomationHero from './components/MarketingAutomationHero';
 import PainPointsSection from './components/PainPointsSection';
 import ServicesSection from './components/ServicesSection';
@@ -11,16 +11,11 @@ import ResultsSection from './components/ResultsSection';
 import WhyChooseUsSection from './components/WhyChooseUsSection';
 import IndustriesSection from './components/IndustriesSection';
 import CTABannerSection from './components/CTABannerSection';
-import ContactFormSection from './components/ContactFormSection';
-import MobileAppHeader from '../../components/MobileAppHeader';
 import LiveChatTawk from '../../components/LiveChatTawk';
 import MarketingHeader from './components/Header';
-import QuoteModal from '../../components/MobileQuoteModal';
+import ContactFormSection from './components/ContactFormSection';
 
 export default function MarketingAutomationPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFloatingDrawerOpen, setIsFloatingDrawerOpen] = useState(false);
-
   return (
     <div className="w-full bg-white">
       {/* Header */}
@@ -58,7 +53,7 @@ export default function MarketingAutomationPage() {
       <CTABannerSection />
 
       {/* Contact Form Section */}
-      <ContactFormSection />
+      <ContactFormSection/>
 
       {/* Floating Components */}
       {/* <FloatingConsultButton setIsModalOpen={setIsModalOpen} />

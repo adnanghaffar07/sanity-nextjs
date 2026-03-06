@@ -169,8 +169,8 @@ const ResultsSection = () => {
                 ))}
               </div>
               <p className="text-base text-white/90 leading-relaxed mb-3">
-                "The automation systems they built transformed our lead generation. We're now converting 
-                3× more leads with half the manual effort."
+                &quot;The automation systems they built transformed our lead generation. We&apos;re now converting 
+                3× more leads with half the manual effort.&quot;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">

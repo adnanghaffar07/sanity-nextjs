@@ -278,7 +278,7 @@ const ProcessSection = () => {
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="text-sm text-gray-500 mt-4">
-            No commitment required. We'll show you what's possible in a free consultation.
+            No commitment required. We&apos;ll show you what&apos;s possible in a free consultation.
           </p>
         </div>
       </div>

@@ -120,7 +120,7 @@ const ContactFormSection = () => {
           </h2>
           
           <p className="text-md text-gray-500">
-            Fill out the form below and we'll analyze your current setup before our call.
+            Fill out the form below and we&apos;ll analyze your current setup before our call.
           </p>
         </div>
 
@@ -319,7 +319,7 @@ const ContactFormSection = () => {
 
             {/* Footer Note */}
             <p className="text-[10px] text-gray-400 text-center mt-3">
-              No spam. Unsubscribe anytime. We'll never share your data.
+              No spam. Unsubscribe anytime. We&apos;ll never share your data.
             </p>
           </form>
         </div>
