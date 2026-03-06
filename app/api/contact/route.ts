@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     // Email content
     const mailOptions = {
       from: `"Website Contact" <${process.env.EMAIL_USER}>`,
-      to: 'ayesha@codeautomation.dev',
+      to: 'adnan@codeautomation.dev',
       replyTo: email,
       subject: `New Marketing Automation Consultation Request from ${firstName} ${lastName}`,
       html: `
