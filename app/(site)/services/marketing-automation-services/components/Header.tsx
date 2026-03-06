@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
-export default function MobileAppHeader() {
+export default function MarketingHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -33,9 +33,8 @@ export default function MobileAppHeader() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrollY > 50 ? 'bg-[#001E6B] backdrop-blur-md shadow-lg' : 'bg-[#001E6B] backdrop-blur-sm'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-[#001E6B] backdrop-blur-md shadow-lg' : 'bg-[#001E6B] backdrop-blur-sm'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4 flex items-center justify-between">
         {/* Logo */}
@@ -53,7 +52,7 @@ export default function MobileAppHeader() {
           />
         </button>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation
         <nav className="hidden md:flex items-center space-x-8">
           <button
             onClick={() => scrollToSection('services')}
@@ -73,29 +72,54 @@ export default function MobileAppHeader() {
           >
             Our Portfolio
           </button>
-        </nav>
+        </nav> */}
 
-        {/* Phone CTA - Desktop */}
-        <a
-          href={`tel:${phoneNumber}`}
-          className="hidden sm:flex items-center space-x-2 bg-[#F7E022] hover:bg-yellow-400 text-black font-bold px-4 py-2 rounded-md transition-colors text-sm md:text-base"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-4 h-4"
+        {/* Action Buttons - Desktop */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Get a Free Audit Button */}
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById('contact-box');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }} className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#001E6B] font-bold px-6 py-2 rounded-md transition-all duration-300 text-sm"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.16 3.49a1 1 0 01-.27 1.09l-1.47 1.47a16.018 16.018 0 006.36 6.36l1.47-1.47a1 1 0 011.09-.27l3.49 1.16a1 1 0 01.68.95V19a2 2 0 01-2 2h-1c-9.39 0-17-7.61-17-17V5z"
-            />
-          </svg>
-          <span>{phoneNumber}</span>
-        </a>
+            Get a Free Audit
+          </button>
+
+          {/* Schedule a Call Button */}
+          <a
+            href="https://calendly.com/adnanghaffar/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#F7E022] hover:bg-yellow-400 text-black font-bold px-6 py-2 rounded-md transition-colors text-sm"
+          >
+            Schedule a Call
+          </a>
+
+          {/* Phone CTA */}
+          <a
+            href={`tel:${phoneNumber}`}
+            className="flex items-center space-x-2 bg-[#F7E022] hover:bg-yellow-400 text-black font-bold px-4 py-2 rounded-md transition-colors text-sm md:text-base"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.16 3.49a1 1 0 01-.27 1.09l-1.47 1.47a16.018 16.018 0 006.36 6.36l1.47-1.47a1 1 0 011.09-.27l3.49 1.16a1 1 0 01.68.95V19a2 2 0 01-2 2h-1c-9.39 0-17-7.61-17-17V5z"
+              />
+            </svg>
+            <span>{phoneNumber}</span>
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-4">
@@ -204,6 +228,31 @@ export default function MobileAppHeader() {
               </svg>
               <span>Our Portfolio</span>
             </button>
+
+            {/* Mobile Action Buttons */}
+            <div className="mt-6 space-y-3">
+              {/* Divider */}
+              <div className="h-px bg-gradient-to-r from-blue-400/20 via-blue-400/10 to-transparent my-4" />
+
+              {/* Get a Free Audit Button - Mobile */}
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#001E6B] font-bold py-3 px-4 rounded-md transition-all duration-300 text-center"
+              >
+                Get a Free Audit
+              </button>
+
+              {/* Schedule a Call Button - Mobile */}
+              <a
+                href="https://calendly.com/adnanghaffar/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-[#F7E022] hover:bg-yellow-400 text-black font-bold py-3 px-4 rounded-md transition-colors text-center"
+                onClick={() => setMenuOpen(false)}
+              >
+                Schedule a Call
+              </a>
+            </div>
           </nav>
         </div>
       )}

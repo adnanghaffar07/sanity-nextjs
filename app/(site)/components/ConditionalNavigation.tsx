@@ -10,6 +10,8 @@ export default function ConditionalNavigation() {
   if (pathname?.match(/^\/services\/mobile-app(?:\/|$)/)) {
     return null;
   }
-
+  if (pathname?.match(/^\/services\/marketing-automation-services(?:\/|$)/)) {
+    return null;
+  }
   return <HomeNavigationContainer />;
 }
