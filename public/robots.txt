@@ -1,5 +1,4 @@
 # --- Allow AI + Search Crawlers Explicitly ---
-
 User-agent: ChatGPT-User
 Allow: /
 
@@ -24,37 +23,20 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
-
 # --- Default rules for all other crawlers ---
-
 User-agent: *
-
-# Block non-public app areas
-Disallow: /studio/
-Disallow: /api/
-Disallow: /drafts/
-
-# Allow static assets for search rendering
 Allow: /_next/static/
 Allow: /*.js$
 Allow: /*.css$
-
-# Block unhelpful duplicate paths
+Disallow: /studio/
+Disallow: /api/
+Disallow: /drafts/
 Disallow: /*?attachment_id=
 Disallow: /*?trk=
 Disallow: /*?ts=
-
-# Do NOT block utm tracking queries (SEO prefers canonical instead)
-
-# Block legacy WP paths
 Disallow: /*/feed/
 Disallow: /wp-content/
-
-# Allow everything else
 Allow: /
 
-
-# --- Host + Sitemap Directives ---
-
-Host: https://codeautomation.ai
+# --- Sitemap ---
 Sitemap: https://codeautomation.ai/sitemap.xml
