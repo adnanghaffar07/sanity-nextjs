@@ -17,10 +17,10 @@ export function middleware(req: NextRequest) {
 
   const country = req.geo?.country || "Unknown"; // Get country code
 
-  if (country === "PK") {
-    // Redirect to the not-found page
-    return NextResponse.rewrite(new URL('/not-found', req.url));
-  }
+  // if (country === "PK") {
+  //   // Redirect to the not-found page
+  //   return NextResponse.rewrite(new URL('/not-found', req.url));
+  // }
 
   // Add CORS headers to the response
   const response = NextResponse.next();
