@@ -24,20 +24,20 @@ const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { susp
 export const metadata: Metadata = {
   metadataBase: new URL("https://codeautomation.ai"),
   title: "Custom Software & AI Development Company | CodeAutomation.ai",
-  description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+  description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
   keywords: ["CodeAutomation", "software development company", "software development services"],
   alternates: { canonical: "https://codeautomation.ai" },
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
-    description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
     images: [{ url: "https://codeautomation.ai/thankyou.jpg", width: 1200, height: 630, alt: "CodeAutomation Logo" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
-    description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };
@@ -187,7 +187,7 @@ fbq('track', 'PageView');
             url: "https://codeautomation.ai/",
             inLanguage: "en-US",
             datePublished: "2024-08-20",
-            description: "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+            description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
             image: "https://codeautomation.ai/logo.svg",
             isPartOf: { "@type": "WebSite", url: "https://codeautomation.ai/" },
             mainEntity: [{ "@type": "Organization", name: "Code Automation" }],
