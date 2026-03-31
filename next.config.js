@@ -49,6 +49,18 @@ const nextConfig = {
   async redirects() {
     return [
       // Existing redirects
+       {
+      source: "/:path*",
+      has: [
+        {
+          type: "host",
+          value: "codeautomation.dev",
+        },
+      ],
+      destination: "https://codeautomation.ai/:path*",
+      permanent: true,
+    },
+
       {
         source: "/services/custom-web-cms",
         destination: "/services/custom-cms-development-services",
