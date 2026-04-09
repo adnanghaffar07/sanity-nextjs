@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+type LeadRequestBody = {
+  name?: string;
+  phone?: string;
+  email?: string;
+  what_are_you_looking_for?: string;
+  message?: string;
+};
+
 // Validate required fields
-function validateFormData(data: any) {
+function validateFormData(data: LeadRequestBody) {
   const errors: string[] = [];
 
   if (!data.name || data.name.trim() === '') {
@@ -47,6 +55,12 @@ function splitName(fullName: string): { firstName: string; lastName: string } {
   };
 }
 
+function normalizePhone(phone: string): string {
+  const trimmedPhone = phone.trim();
+  if (!trimmedPhone) return '';
+  return trimmedPhone.startsWith('+') ? trimmedPhone : `+${trimmedPhone}`;
+}
+
 export async function POST(req: NextRequest) {
   try {
     // Verify API key exists
@@ -59,7 +73,15 @@ export async function POST(req: NextRequest) {
     }
 
     // Parse request body
-    const body = await req.json();
+    let body: LeadRequestBody;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid JSON body' },
+        { status: 400 }
+      );
+    }
 
     // Extract form fields
     const { name, phone, email, what_are_you_looking_for, message } = body;
@@ -75,19 +97,20 @@ export async function POST(req: NextRequest) {
     }
 
     // Split name into firstName and lastName
-    const { firstName, lastName } = splitName(name);
+    const { firstName, lastName } = splitName(name.trim());
+    const normalizedPhone = normalizePhone(phone.trim());
 
     // Prepare GHL API payload
     const ghlPayload = {
       firstName: firstName,
       lastName: lastName,
-      email: email.toLowerCase(),
-      phone: phone,
+      email: email.trim().toLowerCase(),
+      phone: normalizedPhone,
       source: 'website',
-      tags: ['consultation-lead'],
+      tags: ['website lead'],
       customField: {
-        what_are_you_looking_for: what_are_you_looking_for || '',
-        message: message || '',
+        what_are_you_looking_for: what_are_you_looking_for?.trim() || '',
+        message: message?.trim() || '',
       },
     };
 
@@ -114,7 +137,12 @@ export async function POST(req: NextRequest) {
     );
 
     // Handle GHL API response
-    const ghlData = await ghlResponse.json();
+    let ghlData: any = null;
+    try {
+      ghlData = await ghlResponse.json();
+    } catch {
+      ghlData = { message: 'Unable to parse GHL response' };
+    }
 
     if (!ghlResponse.ok) {
       console.error('GHL API Error:', {
@@ -128,12 +156,12 @@ export async function POST(req: NextRequest) {
           error: 'Failed to create contact in GHL',
           details: ghlData.message || ghlData.error || 'Unknown error',
         },
-        { status: ghlResponse.status }
+        { status: 502 }
       );
     }
 
     console.log('Lead successfully created in GHL:', {
-      contactId: ghlData.id || ghlData.contact_id,
+      contactId: ghlData?.id || ghlData?.contact_id,
       email: email,
       name: `${firstName} ${lastName}`,
     });
@@ -142,7 +170,7 @@ export async function POST(req: NextRequest) {
       {
         success: true,
         message: 'Lead successfully created',
-        contactId: ghlData.id || ghlData.contact_id,
+        contactId: ghlData?.id || ghlData?.contact_id,
       },
       { status: 201 }
     );

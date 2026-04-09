@@ -118,6 +118,30 @@ const PartnershipForm = () => {
         body: formData,
       });
 
+      try {
+        const ghlResponse = await fetch("/api/lead", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            phone: values.contact_number,
+            what_are_you_looking_for: values.program || values.purpose || "Partnership inquiry",
+            message: `Purpose: ${values.purpose || "N/A"} | Country: ${values.country || "N/A"} | City: ${values.city || "N/A"} | Program: ${values.program || "N/A"}`,
+          }),
+        });
+        const ghlData = await ghlResponse.json();
+        if (ghlResponse.ok) {
+          console.log("Lead successfully sent to GoHighLevel:", ghlData);
+        } else {
+          console.warn("GoHighLevel API warning:", ghlData);
+        }
+      } catch (ghlError) {
+        console.warn("GoHighLevel submission warning:", ghlError);
+      }
+
       if (response.ok) {
         setBgColor("bg-green-500");
         setMessage("Your Message has been successfully submitted!");

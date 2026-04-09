@@ -81,6 +81,7 @@ export default function ProjectDiscussionContainer() {
   const pageName = currentPath.split("/").pop();
 
   const handleCombinedSubmit = async (event: any): Promise<void> => {
+    event.preventDefault();
     handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
@@ -140,6 +141,30 @@ export default function ProjectDiscussionContainer() {
         method: "POST",
         body: formData,
       });
+
+      try {
+        const ghlResponse = await fetch("/api/lead", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            phone: values.contact_number,
+            what_are_you_looking_for: values.looking,
+            message: values.message,
+          }),
+        });
+        const ghlData = await ghlResponse.json();
+        if (ghlResponse.ok) {
+          console.log("Lead successfully sent to GoHighLevel:", ghlData);
+        } else {
+          console.warn("GoHighLevel API warning:", ghlData);
+        }
+      } catch (ghlError) {
+        console.warn("GoHighLevel submission warning:", ghlError);
+      }
 
       if (response.ok) {
         // Push event to dataLayer for GTM

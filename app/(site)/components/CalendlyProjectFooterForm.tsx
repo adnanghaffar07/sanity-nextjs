@@ -181,6 +181,32 @@ export default function HomePageForm() {
 
       const data = await sanityResponse.json();
 
+      try {
+        const ghlResponse = await fetch("/api/lead", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            phone: values.contact_number,
+            what_are_you_looking_for: values.looking,
+            message: values.message,
+          }),
+        });
+
+        const ghlData = await ghlResponse.json();
+
+        if (ghlResponse.ok) {
+          console.log("Lead successfully sent to GoHighLevel:", ghlData);
+        } else {
+          console.warn("GoHighLevel API warning:", ghlData);
+        }
+      } catch (ghlError) {
+        console.warn("GoHighLevel submission warning:", ghlError);
+      }
+
       if (sanityResponse.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
