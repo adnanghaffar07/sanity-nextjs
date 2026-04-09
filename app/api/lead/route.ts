@@ -96,15 +96,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const safeName = (name ?? '').trim();
+    const safeEmail = (email ?? '').trim().toLowerCase();
+    const safePhone = (phone ?? '').trim();
+
     // Split name into firstName and lastName
-    const { firstName, lastName } = splitName(name.trim());
-    const normalizedPhone = normalizePhone(phone.trim());
+    const { firstName, lastName } = splitName(safeName);
+    const normalizedPhone = normalizePhone(safePhone);
 
     // Prepare GHL API payload
     const ghlPayload = {
       firstName: firstName,
       lastName: lastName,
-      email: email.trim().toLowerCase(),
+      email: safeEmail,
       phone: normalizedPhone,
       source: 'website',
       tags: ['website lead'],
@@ -162,7 +166,7 @@ export async function POST(req: NextRequest) {
 
     console.log('Lead successfully created in GHL:', {
       contactId: ghlData?.id || ghlData?.contact_id,
-      email: email,
+      email: safeEmail,
       name: `${firstName} ${lastName}`,
     });
 
