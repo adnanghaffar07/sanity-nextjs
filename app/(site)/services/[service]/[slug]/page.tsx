@@ -3,6 +3,7 @@
 import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 async function getData(urlPathSub: string) {
   if (!urlPathSub) return null; // ✅ Prevents undefined errors
@@ -71,6 +72,9 @@ export async function generateMetadata({ params }: { params: { service: string; 
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
+  if (!data) {
+    notFound();
+  }
   const dataLogo = await getLogoData();
 
   return (

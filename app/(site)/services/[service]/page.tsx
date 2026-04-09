@@ -14,6 +14,7 @@ import Script from "next/script";
 import FAQServicePage from "../../components/FaqService";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../components/PortableTextServices";
+import { notFound } from "next/navigation";
 
 async function getData(service: string) {
   if (!service) return null; // ✅ Prevents undefined errors
@@ -123,6 +124,9 @@ export default async function service({
   params: { service: string };
 }) {
   const data = await getData(params.service);
+  if (!data) {
+    notFound();
+  }
   const dataSub = await getSubData();
   const dataLogo = await getLogoData();
   return (

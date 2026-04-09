@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import { serverClient } from '@/sanity/lib/sanity/serverClient'
 import { urlForImage } from '@/sanity/lib/image'
+import { notFound } from 'next/navigation'
 
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
@@ -51,6 +52,9 @@ const components: PortableTextComponents = {
 
 const TermsPage = async () => {
   const data = await getData()
+  if (!data) {
+    notFound()
+  }
   return (
     <section>
       {/* Hero Section */}

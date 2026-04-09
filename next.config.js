@@ -114,6 +114,31 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/services/web-scraping/playright",
+        destination: "/services/qa-testing-services/playwright-testing",
+        permanent: true,
+      },
+      {
+        source: "/case-studies/termsandconditions",
+        destination: "/termsandconditions",
+        permanent: true,
+      },
+      {
+        source: "/case-studies/termsandconditions\\",
+        destination: "/termsandconditions",
+        permanent: true,
+      },
+      {
+        source: "/case-studies/termsandconditions%5C",
+        destination: "/termsandconditions",
+        permanent: true,
+      },
+      {
+        source: "/services/zoho-services-ai-automation",
+        destination: "/services/zoho-automation-services",
+        permanent: true,
+      },
+      {
         source: "/services/service/tabidoo",
         destination: "/services/automation-integration/tabidoo",
         permanent: true,

@@ -4,6 +4,7 @@ import ScrollAnimation from "../../components/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import Script from "next/script";
+import { notFound } from "next/navigation";
 
 async function getData(urlService: string) {
   const query = `*[_type == 'portfolio' && slug == '${urlService}'][0]`;
@@ -96,6 +97,9 @@ export async function generateMetadata({ params }: { params: { singlecase: strin
 
 const page = async ({ params }: { params: { singlecase: string } }) => {
   const data = await getData(params.singlecase);
+  if (!data) {
+    notFound();
+  }
   const dataLogo = await getLogoData();
 
   return (
