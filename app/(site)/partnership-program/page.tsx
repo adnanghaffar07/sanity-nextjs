@@ -3,7 +3,6 @@ import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import ScrollAnimation from "../components/ScrollAnimation";
-import ButtonScrollToSection from "../components/ButtonScrollToSection";
 import Link from "next/link";
 
 async function getData() {
@@ -93,7 +92,7 @@ const page = async () => {
         <div className="w-full h-[380px] sm:h-[700px] relative z-0">
           {data?.heroImage?.asset && (
             <Image
-              src={urlForImage(data.heroImage.asset)}
+              src={urlForImage(data.heroImage)}
               alt={data.heroImage.alt}
               loading="eager"
               fill
@@ -109,12 +108,14 @@ const page = async () => {
           <p className="mt-2 md:mt-8 md:text-2xl text-lg font-light tracking-wide leading-7  text-white max-w-[280px] sm:max-w-[1080px] xl:px-0 text-center">
             {data.heroSubTitle}
           </p>
-          <ButtonScrollToSection
-            classes="bg-[#f7e022] text-black cursor-pointer mt-6 py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
-            content="Become a Partner"
-            key="first-button"
-            destination="contact-box"
-          />
+          <a
+            href="https://calendly.com/adnanghaffar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#f7e022] text-black cursor-pointer mt-6 py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-64"
+          >
+            Become a Partner
+          </a>
         </div>
       </section>
 
@@ -162,7 +163,7 @@ const page = async () => {
                           {program?.icon?.asset && (
                             <img
                               loading="lazy"
-                              src={urlForImage(program.icon.asset)}
+                              src={urlForImage(program.icon)}
                               alt={program.icon.alt}
                               width={67}
                               height={67}
@@ -196,9 +197,7 @@ const page = async () => {
                   <div className="max-md:mt-10 w-[270px] md:w-[471px] h-[320px] md:h-[520px] absolute -top-12 md:-top-8">
                     <Image
                       loading="lazy"
-                      src={urlForImage(
-                        data?.availableProgramSection?.partnershipImage?.asset
-                      )}
+                      src={urlForImage(data?.availableProgramSection?.partnershipImage)}
                       alt={data?.availableProgramSection?.partnershipImage?.alt}
                       className="self-stretch my-auto rounded-[57px]"
                       fill
@@ -241,7 +240,7 @@ const page = async () => {
                     <figure className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full">
                       <img
                         loading="lazy"
-                        src={urlForImage(program.programImage.asset)}
+                        src={urlForImage(program.programImage)}
                         alt={program?.programImage?.alt}
                         className="grow w-full aspect-[0.99] max-md:mt-10 max-md:max-w-full"
                       />

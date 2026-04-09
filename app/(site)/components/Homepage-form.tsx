@@ -16,7 +16,7 @@ const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
 // Define the validation schema using Yup
 const contactSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
-  contact_number: Yup.string()
+  phone: Yup.string()
     .matches(/^[\d+\-\s]{7,20}$/, "Enter a valid contact number.")
     .required("Contact number is required"),
   email: Yup.string()
@@ -26,14 +26,14 @@ const contactSchema = Yup.object().shape({
       "Please enter a valid email address."
     )
     .required("Email is required"),
-  looking: Yup.string().required("Please specify what you are looking for"),
+  what_are_you_looking_for: Yup.string().required("Please specify what you are looking for"),
   message: Yup.string(),
 });
 
 const initialValues = {
   name: "",
-  contact_number: "",
-  looking: "",
+  phone: "",
+  what_are_you_looking_for: "",
   email: "",
   message: "",
 };
@@ -100,7 +100,7 @@ export default function HomePageForm() {
     setBgColor("bg-[#1D92FB]");
 
     // Check for job/internship keywords
-    const isJobRelated = checkForJobKeywords(values.looking) || checkForJobKeywords(values.message);
+    const isJobRelated = checkForJobKeywords(values.what_are_you_looking_for) || checkForJobKeywords(values.message);
 
     if (isJobRelated) {
       setShowJobModal(true);
@@ -116,12 +116,12 @@ export default function HomePageForm() {
       return;
     }
 
-    if (!values.name.length || !values.email.length || !values.contact_number.length || !values.looking.length) {
+    if (!values.name.length || !values.email.length || !values.phone.length || !values.what_are_you_looking_for.length) {
       setUploading(false);
       return;
     }
 
-    if (errors.name || errors.contact_number || errors.email || errors.looking) {
+    if (errors.name || errors.phone || errors.email || errors.what_are_you_looking_for) {
       setUploading(false);
       return;
     }
@@ -146,8 +146,8 @@ export default function HomePageForm() {
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("email", values.email);
-      formData.append("number", values.contact_number);
-      formData.append("looking", values.looking);
+      formData.append("number", values.phone);
+      formData.append("looking", values.what_are_you_looking_for);
       formData.append("message", values.message);
       formData.append("pagename", actuallPageName || "Home");
       setUploading(true);
@@ -171,8 +171,8 @@ export default function HomePageForm() {
         body: JSON.stringify({
           name: values.name,
           email: values.email,
-          contact_number: values.contact_number,
-          looking: values.looking,
+          contact_number: values.phone,
+          looking: values.what_are_you_looking_for,
           message: values.message,
           recaptcha_value: recaptchaValue,
 
@@ -180,6 +180,35 @@ export default function HomePageForm() {
       });
 
       const data = await sanityResponse.json();
+
+      // Send lead to GoHighLevel CRM
+      try {
+        const ghlResponse = await fetch("/api/lead", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            phone: values.phone,
+            what_are_you_looking_for: values.what_are_you_looking_for,
+            message: values.message,
+          }),
+        });
+
+        const ghlData = await ghlResponse.json();
+
+        if (ghlResponse.ok) {
+          console.log("Lead successfully sent to GoHighLevel:", ghlData);
+        } else {
+          console.warn("GoHighLevel API warning:", ghlData);
+          // Don't fail the entire form submission if GHL fails
+        }
+      } catch (ghlError) {
+        console.warn("GoHighLevel submission warning:", ghlError);
+        // Don't fail the entire form submission if GHL has issues
+      }
 
       if (sanityResponse.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
@@ -268,9 +297,9 @@ export default function HomePageForm() {
           <div className="mt-4">
             <PhoneInput
               country={'us'}
-              value={values.contact_number}
-              onChange={(value) => setFieldValue('contact_number', value)}
-              onBlur={() => setFieldTouched('contact_number', true)} // ✅ manually mark as touched
+              value={values.phone}
+              onChange={(value) => setFieldValue('phone', value)}
+              onBlur={() => setFieldTouched('phone', true)} // ✅ manually mark as touched
               inputClass="!w-full border-2 px-4 !py-3 !rounded-lg !shadow-sm !text-black !text-sm !placeholder-black"
               containerClass="!w-full"
               buttonClass="!bg-white !border-gray-300"
@@ -278,8 +307,8 @@ export default function HomePageForm() {
               placeholder="Enter your phone number"
 
             />
-            {errors.contact_number && touched.contact_number ? (
-              <p className="form-error">{errors.contact_number}</p>
+            {errors.phone && touched.phone ? (
+              <p className="form-error">{errors.phone}</p>
             ) : null}
           </div>
           <div className="mt-4">
@@ -299,13 +328,13 @@ export default function HomePageForm() {
             <input
               className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder={"What are you looking for?"}
-              name="looking"
-              value={values.looking}
+              name="what_are_you_looking_for"
+              value={values.what_are_you_looking_for}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.looking && touched.looking ? (
-              <p className="form-error">{errors.looking}</p>
+            {errors.what_are_you_looking_for && touched.what_are_you_looking_for ? (
+              <p className="form-error">{errors.what_are_you_looking_for}</p>
             ) : null}
           </div>
           <div className="mt-4">

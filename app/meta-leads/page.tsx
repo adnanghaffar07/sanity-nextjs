@@ -37,6 +37,30 @@ export default function LeadForm() {
             body: JSON.stringify(formData),
         });
 
+    try {
+        const ghlResponse = await fetch('/api/lead', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phoneNumber,
+                what_are_you_looking_for: formData.work || formData.appType || 'Meta lead',
+                message: `Company: ${formData.companyName || 'N/A'} | Campaign: ${formData.campaignName || 'N/A'} | Stage: ${formData.appStage || 'N/A'} | Budget: ${formData.estimatedBudget || 'N/A'} | Start: ${formData.projectStartTime || 'N/A'} | Preferred Contact: ${formData.preferredContactMethod || 'N/A'}`,
+            }),
+        });
+        const ghlData = await ghlResponse.json();
+        if (ghlResponse.ok) {
+            console.log('Lead successfully sent to GoHighLevel:', ghlData);
+        } else {
+            console.warn('GoHighLevel API warning:', ghlData);
+        }
+    } catch (ghlError) {
+        console.warn('GoHighLevel submission warning:', ghlError);
+    }
+
         if (res.ok) {
             alert('Lead submitted successfully!');
             setFormData({

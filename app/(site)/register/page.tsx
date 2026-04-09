@@ -141,6 +141,28 @@ function RegisterForm() {
         body: JSON.stringify(formData),
       });
 
+      try {
+        const ghlResponse = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            what_are_you_looking_for: formData.package || "Registration inquiry",
+            message: formData.details || "",
+          }),
+        });
+        const ghlData = await ghlResponse.json();
+        if (ghlResponse.ok) {
+          console.log("Lead successfully sent to GoHighLevel:", ghlData);
+        } else {
+          console.warn("GoHighLevel API warning:", ghlData);
+        }
+      } catch (ghlError) {
+        console.warn("GoHighLevel submission warning:", ghlError);
+      }
+
       if (response.ok) {
         setTimeout(() => {
           handleReset();

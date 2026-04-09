@@ -58,6 +58,39 @@ const ContactFormSection = () => {
         body: JSON.stringify(formData),
       });
 
+      try {
+        const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+        const whatAreYouLookingFor = formData.industry || formData.company || 'Marketing audit';
+        const message = [
+          formData.challenge && `Challenge: ${formData.challenge}`,
+          formData.tools && `Current tools: ${formData.tools}`,
+          formData.company && `Company: ${formData.company}`,
+        ]
+          .filter(Boolean)
+          .join(' | ');
+
+        const ghlResponse = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: fullName,
+            email: formData.email,
+            phone: formData.phone,
+            what_are_you_looking_for: whatAreYouLookingFor,
+            message,
+          }),
+        });
+
+        const ghlData = await ghlResponse.json();
+        if (ghlResponse.ok) {
+          console.log('Lead successfully sent to GoHighLevel:', ghlData);
+        } else {
+          console.warn('GoHighLevel API warning:', ghlData);
+        }
+      } catch (ghlError) {
+        console.warn('GoHighLevel submission warning:', ghlError);
+      }
+
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
