@@ -7,13 +7,6 @@ import "../globals.css";
 import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
 import CookieConsent from "./components/CookieConsent";
-import { Inter } from "next/font/google";
-
-// ✅ Replace Google Fonts with `next/font`
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap", // Makes font swap non-blocking
-});
 
 // ✅ Dynamic imports
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
@@ -44,49 +37,47 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <>
+      {/* ✅ JSON-LD business info */}
+      <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "CodeAutomation",
+          "image": "https://www.codeautomation.ai/logo.png",
+          "url": "https://www.codeautomation.ai",
+          "telephone": "+1-815-614-8480",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Office 254, 1755 Park St Suite 200",
+            "addressLocality": "Naperville",
+            "addressRegion": "IL",
+            "postalCode": "60563",
+            "addressCountry": "US",
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "41.7906",
+            "longitude": "-88.1535",
+          },
+          "openingHours": "Mo-Fr 09:00-17:00",
+          "sameAs": [
+            "https://www.linkedin.com/company/codeautomation",
+            "https://www.facebook.com/codeautomation",
+          ],
+        })}
+      </Script>
 
-        {/* 🚀 Preconnects for 3rd-party domains */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://analytics.tiktok.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://accounts.google.com" crossOrigin="anonymous" />
+      {/* 🚀 Preconnects for 3rd-party domains */}
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://analytics.tiktok.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://accounts.google.com" crossOrigin="anonymous" />
 
-        {/* ✅ JSON-LD business info */}
-        <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "CodeAutomation",
-            "image": "https://www.codeautomation.ai/logo.png",
-            "url": "https://www.codeautomation.ai",
-            "telephone": "+1-815-614-8480",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Office 254, 1755 Park St Suite 200",
-              "addressLocality": "Naperville",
-              "addressRegion": "IL",
-              "postalCode": "60563",
-              "addressCountry": "US",
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "41.7906",
-              "longitude": "-88.1535",
-            },
-            "openingHours": "Mo-Fr 09:00-17:00",
-            "sameAs": [
-              "https://www.linkedin.com/company/codeautomation",
-              "https://www.facebook.com/codeautomation",
-            ],
-          })}
-        </Script>
-      </head>
-      <body className={inter.className}>
+      <div>
         <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
           {/* ✅ Lazy load third-party scripts post-LCP */}
           <Script id="defer-scripts" strategy="afterInteractive">
@@ -194,7 +185,7 @@ fbq('track', 'PageView');
             aggregateRating: { "@type": "AggregateRating", bestRating: "5", ratingValue: "4.9", reviewCount: "100" },
           })}
         </Script>
-      </body>
-    </html>
+      </div>
+    </>
   );
 }
