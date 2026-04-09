@@ -12,7 +12,7 @@ export const metadata = {
      "software development services",
    ],
  alternates: {
-   canonical: "https://codeautomation.ai/forbes", // ✅ Fixes the canonical error
+   canonical: "https://codeautomation.ai/adnan-ghaffar-forbes",
  },
 };
 const forbesArticles = [
