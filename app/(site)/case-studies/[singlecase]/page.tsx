@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: { singlecase: strin
     keywords,
     openGraph: {
       type: facebookMeta.facebookType || "website",
-      url: facebookMeta.facebookUrl || canonicalUrl,
+      url: canonicalUrl,
       title: facebookMeta.facebookTitle || title,
       description: facebookMeta.facebookDescription || description,
       images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: { singlecase: strin
       title: twitterMeta.twitterTitle || title,
       description: twitterMeta.twitterDescription || description,
       images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
-      url: twitterMeta.twitterUrl || canonicalUrl,
+      url: canonicalUrl,
     },
     linkedIn: {
       title: linkedInMeta.linkedInTitle || title,
