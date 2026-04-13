@@ -15,6 +15,28 @@ export const metadata = {
   alternates: {
     canonical: "https://codeautomation.ai/technologies", // ✅ Fixes the canonical error
   },
+  openGraph: {
+    type: "website",
+    url: "https://codeautomation.ai/technologies",
+    title: "Technologies | CodeAutomation",
+    description:
+      "We offer only well-recognized and time-tested technologies to bring advancement to any of your business goals.",
+    images: [
+      {
+        url: "https://codeautomation.ai/thankyou.jpg",
+        width: 1200,
+        height: 630,
+        alt: "CodeAutomation Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Technologies | CodeAutomation",
+    description:
+      "We offer only well-recognized and time-tested technologies to bring advancement to any of your business goals.",
+    images: ["https://codeautomation.ai/thankyou.jpg"],
+  },
 };
 
 async function getData() {

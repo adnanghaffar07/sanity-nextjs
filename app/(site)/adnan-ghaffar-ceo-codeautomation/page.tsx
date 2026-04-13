@@ -35,6 +35,28 @@ export const metadata = {
  alternates: {
    canonical: "https://codeautomation.ai/adnan-ghaffar-ceo-codeautomation", // ✅ Fixes the canonical error
  },
+ openGraph: {
+   type: "website",
+   url: "https://codeautomation.ai/adnan-ghaffar-ceo-codeautomation",
+   title: "Adnan Ghaffar CEO of CodeAutomation AI Software Company USA",
+   description:
+     "Learn about Adnan Ghaffar, Founder and CEO of CodeAutomation, a Chicago based AI software development and business automation company delivering scalable AI solutions.",
+   images: [
+     {
+       url: "https://codeautomation.ai/thankyou.jpg",
+       width: 1200,
+       height: 630,
+       alt: "CodeAutomation Logo",
+     },
+   ],
+ },
+ twitter: {
+   card: "summary_large_image",
+   title: "Adnan Ghaffar CEO of CodeAutomation AI Software Company USA",
+   description:
+     "Learn about Adnan Ghaffar, Founder and CEO of CodeAutomation, a Chicago based AI software development and business automation company delivering scalable AI solutions.",
+   images: ["https://codeautomation.ai/thankyou.jpg"],
+ },
 };
 
 const Page = () => {
