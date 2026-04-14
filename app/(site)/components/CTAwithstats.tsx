@@ -34,7 +34,7 @@ export default function CtaWithStats() {
           </h4>
           <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
             <Link
-              href="https://join.skype.com/invite/crU4cXW4bttb"
+              href="https://calendly.com/adnanghaffar/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor flex overflow-hidden relative gap-2 px-8 py-2 items-center bg-[#F7E022] rounded-lg shadow-md"
@@ -53,7 +53,7 @@ export default function CtaWithStats() {
               <img src={stat.icon} alt={stat.label} className="w-10 h-10 md:w-14 md:h-14 mr-2 md:mr-4" />
               <div>
                 <p className="text-3xl md:text-4xl font-bold">
-                {inView && (
+                  {inView && (
                     <CountUp
                       end={stat.number}
                       duration={2.5}
