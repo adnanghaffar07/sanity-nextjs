@@ -11,7 +11,7 @@ export default function Section1_Hero() {
 
         {/* Background Image */}
         <img
-          src="/car.jpg"
+          src="/ceramic-banner.webp"
           alt="Professional car detailing"
           className="w-full h-full object-cover"
         />

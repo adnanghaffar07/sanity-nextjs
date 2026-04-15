@@ -21,7 +21,7 @@ export const metadata = {
     siteName: 'CodeAutomation.ai',
     images: [
       {
-        url: 'https://codeautomation.ai/car.jpg',
+        url: 'https://codeautomation.ai/ceramic-banner.webp',
         width: 1200,
         height: 630,
         alt: 'CodeAutomation.ai - Detailing Marketing',
@@ -34,7 +34,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'CodeAutomation.ai | Done-For-You Detailing Marketing',
     description: 'Get more bookings, automate follow-ups, and build a fully booked calendar.',
-    images: ['https://codeautomation.ai/car.jpg'],
+    images: ['https://codeautomation.ai/ceramic-banner.webp'],
   },
   robots: {
     index: true,
