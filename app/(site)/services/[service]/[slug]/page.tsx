@@ -53,14 +53,14 @@ export async function generateMetadata({ params }: { params: { service: string; 
     openGraph: {
       type: facebookMeta.facebookType || "website",
       url: canonicalUrl,
-      title: facebookMeta.facebookTitle || title,
-      description: facebookMeta.facebookDescription || description,
+      title,
+      description,
       images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: twitterMeta.twitterTitle || title,
-      description: twitterMeta.twitterDescription || description,
+      title,
+      description,
       images: [{ url: heroImageUrl, alt: title }],
       url: canonicalUrl,
     },
