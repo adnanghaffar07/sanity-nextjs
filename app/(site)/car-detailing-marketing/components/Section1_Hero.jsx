@@ -8,10 +8,10 @@ export default function Section1_Hero() {
       <div className="absolute inset-0 z-0">
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/70 z-10" />
-        
+
         {/* Background Image */}
         <img
-          src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          src="/car.jpg"
           alt="Professional car detailing"
           className="w-full h-full object-cover"
         />
@@ -20,7 +20,7 @@ export default function Section1_Hero() {
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-36">
         <div className="max-w-3xl">
-          
+
           {/* Top Tag / Eyebrow Text */}
           <div className="mb-5 md:mb-6 animate-fadeInUp">
             <span className="inline-flex items-center gap-2 bg-[#f7e022]/10 backdrop-blur-sm text-[#f7e022] font-semibold text-xs md:text-sm uppercase tracking-wider px-3 py-1.5 rounded-full border border-[#f7e022]/30">
@@ -41,10 +41,10 @@ export default function Section1_Hero() {
 
           {/* Sub-headline */}
           <p className="text-sm sm:text-base md:text-lg text-gray-200 mb-6 md:mb-7 max-w-2xl leading-relaxed animate-fadeInUp animation-delay-200">
-            We help car detailing businesses across the USA get more bookings, automate their follow-ups, 
+            We help car detailing businesses across the USA get more bookings, automate their follow-ups,
             and build a fully booked calendar — without lifting a finger.
           </p>
-          
+
           {/* Service tags */}
           <div className="flex flex-wrap gap-2 mb-7 md:mb-8 animate-fadeInUp animation-delay-300">
             {[
@@ -62,35 +62,35 @@ export default function Section1_Hero() {
             ))}
           </div>
 
-       {/* CTA Buttons */}
-<div className="flex flex-col sm:flex-row gap-3 mb-8 md:mb-10 animate-fadeInUp animation-delay-400">
-  {/* Primary CTA - Using your yellow button style */}
-  <button 
-    onClick={() => window.open('https://calendly.com/adnanghaffar/30min', '_blank')}
-    className="button flex items-center justify-center gap-2 text-sm md:text-base py-3 px-6"
-  >
-    Book Your Free Strategy Call
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-    </svg>
-  </button>
-  
-  {/* Secondary CTA */}
-  <button 
-    onClick={() => {
-      const priceSection = document.getElementById('pricing');
-      if (priceSection) {
-        priceSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }}
-    className="border-2 border-white/40 text-white font-semibold py-3 px-6 rounded-lg hover:bg-white/10 hover:border-white/60 transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-2 text-sm md:text-base"
-  >
-    View Our Packages
-    <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-    </svg>
-  </button>
-</div>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 mb-8 md:mb-10 animate-fadeInUp animation-delay-400">
+            {/* Primary CTA - Using your yellow button style */}
+            <button
+              onClick={() => window.open('https://calendly.com/adnanghaffar/30min', '_blank')}
+              className="button flex items-center justify-center gap-2 text-sm md:text-base py-3 px-6"
+            >
+              Book Your Free Strategy Call
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+
+            {/* Secondary CTA */}
+            <button
+              onClick={() => {
+                const priceSection = document.getElementById('pricing');
+                if (priceSection) {
+                  priceSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="border-2 border-white/40 text-white font-semibold py-3 px-6 rounded-lg hover:bg-white/10 hover:border-white/60 transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-2 text-sm md:text-base"
+            >
+              View Our Packages
+              <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
+          </div>
 
           {/* Trust Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 animate-fadeInUp animation-delay-500">
@@ -110,7 +110,7 @@ export default function Section1_Hero() {
           </div>
         </div>
       </div>
-      
+
       {/* Scroll down indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block z-20">
         <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
