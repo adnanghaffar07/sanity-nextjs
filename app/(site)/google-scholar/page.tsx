@@ -117,7 +117,7 @@ export default function GoogleScholarPage() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-8">Research Articles</h1>
+        <h3 className="text-4xl font-bold mb-8">Research Articles</h3>
         <div className="space-y-8">
           {scholarArticles.map((article, index) => (
             <GoogleScholarArticleCard key={index} {...article} />

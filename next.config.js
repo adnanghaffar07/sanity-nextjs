@@ -171,18 +171,18 @@ const nextConfig = {
         destination: "/services/headless-cms-development-services/contentful-headless",
         permanent: true,
       },
-      {
-        source: "/services/headless-cms-development-services/storyblock-headless",
-        destination: "/services/headless-cms-development-services/storyblock-headless",
-        permanent: true,
-      },
+      // {
+      //   source: "/services/headless-cms-development-services/storyblock-headless",
+      //   destination: "/services/headless-cms-development-services/storyblock-headless",
+      //   permanent: true,
+      // },
 
       // 🆕 AI service duplicate
-      {
-        source: "/services/ai-software-development-services/rag-chatbot-services",
-        destination: "/services/ai-services/rag-chatbot-services",
-        permanent: true,
-      },
+      // {
+      //   source: "/services/ai-software-development-services/rag-chatbot-services",
+      //   destination: "/services/ai-services/rag-chatbot-services",
+      //   permanent: true,
+      // },
 
       // Add these inside your existing async redirects() { return [ ... ]; } array in next.config.js
 

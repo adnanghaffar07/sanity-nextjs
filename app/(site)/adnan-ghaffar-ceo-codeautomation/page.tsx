@@ -194,9 +194,9 @@ const Page = () => {
                                     <span className="text-sm font-medium text-blue-700">Founder & CEO</span>
                                 </div>
 
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+                                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
                                     Adnan <span className="text-blue-600">Ghaffar</span>
-                                </h1>
+                                </h2>
 
                                 <h2 className="text-xl md:text-2xl text-gray-700 mb-6">
                                     Founder and CEO of <span className="font-semibold text-blue-700">CodeAutomation</span>
