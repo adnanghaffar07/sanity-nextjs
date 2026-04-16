@@ -88,8 +88,8 @@ const page = async () => {
   return (
     <div>
       <section className="relative">
-        <div className="bg-black w-full h-[380px] sm:h-[700px] opacity-30 absolute z-[1]"></div>
-        <div className="w-full h-[380px] sm:h-[700px] relative z-0">
+        <div className="bg-black w-full h-[490px] sm:h-[700px] opacity-30 absolute z-[1]"></div>
+        <div className="w-full h-[490px] sm:h-[700px] relative z-0">
           {data?.heroImage?.asset && (
             <Image
               src={urlForImage(data.heroImage)}
@@ -101,7 +101,7 @@ const page = async () => {
           )}
         </div>
 
-        <div className="mt-[160px] sm:mt-[290px] items-center absolute inset-0 flex flex-col z-[2] px-16">
+        <div className="mt-[160px] sm:mt-[290px] items-center absolute inset-0 flex flex-col z-[2] px-6 md:px-16">
           <h1 className="lg:text-4xl text-2xl  font-semibold tracking-tight capitalize leading-[48px] text-white text-center">
             {data.heroTitle}
           </h1>

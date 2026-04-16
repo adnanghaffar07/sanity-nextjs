@@ -124,7 +124,7 @@ const Testimonials = () => {
           />
         </a>
         <a
-          href="/forbes"
+          href="/adnan-ghaffar-forbes"
           target="_blank"
           rel="noopener noreferrer"
           className="text-center"

@@ -181,8 +181,6 @@ export default function HomeNavigationContainer() {
                         href={`/services/${linkUrlCMS1}`}
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
-
-
                         <div className="">
                           <Image
                             src="/logo-codepen.svg"
@@ -418,7 +416,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Service Essence</p>
                         </div>
                       </Link>
-                      <Link
+                      {/* <Link
                         href="/career"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -435,7 +433,7 @@ export default function HomeNavigationContainer() {
                           <p className="text-base font-medium text-black">Careers</p>
                           <p className="mt-1 text-sm text-gray-500">Join our Team</p>
                         </div>
-                      </Link>
+                      </Link> */}
                       <Link
                         href="/about/industries"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -650,7 +648,7 @@ export default function HomeNavigationContainer() {
                           <p className="mt-1 text-sm text-gray-500">Stay Updated</p>
                         </div>
                       </Link>
-                      <Link
+                      {/* <Link
                         href="/blogs"
                         className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                       >
@@ -667,7 +665,7 @@ export default function HomeNavigationContainer() {
                           <p className="text-base font-medium text-black">Blogs</p>
                           <p className="mt-1 text-sm text-gray-500">Tech Insights</p>
                         </div>
-                      </Link>
+                      </Link> */}
                     </div>
                     <div className="grid grid-cols-1 gap-3 lg:p-0 rounded-2xl">
                       <div className="grid items-start h-full">

@@ -1,3 +1,8 @@
+User-agent: *
+Disallow: /_next/
+
+
+
 # --- Allow AI + Search Crawlers Explicitly ---
 User-agent: ChatGPT-User
 Allow: /
@@ -37,6 +42,7 @@ Disallow: /*?ts=
 Disallow: /*/feed/
 Disallow: /wp-content/
 Allow: /
+
 
 # --- Sitemap ---
 Sitemap: https://codeautomation.ai/sitemap.xml
