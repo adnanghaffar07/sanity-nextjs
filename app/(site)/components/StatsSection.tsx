@@ -47,7 +47,7 @@ export default function StatsSection() {
               />
 
               <div>
-                <h3 className="text-2xl sm:text-2xl font-bold flex items-center">
+                <p className="text-2xl sm:text-2xl font-bold flex items-center">
                   {inView && (
                     <CountUp
                       end={stat.number}
@@ -56,7 +56,7 @@ export default function StatsSection() {
                     />
                   )}
                   <span className="ml-1">+</span>
-                </h3>
+                </p>
                 <p className="text-xs md:text-sm">{stat.label}</p>
               </div>
             </div>

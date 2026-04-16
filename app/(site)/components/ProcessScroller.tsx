@@ -54,7 +54,7 @@ function Card({ icon, title, text }: CardProps) {
         <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full border border-gray-300 shadow mb-4">
           <img src={icon} alt={title} className="w-8 h-8" />
         </div>
-        <h3 className="text-lg font-semibold text-blue-500 mb-2">{title}</h3>
+        <span className="text-lg font-semibold text-blue-500 mb-2">{title}</span>
         <p className="text-sm text-gray-600 flex-grow">{text}</p>
       </div>
     </div>

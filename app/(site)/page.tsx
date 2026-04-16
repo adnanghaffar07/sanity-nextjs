@@ -285,14 +285,14 @@ export default function Home() {
           <div className="relative z-10">
             <div className="max-w-[1920px] mx-auto">
               <div className="flex flex-col items-center justify-center text-center mb-6">
-                <h1 className="text-2xl md:text-4xl text-white font-semibold mb-4">
+                <h2 className="text-2xl md:text-4xl text-white font-semibold mb-4">
                   Why Our Software Development Trusted by Industry Leaders
-                </h1>
-                <h3 className="text-lg md:text-2xl text-white font-medium max-w-4xl text-[#3C3C3C]">
+                </h2>
+                <p className="text-lg md:text-2xl text-white font-medium max-w-4xl text-[#3C3C3C]">
                   Businesses trust us for our top-notch software development
                   services, proven expertise, and reliable solutions tailored to
                   their needs
-                </h3>
+                </p>
               </div>
 
               <div className="flex gap-14 flex-wrap justify-center max-w-full md:max-w-[800px] mx-auto 2xl:max-w-full">
@@ -370,9 +370,9 @@ export default function Home() {
             <div className="absolute inset-0 bg-[#001E6B]"></div>
             <div className="relative z-10 max-w-7xl mx-auto">
               {/* Section Heading */}
-              <h3 className="text-2xl md:text-4xl text-center text-white font-semibold mb-4">
+              <h2 className="text-2xl md:text-4xl text-center text-white font-semibold mb-4">
                 Complete End-to-End Software Development Services
-              </h3>
+              </h2>
 
               {/* Section Description */}
               <p className="text-lg xl:text-xl text-white text-center max-w-4xl mx-auto mb-16">
@@ -482,9 +482,9 @@ export default function Home() {
 
               {/* Text Content */}
               <div className="lg:w-[50%] ">
-                <h4 className="xl:text-4xl lg:text-3xl text-[#3C3C3C] text-3xl font-semibold">
+                <h2 className="xl:text-4xl lg:text-3xl text-[#3C3C3C] text-3xl font-semibold">
                   Who We Are
-                </h4>
+                </h2>
                 <p className="xl:mt-11 lg:text-lg text-base text-[#3C3C3C] mt-5 max-md:max-w-full tracking-normal">
                   We are a professional IT software development company specializing in building and managing high-performing remote software engineering teams. Since our establishment in 2018, we have been committed to delivering customized software solutions designed to meet the specific business objectives of our clients.
                   <br />
@@ -562,9 +562,9 @@ export default function Home() {
                         )}
                       </div>
                       <div className="ml-8">
-                        <h3 className="text-xl font-semibold text-[#1D92FB]">
+                        <h4 className="text-xl font-semibold text-[#1D92FB]">
                           {item.title}
-                        </h3>
+                        </h4>
                         <p className="text-[#3C3C3C] mt-2">
                           {item.description}
                         </p>
@@ -592,9 +592,9 @@ export default function Home() {
         </ScrollAnimation>
         <ScrollAnimation>
           <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
-            <h4 className="self-center text-center font-bold text-[#3C3C3C] xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
+            <h2 className="self-center text-center font-bold text-[#3C3C3C] xl:text-4xl lg:text-3xl text-2xl max-w-[1582px] mx-auto">
               Transformative Software Development Case Studies
-            </h4>
+            </h2>
             <p className="lg:mt-8 mt-4 text-lg md:text-xl font-medium text-center text-[#3C3C3C] lg:px-10 md:px-5 max-w-[1582px] mx-auto">
               Explore the impactful results of our expertise in software
               development. Each project in our portfolio reflects our commitment
@@ -615,9 +615,9 @@ export default function Home() {
             <div className="relative flex gap-5 max-md:flex-col max-md:gap-0 max-w-7xl mx-auto">
               <div className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full self-center md:px-4">
                 <div className="flex flex-col text-white max-md:mt-10 max-md:max-w-full">
-                  <h3 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
+                  <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium max-md:max-w-full">
                     Our Development Approach
-                  </h3>
+                  </h2>
                   <div className="xl:mt-11 lg:text-xl text-base mt-5 max-md:max-w-full xl:pr-36 tracking-normal">
                     <p>
                       At CodeAutomation, we combine collaboration, creativity, and technical precision to deliver outstanding results. Every project we undertake is driven by a deep understanding of our clients’ goals, ensuring that our solutions are not only innovative but also strategically aligned with their business objectives. Our certified experts bring a perfect balance of expertise and passion, enabling us to craft solutions that truly make an impact.{" "}
@@ -671,9 +671,9 @@ export default function Home() {
           </div>
           <ScrollAnimation>
             <div className="relative z-10 flex flex-col items-center">
-              <h3 className="w-full xl:text-4xl text-2xl font-medium text-white text-center">
+              <h2 className="w-full xl:text-4xl text-2xl font-medium text-white text-center">
                 Trusted by Industry Leaders
-              </h3>
+              </h2>
               <p className="self-center md:mt-6 mt-3 lg:text-xl text-lg text-center text-white max-w-4xl mx-auto">
                 Let us show you how our services have helped clients with custom
                 software development. These client reviews will tell you why our
