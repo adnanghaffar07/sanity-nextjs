@@ -77,7 +77,7 @@ export default function HomeNavigationContainer() {
           </Link>
           <button
             onClick={toggleMobileMenu}
-            className="xl:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm z-[100]"
+            className="xl:hidden flex items-center justify-center w-10 h-10  z-[100]"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? (
