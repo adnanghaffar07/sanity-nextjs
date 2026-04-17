@@ -33,14 +33,24 @@ export async function generateMetadata({ params }: { params: { service: string; 
   const defaultDescription = "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
 
-  const title = data?.webSeoMetadata?.title || defaultTitle;
-  const description = data?.webSeoMetadata?.description || defaultDescription;
-  const keywords = data?.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
+  const title = data?.webSeoMetadataSub?.title || defaultTitle;
+  const description = data?.webSeoMetadataSub?.description || defaultDescription;
+  const keywords = data?.webSeoMetadataSub?.keywords?.join(", ") || defaultKeywords;
 
-  const facebookMeta = data?.facebookCards || {};
-  const twitterMeta = data?.twitterCards || {};
+  const facebookMeta = data?.facebookCardsSub || {};
+  const twitterMeta = data?.twitterCardsSub || {};
 
   const heroImageUrl = data?.heroImageSub ? urlForImage(data.heroImageSub).toString() : "/thankyou.jpg";
+
+  // OG metadata: use webSeoMetadataSub only
+  const ogTitle = data?.webSeoMetadataSub?.title || defaultTitle;
+  const ogDescription = data?.webSeoMetadataSub?.description || defaultDescription;
+  const ogImage = heroImageUrl;
+
+  // Twitter metadata: use specific fields first, fallback to webSeoMetadataSub
+  const twitterTitle = twitterMeta.twitterTitle || data?.webSeoMetadataSub?.title || defaultTitle;
+  const twitterDescription = twitterMeta.twitterDescription || data?.webSeoMetadataSub?.description || defaultDescription;
+  const twitterImage = twitterMeta.twitterImage ? urlForImage(twitterMeta.twitterImage).toString() : heroImageUrl;
 
   const canonicalUrl = params.slug
   ? `https://codeautomation.ai/services/${params.service}/${params.slug}`
@@ -51,17 +61,17 @@ export async function generateMetadata({ params }: { params: { service: string; 
     description,
     keywords,
     openGraph: {
-      type: facebookMeta.facebookType || "website",
+      type: "website",
       url: canonicalUrl,
-      title,
-      description,
-      images: [{ url: heroImageUrl, width: 1200, height: 630, alt: title }],
+      title: ogTitle,
+      description: ogDescription,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
-      images: [{ url: heroImageUrl, alt: title }],
+      title: twitterTitle,
+      description: twitterDescription,
+      images: [{ url: twitterImage, alt: twitterTitle }],
       url: canonicalUrl,
     },
     alternates: {
