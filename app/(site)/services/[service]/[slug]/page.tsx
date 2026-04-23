@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: { params: { service: string; 
   ? `https://codeautomation.ai/services/${params.service}/${params.slug}`
   : "https://codeautomation.ai/services";
 
+  
   return {
     title,
     description,

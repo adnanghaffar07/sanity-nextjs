@@ -277,6 +277,18 @@ const nextConfig = {
         permanent: true,
       },
 
+      // 🆕 Career page - Invalid/Draft URLs
+      {
+        source: "/career/life-at-ca",
+        destination: "/lifeatca",
+        permanent: true,
+      },
+      {
+        source: "/career/drafts.:path*",
+        destination: "/career",
+        permanent: true,
+      },
+
       // 🆕 Query junk cleanup (attachment_id, trk, ts)
       {
         source: "/",
