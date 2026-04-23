@@ -6,7 +6,7 @@ import BlogList from "../components/BlogList";
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
   description:
-    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
   keywords: [
     "CodeAutomation",
     "software development company",
@@ -20,7 +20,7 @@ export const metadata = {
     url: "https://codeautomation.ai/blogs",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
     images: [
       {
         url: "https://codeautomation.ai/thankyou.jpg",
@@ -34,7 +34,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };

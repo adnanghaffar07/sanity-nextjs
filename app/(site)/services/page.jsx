@@ -8,7 +8,7 @@ import ServicesCard from "../components/Services-Cards";
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
   description:
-    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    "Explore Code Automation services, an AI development company offering AI agents and business automation solutions to streamline operations and scale your business.",
   keywords: [
     "CodeAutomation",
     "software development company",
@@ -22,7 +22,7 @@ export const metadata = {
     url: "https://codeautomation.ai/services",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Explore Code Automation services, an AI development company offering AI agents and business automation solutions to streamline operations and scale your business.",
     images: [
       {
         url: "https://codeautomation.ai/thankyou.jpg",
@@ -36,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Explore Code Automation services, an AI development company offering AI agents and business automation solutions to streamline operations and scale your business.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };

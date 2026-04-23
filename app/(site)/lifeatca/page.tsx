@@ -5,7 +5,7 @@ import { urlForImage } from "@/sanity/lib/image";
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
   description:
-    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    "Life at Code Automation, where innovation, collaboration, & team culture thrive through events, growth opportunities, and a supportive work environment.",
   keywords: [
     "CodeAutomation",
     "software development company",
@@ -19,7 +19,7 @@ export const metadata = {
     url: "https://codeautomation.ai/lifeatca",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Life at Code Automation, where innovation, collaboration, & team culture thrive through events, growth opportunities, and a supportive work environment.",
     images: [
       {
         url: "https://codeautomation.ai/thankyou.jpg",
@@ -33,7 +33,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Life at Code Automation, where innovation, collaboration, & team culture thrive through events, growth opportunities, and a supportive work environment.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };

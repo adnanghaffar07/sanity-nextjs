@@ -4,7 +4,7 @@ import { client } from "../../../sanity/lib/client";
 export const metadata = {
   title: "Software Development Company in the USA | CodeAutomation",
   description:
-    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
   keywords: [
     "CodeAutomation",
     "software development company",
@@ -18,7 +18,7 @@ export const metadata = {
     url: "https://codeautomation.ai/career",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
     images: [
       {
         url: "https://codeautomation.ai/thankyou.jpg",
@@ -32,7 +32,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Software Development Company in the USA | CodeAutomation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };
