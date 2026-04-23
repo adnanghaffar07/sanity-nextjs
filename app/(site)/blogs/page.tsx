@@ -85,13 +85,13 @@ export default async function Blogs() {
           loading="lazy"
           src="/intersect-left.png"
           alt="icon"
-          className="aspect-[1.22] absolute left-0 top-20 lg:block hidden"
+          className=" absolute left-0 top-20 lg:block hidden"
         />
       <BlogList data={data} pageSize={6} />
         <img
           loading="lazy"
           src="/ellipse-2.png"
-          className="aspect-[1.22] absolute -bottom-96 right-0 lg:block hidden"
+          className=" absolute -bottom-1 right-0 lg:block hidden"
           alt="eclipse-icon"
         />
       </div>
