@@ -283,6 +283,7 @@ const nextConfig = {
         destination: "/lifeatca",
         permanent: true,
       },
+    
       {
         source: "/career/drafts.:path*",
         destination: "/career",

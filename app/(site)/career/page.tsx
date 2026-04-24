@@ -141,7 +141,7 @@ const Career: React.FC = async () => {
           loading="lazy"
           src="/intersect-left.png"
           alt="rounded-icon"
-          className="aspect-[1.22] absolute left-0 top-48 lg:block hidden"
+          className="absolute left-0 top-48 lg:block hidden"
         />
         <div className="flex flex-col self-center max-w-[1440px] mx-auto relative z-10 mx-auto">
           <div className="lg:px-10 px-6 w-full">
@@ -185,10 +185,10 @@ const Career: React.FC = async () => {
           loading="lazy"
           src="/ellipse-2.png"
           alt="career logo"
-          className="aspect-[1.22] absolute right-0 -top-36"
+          className="absolute right-0 -top-36"
         />
         <div className="flex flex-col w-full max-w-[1582px] mx-auto">
-          <div className="text-center mt-6">
+          {/* <div className="text-center mt-6">
             <h3 className="xl:text-5xl lg:text-4xl text-3xl mb-6 text-black">
               Open Vacancies
             </h3>
@@ -198,7 +198,7 @@ const Career: React.FC = async () => {
                 to learn and lead?
               </p>
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[80px] sm:gap-y-[50px] sm:gap-[30px] xl:gap-[70px] max-w-[1440px] sm:my-20">
             {data.map((jobpost: any) => (
               <div key={jobpost._id}>

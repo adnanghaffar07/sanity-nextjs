@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { AiFillFlag } from "react-icons/ai";
 
 interface Props {
@@ -38,13 +37,9 @@ const CareerPost: React.FC<Props> = ({ jobpost }) => {
               <br /> Lahore
             </div>
           </div>
-          <Link
-            href={`/career/${jobpost._id}`}
-            className="underline hover:no-underline my-auto text-[#0A8FFC] text-sm"
-            aria-label={`Read more about the ${jobpost.jobTitleBaner}`}
-          >
-            See Details
-          </Link>
+          <div className="text-[#0A8FFC] text-sm font-semibold">
+            Open Role
+          </div>
         </div>
       </div>
     </div>
