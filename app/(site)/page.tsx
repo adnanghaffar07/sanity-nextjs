@@ -202,83 +202,86 @@ export default function Home() {
                 Schedule a Call
               </Link>
             </div>
-            {/* Clutch and Trustpilot section - displayed in a row */}
-            <div className="flex justify-center items-center gap-8 mt-12">
-              <a
-                href="https://clutch.co/profile/codeautomationai#highlights"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center"
-              >
-                <Image
-                  src="/Clutch.png"
-                  alt="clutch-icon"
-                  width={130}
-                  height={40}
-                />
-              </a>
-              <a
-                href="https://www.trustpilot.com/review/codeautomation.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center"
-              >
-                <Image
-                  src="/Trustpilot.png"
-                  alt="Trustpilot-icon"
-                  width={130}
-                  height={40}
-                  className="mb-3"
-                />
-              </a>
-              <a
-                href="/adnan-ghaffar-forbes"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center"
-              >
-                <Image
-                  src="/forbes.png"
-                  alt="Forbes-icon"
-                  width={130}
-                  height={40}
-                  className="mb-3"
-                />
-              </a>
-              <a
-                href="/google-scholar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center"
-              >
-                <Image
-                  src="/Google_Scholar_logo.png"
-                  alt="Google_Scholar_logo-icon"
-                  width={60}
-                  height={10}
-                  className="mb-3"
-                />
-              </a>
-              <a
-                href="https://www.brainzmagazine.com/executive-contributor/adnan-ghaffar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center"
-              >
-                <Image
-                  src="/brainz.png"
-                  alt="brainz-icon"
-                  width={60}
-                  height={10}
-                  className="mb-3"
-                />
-              </a>
-            </div>
           </div>
 
         </div>
       </div>
       <StatsSection />
+      {/* Clutch and Trustpilot section - displayed in a row */}
+
+      <div className="max-w-full mx-auto px-4 md:px-0 relative max-w-[1920px]">
+        <div className="flex justify-center items-center gap-6 md:gap-12 my-12">
+          <a
+            href="https://clutch.co/profile/codeautomationai#highlights"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-center"
+          >
+            <Image
+              src="/Clutch.png"
+              alt="clutch-icon"
+              width={100}
+              height={10}
+            />
+          </a>
+          <a
+            href="https://www.trustpilot.com/review/codeautomation.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-center"
+          >
+            <Image
+              src="/Trustpilot.png"
+              alt="Trustpilot-icon"
+              width={100}
+              height={10}
+              className="mb-3"
+            />
+          </a>
+          <a
+            href="/adnan-ghaffar-forbes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-center"
+          >
+            <Image
+              src="/forbes.png"
+              alt="Forbes-icon"
+              width={130}
+              height={10}
+              className="mb-3"
+            />
+          </a>
+          <a
+            href="/google-scholar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-center"
+          >
+            <Image
+              src="/Google_Scholar_logo.png"
+              alt="Google_Scholar_logo-icon"
+              width={60}
+              height={10}
+              className="mb-3"
+            />
+          </a>
+          <a
+            href="https://www.brainzmagazine.com/executive-contributor/adnan-ghaffar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-center"
+          >
+            <Image
+              src="/brainz.png"
+              alt="brainz-icon"
+              width={70}
+              height={40}
+              className="mb-3"
+            />
+          </a>
+        </div>
+      </div>
       <ScrollAnimation>
         <section className="relative flex justify-center items-center px-6 md:px-16 md:py-16 py-10">
           <div className="absolute inset-0 bg-[#1D92FB]"></div>
