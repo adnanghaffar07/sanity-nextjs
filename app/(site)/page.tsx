@@ -149,33 +149,44 @@ export default function Home() {
           __html: `
           [
             {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "@id": "https://codeautomation.ai/#website",
-              "headline": "Software Development Company",
-              "name": "CodeAutomation",
-              "description": "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
-              "url": "https://codeautomation.ai/",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://codeautomation.ai?s={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "@id": "https://codeautomation.ai/#Organization",
-              "name": "CodeAutomation",
-              "url": "https://codeautomation.ai/",
-              "sameAs": [],
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://codeautomation.ai/logo.svg",
-                "width": "1800",
-                "height": "1200"
-              }
-            }
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Code Automation",
+  "url": "https://codeautomation.ai",
+  "logo": "https://codeautomation.ai/logo.svg",
+  "description": "AI agent development company specializing in custom AI agents, AI business automation, and AI workflow automation for businesses across the USA, UK, and Canada.",
+  "founder": {
+    "@type": "Person",
+    "name": "Adnan Ghaffar",
+    "jobTitle": "CEO & Founder",
+    "sameAs": [
+      "https://www.linkedin.com/in/adnanghaffar"
+    ]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1755 Park St Suite 200",
+    "addressLocality": "Naperville",
+    "addressRegion": "IL",
+    "postalCode": "60563",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+  "@type": "ContactPoint",
+  "telephone": "+1-815-614-8480",
+  "contactType": "sales",
+  "areaServed": ["US", "UK", "CA"],
+  "availableLanguage": ["English"]
+},
+  "sameAs": [
+    "https://www.linkedin.com/company/codeautomationai/",
+    "https://twitter.com/codeautomation",
+    "https://clutch.co/profile/codeautomationai",
+    "https://www.trustpilot.com/review/codeautomation.ai"
+  ],
+  "numberOfEmployees": { "@type": "QuantitativeValue", "value": "70" },
+  "foundingDate": "2018"
+}
           ]
           `,
         }}
