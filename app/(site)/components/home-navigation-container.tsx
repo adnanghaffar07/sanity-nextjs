@@ -17,6 +17,15 @@ const linkUrlDigital = "ui-ux-design-services";
 const linkMob = "mobile-app-development-services";
 const linkRobotic = "rpa-services";
 const linkIntegrate = "automation-integration";
+const linkAIAutomation = "ai-business-automation-solutions";
+const linkAISoftware = "ai-software-development-services";
+
+// Trending
+const linkN8 = "automation-integration/n8n-automation";
+const linkDataEN = "data-engineer";
+const linkIOT = "iot-services";
+
+
 
 export default function HomeNavigationContainer() {
   const pathname = usePathname() || "/";
@@ -197,21 +206,21 @@ export default function HomeNavigationContainer() {
                           </div>
                         </Link>
                         <Link
-                          href={`/services/${linkUrlCMS}`}
+                          href={`/services/${linkAIAutomation}`}
                           className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                         >
                           <div>
                             <Image
                               src="/logo-buffer.svg"
-                              alt="Headless-CMS"
+                              alt="AI Automation"
                               height={24}
                               width={24}
                               className="text-black"
                             />
                           </div>
                           <div className="ml-4">
-                            <p className="text-base font-medium text-black">Headless-CMS</p>
-                            <p className="mt-1 text-sm text-gray-500">Customized Headless-CMS</p>
+                            <p className="text-base font-medium text-black">AI Automation</p>
+                            <p className="mt-1 text-sm text-gray-500">Increase Efficiency with AI Workflows</p>
                           </div>
                         </Link>
                         <Link href="/services">
@@ -277,21 +286,21 @@ export default function HomeNavigationContainer() {
                           </div>
                         </Link>
                         <Link
-                          href={`/services/${linkRobotic}`}
+                          href={`/services/${linkAISoftware}`}
                           className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                         >
                           <div>
                             <Image
                               src="/logo-ionitron.svg"
-                              alt="RPA Services"
+                              alt="AI Software Development"
                               height={24}
                               width={24}
                               className="text-black"
                             />
                           </div>
                           <div className="ml-4">
-                            <p className="text-base font-medium text-black">RPA Services</p>
-                            <p className="mt-1 text-sm text-gray-500">Tackle the Complex Robotic Challenges</p>
+                            <p className="text-base font-medium text-black">AI Software Development</p>
+                            <p className="mt-1 text-sm text-gray-500">Scale with AI Software Solutions</p>
                           </div>
                         </Link>
                         <Link
@@ -308,30 +317,32 @@ export default function HomeNavigationContainer() {
                         <div className="grid items-start h-1/2 gap-6 px-5 py-6 sm:gap-8 sm:p-8">
                           <p className="text-base font-medium text-black">Hot Topics</p>
                           <div className="space-y-3">
-                            <Link href={`/services/${linkAI}`} className="flex items-start text-sm font-medium transition rounded-lg" style={{ color: '#374151' , fontSize: '14px'}}>
-                              ChatBot & AI
+                            <Link href={`/services/${linkN8}`} className="flex items-start text-sm font-medium transition rounded-lg" style={{ color: '#374151' , fontSize: '14px'}}>
+                              n8n Automation
                             </Link>
-                            <Link href={`/services/${linkUrlCMS}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151' , fontSize: '14px'}}>
-                              Headless CMS
-                            </Link>
-                            <Link href={`/services/${linkIntegrate}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
+                               <Link href={`/services/${linkIntegrate}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
                               Integration & Automation
                             </Link>
-                            <Link href={`/services/${linkUrlDigital}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                              User Interface (UI) Design
-                            </Link>
-                            <Link href={`/services/${linkUrlAuto}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                              QA and Testing
-                            </Link>
-                            <Link href={`/services/${linkMob}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                              Mobile Application
+                            <Link href={`/services/${linkDataEN}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151' , fontSize: '14px'}}>
+                             Data Engineering
                             </Link>
                             <Link href={`/services/${linkML}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
                               ML Services
                             </Link>
-                            <Link href={`/services/${devops}`} className="inline-flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
+                             <Link href={`/services/${devops}`} className="inline-flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
                               Devops Services
                             </Link>
+                            <Link href={`/services/${linkIOT}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
+                             IoT Services
+                            </Link>
+                            <Link href={`/services/${linkRobotic}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
+                            RPA Services
+                            </Link>
+                            <Link href={`/services/${linkUrlCMS}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
+                            Headless CMS
+                            </Link>
+                         
+                           
                           </div>
                         </div>
                       </div>
@@ -611,8 +622,8 @@ export default function HomeNavigationContainer() {
                       <Link href={`/services/${linkUrlCMS1}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
                         CMS
                       </Link>
-                      <Link href={`/services/${linkUrlCMS}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
-                        Headless-CMS
+                      <Link href={`/services/${linkAIAutomation}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                        AI Automation
                       </Link>
                       <Link href={`/services/${linkUrlAuto}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
                         QA Testing & Automation
@@ -623,8 +634,8 @@ export default function HomeNavigationContainer() {
                       <Link href={`/services/${linkUrlDigital}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
                         Design Services
                       </Link>
-                      <Link href={`/services/${linkRobotic}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
-                        RPA Services
+                      <Link href={`/services/${linkAISoftware}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                        AI Software Development 
                       </Link>
                       <Link href="/services" onClick={closeMenu} className="block px-8 py-2 text-sm font-medium text-[#0a8ffc] hover:bg-gray-100 transition-colors">
                         View All Services →

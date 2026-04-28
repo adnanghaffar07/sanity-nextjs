@@ -141,7 +141,7 @@ export default async function service({
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.heroImage && (
           <img
-            className="top-0 left-0 object-fit absolute size-full"
+            className="top-0 left-0 object-cover absolute size-full"
             src={urlForImage(data.heroImage).toString()}
             alt={data.heroImage.alt}
           />
