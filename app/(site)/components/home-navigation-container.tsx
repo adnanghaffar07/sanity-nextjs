@@ -23,6 +23,7 @@ export default function HomeNavigationContainer() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [activeDesktopMenu, setActiveDesktopMenu] = useState<"services" | "about" | null>(null);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -60,6 +61,14 @@ export default function HomeNavigationContainer() {
     setMobileMenuOpen(false);
     setServicesOpen(false);
     setAboutOpen(false);
+    setActiveDesktopMenu(null);
+  };
+
+  const handleMenuActionClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("a,button")) {
+      closeMenu();
+    }
   };
 
   return (
@@ -96,13 +105,24 @@ export default function HomeNavigationContainer() {
                 Home
               </Link>
             </li>
-            <li className="relative group">
-              <button className="flex items-center text-white px-4 py-2 hover:underline cursor-pointer">
+            <li
+              className="relative"
+              onMouseEnter={() => setActiveDesktopMenu("services")}
+              onMouseLeave={() => setActiveDesktopMenu(null)}
+            >
+              <button
+                className="flex items-center text-white px-4 py-2 hover:underline cursor-pointer"
+                onClick={() =>
+                  setActiveDesktopMenu((prev) => (prev === "services" ? null : "services"))
+                }
+              >
                 Services
                 <svg
                   fill="white"
                   viewBox="0 0 20 20"
-                  className="inline size-4 ml-1 transition-transform duration-200 group-hover:rotate-180"
+                  className={`inline size-4 ml-1 transition-transform duration-200 ${
+                    activeDesktopMenu === "services" ? "rotate-180" : ""
+                  }`}
                 >
                   <path
                     fillRule="evenodd"
@@ -112,7 +132,12 @@ export default function HomeNavigationContainer() {
                 </svg>
               </button>
               {/* FIX 1: Services mega menu shifted more right — left-[75%] instead of left-[55%] */}
-              <div className="absolute z-10 w-screen max-w-5xl px-2 mt-2 transform -translate-x-1/2 left-[140%] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <div
+                className={`absolute z-10 w-screen max-w-5xl px-2 mt-2 transform -translate-x-1/2 left-[140%] transition-all duration-300 ${
+                  activeDesktopMenu === "services" ? "opacity-100 visible" : "opacity-0 invisible"
+                }`}
+                onClick={() => setActiveDesktopMenu(null)}
+              >
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
                     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -315,13 +340,24 @@ export default function HomeNavigationContainer() {
                 </div>
               </div>
             </li>
-            <li className="relative group">
-              <button className="flex items-center text-white px-4 py-2 hover:underline cursor-pointer">
+            <li
+              className="relative"
+              onMouseEnter={() => setActiveDesktopMenu("about")}
+              onMouseLeave={() => setActiveDesktopMenu(null)}
+            >
+              <button
+                className="flex items-center text-white px-4 py-2 hover:underline cursor-pointer"
+                onClick={() =>
+                  setActiveDesktopMenu((prev) => (prev === "about" ? null : "about"))
+                }
+              >
                 About Us
                 <svg
                   fill="white"
                   viewBox="0 0 20 20"
-                  className="inline size-4 ml-1 transition-transform duration-200 group-hover:rotate-180"
+                  className={`inline size-4 ml-1 transition-transform duration-200 ${
+                    activeDesktopMenu === "about" ? "rotate-180" : ""
+                  }`}
                 >
                   <path
                     fillRule="evenodd"
@@ -330,7 +366,12 @@ export default function HomeNavigationContainer() {
                   />
                 </svg>
               </button>
-              <div className="absolute z-10 w-screen max-w-3xl px-2 mt-2 transform -translate-x-1/2 left-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <div
+                className={`absolute z-10 w-screen max-w-3xl px-2 mt-2 transform -translate-x-1/2 left-1/2 transition-all duration-300 ${
+                  activeDesktopMenu === "about" ? "opacity-100 visible" : "opacity-0 invisible"
+                }`}
+                onClick={() => setActiveDesktopMenu(null)}
+              >
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
                     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -514,6 +555,7 @@ export default function HomeNavigationContainer() {
         className={`fixed top-0 left-0 h-full w-full bg-white shadow-2xl z-50 xl:hidden transform transition-transform duration-300 ease-out ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
+        onClickCapture={handleMenuActionClick}
       >
         <div className="flex flex-col h-full overflow-y-auto">
           {/* Mobile Menu Header */}
