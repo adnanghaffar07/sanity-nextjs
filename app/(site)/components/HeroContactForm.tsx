@@ -114,8 +114,9 @@ export default function HeroContactForm() {
           Ready to innovate your business?
         </p>
         <p className="mt-2 text-sm text-white/80">
-          We are here! Let's kick-off our journey to success.
+          We are here! Let&apos;s kick-off our journey to success.
         </p>
+        
       </div>
 
       {/* SUCCESS MESSAGE */}
