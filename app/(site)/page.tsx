@@ -11,6 +11,7 @@ const Faqs = dynamic(() => import("./components/Faqs"), {
 import ScrollAnimation from "./components/ScrollAnimation";
 import CoreExpertise from "./components/Expertise-home";
 import HomePageForm from "./components/Homepage-form";
+import HeroContactForm from "./components/HeroContactForm";
 import CaseStudiesHome from "./components/CaseStudies-Home";
 import TechnologiesSection from "./components/HomePage-Tech";
 import Script from "next/script";
@@ -191,30 +192,52 @@ export default function Home() {
           `,
         }}
       />
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+      <div className="relative flex min-h-screen w-full overflow-hidden font-light text-white">
+        {/* Background Video */}
         <HeroVideo />
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
-        <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute top-[270px] lg:top-[220px] 2xl:top-[270px] max-lg:mt-36 w-full px-2 md:px-8 xl:px-10">
-            <HomePageSlider />
-            <div className="flex flex-col sm:flex-row mx-auto pt-8 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
-              <Link
-                href="/case-studies"
-                className="bg-[#1d92fb] text-white  py-3 px-5 font-semibold rounded-lg shadow-lg text-center w-full sm:w-48"
-              >
-                Our Case Studies
-              </Link>
-              <Link
-                href="https://calendly.com/adnanghaffar"
-                className="bg-[#f7e022]  text-black  font-semibold py-3 px-5 rounded-lg shadow-lg text-center w-full sm:w-48"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Schedule a Call
-              </Link>
+
+        {/* Overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16]/75"></div>
+
+        {/* Content */}
+        <div className="relative flex w-full items-center justify-center py-10 px-5 lg:px-20">
+          <div className="w-full max-w-[1600px] mx-auto ">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16" style={{marginTop: "60px"}}>
+
+              {/* LEFT SIDE */}
+              <div className="flex flex-col justify-center gap-8 lg:w-1/2">
+
+                <div className="">
+                  <HomePageSlider />
+                </div>
+
+                <div className="flex flex-col lg:flex-row gap-4 sm:gap-5">
+                  <Link
+                    href="/case-studies"
+                    className="w-full sm:w-auto rounded-lg bg-[#1d92fb] px-6 py-3 text-center text-sm font-semibold text-white shadow-xl transition hover:bg-blue-600"
+                  >
+                    Our Case Studies
+                  </Link>
+
+                  <Link
+                    href="https://calendly.com/adnanghaffar"
+                    className="w-full sm:w-auto rounded-lg bg-[#f7e022] px-6 py-3 text-center text-sm font-semibold text-black shadow-xl transition hover:bg-yellow-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Schedule a Call
+                  </Link>
+                </div>
+
+              </div>
+
+              {/* RIGHT SIDE (FORM) */}
+              <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
+                <HeroContactForm />
+              </div>
+
             </div>
           </div>
-
         </div>
       </div>
       <StatsSection />

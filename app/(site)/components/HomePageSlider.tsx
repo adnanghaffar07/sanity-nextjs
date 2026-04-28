@@ -1,91 +1,92 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 
+const slides = [
+  {
+    title: "Leading Software Development Company",
+    desc: "Transform your ideas into reality with a top software development company dedicated to delivering innovative solutions and committed to your long-term success and growth.",
+  },
+  {
+    title: "AI Agent Developers for Next-Gen Automation",
+    desc: "Leverage cutting-edge AI agents to automate tasks, boost productivity, and power intelligent decision-making with CodeAutomation.ai’s expert AI developers.",
+  },
+  {
+    title: "Custom Software Development for Your Needs",
+    desc: "Enhance your business with custom digital solutions and innovative technologies crafted by CodeAutomation.ai to drive success and growth.",
+  },
+  {
+    title: "Automate Your QA Testing",
+    desc: "Streamline your software quality with expert QA testing services designed to automate and enhance every step of the process.",
+  },
+];
+
 const HomePageSlider = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <Swiper
       spaceBetween={50}
       slidesPerView={1}
-      loop={true} // Enables infinite looping
+      loop
+      speed={900}
       autoplay={{
-        delay: 5000, // Delay between slides in milliseconds
-        disableOnInteraction: false, // Keeps autoplay running even after user interaction
+        delay: 2000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true, // 👈 modern UX upgrade
       }}
-      modules={[Autoplay]} // Add Autoplay module
-      speed={3500} // Transition speed
+      modules={[Autoplay]}
+      onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+      className="w-full"
     >
-      <SwiperSlide>
-        <div>
-          <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
-            <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-              Leading Software Development Company
-            </h2>
-          </div>
-          <p
-            className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
-            style={{ lineHeight: "1.3" }}
-          >
-            Transform your ideas into reality with a top software development
-            company dedicated to delivering innovative solutions and committed
-            to your long-term success and growth.
-          </p>
-        </div>
-      </SwiperSlide>
-      {/* ✅ New Slide: AI Agent Developers */}
-      <SwiperSlide>
-        <div>
-          <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
-            <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-              AI Agent Developers for Next-Gen Automation
-            </h2>
-          </div>
-          <p
-            className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
-            style={{ lineHeight: "1.3" }}
-          >
-            Leverage cutting-edge AI agents to automate tasks, boost productivity,
-            and power intelligent decision-making with CodeAutomation.ai’s expert AI developers.
-          </p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div>
-          <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
-            <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-              Custom Software Development for Your Needs
-            </h2>
-          </div>
-          <p
-            className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
-            style={{ lineHeight: "1.3" }}
-          >
-            Enhance your business with custom digital solutions and innovative
-            technologies crafted by CodeAutomation.ai to drive success and growth.
-          </p>
-        </div>
-      </SwiperSlide>
+      {slides.map((slide, index) => {
+        const isActive = index === activeIndex;
 
-      <SwiperSlide>
-        <div>
-          <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-md:max-w-full">
-            <h2 className="title capitalize" style={{ lineHeight: "1" }}>
-              Automate Your QA Testing
-            </h2>
-          </div>
-          <p
-            className="lg:text-2xl text-base text-center mt-5 xl:mt-5 xl:max-w-[1100px] 2xl:max-w-[1200px] xl:mx-auto"
-            style={{ lineHeight: "1.3" }}
-          >
-            Streamline your software quality with expert QA testing services
-            designed to automate and enhance every step of the process.
-          </p>
-        </div>
-      </SwiperSlide>
+        return (
+          <SwiperSlide key={index}>
+            <div className="min-h-[320px] flex items-center">
+              
+              <div className="w-full max-w-6xl mx-auto px-4">
+
+                {/* ✨ Smooth active/inactive transition */}
+                <div>
+
+                  <div className="text-center lg:text-left">
+
+                    {/* ✨ animated entry feel */}
+                    <h2
+                      className={`
+                        text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight
+                        transition-all duration-700
+                        ${isActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}
+                      `}
+                    >
+                      {slide.title}
+                    </h2>
+
+                    <p
+                      className={`
+                        mt-5 text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed
+                        max-w-2xl md:max-w-3xl mx-auto md:mx-0
+                        transition-all duration-700 delay-100
+                        ${isActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}
+                      `}
+                    >
+                      {slide.desc}
+                    </p>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };
