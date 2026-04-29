@@ -82,7 +82,7 @@ export async function POST(request: Request): Promise<Response> {
 
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-      to: ["adnan@codeautomation.dev"],
+      to: ["ayesha@codeautomation.dev"],
       subject: `New Website Inquiry — ${pageName}`,
 
       html: `

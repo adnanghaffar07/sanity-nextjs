@@ -187,6 +187,24 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
                           </div>
                         </Link>
+                              <Link
+                          href={`/services/${linkAIAutomation}`}
+                          className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                        >
+                          <div>
+                            <Image
+                              src="/logo-buffer.svg"
+                              alt="AI Automation"
+                              height={24}
+                              width={24}
+                              className="text-black"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <p className="text-base font-medium text-black">AI Automation</p>
+                            <p className="mt-1 text-sm text-gray-500">Increase Efficiency with AI Workflows</p>
+                          </div>
+                        </Link>
                         <Link
                           href={`/services/${linkUrlCMS1}`}
                           className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -203,24 +221,6 @@ export default function HomeNavigationContainer() {
                           <div className="ml-4">
                             <p className="text-base font-medium text-black">CMS</p>
                             <p className="mt-1 text-sm text-gray-500">Manage Digital Content</p>
-                          </div>
-                        </Link>
-                        <Link
-                          href={`/services/${linkAIAutomation}`}
-                          className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                        >
-                          <div>
-                            <Image
-                              src="/logo-buffer.svg"
-                              alt="AI Automation"
-                              height={24}
-                              width={24}
-                              className="text-black"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <p className="text-base font-medium text-black">AI Automation</p>
-                            <p className="mt-1 text-sm text-gray-500">Increase Efficiency with AI Workflows</p>
                           </div>
                         </Link>
                         <Link href="/services">
@@ -267,6 +267,24 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Transform Idea into Market Leading App</p>
                           </div>
                         </Link>
+                               <Link
+                          href={`/services/${linkAISoftware}`}
+                          className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
+                        >
+                          <div>
+                            <Image
+                              src="/logo-ionitron.svg"
+                              alt="AI Software Development"
+                              height={24}
+                              width={24}
+                              className="text-black"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <p className="text-base font-medium text-black">AI Software Development</p>
+                            <p className="mt-1 text-sm text-gray-500">Scale with AI Software Solutions</p>
+                          </div>
+                        </Link>
                         <Link
                           href={`/services/${linkUrlDigital}`}
                           className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
@@ -285,24 +303,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
                           </div>
                         </Link>
-                        <Link
-                          href={`/services/${linkAISoftware}`}
-                          className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
-                        >
-                          <div>
-                            <Image
-                              src="/logo-ionitron.svg"
-                              alt="AI Software Development"
-                              height={24}
-                              width={24}
-                              className="text-black"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <p className="text-base font-medium text-black">AI Software Development</p>
-                            <p className="mt-1 text-sm text-gray-500">Scale with AI Software Solutions</p>
-                          </div>
-                        </Link>
+                 
                         <Link
                           href="https://calendly.com/adnanghaffar"
                           className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-white duration-200 bg-gray-900 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" style={{fontSize: "14px"}}
@@ -341,8 +342,6 @@ export default function HomeNavigationContainer() {
                             <Link href={`/services/${linkUrlCMS}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
                             Headless CMS
                             </Link>
-                         
-                           
                           </div>
                         </div>
                       </div>

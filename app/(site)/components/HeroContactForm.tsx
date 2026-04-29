@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { submitHeroLead } from "@/lib/submitHeroLead";
 import { usePathname } from "next/navigation";
 
@@ -30,8 +31,26 @@ export default function HeroContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const originalOverflow = document.body.style.overflow;
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [showModal, isMounted]);
 
   // ✅ STEP 1 VALIDATION
   const handleStepOneSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -82,10 +101,9 @@ export default function HeroContactForm() {
         pageName: pathname?.split("/").pop() || "home",
       });
 
-      setSuccessMessage("Thank you! Your message has been sent.");
-
+      setShowModal(true);
       setTimeout(() => {
-        setSuccessMessage("");
+        setShowModal(false);
         setStep(1);
         setName("");
         setEmail("");
@@ -116,7 +134,7 @@ export default function HeroContactForm() {
         <p className="mt-2 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white/80">
           We are here! Let&apos;s kick-off our journey to success.
         </p>
-        
+
       </div>
 
       {/* SUCCESS MESSAGE */}
@@ -239,6 +257,81 @@ export default function HeroContactForm() {
           </form>
         )}
       </div>
+      {isMounted &&
+        showModal &&
+        createPortal(
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center px-4 py-6 sm:px-6">
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            {/* Modal */}
+            <div className="animate-fadeIn relative max-h-[calc(100vh-3rem)] w-full max-w-sm overflow-y-auto rounded-[1.25rem] border border-slate-200 bg-white p-4 text-center shadow-xl sm:max-w-md sm:p-6">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600 sm:mb-4 sm:h-11 sm:w-11">
+                <svg className="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M20 7L9 18l-5-5"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h2 className="text-lg font-bold text-slate-900 sm:text-xl">Thank you for contacting us</h2>
+
+              <p className="mt-2 text-[0.83rem] leading-relaxed text-slate-600 sm:text-sm">
+                Your request has been received. Our team will connect with you shortly to understand your goals and
+                suggest the best next steps.
+              </p>
+
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-[0.82rem] text-slate-700 sm:mt-5 sm:text-sm">
+                <div className="flex items-center justify-center gap-2">
+                  <svg className="h-4 w-4 shrink-0 text-blue-600" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 6v6l4 2"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                  <span className="text-left sm:text-center">
+                    Book a 15-30 minute strategy call for personalized guidance
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-col gap-2.5 sm:mt-5">
+                <a
+                  href="https://calendly.com/adnanghaffar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:opacity-90"
+                >
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
+                    <path
+                      d="M16 3v4M8 3v4M3 10h18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  Schedule a Free Consultation
+                </a>
+
+                <button onClick={() => setShowModal(false)} className="text-[11px] text-slate-500 transition hover:text-slate-800">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
+
   );
 }
+
