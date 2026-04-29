@@ -39,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       {/* ✅ JSON-LD business info */}
+      <Script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="3XiQNYrZNQluAGac" data-version="062024"></Script>
       <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
         {JSON.stringify({
           "@context": "https://schema.org",
