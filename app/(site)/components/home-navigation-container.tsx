@@ -165,7 +165,7 @@ export default function HomeNavigationContainer() {
                             />
                           </div>
                           <div className="ml-4">
-                            <p className="text-base font-medium text-black">AI Agent Development Company</p>
+                            <p className="text-base font-medium text-black">AI Agent Development</p>
                             <p className="mt-1 text-sm text-gray-500">Informed Decision Making Process</p>
                           </div>
                         </Link>
