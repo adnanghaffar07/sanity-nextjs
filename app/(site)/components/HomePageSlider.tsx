@@ -48,9 +48,9 @@ const HomePageSlider = () => {
 
         return (
           <SwiperSlide key={index}>
-            <div className="min-h-[320px] flex items-center">
+            <div className="min-h-[clamp(240px,26vw,420px)] flex items-center">
               
-              <div className="w-full max-w-6xl mx-auto px-4">
+              <div className="w-full max-w-[92%] xl:max-w-[86%] px-4">
 
                 {/* ✨ Smooth active/inactive transition */}
                 <div>
@@ -60,7 +60,7 @@ const HomePageSlider = () => {
                     {/* ✨ animated entry feel */}
                     <h2
                       className={`
-                        text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight
+                        text-[clamp(1.2rem,3vw,3.2rem)] font-bold text-white leading-[1.1] tracking-tight
                         transition-all duration-700
                         ${isActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}
                       `}
@@ -70,7 +70,7 @@ const HomePageSlider = () => {
 
                     <p
                       className={`
-                        mt-5 text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed
+                        mt-[clamp(0.75rem,1.5vw,1.4rem)] text-[clamp(0.85rem,1.2vw,1.45rem)] text-gray-200 leading-relaxed
                         max-w-2xl md:max-w-3xl mx-auto md:mx-0
                         transition-all duration-700 delay-100
                         ${isActive ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}

@@ -528,11 +528,11 @@ export default function HomeNavigationContainer() {
                 Blogs
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/career" className="hover:underline text-white px-4 py-2 block">
                 Career
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/technologies" className="hover:underline text-white px-4 py-2 block">
                 Technologies
@@ -698,11 +698,11 @@ export default function HomeNavigationContainer() {
                   Blogs
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/career" onClick={closeMenu} className="flex items-center px-5 py-3 text-gray-800 hover:bg-gray-50 transition-colors">
                   Career
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/technologies" onClick={closeMenu} className="flex items-center px-5 py-3 text-gray-800 hover:bg-gray-50 transition-colors">
                   Technologies

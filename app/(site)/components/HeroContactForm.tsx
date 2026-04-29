@@ -106,61 +106,59 @@ export default function HeroContactForm() {
   };
 
   return (
-    <div className="mx-auto max-w-sm rounded-3xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl md:p-8">
+    <div className="mx-auto w-[min(92vw,24rem)] xl:w-[min(32vw,30rem)] rounded-[clamp(1rem,1.8vw,1.2rem)] border border-white/20 bg-white/10 p-[clamp(1rem,1.4vw,2rem)] shadow-2xl backdrop-blur-xl">
 
       {/* HEADER */}
-      <div className="mb-6">
-        <p className="text-xl font-bold text-white">
+      <div className="mb-[clamp(0.9rem,1.2vw,1.5rem)]">
+        <p className="text-[clamp(1rem,1.5vw,1.8rem)] font-bold text-white leading-tight">
           Ready to innovate your business?
         </p>
-        <p className="mt-2 text-sm text-white/80">
+        <p className="mt-2 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white/80">
           We are here! Let&apos;s kick-off our journey to success.
         </p>
         
       </div>
 
       {/* SUCCESS MESSAGE */}
-      {successMessage && (
-        <p className="mb-4 text-sm text-green-300">{successMessage}</p>
-      )}
+      {successMessage && <p className="mb-4 text-[clamp(0.75rem,0.9vw,0.95rem)] text-green-300">{successMessage}</p>}
 
       {/* FORM WRAPPER */}
-      <div className="min-h-[280px] flex flex-col justify-between">
+      <div className="min-h-[clamp(220px,24vw,260px)] flex flex-col justify-between">
 
         {/* STEP 1 */}
         {step === 1 ? (
-          <form onSubmit={handleStepOneSubmit} className="space-y-4 flex-1">
+          <form onSubmit={handleStepOneSubmit} className="space-y-[clamp(0.85rem,1vw,1rem)] flex-1">
 
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Full Name"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/50"
+              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
             />
-            {errors.name && <p className="text-sm text-rose-300">{errors.name}</p>}
+            {errors.name && <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.name}</p>}
 
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/50"
+              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
             />
-            {errors.email && <p className="text-sm text-rose-300">{errors.email}</p>}
+            {errors.email && <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.email}</p>}
 
             <input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Contact Number"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/50"
+              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
             />
-            {errors.phone && <p className="text-sm text-rose-300">{errors.phone}</p>}
+            {errors.phone && <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.phone}</p>}
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-[#F7E022] px-4 py-3 text-sm font-semibold text-black"
+              className="w-full rounded-xl bg-[#F7E022] px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] font-semibold text-black"
             >
               Continue
             </button>
@@ -169,17 +167,17 @@ export default function HeroContactForm() {
         ) : (
 
           /* STEP 2 */
-          <form onSubmit={handleFinalSubmit} className="space-y-4 flex-1">
+          <form onSubmit={handleFinalSubmit} className="space-y-[clamp(0.65rem,1vw,1rem)] flex-1">
 
             <input
               type="text"
               value={lookingFor}
               onChange={(e) => setLookingFor(e.target.value)}
               placeholder="What are you looking for?"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/50"
+              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
             />
             {errors.lookingFor && (
-              <p className="text-sm text-rose-300">{errors.lookingFor}</p>
+              <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.lookingFor}</p>
             )}
 
             <textarea
@@ -187,13 +185,13 @@ export default function HeroContactForm() {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
               rows={3}
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/50"
+              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
             />
             {errors.message && (
-              <p className="text-sm text-rose-300">{errors.message}</p>
+              <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.message}</p>
             )}
 
-            <label className="flex items-center gap-3 text-white text-sm">
+            <label className="flex items-center gap-3 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white">
               <input
                 type="checkbox"
                 checked={captchaChecked}
@@ -203,13 +201,13 @@ export default function HeroContactForm() {
             </label>
 
             {errors.captcha && (
-              <p className="text-sm text-rose-300">{errors.captcha}</p>
+              <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.captcha}</p>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-[#1d92fb] px-4 py-3 text-sm font-semibold text-white disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1d92fb] px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
             >
               {loading ? (
                 <>

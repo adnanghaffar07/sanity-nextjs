@@ -80,67 +80,300 @@ export async function POST(request: Request): Promise<Response> {
       },
     });
 
-    // Email to team
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
       to: ["adnan@codeautomation.dev"],
-      subject: `CA Website Contact Form - ${pageName} Page`,
-      html: `
-        <html>
-          <body style="font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333;">
-            <div style="max-width: 600px; margin: 30px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-              <h1 style="font-size: 28px; color: #4CAF50; text-align: center;">Project Discussion Form</h1>
-              <p><strong>Name:</strong> ${name}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Contact Number:</strong> ${number}</p>
-              <p><strong>Looking For:</strong> ${looking}</p>
-              <p><strong>Message:</strong> ${message}</p>
-              <p style="font-size: 14px; color: #777;">Thank you for reaching out!</p>
-            </div>
-          </body>
-        </html>
-      `,
-    };
+      subject: `New Website Inquiry — ${pageName}`,
 
+      html: `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #111827;
+    }
+
+    .wrapper {
+      padding: 40px 16px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .row {
+      padding: 10px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-size: 15px;
+      color: #111827;
+      word-break: break-word;
+    }
+
+    .message-box {
+      margin-top: 10px;
+      padding: 14px;
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #374151;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: left;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #111827;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+
+      <div class="tag">New Inquiry</div>
+
+      <div class="title">Website Contact Submission</div>
+      <div class="subtitle">Source: ${pageName} Page</div>
+
+      <div class="card">
+
+        <div class="row">
+          <div class="label">Name</div>
+          <div class="value">${name}</div>
+        </div>
+
+        <div class="row">
+          <div class="label">Email</div>
+          <div class="value">${email}</div>
+        </div>
+
+        <div class="row">
+          <div class="label">Contact Number</div>
+          <div class="value">${number}</div>
+        </div>
+
+        <div class="row">
+          <div class="label">Inquiry Type</div>
+          <div class="value">${looking}</div>
+        </div>
+
+        <div class="row">
+          <div class="label">Message</div>
+          <div class="message-box">${message}</div>
+        </div>
+
+      </div>
+
+      <div class="footer">
+        Automatically generated from CodeAutomation website form.
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
+  `,
+    };
     // Email to user
     const userMailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: determineSubject(looking), // Dynamic subject based on multiple categories
+      subject: determineSubject(looking),
       html: `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <style>
-          body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
-          .email-container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); overflow: hidden; }
-          .header { background-color: #007bff; font-size: 24px; padding: 18px; color: #ffffff; text-align: center; }
-          .header h1 { margin: 0; font-size: 24px; }
-          .content { padding: 20px; color: #333333; line-height: 1.6; }
-          .cta { text-align: center; margin: 20px 0; }
-          .cta a { text-decoration: none; padding: 10px 20px; background-color: #007bff; color: #ffffff; border-radius: 5px; font-size: 16px; }
-          .cta a:hover { background-color: #0056b3; }
-          .footer { background-color: #f1f1f1; text-align: center; padding: 10px; font-size: 12px; color: #666666; }
-        </style>
-      </head>
-      <body>
-        <div class="email-container">
-          <div class="header">
-            ${getCategoriesHeader(looking)}
-          </div>
-          <div class="content">
-            <h2>Dear ${name},</h2>
-            <p>Your message is important to us, and our team will review it promptly. We’ll get back to you within 24 hours.</p>
-            <p>In the meantime, feel free to explore our website or schedule a meeting with CodeAutomation at your convenience.</p>
-            <div class="cta">
-              <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" target="_blank">Schedule a Meeting</a>
-            </div>
-            <p>If you have any further questions or concerns, don’t hesitate to contact us via email or phone. We’re here to help!</p>
-          </div>
-          <div class="footer">© 2025 CodeAutomation. All Rights Reserved.</div>
-        </div>
-      </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #111827;
+    }
+
+    .wrapper {
+      padding: 50px 16px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 14px;
+    }
+
+    .text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #4b5563;
+      margin: 12px 0;
+    }
+
+    .box {
+      margin: 26px 0;
+      padding: 18px 20px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .box strong {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .cta {
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      background: #111827;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 10px;
+    }
+
+    .btn:hover {
+      background: #000000;
+    }
+
+    .divider {
+      margin: 32px 0;
+      border: none;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 30px;
+    }
+
+    .brand {
+      font-weight: 600;
+      color: #111827;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+
+      <div class="title">
+        Hi ${name},
+      </div>
+
+      <p class="text">
+        Thank you for reaching out. We have successfully received your request and our team is currently reviewing it.
+      </p>
+
+      <p class="text">
+        We aim to respond within 24 hours. In most cases, you will hear back much sooner depending on the nature of your request.
+      </p>
+
+      <div class="box">
+        <strong>What happens next</strong><br/><br/>
+        Our team will carefully review your submission and get back to you with the next steps, recommendations, or clarifications if needed.
+      </div>
+
+      <p class="text">
+        If you prefer to move faster, you can schedule a direct call with our team using the link below.
+      </p>
+
+      <div class="cta">
+        <a class="btn" href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" target="_blank">
+          Schedule a Meeting
+        </a>
+      </div>
+
+      <hr class="divider"/>
+
+      <p class="text">
+        If your request is urgent, simply reply to this email and we will prioritize it accordingly.
+      </p>
+
+      <p class="text">
+        Regards,<br/>
+        <span class="brand">CodeAutomation Team</span>
+      </p>
+
+      <div class="footer">
+        © 2026 CodeAutomation. All rights reserved.
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
   `,
     };
 
