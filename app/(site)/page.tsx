@@ -731,17 +731,14 @@ export default function Home() {
         </ScrollAnimation>
 
         <ScrollAnimation>
-          <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:py-16 py-8 md:px-5 w-full mx-auto relative">
+          <div className="flex gap-5 max-md:flex-wrap lg:py-16 py-8 w-full mx-auto relative">
             <img
               loading="lazy"
               src="/ellipse-2.png"
               className="w-[260px] absolute right-0 top-[30px]"
               alt="ellipse"
             />
-            <div className="flex flex-col flex-1 px-5 text-xl relative z-10 xl:container xl:mx-auto">
-              <h2 className="xl:text-4xl lg:text-3xl text-3xl font-medium text-black max-md:max-w-full mt-4 text-center">
-                Our FAQs
-              </h2>
+            <div className="flex flex-col flex-1 text-xl relative z-10 xl:container xl:mx-auto">
               <Suspense fallback={<p>Loading FAQs Section...</p>}>
                 <Faqs />
               </Suspense>

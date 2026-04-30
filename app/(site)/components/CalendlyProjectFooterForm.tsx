@@ -270,9 +270,9 @@ export default function HomePageForm() {
       id="contact-box"
     >
       <div className="flex flex-col mt-2 w-full max-w-[700px] max-md:max-w-full">
-        <h3 className="text-2xl md:text-3xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
+        <span className="text-2xl md:text-3xl text-left font-bold leading-[52px] mb-4 text-[#3C3C3C]">
           Ready to innovate your business?
-        </h3>
+        </span>
         <p className="text-lg text-left text-[#3C3C3C] mb-10 leading-[32px] max-w-full">
           We are here! Let&apos;s kick-off our journey to success!
         </p>

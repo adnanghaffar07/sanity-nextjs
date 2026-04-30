@@ -48,7 +48,7 @@ const HomePageSlider = () => {
 
         return (
           <SwiperSlide key={index}>
-            <div className="min-h-[clamp(240px,26vw,420px)] flex items-center">
+            <div className="min-h-[clamp(240px,20vw,420px)] flex items-center">
               
               <div className="w-full max-w-[92%] xl:max-w-[86%] px-4">
 
