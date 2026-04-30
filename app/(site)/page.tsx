@@ -82,7 +82,7 @@ export default function Home() {
             "@graph": [
               {
                 "@type": "Webpage",
-                "name": "Custom Mobile and Web App Development Company in Chicago, USA",m
+                "name": "Custom Mobile and Web App Development Company in Chicago, USA",
                 "headline": "Custom Mobile and Web App Development Company in Chicago, USA",
                 "url": "https://codeautomation.ai/",
                 "@id": "https://codeautomation.ai/",
