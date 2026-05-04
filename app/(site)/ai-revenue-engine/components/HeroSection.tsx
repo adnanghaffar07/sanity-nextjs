@@ -4,7 +4,7 @@ export default function HeroSection() {
     return (
         <section className="w-full overflow-hidden bg-white mt-24">
             <div className="mx-auto max-w-6xl px-6 py-14 text-center md:py-16 ">
-                <p className="text-[10px] font-semibold tracking-wide text-[#2f3e67] uppercase md:text-[16px]">
+                <p className="text-[12px] font-semibold tracking-wide text-[#2f3e67] uppercase md:text-[16px]">
                     For Any Service Business Owner Frustrated With Missed Calls & Slow Follow Ups...
                 </p>
 
@@ -16,7 +16,7 @@ export default function HeroSection() {
                     That Answer Every Call, Close Every Lead, And Run Your Front Office 24/7.
                 </h1>
 
-                <p className="mx-auto mt-10 max-w-5xl text-[20px] font-semibold leading-[1.45] text-gray-700 max-md:text-[21px]">
+                <p className="mx-auto mt-10 max-w-5xl text-[20px] font-semibold leading-[1.45] text-gray-700 max-md:text-[16px]">
                     <span className="italic underline">
                         The top 1%
                     </span>

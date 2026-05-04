@@ -195,7 +195,7 @@ export default function DeploymentSection() {
                 {/* Header Section */}
                 <div className="text-center max-w-4xl mx-auto mb-20 md:mb-24">
                     {/* Main Heading with squiggle underline */}
-                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8 leading-[2.4]">
+                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
                         Where Exactly Can I Deploy These{" "}
                         <br className="hidden sm:block" />
                         <span className="relative inline-block whitespace-nowrap">
