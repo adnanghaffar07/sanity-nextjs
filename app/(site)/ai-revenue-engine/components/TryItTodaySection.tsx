@@ -116,7 +116,7 @@ export default function TryItTodaySection() {
             </h3>
 
             <p className="mt-2 text-sm text-gray-500">
-              Meet Emma — she'll call you within 60 seconds.
+              Meet Emma — she&apos;ll call you within 60 seconds.
             </p>
 
             {/* CTA Button */}

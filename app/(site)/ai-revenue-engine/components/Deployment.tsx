@@ -170,7 +170,6 @@ const DeploymentCard: React.FC<DeploymentCardProps> = ({ item }) => {
                         <span
                             key={idx}
                             className="bg-gray-50 border border-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 transition-colors hover:border-opacity-50"
-                            style={{ hover: { borderColor: accentColor } }}
                         >
                             {tag}
                         </span>

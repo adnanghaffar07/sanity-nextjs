@@ -20,7 +20,7 @@ export default function HeroSection() {
                     <span className="italic underline">
                         The top 1%
                     </span>
-                    {" "}of service businesses don't outwork the competition.
+                    {" "}of service businesses don&apos;t outwork the competition.
                     They out-system them.
                     <br />
                     Atlas installs a custom AI Revenue Engine into your business. Voice,
