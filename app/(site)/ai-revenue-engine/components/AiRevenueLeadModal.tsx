@@ -194,7 +194,7 @@ export default function AiRevenueLeadModal() {
                 <PhoneInput
                   country="us"
                   value={form.phone}
-                  onChange={(value, data) =>
+                  onChange={(value, data: any) =>
                     setForm((prev) => ({
                       ...prev,
                       phone: value,
