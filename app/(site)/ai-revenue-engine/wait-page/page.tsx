@@ -48,7 +48,7 @@ export default function WaitPage() {
                 <div className="w-5 h-5 rounded-full bg-[#3498db]/10 flex items-center justify-center flex-shrink-0">
                   <Calendar className="w-3 h-3 text-[#3498db]" />
                 </div>
-                <span className="text-gray-700">Books your free demo call — <span className="text-gray-400">no strings attached</span></span>
+                <span className="text-gray-700">Books your free demo call</span>
               </div>
             </div>
 

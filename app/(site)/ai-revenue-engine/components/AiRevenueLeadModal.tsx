@@ -10,12 +10,14 @@ type FormState = {
   firstName: string;
   email: string;
   phone: string;
+  countryCode: string;
 };
 
 const INITIAL_FORM: FormState = {
   firstName: "",
   email: "",
   phone: "",
+  countryCode: "",
 };
 
 export default function AiRevenueLeadModal() {
@@ -84,6 +86,8 @@ export default function AiRevenueLeadModal() {
     const payload = {
       ...form,
       phone: phoneE164,
+      countryCode: form.countryCode || (phoneDigits ? `+${phoneDigits.slice(0, phoneDigits.length - 10)}` : ""),
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
       source: "ai-revenue-engine",
       pageUrl: window.location.href,
       submittedAt: new Date().toISOString(),
@@ -190,8 +194,12 @@ export default function AiRevenueLeadModal() {
                 <PhoneInput
                   country="us"
                   value={form.phone}
-                  onChange={(value) =>
-                    setForm((prev) => ({ ...prev, phone: value }))
+                  onChange={(value, data) =>
+                    setForm((prev) => ({
+                      ...prev,
+                      phone: value,
+                      countryCode: data?.dialCode ? `+${data.dialCode}` : prev.countryCode,
+                    }))
                   }
                   inputProps={{
                     id: "phone",
