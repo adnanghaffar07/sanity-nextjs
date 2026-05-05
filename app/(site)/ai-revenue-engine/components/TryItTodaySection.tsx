@@ -34,10 +34,10 @@ export default function TryItTodaySection() {
         {/* Header - Compact */}
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
-            Try It{" "}
+            Start Seeing{" "}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-[#3498db] to-[#2c7ab8] bg-clip-text text-transparent">
-                Today
+                Results
               </span>
               <svg
                 className="absolute -bottom-1 left-0 w-full h-3"
@@ -56,7 +56,7 @@ export default function TryItTodaySection() {
           </h2>
 
           <p className="mt-3 text-base text-gray-600 max-w-2xl mx-auto">
-            AI Sales Agents can supercharge any part of your revenue process:
+AI Sales Agents can transform your business, attract, engage, and convert them into customers.
           </p>
         </div>
 

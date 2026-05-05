@@ -33,71 +33,78 @@ const iconMap = {
 
 const useCases: UseCase[] = [
     {
-        title: "24/7 AI RECEPTIONIST",
+        title: "AI RECEPTIONIST",
         icon: "headphones",
         description:
-            "Answers every inbound call in under 60 seconds, addresses common questions and books appointments based on YOUR criteria, works 24/7...be it after-hours or on the weekends.",
+            "Your always-on front desk that never misses a call, never puts customers on hold, and never loses a lead.",
         points: [
-            "Answers every inbound call in under 60 seconds",
-            "Addresses common questions & books appointments based on YOUR criteria",
-            "Works 24/7... be it after-hours or on the weekends",
+            "Answers every incoming call instantly, 24/7 without delays",
+            "Handles FAQs, service inquiries, and basic customer requests automatically",
+            "Books appointments directly into your calendar based on your rules",
+            "Transfers or escalates high-intent leads with full conversation context",
         ],
         perfectFor:
-            "HVAC, Plumbing, Electrical, Dental, Med Spas, Auto Repair, Property Management",
+            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Law Firms • Insurance Providers",
         colorAccent: "#3498db",
     },
     {
-        title: "LEAD QUALIFIER & APPOINTMENT SETTER",
-        icon: "users",
+        title: "AI SCHEDULING ASSISTANT",
+        icon: "calendar-check",
         description:
-            "Engages new leads within 60 seconds of opt-in, filters out time-wasters, and pushes qualified leads to your team with detailed notes.",
+            "Never lose bookings or waste time coordinating calendars again. Your AI handles scheduling automatically so your team can focus on actual work, not back-and-forth messaging.",
         points: [
-            "Engages new leads within 60 seconds of opt-in",
-            "Filters out time-wasters automatically",
-            "Pushes qualified leads to your team with detailed notes",
+            "Instantly books appointments based on real-time availability",
+            "Eliminates back-and-forth calls, texts, and emails",
+            "Sends automatic confirmations and reminders to reduce no-shows",
+            "Handles rescheduling and cancellations without human input",
         ],
         perfectFor:
-            "Real Estate, Legal, Insurance, Financial Advisors, B2B Consulting",
+            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Legal Firms • Insurance Agencies",
         colorAccent: "#3498db",
     },
     {
         title: '"DEAD" LEADS REVIVER',
         icon: "rotate-ccw",
         description:
-            "Re-engages old CRM leads automatically, re-qualifies their interest, and turns cold leads into booked appointments.",
+            "Turn forgotten leads into booked jobs without lifting a finger. Your AI automatically re-engages old prospects sitting in your CRM and brings them back to life.",
         points: [
-            "Re-engages old CRM leads automatically",
-            "Re-qualifies intent and interest",
-            "Turns cold leads into booked appointments",
+            "Reaches out to old and cold leads automatically from your CRM",
+            "Restarts conversations with personalized, human-like messaging",
+            "Re-qualifies interest to identify who is still ready to buy",
+            "Converts inactive leads into booked appointments and sales",
         ],
-        perfectFor: "Home Services, Real Estate, Legal, Med Spas, Gyms",
+        perfectFor:
+            "Real Estate • HVAC • Plumbing • Contractors • Legal Firms • Med Spas • Insurance Agencies • Home Services • Any business with an existing CRM database",
         colorAccent: "#f7e022",
     },
     {
-        title: "APPOINTMENT CONFIRMATION & SHOW RATE BOOSTER",
-        icon: "calendar-check",
+        title: "AI ANSWERING SERVICE",
+        icon: "headphones",
         description:
-            "Automatically confirms appointments, reduces no-shows by up to 50%, and keeps your calendar full and profitable.",
+            "Never miss another customer call again — even after hours, on weekends, or during peak workload. Your AI handles every call like a trained receptionist.",
         points: [
-            "Automatically confirms upcoming appointments",
-            "Reduces no-shows by up to 50%",
-            "Keeps your calendar full and profitable",
+            "Answers inbound calls instantly with natural, human-like conversation",
+            "Provides 24/7 coverage so no lead goes unanswered",
+            "Captures customer details and call intent for your team to follow up",
+            "Routes calls or books appointments based on your business rules",
         ],
         perfectFor:
-            "Dental, Med Spas, Lawyers, Financial Advisors, Contractors",
+            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Legal Firms • Insurance Providers",
         colorAccent: "#3498db",
     },
     {
-        title: 'WEBSITE "VOICE BUBBLE"',
+        title: "AI CHATBOT",
         icon: "message-circle",
         description:
-            "Turns your website into a 24/7 sales assistant that engages visitors, answers FAQs, and books appointments instantly.",
+            "Your 24/7 website assistant that engages visitors, answers questions, and turns traffic into qualified leads automatically.",
         points: [
-            "Engages website visitors instantly",
-            "Answers FAQs in real-time",
-            "Books jobs or appointments on the spot",
+            "Engages website visitors instantly before they leave your site",
+            "Answers FAQs in real time without human intervention",
+            "Collects lead details and qualifies prospects automatically",
+            "Books appointments directly from your website chat",
         ],
-        perfectFor: "Any service business with a website",
+        perfectFor:
+            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Legal Firms • Insurance Providers • Any service business with a website",
         colorAccent: "#f7e022",
     },
 ];
@@ -169,7 +176,7 @@ const DeploymentCard: React.FC<DeploymentCardProps> = ({ item }) => {
                     {perfectTags.map((tag, idx) => (
                         <span
                             key={idx}
-                            className="bg-gray-50 border border-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 transition-colors hover:border-opacity-50"
+                            className="bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-xs font-medium text-gray-700 transition-colors hover:border-opacity-50"
                         >
                             {tag}
                         </span>
@@ -196,10 +203,10 @@ export default function DeploymentSection() {
                 <div className="text-center max-w-4xl mx-auto mb-20 md:mb-24">
                     {/* Main Heading with squiggle underline */}
                     <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
-                        Where Exactly Can I Deploy These{" "}
+                        Where Exactly Can I Use These{" "}
                         <br className="hidden sm:block" />
                         <span className="relative inline-block whitespace-nowrap">
-                            <span className="relative z-10 text-[#3498db]">AI Sales Agents</span>
+                            <span className="relative z-10 text-[#3498db]">AI Employees?</span>
                             <span
                                 className="absolute bottom-1 left-0 w-full h-3 bg-no-repeat bg-bottom"
                                 style={{
@@ -208,27 +215,15 @@ export default function DeploymentSection() {
                                 }}
                             />
                         </span>
-                        ?
+                        
                     </h2>
-
-                    {/* Short answer pill */}
-                    <div className="mt-6 mb-5 flex justify-center">
-                        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3498db]/5 to-[#f7e022]/10 rounded-2xl px-7 py-3.5 border border-[#3498db]/20 shadow-sm backdrop-blur-sm">
-                            <Zap className="w-5 h-5 text-[#3498db] fill-[#3498db]/20" />
-                            <p className="text-gray-800 font-semibold text-base">
-                                Short answer: <span className="font-black text-[#3498db]">ANYWHERE you want.</span>
-                            </p>
-                        </div>
-                    </div>
 
                     {/* Description text */}
                     <p className="text-gray-500 text-md md:text-lg max-w-2xl mx-auto leading-relaxed">
-                        Any part of your business where humans are stuck doing repetitive tasks that drain your time and revenue.
-                    </p>
+Anywhere your business talks to leads or books customers.                    </p>
                     {/* Description text */}
                     <p className="text-gray-500 text-md mt-10 max-w-3xl font-semibold mx-auto leading-relaxed">
-                        Below are just a few ways service businesses like yours are already using it...
-                    </p>
+Below are some examples of how services businesses are using AI revenue engines.                    </p>
                 </div>
 
                 {/* Cards Grid - Row 1 (3 cards) */}

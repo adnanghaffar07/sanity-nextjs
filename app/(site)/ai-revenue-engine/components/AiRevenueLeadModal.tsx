@@ -181,10 +181,10 @@ export default function AiRevenueLeadModal() {
           </div>
           
           <h3 className="text-center text-xl font-bold tracking-tight text-gray-900">
-            Test Drive Emma
+           Call Emma Now
           </h3>
           <p className="mx-auto mt-1 max-w-sm text-center text-xs text-gray-500">
-            Our AI Sales Agent — experience it live in under 60 seconds
+   Experience our AI Sales Agent in less than 60 seconds
           </p>
         </div>
 
