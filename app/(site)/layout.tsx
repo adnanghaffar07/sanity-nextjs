@@ -40,6 +40,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <>
       {/* ✅ JSON-LD business info */}
       <Script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="3XiQNYrZNQluAGac" data-version="062024"></Script>
+      <Script id="pixel-script" strategy="afterInteractive">
+        {`
+    (function(p,i,x,e,l){
+      p._pxq = p._pxq || [];
+      var s = i.createElement('script');
+      s.async = 1;
+      s.src = 'https://yrmeqjvgjltkgdiwvhhu.supabase.co/functions/v1/pixel';
+      s.setAttribute('data-site', e);
+      i.head.appendChild(s);
+    })(window,document,'px','px_13fdc02db8347e58');
+  `}
+      </Script>
       <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
         {JSON.stringify({
           "@context": "https://schema.org",
