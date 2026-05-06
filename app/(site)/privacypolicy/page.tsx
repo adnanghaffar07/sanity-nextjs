@@ -1,7 +1,7 @@
 import React from "react";
 
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Privacy Policy | Code Automation",
   description:
     "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
   keywords: [
@@ -15,7 +15,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/privacypolicy",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Privacy Policy | Code Automation",
     description:
       "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
     images: [
@@ -29,7 +29,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Privacy Policy | Code Automation",
     description:
       "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
     images: ["https://codeautomation.ai/thankyou.jpg"],

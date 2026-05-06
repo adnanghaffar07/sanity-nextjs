@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "CodeAutomation Delivering Excellence: Our Happy Clients",
    description:
      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
      keywords: [
@@ -16,7 +16,7 @@ export const metadata = {
    openGraph: {
      type: "website",
      url: "https://codeautomation.ai/about/happy-clients",
-     title: "Software Development Company in the USA | CodeAutomation",
+     title: "CodeAutomation Delivering Excellence: Our Happy Clients",
      description:
        "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
      images: [
@@ -30,7 +30,7 @@ export const metadata = {
    },
    twitter: {
      card: "summary_large_image",
-     title: "Software Development Company in the USA | CodeAutomation",
+     title: "CodeAutomation Delivering Excellence: Our Happy Clients",
      description:
        "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
      images: ["https://codeautomation.ai/thankyou.jpg"],

@@ -1238,10 +1238,10 @@ export default async function service({
             {/* Section Heading */}
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-[#3C3C3C]">
-                {data.pricingSection?.heading}
+                {data.pricingSection?.heading || "Simple Pricing, Clear Value"}
               </h2>
               <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                {data.pricingSection?.description}
+                {data.pricingSection?.description || "Choose a plan that fits your business. No hidden fees. Just powerful automation."}
               </p>
             </div>
 
@@ -1264,11 +1264,33 @@ export default async function service({
                       <span className="text-base font-medium">/month</span>
                     )}
                   </p>
-                  <ul className="space-y-3 text-gray-700 list-disc list-inside">
+                  <ul className="space-y-3 text-gray-700 list-disc list-inside mb-6">
                     {plan.features.map((feature: string, idx: number) => (
                       <li key={idx}>{feature}</li>
                     ))}
                   </ul>
+                  {/* Individual Plan Button */}
+                  {plan.buttonText && plan.buttonUrl && (
+                    <Link
+                      href={plan.buttonUrl}
+                      className="w-full bg-[#1D92FB] text-white py-3 px-6 rounded-lg font-semibold text-center block hover:bg-[#0d8ce8] transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {plan.buttonText}
+                    </Link>
+                  )}
+                  {/* Global Button for All Plans */}
+                  {data.pricingSection?.showButtonInAllPlans && data.pricingSection?.globalButtonText && data.pricingSection?.globalButtonUrl && (
+                    <Link
+                      href={data.pricingSection.globalButtonUrl}
+                      className="w-full bg-[#f7e022] text-black py-3 px-6 rounded-lg font-semibold text-center block mt-4 hover:bg-[#e6d01e] transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {data.pricingSection.globalButtonText}
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

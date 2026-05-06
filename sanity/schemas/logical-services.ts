@@ -153,6 +153,85 @@ const logicalServices = {
         },
       ],
     },
+    // Pricing Section
+    {
+      name: 'pricingSection',
+      title: 'Pricing Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'heading',
+          title: 'Heading',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        },
+        {
+          name: 'plans',
+          title: 'Plans',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Plan Title',
+                  type: 'string',
+                },
+                {
+                  name: 'price',
+                  title: 'Price (e.g. $999/month or Custom)',
+                  type: 'string',
+                },
+                {
+                  name: 'highlighted',
+                  title: 'Highlighted Plan?',
+                  type: 'boolean',
+                },
+                {
+                  name: 'features',
+                  title: 'Features',
+                  type: 'array',
+                  of: [{ type: 'string' }],
+                },
+                {
+                  name: 'buttonText',
+                  title: 'Button Text',
+                  type: 'string',
+                },
+                {
+                  name: 'buttonUrl',
+                  title: 'Button URL',
+                  type: 'url',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'showButtonInAllPlans',
+          title: 'Show Button in All Plans?',
+          type: 'boolean',
+          description: 'If enabled, the button will appear in all plans.',
+        },
+        {
+          name: 'globalButtonText',
+          title: 'Global Button Text',
+          type: 'string',
+          description: 'Text for the button shown in all plans.',
+        },
+        {
+          name: 'globalButtonUrl',
+          title: 'Global Button URL',
+          type: 'url',
+          description: 'URL for the button shown in all plans.',
+        },
+      ],
+    },
     // Tools & Logo Section
     {
       name: "toolsLogoSection",
@@ -1261,58 +1340,6 @@ const logicalServices = {
               name: "alt",
               title: "Alt",
               type: "string",
-            },
-          ],
-        },
-      ],
-    },
-
-    // /schemas/pricingSection.ts
-    {
-      name: 'pricingSection',
-      title: 'Pricing Section',
-      type: 'document',
-      fields: [
-        {
-          name: 'heading',
-          title: 'Heading',
-          type: 'string',
-        },
-        {
-          name: 'description',
-          title: 'Description',
-          type: 'text',
-        },
-        {
-          name: 'plans',
-          title: 'Plans',
-          type: 'array',
-          of: [
-            {
-              type: 'object',
-              fields: [
-                {
-                  name: 'title',
-                  title: 'Plan Title',
-                  type: 'string',
-                },
-                {
-                  name: 'price',
-                  title: 'Price (e.g. $999/month or Custom)',
-                  type: 'string',
-                },
-                {
-                  name: 'highlighted',
-                  title: 'Highlighted Plan?',
-                  type: 'boolean',
-                },
-                {
-                  name: 'features',
-                  title: 'Features',
-                  type: 'array',
-                  of: [{ type: 'string' }],
-                },
-              ],
             },
           ],
         },
