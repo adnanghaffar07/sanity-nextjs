@@ -7,6 +7,7 @@ import "../globals.css";
 import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
 import CookieConsent from "./components/CookieConsent";
+import VisitorTracker from "./components/VisitorTracker";
 
 // ✅ Dynamic imports
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
@@ -165,6 +166,7 @@ fbq('track', 'PageView');
           <div className="flex flex-col bg-white relative">
             <ConditionalNavigation />
             <CookieConsent />
+            <VisitorTracker />
             {children}
             <Suspense fallback={null}>
               <DeferredFormDisplay />

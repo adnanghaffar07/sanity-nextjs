@@ -1,6 +1,8 @@
 import WaitCallCountdown from "./WaitCallCountdown";
 import { Phone, Bell, Smile, Calendar, Volume2, Shield, Clock, CheckCircle } from "lucide-react";
-
+export const metadata = {
+  robots: "noindex, nofollow",
+};
 export default function WaitPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white px-4 py-12 md:py-16">

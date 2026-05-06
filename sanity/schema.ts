@@ -32,6 +32,7 @@ import resume from "./schemas/resume";
 import terms from "./schemas/terms";
 import mobileQuoteLead from "./schemas/mobile-quote-lead";
 import mobileServiceHeroForm from "./schemas/mobileServiceHeroForm";
+import visitor from "./schemas/visitor";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -59,6 +60,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     paymentProposal,
     testing,
     paymentPlan, youtubeEmbed, blockContent, contactForm,
-    calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm
+    calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm, visitor
   ],
 };
