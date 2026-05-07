@@ -1,14 +1,39 @@
 import { serverClient } from '@/sanity/lib/sanity/serverClient';
 import { NextRequest, NextResponse } from 'next/server';
 
+function isLocalAddress(hostname: string): boolean {
+  const host = hostname.toLowerCase();
+  return host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.local');
+}
+
+function isLocalSource(value: string): boolean {
+  if (!value || value === 'Unknown' || value === 'Direct') return false;
+
+  try {
+    const parsed = new URL(value);
+    return isLocalAddress(parsed.hostname);
+  } catch {
+    return value.toLowerCase().includes('localhost') || value.includes('127.0.0.1');
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { pageUrl, userAgent, referrer } = body;
+    const rawPageUrl = typeof body?.pageUrl === 'string' ? body.pageUrl : '';
+    const rawUserAgent = typeof body?.userAgent === 'string' ? body.userAgent : '';
+    const rawReferrer = typeof body?.referrer === 'string' ? body.referrer : '';
+    const pageUrl = rawPageUrl || req.headers.get('referer') || 'Unknown';
+    const userAgent = rawUserAgent || req.headers.get('user-agent') || 'Unknown';
+    const referrer = rawReferrer || 'Direct';
+
+    if (isLocalSource(pageUrl) || isLocalSource(referrer)) {
+      return NextResponse.json({ success: true, skipped: 'localhost-traffic' });
+    }
 
     // Get IP from headers
     const forwarded = req.headers.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0] : req.ip || 'Unknown';
+    const ip = forwarded ? forwarded.split(',')[0].trim() : req.ip || 'Unknown';
 
     // Get location data from IP using a free API
     let locationData = { city: 'Unknown', region: 'Unknown', country: 'Unknown', lat: 0, lon: 0 };

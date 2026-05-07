@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type TimeFilter = 'today' | 'last7days' | 'lastmonth';
 
@@ -30,9 +30,6 @@ export default function VisitorsDashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const [liveUsers, setLiveUsers] = useState(0);
-  const [liveLoading, setLiveLoading] = useState(false);
-
   const correctPassword =
     process.env.NEXT_PUBLIC_VISITOR_DASHBOARD_PASSWORD || 'admin123';
 
@@ -41,32 +38,11 @@ export default function VisitorsDashboard() {
     if (password === correctPassword) {
       setIsAuthenticated(true);
       fetchVisitors('today');
-      fetchLiveUsers();
     } else {
       alert('Incorrect password');
       setPassword('');
     }
   };
-
-  // ---------------- LIVE USERS ----------------
-  const fetchLiveUsers = async () => {
-    setLiveLoading(true);
-    try {
-      const res = await fetch('/api/analytics/live-users');
-      const data = await res.json();
-      setLiveUsers(Number(data?.liveUsers || 0));
-    } catch (err) {
-      console.error(err);
-    }
-    setLiveLoading(false);
-  };
-
-  useEffect(() => {
-    if (!isAuthenticated) return;
-
-    const interval = setInterval(fetchLiveUsers, 30000);
-    return () => clearInterval(interval);
-  }, [isAuthenticated]);
 
   // ---------------- VISITOR DATA ----------------
   const fetchVisitors = async (timeFilter: TimeFilter) => {
@@ -112,11 +88,14 @@ export default function VisitorsDashboard() {
   // ---------------- LOGIN SCREEN ----------------
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
-          <h1 className="text-2xl font-bold text-center mb-6">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 px-4">
+        <div className="bg-white/95 backdrop-blur p-8 rounded-2xl shadow-xl w-full max-w-md border border-blue-100">
+          <h1 className="text-2xl font-bold text-center mb-2 text-slate-900">
             Visitors Dashboard
           </h1>
+          <p className="text-center text-sm text-slate-500 mb-6">
+            Secure admin access
+          </p>
 
           <input
             type="password"
@@ -124,12 +103,12 @@ export default function VisitorsDashboard() {
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
             placeholder="Enter password"
-            className="w-full border p-3 rounded-lg mb-4"
+            className="w-full border border-slate-200 p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           />
 
           <button
             onClick={handleLogin}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
             Login
           </button>
@@ -140,85 +119,81 @@ export default function VisitorsDashboard() {
 
   // ---------------- MAIN UI ----------------
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50/60 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold">Visitors Dashboard</h1>
-            <p className="text-gray-500">
+            <h1 className="text-3xl font-bold text-slate-900">Visitors Dashboard</h1>
+            <p className="text-slate-500">
               Real-time analytics overview
             </p>
           </div>
 
           <button
             onClick={() => setIsAuthenticated(false)}
-            className="bg-red-500 text-white px-4 py-2 rounded-lg"
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors w-full sm:w-auto font-medium"
           >
             Logout
           </button>
         </div>
 
         {/* CARDS */}
-        <div className="grid md:grid-cols-3 gap-4 mb-6">
+        <div className="grid sm:grid-cols-2 gap-4 mb-6">
 
-          <div className="bg-white p-5 rounded-xl shadow">
+          <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
             <p className="text-gray-500 text-sm">Time Range</p>
-            <h2 className="text-xl font-bold">{formatFilter(filter)}</h2>
+            <h2 className="text-xl font-bold text-slate-900">{formatFilter(filter)}</h2>
           </div>
 
-          <div className="bg-white p-5 rounded-xl shadow">
+          <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
             <p className="text-gray-500 text-sm">Total Visitors</p>
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-2xl font-bold text-slate-900">
               {visitorRecords.length}
             </h2>
-          </div>
-
-          <div className="bg-white p-5 rounded-xl shadow">
-            <p className="text-gray-500 text-sm">Live Users</p>
-            <h2 className="text-2xl font-bold">{liveUsers}</h2>
-            {liveLoading && (
-              <p className="text-xs text-gray-400">Updating...</p>
-            )}
           </div>
 
         </div>
 
         {/* FILTERS */}
-        <div className="flex gap-3 mb-6">
-          {(['today', 'last7days', 'lastmonth'] as TimeFilter[]).map((f) => (
-            <button
-              key={f}
-              onClick={() => changeFilter(f)}
-              className={`px-4 py-2 rounded-lg transition ${
-                filter === f
-                  ? 'bg-black text-white'
-                  : 'bg-white border hover:bg-gray-100'
-              }`}
-            >
-              {formatFilter(f)}
-            </button>
-          ))}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6 flex flex-col sm:flex-row sm:items-center gap-3">
+          <label htmlFor="visitor-filter" className="text-sm font-medium text-slate-700">
+            Filter visitors by:
+          </label>
+          <select
+            id="visitor-filter"
+            value={filter}
+            onChange={(e) => changeFilter(e.target.value as TimeFilter)}
+            disabled={loading}
+            className="w-full sm:w-56 border border-slate-300 rounded-lg px-3 py-2 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="today">Today</option>
+            <option value="last7days">Last 7 Days</option>
+            <option value="lastmonth">Last Month</option>
+          </select>
+          <span className="inline-flex items-center rounded-full bg-blue-100 text-blue-700 px-3 py-1 text-xs font-semibold">
+            Selected: {formatFilter(filter)}
+          </span>
         </div>
 
         {/* STATUS */}
         {loading && (
-          <div className="bg-white p-4 rounded-lg shadow mb-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-100 mb-4">
             Loading data...
           </div>
         )}
 
         {error && (
-          <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-4">
+          <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-4 border border-red-200">
             {error}
           </div>
         )}
 
         {/* TABLE */}
-        <div className="bg-white rounded-xl shadow overflow-x-auto">
+        <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-100 text-left">
+            <thead className="bg-slate-100 text-left">
               <tr>
                 <th className="p-3">IP</th>
                 <th className="p-3">Location</th>
@@ -231,7 +206,7 @@ export default function VisitorsDashboard() {
 
             <tbody>
               {visitorRecords.map((v) => (
-                <tr key={v._id} className="border-b hover:bg-gray-50">
+                <tr key={v._id} className="border-b border-slate-100 hover:bg-slate-50">
                   <td className="p-3">{v.ip}</td>
 
                   <td className="p-3">{formatLocation(v.location)}</td>
@@ -245,7 +220,7 @@ export default function VisitorsDashboard() {
                   </td>
 
                   <td className="p-3 text-blue-600 break-all">
-                    <a href={v.pageUrl} target="_blank">
+                    <a href={v.pageUrl} target="_blank" rel="noreferrer">
                       {v.pageUrl}
                     </a>
                   </td>
