@@ -85,6 +85,20 @@ export default function VisitorsDashboard() {
     return 'Last Month';
   };
 
+  const formatUsEasternTime = (timestamp: string) => {
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short',
+    }).format(new Date(timestamp));
+  };
+
   // ---------------- LOGIN SCREEN ----------------
   if (!isAuthenticated) {
     return (
@@ -198,7 +212,7 @@ export default function VisitorsDashboard() {
                 <th className="p-3">IP</th>
                 <th className="p-3">Location</th>
                 <th className="p-3">Lat/Long</th>
-                <th className="p-3">Time</th>
+                <th className="p-3">Time (US Eastern)</th>
                 <th className="p-3">Page</th>
                 <th className="p-3">Referrer</th>
               </tr>
@@ -216,7 +230,7 @@ export default function VisitorsDashboard() {
                   </td>
 
                   <td className="p-3">
-                    {new Date(v.timestamp).toLocaleString()}
+                    {formatUsEasternTime(v.timestamp)}
                   </td>
 
                   <td className="p-3 text-blue-600 break-all">
