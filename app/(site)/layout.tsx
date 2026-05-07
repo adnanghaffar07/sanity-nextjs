@@ -8,6 +8,7 @@ import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
 import CookieConsent from "./components/CookieConsent";
 import VisitorTracker from "./components/VisitorTracker";
+import AmplitudeTracker from "./components/AmplitudeTracker";
 
 // ✅ Dynamic imports
 const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
@@ -167,6 +168,7 @@ fbq('track', 'PageView');
             <ConditionalNavigation />
             <CookieConsent />
             <VisitorTracker />
+            <AmplitudeTracker />
             {children}
             <Suspense fallback={null}>
               <DeferredFormDisplay />

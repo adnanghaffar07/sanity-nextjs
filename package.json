@@ -11,6 +11,7 @@
     "deploy": "vercel"
   },
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.42.1",
     "@ant-design/react-slick": "^1.0.2",
     "@calcom/embed-react": "^1.5.3",
     "@formspree/react": "^2.5.1",
