@@ -94,7 +94,7 @@ export default async function Blogs() {
           alt="icon"
           className=" absolute left-0 top-20 lg:block hidden"
         />
-      <BlogList data={data} pageSize={6} />
+        <BlogList data={data} pageSize={6} />
         <img
           loading="lazy"
           src="/ellipse-2.png"

@@ -17,7 +17,7 @@ const AuthorBio = () => {
           />
           <div className="text-center md:text-left">
             <h2 className="text-xl font-bold text-sky-800">Adnan Ghaffar</h2>
-            <p className="text-gray-600 dark:text-gray-300">CEO, CodeAutomation.ai</p>
+            <p className="text-gray-800 dark:text-gray-800">CEO, CodeAutomation.ai</p>
           </div>
           <div className="flex gap-3 text-white">
             <a
@@ -54,7 +54,7 @@ const AuthorBio = () => {
         </div>
 
         {/* Bio Text */}
-        <div className="text-gray-700 dark:text-gray-200 text-[15px] leading-relaxed space-y-4">
+        <div className="text-gray-800 dark:text-gray-800 text-[15px] leading-relaxed space-y-4">
           <p>
             Adnan Ghaffar is the visionary CEO of CodeAutomation.ai, a platform dedicated to transforming how businesses build software through cutting-edge automation. With over a decade of experience in software development, QA automation, and team leadership, Adnan has built a reputation for delivering scalable, intelligent, and high-performance solutions.
           </p>
