@@ -109,14 +109,15 @@ const useCases: UseCase[] = [
     },
 ];
 
-// Tab Component
+// Tab Component - Responsive with horizontal scroll on mobile
 const TabButton = ({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) => (
     <button
         onClick={onClick}
-        className={`px-6 py-2 text-sm transition-all duration-300 ${active
-                ? "text-[#3498db] border-b-2 border-[#3498db]"
+        className={`px-4 sm:px-6 py-2 text-xs sm:text-sm whitespace-nowrap transition-all duration-300 ${
+            active 
+                ? "text-[#3498db] border-b-2 border-[#3498db]" 
                 : "text-gray-400 hover:text-gray-600"
-            }`}
+        }`}
     >
         {children}
     </button>
@@ -132,45 +133,48 @@ export default function DeploymentSection() {
     const rightColumn = useCases.slice(2, 4);
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-12 sm:py-20 bg-white overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                {/* Option 2: Tabbed Interface */}
-                <div className="mb-20">
-                    <div className="text-center mb-10">
+                {/* Tabbed Interface */}
+                <div className="mb-16 sm:mb-20">
+                    <div className="text-center mb-8 sm:mb-10">
                         <div className="inline-flex items-center gap-2 text-sm text-[#3498db] mb-3">
                             <span className="w-6 h-px bg-[#3498db]"></span>
                             <span>Solutions</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl text-gray-900 font-light mb-3">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl text-gray-900 font-light mb-3">
                             Choose your{" "}
                             <span className="font-medium text-[#3498db]">AI agent</span>
                         </h2>
                         <p className="text-gray-500 text-sm">Specialized for different parts of your business</p>
                     </div>
 
-                    {/* Tab Navigation */}
-                    <div className="flex justify-center border-b border-gray-100 mb-10">
-                        {useCases.map((item, idx) => (
-                            <TabButton key={idx} active={activeTab === idx} onClick={() => setActiveTab(idx)}>
-                                {item.title}
-                            </TabButton>
-                        ))}
+                    {/* Tab Navigation - Horizontal scroll on mobile */}
+                    <div className="overflow-x-auto overflow-y-hidden mb-8 pb-2">
+                        <div className="flex justify-start sm:justify-center border-b border-gray-100 min-w-max sm:min-w-0">
+                            {useCases.map((item, idx) => (
+                                <TabButton key={idx} active={activeTab === idx} onClick={() => setActiveTab(idx)}>
+                                    {item.title}
+                                </TabButton>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Active Tab Content */}
-                    <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
-                        <div className="grid md:grid-cols-2 gap-10 items-start">
+                    {/* Active Tab Content - Responsive padding */}
+                    <div className="bg-gray-50 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10">
+                        <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-start">
+                            {/* Left Column */}
                             <div>
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-lg bg-[#3498db]/10 flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-lg bg-[#3498db]/10 flex items-center justify-center shrink-0">
                                         {React.createElement(iconMap[activeUseCase.icon], {
                                             className: "w-5 h-5 text-[#3498db]"
                                         })}
                                     </div>
                                     <span className="text-xs text-gray-400 uppercase tracking-wide">AI Solution</span>
                                 </div>
-                                <h3 className="text-2xl text-gray-900 font-medium mb-3">{activeUseCase.title}</h3>
+                                <h3 className="text-xl sm:text-2xl text-gray-900 font-medium mb-3">{activeUseCase.title}</h3>
                                 <p className="text-gray-500 text-sm leading-relaxed mb-6">{activeUseCase.description}</p>
 
                                 <div className="space-y-3 mb-8">
@@ -194,25 +198,26 @@ export default function DeploymentSection() {
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-xl p-6 border border-gray-100">
+                            {/* Right Column - Conversation */}
+                            <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-100">
                                 <div className="text-center mb-4">
-                                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#3498db]/10 to-[#4b2d85]/10 flex items-center justify-center mx-auto mb-3">
+                                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#3498db]/10 to-[#4b2d85]/10 flex items-center justify-center mx-auto mb-3">
                                         {React.createElement(iconMap[activeUseCase.icon], {
-                                            className: "w-8 h-8 text-[#3498db]"
+                                            className: "w-6 h-6 sm:w-8 sm:h-8 text-[#3498db]"
                                         })}
                                     </div>
                                     <p className="text-gray-600 text-sm">See how it works</p>
                                 </div>
 
-                                {/* Dynamic Mock Conversation */}
+                                {/* Dynamic Mock Conversation - Responsive message width */}
                                 <div className="space-y-3">
                                     {activeUseCase.conversation.map((message, idx) => (
                                         <div 
                                             key={idx} 
-                                            className={`rounded-lg p-3 ${
+                                            className={`rounded-lg p-3 break-words ${
                                                 message.role === "customer" 
                                                     ? "bg-gray-50" 
-                                                    : "bg-[#3498db]/5 ml-4"
+                                                    : "bg-[#3498db]/5 ml-2 sm:ml-4"
                                             }`}
                                         >
                                             <p className={`text-xs mb-1 ${
@@ -222,7 +227,7 @@ export default function DeploymentSection() {
                                             }`}>
                                                 {message.role === "customer" ? "Customer" : "AI Agent"}
                                             </p>
-                                            <p className="text-sm text-gray-700">{message.message}</p>
+                                            <p className="text-sm text-gray-700 break-words">{message.message}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -240,44 +245,30 @@ export default function DeploymentSection() {
                     </div>
                 </div>
 
-                {/* Option 3: Two-Column List Layout */}
+                {/* Two-Column List Layout - Responsive */}
                 <div>
-                    <div className="text-center mb-10">
+                    <div className="text-center mb-8 sm:mb-10">
                         <div className="inline-flex items-center gap-2 text-sm text-[#3498db] mb-3">
                             <span className="w-6 h-px bg-[#3498db]"></span>
                             <span>At a glance</span>
                         </div>
-                        <h2 className="text-2xl text-gray-900 font-light">
+                        <h2 className="text-xl sm:text-2xl text-gray-900 font-light">
                             All{" "}
                             <span className="font-medium text-[#3498db]">AI capabilities</span>
                         </h2>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 max-w-3xl mx-auto">
-                        {leftColumn.map((item, idx) => {
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-3xl mx-auto">
+                        {[...leftColumn, ...rightColumn].map((item, idx) => {
                             const Icon = iconMap[item.icon];
                             return (
-                                <div key={idx} className="flex gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
-                                        <Icon className="w-5 h-5 text-gray-500" />
+                                <div key={idx} className="flex gap-3 sm:gap-4">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
+                                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" />
                                     </div>
                                     <div>
-                                        <h3 className="font-medium text-gray-900 mb-1">{item.title}</h3>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                        {rightColumn.map((item, idx) => {
-                            const Icon = iconMap[item.icon];
-                            return (
-                                <div key={idx} className="flex gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
-                                        <Icon className="w-5 h-5 text-gray-500" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-medium text-gray-900 mb-1">{item.title}</h3>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                                        <h3 className="font-medium text-gray-900 mb-1 text-sm sm:text-base">{item.title}</h3>
+                                        <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{item.description}</p>
                                     </div>
                                 </div>
                             );

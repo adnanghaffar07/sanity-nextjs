@@ -13,8 +13,8 @@ const RevenueEngine = () => {
     <div>
       <HeroSection/>
       <TrustedBySection/>
-      <DeploymentSection/>
-      <TryItTodaySection/>
+     <DeploymentSection/>
+        <TryItTodaySection/>
       <AiRevenueLeadModal />
     </div>
   )
