@@ -7,186 +7,137 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
     {
-        name: "Colin Lyons",
+        name: "Irv Shapiro",
+        title: "Founder & CTO",
+        company: "MakeWithTech",
+        quote: "The tests supported our rapid feature deployment processes. CodeAutomation.ai saved us hours of manual and expensive testing with just 5-10 minutes of automated tests. Their flexibility and workflow impressed us greatly.",
+    },
+    {
+        name: "Randy Narciso",
+        title: "VP of Product Innovation",
+        company: "College Planning Experts",
+        quote: "They are very well-versed in technology and able to explain difficult concepts with sound recommendations. They went above and beyond to ensure our satisfaction with the automated calling system and API integrations.",
+    },
+    {
+        name: "Kris Keyton",
+        title: "President",
+        company: "Electronic Monitoring Company",
+        quote: "They have great knowledge about development and testing. Their management and collaborative skills were remarkable. The team was highly responsive to our requirements and delivered great work that met our expectations.",
+    },
+    {
+        name: "Bindu Reddy",
         title: "CEO",
-        company: "Lyons Landscaping",
-        quote:
-            "I was skeptical about AI until I heard it speak at Dan Martell's event. The conversation was so realistic, I knew right then we needed this. It's completely transformed how we handle customer service - our staff is freed up and customers are finally getting the attention they deserve.",
+        company: "Abacus.AI",
+        quote: "They're responsive. The team did exactly what they were hired to do in a timely manner and impressed us with their responsiveness.",
     },
     {
-        name: "Alex Marroquin",
-        title: "Partner",
-        company: "Institute of AI",
-        quote:
-            "Atlas brings the best of both worlds, not just saving up to 70% in costs, but actually improving service and solving the constant challenge of sales capacity and redundancy. It's not just cheaper, it's better.",
-    },
-    {
-        name: "Landon Middleton",
-        title: "Founder",
-        company: "DBSadvantage",
-        quote:
-            "We're seeing 75 to 85% connection rates and 30% engagement. That becomes predictable, duplicatable, and scalable. We're literally making calls faster than we've ever been able to. Period.",
-    },
-    {
-        name: "Jonathan Keim",
-        title: "Partner",
-        company: "Robbins-Madanes Training",
-        quote:
-            "I've been blown away by the customer service and support we've received. They focus on client success, not policies. It's been a strong long-term partnership.",
-    },
-    {
-        name: "Eliza Fernandes",
-        title: "Founder",
-        company: "EMDR Trauma Therapy Center",
-        quote:
-            "I was concerned about privacy laws and sensitive calls. The Atlas team worked with us through every refinement. Now our clients can reach us 24/7 safely.",
-    },
-    {
-        name: "Steve Schock",
-        title: "Founder",
-        company: "Steve Schock Construction Company",
-        quote:
-            "Contractors don't call back. Now every lead gets a call within 30 seconds. Nobody is left behind anymore.",
+        name: "Washington Leon-Jordan",
+        title: "VP of Engineering",
+        company: "innRoad",
+        quote: "The quality of their work and ability to grow is impressive. They were willing to jump in on last-minute emergencies and provided high-quality work.",
     },
 ];
 
 export default function TrustedBySection() {
     return (
-        <section className="py-10 md:py-20 bg-gray-400/10">
+        <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Section Header - Matching previous style */}
-                <div className="text-center mb-12 md:mb-16">                  
-                    <h2 className="text-2xl md:text-4xl font-bold text-[#0c1224] mb-6 leading-[1.2] tracking-tight">
-                        Trusted by 15,000+{' '}
-                        <span className="relative inline-block">
-                            <span className="relative z-10 text-[#3498db]">Service Businesses</span>
-                            <svg className="absolute bottom-1 left-0 w-full h-4 -z-0" viewBox="0 0 200 10" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 5 Q 50 10 100 5 Q 150 0 200 5" stroke="#f7e022" strokeWidth="4" fill="none" strokeLinecap="round"/>
-                            </svg>
-                        </span>
-                        <span className="block mt-2">Across North America</span>
-                    </h2>
+
+                {/* Alternative Layout 1: Left-Right Split for Header */}
+                <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6">
+                    <div className="lg:max-w-2xl">
+                        <div className="inline-flex items-center gap-2 text-sm text-[#3498db] mb-4">
+                            <span className="w-8 h-px bg-[#3498db]"></span>
+                            <span>Social Proof</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl text-gray-900 font-light leading-tight">
+                            Trusted by{' '}
+                            <span className="font-medium text-[#3498db]">15,000+</span>
+                            <br />
+                            service businesses
+                            <span className="text-gray-400"> across America</span>
+                        </h2>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-400 text-sm">
+                        <span>Real reviews from real founders</span>
+                    </div>
                 </div>
 
-                {/* Testimonials Grid - Enhanced card styling */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-8 mb-16 md:mb-20 max-w-5xl mx-auto">
-                    {testimonials.map((t, i) => (
-                        <div
-                            key={i}
-                            className="group relative bg-white rounded-2xl p-7 transition-all duration-500 hover:shadow-2xl border border-gray-100 hover:border-gray-200 overflow-hidden"
-                        >
-                            {/* Gradient bar at top - matching previous style */}
-                            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#3498db] via-[#f7e022] to-[#3498db] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
-                            
-                            {/* Header with avatar - enhanced */}
-                            <div className="relative mb-7 flex items-start justify-between gap-3">
-                                <div className="min-w-0 flex-1">
-                                    <p className="text-base font-bold text-[#0c1224] mb-1 leading-tight group-hover:text-[#3498db] transition-colors duration-300">
-                                        <span className="text-[#3498db] mr-1 text-2xl">❝</span>
-                                        {t.name}
-                                    </p>
-                                    <p className="text-sm font-semibold italic text-[#1e2c58]">
-                                        {t.title}, {t.company}
-                                    </p>
-                                </div>
-                                
-                                {/* Avatar - enhanced styling */}
-                                <div className="relative">
-                                    <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#3498db] to-[#4b2d85] text-base font-bold text-white shadow-md group-hover:scale-110 transition-transform duration-300">
-                                        {t.name
-                                            .split(" ")
-                                            .map((name) => name[0])
-                                            .join("")
-                                            .slice(0, 2)}
-                                    </div>
-                                    {/* Decorative dot */}
-                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#f7e022] rounded-full border-2 border-white"></div>
-                                </div>
-                            </div>
-
-                            {/* Quote text - improved typography */}
-                            <p className="text-gray-600 text-sm leading-[1.85]">
-                                {t.quote}
+                {/* Alternative Layout 2: Carousel-style Grid with Alternating Cards */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                    {/* Featured testimonial - larger */}
+                    <div className="lg:row-span-2 bg-gradient-to-br from-[#3498db] to-[#4b2d85] rounded-2xl p-8 text-white relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                        <div className="relative z-10">
+                            <div className="text-6xl mb-4 opacity-50">&quot;</div>
+                            <p className="text-lg leading-relaxed mb-6">
+                                {testimonials[0].quote}
                             </p>
-                            
-                            {/* Decorative dots at bottom right - matching previous style */}
-                            <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
-                                <svg className="w-6 h-6 text-[#3498db]/20" fill="currentColor" viewBox="0 0 24 24">
-                                    <circle cx="5" cy="5" r="2" />
-                                    <circle cx="12" cy="5" r="2" />
-                                    <circle cx="19" cy="5" r="2" />
-                                    <circle cx="5" cy="12" r="2" />
-                                    <circle cx="12" cy="12" r="2" />
-                                    <circle cx="19" cy="12" r="2" />
-                                </svg>
+                            <div>
+                                <p className="font-medium text-lg">{testimonials[0].name}</p>
+                                <p className="text-sm opacity-80">{testimonials[0].title}, {testimonials[0].company}</p>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Regular testimonials */}
+                    {testimonials.slice(1, 4).map((t, i) => (
+                        <div key={i} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+                            <div className="flex items-start gap-4 mb-4">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-600 text-sm font-medium">
+                                    {t.name.split(" ").map(n => n[0]).join("")}
+                                </div>
+                                <div>
+                                    <p className="font-medium text-gray-900">{t.name}</p>
+                                    <p className="text-xs text-gray-500">{t.title}, {t.company}</p>
+                                </div>
+                            </div>
+                            <p className="text-gray-600 text-sm leading-relaxed">{t.quote}</p>
+                        </div>
+                    ))}
+
+                    {/* Remaining testimonials */}
+                    {testimonials.slice(4, 6).map((t, i) => (
+                        <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                            <div className="flex items-start gap-4 mb-4">
+                                <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center text-[#3498db] text-sm font-medium">
+                                    {t.name.split(" ").map(n => n[0]).join("")}
+                                </div>
+                                <div>
+                                    <p className="font-medium text-gray-900">{t.name}</p>
+                                    <p className="text-xs text-gray-500">{t.title}, {t.company}</p>
+                                </div>
+                            </div>
+                            <p className="text-gray-600 text-sm leading-relaxed">{t.quote}</p>
                         </div>
                     ))}
                 </div>
 
-                {/* Video Section - Enhanced with styling */}
-                <div className="relative mb-16 md:mb-20">
-                    {/* Background decoration */}
-                    <div className="absolute inset-0 flex justify-center items-center">
-                        <div className="w-64 h-64 bg-[#3498db]/5 rounded-full blur-3xl animate-pulse"></div>
-                    </div>
-                    
-                    <div className="relative text-center">
-                        <div className="max-w-4xl mx-auto">
-                                                    
-                            <h3 className="text-2xl md:text-3xl font-bold text-[#0c1224] mb-12 leading-[1.2] tracking-tight">
-                                How Dan Martell Uses These{' '}
-                                <span className="relative inline-block">
-                                    <span className="relative z-10 text-[#3498db]">AI Sales Agents</span>
-                                    <svg className="absolute bottom-1 left-0 w-full h-3 -z-0" viewBox="0 0 200 10" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0 5 Q 50 10 100 5 Q 150 0 200 5" stroke="#f7e022" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                                    </svg>
-                                </span>
-                                <span className="block mt-2">Inside His Businesses</span>
-                            </h3>
-                            
-                            {/* Video container - enhanced */}
-                            <div className="relative mx-auto w-full max-w-2xl overflow-hidden">
-                                <div className="aspect-video w-full bg-black">
-                                    <iframe
-                                        className="h-full w-full"
-                                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-                                        title="AI Agent Demo Video"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
-                                </div>
-                            </div>
+                {/* Alternative Layout 3: Video Section as a Story Card */}
+           
+
+                {/* Alternative Layout 4: Minimal CTA Section */}
+                <div className="text-center">
+                    {/* Horizontal rule with text */}
+                    <div className="relative mb-8">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div className="relative flex justify-center">
+                            <span className="bg-white px-4 text-xs text-gray-400">ready to scale?</span>
                         </div>
                     </div>
-                </div>
-
-                {/* CTA Button Section - Enhanced with previous styling */}
-                <div className="relative text-center">
-                    {/* Background decoration */}
-                    <div className="absolute inset-0 flex justify-center items-center">
-                        <div className="w-48 h-48 bg-[#f7e022]/10 rounded-full blur-3xl"></div>
-                    </div>
-                    
-                    <div className="relative">                        
-                        {/* Button - enhanced with gradient and animations */}
-                        <button
-                            type="button"
-                            data-open-ai-form="true"
-                            className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#3498db] to-[#4b2d85] px-8 py-4 text-xl md:text-2xl font-bold tracking-wide text-white uppercase shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 active:scale-95 max-md:text-lg"
-                        >
-                            {/* Shine effect */}
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                            
-                            <img src="/headphone.png" alt="headphone icon" className="h-8 w-8 md:h-10 md:w-10 filter brightness-0 invert" />
-                            <span className="relative">TEST THE AGENT NOW</span>
-                            
-                            {/* Arrow icon */}
-                            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </button>
-                    </div>
+                    <button
+                        type="button"
+                        data-open-ai-form="true"
+                        className="group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#3498db] to-[#4b2d85] px-6 py-3 text-sm text-white shadow-md hover:shadow-lg transition-all duration-300 hover:brightness-105"
+                    >
+                        <img src="/headphone.png" alt="headphone" className="h-4 w-4 filter brightness-0 invert" />
+                        <span>Talk to AI Recipient</span>
+                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>

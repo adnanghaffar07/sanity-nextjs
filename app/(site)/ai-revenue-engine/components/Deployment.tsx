@@ -1,15 +1,12 @@
+"use client"
 import React from "react";
 import {
-    Zap,
     Headphones,
-    Users,
-    RotateCcw,
     CalendarCheck,
+    RotateCcw,
     MessageCircle,
     CheckCircle2,
-    Target,
-    Bot,
-    Smartphone,
+    ArrowRight,
 } from "lucide-react";
 
 // Type definitions
@@ -18,226 +15,274 @@ interface UseCase {
     icon: keyof typeof iconMap;
     description: string;
     points: string[];
-    perfectFor: string;
+    perfectFor: string[];
     colorAccent: "#3498db" | "#f7e022";
+    conversation: { role: "customer" | "agent"; message: string }[];
 }
 
 const iconMap = {
     headphones: Headphones,
-    users: Users,
-    "rotate-ccw": RotateCcw,
     "calendar-check": CalendarCheck,
+    "rotate-ccw": RotateCcw,
     "message-circle": MessageCircle,
-    bot: Bot,
 };
 
 const useCases: UseCase[] = [
     {
-        title: "AI RECEPTIONIST",
+        title: "AI Receptionist",
         icon: "headphones",
-        description:
-            "Your always-on front desk that never misses a call, never puts customers on hold, and never loses a lead.",
+        description: "Your always-on front desk that never misses a call, never puts customers on hold, and never loses a lead.",
         points: [
-            "Answers every incoming call instantly, 24/7 without delays",
-            "Handles FAQs, service inquiries, and basic customer requests automatically",
-            "Books appointments directly into your calendar based on your rules",
-            "Transfers or escalates high-intent leads with full conversation context",
+            "Answers every incoming call instantly, 24/7",
+            "Handles FAQs and service inquiries automatically",
+            "Books appointments directly into your calendar",
+            "Transfers high-intent leads with full context"
         ],
-        perfectFor:
-            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Law Firms • Insurance Providers",
+        perfectFor: ["HVAC", "Plumbing", "Electrical", "Contractors", "Dental Clinics", "Real Estate"],
         colorAccent: "#3498db",
+        conversation: [
+            { role: "customer", message: "Hi, my AC is making a weird noise. Can you help?" },
+            { role: "agent", message: "Of course! I can send a technician today between 2-4 PM. Does that work for you?" },
+            { role: "customer", message: "Yes, that's perfect. What's your address?" },
+            { role: "agent", message: "Great! I've booked Mike for 2 PM. You'll receive a confirmation text with details." },
+        ],
     },
     {
-        title: "AI SCHEDULING ASSISTANT",
+        title: "AI Scheduling Assistant",
         icon: "calendar-check",
-        description:
-            "Never lose bookings or waste time coordinating calendars again. Your AI handles scheduling automatically so your team can focus on actual work, not back-and-forth messaging.",
+        description: "Never lose bookings or waste time coordinating calendars again. Handles scheduling automatically.",
         points: [
-            "Instantly books appointments based on real-time availability",
-            "Eliminates back-and-forth calls, texts, and emails",
-            "Sends automatic confirmations and reminders to reduce no-shows",
-            "Handles rescheduling and cancellations without human input",
+            "Instantly books appointments based on availability",
+            "Eliminates back-and-forth communication",
+            "Sends confirmations and reminders",
+            "Handles rescheduling without human input"
         ],
-        perfectFor:
-            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Legal Firms • Insurance Agencies",
+        perfectFor: ["Medical Practices", "Salons & Spas", "Consulting", "Home Services"],
         colorAccent: "#3498db",
+        conversation: [
+            { role: "customer", message: "I need to schedule a dental cleaning for next week." },
+            { role: "agent", message: "I have openings on Tuesday at 10 AM or Thursday at 2 PM. Which works better?" },
+            { role: "customer", message: "Tuesday at 10 AM sounds great." },
+            { role: "agent", message: "Perfect! I've booked Dr. Smith for Tuesday at 10 AM. A reminder will be sent 24 hours before." },
+        ],
     },
     {
-        title: '"DEAD" LEADS REVIVER',
+        title: "Dead Leads Reviver",
         icon: "rotate-ccw",
-        description:
-            "Turn forgotten leads into booked jobs without lifting a finger. Your AI automatically re-engages old prospects sitting in your CRM and brings them back to life.",
+        description: "Turn forgotten leads into booked jobs automatically. Re-engages old prospects from your CRM.",
         points: [
-            "Reaches out to old and cold leads automatically from your CRM",
-            "Restarts conversations with personalized, human-like messaging",
-            "Re-qualifies interest to identify who is still ready to buy",
-            "Converts inactive leads into booked appointments and sales",
+            "Reaches out to old leads automatically",
+            "Restarts conversations with personalized messaging",
+            "Re-qualifies interest and intent",
+            "Converts inactive leads into appointments"
         ],
-        perfectFor:
-            "Real Estate • HVAC • Plumbing • Contractors • Legal Firms • Med Spas • Insurance Agencies • Home Services • Any business with an existing CRM database",
+        perfectFor: ["Real Estate", "Insurance", "Legal Services", "Home Services"],
         colorAccent: "#f7e022",
-    },
-    {
-        title: "AI ANSWERING SERVICE",
-        icon: "headphones",
-        description:
-            "Never miss another customer call again — even after hours, on weekends, or during peak workload. Your AI handles every call like a trained receptionist.",
-        points: [
-            "Answers inbound calls instantly with natural, human-like conversation",
-            "Provides 24/7 coverage so no lead goes unanswered",
-            "Captures customer details and call intent for your team to follow up",
-            "Routes calls or books appointments based on your business rules",
+        conversation: [
+            { role: "agent", message: "Hi Michael, we noticed you were interested in our services 3 months ago. Still looking?" },
+            { role: "customer", message: "Actually yes, I've been meaning to reach back out." },
+            { role: "agent", message: "Great timing! I can schedule a free consultation this week. Are you available Thursday?" },
+            { role: "customer", message: "Thursday at 1 PM works for me." },
+            { role: "agent", message: "Perfect! I've sent the calendar invite to your email." },
         ],
-        perfectFor:
-            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Legal Firms • Insurance Providers",
-        colorAccent: "#3498db",
     },
     {
-        title: "AI CHATBOT",
+        title: "AI Chatbot",
         icon: "message-circle",
-        description:
-            "Your 24/7 website assistant that engages visitors, answers questions, and turns traffic into qualified leads automatically.",
+        description: "Your 24/7 website assistant that engages visitors and turns traffic into qualified leads.",
         points: [
-            "Engages website visitors instantly before they leave your site",
-            "Answers FAQs in real time without human intervention",
-            "Collects lead details and qualifies prospects automatically",
-            "Books appointments directly from your website chat",
+            "Engages visitors instantly",
+            "Answers FAQs in real time",
+            "Collects and qualifies leads",
+            "Books appointments from your website"
         ],
-        perfectFor:
-            "HVAC • Plumbing • Electrical • Contractors • Dental Clinics • Med Spas • Real Estate Agencies • Legal Firms • Insurance Providers • Any service business with a website",
-        colorAccent: "#f7e022",
+        perfectFor: ["E-commerce", "SaaS", "Agencies", "Professional Services"],
+        colorAccent: "#3498db",
+        conversation: [
+            { role: "customer", message: "What's your pricing for the pro plan?" },
+            { role: "agent", message: "Our Pro plan is $99/month with a 14-day free trial. Would you like to see a demo?" },
+            { role: "customer", message: "Yes, I'd love to see how it works." },
+            { role: "agent", message: "Awesome! Can I grab your email to send you a demo video and schedule a call?" },
+            { role: "customer", message: "Sure, it's mike@example.com" },
+            { role: "agent", message: "Thanks Mike! Check your inbox in the next minute. Anything else I can help with?" },
+        ],
     },
 ];
 
-// Card Component Props
-interface DeploymentCardProps {
-    item: UseCase;
-}
-
-const DeploymentCard: React.FC<DeploymentCardProps> = ({ item }) => {
-    const IconComponent = iconMap[item.icon] || Bot;
-    const isBlue = item.colorAccent === "#3498db";
-    const accentColor = item.colorAccent;
-    const accentBg = isBlue ? "bg-[#3498db]/10" : "bg-[#f7e022]/10";
-    const iconBorderColor = isBlue ? "border-[#3498db]/20" : "border-[#f7e022]/20";
-
-    // Split perfectFor into all tags (no limit)
-    const perfectTags = item.perfectFor.split(",").map((t) => t.trim());
-
-    return (
-        <div
-            className="group bg-white border border-gray-200 rounded-3xl p-6 lg:p-7 flex flex-col relative overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-gray-300"
-            style={{ borderColor: "#e9edf2" }}
-        >
-            {/* Header with icon + badge */}
-            <div className="flex items-start justify-between mb-5">
-                <div
-                    className={`w-12 h-12 rounded-2xl ${accentBg} flex items-center justify-center transition-all duration-200 group-hover:scale-105 group-hover:shadow-md border ${iconBorderColor}`}
-                >
-                    <IconComponent className="w-6 h-6" style={{ color: accentColor, strokeWidth: 1.7 }} />
-                </div>
-                <div className="inline-flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    <span className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide">
-                        AI Ready
-                    </span>
-                </div>
-            </div>
-
-            {/* Title */}
-            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-5 tracking-tight">
-                {item.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-gray-500 text-sm leading-[1.89] mb-7">{item.description}</p>
-
-            {/* Bullet points */}
-            <div className="space-y-2.5 mb-6 flex-1">
-                {item.points.map((point, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: accentColor }} />
-                        <span className="text-gray-700 text-sm font-medium leading-relaxed">
-                            {point}
-                        </span>
-                    </div>
-                ))}
-            </div>
-
-            {/* Perfect For Section - ALL tags displayed */}
-            <div className="pt-5 mt-2 border-t border-gray-100">
-                <div className="flex items-center gap-1.5 mb-3">
-                    <Target className="w-3.5 h-3.5 text-gray-400" />
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
-                        Perfect For
-                    </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                    {perfectTags.map((tag, idx) => (
-                        <span
-                            key={idx}
-                            className="bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-xs font-medium text-gray-700 transition-colors hover:border-opacity-50"
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-};
+// Tab Component
+const TabButton = ({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) => (
+    <button
+        onClick={onClick}
+        className={`px-6 py-2 text-sm transition-all duration-300 ${active
+                ? "text-[#3498db] border-b-2 border-[#3498db]"
+                : "text-gray-400 hover:text-gray-600"
+            }`}
+    >
+        {children}
+    </button>
+);
 
 // Main Component
 export default function DeploymentSection() {
-    const firstThree = useCases.slice(0, 3);
-    const lastTwo = useCases.slice(3, 5);
+    const [activeTab, setActiveTab] = React.useState(0);
+    const activeUseCase = useCases[activeTab];
+
+    // Split use cases into two columns for the list view
+    const leftColumn = useCases.slice(0, 2);
+    const rightColumn = useCases.slice(2, 4);
 
     return (
-        <section className="py-10 md:py-20 relative overflow-hidden bg-[#3498db]/5">
-            {/* Decorative background blobs */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#3498db] opacity-[0.02] rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#f7e022] opacity-[0.02] rounded-full blur-3xl pointer-events-none" />
+        <section className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-                {/* Header Section */}
-                <div className="text-center max-w-4xl mx-auto mb-20 md:mb-24">
-                    {/* Main Heading with squiggle underline */}
-                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
-                        Where Exactly Can I Use These{" "}
-                        <br className="hidden sm:block" />
-                        <span className="relative inline-block whitespace-nowrap">
-                            <span className="relative z-10 text-[#3498db]">AI Employees?</span>
-                            <span
-                                className="absolute bottom-1 left-0 w-full h-3 bg-no-repeat bg-bottom"
-                                style={{
-                                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath fill='none' stroke='%23f7e022' stroke-width='3.5' stroke-linecap='round' d='M5 7 Q 45 1 85 7 Q 125 13 170 7 Q 195 3 200 7'/%3E%3C/svg%3E")`,
-                                    backgroundSize: "180px 12px",
-                                }}
-                            />
-                        </span>
-                        
-                    </h2>
+                {/* Option 2: Tabbed Interface */}
+                <div className="mb-20">
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center gap-2 text-sm text-[#3498db] mb-3">
+                            <span className="w-6 h-px bg-[#3498db]"></span>
+                            <span>Solutions</span>
+                        </div>
+                        <h2 className="text-3xl sm:text-4xl text-gray-900 font-light mb-3">
+                            Choose your{" "}
+                            <span className="font-medium text-[#3498db]">AI agent</span>
+                        </h2>
+                        <p className="text-gray-500 text-sm">Specialized for different parts of your business</p>
+                    </div>
 
-                    {/* Description text */}
-                    <p className="text-gray-500 text-md md:text-lg max-w-2xl mx-auto leading-relaxed">
-Anywhere your business talks to leads or books customers.                    </p>
-                    {/* Description text */}
-                    <p className="text-gray-500 text-md mt-10 max-w-3xl font-semibold mx-auto leading-relaxed">
-Below are some examples of how services businesses are using AI revenue engines.                    </p>
+                    {/* Tab Navigation */}
+                    <div className="flex justify-center border-b border-gray-100 mb-10">
+                        {useCases.map((item, idx) => (
+                            <TabButton key={idx} active={activeTab === idx} onClick={() => setActiveTab(idx)}>
+                                {item.title}
+                            </TabButton>
+                        ))}
+                    </div>
+
+                    {/* Active Tab Content */}
+                    <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
+                        <div className="grid md:grid-cols-2 gap-10 items-start">
+                            <div>
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-10 h-10 rounded-lg bg-[#3498db]/10 flex items-center justify-center">
+                                        {React.createElement(iconMap[activeUseCase.icon], {
+                                            className: "w-5 h-5 text-[#3498db]"
+                                        })}
+                                    </div>
+                                    <span className="text-xs text-gray-400 uppercase tracking-wide">AI Solution</span>
+                                </div>
+                                <h3 className="text-2xl text-gray-900 font-medium mb-3">{activeUseCase.title}</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed mb-6">{activeUseCase.description}</p>
+
+                                <div className="space-y-3 mb-8">
+                                    {activeUseCase.points.map((point, idx) => (
+                                        <div key={idx} className="flex items-start gap-3">
+                                            <CheckCircle2 className="w-4 h-4 text-[#3498db] shrink-0 mt-0.5" />
+                                            <span className="text-gray-600 text-sm">{point}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div>
+                                    <p className="text-xs text-gray-400 uppercase tracking-wide mb-3">Perfect for</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {activeUseCase.perfectFor.map((tag, idx) => (
+                                            <span key={idx} className="bg-white border border-gray-200 rounded-full px-3 py-1 text-xs text-gray-600">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-white rounded-xl p-6 border border-gray-100">
+                                <div className="text-center mb-4">
+                                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#3498db]/10 to-[#4b2d85]/10 flex items-center justify-center mx-auto mb-3">
+                                        {React.createElement(iconMap[activeUseCase.icon], {
+                                            className: "w-8 h-8 text-[#3498db]"
+                                        })}
+                                    </div>
+                                    <p className="text-gray-600 text-sm">See how it works</p>
+                                </div>
+
+                                {/* Dynamic Mock Conversation */}
+                                <div className="space-y-3">
+                                    {activeUseCase.conversation.map((message, idx) => (
+                                        <div 
+                                            key={idx} 
+                                            className={`rounded-lg p-3 ${
+                                                message.role === "customer" 
+                                                    ? "bg-gray-50" 
+                                                    : "bg-[#3498db]/5 ml-4"
+                                            }`}
+                                        >
+                                            <p className={`text-xs mb-1 ${
+                                                message.role === "customer" 
+                                                    ? "text-gray-400" 
+                                                    : "text-[#3498db]"
+                                            }`}>
+                                                {message.role === "customer" ? "Customer" : "AI Agent"}
+                                            </p>
+                                            <p className="text-sm text-gray-700">{message.message}</p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <button
+                                    type="button"
+                                    data-open-ai-form="true"
+                                    className="w-full mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-[#3498db] transition-colors"
+                                >
+                                    <span>Try demo conversation</span>
+                                    <ArrowRight className="w-3 h-3" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Cards Grid - Row 1 (3 cards) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-                    {firstThree.map((item, idx) => (
-                        <DeploymentCard key={idx} item={item} />
-                    ))}
-                </div>
+                {/* Option 3: Two-Column List Layout */}
+                <div>
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center gap-2 text-sm text-[#3498db] mb-3">
+                            <span className="w-6 h-px bg-[#3498db]"></span>
+                            <span>At a glance</span>
+                        </div>
+                        <h2 className="text-2xl text-gray-900 font-light">
+                            All{" "}
+                            <span className="font-medium text-[#3498db]">AI capabilities</span>
+                        </h2>
+                    </div>
 
-                {/* Cards Grid - Row 2 (2 cards) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {lastTwo.map((item, idx) => (
-                        <DeploymentCard key={idx} item={item} />
-                    ))}
+                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 max-w-3xl mx-auto">
+                        {leftColumn.map((item, idx) => {
+                            const Icon = iconMap[item.icon];
+                            return (
+                                <div key={idx} className="flex gap-4">
+                                    <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
+                                        <Icon className="w-5 h-5 text-gray-500" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-medium text-gray-900 mb-1">{item.title}</h3>
+                                        <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                        {rightColumn.map((item, idx) => {
+                            const Icon = iconMap[item.icon];
+                            return (
+                                <div key={idx} className="flex gap-4">
+                                    <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
+                                        <Icon className="w-5 h-5 text-gray-500" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-medium text-gray-900 mb-1">{item.title}</h3>
+                                        <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </section>

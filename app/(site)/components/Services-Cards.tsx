@@ -5,13 +5,18 @@ import { urlForImage } from "@/sanity/lib/image";
 import ScrollAnimation from "../components/ScrollAnimation";
 import { Link as ScrollLink } from "react-scroll";
 
+const PINNED_SERVICE_ORDER = [
+    "ai-agent",
+    "ai-business-automation-solutions",
+];
+
 const ServicesCard = ({ data }: any) => {
     const [originalServices, setOriginalServices] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const itemsPerPage = 9;
+    const itemsPerPage = 15;
 
     // ✅ set props.data into state only once
     useEffect(() => {
@@ -23,6 +28,24 @@ const ServicesCard = ({ data }: any) => {
     // Filtering (search)
     const filteredServices = useMemo(() => {
         let items = originalServices;
+
+        items = items
+            .map((item, index) => ({ item, index }))
+            .sort((a, b) => {
+                const aPath = a.item?.urlPath?.toLowerCase?.() || "";
+                const bPath = b.item?.urlPath?.toLowerCase?.() || "";
+
+                const aIndex = PINNED_SERVICE_ORDER.indexOf(aPath);
+                const bIndex = PINNED_SERVICE_ORDER.indexOf(bPath);
+
+                if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+                if (aIndex !== -1) return -1;
+                if (bIndex !== -1) return 1;
+
+                // Keep original order for all non-pinned cards.
+                return a.index - b.index;
+            })
+            .map(({ item }) => item);
 
         if (searchTerm) {
             items = items.filter((item) =>
