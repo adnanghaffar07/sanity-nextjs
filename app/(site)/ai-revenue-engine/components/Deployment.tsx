@@ -150,8 +150,8 @@ export default function DeploymentSection() {
                         <p className="text-gray-500 text-sm">Specialized for different parts of your business</p>
                     </div>
 
-                    {/* Tab Navigation - Horizontal scroll on mobile */}
-                    <div className="overflow-x-auto overflow-y-hidden mb-8 pb-2">
+                    {/* Tab Navigation - Horizontal scroll on mobile with invisible scrollbar */}
+                    <div className="overflow-x-auto overflow-y-hidden mb-8 pb-2 scrollbar-none">
                         <div className="flex justify-start sm:justify-center border-b border-gray-100 min-w-max sm:min-w-0">
                             {useCases.map((item, idx) => (
                                 <TabButton key={idx} active={activeTab === idx} onClick={() => setActiveTab(idx)}>
@@ -276,6 +276,17 @@ export default function DeploymentSection() {
                     </div>
                 </div>
             </div>
+
+            {/* Add global styles for hiding scrollbar */}
+            <style jsx global>{`
+                .scrollbar-none {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+                .scrollbar-none::-webkit-scrollbar {
+                    display: none;
+                }
+            `}</style>
         </section>
     );
 }
