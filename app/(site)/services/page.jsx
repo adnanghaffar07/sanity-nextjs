@@ -42,7 +42,13 @@ export const metadata = {
 };
 
 async function getData() {
-  const query = `*[_type == 'logicalServices'] | order(_createdAt asc)`;
+  const query = `*[_type == "logicalServices"] | order(_createdAt asc){
+    _id,
+    urlPath,
+    serviceCardTitle,
+    serviceDesc,
+    cardIcon
+  }`;
   try {
     const fetchData = await client.fetch(query);
     return fetchData || [];

@@ -40,7 +40,14 @@ export const metadata = {
 };
 
 async function getValueData() {
-  const queryValue = `*[_type == 'portfolio' && pageType == 'blogs'] | order(_createdAt desc)`;
+  const queryValue = `*[_type == "portfolio" && pageType == "blogs"] | order(_createdAt desc){
+    _id,
+    slug,
+    title,
+    subtitle,
+    introductionheading,
+    heroimage
+  }`;
   try {
     const fetchData = await client.fetch(queryValue);
     return fetchData || [];
