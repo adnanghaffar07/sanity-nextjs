@@ -139,19 +139,32 @@ const GreetingPopup: React.FC = () => {
   });
 
   useEffect(() => {
-    async function fetchData() {
-      const [popupData] = await getPopupData();
-      setData(popupData);
-    }
-    fetchData();
+    let cancelled = false;
+    let showTimer: number | undefined;
+    let animTimer: number | undefined;
 
-    if (!localStorage.getItem("hasVisited")) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-        setTimeout(() => setIsAnimating(true), 300);
-      }, 8000);
-      return () => clearTimeout(timer);
+    async function init() {
+      const [popupData] = await getPopupData();
+      if (cancelled) return;
+      setData(popupData);
+
+      if (!localStorage.getItem("hasVisited")) {
+        // DelayedGreetingPopup defers mounting ~8s; brief pause after data keeps open animation smooth.
+        showTimer = window.setTimeout(() => {
+          if (cancelled) return;
+          setIsVisible(true);
+          animTimer = window.setTimeout(() => setIsAnimating(true), 300);
+        }, 300);
+      }
     }
+
+    void init();
+
+    return () => {
+      cancelled = true;
+      if (showTimer !== undefined) window.clearTimeout(showTimer);
+      if (animTimer !== undefined) window.clearTimeout(animTimer);
+    };
   }, []);
 
   const closePopup = () => {

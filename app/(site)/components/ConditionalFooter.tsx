@@ -1,6 +1,7 @@
-'use client';
+/** Client-only: pathname-based footer swap (same constraint as ConditionalNavigation). */
+"use client";
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import dynamic from 'next/dynamic';
 import React, { Suspense } from 'react';
 import MobileAppFooter from './MobileAppFooter';
@@ -19,7 +20,7 @@ export default function ConditionalFooter() {
   }
 
   return (
-    <Suspense fallback={<div className="h-[300px] bg-gray-100 animate-pulse" />}>
+    <Suspense fallback={null}>
       <FooterContainer />
     </Suspense>
   );

@@ -1,6 +1,10 @@
-'use client';
+/**
+ * Client-only: `usePathname()` is not available in Server Components without
+ * middleware/header plumbing; keep this shell tiny so the layout stays mostly RSC.
+ */
+"use client";
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import HomeNavigationContainer from './home-navigation-container';
 
 export default function ConditionalNavigation() {

@@ -1,37 +1,112 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import React, { Suspense } from "react";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import Script from "next/script";
+import { Suspense } from "react";
 import "../globals.css";
 import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
-import CookieConsent from "./components/CookieConsent";
-import VisitorTracker from "./components/VisitorTracker";
 
-// ✅ Dynamic imports
-const GoogleTagManagerClient = dynamic(() => import("./components/GoogleTagManagerClient"), { ssr: false });
-const DeferredFormDisplay = dynamic(() => import("./components/DeferredFormDisplay"), { ssr: false, loading: () => null });
-const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToTop"), { ssr: false, loading: () => null });
-const GreetingPopup = dynamic(() => import("./components/GreetingPopup"), { suspense: true, ssr: false });
+/**
+ * Site segment layout (App Router "root" for public marketing pages).
+ * Performance: RSC shell + deferred client islands; marketing pixels only on
+ * MarketingScripts (idle-deferred pixels on all routes); merged JSON-LD; no global OAuth wrapper.
+ */
+
+const CookieConsent = dynamic(() => import("./components/CookieConsent"), {
+  ssr: false,
+  loading: () => null,
+});
+const VisitorTracker = dynamic(() => import("./components/VisitorTracker"), {
+  ssr: false,
+  loading: () => null,
+});
+const DeferredFormDisplay = dynamic(() => import("./components/DeferredFormDisplay"), {
+  ssr: false,
+  loading: () => null,
+});
+const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToTop"), {
+  ssr: false,
+  loading: () => null,
+});
+const DelayedGreetingPopup = dynamic(() => import("./components/DelayedGreetingPopup"), {
+  ssr: false,
+  loading: () => null,
+});
+const MarketingScripts = dynamic(() => import("./components/MarketingScripts"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const SITE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      name: "CodeAutomation",
+      image: "https://www.codeautomation.ai/logo.png",
+      url: "https://www.codeautomation.ai",
+      telephone: "+1-815-614-8480",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Office 254, 1755 Park St Suite 200",
+        addressLocality: "Naperville",
+        addressRegion: "IL",
+        postalCode: "60563",
+        addressCountry: "US",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "41.7906",
+        longitude: "-88.1535",
+      },
+      openingHours: "Mo-Fr 09:00-17:00",
+      sameAs: [
+        "https://www.linkedin.com/company/codeautomation",
+        "https://www.facebook.com/codeautomation",
+      ],
+    },
+    {
+      "@type": "WebPage",
+      name: "Code Automation",
+      headline: "Software Development Company in the USA | CodeAutomation",
+      url: "https://codeautomation.ai/",
+      inLanguage: "en-US",
+      datePublished: "2024-08-20",
+      description:
+        "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
+      image: "https://codeautomation.ai/logo.svg",
+      isPartOf: { "@type": "WebSite", url: "https://codeautomation.ai/" },
+      mainEntity: [{ "@type": "Organization", name: "Code Automation" }],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        bestRating: "5",
+        ratingValue: "4.9",
+        reviewCount: "100",
+      },
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://codeautomation.ai"),
   title: "Custom Software & AI Development Company | CodeAutomation.ai",
-  description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
+  description:
+    "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
   keywords: ["CodeAutomation", "software development company", "software development services"],
   alternates: { canonical: "https://codeautomation.ai" },
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
-    description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
+    description:
+      "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
     images: [{ url: "https://codeautomation.ai/thankyou.jpg", width: 1200, height: 630, alt: "CodeAutomation Logo" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
-    description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
+    description:
+      "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };
@@ -39,168 +114,38 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* ✅ JSON-LD business info */}
-      <Script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="3XiQNYrZNQluAGac" data-version="062024"></Script>
-      <Script id="pixel-script" strategy="afterInteractive">
-        {`
-    (function(p,i,x,e,l){
-      p._pxq = p._pxq || [];
-      var s = i.createElement('script');
-      s.async = 1;
-      s.src = 'https://yrmeqjvgjltkgdiwvhhu.supabase.co/functions/v1/pixel';
-      s.setAttribute('data-site', e);
-      i.head.appendChild(s);
-    })(window,document,'px','px_13fdc02db8347e58');
-  `}
-      </Script>
-      <Script id="ld-business" type="application/ld+json" strategy="lazyOnload">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "CodeAutomation",
-          "image": "https://www.codeautomation.ai/logo.png",
-          "url": "https://www.codeautomation.ai",
-          "telephone": "+1-815-614-8480",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Office 254, 1755 Park St Suite 200",
-            "addressLocality": "Naperville",
-            "addressRegion": "IL",
-            "postalCode": "60563",
-            "addressCountry": "US",
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "41.7906",
-            "longitude": "-88.1535",
-          },
-          "openingHours": "Mo-Fr 09:00-17:00",
-          "sameAs": [
-            "https://www.linkedin.com/company/codeautomation",
-            "https://www.facebook.com/codeautomation",
-          ],
-        })}
-      </Script>
-
-      {/* 🚀 Preconnects for 3rd-party domains */}
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://analytics.tiktok.com" crossOrigin="anonymous" />
+      {/* Google Sign-In (LoginModal) — DNS hint only; scripts load when the modal mounts */}
       <link rel="preconnect" href="https://accounts.google.com" crossOrigin="anonymous" />
 
-      <div>
-        <GoogleOAuthProvider clientId="566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com">
-          {/* ✅ Lazy load third-party scripts post-LCP */}
-          <Script id="defer-scripts" strategy="afterInteractive">
-            {`
-  requestIdleCallback(() => {
-    // TikTok
-    !function(w,d,t){
-      w.TiktokAnalyticsObject=t;
-      var ttq=w[t]=w[t]||[];
-      ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
-      ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};};
-      for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-      ttq.instance=function(t){
-        for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);
-        return e;
-      };
-      ttq.load=function(e,n){
-        var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;
-        ttq._i=ttq._i||{};
-        ttq._i[e]=[];
-        ttq._i[e]._u=r;
-        ttq._t=ttq._t||{};
-        ttq._t[e]=+new Date;
-        ttq._o=ttq._o||{};
-        ttq._o[e]=n||{};
-        n=document.createElement("script");
-        n.type="text/javascript";
-        n.async=!0;
-        n.src=r+"?sdkid="+e+"&lib="+t;
-        e=document.getElementsByTagName("script")[0];
-        e.parentNode.insertBefore(n,e)
-      };
-      ttq.load('D0N3L93C77U7M2KJ8B60');
-      ttq.page();
-    }
-
-    // Facebook
-    !function(f,b,e,v,n,t,s){
-      if(f.fbq)return;
-      n=f.fbq=function(){
-        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
-      };
-      if(!f._fbq)f._fbq=n;
-      n.push=n;
-      n.loaded=!0;
-      n.version='2.0';
-      n.queue=[];
-      t=b.createElement(e);
-      t.async=!0;
-      t.src=v;
-      s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1960013544428790');
-    fbq('track', 'PageView');
-  });
-
-  //Facebook New Code
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1394365178720204');
-fbq('track', 'PageView');
-`}  </Script>
-
-          {/* ✅ Page Content */}
-          <div className="flex flex-col bg-white relative">
-            <ConditionalNavigation />
-            <CookieConsent />
-            <VisitorTracker />
-            {children}
-            <Suspense fallback={null}>
-              <DeferredFormDisplay />
-            </Suspense>
-            <ConditionalFooter />
-            <Suspense fallback={null}>
-              <DeferredScrollToTop />
-            </Suspense>
-            <Suspense fallback={<div className="h-[250px] bg-gray-100 animate-pulse" />}>
-              <GreetingPopup />
-            </Suspense>
-          </div>
-        </GoogleOAuthProvider>
-        {/* ✅ GTM (if needed) */}
-        <GoogleTagManagerClient gtmId="GTM-MJG35754" />
-
-        {/* ✅ Additional JSON-LD */}
-        <Script type="application/ld+json" strategy="lazyOnload" id="json-ld">
-          {JSON.stringify({
-            "@context": "http://schema.org",
-            "@type": "WebPage",
-            name: "Code Automation",
-            headline: "Software Development Company in the USA | CodeAutomation",
-            url: "https://codeautomation.ai/",
-            inLanguage: "en-US",
-            datePublished: "2024-08-20",
-            description: "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
-            image: "https://codeautomation.ai/logo.svg",
-            isPartOf: { "@type": "WebSite", url: "https://codeautomation.ai/" },
-            mainEntity: [{ "@type": "Organization", name: "Code Automation" }],
-            aggregateRating: { "@type": "AggregateRating", bestRating: "5", ratingValue: "4.9", reviewCount: "100" },
-          })}
-        </Script>
+      <div className="flex flex-col bg-white relative">
+        <ConditionalNavigation />
+        <Suspense fallback={null}>
+          <CookieConsent />
+        </Suspense>
+        <Suspense fallback={null}>
+          <VisitorTracker />
+        </Suspense>
+        {children}
+        <Suspense fallback={null}>
+          <DeferredFormDisplay />
+        </Suspense>
+        <ConditionalFooter />
+        <Suspense fallback={null}>
+          <DeferredScrollToTop />
+        </Suspense>
+        <DelayedGreetingPopup />
       </div>
+
+      {/* Single JSON-LD graph: fewer DOM nodes, same SEO payload */}
+      <Script id="site-structured-data" type="application/ld+json" strategy="lazyOnload">
+        {JSON.stringify(SITE_JSON_LD)}
+      </Script>
+
+      {/* Third-party pixels: after UI tree; production-gated + idle-loaded inside component */}
+      <MarketingScripts />
     </>
   );
 }
