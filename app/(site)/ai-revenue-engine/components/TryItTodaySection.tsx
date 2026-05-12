@@ -110,7 +110,7 @@ export default function TryItTodaySection() {
               </h3>
               
               <p className="text-gray-500 mt-2 mb-6">
-                Our AI agent will call you within 60 seconds
+                Our AI agent will call you within 10-15 seconds
               </p>
 
               {/* CTA Button - Gradient */}
@@ -136,7 +136,7 @@ export default function TryItTodaySection() {
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50">
                   <Clock className="h-3.5 w-3.5 text-blue-600" />
-                  <span className="text-xs text-blue-700">60 sec response</span>
+                  <span className="text-xs text-blue-700">10-15 sec response</span>
                 </div>
               </div>
             </div>

@@ -177,7 +177,7 @@ export default function AiRevenueLeadModal() {
             <span className="font-medium text-[#3498db]">Eva</span>
           </h2>
           <p className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2">
-            Experience our AI agent in less than 60 seconds
+            Experience our AI agent in less than 10-15 seconds
           </p>
         </div>
 
@@ -344,7 +344,7 @@ export default function AiRevenueLeadModal() {
               <div className="w-px h-2 sm:h-3 bg-gray-200"></div>
               <div className="flex items-center gap-1 sm:gap-1.5">
                 <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gray-400" />
-                <span className="text-[10px] sm:text-xs text-gray-500">60 sec response</span>
+                <span className="text-[10px] sm:text-xs text-gray-500">10-15 sec response</span>
               </div>
               <div className="w-px h-2 sm:h-3 bg-gray-200"></div>
               <div className="flex items-center gap-1 sm:gap-1.5">

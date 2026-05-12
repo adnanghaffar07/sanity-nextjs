@@ -49,7 +49,7 @@ export default function WaitPage() {
                 <p className="text-xs text-gray-400 uppercase tracking-wider mb-3">
                   Incoming call in
                 </p>
-                <WaitCallCountdown startSeconds={60} />
+                <WaitCallCountdown startSeconds={15} />
                 <div className="flex items-center justify-center gap-2 mt-4">
                   <Volume2 className="w-3.5 h-3.5 text-gray-400" />
                   <span className="text-xs text-gray-400">Keep your phone nearby</span>
@@ -70,7 +70,7 @@ export default function WaitPage() {
                     <Phone className="w-3 h-3 text-[#3498db]" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-gray-700">Phone rings in <span className="font-medium text-[#3498db]">under 60 seconds</span></p>
+                    <p className="text-sm text-gray-700">Phone rings in <span className="font-medium text-[#3498db]">under 15 seconds</span></p>
                     <p className="text-xs text-gray-400 mt-0.5">From a US number — answer to meet Eva</p>
                   </div>
                   <Bell className="w-4 h-4 text-gray-300 flex-shrink-0" />
@@ -112,7 +112,7 @@ export default function WaitPage() {
                 </div>
                 <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-gray-50">
                   <Clock className="w-3 h-3 text-amber-500" />
-                  <span className="text-gray-500">60 sec response</span>
+                  <span className="text-gray-500">15 sec response</span>
                 </div>
               </div>
               
