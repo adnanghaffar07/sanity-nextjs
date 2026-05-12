@@ -360,7 +360,7 @@ const GreetingPopup: React.FC = () => {
               {/* Phone Field with Country Code Selector */}
               <div>
                 <PhoneInput
-                  country={'uk'} // Default country (Pakistan)
+                  country={'us'} // Default country (Pakistan)
                   value={values.contact_number}
                   onChange={handlePhoneChange}
                   onBlur={handlePhoneBlur}
