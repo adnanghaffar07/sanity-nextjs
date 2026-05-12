@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import PhoneInput from 'react-phone-input-2';
+// @ts-ignore
+import 'react-phone-input-2/lib/style.css';
 
 async function getPopupData() {
   try {
@@ -57,9 +60,10 @@ const GreetingPopup: React.FC = () => {
   };
 
   const validateContactNumber = (number: string): string => {
-    const phoneRegex = /^[\d+\-\s]{7,20}$/;
     if (!number) return "Contact number is required";
-    if (!phoneRegex.test(number)) return "Enter a valid contact number";
+    // Remove the country code part for validation (after the + and country code)
+    const numberWithoutCountry = number.replace(/^\+\d+\s*/, '');
+    if (numberWithoutCountry.length < 5) return "Enter a valid contact number";
     return "";
   };
 
@@ -106,6 +110,21 @@ const GreetingPopup: React.FC = () => {
     }
   };
 
+  const handlePhoneChange = (value: string, country: any) => {
+    // value comes as "+1234567890" format
+    setValues(prev => ({ ...prev, contact_number: value }));
+    if (touched.contact_number) {
+      const error = validateContactNumber(value);
+      setErrors(prev => ({ ...prev, contact_number: error }));
+    }
+  };
+
+  const handlePhoneBlur = () => {
+    setTouched(prev => ({ ...prev, contact_number: true }));
+    const error = validateContactNumber(values.contact_number);
+    setErrors(prev => ({ ...prev, contact_number: error }));
+  };
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setTouched(prev => ({ ...prev, [name]: true }));
@@ -148,11 +167,12 @@ const GreetingPopup: React.FC = () => {
     setProgressWidth("w-[10%]");
 
     try {
-      const response = await fetch("/api/popupform", {
+      const response = await fetch("/api/projectdiscussionform", {
         method: "POST",
         body: formData,
       });
 
+      // Send lead to GoHighLevel CRM with correct field mapping
       try {
         const ghlResponse = await fetch("/api/lead", {
           method: "POST",
@@ -162,10 +182,10 @@ const GreetingPopup: React.FC = () => {
           body: JSON.stringify({
             name: values.name,
             email: values.email,
-            phone: values.contact_number,
+            phone: values.contact_number, // Now comes with country code like "+1234567890"
             what_are_you_looking_for: values.looking,
-            message: values.subscribe
-              ? "Popup form submission (newsletter subscribed)"
+            message: values.subscribe 
+              ? "Popup form submission (newsletter subscribed)" 
               : "Popup form submission",
           }),
         });
@@ -301,24 +321,82 @@ const GreetingPopup: React.FC = () => {
             )}
             <div className="text-lg font-base text-center text-black mb-4 mt-5">{data?.title}</div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-[260px] md:w-[300px]">
-              {(["name", "email", "contact_number", "looking"] as Array<keyof Omit<FormValues, "subscribe">>).map((field) => (
-                <div key={field}>
-                  <input
-                    name={field}
-                    value={values[field] as string}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    type="text"
-                    placeholder={field === "looking" ? "What are you looking for?" : `Enter your ${field}`}
-                    className={`text-sm px-2 py-1.5 shadow-md bg-white border rounded-md outline-none w-full ${
-                      errors[field] && touched[field] ? "border-red-400" : "border-gray-400"
-                    }`}
-                  />
-                  {errors[field] && touched[field] && (
-                    <p className="text-red-500 text-xs mt-1">{errors[field]}</p>
-                  )}
-                </div>
-              ))}
+              {/* Name Field */}
+              <div>
+                <input
+                  name="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="text"
+                  placeholder="Enter your name"
+                  className={`text-sm px-2 py-1.5 shadow-md bg-white border rounded-md outline-none w-full ${
+                    errors.name && touched.name ? "border-red-400" : "border-gray-400"
+                  }`}
+                />
+                {errors.name && touched.name && (
+                  <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+                )}
+              </div>
+
+              {/* Email Field */}
+              <div>
+                <input
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="email"
+                  placeholder="Enter your email"
+                  className={`text-sm px-2 py-1.5 shadow-md bg-white border rounded-md outline-none w-full ${
+                    errors.email && touched.email ? "border-red-400" : "border-gray-400"
+                  }`}
+                />
+                {errors.email && touched.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                )}
+              </div>
+
+              {/* Phone Field with Country Code Selector */}
+              <div>
+                <PhoneInput
+                  country={'uk'} // Default country (Pakistan)
+                  value={values.contact_number}
+                  onChange={handlePhoneChange}
+                  onBlur={handlePhoneBlur}
+                  inputClass={`!w-full !text-sm !py-1.5 !px-2 !shadow-md !bg-white !border rounded-md outline-none ${
+                    errors.contact_number && touched.contact_number ? "!border-red-400" : "!border-gray-400"
+                  }`}
+                  containerClass="!w-full"
+                  buttonClass="!bg-white !border !border-gray-300 !rounded-l-md"
+                  dropdownClass="!z-50"
+                  enableSearch={true}
+                  searchPlaceholder="Search country"
+                  preferredCountries={['pk', 'us', 'gb', 'ae', 'sa', 'in']}
+                  placeholder="Enter phone number"
+                />
+                {errors.contact_number && touched.contact_number && (
+                  <p className="text-red-500 text-xs mt-1">{errors.contact_number}</p>
+                )}
+              </div>
+
+              {/* Looking For Field */}
+              <div>
+                <input
+                  name="looking"
+                  value={values.looking}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="text"
+                  placeholder="What are you looking for?"
+                  className={`text-sm px-2 py-1.5 shadow-md bg-white border rounded-md outline-none w-full ${
+                    errors.looking && touched.looking ? "border-red-400" : "border-gray-400"
+                  }`}
+                />
+                {errors.looking && touched.looking && (
+                  <p className="text-red-500 text-xs mt-1">{errors.looking}</p>
+                )}
+              </div>
 
               <label className="text-base normal-case cursor-pointer">
                 <input

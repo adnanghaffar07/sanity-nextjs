@@ -62,8 +62,8 @@ export async function POST(request: Request): Promise<Response> {
 
     // Email to team
     const teamMailOptions = {
-      from: process.env.EMAIL_USER,
-      to: ["ayesha@codeautomation.dev"],
+      from: `"CodeAutomation" <${process.env.EMAIL_USER}>`,
+      to: ["adnan@codeautomation.dev"],
       subject: `New Website Inquiry — ${pageName}`,
       html: `
 <!DOCTYPE html>
@@ -208,7 +208,7 @@ export async function POST(request: Request): Promise<Response> {
 
     // Email to user
     const userMailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"CodeAutomation" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: determineSubject(looking) || "Thank You for Your Inquiry!",
       html: `

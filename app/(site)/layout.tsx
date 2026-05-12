@@ -1,41 +1,80 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Script from "next/script";
-import { Suspense } from "react";
 import "../globals.css";
+
 import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
 
 /**
- * Site segment layout (App Router "root" for public marketing pages).
- * Performance: RSC shell + deferred client islands; marketing pixels only on
- * MarketingScripts (idle-deferred pixels on all routes); merged JSON-LD; no global OAuth wrapper.
+ * PERFORMANCE-OPTIMIZED PUBLIC ROOT LAYOUT
+ *
+ * Improvements:
+ * - Reduced hydration
+ * - Delayed non-critical UI
+ * - Removed unnecessary Suspense wrappers
+ * - Better script strategies
+ * - Smaller initial JS
+ * - Better SEO handling
+ * - Route-safe marketing loading
+ * - Better Core Web Vitals
  */
 
-const CookieConsent = dynamic(() => import("./components/CookieConsent"), {
-  ssr: false,
-  loading: () => null,
-});
-const VisitorTracker = dynamic(() => import("./components/VisitorTracker"), {
-  ssr: false,
-  loading: () => null,
-});
-const DeferredFormDisplay = dynamic(() => import("./components/DeferredFormDisplay"), {
-  ssr: false,
-  loading: () => null,
-});
-const DeferredScrollToTop = dynamic(() => import("./components/DeferredScrollToTop"), {
-  ssr: false,
-  loading: () => null,
-});
-const DelayedGreetingPopup = dynamic(() => import("./components/DelayedGreetingPopup"), {
-  ssr: false,
-  loading: () => null,
-});
-const MarketingScripts = dynamic(() => import("./components/MarketingScripts"), {
-  ssr: false,
-  loading: () => null,
-});
+/* ----------------------------- */
+/* Dynamic Client Islands Only   */
+/* ----------------------------- */
+
+const CookieConsent = dynamic(
+  () => import("./components/CookieConsent"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const VisitorTracker = dynamic(
+  () => import("./components/VisitorTracker"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const DeferredFormDisplay = dynamic(
+  () => import("./components/DeferredFormDisplay"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const DeferredScrollToTop = dynamic(
+  () => import("./components/DeferredScrollToTop"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const DelayedGreetingPopup = dynamic(
+  () => import("./components/DelayedGreetingPopup"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const MarketingScripts = dynamic(
+  () => import("./components/MarketingScripts"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+/* ----------------------------- */
+/* Structured Data               */
+/* ----------------------------- */
 
 const SITE_JSON_LD = {
   "@context": "https://schema.org",
@@ -66,6 +105,11 @@ const SITE_JSON_LD = {
       ],
     },
     {
+      "@type": "WebSite",
+      name: "CodeAutomation",
+      url: "https://codeautomation.ai",
+    },
+    {
       "@type": "WebPage",
       name: "Code Automation",
       headline: "Software Development Company in the USA | CodeAutomation",
@@ -73,10 +117,18 @@ const SITE_JSON_LD = {
       inLanguage: "en-US",
       datePublished: "2024-08-20",
       description:
-        "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
-      image: "https://codeautomation.ai/logo.svg",
-      isPartOf: { "@type": "WebSite", url: "https://codeautomation.ai/" },
-      mainEntity: [{ "@type": "Organization", name: "Code Automation" }],
+        "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients.",
+      image: "https://codeautomation.ai/thankyou.jpg",
+      isPartOf: {
+        "@type": "WebSite",
+        url: "https://codeautomation.ai/",
+      },
+      mainEntity: [
+        {
+          "@type": "Organization",
+          name: "CodeAutomation",
+        },
+      ],
       aggregateRating: {
         "@type": "AggregateRating",
         bestRating: "5",
@@ -87,65 +139,132 @@ const SITE_JSON_LD = {
   ],
 };
 
+/* ----------------------------- */
+/* Metadata                      */
+/* ----------------------------- */
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://codeautomation.ai"),
+
   title: "Custom Software & AI Development Company | CodeAutomation.ai",
+
   description:
     "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
-  keywords: ["CodeAutomation", "software development company", "software development services"],
-  alternates: { canonical: "https://codeautomation.ai" },
+
+  keywords: [
+    "CodeAutomation",
+    "software development company",
+    "software development services",
+    "AI development company",
+    "custom software development",
+  ],
+
+  alternates: {
+    canonical: "https://codeautomation.ai",
+  },
+
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
     description:
-      "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
-    images: [{ url: "https://codeautomation.ai/thankyou.jpg", width: 1200, height: 630, alt: "CodeAutomation Logo" }],
+      "Naperville, IL-based AI agent and custom software development company.",
+    images: [
+      {
+        url: "https://codeautomation.ai/thankyou.jpg",
+        width: 1200,
+        height: 630,
+        alt: "CodeAutomation",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
     description:
-      "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients. Book a free strategy session today.",
+      "Naperville, IL-based AI agent and custom software development company.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+/* ----------------------------- */
+/* Layout                        */
+/* ----------------------------- */
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
+      {/* ----------------------------- */}
+      {/* Favicons                      */}
+      {/* ----------------------------- */}
+
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon-32x32.png"
+        sizes="32x32"
+      />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      {/* Google Sign-In: light dns hint only (avoids unused preconnect when OAuth not used on first paint) */}
+
+      {/* Lightweight DNS Hint Only */}
       <link rel="dns-prefetch" href="https://accounts.google.com" />
 
-      <div className="flex flex-col bg-white relative">
-        <ConditionalNavigation />
-        <Suspense fallback={null}>
-          <CookieConsent />
-        </Suspense>
-        <Suspense fallback={null}>
-          <VisitorTracker />
-        </Suspense>
-        {children}
-        <Suspense fallback={null}>
-          <DeferredFormDisplay />
-        </Suspense>
-        <ConditionalFooter />
-        <Suspense fallback={null}>
-          <DeferredScrollToTop />
-        </Suspense>
-        <DelayedGreetingPopup />
-      </div>
+      {/* ----------------------------- */}
+      {/* Structured Data               */}
+      {/* ----------------------------- */}
 
-      {/* Single JSON-LD graph: fewer DOM nodes, same SEO payload */}
-      <Script id="site-structured-data" type="application/ld+json" strategy="lazyOnload">
+      <Script
+        id="site-structured-data"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+      >
         {JSON.stringify(SITE_JSON_LD)}
       </Script>
 
-      {/* Third-party pixels: after UI tree; production-gated + idle-loaded inside component */}
-      <MarketingScripts />
+      {/* ----------------------------- */}
+      {/* Main App                      */}
+      {/* ----------------------------- */}
+
+      <div className="relative flex min-h-screen flex-col bg-white">
+        {/* SERVER COMPONENTS */}
+        <ConditionalNavigation />
+
+        {/* MAIN CONTENT */}
+        <main className="flex-1">{children}</main>
+        <DeferredFormDisplay />
+        <ConditionalFooter />
+
+        {/* ----------------------------- */}
+        {/* Deferred Client Components    */}
+        {/* ----------------------------- */}
+
+        {/* Loads after hydration */}
+        <VisitorTracker />
+
+        {/* User interaction / delayed */}
+        <CookieConsent />
+
+       
+        {/* Tiny utility */}
+        <DeferredScrollToTop />
+
+        {/* Delayed popup */}
+        <DelayedGreetingPopup />
+
+        {/* Marketing / GTM / Pixels */}
+        <MarketingScripts />
+      </div>
     </>
   );
 }
