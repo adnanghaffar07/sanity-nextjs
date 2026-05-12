@@ -1,9 +1,4 @@
 import nodemailer from "nodemailer";
-import fetch from "node-fetch";
-
-const CALENDLY_API_KEY = process.env.CALENDLY_API_KEY || "";
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || "";
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || "";
 
 // Define categories for "looking for" field
 const predefinedCategories: Record<string, string> = {
@@ -24,50 +19,35 @@ const predefinedCategories: Record<string, string> = {
 function determineSubject(looking: string | null): string {
   if (!looking) return "Thank You for Your Inquiry!";
 
-  looking = looking.toLowerCase().trim(); // Normalize input
-
-  // Extract all matching categories
-  const matchedCategories = Object.keys(predefinedCategories)
-    .filter(key => looking.includes(key))
-    .map(key => predefinedCategories[key]);
-
-  // If matches are found, create a custom subject
-  if (matchedCategories.length > 0) {
-    return `Thank You for Your Inquiry About ${matchedCategories.join(", ")}!`;
-  }
-
-  // Fallback if no match is found
-  return "Thank You for Your Inquiry!";
-}
-
-// Extract matching categories for email header
-function getCategoriesHeader(looking: string | null): string {
-  if (!looking) return "Thank You for Reaching Out";
-
   looking = looking.toLowerCase().trim();
 
   const matchedCategories = Object.keys(predefinedCategories)
     .filter(key => looking.includes(key))
     .map(key => predefinedCategories[key]);
 
-  return matchedCategories.length > 0 ? matchedCategories.join(", ") : "Thank You for Reaching Out";
+  if (matchedCategories.length > 0) {
+    return `Thank You for Your Inquiry About ${matchedCategories.join(", ")}!`;
+  }
+
+  return "Thank You for Your Inquiry!";
 }
+
 export async function POST(request: Request): Promise<Response> {
   try {
     const completeFormData = await request.formData();
     const name = completeFormData.get("name") as string | null;
     const email = completeFormData.get("email") as string | null;
     const number = completeFormData.get("number") as string | null;
-    const looking = completeFormData.get("looking") as string | null;
-    const message = completeFormData.get("message") as string | null;
+    const lookingRaw = completeFormData.get("looking") as string | null;
+    const messageRaw = completeFormData.get("message") as string | null;
     const pageName = completeFormData.get("pagename") as string | null;
 
-    if (!name || !email || !number || !looking || !message || !pageName) {
+    const looking = (lookingRaw ?? "").trim() || "—";
+    const message = (messageRaw ?? "").trim() || "—";
+
+    if (!name || !email || !number || !pageName) {
       return new Response(JSON.stringify({ error: "Invalid form data" }), { status: 400 });
     }
-
-    // Determine the dynamic subject for the user's email
-    const userSubject = determineSubject(looking);
 
     // Set up Nodemailer transporter
     const transporter = nodemailer.createTransport({
@@ -80,11 +60,11 @@ export async function POST(request: Request): Promise<Response> {
       },
     });
 
+    // Email to team
     const teamMailOptions = {
       from: process.env.EMAIL_USER,
-      to: ["adnan@codeautomation.dev"],
+      to: ["ayesha@codeautomation.dev"],
       subject: `New Website Inquiry — ${pageName}`,
-
       html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -185,14 +165,11 @@ export async function POST(request: Request): Promise<Response> {
 <body>
   <div class="wrapper">
     <div class="container">
-
       <div class="tag">New Inquiry</div>
-
       <div class="title">Website Contact Submission</div>
       <div class="subtitle">Source: ${pageName} Page</div>
 
       <div class="card">
-
         <div class="row">
           <div class="label">Name</div>
           <div class="value">${name}</div>
@@ -217,24 +194,23 @@ export async function POST(request: Request): Promise<Response> {
           <div class="label">Message</div>
           <div class="message-box">${message}</div>
         </div>
-
       </div>
 
       <div class="footer">
         Automatically generated from CodeAutomation website form.
       </div>
-
     </div>
   </div>
 </body>
 </html>
-  `,
+      `,
     };
+
     // Email to user
     const userMailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: determineSubject(looking),
+      subject: determineSubject(looking) || "Thank You for Your Inquiry!",
       html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -327,7 +303,6 @@ export async function POST(request: Request): Promise<Response> {
 <body>
   <div class="wrapper">
     <div class="container">
-
       <div class="title">
         Hi ${name},
       </div>
@@ -369,107 +344,20 @@ export async function POST(request: Request): Promise<Response> {
       <div class="footer">
         © 2026 CodeAutomation. All rights reserved.
       </div>
-
     </div>
   </div>
 </body>
 </html>
-  `,
+      `,
     };
 
-    // Send emails
+    // Send both emails
     await transporter.sendMail(teamMailOptions);
     await transporter.sendMail(userMailOptions);
 
-    const hasMeeting = await checkMeetingExists(email);
-
-    if (!hasMeeting) {
-      const reminderTimestamp = new Date();
-      reminderTimestamp.setMinutes(reminderTimestamp.getMinutes() + 5);
-
-      await addEmailToAirtable({
-        Name: name,
-        Email: email,
-        Looking: "Don’t Forget to Schedule Your Meeting!",
-        Message: `
-          <div style="max-width: 600px; margin: 30px auto; padding: 30px; background-color: #fff; border-radius: 10px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
-            <h1 style="font-size: 32px; color: #1D92FB; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 500;">Hi ${name},Let's Connect</h1>
-            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6; color: #333; font-family: 'Poppins', sans-serif;">Hi ${name},</p>
-            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6; color: #333; font-family: 'Poppins', sans-serif;">We're excited to explore how we can collaborate! Booking a quick call is the best way to align our goals and move forward.</p>
-            <p style="font-size: 18px; margin: 15px 0; line-height: 1.6; color: #333; font-family: 'Poppins', sans-serif;">Click the button below to pick a time that works best for you:</p>
-            <div style="text-align: center; margin-top: 20px;">
-              <a href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" style="background-color: #f7e022; color: #000; padding: 12px 25px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 6px; display: inline-block; transition: background-color 0.3s;">Schedule Your Meeting</a>
-            </div>
-            <div style="margin-top: 40px; text-align: center; font-size: 14px; color: #777; font-family: 'Poppins', sans-serif;">
-              <p style="margin: 5px 0;">We look forward to speaking with you soon!</p>
-            </div>
-          </div>
-        `,
-        ReminderTimestamp: reminderTimestamp.toISOString(),
-      });
-    }
-
-    return new Response(JSON.stringify({ message: "Emails handled successfully" }), { status: 200 });
+    return new Response(JSON.stringify({ message: "Emails sent successfully" }), { status: 200 });
   } catch (error) {
     console.error("Error in POST handler:", error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
-  }
-}
-
-async function checkMeetingExists(email: string): Promise<boolean> {
-  try {
-    const userUri = await getUserId();
-    const response = await fetch(`https://api.calendly.com/scheduled_events?invitee_email=${email}&user=${encodeURIComponent(userUri)}`, {
-      headers: { Authorization: `Bearer ${CALENDLY_API_KEY}` },
-    });
-    const data = await response.json();
-    return data.collection && data.collection.length > 0;
-  } catch (error) {
-    console.error("Error checking Calendly events:", error);
-    return false;
-  }
-}
-
-async function addEmailToAirtable(emailData: {
-  Name: string;
-  Email: string;
-  Looking: string;
-  Message: string;
-  ReminderTimestamp: string;
-}) {
-  try {
-    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/tblrMLGwSsOnZ17kO`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fields: emailData }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Airtable error: ${await response.text()}`);
-    }
-  } catch (error) {
-    console.error("Error adding email to Airtable:", error);
-    throw error;
-  }
-}
-
-async function getUserId(): Promise<string> {
-  try {
-    const response = await fetch("https://api.calendly.com/users/me", {
-      headers: { Authorization: `Bearer ${CALENDLY_API_KEY}` },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Calendly user fetch error: ${await response.text()}`);
-    }
-
-    const data = await response.json();
-    return data.resource.uri;
-  } catch (error) {
-    console.error("Error fetching Calendly user ID:", error);
-    throw error;
   }
 }

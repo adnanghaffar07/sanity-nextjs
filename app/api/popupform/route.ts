@@ -105,7 +105,7 @@ export async function POST(request: any): Promise<any> {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: ["adnan@codeautomation.dev", "liza@codeautomation.dev", "josh.atkins@codeautomation.dev", "huda@codeautomation.dev"],
+    to: ["ayesha@codeautomation.dev"],
     subject: `CA Website Greeting Popup form - ${pageName} page`,
     html: `
     <!DOCTYPE html>

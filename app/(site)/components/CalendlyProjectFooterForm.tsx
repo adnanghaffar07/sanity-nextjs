@@ -1,8 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import { usePathname, useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
 import PhoneInput from 'react-phone-input-2';
@@ -11,23 +9,6 @@ import dynamic from "next/dynamic";
 
 const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
   ssr: false,
-});
-
-// Define the validation schema using Yup
-const contactSchema = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
-  contact_number: Yup.string()
-    .matches(/^[\d+\-\s]{7,20}$/, "Enter a valid contact number.")
-    .required("Contact number is required"),
-  email: Yup.string()
-    .email("Email must be a valid email")
-    .matches(
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      "Please enter a valid email address."
-    )
-    .required("Email is required"),
-  looking: Yup.string().required("Please specify what you are looking for"),
-  message: Yup.string(),
 });
 
 const initialValues = {
@@ -49,25 +30,71 @@ export default function HomePageForm() {
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
   const [messageSuccess, setMessageSuccess] = useState("w-[0%]");
   const [showJobModal, setShowJobModal] = useState(false);
+  
+  // Form state
+  const [values, setValues] = useState(initialValues);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  const {
-    values,
-    errors,
-    handleBlur,
-    touched,
-    handleChange,
-    handleSubmit,
-    resetForm,
-    setFieldValue, // ✅ Add this
-    setFieldTouched,
+  // Validation functions
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) return "Email is required";
+    if (!emailRegex.test(email)) return "Please enter a valid email address.";
+    return "";
+  };
 
-  } = useFormik({
-    initialValues: initialValues,
-    validationSchema: contactSchema,
-    onSubmit: (values, action) => {
-      //action.resetForm();
-    },
-  });
+  const validateContactNumber = (number: string) => {
+    const phoneRegex = /^[\d+\-\s]{7,20}$/;
+    if (!number) return "Contact number is required";
+    if (!phoneRegex.test(number)) return "Enter a valid contact number.";
+    return "";
+  };
+
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case "name":
+        return !value ? "Name is required" : "";
+      case "email":
+        return validateEmail(value);
+      case "contact_number":
+        return validateContactNumber(value);
+      case "looking":
+        return !value ? "Please specify what you are looking for" : "";
+      default:
+        return "";
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setValues(prev => ({ ...prev, [name]: value }));
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors(prev => ({ ...prev, [name]: error }));
+    }
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setValues(prev => ({ ...prev, contact_number: value }));
+    if (touched.contact_number) {
+      const error = validateContactNumber(value);
+      setErrors(prev => ({ ...prev, contact_number: error }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setErrors(prev => ({ ...prev, [name]: error }));
+  };
+
+  const handlePhoneBlur = () => {
+    setTouched(prev => ({ ...prev, contact_number: true }));
+    const error = validateContactNumber(values.contact_number);
+    setErrors(prev => ({ ...prev, contact_number: error }));
+  };
 
   const checkForJobKeywords = (text: string): boolean => {
     if (!text) return false;
@@ -94,11 +121,33 @@ export default function HomePageForm() {
   const currentPath = usePathname();
   const pageName = currentPath ? currentPath.split("/").pop() || "home" : "home";
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    let isValid = true;
+
+    Object.keys(values).forEach(key => {
+      const error = validateField(key, values[key as keyof typeof values]);
+      if (error) {
+        newErrors[key] = error;
+        isValid = false;
+      }
+    });
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleCombinedSubmit = async (event: any): Promise<void> => {
     event.preventDefault();
-    handleSubmit(event);
     setMessage("");
     setBgColor("bg-[#1D92FB]");
+
+    // Mark all fields as touched
+    const allTouched = Object.keys(values).reduce((acc, key) => ({ ...acc, [key]: true }), {});
+    setTouched(allTouched);
+
+    // Validate form
+    const isValid = validateForm();
 
     // Check for job/internship keywords
     const isJobRelated = checkForJobKeywords(values.looking) || checkForJobKeywords(values.message);
@@ -117,12 +166,7 @@ export default function HomePageForm() {
       return;
     }
 
-    if (!values.name.length || !values.email.length || !values.contact_number.length || !values.looking.length) {
-      setUploading(false);
-      return;
-    }
-
-    if (errors.name || errors.contact_number || errors.email || errors.looking) {
+    if (!isValid) {
       setUploading(false);
       return;
     }
@@ -134,14 +178,6 @@ export default function HomePageForm() {
           ?.split("-")
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
-
-    if (!Yup.string().email().isValidSync(values.email)) {
-      setBgColor("bg-red-500");
-      setMessage("Please enter a valid email address.");
-      setMessageSuccess("w-[100%]");
-      setUploading(false);
-      return;
-    }
 
     try {
       const formData = new FormData();
@@ -214,10 +250,11 @@ export default function HomePageForm() {
           form: "contactForm",
         });
 
-        // Open meeting page in a new tab for real clients
         window.open("https://calendly.com/adnanghaffar", "_blank");
 
-        resetForm();
+        setValues(initialValues);
+        setTouched({});
+        setErrors({});
         recaptchaRef?.current?.reset();
         setRecaptchaValue("");
         setErrorRecaptcha("");
@@ -280,7 +317,7 @@ export default function HomePageForm() {
         <form onSubmit={handleCombinedSubmit}>
           <div className="">
             <input
-              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm  w-full text-black text-sm placeholder-black"
+              className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm w-full text-black text-sm placeholder-black"
               placeholder={"Name"}
               name="name"
               value={values.name}
@@ -295,16 +332,14 @@ export default function HomePageForm() {
             <PhoneInput
               country={'us'}
               value={values.contact_number}
-              onChange={(value) => setFieldValue('contact_number', value)}
-              onBlur={() => setFieldTouched('contact_number', true)} // ✅ manually mark as touched
+              onChange={handlePhoneChange}
+              onBlur={handlePhoneBlur}
               inputClass="!w-full border-2 px-4 !py-3 !rounded-lg !shadow-sm !text-black !text-sm !placeholder-black"
               containerClass="!w-full"
               buttonClass="!bg-white !border-gray-300"
               specialLabel=""
               placeholder="Enter your phone number"
-
             />
-
             {errors.contact_number && touched.contact_number ? (
               <p className="form-error">{errors.contact_number}</p>
             ) : null}
@@ -337,7 +372,7 @@ export default function HomePageForm() {
           </div>
           <div className="mt-4">
             <textarea
-              className="border-2 justify-center items-start px-4 py-3 rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black resize-none  break-words"
+              className="border-2 justify-center items-start px-4 py-3 rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black resize-none break-words"
               placeholder={"Your Message"}
               name="message"
               value={values.message}

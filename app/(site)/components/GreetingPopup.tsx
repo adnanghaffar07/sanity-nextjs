@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useFormik } from "formik";
-import { popupSchema } from "../../schemas/index";
 import { usePathname } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
@@ -41,102 +39,175 @@ const GreetingPopup: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [messageBgColor, setMessageBgColor] = useState("bg-[#1D92FB]");
   const [progressWidth, setProgressWidth] = useState("w-[0%]");
+  
+  // Form state
+  const [values, setValues] = useState<FormValues>(initialValues);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
+  const [touched, setTouched] = useState<Partial<Record<keyof FormValues, boolean>>>({});
 
   const currentPath = usePathname();
   const pageName = currentPath.split("/").pop() || "Home";
 
-  const {
-    values,
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    resetForm,
-  } = useFormik<FormValues>({
-    initialValues,
-    validationSchema: popupSchema,
-    onSubmit: async () => {
-      setMessage("");
-      setMessageBgColor("bg-[#1D92FB]");
+  // Validation functions
+  const validateEmail = (email: string): string => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) return "Email is required";
+    if (!emailRegex.test(email)) return "Please enter a valid email address";
+    return "";
+  };
 
-      if (Object.values(errors).length > 0) return;
+  const validateContactNumber = (number: string): string => {
+    const phoneRegex = /^[\d+\-\s]{7,20}$/;
+    if (!number) return "Contact number is required";
+    if (!phoneRegex.test(number)) return "Enter a valid contact number";
+    return "";
+  };
 
-      const formattedPageName = pageName
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+  const validateField = (name: keyof FormValues, value: any): string => {
+    switch (name) {
+      case "name":
+        return !value ? "Name is required" : "";
+      case "email":
+        return validateEmail(value);
+      case "contact_number":
+        return validateContactNumber(value);
+      case "looking":
+        return !value ? "Please specify what you are looking for" : "";
+      default:
+        return "";
+    }
+  };
 
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("number", values.contact_number);
-      formData.append("looking", values.looking);
-      formData.append("subscribe", values.subscribe.toString());
-      formData.append("pagename", formattedPageName);
+  const validateForm = (): boolean => {
+    const newErrors: Partial<Record<keyof FormValues, string>> = {};
+    let isValid = true;
 
-      setUploading(true);
-      setMessage("Submitting your response...");
-      setProgressWidth("w-[10%]");
+    (["name", "email", "contact_number", "looking"] as Array<keyof FormValues>).forEach(field => {
+      const error = validateField(field, values[field]);
+      if (error) {
+        newErrors[field] = error;
+        isValid = false;
+      }
+    });
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, type, checked, value } = e.target;
+    const fieldValue = type === "checkbox" ? checked : value;
+    
+    setValues(prev => ({ ...prev, [name]: fieldValue }));
+    
+    if (touched[name as keyof FormValues]) {
+      const error = validateField(name as keyof FormValues, fieldValue);
+      setErrors(prev => ({ ...prev, [name]: error }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name as keyof FormValues, value);
+    setErrors(prev => ({ ...prev, [name]: error }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage("");
+    setMessageBgColor("bg-[#1D92FB]");
+
+    // Mark all fields as touched
+    const allTouched: Partial<Record<keyof FormValues, boolean>> = {};
+    (["name", "email", "contact_number", "looking"] as Array<keyof FormValues>).forEach(field => {
+      allTouched[field] = true;
+    });
+    setTouched(allTouched);
+
+    // Validate form
+    const isValid = validateForm();
+    
+    if (!isValid) return;
+
+    const formattedPageName = pageName
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("number", values.contact_number);
+    formData.append("looking", values.looking);
+    formData.append("subscribe", values.subscribe.toString());
+    formData.append("pagename", formattedPageName);
+
+    setUploading(true);
+    setMessage("Submitting your response...");
+    setProgressWidth("w-[10%]");
+
+    try {
+      const response = await fetch("/api/popupform", {
+        method: "POST",
+        body: formData,
+      });
 
       try {
-        const response = await fetch("/api/popupform", {
+        const ghlResponse = await fetch("/api/lead", {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            phone: values.contact_number,
+            what_are_you_looking_for: values.looking,
+            message: values.subscribe
+              ? "Popup form submission (newsletter subscribed)"
+              : "Popup form submission",
+          }),
         });
-
-        try {
-          const ghlResponse = await fetch("/api/lead", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: values.name,
-              email: values.email,
-              phone: values.contact_number,
-              what_are_you_looking_for: values.looking,
-              message: values.subscribe
-                ? "Popup form submission (newsletter subscribed)"
-                : "Popup form submission",
-            }),
-          });
-          const ghlData = await ghlResponse.json();
-          if (ghlResponse.ok) {
-            console.log("Lead successfully sent to GoHighLevel:", ghlData);
-          } else {
-            console.warn("GoHighLevel API warning:", ghlData);
-          }
-        } catch (ghlError) {
-          console.warn("GoHighLevel submission warning:", ghlError);
-        }
-
-        if (response.ok) {
-          (window as any).dataLayer = (window as any).dataLayer || [];
-          (window as any).dataLayer.push({ event: "formSubmission", form: "contactForm" });
-
-          setMessage("Your response has been successfully submitted!");
-          setMessageBgColor("bg-green-500");
-          setProgressWidth("w-[100%]");
-          resetForm();
-
-          setTimeout(closePopup, 4000);
+        const ghlData = await ghlResponse.json();
+        if (ghlResponse.ok) {
+          console.log("Lead successfully sent to GoHighLevel:", ghlData);
         } else {
-          setMessage("Message not submitted!");
-          setMessageBgColor("bg-red-500");
-          setProgressWidth("w-[100%]");
+          console.warn("GoHighLevel API warning:", ghlData);
         }
-      } catch (error) {
-        console.error("Submission error:", error);
+      } catch (ghlError) {
+        console.warn("GoHighLevel submission warning:", ghlError);
+      }
+
+      if (response.ok) {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: "formSubmission", form: "contactForm" });
+
+        setMessage("Your response has been successfully submitted!");
+        setMessageBgColor("bg-green-500");
+        setProgressWidth("w-[100%]");
+        
+        // Reset form
+        setValues(initialValues);
+        setTouched({});
+        setErrors({});
+
+        setTimeout(closePopup, 4000);
+      } else {
         setMessage("Message not submitted!");
         setMessageBgColor("bg-red-500");
         setProgressWidth("w-[100%]");
-      } finally {
-        setUploading(false);
-        setTimeout(() => setMessage(""), 8000);
       }
-    },
-  });
+    } catch (error) {
+      console.error("Submission error:", error);
+      setMessage("Message not submitted!");
+      setMessageBgColor("bg-red-500");
+      setProgressWidth("w-[100%]");
+    } finally {
+      setUploading(false);
+      setTimeout(() => setMessage(""), 8000);
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -149,7 +220,6 @@ const GreetingPopup: React.FC = () => {
       setData(popupData);
 
       if (!localStorage.getItem("hasVisited")) {
-        // DelayedGreetingPopup defers mounting ~8s; brief pause after data keeps open animation smooth.
         showTimer = window.setTimeout(() => {
           if (cancelled) return;
           setIsVisible(true);
@@ -183,13 +253,15 @@ const GreetingPopup: React.FC = () => {
 
   return isVisible ? (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[1000] popup-overlay transition-all duration-700 ease-in-out ${isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-0"
-        }`}
+      className={`fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[1000] popup-overlay transition-all duration-700 ease-in-out ${
+        isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-0"
+      }`}
       onClick={handleOutsideClick}
     >
       <div
-        className={`greetings overflow-hidden gap-4 rounded-lg pl-3 md:pl-0 pr-3 pt-3 pb-3 bg-white flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
+        className={`greetings overflow-hidden gap-4 rounded-lg pl-3 md:pl-0 pr-3 pt-3 pb-3 bg-white flex flex-col sm:flex-row justify-center relative transform transition-all duration-700 ease-in-out ${
+          isAnimating ? "scale-100 opacity-100" : "scale-0 opacity-0"
+        }`}
       >
         {data?.image && (
           <div className="hidden sm:block w-[290px] md:w-[340px] h-full">
@@ -229,27 +301,30 @@ const GreetingPopup: React.FC = () => {
             )}
             <div className="text-lg font-base text-center text-black mb-4 mt-5">{data?.title}</div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-[260px] md:w-[300px]">
-              {/* Dynamically generate input fields except for "subscribe" */}
               {(["name", "email", "contact_number", "looking"] as Array<keyof Omit<FormValues, "subscribe">>).map((field) => (
-                <input
-                  key={field}
-                  name={field}
-                  value={values[field]} // Access value dynamically
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  type="text"
-                  placeholder={field === "looking" ? "What are you looking for?" : `Enter your ${field}`}
-                  className={`text-sm px-2 py-1.5 shadow-md bg-white border rounded-md outline-none ${errors[field] && touched[field] ? "border-red-400" : "border-gray-400"
+                <div key={field}>
+                  <input
+                    name={field}
+                    value={values[field] as string}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    type="text"
+                    placeholder={field === "looking" ? "What are you looking for?" : `Enter your ${field}`}
+                    className={`text-sm px-2 py-1.5 shadow-md bg-white border rounded-md outline-none w-full ${
+                      errors[field] && touched[field] ? "border-red-400" : "border-gray-400"
                     }`}
-                />
+                  />
+                  {errors[field] && touched[field] && (
+                    <p className="text-red-500 text-xs mt-1">{errors[field]}</p>
+                  )}
+                </div>
               ))}
 
-              {/* Separate handling for "subscribe" checkbox */}
               <label className="text-base normal-case cursor-pointer">
                 <input
                   type="checkbox"
                   name="subscribe"
-                  checked={values.subscribe} // Use "checked" for checkbox
+                  checked={values.subscribe}
                   onChange={handleChange}
                   className="mr-2"
                 />
@@ -259,13 +334,13 @@ const GreetingPopup: React.FC = () => {
               <button
                 type="submit"
                 disabled={uploading}
-                className={`text-base text-white bg-[#0A8FFC] hover:bg-[#1d92fb] shadow-sm rounded-md py-2 transition-colors ${uploading ? "cursor-not-allowed" : "cursor-pointer"
-                  }`}
+                className={`text-base text-white bg-[#0A8FFC] hover:bg-[#1d92fb] shadow-sm rounded-md py-2 transition-colors ${
+                  uploading ? "cursor-not-allowed" : "cursor-pointer"
+                }`}
               >
-                Subscribe
+                {uploading ? "Submitting..." : "Subscribe"}
               </button>
             </form>
-
           </div>
         </div>
       </div>
