@@ -52,7 +52,13 @@ function Card({ icon, title, text }: CardProps) {
     <div className="flex flex-col p-6 min-w-[260px] max-w-[300px] h-72 border border-blue-400 bg-[#FAFAFA] rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300 mx-6">
       <div className="flex flex-col flex-grow">
         <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full border border-gray-300 shadow mb-4">
-          <img src={icon} alt={title} className="w-8 h-8" />
+          <img
+            src={icon}
+            alt={title}
+            width={32}
+            height={32}
+            className="max-h-8 w-auto max-w-8 object-contain"
+          />
         </div>
         <span className="text-lg font-semibold text-blue-500 mb-2">{title}</span>
         <p className="text-sm text-gray-600 flex-grow">{text}</p>

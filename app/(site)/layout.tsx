@@ -117,8 +117,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      {/* Google Sign-In (LoginModal) — DNS hint only; scripts load when the modal mounts */}
-      <link rel="preconnect" href="https://accounts.google.com" crossOrigin="anonymous" />
+      {/* Google Sign-In: light dns hint only (avoids unused preconnect when OAuth not used on first paint) */}
+      <link rel="dns-prefetch" href="https://accounts.google.com" />
 
       <div className="flex flex-col bg-white relative">
         <ConditionalNavigation />

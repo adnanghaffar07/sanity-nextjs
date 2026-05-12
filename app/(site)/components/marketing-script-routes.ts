@@ -1,12 +1,7 @@
 /**
- * Marketing pixels (GTM, Meta, TikTok, Supabase pixel, Leadsy) run on
- * production builds only, so local `next dev` stays fast and analytics stay
- * clean. Vercel previews use NODE_ENV=production, so pixels still load there
- * for QA. Set NEXT_PUBLIC_FORCE_MARKETING_SCRIPTS=true to test locally.
- *
- * Actual script injection stays deferred inside `MarketingScripts` via
- * `requestIdleCallback` (with a timeout fallback) so LCP and main-thread work
- * stay prioritized on live.
+ * GTM bootstrap runs on production builds only (tags inside GTM are your
+ * Meta/TikTok/Ads/etc.). Set NEXT_PUBLIC_FORCE_MARKETING_SCRIPTS=true to test
+ * locally. Injection stays idle-deferred in `MarketingScripts`.
  */
 export function shouldLoadMarketingScripts(): boolean {
   if (process.env.NEXT_PUBLIC_FORCE_MARKETING_SCRIPTS === "true") {

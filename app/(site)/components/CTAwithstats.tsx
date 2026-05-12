@@ -50,7 +50,13 @@ export default function CtaWithStats() {
         <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
           {stats.map((stat, index) => (
             <div key={index} className="w-[45%] flex items-center">
-              <img src={stat.icon} alt={stat.label} className="w-10 h-10 md:w-14 md:h-14 mr-2 md:mr-4" />
+              <img
+                src={stat.icon}
+                alt={stat.label}
+                width={96}
+                height={100}
+                className="h-10 w-auto max-w-10 object-contain md:h-14 md:max-w-14 mr-2 md:mr-4"
+              />
               <div>
                 <p className="text-3xl md:text-4xl font-bold">
                   {inView && (

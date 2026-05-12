@@ -43,7 +43,7 @@ const CookieConsent = () => {
               href="/cookies-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline text-[#60A5FA] hover:text-[#3B82F6]"
+              className="underline text-sky-300 hover:text-sky-200"
             >
               Cookie Policy
             </Link>.

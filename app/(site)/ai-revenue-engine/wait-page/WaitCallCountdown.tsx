@@ -66,5 +66,5 @@ export default function WaitCallCountdown({ startSeconds = 60 }: { startSeconds?
         </div>
       )}
     </div>
-  );
+  ); 
 }
