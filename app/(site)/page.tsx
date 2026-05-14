@@ -202,7 +202,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative flex w-full items-center justify-center py-10 px-5 lg:px-20">
           <div className="w-full max-w-[1600px] mx-auto ">
-            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16" style={{marginTop: "60px"}}>
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16" style={{ marginTop: "60px" }}>
 
               {/* LEFT SIDE */}
               <div className="flex flex-col justify-center gap-8 lg:w-1/2">

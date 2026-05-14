@@ -1,24 +1,10 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import "../globals.css";
 
 import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
 
-/**
- * PERFORMANCE-OPTIMIZED PUBLIC ROOT LAYOUT
- *
- * Improvements:
- * - Reduced hydration
- * - Delayed non-critical UI
- * - Removed unnecessary Suspense wrappers
- * - Better script strategies
- * - Smaller initial JS
- * - Better SEO handling
- * - Route-safe marketing loading
- * - Better Core Web Vitals
- */
 
 /* ----------------------------- */
 /* Dynamic Client Islands Only   */
@@ -71,73 +57,6 @@ const MarketingScripts = dynamic(
     loading: () => null,
   }
 );
-
-/* ----------------------------- */
-/* Structured Data               */
-/* ----------------------------- */
-
-const SITE_JSON_LD = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      name: "CodeAutomation",
-      image: "https://www.codeautomation.ai/logo.png",
-      url: "https://www.codeautomation.ai",
-      telephone: "+1-815-614-8480",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Office 254, 1755 Park St Suite 200",
-        addressLocality: "Naperville",
-        addressRegion: "IL",
-        postalCode: "60563",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: "41.7906",
-        longitude: "-88.1535",
-      },
-      openingHours: "Mo-Fr 09:00-17:00",
-      sameAs: [
-        "https://www.linkedin.com/company/codeautomation",
-        "https://www.facebook.com/codeautomation",
-      ],
-    },
-    {
-      "@type": "WebSite",
-      name: "CodeAutomation",
-      url: "https://codeautomation.ai",
-    },
-    {
-      "@type": "WebPage",
-      name: "Code Automation",
-      headline: "Software Development Company in the USA | CodeAutomation",
-      url: "https://codeautomation.ai/",
-      inLanguage: "en-US",
-      datePublished: "2024-08-20",
-      description:
-        "Naperville, IL-based AI agent and custom software development company. Trusted by 200+ global clients.",
-      image: "https://codeautomation.ai/thankyou.jpg",
-      isPartOf: {
-        "@type": "WebSite",
-        url: "https://codeautomation.ai/",
-      },
-      mainEntity: [
-        {
-          "@type": "Organization",
-          name: "CodeAutomation",
-        },
-      ],
-      aggregateRating: {
-        "@type": "AggregateRating",
-        bestRating: "5",
-        ratingValue: "4.9",
-        reviewCount: "100",
-      },
-    },
-  ],
-};
 
 /* ----------------------------- */
 /* Metadata                      */
@@ -219,18 +138,6 @@ export default function RootLayout({
 
       {/* Lightweight DNS Hint Only */}
       <link rel="dns-prefetch" href="https://accounts.google.com" />
-
-      {/* ----------------------------- */}
-      {/* Structured Data               */}
-      {/* ----------------------------- */}
-
-      <Script
-        id="site-structured-data"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-      >
-        {JSON.stringify(SITE_JSON_LD)}
-      </Script>
 
       {/* ----------------------------- */}
       {/* Main App                      */}
