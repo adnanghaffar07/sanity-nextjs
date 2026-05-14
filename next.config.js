@@ -1,5 +1,5 @@
 const nextConfig = {
-   trailingSlash: false,
+  trailingSlash: false,
   swcMinify: true,
 
   compiler: {
@@ -49,37 +49,13 @@ const nextConfig = {
 
   async redirects() {
     return [
-  
-      // Existing redirects
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "www.codeautomation.ai",
-          },
-        ],
-        destination: "https://codeautomation.ai/:path*",
-        permanent: true,
-      },
-       {
-      source: "/:path*",
-      has: [
-        {
-          type: "host",
-          value: "codeautomation.dev",
-        },
-      ],
-      destination: "https://codeautomation.ai/:path*",
-      permanent: true,
-    },
 
       {
         source: "/services/custom-web-cms",
         destination: "/services/custom-cms-development-services",
         permanent: true,
       },
-       {
+      {
         source: "/services/gohighlevel-crm-automation-customization.",
         destination: "/services/gohighlevel-crm-automation-customization",
         permanent: true,
@@ -283,7 +259,7 @@ const nextConfig = {
         destination: "/lifeatca",
         permanent: true,
       },
-    
+
       {
         source: "/career/drafts.:path*",
         destination: "/career",
