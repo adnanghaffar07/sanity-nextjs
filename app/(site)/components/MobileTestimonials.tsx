@@ -172,17 +172,6 @@ function TestimonialCard({ testimonial, onPlayVideo }: { testimonial: any; onPla
           <p className="text-sm text-gray-600">{testimonial.role}</p>
         </div>
         
-        {testimonial.type === 'video' && (
-          <button 
-            onClick={() => onPlayVideo(testimonial.videoUrl)}
-            className="text-sm text-[#2196f3] hover:text-blue-700 font-medium flex items-center gap-1 flex-shrink-0"
-          >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            Watch
-          </button>
-        )}
       </div>
     </div>
   );

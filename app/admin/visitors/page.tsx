@@ -7,11 +7,13 @@ type TimeFilter = 'today' | 'last7days' | 'lastmonth';
 interface VisitorRecord {
   _id: string;
   ip: string;
+
   location?: {
     city?: string;
     region?: string;
     country?: string;
   };
+
   latitude?: number;
   longitude?: number;
   timestamp: string;

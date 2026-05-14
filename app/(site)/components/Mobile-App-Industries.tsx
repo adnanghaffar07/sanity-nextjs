@@ -106,13 +106,6 @@ const MobileIndustries = () => {
                                         {industry.category}
                                     </p>
                                 </div>
-
-                                {/* Hover Arrow */}
-                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <svg className="w-4 h-4 text-[#1D92FB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </div>
                             </div>
 
                             {/* Bottom Accent */}

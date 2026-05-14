@@ -13,7 +13,7 @@ export default function LiveChatTawk() {
     <head>
       <Script
         id="tawkto-widget"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
           var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();

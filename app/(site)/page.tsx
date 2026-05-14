@@ -34,10 +34,11 @@ const StatItem = ({
   classname?: string;
 }) => (
   <div className={`flex flex-col py-4 text-lg font-light leading-6  text-center w-[290px] xl:w-[270px] 2xl:w-[270px] h-[220px] transition-shadow ease-in-out duration-500 ${classname}`}>
-    <img
-      loading="lazy"
+    <Image
       src={imageSrc}
       alt={alt}
+      width={72}
+      height={72}
       className="self-center aspect-square w-14 sm:w-16 xl:w-[72px]"
     />
     <div className="mt-6 max-w-[325px]">{text}</div>
@@ -355,12 +356,16 @@ export default function Home() {
         <img
           loading="lazy"
           src="/ellipse-1.png"
+          width="160"
+          height="160"
           className="w-40 absolute left-0 top-0 lg:block hidden"
           alt="ellipse"
         />
         <img
           loading="lazy"
           src="/ellipse-1.png"
+          width="160"
+          height="160"
           className="absolute left-0 top-0 w-40 lg:hidden block"
           alt="ellipse"
         />
@@ -388,6 +393,8 @@ export default function Home() {
                   <img
                     loading="lazy"
                     src="/btn-arrow.svg"
+                    width="22"
+                    height="27"
                     className="w-[22px] h-[26.8px]"
                     alt="arrow-icon"
                   />
@@ -674,6 +681,8 @@ export default function Home() {
                       <img
                         loading="lazy"
                         src="/btn-arrow.svg"
+                        width="22"
+                        height="27"
                         className="w-[22px] h-[26.8px] text-black"
                         alt="arrow icon"
                       />

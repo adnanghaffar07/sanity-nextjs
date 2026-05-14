@@ -8,24 +8,24 @@ const CookieConsent = () => {
 
   useEffect(() => {
     const consent = Cookies.get("cookieConsent");
-    if (!consent) {
-      const timer = setTimeout(() => {
-        setShowBanner(true);
-      }, 8000); // 👈 delay in ms (3 seconds)
+    if (consent === "true" || consent === "declined") return;
 
-      return () => clearTimeout(timer);
-    }
+    const timer = window.setTimeout(() => {
+      setShowBanner(true);
+    }, 8000);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   const acceptCookies = () => {
     Cookies.set("cookieConsent", "true", { expires: 365 });
+    window.dispatchEvent(new Event("cookieConsentAccepted"));
     setShowBanner(false);
   };
 
   const declineCookies = () => {
+    Cookies.set("cookieConsent", "declined", { expires: 365 });
     setShowBanner(false);
-    // Optionally save decline choice:
-    // Cookies.set("cookieConsent", "declined", { expires: 365 });
   };
 
   return (
