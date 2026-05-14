@@ -12,6 +12,10 @@ function getStartDateFromFilter(filter: TimeFilter): string {
     return startOfToday.toISOString();
   }
 
+  if (filter === 'last7days') {
+    return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  }
+
   if (filter === 'lastmonth') {
     return new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
   }
@@ -26,10 +30,22 @@ export async function GET(req: NextRequest) {
       filterParam === 'today' || filterParam === 'lastmonth' || filterParam === 'last7days'
         ? filterParam
         : 'today';
+    
+    const page = parseInt(req.nextUrl.searchParams.get('page') || '1');
+    const limit = parseInt(req.nextUrl.searchParams.get('limit') || '50');
+    const start = (page - 1) * limit;
+    
     const startDate = getStartDateFromFilter(filter);
 
+    // Get total count
+    const totalCount = await serverClient.fetch(
+      `count(*[_type == "visitor" && timestamp >= $startDate])`,
+      { startDate }
+    );
+
+    // Fetch paginated visitors
     const visitors = await serverClient.fetch(
-      `*[_type == "visitor" && timestamp >= $startDate] | order(timestamp desc)[0...200]{
+      `*[_type == "visitor" && timestamp >= $startDate] | order(timestamp desc)[$start...$end]{
         _id,
         ip,
         location{
@@ -44,10 +60,26 @@ export async function GET(req: NextRequest) {
         referrer,
         userAgent
       }`,
-      { startDate }
+      { startDate, start, end: start + limit }
     );
 
-    return NextResponse.json({ success: true, filter, visitors });
+    console.log(`Filter: ${filter}, Page: ${page}, Showing ${visitors.length} of ${totalCount} visitors`);
+
+    return NextResponse.json({ 
+      success: true, 
+      filter, 
+      visitors,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(totalCount / limit),
+        totalCount,
+        limit
+      },
+      dateRange: {
+        start: startDate,
+        end: new Date().toISOString()
+      }
+    });
   } catch (error) {
     console.error('Error fetching visitor records:', error);
     return NextResponse.json(
