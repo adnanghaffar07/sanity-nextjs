@@ -79,7 +79,7 @@ const MarketingAutomationHero = () => {
             /> */}
             {/* Explore Our Services Button */}
             <Link
-              href="https://calendly.com/adnanghaffar/30min" // Update this with your actual services page URL
+              href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" // Update this with your actual services page URL
               className="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72 hover:bg-blue-600 transition-colors"
             >
               Get a Free Strategy Call

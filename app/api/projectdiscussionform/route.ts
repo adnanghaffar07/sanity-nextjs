@@ -325,7 +325,7 @@ export async function POST(request: Request): Promise<Response> {
       </p>
 
       <div class="cta">
-        <a class="btn" href="https://calendly.com/adnanghaffar/30min?timezone=America/New_York" target="_blank">
+        <a class="btn" href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" target="_blank">
           Schedule a Meeting
         </a>
       </div>

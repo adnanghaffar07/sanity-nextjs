@@ -167,7 +167,7 @@ export default async function service({
                 )}
                 {data.secondButton?.SecondButtonUrl && (
                   <Link
-                    href={data.secondButton.SecondButtonUrl}
+                    href= "https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                     className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -377,7 +377,7 @@ export default async function service({
                   {data.turnVision.description}
                 </div>
                 <Link
-                  href={data.turnVision.buttonLink}
+                  href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                   className="button"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -658,7 +658,7 @@ export default async function service({
                   {data.ctaAfterSubServices.description}
                 </div>
                 <Link
-                  href={data.ctaAfterSubServices.buttonLink}
+                  href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                   className="button"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1272,7 +1272,7 @@ export default async function service({
                   {/* Individual Plan Button */}
                   {plan.buttonText && plan.buttonUrl && (
                     <Link
-                      href={plan.buttonUrl}
+                      href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                       className="w-full bg-[#1D92FB] text-white py-3 px-6 rounded-lg font-semibold text-center block hover:bg-[#0d8ce8] transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1283,7 +1283,7 @@ export default async function service({
                   {/* Global Button for All Plans */}
                   {data.pricingSection?.showButtonInAllPlans && data.pricingSection?.globalButtonText && data.pricingSection?.globalButtonUrl && (
                     <Link
-                      href={data.pricingSection.globalButtonUrl}
+                      href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                       className="w-full bg-[#f7e022] text-black py-3 px-6 rounded-lg font-semibold text-center block mt-4 hover:bg-[#e6d01e] transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1611,7 +1611,7 @@ export default async function service({
               )}
 
               <Link
-                href={data.UpdatedSpecialOffersSection.buttonLink}
+                href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                 className="button"
                 target="_blank"
                 rel="noopener noreferrer"

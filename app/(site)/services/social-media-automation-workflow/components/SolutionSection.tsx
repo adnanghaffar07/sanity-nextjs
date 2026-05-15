@@ -391,7 +391,7 @@ export default function SolutionSection() {
                           Experience seamless submission to automation
                         </p>
                         <a 
-                          href="https://calendly.com/adnanghaffar" 
+                          href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="w-full bg-white text-[#0066CC] hover:bg-blue-50 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center justify-center"
@@ -502,7 +502,7 @@ export default function SolutionSection() {
                         ))}
                       </div>
                       <a 
-                        href="https://calendly.com/adnanghaffar" 
+                        href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-full mt-6 bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center"
@@ -762,7 +762,7 @@ export default function SolutionSection() {
                           Join teams automating with CodeAutomation
                         </p>
                         <a 
-                          href="https://calendly.com/adnanghaffar" 
+                          href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="w-full bg-white text-gray-900 hover:bg-blue-50 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
@@ -822,7 +822,7 @@ export default function SolutionSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a 
-              href="https://calendly.com/adnanghaffar" 
+              href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-gradient-to-r from-[#00A3FF] to-[#7B61FF] hover:from-[#0066CC] hover:to-[#5A43CC] text-white px-8 py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center justify-center"
@@ -831,7 +831,7 @@ export default function SolutionSection() {
               Request Demo
             </a>
             <a 
-              href="https://calendly.com/adnanghaffar" 
+              href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-white border border-[#00A3FF] text-[#00A3FF] hover:bg-[#00A3FF]/5 px-8 py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center justify-center"

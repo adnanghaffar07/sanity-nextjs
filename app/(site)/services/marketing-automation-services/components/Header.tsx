@@ -90,7 +90,7 @@ export default function MarketingHeader() {
 
           {/* Schedule a Call Button */}
           <a
-            href="https://calendly.com/adnanghaffar/30min"
+            href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#F7E022] hover:bg-yellow-400 text-black font-bold px-6 py-2 rounded-md transition-colors text-sm"
@@ -244,7 +244,7 @@ export default function MarketingHeader() {
 
               {/* Schedule a Call Button - Mobile */}
               <a
-                href="https://calendly.com/adnanghaffar/30min"
+                href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-[#F7E022] hover:bg-yellow-400 text-black font-bold py-3 px-4 rounded-md transition-colors text-center"

@@ -218,7 +218,7 @@ const MobileIndustries = () => {
                             </a>
 
                             <a
-                                href="https://calendly.com/adnanghaffar/30min"
+                                href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/30 group"

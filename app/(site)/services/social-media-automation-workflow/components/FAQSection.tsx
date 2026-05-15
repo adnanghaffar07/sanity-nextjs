@@ -293,7 +293,7 @@ export default function FAQSection() {
             
             <div className="flex flex-col space-y-3 w-full lg:w-auto">
               <a 
-                href="https://calendly.com/adnanghaffar" 
+                href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group flex items-center justify-center bg-gradient-to-r from-[#00A3FF] to-[#7B61FF] hover:from-[#0066CC] hover:to-[#5A43CC] text-white px-8 py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] w-full lg:w-auto"
@@ -302,7 +302,7 @@ export default function FAQSection() {
                 Book a Meeting
               </a>
               <a 
-                href="https://calendly.com/adnanghaffar" 
+                href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group flex items-center justify-center bg-white border border-[#00A3FF] text-[#00A3FF] hover:bg-[#00A3FF]/5 px-8 py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] w-full lg:w-auto"

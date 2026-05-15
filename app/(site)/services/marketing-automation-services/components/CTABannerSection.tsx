@@ -52,7 +52,7 @@ const CTABannerSection = () => {
         {/* CTA Buttons - smaller, matching other sections */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
           <a
-            href="https://calendly.com/adnanghaffar/30min"
+            href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
             target="_blank"
             rel="noopener noreferrer"
             className="group bg-[#f7e022] text-[#020C16] px-6 py-3 rounded-full font-semibold hover:bg-white transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2 text-sm"

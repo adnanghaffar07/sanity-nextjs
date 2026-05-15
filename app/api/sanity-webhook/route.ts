@@ -302,7 +302,7 @@ export async function POST(req: NextRequest) {
           <a href="https://codeautomation.ai/services" target="_blank">Explore AI Solutions</a>
         </div>
         <div class="cta-button2">
-          <a href="https://calendly.com/adnanghaffar" target="_blank">Schedule a Call</a>
+          <a href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" target="_blank">Schedule a Call</a>
         </div>
       </div>
     </div>

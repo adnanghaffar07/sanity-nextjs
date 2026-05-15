@@ -125,7 +125,7 @@ export default function FinalCTASection() {
                   
                   <div className="space-y-3">
                     <a 
-                      href="https://calendly.com/adnanghaffar" 
+                      href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="w-full group bg-gradient-to-r from-[#00A3FF] to-[#7B61FF] hover:from-[#0066CC] hover:to-[#5A43CC] text-white py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-[1.02] flex items-center justify-center"
@@ -144,7 +144,7 @@ export default function FinalCTASection() {
                     </div>
                     
                     <a 
-                      href="https://calendly.com/adnanghaffar" 
+                      href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="w-full bg-white/10 hover:bg-white/20 text-white py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-[1.02] border border-white/20 flex items-center justify-center"

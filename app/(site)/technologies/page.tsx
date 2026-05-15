@@ -92,7 +92,7 @@ export default async function Technologies() {
                 Our Case Studies
               </Link>
               <Link
-                href="https://calendly.com/adnanghaffar"
+                href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                 className="bg-[#f7e022]  text-black  font-semibold py-3 px-5 rounded-lg shadow-lg text-center w-full sm:w-48"
                 target="_blank"
                 rel="noopener noreferrer"

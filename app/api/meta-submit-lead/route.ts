@@ -85,7 +85,7 @@ export async function POST(req: Request) {
           </p>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://calendly.com/adnanghaffar" style="padding: 14px 28px; background: #1d92fb; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
+            <a href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" style="padding: 14px 28px; background: #1d92fb; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block;">
               📅 Book a Meeting
             </a>
           </div>

@@ -136,7 +136,7 @@ export default function CategoryTabs() {
     }, [activeIndex]);
 
     const openCalendly = () => {
-        window.open('https://calendly.com/adnanghaffar', '_blank');
+        window.open('https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services', '_blank');
     };
 
     return (

@@ -159,13 +159,13 @@ export async function POST(request: Request) {
               
               <p>In the meantime, feel free to:</p>
               <ul>
-                <li>Book a call directly: <a href="https://calendly.com/adnanghaffar/30min">Schedule here</a></li>
+                <li>Book a call directly: <a href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services">Schedule here</a></li>
                 <li>Call us: <a href="tel:+18505584691">+1 850 558 4691</a></li>
                 <li>Browse our case studies: <a href="https://codeautomation.ai/case-studies">View success stories</a></li>
               </ul>
               
               <div style="text-align: center;">
-                <a href="https://calendly.com/adnanghaffar/30min" class="button">Book Your Strategy Call Now</a>
+                <a href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" class="button">Book Your Strategy Call Now</a>
               </div>
             </div>
             

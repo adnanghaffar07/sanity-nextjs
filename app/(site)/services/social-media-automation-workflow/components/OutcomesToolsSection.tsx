@@ -322,7 +322,7 @@ export default function OutcomesToolsSection() {
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a 
-                  href="https://calendly.com/adnanghaffar" 
+                  href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group bg-white text-gray-900 hover:bg-blue-50 px-6 py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center justify-center"
@@ -331,7 +331,7 @@ export default function OutcomesToolsSection() {
                   Book a Meeting
                 </a>
                 <a 
-                  href="https://calendly.com/adnanghaffar" 
+                  href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group bg-transparent border border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center justify-center"

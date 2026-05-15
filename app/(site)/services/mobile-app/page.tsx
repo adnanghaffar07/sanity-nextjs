@@ -406,7 +406,7 @@ export default function HeroSection() {
 
                     {/* Meeting Button */}
                     <a
-                        href="https://calendly.com/adnanghaffar/30min"
+                      href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setShowNotification(false)}
@@ -603,7 +603,7 @@ export default function HeroSection() {
         {/* CTA Button */}
         <div className="mt-12">
           <a
-            href="https://calendly.com/adnanghaffar/30min"
+            href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#1D92FB] hover:bg-blue-700 hover:text-white bg-white font-semibold px-8 py-3 rounded-md transition duration-300"

@@ -291,7 +291,7 @@ export default function ProblemSection() {
               Let CodeAutomation transform your social media strategy with intelligent automation.
             </p>
             <a 
-              href="https://calendly.com/adnanghaffar" 
+              href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group inline-flex items-center bg-white text-gray-900 hover:bg-gray-50 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl"
