@@ -152,9 +152,9 @@ export default async function service({
             <h1 className="lg:text-4xl text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
               {data.serviceTitle}
             </h1>
-          <span className="block lg:text-2xl mx-auto max-w-6xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-  {data.serviceDesc}
-</span>
+            <span className="block lg:text-2xl mx-auto max-w-6xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+              {data.serviceDesc}
+            </span>
             {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                 {data.firstButton && (
@@ -167,7 +167,7 @@ export default async function service({
                 )}
                 {data.secondButton?.SecondButtonUrl && (
                   <Link
-                    href= "https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
+                    href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
                     className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -403,7 +403,7 @@ export default async function service({
         </section>
       )}
       {/* Custom Software Case Studies Section */}
-      {data.transBusiness && (
+      {data.transBusiness && data.showCaseStudies !== false && (
         <div className="px-6 md:px-16 py-10 md:py-16">
           <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">
             Showcasing Our Success Stories

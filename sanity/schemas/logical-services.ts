@@ -59,6 +59,13 @@ const logicalServices = {
       ],
     },
     {
+      name: "showCaseStudies",
+      title: "Show Case Studies Section",
+      type: "boolean",
+      description: "Toggle this off to hide the Case Studies block for this service page. Defaults to on.",
+      initialValue: true,
+    },
+    {
       name: "serviceTitle",
       title: "Service Title",
       type: "string",
