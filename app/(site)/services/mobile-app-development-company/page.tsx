@@ -1,7 +1,6 @@
 import React from 'react'
 import MobileApp from '../components/MobileApp';
 
-
 export const metadata = {
   title: "Custom Mobile App Development Services - Codeautomation",
   description:
@@ -14,7 +13,19 @@ export const metadata = {
   alternates: {
     canonical: "https://codeautomation.ai/services/mobile-app-development-company",
   },
+
+  // Add this
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
+
 const page = () => {
   return (
     <div>

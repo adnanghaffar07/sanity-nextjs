@@ -152,9 +152,9 @@ export default async function service({
             <h1 className="lg:text-4xl text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
               {data.serviceTitle}
             </h1>
-            <h2 className="lg:text-2xl mx-auto max-w-5xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-              {data.serviceDesc}
-            </h2>
+          <span className="block lg:text-2xl mx-auto max-w-6xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
+  {data.serviceDesc}
+</span>
             {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
               <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
                 {data.firstButton && (
