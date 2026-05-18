@@ -403,7 +403,7 @@ export default async function service({
         </section>
       )}
       {/* Custom Software Case Studies Section */}
-      {data.transBusiness && data.showCaseStudies !== false && (
+      {data.transBusiness && data.showCaseStudies !== true && (
         <div className="px-6 md:px-16 py-10 md:py-16">
           <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">
             Showcasing Our Success Stories
