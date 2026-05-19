@@ -30,7 +30,6 @@ Allow: /
 
 # --- Default rules for all other crawlers ---
 User-agent: *
-Allow: /_next/static/
 Allow: /*.js$
 Allow: /*.css$
 Disallow: /studio/
