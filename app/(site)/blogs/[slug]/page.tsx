@@ -308,7 +308,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         {/* Banner CTA */}
         <div className="relative overflow-hidden rounded-2xl mb-16">
           <img
-            src="/container.jpeg"
+            src="/Container.jpeg"
             alt="Start Your Project"
             className="w-full h-[300px] md:h-[350px] object-cover"
           />
