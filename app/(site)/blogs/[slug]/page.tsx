@@ -193,7 +193,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       )}
 
       {/* Hero Section */}
-      <div className="relative flex flex-col w-full min-h-[500px] lg:min-h-[600px] bg-[#020C16]">
+      <div className="relative flex flex-col w-full min-h-[500px] lg:min-h-[700px] bg-[#020C16]">
         {data.heroimage && (
           <img
             className="absolute inset-0 object-cover w-full h-full"
@@ -207,15 +207,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
               {data.title}
             </h1>
-            {data.subtitle && (
-              <p className="text-gray-300 mt-4 text-sm md:text-base">
-                Published {new Date(data.publishedAt || Date.now()).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric'
-                })}
-              </p>
-            )}
           </div>
         </div>
       </div>
@@ -230,6 +221,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
               {data.blogheading}
             </h2>
           )}
+               {data.subtitle && (
+              <p className="text-gray-700 mt-4 mb-6 text-sm md:text-base">
+                Published {data.subtitle}
+              </p>
+            )}
           {data.introductionheading && (
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               {data.introductionheading}
