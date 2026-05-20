@@ -3,7 +3,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Life at CodeAutomation",
   description:
     "Life at Code Automation, where innovation, collaboration, & team culture thrive through events, growth opportunities, and a supportive work environment.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/lifeatca",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Life at CodeAutomation",
     description:
       "Life at Code Automation, where innovation, collaboration, & team culture thrive through events, growth opportunities, and a supportive work environment.",
     images: [
@@ -31,7 +31,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Life at CodeAutomation",
     description:
       "Life at Code Automation, where innovation, collaboration, & team culture thrive through events, growth opportunities, and a supportive work environment.",
     images: ["https://codeautomation.ai/thankyou.jpg"],

@@ -8,15 +8,17 @@ const FormDisplay = dynamic(() => import("./FormDisplay"), { ssr: false });
 const DeferredFormDisplay = () => {
   const [shouldRender, setShouldRender] = useState(false);
   const currentPath = usePathname();
-  
+
   useEffect(() => {
     // Hide Calendly form on specific paths
-    const shouldHideFormOnPath = 
+    const shouldHideFormOnPath =
       currentPath === "/partnership-program" ||
       currentPath === "/services/marketing-automation-services" ||
       currentPath?.startsWith("/blogs/") ||
-      currentPath?.startsWith("/services/marketing-automation-services/");
-    
+      currentPath?.startsWith("/services/marketing-automation-services/") ||
+      currentPath?.startsWith("/real-estate-ai-automation");
+
+
     if (shouldHideFormOnPath) {
       setShouldRender(false);
       return;

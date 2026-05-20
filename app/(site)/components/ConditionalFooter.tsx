@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import dynamic from 'next/dynamic';
 import React, { Suspense } from 'react';
 import MobileAppFooter from './MobileAppFooter';
+import RealEstateFooter from "../real-estate-ai-automation/compononets/Section8-Footer";
 
 const FooterContainer = dynamic(() => import('./footer-container'), { suspense: true });
 
@@ -17,6 +18,12 @@ export default function ConditionalFooter() {
     pathname?.includes('/marketing-automation-services')
   ) {
     return <MobileAppFooter />;
+  }
+
+  if (
+    pathname?.match('/real-estate-ai-automation')
+  ) {
+    return <RealEstateFooter />;
   }
 
   return (

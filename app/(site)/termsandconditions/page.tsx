@@ -6,7 +6,7 @@ import { urlForImage } from '@/sanity/lib/image'
 import { notFound } from 'next/navigation'
 
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Terms & Conditions | CodeAutomation",
   description: "CodeAutomation.ai is a leading software development company specialized in custom software development services.",
   alternates: {
     canonical: "https://codeautomation.ai/termsandconditions",
@@ -14,7 +14,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/termsandconditions",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Terms & Conditions | CodeAutomation",
     description: "CodeAutomation.ai is a leading software development company specialized in custom software development services.",
     images: [
       {
@@ -27,7 +27,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Terms & Conditions | CodeAutomation",
     description: "CodeAutomation.ai is a leading software development company specialized in custom software development services.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
