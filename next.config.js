@@ -49,6 +49,19 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // 🔒 Domain canonicalization (HTTP & www)
+      {
+        source: "/:path*",
+        has: [{ type: "header", key: "x-forwarded-proto", value: "http" }],
+        destination: "https://codeautomation.ai/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.codeautomation.ai" }],
+        destination: "https://codeautomation.ai/:path*",
+        permanent: true,
+      },
 
       {
         source: "/services/custom-web-cms",
