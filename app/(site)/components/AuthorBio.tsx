@@ -1,5 +1,6 @@
 // components/AuthorBio.tsx
 import Image from "next/image";
+import Link from "next/link";
 import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
 
 const AuthorBio = () => {
@@ -16,8 +17,11 @@ const AuthorBio = () => {
             className="rounded-full"
           />
           <div className="text-center md:text-left">
-            <h2 className="text-xl font-bold text-sky-800">Adnan Ghaffar</h2>
-            <p className="text-gray-800 dark:text-gray-800">CEO, CodeAutomation.ai</p>
+            <Link href="/adnan-ghaffar">
+              <h2 className="text-xl font-bold text-sky-800 cursor-pointer hover:text-sky-600">
+                Adnan Ghaffar
+              </h2>
+            </Link>            <p className="text-gray-800 dark:text-gray-800">CEO, CodeAutomation.ai</p>
           </div>
           <div className="flex gap-3 text-white">
             <a
