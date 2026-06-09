@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 export const metadata = {
   title: "Adnan Ghaffar | AI Consultant & CEO of CodeAutomation",
