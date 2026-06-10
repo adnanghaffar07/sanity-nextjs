@@ -3,7 +3,7 @@ import React from "react";
 export const metadata = {
   title: "Privacy Policy | Code Automation",
   description:
-    "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+    "Learn how CodeAutomation collects, uses, and protects your data when you use our AI, software development, and automation services.",
   keywords: [
     "CodeAutomation",
     "software development company",
@@ -17,7 +17,7 @@ export const metadata = {
     url: "https://codeautomation.ai/privacypolicy",
     title: "Privacy Policy | Code Automation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Learn how CodeAutomation collects, uses, and protects your data when you use our AI, software development, and automation services.",
     images: [
       {
         url: "https://codeautomation.ai/thankyou.jpg",
@@ -31,7 +31,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Privacy Policy | Code Automation",
     description:
-      "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+      "Learn how CodeAutomation collects, uses, and protects your data when you use our AI, software development, and automation services.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
 };

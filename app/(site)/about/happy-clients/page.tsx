@@ -4,7 +4,7 @@ import React from 'react';
 export const metadata = {
     title: "CodeAutomation Delivering Excellence: Our Happy Clients",
    description:
-     "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+     "Explore client success stories from CodeAutomation. See how we deliver AI, software, and automation solutions that drive real business results.",
      keywords: [
        "CodeAutomation",
        "software development company",
@@ -18,7 +18,7 @@ export const metadata = {
      url: "https://codeautomation.ai/about/happy-clients",
      title: "CodeAutomation Delivering Excellence: Our Happy Clients",
      description:
-       "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+       "Explore client success stories from CodeAutomation. See how we deliver AI, software, and automation solutions that drive real business results.",
      images: [
        {
          url: "https://codeautomation.ai/thankyou.jpg",
@@ -32,7 +32,7 @@ export const metadata = {
      card: "summary_large_image",
      title: "CodeAutomation Delivering Excellence: Our Happy Clients",
      description:
-       "CodeAutomation.ai is a leading software development company specialized in custom software development services. Schedule a Call & build with experts.",
+       "Explore client success stories from CodeAutomation. See how we deliver AI, software, and automation solutions that drive real business results.",
      images: ["https://codeautomation.ai/thankyou.jpg"],
    },
  };

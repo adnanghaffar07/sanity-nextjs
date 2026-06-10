@@ -7,7 +7,7 @@ import { client } from "../../../sanity/lib/client";
 import ServicesCard from "../components/Services-Cards";
 
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Software Development, AI & Automation Services | CodeAutomation",
   description:
     "Explore Code Automation services, an AI development company offering AI agents and business automation solutions to streamline operations and scale your business.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/services",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Software Development, AI & Automation Services | CodeAutomation",
     description:
       "Explore Code Automation services, an AI development company offering AI agents and business automation solutions to streamline operations and scale your business.",
     images: [
@@ -35,7 +35,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Software Development, AI & Automation Services | CodeAutomation",
     description:
       "Explore Code Automation services, an AI development company offering AI agents and business automation solutions to streamline operations and scale your business.",
     images: ["https://codeautomation.ai/thankyou.jpg"],

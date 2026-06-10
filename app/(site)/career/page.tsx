@@ -2,7 +2,7 @@ import CareerPost from "../components/CareerPost";
 import { client } from "../../../sanity/lib/client";
 
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Careers at CodeAutomation | Join Our Team",
   description:
     "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
   keywords: [
@@ -16,7 +16,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/career",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Careers at CodeAutomation | Join Our Team",
     description:
       "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
     images: [
@@ -30,7 +30,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Careers at CodeAutomation | Join Our Team",
     description:
       "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
     images: ["https://codeautomation.ai/thankyou.jpg"],

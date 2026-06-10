@@ -4,7 +4,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import BlogList from "../components/BlogList";
 
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "Expert Insights on AI & Business Automation",
   description:
     "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
   keywords: [
@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/blogs",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Expert Insights on AI & Business Automation",
     description:
       "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
     images: [
@@ -32,7 +32,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "Expert Insights on AI & Business Automation",
     description:
       "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
     images: ["https://codeautomation.ai/thankyou.jpg"],

@@ -1,7 +1,7 @@
 import React from 'react'
 import CaseStudy from '../components/CaseStudiesMain'
 export const metadata = {
-  title: "Software Development Company in the USA | CodeAutomation",
+  title: "AI Software Development Case Studies | Proven Client Success Stories",
   description:
     "Explore CodeAutomation.ai's case studies featuring real results from AI and automation solutions that improve efficiency, reduce costs, and drive growth.",
   keywords: [
@@ -15,7 +15,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://codeautomation.ai/case-studies",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "AI Software Development Case Studies | Proven Client Success Stories",
     description:
       "Explore CodeAutomation.ai's case studies featuring real results from AI and automation solutions that improve efficiency, reduce costs, and drive growth.",
     images: [
@@ -29,7 +29,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Development Company in the USA | CodeAutomation",
+    title: "AI Software Development Case Studies | Proven Client Success Stories",
     description:
       "Explore CodeAutomation.ai's case studies featuring real results from AI and automation solutions that improve efficiency, reduce costs, and drive growth.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
