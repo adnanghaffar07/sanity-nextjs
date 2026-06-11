@@ -54,13 +54,15 @@ export default function HomeNavigationContainer() {
     }
   };
 
-  const toggleServices = (e: React.MouseEvent) => {
+  const toggleServices = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     e.stopPropagation();
     setServicesOpen(!servicesOpen);
     setAboutOpen(false);
   };
 
-  const toggleAbout = (e: React.MouseEvent) => {
+  const toggleAbout = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     e.stopPropagation();
     setAboutOpen(!aboutOpen);
     setServicesOpen(false);
@@ -71,13 +73,6 @@ export default function HomeNavigationContainer() {
     setServicesOpen(false);
     setAboutOpen(false);
     setActiveDesktopMenu(null);
-  };
-
-  const handleMenuActionClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    if (target.closest("a,button")) {
-      closeMenu();
-    }
   };
 
   return (
@@ -565,7 +560,7 @@ export default function HomeNavigationContainer() {
         className={`fixed top-0 left-0 h-full w-full bg-white shadow-2xl z-50 xl:hidden transform transition-transform duration-300 ease-out ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        onClickCapture={handleMenuActionClick}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col h-full overflow-y-auto">
           {/* Mobile Menu Header */}
@@ -596,6 +591,7 @@ export default function HomeNavigationContainer() {
               {/* Services Dropdown */}
               <li>
                 <button
+                  type="button"
                   onClick={toggleServices}
                   className="flex items-center justify-between w-full px-5 py-3 text-gray-800 hover:bg-gray-50 transition-colors"
                 >
@@ -647,6 +643,7 @@ export default function HomeNavigationContainer() {
               {/* About Dropdown */}
               <li>
                 <button
+                  type="button"
                   onClick={toggleAbout}
                   className="flex items-center justify-between w-full px-5 py-3 text-gray-800 hover:bg-gray-50 transition-colors"
                 >
