@@ -124,9 +124,8 @@ export default function HomeNavigationContainer() {
                 <svg
                   fill="white"
                   viewBox="0 0 20 20"
-                  className={`inline size-4 ml-1 transition-transform duration-200 ${
-                    activeDesktopMenu === "services" ? "rotate-180" : ""
-                  }`}
+                  className={`inline size-4 ml-1 transition-transform duration-200 ${activeDesktopMenu === "services" ? "rotate-180" : ""
+                    }`}
                 >
                   <path
                     fillRule="evenodd"
@@ -137,9 +136,8 @@ export default function HomeNavigationContainer() {
               </button>
               {/* FIX 1: Services mega menu shifted more right — left-[75%] instead of left-[55%] */}
               <div
-                className={`absolute z-10 w-screen max-w-5xl px-2 mt-2 transform -translate-x-1/2 left-[140%] transition-all duration-300 ${
-                  activeDesktopMenu === "services" ? "opacity-100 visible" : "opacity-0 invisible"
-                }`}
+                className={`absolute z-10 w-screen max-w-5xl px-2 mt-2 transform -translate-x-1/2 left-[140%] transition-all duration-300 ${activeDesktopMenu === "services" ? "opacity-100 visible" : "opacity-0 invisible"
+                  }`}
                 onClick={() => setActiveDesktopMenu(null)}
               >
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
@@ -182,7 +180,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Desktop and Web Development Solutions</p>
                           </div>
                         </Link>
-                              <Link
+                        <Link
                           href={`/services/${linkAIAutomation}`}
                           className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                         >
@@ -262,7 +260,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Transform Idea into Market Leading App</p>
                           </div>
                         </Link>
-                               <Link
+                        <Link
                           href={`/services/${linkAISoftware}`}
                           className="inline-flex items-start p-3 -m-3 transition duration-150 ease-in-out rounded-xl hover:bg-gray-50"
                         >
@@ -298,44 +296,83 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Boost your Online Presence</p>
                           </div>
                         </Link>
-                 
-                        <Link
-                          href="https://calendly.com/adnanghaffar"
-                          className="inline-flex items-center justify-center mt-4 w-full h-8 gap-3 px-5 py-3 text-xs font-medium text-white duration-200 bg-gray-900 rounded-lg md:w-auto hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" style={{fontSize: "14px"}}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Contact Us
-                        </Link>
                       </div>
-                      {/* FIX 2: Hot Topics links — explicit text-gray-700 for grey color */}
+                      {/* Industries links */}
                       <div className="grid grid-cols-1 gap-3 p-2 lg:p-0 bg-gray-50 rounded-2xl">
                         <div className="grid items-start h-1/2 gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-                          <p className="text-base font-medium text-black">Hot Topics</p>
+                          <p className="text-base font-medium text-black">Industries</p>
+
                           <div className="space-y-3">
-                            <Link href={`/services/${linkN8}`} className="flex items-start text-sm font-medium transition rounded-lg" style={{ color: '#374151' , fontSize: '14px'}}>
-                              n8n Automation
+                            <Link
+                              href="/about/industries#healthcare"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Healthcare
                             </Link>
-                               <Link href={`/services/${linkIntegrate}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                              Integration & Automation
+
+                            <Link
+                              href="/about/industries#ecommerce-retail"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              E-Commerce & Retail
                             </Link>
-                            <Link href={`/services/${linkDataEN}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151' , fontSize: '14px'}}>
-                             Data Engineering
+
+                            <Link
+                              href="/about/industries#finance"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Finance
                             </Link>
-                            <Link href={`/services/${linkML}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                              ML Services
+
+                            <Link
+                              href="/about/industries#real-estate"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Real Estate
                             </Link>
-                             <Link href={`/services/${devops}`} className="inline-flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                              Devops Services
+
+                            <Link
+                              href="/about/industries#manufacturing"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Manufacturing
                             </Link>
-                            <Link href={`/services/${linkIOT}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                             IoT Services
+
+                            <Link
+                              href="/about/industries#industrial-tech"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Industrial Tech
                             </Link>
-                            <Link href={`/services/${linkRobotic}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                            RPA Services
+
+                            <Link
+                              href="/about/industries#logistics"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Logistics
                             </Link>
-                            <Link href={`/services/${linkUrlCMS}`} className="flex items-start text-sm transition rounded-lg" style={{ color: '#374151', fontSize: '14px' }}>
-                            Headless CMS
+
+                            <Link
+                              href="/about/industries#education"
+                              className="flex items-start text-sm transition rounded-lg"
+                              style={{ color: "#374151", fontSize: "14px" }}
+                            >
+                              Education
+                            </Link>
+
+                            <Link
+                              href="https://codeautomation.ai/about/industries"
+                              className="flex items-start text-sm font-medium transition rounded-lg"
+                              style={{ color: "#242527", fontSize: "14px", fontWeight: "600" }}
+                            >
+                              View All
                             </Link>
                           </div>
                         </div>
@@ -360,9 +397,8 @@ export default function HomeNavigationContainer() {
                 <svg
                   fill="white"
                   viewBox="0 0 20 20"
-                  className={`inline size-4 ml-1 transition-transform duration-200 ${
-                    activeDesktopMenu === "about" ? "rotate-180" : ""
-                  }`}
+                  className={`inline size-4 ml-1 transition-transform duration-200 ${activeDesktopMenu === "about" ? "rotate-180" : ""
+                    }`}
                 >
                   <path
                     fillRule="evenodd"
@@ -372,15 +408,16 @@ export default function HomeNavigationContainer() {
                 </svg>
               </button>
               <div
-                className={`absolute z-10 w-screen max-w-3xl px-2 mt-2 transform -translate-x-1/2 left-1/2 transition-all duration-300 ${
-                  activeDesktopMenu === "about" ? "opacity-100 visible" : "opacity-0 invisible"
-                }`}
+                className={`absolute z-10 w-screen max-w-4xl px-2 mt-2 transform -translate-x-1/2 left-1/2 transition-all duration-300 ${activeDesktopMenu === "about" ? "opacity-100 visible" : "opacity-0 invisible"
+                  }`}
                 onClick={() => setActiveDesktopMenu(null)}
               >
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative grid gap-6 px-5 py-2 bg-white sm:gap-8 sm:p-8">
-                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                      <div className="grid grid-cols-1 gap-6">
+                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+
+                      {/* Column 1 */}
+                      <div className="grid grid-cols-1 gap-10">
                         <Link href="/about/service-summary" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/documents-sharp.svg" alt="Service Summary" height={24} width={24} />
@@ -390,15 +427,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Service Essence</p>
                           </div>
                         </Link>
-                        <Link href="/about/industries" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
-                          <div>
-                            <Image src="/industries.svg" alt="industries" height={24} width={24} />
-                          </div>
-                          <div className="ml-4">
-                            <p className="text-base font-medium text-black">Our Industries</p>
-                            <p className="mt-1 text-sm text-gray-500">Who We Help</p>
-                          </div>
-                        </Link>
+
                         <Link href="/partnership-program" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/partnership-icon.svg" alt="partnership" height={24} width={24} />
@@ -408,6 +437,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Grow Together</p>
                           </div>
                         </Link>
+
                         <Link href="/value-blueprints" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/cash.svg" alt="cash" height={24} width={24} />
@@ -417,6 +447,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Efficient Deployment</p>
                           </div>
                         </Link>
+
                         <Link href="/about/happy-clients" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/clients-icon.svg" alt="Clients" height={24} width={24} />
@@ -426,6 +457,10 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Trusted Partnerships</p>
                           </div>
                         </Link>
+                      </div>
+
+                      {/* Column 2 */}
+                      <div className="grid grid-cols-1 gap-10">
                         <Link href="/about/ai-tools-for-website-and-app-development" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/aperture-sharp.svg" alt="AI Tools" height={24} width={24} />
@@ -435,8 +470,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Web & App Dev</p>
                           </div>
                         </Link>
-                      </div>
-                      <div className="grid grid-cols-1 gap-6">
+
                         <Link href="/adnan-ghaffar-ceo-codeautomation" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/person-sharp.svg" alt="About CEO" height={24} width={24} />
@@ -446,6 +480,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Founder & AI Leader</p>
                           </div>
                         </Link>
+
                         <Link href="/about/discovery-process" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/server.svg" alt="Discovery Process" height={24} width={24} />
@@ -455,6 +490,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Innovative Strategy</p>
                           </div>
                         </Link>
+
                         <Link href="/case-studies" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/library.svg" alt="Case-Studies" height={24} width={24} />
@@ -464,6 +500,10 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Success Stories</p>
                           </div>
                         </Link>
+                      </div>
+
+                      {/* Column 3 */}
+                      <div className="grid grid-cols-1 gap-10">
                         <Link href="/lifeatca" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/images.svg" alt="Life At CA" height={24} width={24} />
@@ -473,6 +513,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Employee Experiences</p>
                           </div>
                         </Link>
+
                         <Link href="/offshore-software-development" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/globe-sharp.svg" alt="Offshore Development" height={24} width={24} />
@@ -482,6 +523,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Global Development</p>
                           </div>
                         </Link>
+
                         <Link href="/brochure" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/grid.svg" alt="Brochure" height={24} width={24} />
@@ -491,6 +533,7 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Your Ultimate Guide</p>
                           </div>
                         </Link>
+
                         <Link href="/news" className="inline-flex items-start p-3 -m-3 transition rounded-xl hover:bg-gray-50">
                           <div>
                             <Image src="/reader.svg" alt="News" height={24} width={24} />
@@ -500,17 +543,6 @@ export default function HomeNavigationContainer() {
                             <p className="mt-1 text-sm text-gray-500">Stay Updated</p>
                           </div>
                         </Link>
-                      </div>
-                      {/* FIX 3: About menu image — h-auto instead of h-full, object-contain to prevent stretching */}
-                      <div className="grid grid-cols-1 gap-3 lg:p-0 rounded-2xl">
-                        <div className="grid items-start">
-                          <img
-                            src="/menu-img.jpg"
-                            alt="about us"
-                            className="w-full h-auto object-contain rounded-2xl"
-                            loading="lazy"
-                          />
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -549,17 +581,15 @@ export default function HomeNavigationContainer() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-40 xl:hidden ${
-          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-40 xl:hidden ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
         onClick={closeMenu}
       />
 
       {/* FIX 5: Mobile Menu Panel — full width (removed max-w-sm), slides in from left */}
       <div
-        className={`fixed top-0 left-0 h-full w-full bg-white shadow-2xl z-50 xl:hidden transform transition-transform duration-300 ease-out ${
-          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-full bg-white shadow-2xl z-50 xl:hidden transform transition-transform duration-300 ease-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col h-full overflow-y-auto">
@@ -630,7 +660,7 @@ export default function HomeNavigationContainer() {
                         Design Services
                       </Link>
                       <Link href={`/services/${linkAISoftware}`} onClick={closeMenu} className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
-                        AI Software Development 
+                        AI Software Development
                       </Link>
                       <Link href="/services" onClick={closeMenu} className="block px-8 py-2 text-sm font-medium text-[#0a8ffc] hover:bg-gray-100 transition-colors">
                         View All Services →

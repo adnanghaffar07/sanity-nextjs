@@ -142,10 +142,22 @@ export default function FooterContainer() {
                   <Image src="/mail.png" alt="Mail Icon" width={20} height={20} />
                   <a href="mailto:info@codeautomation.ai" className="hover:underline">info@codeautomation.ai</a>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Image src="/USA_Flag.png" alt="USA Flag" width={20} height={20} />
-                  <span>Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States</span>
-                </div>
+                <Link
+                  href="https://share.google/l9C5ReYnl5Jgl5PMG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2 transition-colors"
+                >
+                  <Image
+                    src="/USA_Flag.png"
+                    alt="USA Flag"
+                    width={20}
+                    height={20}
+                  />
+                  <span>
+                    Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States
+                  </span>
+                </Link>
                 <div className="flex items-start gap-2">
                   <Image src="/Canada-Flag.png" alt="Canada Flag" width={20} height={20} />
                   <span>201 N AZALEA LANE, Orleans, Ontario CA K4A4R5</span>
@@ -164,9 +176,9 @@ export default function FooterContainer() {
         </div>
 
         <div className="mt-7 w-full bg-white min-h-[1px]" />
-<div className="mt-5 text-md font-light text-center text-white">
-  © {new Date().getFullYear()} — by Codeautomation.ai
-</div>
+        <div className="mt-5 text-md font-light text-center text-white">
+          © {new Date().getFullYear()} — by Codeautomation.ai
+        </div>
       </div>
     </div>
   );
