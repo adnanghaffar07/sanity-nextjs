@@ -8,6 +8,19 @@ import { Link as ScrollLink } from "react-scroll";
 const PINNED_SERVICE_ORDER = [
     "ai-agent",
     "ai-business-automation-solutions",
+    "ai-software-development-services",
+    "qa-testing-services",
+    "ai-devops",
+    "ml-services",
+    "custom-software-development-services",
+    "mobile-app-development-services",
+    "automation-integration",
+    "ui-ux-design-services",
+    "custom-cms-development-services",
+    "rpa-services",
+    "data-warehouse",
+    "email-marketing",
+    "iot-services",
 ];
 
 const ServicesCard = ({ data }: any) => {
