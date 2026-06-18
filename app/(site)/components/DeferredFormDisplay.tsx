@@ -15,6 +15,7 @@ const DeferredFormDisplay = () => {
       currentPath === "/partnership-program" ||
       currentPath === "/services/marketing-automation-services" ||
       currentPath === "/adnan-ghaffar" ||
+      currentPath === "/contact" ||
       currentPath?.startsWith("/blogs/") ||
       currentPath?.startsWith("/services/marketing-automation-services/") ||
       currentPath?.startsWith("/real-estate-ai-automation");

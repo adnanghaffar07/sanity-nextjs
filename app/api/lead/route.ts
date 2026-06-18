@@ -5,6 +5,8 @@ type LeadRequestBody = {
   phone?: string;
   email?: string;
   what_are_you_looking_for?: string;
+  inquiry_type?: string;
+  page_url?: string;
   message?: string;
 };
 
@@ -84,7 +86,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Extract form fields
-    const { name, phone, email, what_are_you_looking_for, message } = body;
+    const { name, phone, email, what_are_you_looking_for, inquiry_type, page_url, message } = body;
 
     // Validate form data
     const validationErrors = validateFormData({ name, email, phone });
@@ -113,7 +115,9 @@ export async function POST(req: NextRequest) {
       source: 'website',
       tags: ['website lead'],
       customField: {
-        what_are_you_looking_for: what_are_you_looking_for?.trim() || '',
+        what_are_you_looking_for: (inquiry_type || what_are_you_looking_for || '').trim(),
+        page_url: (page_url || '').trim(),
+        inquiry_type: (inquiry_type || '').trim(),
         message: message?.trim() || '',
       },
     };

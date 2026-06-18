@@ -128,7 +128,9 @@ export default function FooterContainer() {
 
           <div className="flex flex-col">
             <div className="text-white flex flex-col items-start text-xl">
-              <div className="text-2xl font-medium">Contact Us</div>
+              <Link href="/contact" className="hover:underline">
+                <div className="text-2xl font-medium">Contact Us</div>
+              </Link>
               <div className="mt-6 text-base font-light space-y-5">
                 <div className="flex items-center gap-3">
                   <Image src="/USA_Flag.png" alt="USA Flag" width={20} height={20} />
