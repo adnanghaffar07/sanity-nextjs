@@ -177,7 +177,16 @@ export default function FooterContainer() {
 
         <div className="mt-7 w-full bg-white min-h-[1px]" />
         <div className="mt-5 text-md font-light text-center text-white">
-          © {new Date().getFullYear()} — by Codeautomation.ai
+          © {new Date().getFullYear()}{" "}
+          <a
+            href="https://codeautomation.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            CodeAutomation
+          </a>{" "}
+          All Rights Reserved.
         </div>
       </div>
     </div>
