@@ -180,7 +180,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
+            className="w-full inline-flex items-center justify-center rounded-2xl bg-[#f7e022] px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-[#e6c91e] hover:shadow-lg hover:shadow-[#f7e022]/30 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:shadow-none"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
