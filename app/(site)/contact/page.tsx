@@ -28,10 +28,10 @@ export default function ContactPage() {
             Get In Touch
           </p>
           <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Let's Build Something Amazing Together
+            Let&apos;s Build Something Amazing Together
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-200">
-            Have a project in mind? Need expert guidance? We're here to help. Whether it's AI automation, web development, or strategic consulting, our team is ready to turn your vision into reality.
+            Have a project in mind? Need expert guidance? We&apos;re here to help. Whether it&apos;s AI automation, web development, or strategic consulting, our team is ready to turn your vision into reality.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <div className="rounded-3xl bg-slate-900/80 p-6 shadow-xl shadow-slate-950/20 ring-1 ring-[#f7e022]/30">
