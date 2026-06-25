@@ -157,8 +157,7 @@ export default function FooterContainer() {
                     height={20}
                   />
                   <span>
-                    Office 254, 1755 Park St Suite 200, Naperville, IL 60563, United States
-                  </span>
+                    50 S Main Street, Suite 200, Office 233 Naperville, IL 60540, USA                  </span>
                 </Link>
                 <div className="flex items-start gap-2">
                   <Image src="/Canada-Flag.png" alt="Canada Flag" width={20} height={20} />
