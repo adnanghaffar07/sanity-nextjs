@@ -167,10 +167,10 @@ export default function Home() {
   },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1755 Park St Suite 200",
+    "streetAddress": "50 S Main Street, Suite 200, Office 233",
     "addressLocality": "Naperville",
     "addressRegion": "IL",
-    "postalCode": "60563",
+    "postalCode": "60540",
     "addressCountry": "US"
   },
   "contactPoint": {
