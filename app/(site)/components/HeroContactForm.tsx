@@ -92,6 +92,8 @@ export default function HeroContactForm() {
     setLoading(true); // ✅ start spinner
 
     try {
+      const pageUrl = typeof window !== "undefined" ? window.location.href : pathname || "";
+
       await submitHeroLead({
         name,
         email,
@@ -99,6 +101,7 @@ export default function HeroContactForm() {
         lookingFor,
         message,
         pageName: pathname?.split("/").pop() || "home",
+        pageUrl,
       });
 
       setShowModal(true);

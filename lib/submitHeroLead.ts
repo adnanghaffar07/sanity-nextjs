@@ -5,6 +5,7 @@ export async function submitHeroLead(data: {
   lookingFor: string;
   message: string;
   pageName?: string;
+  pageUrl?: string;
 }) {
   const formData = new FormData();
 
@@ -14,6 +15,7 @@ export async function submitHeroLead(data: {
   formData.append("looking", data.lookingFor);
   formData.append("message", data.message);
   formData.append("pagename", data.pageName || "Hero");
+  formData.append("page_url", data.pageUrl || "");
 
   // 1. Email API
   const emailRes = await fetch("/api/projectdiscussionform", {
@@ -48,6 +50,7 @@ export async function submitHeroLead(data: {
       phone: data.phone,
       what_are_you_looking_for: data.lookingFor,
       message: data.message,
+      page_url: data.pageUrl || "",
     }),
   }).catch(() => {
     console.warn("CRM failed (ignored)");

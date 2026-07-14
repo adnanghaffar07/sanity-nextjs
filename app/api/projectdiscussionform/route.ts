@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { serverClient } from "@/sanity/lib/sanity/serverClient";
 
 // Define categories for "looking for" field
 const predefinedCategories: Record<string, string> = {
@@ -14,6 +15,34 @@ const predefinedCategories: Record<string, string> = {
   "marketing": "Digital Marketing",
   "seo": "Search Engine Optimization",
 };
+
+// Service keyword -> Sanity contactForm.clientType value mapping
+const clientTypeKeywordMap: Record<string, string> = {
+  mobile: "app",
+  android: "app",
+  ios: "app",
+  software: "software",
+  web: "web",
+  ecommerce: "ecommerce",
+  shopify: "shopify",
+  ai: "ai",
+  ml: "ml",
+  marketing: "marketing",
+  seo: "seo",
+  design: "design",
+  logo: "design",
+  branding: "design",
+};
+
+function detectClientType(text: string): string {
+  const lowerText = text.toLowerCase();
+  for (const keyword in clientTypeKeywordMap) {
+    if (lowerText.includes(keyword)) {
+      return clientTypeKeywordMap[keyword];
+    }
+  }
+  return "other";
+}
 
 // Function to determine subject based on "looking for" input
 function determineSubject(looking: string | null): string {
@@ -41,12 +70,31 @@ export async function POST(request: Request): Promise<Response> {
     const lookingRaw = completeFormData.get("looking") as string | null;
     const messageRaw = completeFormData.get("message") as string | null;
     const pageName = completeFormData.get("pagename") as string | null;
+    const pageUrlRaw = completeFormData.get("page_url") as string | null;
 
     const looking = (lookingRaw ?? "").trim() || "—";
     const message = (messageRaw ?? "").trim() || "—";
+    const pageUrl = (pageUrlRaw ?? "").trim() || pageName || "";
 
     if (!name || !email || !number || !pageName) {
       return new Response(JSON.stringify({ error: "Invalid form data" }), { status: 400 });
+    }
+
+    // Save lead to Sanity (non-blocking — a save failure shouldn't block the email notifications)
+    try {
+      await serverClient.create({
+        _type: "contactForm",
+        name,
+        contact_number: number,
+        email,
+        looking,
+        message,
+        clientType: detectClientType(`${looking} ${message}`),
+        page_name: pageUrl,
+        submitted_at: new Date().toISOString(),
+      });
+    } catch (sanityError) {
+      console.error("Sanity save failed for hero lead:", sanityError);
     }
 
     // Set up Nodemailer transporter
@@ -193,6 +241,11 @@ export async function POST(request: Request): Promise<Response> {
         <div class="row">
           <div class="label">Message</div>
           <div class="message-box">${message}</div>
+        </div>
+
+        <div class="row">
+          <div class="label">Page URL</div>
+          <div class="value"><a href="${pageUrl}" target="_blank" rel="noreferrer">${pageUrl}</a></div>
         </div>
       </div>
 
