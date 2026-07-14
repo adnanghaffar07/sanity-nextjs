@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 
 export async function POST(request: Request) {
   try {
@@ -180,6 +181,45 @@ export async function POST(request: Request) {
     };
 
     await transporter.sendMail(autoReplyOptions);
+
+    try {
+      await serverClient.create({
+        _type: 'contactForm',
+        name: `${firstName} ${lastName}`.trim(),
+        contact_number: phone || '',
+        email,
+        looking: industry || 'Marketing automation',
+        message: challenge || '',
+        clientType: 'marketing',
+        page_name: 'https://codeautomation.ai/services/marketing-automation-services',
+        submitted_at: new Date().toISOString(),
+      });
+    } catch (sanityError) {
+      console.error('Sanity save failed for contact form:', sanityError);
+    }
+
+    try {
+      const leadResponse = await fetch(new URL('/api/lead', request.url).toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${firstName} ${lastName}`.trim(),
+          email,
+          phone: phone || '',
+          what_are_you_looking_for: industry || 'Marketing automation',
+          inquiry_type: industry || 'Marketing automation',
+          page_url: 'https://codeautomation.ai/services/marketing-automation-services',
+          message: challenge || '',
+        }),
+      });
+
+      if (!leadResponse.ok) {
+        const leadText = await leadResponse.text();
+        console.warn('Lead forwarding warning:', leadText);
+      }
+    } catch (leadError) {
+      console.warn('Lead forwarding failed:', leadError);
+    }
 
     return NextResponse.json(
       { message: 'Email sent successfully' },

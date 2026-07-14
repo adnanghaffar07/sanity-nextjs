@@ -17,7 +17,37 @@ type Errors = {
 const validateEmail = (value: string) => /^\S+@\S+\.\S+$/.test(value.trim());
 const validatePhone = (value: string) => /^[0-9+\s()\-]{7,20}$/.test(value.trim());
 
-export default function HeroContactForm() {
+type HeroContactFormProps = {
+  variant?: "default" | "blue";
+  pageName?: string;
+};
+
+export default function HeroContactForm({ variant = "default", pageName }: HeroContactFormProps) {
+  const isBlueVariant = variant === "blue";
+
+  const containerClass = isBlueVariant
+    ? "mx-auto w-[min(92vw,24rem)] xl:w-[min(32vw,30rem)] rounded-[clamp(1rem,1.8vw,1.2rem)] bg-[#1D92FB] p-[clamp(1rem,1.4vw,2rem)] shadow-2xl"
+    : "mx-auto w-[min(92vw,24rem)] xl:w-[min(32vw,30rem)] rounded-[clamp(1rem,1.8vw,1.2rem)] border border-white/20 bg-white/10 p-[clamp(1rem,1.4vw,2rem)] shadow-2xl backdrop-blur-xl";
+
+  const titleClass = isBlueVariant
+    ? "text-[clamp(1rem,1.5vw,1.8rem)] font-bold text-white leading-tight"
+    : "text-[clamp(1rem,1.5vw,1.8rem)] font-bold text-white leading-tight";
+
+  const subtitleClass = isBlueVariant
+    ? "mt-2 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white/90"
+    : "mt-2 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white/80";
+
+  const inputClass = isBlueVariant
+    ? "w-full rounded-xl border border-white/30 bg-white px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-black placeholder:text-gray-500"
+    : "w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50";
+
+  const errorClass = isBlueVariant
+    ? "text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-100"
+    : "text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300";
+
+  const checkboxLabelClass = isBlueVariant
+    ? "flex items-center gap-3 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white"
+    : "flex items-center gap-3 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white";
   const [step, setStep] = useState<1 | 2>(1);
 
   const [name, setName] = useState("");
@@ -100,7 +130,8 @@ export default function HeroContactForm() {
         phone,
         lookingFor,
         message,
-        pageName: pathname?.split("/").pop() || "home",
+        pageName,
+        pathname: pathname || undefined,
         pageUrl,
       });
 
@@ -127,14 +158,14 @@ export default function HeroContactForm() {
   };
 
   return (
-    <div className="mx-auto w-[min(92vw,24rem)] xl:w-[min(32vw,30rem)] rounded-[clamp(1rem,1.8vw,1.2rem)] border border-white/20 bg-white/10 p-[clamp(1rem,1.4vw,2rem)] shadow-2xl backdrop-blur-xl">
+    <div className={containerClass}>
 
       {/* HEADER */}
       <div className="mb-[clamp(0.9rem,1.2vw,1.5rem)]">
-        <p className="text-[clamp(1rem,1.5vw,1.8rem)] font-bold text-white leading-tight">
+        <p className={titleClass}>
           Ready to innovate your business?
         </p>
-        <p className="mt-2 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white/80">
+        <p className={subtitleClass}>
           We are here! Let&apos;s kick-off our journey to success.
         </p>
 
@@ -155,27 +186,27 @@ export default function HeroContactForm() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Full Name"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
+              className={inputClass}
             />
-            {errors.name && <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.name}</p>}
+            {errors.name && <p className={errorClass}>{errors.name}</p>}
 
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
+              className={inputClass}
             />
-            {errors.email && <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.email}</p>}
+            {errors.email && <p className={errorClass}>{errors.email}</p>}
 
             <input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Contact Number"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
+              className={inputClass}
             />
-            {errors.phone && <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.phone}</p>}
+            {errors.phone && <p className={errorClass}>{errors.phone}</p>}
 
             <button
               type="submit"
@@ -195,10 +226,10 @@ export default function HeroContactForm() {
               value={lookingFor}
               onChange={(e) => setLookingFor(e.target.value)}
               placeholder="What are you looking for?"
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
+              className={inputClass}
             />
             {errors.lookingFor && (
-              <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.lookingFor}</p>
+              <p className={errorClass}>{errors.lookingFor}</p>
             )}
 
             <textarea
@@ -206,13 +237,13 @@ export default function HeroContactForm() {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
               rows={3}
-              className="w-full rounded-xl border border-white/20 bg-white/5 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] text-white placeholder:text-white/50"
+              className={inputClass}
             />
             {errors.message && (
-              <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.message}</p>
+              <p className={errorClass}>{errors.message}</p>
             )}
 
-            <label className="flex items-center gap-3 text-[clamp(0.75rem,0.9vw,0.95rem)] text-white">
+            <label className={checkboxLabelClass}>
               <input
                 type="checkbox"
                 checked={captchaChecked}
@@ -222,13 +253,17 @@ export default function HeroContactForm() {
             </label>
 
             {errors.captcha && (
-              <p className="text-[clamp(0.72rem,0.88vw,0.9rem)] text-rose-300">{errors.captcha}</p>
+              <p className={errorClass}>{errors.captcha}</p>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1d92fb] px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
+              className={`flex w-full items-center justify-center gap-2 rounded-xl px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.55rem,0.8vw,0.85rem)] text-[clamp(0.75rem,0.9vw,0.95rem)] font-semibold disabled:cursor-not-allowed disabled:opacity-70 ${
+                isBlueVariant
+                  ? "bg-[#F7E022] text-black hover:bg-[#e6d01e]"
+                  : "bg-[#1d92fb] text-white"
+              }`}
             >
               {loading ? (
                 <>

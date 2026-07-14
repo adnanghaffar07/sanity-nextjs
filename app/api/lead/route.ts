@@ -1,4 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+import { isLikelyValidGhlPhone, normalizePhoneForGhl } from '@/lib/normalizePhoneForGhl';
+import { serverClient } from '@/sanity/lib/sanity/serverClient';
 
 type LeadRequestBody = {
   name?: string;
@@ -10,7 +13,6 @@ type LeadRequestBody = {
   message?: string;
 };
 
-// Validate required fields
 function validateFormData(data: LeadRequestBody) {
   const errors: string[] = [];
 
@@ -31,16 +33,14 @@ function validateFormData(data: LeadRequestBody) {
   return errors;
 }
 
-// Simple email validation
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-// Split name into firstName and lastName
 function splitName(fullName: string): { firstName: string; lastName: string } {
   const trimmedName = fullName.trim();
-  const parts = trimmedName.split(/\s+/);
+  const parts = trimmedName.split(/\s+/).filter(Boolean);
 
   if (parts.length === 0) {
     return { firstName: '', lastName: '' };
@@ -50,31 +50,29 @@ function splitName(fullName: string): { firstName: string; lastName: string } {
     return { firstName: parts[0], lastName: '' };
   }
 
-  // First part is firstName, rest is lastName
   return {
     firstName: parts[0],
     lastName: parts.slice(1).join(' '),
   };
 }
 
-function normalizePhone(phone: string): string {
-  const trimmedPhone = phone.trim();
-  if (!trimmedPhone) return '';
-  return trimmedPhone.startsWith('+') ? trimmedPhone : `+${trimmedPhone}`;
+function inferClientType(lookingFor: string, message: string): string {
+  const combined = `${lookingFor} ${message}`.toLowerCase();
+
+  if (combined.includes('mobile') || combined.includes('app')) return 'app';
+  if (combined.includes('shopify')) return 'shopify';
+  if (combined.includes('ecommerce') || combined.includes('commerce')) return 'ecommerce';
+  if (combined.includes('seo')) return 'seo';
+  if (combined.includes('marketing') || combined.includes('automation')) return 'marketing';
+  if (combined.includes('ai')) return 'ai';
+  if (combined.includes('design') || combined.includes('branding')) return 'design';
+  if (combined.includes('software') || combined.includes('web')) return 'web';
+
+  return 'other';
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    // Verify API key exists
-    if (!process.env.GHL_API_KEY) {
-      console.error('GHL_API_KEY environment variable is not set');
-      return NextResponse.json(
-        { error: 'Server configuration error' },
-        { status: 500 }
-      );
-    }
-
-    // Parse request body
     let body: LeadRequestBody;
     try {
       body = await req.json();
@@ -85,13 +83,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Extract form fields
     const { name, phone, email, what_are_you_looking_for, inquiry_type, page_url, message } = body;
-
-    // Validate form data
     const validationErrors = validateFormData({ name, email, phone });
+
     if (validationErrors.length > 0) {
-      console.warn('Validation errors:', validationErrors);
       return NextResponse.json(
         { error: 'Validation failed', details: validationErrors },
         { status: 400 }
@@ -101,95 +96,153 @@ export async function POST(req: NextRequest) {
     const safeName = (name ?? '').trim();
     const safeEmail = (email ?? '').trim().toLowerCase();
     const safePhone = (phone ?? '').trim();
-
-    // Split name into firstName and lastName
+    const safeInquiryType = (inquiry_type || what_are_you_looking_for || 'General inquiry').trim();
+    const safePageUrl = (page_url || '').trim() || 'https://codeautomation.ai';
+    const safeMessage = (message || '').trim();
     const { firstName, lastName } = splitName(safeName);
-    const normalizedPhone = normalizePhone(safePhone);
+    const normalizedPhone = normalizePhoneForGhl(safePhone);
 
-    // Prepare GHL API payload
-    const ghlPayload = {
-      firstName: firstName,
-      lastName: lastName,
+    const ghlPayload: Record<string, unknown> = {
+      firstName,
+      lastName,
       email: safeEmail,
-      phone: normalizedPhone,
       source: 'website',
       tags: ['website lead'],
       customField: {
-        what_are_you_looking_for: (inquiry_type || what_are_you_looking_for || '').trim(),
-        page_url: (page_url || '').trim(),
-        inquiry_type: (inquiry_type || '').trim(),
-        message: message?.trim() || '',
+        what_are_you_looking_for: safeInquiryType,
+        page_url: safePageUrl,
+        inquiry_type: safeInquiryType,
+        message: safeMessage,
       },
     };
 
-    console.log('Sending lead to GHL:', {
-      firstName,
-      lastName,
-      email: ghlPayload.email,
-      phone: ghlPayload.phone,
-      source: ghlPayload.source,
-      tags: ghlPayload.tags,
-    });
-
-    // Send to GHL API
-    const ghlResponse = await fetch(
-      'https://rest.gohighlevel.com/v1/contacts/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.GHL_API_KEY}`,
-        },
-        body: JSON.stringify(ghlPayload),
-      }
-    );
-
-    // Handle GHL API response
-    let ghlData: any = null;
-    try {
-      ghlData = await ghlResponse.json();
-    } catch {
-      ghlData = { message: 'Unable to parse GHL response' };
+    if (isLikelyValidGhlPhone(normalizedPhone)) {
+      ghlPayload.phone = normalizedPhone;
+    } else {
+      ghlPayload.customField = {
+        ...(ghlPayload.customField as Record<string, string>),
+        phone_raw: safePhone,
+      };
     }
 
-    if (!ghlResponse.ok) {
-      console.error('GHL API Error:', {
-        status: ghlResponse.status,
-        statusText: ghlResponse.statusText,
-        error: ghlData,
+    let sanitySaved = false;
+    try {
+      await serverClient.create({
+        _type: 'contactForm',
+        name: safeName,
+        contact_number: safePhone,
+        email: safeEmail,
+        looking: safeInquiryType,
+        message: safeMessage || `Lead from ${safePageUrl}`,
+        clientType: inferClientType(safeInquiryType, safeMessage),
+        page_name: safePageUrl,
+        submitted_at: new Date().toISOString(),
       });
+      sanitySaved = true;
+    } catch (sanityError) {
+      console.error('Sanity lead save failed:', sanityError);
+    }
 
+    let emailSent = false;
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+          },
+        });
+
+        await transporter.sendMail({
+          from: `"CodeAutomation.ai" <${process.env.EMAIL_USER}>`,
+          to: 'adnan@codeautomation.dev',
+          subject: `New website lead from ${safeName}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
+              <h2 style="margin-bottom: 8px;">New Lead Submitted</h2>
+              <p><strong>Name:</strong> ${safeName}</p>
+              <p><strong>Email:</strong> ${safeEmail}</p>
+              <p><strong>Phone:</strong> ${safePhone}</p>
+              <p><strong>Inquiry:</strong> ${safeInquiryType}</p>
+              <p><strong>Page:</strong> ${safePageUrl}</p>
+              <p><strong>Message:</strong><br/>${safeMessage || 'No message provided'}</p>
+            </div>
+          `,
+        });
+
+        emailSent = true;
+      } catch (emailError) {
+        console.error('Email lead delivery failed:', emailError);
+      }
+    } else {
+      console.warn('Email credentials are not configured for lead delivery.');
+    }
+
+    let ghlSubmitted = false;
+    let ghlData: Record<string, unknown> | null = null;
+    if (process.env.GHL_API_KEY) {
+      try {
+        const ghlResponse = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.GHL_API_KEY}`,
+          },
+          body: JSON.stringify(ghlPayload),
+        });
+
+        try {
+          ghlData = await ghlResponse.json();
+        } catch {
+          ghlData = { message: 'Unable to parse GHL response' };
+        }
+
+        if (ghlResponse.ok) {
+          ghlSubmitted = true;
+        } else {
+          console.error('GHL API Error:', {
+            status: ghlResponse.status,
+            statusText: ghlResponse.statusText,
+            error: ghlData,
+          });
+        }
+      } catch (ghlError) {
+        console.error('GHL lead submission failed:', ghlError);
+      }
+    } else {
+      console.warn('GHL_API_KEY is not configured.');
+    }
+
+    if (!sanitySaved && !emailSent && !ghlSubmitted) {
       return NextResponse.json(
-        {
-          error: 'Failed to create contact in GHL',
-          details: ghlData.message || ghlData.error || 'Unknown error',
-        },
+        { error: 'Unable to process lead submission' },
         { status: 502 }
       );
     }
 
-    console.log('Lead successfully created in GHL:', {
-      contactId: ghlData?.id || ghlData?.contact_id,
-      email: safeEmail,
-      name: `${firstName} ${lastName}`,
-    });
-
     return NextResponse.json(
       {
         success: true,
-        message: 'Lead successfully created',
-        contactId: ghlData?.id || ghlData?.contact_id,
+        message: 'Lead processed successfully',
+        contactId: (ghlData as { id?: string; contact_id?: string } | null)?.id || (ghlData as { id?: string; contact_id?: string } | null)?.contact_id,
+        delivered: {
+          sanity: sanitySaved,
+          email: emailSent,
+          ghl: ghlSubmitted,
+        },
       },
       { status: 201 }
     );
   } catch (error) {
-    console.error('API Error:', error instanceof Error ? error.message : error);
+    console.error('Lead API error:', error instanceof Error ? error.message : error);
 
     return NextResponse.json(
       {
         error: 'Internal server error',
-        message:
-          error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: error instanceof Error ? error.message : 'An unexpected error occurred',
       },
       { status: 500 }
     );

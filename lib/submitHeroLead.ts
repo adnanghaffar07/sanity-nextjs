@@ -1,3 +1,14 @@
+function formatPageName(pathname?: string, override?: string): string {
+  if (override?.trim()) return override.trim();
+  if (!pathname || pathname === "/") return "Home";
+
+  const segment = pathname.split("/").filter(Boolean).pop() || "Home";
+  return segment
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 export async function submitHeroLead(data: {
   name: string;
   email: string;
@@ -6,55 +17,48 @@ export async function submitHeroLead(data: {
   message: string;
   pageName?: string;
   pageUrl?: string;
+  pathname?: string;
 }) {
   const formData = new FormData();
+  const resolvedPageName = formatPageName(data.pathname, data.pageName);
 
   formData.append("name", data.name);
   formData.append("email", data.email);
   formData.append("number", data.phone);
   formData.append("looking", data.lookingFor);
   formData.append("message", data.message);
-  formData.append("pagename", data.pageName || "Hero");
+  formData.append("pagename", resolvedPageName);
   formData.append("page_url", data.pageUrl || "");
 
-  // 1. Email API
-  const emailRes = await fetch("/api/projectdiscussionform", {
-    method: "POST",
-    body: formData,
-  });
-
-  if (!emailRes.ok) throw new Error("Email failed");
-
-  // 2. DB / CMS
-  // const dbRes = await fetch("/api/submit", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({
-  //     name: data.name,
-  //     email: data.email,
-  //     contact_number: data.phone,
-  //     looking: data.lookingFor,
-  //     message: data.message,
-  //   }),
-  // });
-
-  // if (!dbRes.ok) throw new Error("DB failed");
-
-  // 3. CRM (non-blocking)
-  fetch("/api/lead", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      what_are_you_looking_for: data.lookingFor,
-      message: data.message,
-      page_url: data.pageUrl || "",
+  const [emailResult, ghlResult] = await Promise.allSettled([
+    fetch("/api/projectdiscussionform", {
+      method: "POST",
+      body: formData,
     }),
-  }).catch(() => {
-    console.warn("CRM failed (ignored)");
-  });
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        what_are_you_looking_for: data.lookingFor,
+        message: data.message,
+        page_url: data.pageUrl || "",
+      }),
+    }),
+  ]);
+
+  if (emailResult.status === "rejected" || !emailResult.value.ok) {
+    throw new Error("Email failed");
+  }
+
+  if (ghlResult.status === "rejected") {
+    console.warn("GHL submission failed:", ghlResult.reason);
+  } else if (!ghlResult.value.ok) {
+    const ghlError = await ghlResult.value.json().catch(() => null);
+    console.warn("GHL submission warning:", ghlError);
+  }
 
   return true;
 }

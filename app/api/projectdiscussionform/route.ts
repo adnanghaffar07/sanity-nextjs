@@ -408,6 +408,24 @@ export async function POST(request: Request): Promise<Response> {
     await transporter.sendMail(teamMailOptions);
     await transporter.sendMail(userMailOptions);
 
+    try {
+      await fetch(new URL('/api/lead', request.url).toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: number,
+          what_are_you_looking_for: looking,
+          inquiry_type: looking,
+          page_url: pageUrl,
+          message,
+        }),
+      });
+    } catch (leadError) {
+      console.warn('Hero lead forwarding failed:', leadError);
+    }
+
     return new Response(JSON.stringify({ message: "Emails sent successfully" }), { status: 200 });
   } catch (error) {
     console.error("Error in POST handler:", error);

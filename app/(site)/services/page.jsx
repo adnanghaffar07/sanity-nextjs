@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
 import ScrollAnimation from "../components/ScrollAnimation";
+import ServicesHeroSection from "./components/ServicesHeroSection";
 import { urlForImage } from "@/sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
 import ServicesCard from "../components/Services-Cards";
@@ -127,26 +127,7 @@ const Services = async () => {
       >
         {JSON.stringify(SERVICES_JSON_LD)}
       </Script>
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <img
-          className="absolute top-0 left-0 object-cover inset-0 size-full"
-          src="/bg-services.jpg"
-          alt="Services"
-        />
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
-        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[300px]">
-            <div className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 max-md:max-w-full">
-              <h1 className="title capitalize">Our Services</h1>
-            </div>
-            <h2 className="lg:text-2xl text-center mt-4 max-md:max-w-full lg:px-32">
-              CodeAutomation.ai provides comprehensive software development,
-              testing, and automation solutions to enable digital transformation
-              for enterprises globally
-            </h2>
-          </div>
-        </div>
-      </div>
+      <ServicesHeroSection />
 
       <ScrollAnimation>
         <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-blue-50 max-md:px-5 max-md:max-w-full">
