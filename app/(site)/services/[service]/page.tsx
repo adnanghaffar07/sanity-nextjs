@@ -8,6 +8,7 @@ import CustomSoftwareSection from "../../components/CustomSoftwareAcc";
 import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
 import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordian";
 import ButtonScrollToSection from "../../components/ButtonScrollToSection";
+import HeroContactForm from "../../components/HeroContactForm";
 import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 import Script from "next/script";
@@ -138,7 +139,7 @@ export default async function service({
           dangerouslySetInnerHTML={{ __html: data.jsonLd }}
         />
       )}
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+      <div className="flex overflow-hidden relative flex-col w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         {data.heroImage && (
           <img
             className="top-0 left-0 object-cover absolute size-full"
@@ -147,48 +148,56 @@ export default async function service({
           />
         )}
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
-        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[300px]">
-            <h1 className="lg:text-4xl text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
-              {data.serviceTitle}
-            </h1>
-            <span className="block lg:text-2xl mx-auto max-w-6xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-              {data.serviceDesc}
-            </span>
-            {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
-              <div className="flex flex-col sm:flex-row mx-auto pt-6 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center">
-                {data.firstButton && (
-                  <ButtonScrollToSection
-                    classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72"
-                    content={data.firstButton.firstButtonText}
-                    key="first-button"
-                    destination="contact-box"
-                  />
+        <div className="flex relative w-full items-center justify-center py-10 px-5 lg:px-20 pt-48 pb-12 lg:pt-32 lg:pb-16 max-md:px-5 max-md:max-w-full flex-grow">
+          <div className="w-full max-w-[1600px] mx-auto">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+              {/* LEFT SIDE */}
+              <div className="flex flex-col justify-center gap-6 lg:w-1/2 text-center lg:text-left">
+                <h1 className="lg:text-4xl text-2xl font-bold">
+                  {data.serviceTitle}
+                </h1>
+                <span className="block lg:text-xl text-base">
+                  {data.serviceDesc}
+                </span>
+                {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
+                  <div className="flex flex-col sm:flex-row pt-2 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center lg:justify-start">
+                    {data.firstButton && (
+                      <ButtonScrollToSection
+                        classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72"
+                        content={data.firstButton.firstButtonText}
+                        key="first-button"
+                        destination="contact-box"
+                      />
+                    )}
+                    {data.secondButton?.SecondButtonUrl && (
+                      <Link
+                        href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
+                        className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {data.secondButton.SecondButtonText}
+                      </Link>
+                    )}
+                    {params.service === "mobile-app-development-services" && (
+                      <Link
+                        href="/pricing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
+                      >
+                        View Pricing
+                      </Link>
+                    )}
+                  </div>
                 )}
-                {data.secondButton?.SecondButtonUrl && (
-                  <Link
-                    href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
-                    className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {data.secondButton.SecondButtonText}
-                  </Link>
-                )}
-                {params.service === "mobile-app-development-services" && (
-                  <Link
-                    href="/pricing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#f7e022] text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
-                  >
-                    View Pricing
-                  </Link>
-                )}
-
               </div>
-            )}
 
+              {/* RIGHT SIDE (FORM) */}
+              <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
+                <HeroContactForm />
+              </div>
+            </div>
           </div>
         </div>
       </div>

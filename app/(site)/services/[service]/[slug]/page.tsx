@@ -4,6 +4,7 @@ import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import HeroContactForm from "../../../components/HeroContactForm";
 
 async function getData(urlPathSub: string) {
   if (!urlPathSub) return null; // ✅ Prevents undefined errors
@@ -92,21 +93,31 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <div className="bg-gray-100">
       {/* Hero Section */}
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+      <div className="flex overflow-hidden relative flex-col w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
         <img
           className="top-0 left-0 object-cover absolute inset-0 size-full"
           src={urlForImage(data.heroImageSub).toString()}
           alt={data.heroImageSub.alt}
         />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
-        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[300px]">
-            <h1 className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-0 lg:w-8/12 mx-auto">
-              {data.serviceTitleSub}
-            </h1>
-            <h2 className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-              {data.serviceDescSub}
-            </h2>
+        <div className="flex relative w-full items-center justify-center py-10 px-5 lg:px-20 pt-48 pb-12 lg:pt-32 lg:pb-16 max-md:px-5 max-md:max-w-full flex-grow">
+          <div className="w-full max-w-[1600px] mx-auto">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+              {/* LEFT SIDE */}
+              <div className="flex flex-col justify-center gap-6 lg:w-1/2 text-center lg:text-left">
+                <h1 className="lg:text-4xl text-2xl font-bold capitalize">
+                  {data.serviceTitleSub}
+                </h1>
+                <h2 className="lg:text-xl text-base font-normal">
+                  {data.serviceDescSub}
+                </h2>
+              </div>
+
+              {/* RIGHT SIDE (FORM) */}
+              <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
+                <HeroContactForm />
+              </div>
+            </div>
           </div>
         </div>
       </div>
