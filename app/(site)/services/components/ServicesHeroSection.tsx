@@ -24,7 +24,7 @@ export default function ServicesHeroSection() {
         src="/service-vector-down.png"
         alt=""
         width={320}
-        height={640}
+        height={320}
         priority
         aria-hidden
         className="pointer-events-none absolute -bottom-32 -right-8 z-0 w-[min(28vw,220px)] select-none opacity-80"
