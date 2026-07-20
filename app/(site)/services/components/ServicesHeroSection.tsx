@@ -80,14 +80,14 @@ export default function ServicesHeroSection() {
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-end">
+          {/* <div className="flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md lg:max-w-lg">
               <div className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-[#1D92FB]/20 via-transparent to-[#1D92FB]/10 blur-sm" />
               <div className="relative rounded-[1.25rem] border border-white/70 bg-white/90 p-2 shadow-[0_24px_60px_-24px_rgba(29,146,251,0.45)] backdrop-blur-md">
                 <HeroContactForm variant="blue" pageName="Services" />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

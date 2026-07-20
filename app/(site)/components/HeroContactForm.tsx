@@ -20,9 +20,14 @@ const validatePhone = (value: string) => /^[0-9+\s()\-]{7,20}$/.test(value.trim(
 type HeroContactFormProps = {
   variant?: "default" | "blue";
   pageName?: string;
+  heading?: string;
+  subheading?: string;
 };
 
-export default function HeroContactForm({ variant = "default", pageName }: HeroContactFormProps) {
+const DEFAULT_HEADING = "Ready to innovate your business?";
+const DEFAULT_SUBHEADING = "We are here! Let's kick-off our journey to success.";
+
+export default function HeroContactForm({ variant = "default", pageName, heading, subheading }: HeroContactFormProps) {
   const isBlueVariant = variant === "blue";
 
   const containerClass = isBlueVariant
@@ -163,10 +168,10 @@ export default function HeroContactForm({ variant = "default", pageName }: HeroC
       {/* HEADER */}
       <div className="mb-[clamp(0.9rem,1.2vw,1.5rem)]">
         <p className={titleClass}>
-          Ready to innovate your business?
+          {heading?.trim() || DEFAULT_HEADING}
         </p>
         <p className={subtitleClass}>
-          We are here! Let&apos;s kick-off our journey to success.
+          {subheading?.trim() || DEFAULT_SUBHEADING}
         </p>
 
       </div>

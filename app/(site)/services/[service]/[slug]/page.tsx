@@ -115,7 +115,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
               {/* RIGHT SIDE (FORM) */}
               <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
-                <HeroContactForm />
+                <HeroContactForm
+                  heading={data.heroFormTextSub?.heading}
+                  subheading={data.heroFormTextSub?.subheading}
+                />
               </div>
             </div>
           </div>

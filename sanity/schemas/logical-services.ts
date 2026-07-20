@@ -75,6 +75,27 @@ const logicalServices = {
       title: "Service Description",
       type: "string",
     },
+    {
+      name: "heroFormText",
+      title: "Hero Form Text (Right Side Form)",
+      type: "object",
+      description:
+        "Optional. Overrides the heading and subheading shown above the lead capture form in the hero section. Leave blank to use the default text.",
+      fields: [
+        {
+          name: "heading",
+          title: "Form Heading",
+          type: "string",
+          description: 'Defaults to "Ready to innovate your business?" if left blank.',
+        },
+        {
+          name: "subheading",
+          title: "Form Subheading",
+          type: "string",
+          description: "Defaults to \"We are here! Let's kick-off our journey to success.\" if left blank.",
+        },
+      ],
+    },
     //First Button
     {
       name: "firstButton",
@@ -1987,6 +2008,58 @@ const logicalServices = {
         },
       ],
     },
+    // Client Testimonials Section
+    {
+      name: "testimonialsSection",
+      title: "Client Testimonials Section",
+      type: "object",
+      description: "Optional. Displayed above the FAQ section on the service page.",
+      fields: [
+        {
+          name: "sectionHeading",
+          title: "Section Heading",
+          type: "string",
+          description: 'Defaults to "Client Testimonials" if left blank.',
+        },
+        {
+          name: "sectionSubheading",
+          title: "Section Subheading",
+          type: "string",
+          description: 'Defaults to "What US teams say after their first engagement." if left blank.',
+        },
+        {
+          name: "testimonials",
+          title: "Testimonials",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              title: "Testimonial",
+              fields: [
+                {
+                  name: "quote",
+                  title: "Quote",
+                  type: "text",
+                  rows: 4,
+                },
+                {
+                  name: "authorRole",
+                  title: "Author Role",
+                  type: "string",
+                  description: 'e.g. "VP of Engineering"',
+                },
+                {
+                  name: "authorCompany",
+                  title: "Author Company / Location",
+                  type: "string",
+                  description: 'e.g. "Series B SaaS company, Austin, Texas"',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
     {
       name: "subServiceHeading",
       title: "Sub Service Card Section Heading",
@@ -2259,6 +2332,27 @@ const subServiceSchema = {
       name: "serviceDescSub",
       title: "Sub Service Description",
       type: "string",
+    },
+    {
+      name: "heroFormTextSub",
+      title: "Hero Form Text (Right Side Form)",
+      type: "object",
+      description:
+        "Optional. Overrides the heading and subheading shown above the lead capture form in the hero section. Leave blank to use the default text.",
+      fields: [
+        {
+          name: "heading",
+          title: "Form Heading",
+          type: "string",
+          description: 'Defaults to "Ready to innovate your business?" if left blank.',
+        },
+        {
+          name: "subheading",
+          title: "Form Subheading",
+          type: "string",
+          description: "Defaults to \"We are here! Let's kick-off our journey to success.\" if left blank.",
+        },
+      ],
     },
 
     // Introduction Section

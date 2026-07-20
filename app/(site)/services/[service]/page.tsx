@@ -13,6 +13,7 @@ import CaseStudiesHome from "../../components/CaseStudies-Home";
 import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
 import Script from "next/script";
 import FAQServicePage from "../../components/FaqService";
+import TestimonialsSection from "../../components/TestimonialsSection";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../components/PortableTextServices";
 import { notFound } from "next/navigation";
@@ -195,7 +196,10 @@ export default async function service({
 
               {/* RIGHT SIDE (FORM) */}
               <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
-                <HeroContactForm />
+                <HeroContactForm
+                  heading={data.heroFormText?.heading}
+                  subheading={data.heroFormText?.subheading}
+                />
               </div>
             </div>
           </div>
@@ -296,6 +300,92 @@ export default async function service({
         </div>
       )}
 
+      {/* Introduction Section */}
+      {data.introductionSection && (
+        <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
+          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
+          <div className="container mx-auto flex flex-wrap items-center justify-center relative">
+            {/* Image on the left */}
+            {data.introductionSection?.introImage && (
+              <div className="w-full flex justify-center md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
+                <div className="relative group w-full">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#1D92FB] to-[#6BB8FF] rounded-lg blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <img
+                    src={urlForImage(data.introductionSection?.introImage).toString()}
+                    alt={data.introductionSection?.introImage.alt || "Introduction visual"}
+                    className="relative object-contain rounded-lg h-[250px] md:h-[330px] w-full transition-transform duration-300 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Content on the right */}
+            {data.introductionSection?.introHeading && (
+              <div className="w-full md:w-1/2">
+                <div className="max-w-3xl mx-auto">
+                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
+                    {data.introductionSection.introHeading}
+                  </h2>
+                  {data.introductionSection.introDescBlock && data.introductionSection.introDescBlock.length > 0 ? (
+                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                      <PortableText
+                        value={data.introductionSection.introDescBlock}
+                        components={portableTextComponents}
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                      {data.introductionSection.introDesc}
+                    </div>
+                  )}
+                  {/* Array in introduction description section */}
+                  {data?.introductionDescArray?.length > 0 && (
+                    <div className="flex flex-col gap-4 mt-4">
+                      {data?.introductionDescArray?.map(
+                        (description: string, index: number) => {
+                          return (
+                            <div key={index} className="flex items-start gap-3">
+                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#1D92FB]/10 flex items-center justify-center mt-1">
+                                <span className="text-[#1D92FB] text-xs font-bold">{index + 1}</span>
+                              </div>
+                              <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
+                                {description}
+                              </p>
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Design section */}
+      {data.designSection && (
+        <section className="bg-white px-6 md:px-16 py-10 md:py-16 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-[#1D92FB]/5 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#1D92FB]/5 rounded-full blur-2xl"></div>
+
+          <div className="container mx-auto relative">
+            <div className="flex flex-col items-center">
+              <h2 className="text-2xl font-bold mb-8 text-center">
+                {data.designSection?.heading}
+              </h2>
+              <div className="relative max-w-5xl">
+                <div className="absolute left-1/2 -translate-x-1/2 -top-4 w-12 h-0.5 bg-[#1D92FB]"></div>
+                <p className="text-lg text-center text-gray-800 leading-relaxed pt-4">
+                  {data.designSection?.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
       {/* Why Prefer Code Automation? Custom Software */}
       {data.customSoftwareSection && <CustomSoftwareSection data={data} />}
 
@@ -423,83 +513,6 @@ export default async function service({
 
       {/* Why Prefer Code Automation? Custom Software */}
       {data.provenProcessSection && <CustomSoftware2Section data={data} />}
-
-
-      {/* Introduction Section */}
-      {data.introductionSection && (
-        <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
-          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
-          <div className="container mx-auto flex flex-wrap items-center justify-center relative">
-            {/* Image on the left */}
-            {data.introductionSection?.introImage && (
-              <div className="w-full flex justify-center md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
-                <img
-                  src={urlForImage(
-                    data.introductionSection?.introImage
-                  ).toString()}
-                  alt={data.introductionSection?.introImage.alt}
-                  className="object-cover rounded-lg h-[250px] md:h-[330px]"
-                  loading="lazy"
-                />
-              </div>
-            )}
-
-            {/* Content on the right */}
-            {data.introductionSection?.introHeading && (
-              <div className="w-full md:w-1/2">
-                <div className="max-w-3xl mx-auto">
-                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                    {data.introductionSection.introHeading}
-                  </h2>
-                  {data.introductionSection.introDescBlock && data.introductionSection.introDescBlock.length > 0 ? (
-                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                      <PortableText
-                        value={data.introductionSection.introDescBlock}
-                        components={portableTextComponents}
-                      />
-                    </div>
-                  ) : (
-                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                      {data.introductionSection.introDesc}
-                    </div>
-                  )}
-                  {/* Array in introduction description section */}
-                  {data?.introductionDescArray?.length > 0 && (
-                    <div className="flex flex-col gap-4">
-                      {data?.introductionDescArray?.map(
-                        (description: string, index: number) => {
-                          return (
-                            <p
-                              className="text-lg text-gray-800 leading-relaxed text-center md:text-justify"
-                              key={index}
-                            >
-                              {description}
-                            </p>
-                          );
-                        }
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* Design section */}
-      {data.designSection && (
-        <section className="bg-white px-6 md:px-16 py-10 md:py-16">
-          <div className="container mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-center">
-              {data.designSection?.heading}
-            </h2>
-            <p className="text-lg text-center">
-              {data.designSection?.description}
-            </p>
-          </div>
-        </section>
-      )}
 
       {/* Development section */}
       {data.developmentSection && (
@@ -1250,29 +1263,31 @@ export default async function service({
                 {data.pricingSection?.heading || "Simple Pricing, Clear Value"}
               </h2>
               <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                {data.pricingSection?.description || "Choose a plan that fits your business. No hidden fees. Just powerful automation."}
+                {data.pricingSection?.description}
               </p>
             </div>
 
             {/* Pricing Cards */}
-            <div className="grid gap-8 md:grid-cols-3 relative">
+            <div className="flex flex-wrap justify-center gap-8 relative">
               {data.pricingSection?.plans?.map((plan: any, index: number) => (
                 <div
                   key={index}
-                  className={`bg-white rounded-2xl shadow-lg p-8 ${plan.highlighted
-                    ? 'border-2 border-[#1D92FB] transform scale-105'
-                    : 'border border-gray-200'
+                  className={`w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md flex-shrink-0 bg-white rounded-2xl shadow-lg p-8 ${plan.highlighted
+                      ? 'border-2 border-[#1D92FB] transform scale-105'
+                      : 'border border-gray-200'
                     }`}
                 >
                   <h3 className="text-2xl font-bold text-[#1D92FB] mb-2">
                     {plan.title}
                   </h3>
-                  <p className="text-3xl font-extrabold text-[#3C3C3C] mb-4">
-                    {plan.price}
-                    {!plan.price.toLowerCase().includes('custom') && (
-                      <span className="text-base font-medium">/month</span>
-                    )}
-                  </p>
+                  {plan.price && (
+                    <p className="text-3xl font-extrabold text-[#3C3C3C] mb-4">
+                      {plan.price}
+                      {!plan.price.toLowerCase().includes("custom") && (
+                        <span className="text-base font-medium">/month</span>
+                      )}
+                    </p>
+                  )}
                   <ul className="space-y-3 text-gray-700 list-disc list-inside mb-6">
                     {plan.features.map((feature: string, idx: number) => (
                       <li key={idx}>{feature}</li>
@@ -1674,6 +1689,10 @@ export default async function service({
             </p>
           </div>
         </section>
+      )}
+
+      {data.testimonialsSection?.testimonials?.length > 0 && (
+        <TestimonialsSection testimonialsSection={data.testimonialsSection} />
       )}
 
       {data.faqSection && (
