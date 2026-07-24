@@ -192,6 +192,41 @@ export default async function service({
                     )}
                   </div>
                 )}
+
+                <div className="flex flex-wrap items-center gap-6 pt-4 justify-center lg:justify-start">
+                  {[
+                    {
+                      src: "/google-logo.png",
+                      alt: "Google Reviews",
+                      href: "https://g.page/r/CVDpezkiN96NEAE/review",
+                    },
+                      {
+                      src: "/designrush-logo.png",
+                      alt: "DesignRush",
+                      href: "https://www.designrush.com/agency/profile/codeautomation",
+                    },
+                    {
+                      src: "/clutch-logo.png",
+                      alt: "Clutch",
+                      href: "https://clutch.co/profile/codeautomationai",
+                    },
+                  
+                  ].map((badge) => (
+                    <Link
+                      key={badge.alt}
+                      href={badge.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center transition"
+                    >
+                      <img
+                        src={badge.src}
+                        alt={badge.alt}
+                        className="h-8 sm:h-10 w-auto object-contain"
+                      />
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               {/* RIGHT SIDE (FORM) */}
@@ -300,120 +335,113 @@ export default async function service({
         </div>
       )}
 
-    {/* Introduction Section */}
-{data.introductionSection && (
-  <section className="relative bg-white px-6 py-10 md:px-16 md:py-16">
-    <div className="pointer-events-none absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+      {/* Introduction Section */}
+      {data.introductionSection && (
+        <section className="relative bg-white px-6 py-10 md:px-16 md:py-16">
+          <div className="pointer-events-none absolute inset-0 bg-[#1D92FB] opacity-10"></div>
 
-    <div
-      className={`container relative mx-auto flex flex-wrap items-center justify-center ${
-        !data.introductionSection?.introImage ? "text-center" : ""
-      }`}
-    >
-      {/* Image */}
-      {data.introductionSection?.introImage && (
-        <div className="mb-4 flex w-full justify-center md:w-1/3 md:pl-8 md:pr-8">
-          <div className="group relative w-full">
-            <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#1D92FB] to-[#6BB8FF] opacity-20 blur-xl transition-opacity duration-500 group-hover:opacity-40"></div>
-
-            <img
-              src={urlForImage(
-                data.introductionSection.introImage
-              ).toString()}
-              alt={
-                data.introductionSection.introImage.alt ||
-                "Introduction visual"
-              }
-              className="relative h-[250px] w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02] md:h-[330px]"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Content */}
-      {data.introductionSection?.introHeading && (
-        <div
-          className={`w-full ${
-            data.introductionSection?.introImage ? "md:w-1/2" : "md:w-3/4"
-          }`}
-        >
-          <div className="mx-auto max-w-3xl">
-            <h2
-              className={`mb-8 text-2xl font-bold ${
-                data.introductionSection?.introImage
-                  ? "text-center md:text-left"
-                  : "text-center"
+          <div
+            className={`container relative mx-auto flex flex-wrap items-center justify-center ${!data.introductionSection?.introImage ? "text-center" : ""
               }`}
-            >
-              {data.introductionSection.introHeading}
-            </h2>
+          >
+            {/* Image */}
+            {data.introductionSection?.introImage && (
+              <div className="mb-4 flex w-full justify-center md:w-1/3 md:pl-8 md:pr-8">
+                <div className="group relative w-full">
+                  <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#1D92FB] to-[#6BB8FF] opacity-20 blur-xl transition-opacity duration-500 group-hover:opacity-40"></div>
 
-            {data.introductionSection?.introDescBlock &&
-            data.introductionSection.introDescBlock.length > 0 ? (
-              <div
-                className={`text-lg leading-relaxed text-gray-800 ${
-                  data.introductionSection?.introImage
-                    ? "text-center md:text-justify"
-                    : "text-center"
-                }`}
-              >
-                <PortableText
-                  value={data.introductionSection.introDescBlock}
-                  components={portableTextComponents}
-                />
-              </div>
-            ) : (
-              <div
-                className={`text-lg leading-relaxed text-gray-800 ${
-                  data.introductionSection?.introImage
-                    ? "text-center md:text-justify"
-                    : "text-center"
-                }`}
-              >
-                {data.introductionSection.introDesc}
+                  <img
+                    src={urlForImage(
+                      data.introductionSection.introImage
+                    ).toString()}
+                    alt={
+                      data.introductionSection.introImage.alt ||
+                      "Introduction visual"
+                    }
+                    className="relative h-[250px] w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02] md:h-[330px]"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             )}
 
-            {/* Introduction Description Array */}
-            {data?.introductionDescArray?.length > 0 && (
-              <div className="mt-6 flex flex-col gap-4">
-                {data.introductionDescArray.map(
-                  (description: string, index: number) => (
-                    <div
-                      key={index}
-                      className={`flex gap-3 ${
-                        data.introductionSection?.introImage
-                          ? "items-start"
-                          : "items-start justify-center"
+            {/* Content */}
+            {data.introductionSection?.introHeading && (
+              <div
+                className={`w-full ${data.introductionSection?.introImage ? "md:w-1/2" : "md:w-3/4"
+                  }`}
+              >
+                <div className="mx-auto max-w-3xl">
+                  <h2
+                    className={`mb-8 text-2xl font-bold ${data.introductionSection?.introImage
+                        ? "text-center md:text-left"
+                        : "text-center"
                       }`}
-                    >
-                      <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1D92FB]/10">
-                        <span className="text-xs font-bold text-[#1D92FB]">
-                          {index + 1}
-                        </span>
-                      </div>
+                  >
+                    {data.introductionSection.introHeading}
+                  </h2>
 
-                      <p
-                        className={`text-lg leading-relaxed text-gray-800 ${
-                          data.introductionSection?.introImage
-                            ? "text-left"
-                            : "text-center"
+                  {data.introductionSection?.introDescBlock &&
+                    data.introductionSection.introDescBlock.length > 0 ? (
+                    <div
+                      className={`text-lg leading-relaxed text-gray-800 ${data.introductionSection?.introImage
+                          ? "text-center md:text-justify"
+                          : "text-center"
                         }`}
-                      >
-                        {description}
-                      </p>
+                    >
+                      <PortableText
+                        value={data.introductionSection.introDescBlock}
+                        components={portableTextComponents}
+                      />
                     </div>
-                  )
-                )}
+                  ) : (
+                    <div
+                      className={`text-lg leading-relaxed text-gray-800 ${data.introductionSection?.introImage
+                          ? "text-center md:text-justify"
+                          : "text-center"
+                        }`}
+                    >
+                      {data.introductionSection.introDesc}
+                    </div>
+                  )}
+
+                  {/* Introduction Description Array */}
+                  {data?.introductionDescArray?.length > 0 && (
+                    <div className="mt-6 flex flex-col gap-4">
+                      {data.introductionDescArray.map(
+                        (description: string, index: number) => (
+                          <div
+                            key={index}
+                            className={`flex gap-3 ${data.introductionSection?.introImage
+                                ? "items-start"
+                                : "items-start justify-center"
+                              }`}
+                          >
+                            <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1D92FB]/10">
+                              <span className="text-xs font-bold text-[#1D92FB]">
+                                {index + 1}
+                              </span>
+                            </div>
+
+                            <p
+                              className={`text-lg leading-relaxed text-gray-800 ${data.introductionSection?.introImage
+                                  ? "text-left"
+                                  : "text-center"
+                                }`}
+                            >
+                              {description}
+                            </p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
-        </div>
+        </section>
       )}
-    </div>
-  </section>
-)}
 
       {/* Design section */}
       {data.designSection && (
@@ -1323,8 +1351,8 @@ export default async function service({
                 <div
                   key={index}
                   className={`w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md flex-shrink-0 bg-white rounded-2xl shadow-lg p-8 ${plan.highlighted
-                      ? 'border-2 border-[#1D92FB] transform scale-105'
-                      : 'border border-gray-200'
+                    ? 'border-2 border-[#1D92FB] transform scale-105'
+                    : 'border border-gray-200'
                     }`}
                 >
                   <h3 className="text-2xl font-bold text-[#1D92FB] mb-2">
