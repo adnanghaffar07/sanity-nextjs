@@ -300,70 +300,120 @@ export default async function service({
         </div>
       )}
 
-      {/* Introduction Section */}
-      {data.introductionSection && (
-        <section className="relative px-6 md:px-16 py-10 md:py-16 bg-white">
-          <div className="absolute inset-0 bg-[#1D92FB] opacity-10 pointer-events-none"></div>
-          <div className="container mx-auto flex flex-wrap items-center justify-center relative">
-            {/* Image on the left */}
-            {data.introductionSection?.introImage && (
-              <div className="w-full flex justify-center md:w-1/3 md:flex md:pr-8 md:pl-8 mb-4">
-                <div className="relative group w-full">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#1D92FB] to-[#6BB8FF] rounded-lg blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                  <img
-                    src={urlForImage(data.introductionSection?.introImage).toString()}
-                    alt={data.introductionSection?.introImage.alt || "Introduction visual"}
-                    className="relative object-contain rounded-lg h-[250px] md:h-[330px] w-full transition-transform duration-300 group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                </div>
+    {/* Introduction Section */}
+{data.introductionSection && (
+  <section className="relative bg-white px-6 py-10 md:px-16 md:py-16">
+    <div className="pointer-events-none absolute inset-0 bg-[#1D92FB] opacity-10"></div>
+
+    <div
+      className={`container relative mx-auto flex flex-wrap items-center justify-center ${
+        !data.introductionSection?.introImage ? "text-center" : ""
+      }`}
+    >
+      {/* Image */}
+      {data.introductionSection?.introImage && (
+        <div className="mb-4 flex w-full justify-center md:w-1/3 md:pl-8 md:pr-8">
+          <div className="group relative w-full">
+            <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#1D92FB] to-[#6BB8FF] opacity-20 blur-xl transition-opacity duration-500 group-hover:opacity-40"></div>
+
+            <img
+              src={urlForImage(
+                data.introductionSection.introImage
+              ).toString()}
+              alt={
+                data.introductionSection.introImage.alt ||
+                "Introduction visual"
+              }
+              className="relative h-[250px] w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02] md:h-[330px]"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Content */}
+      {data.introductionSection?.introHeading && (
+        <div
+          className={`w-full ${
+            data.introductionSection?.introImage ? "md:w-1/2" : "md:w-3/4"
+          }`}
+        >
+          <div className="mx-auto max-w-3xl">
+            <h2
+              className={`mb-8 text-2xl font-bold ${
+                data.introductionSection?.introImage
+                  ? "text-center md:text-left"
+                  : "text-center"
+              }`}
+            >
+              {data.introductionSection.introHeading}
+            </h2>
+
+            {data.introductionSection?.introDescBlock &&
+            data.introductionSection.introDescBlock.length > 0 ? (
+              <div
+                className={`text-lg leading-relaxed text-gray-800 ${
+                  data.introductionSection?.introImage
+                    ? "text-center md:text-justify"
+                    : "text-center"
+                }`}
+              >
+                <PortableText
+                  value={data.introductionSection.introDescBlock}
+                  components={portableTextComponents}
+                />
+              </div>
+            ) : (
+              <div
+                className={`text-lg leading-relaxed text-gray-800 ${
+                  data.introductionSection?.introImage
+                    ? "text-center md:text-justify"
+                    : "text-center"
+                }`}
+              >
+                {data.introductionSection.introDesc}
               </div>
             )}
 
-            {/* Content on the right */}
-            {data.introductionSection?.introHeading && (
-              <div className="w-full md:w-1/2">
-                <div className="max-w-3xl mx-auto">
-                  <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-                    {data.introductionSection.introHeading}
-                  </h2>
-                  {data.introductionSection.introDescBlock && data.introductionSection.introDescBlock.length > 0 ? (
-                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                      <PortableText
-                        value={data.introductionSection.introDescBlock}
-                        components={portableTextComponents}
-                      />
+            {/* Introduction Description Array */}
+            {data?.introductionDescArray?.length > 0 && (
+              <div className="mt-6 flex flex-col gap-4">
+                {data.introductionDescArray.map(
+                  (description: string, index: number) => (
+                    <div
+                      key={index}
+                      className={`flex gap-3 ${
+                        data.introductionSection?.introImage
+                          ? "items-start"
+                          : "items-start justify-center"
+                      }`}
+                    >
+                      <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1D92FB]/10">
+                        <span className="text-xs font-bold text-[#1D92FB]">
+                          {index + 1}
+                        </span>
+                      </div>
+
+                      <p
+                        className={`text-lg leading-relaxed text-gray-800 ${
+                          data.introductionSection?.introImage
+                            ? "text-left"
+                            : "text-center"
+                        }`}
+                      >
+                        {description}
+                      </p>
                     </div>
-                  ) : (
-                    <div className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                      {data.introductionSection.introDesc}
-                    </div>
-                  )}
-                  {/* Array in introduction description section */}
-                  {data?.introductionDescArray?.length > 0 && (
-                    <div className="flex flex-col gap-4 mt-4">
-                      {data?.introductionDescArray?.map(
-                        (description: string, index: number) => {
-                          return (
-                            <div key={index} className="flex items-start gap-3">
-                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#1D92FB]/10 flex items-center justify-center mt-1">
-                                <span className="text-[#1D92FB] text-xs font-bold">{index + 1}</span>
-                              </div>
-                              <p className="text-lg text-gray-800 leading-relaxed text-center md:text-justify">
-                                {description}
-                              </p>
-                            </div>
-                          );
-                        }
-                      )}
-                    </div>
-                  )}
-                </div>
+                  )
+                )}
               </div>
             )}
           </div>
-        </section>
+        </div>
       )}
+    </div>
+  </section>
+)}
 
       {/* Design section */}
       {data.designSection && (

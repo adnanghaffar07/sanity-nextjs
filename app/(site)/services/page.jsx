@@ -146,7 +146,6 @@ const Services = async () => {
         </section>
       </ScrollAnimation>
       <ServicesCard data={data} />
-
       <ScrollAnimation>
         <section className="relative overflow-hidden px-6 md:px-16 max-w-7xl mx-auto">
           <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">
