@@ -109,7 +109,7 @@ const Testimonials = () => {
             height={40}
           />
         </a>
-        <a
+        {/* <a
           href="https://www.trustpilot.com/review/codeautomation.ai"
           target="_blank"
           rel="noopener noreferrer"
@@ -122,7 +122,7 @@ const Testimonials = () => {
             height={40}
             className="mb-3"
           />
-        </a>
+        </a> */}
         <a
           href="/adnan-ghaffar-forbes"
           target="_blank"
