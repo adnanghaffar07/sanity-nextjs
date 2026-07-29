@@ -128,23 +128,6 @@ const Services = async () => {
         {JSON.stringify(SERVICES_JSON_LD)}
       </Script>
       <ServicesHeroSection />
-
-      <ScrollAnimation>
-        <section className="flex flex-col items-center px-4 py-8 sm:py-24 w-full text-center text-black bg-blue-50 max-md:px-5 max-md:max-w-full">
-          <h3 className="text-2xl sm:text-5xl tracking-tight font-semibold capitalize leading-[28px] sm:leading-[61px] max-md:max-w-full container mx-auto">
-            Your Partner for all your digital needs
-          </h3>
-
-          <p className="mt-5 mb-2 text-lg sm:text-xl leading-7 text-gray-900 max-w-6xl mx-auto text-center mx-auto">
-            As a custom software development company, we offer a wide range of
-            technological solutions including but not limited to web development
-            services, SaaS services, and app development services. Our teams of
-            experts have the required knowledge and experience to deliver
-            bespoke solutions in network infrastructure, cloud computing, custom
-            software solutions, cybersecurity solutions, and so on.
-          </p>
-        </section>
-      </ScrollAnimation>
       <ServicesCard data={data} />
       <ScrollAnimation>
         <section className="relative overflow-hidden px-6 md:px-16 max-w-7xl mx-auto">

@@ -3,8 +3,8 @@
 import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
+import ServiceHeroForm from "./ServiceHeroForm";
 import { notFound } from "next/navigation";
-import HeroContactForm from "../../../components/HeroContactForm";
 
 async function getData(urlPathSub: string) {
   if (!urlPathSub) return null; // ✅ Prevents undefined errors
@@ -93,33 +93,58 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <div className="bg-gray-100">
       {/* Hero Section */}
-      <div className="flex overflow-hidden relative flex-col w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+      <div className="relative overflow-hidden bg-slate-950 text-white lg:min-h-[720px]">
         <img
-          className="top-0 left-0 object-cover absolute inset-0 size-full"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
           src={urlForImage(data.heroImageSub).toString()}
           alt={data.heroImageSub.alt}
         />
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
-        <div className="flex relative w-full items-center justify-center py-10 px-5 lg:px-20 pt-48 pb-12 lg:pt-32 lg:pb-16 max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="w-full max-w-[1600px] mx-auto">
-            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
-              {/* LEFT SIDE */}
-              <div className="flex flex-col justify-center gap-6 lg:w-1/2 text-center lg:text-left">
-                <h1 className="lg:text-4xl text-2xl font-bold capitalize">
-                  {data.serviceTitleSub}
-                </h1>
-                <h2 className="lg:text-xl text-base font-normal">
-                  {data.serviceDescSub}
-                </h2>
-              </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950/90" />
 
-              {/* RIGHT SIDE (FORM) */}
-              <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
-                <HeroContactForm
-                  heading={data.heroFormTextSub?.heading}
-                  subheading={data.heroFormTextSub?.subheading}
-                />
+        {/* Decorative vectors */}
+        <img
+          src="/intersect-left.png"
+          alt="vector-left"
+          className="hidden lg:block absolute left-0 top-16 w-1/3 opacity-90 pointer-events-none"
+        />
+        <img
+          src="/intersect-right-new.png"
+          alt="vector-right"
+          className="hidden lg:block absolute right-0 top-16 w-1/3 opacity-90 pointer-events-none"
+        />
+
+        <div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-5 py-16 lg:px-20 lg:py-24">
+          <div className="grid gap-10 lg:grid-cols-[0.6fr_0.4fr] items-center">
+            <div className="max-w-2xl">
+              <span className="inline-flex rounded-full bg-sky-500/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-sky-200 shadow-sm shadow-sky-500/10">
+                Premium Service
+              </span>
+              <h1 className="mt-8 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+                {data.serviceTitleSub}
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200 sm:text-xl">
+                {data.serviceDescSub}
+              </p>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <a
+                  href="#hero-form"
+                  className="inline-flex items-center justify-center rounded-full bg-sky-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/20 transition hover:bg-sky-400"
+                >
+                  Get Free Consultation
+                </a>
+                <a
+                  href="https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=services"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-100/10 bg-white/10 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+                >
+                  Schedule a Call
+                </a>
               </div>
+            </div>
+
+            <div id="hero-form" className="relative">
+              <ServiceHeroForm serviceName={data.serviceTitleSub || undefined} />
             </div>
           </div>
         </div>

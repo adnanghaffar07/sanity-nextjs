@@ -371,7 +371,7 @@ export default async function service({
                 className={`w-full ${data.introductionSection?.introImage ? "md:w-1/2" : "md:w-3/4"
                   }`}
               >
-                <div className="mx-auto max-w-3xl">
+                <div className="mx-auto max-w-5xl">
                   <h2
                     className={`mb-8 text-2xl font-bold ${data.introductionSection?.introImage
                         ? "text-center md:text-left"
