@@ -21,7 +21,7 @@ export default function ServicesHeroSection() {
         height={150}
         priority
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 -right-8 z-0 w-[min(28vw,220px)] select-none opacity-80"
+        className="pointer-events-none absolute -bottom-32 -right-8 z-0 w-[min(23vw,170px)] select-none opacity-80"
       />
 
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_80%_20%,rgba(29,146,251,0.08),transparent_45%)]" />
