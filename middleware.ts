@@ -1,7 +1,46 @@
-import { NextResponse } from "next/server"; 
+import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// Known spam/abuse sources (Tor exit nodes and other bad actors flagged from lead-form submissions).
+const BLOCKED_IPS = new Set([
+  "185.220.100.251",
+  "185.220.100.248",
+  "185.220.101.33",
+  "103.146.203.120",
+  "185.220.101.153",
+  "193.189.100.201",
+  "45.84.107.101",
+  "45.84.107.222",
+  "171.25.193.131",
+  "185.220.101.26",
+  "45.13.225.69",
+  "193.189.100.199",
+  "193.189.100.195",
+  "185.220.101.174",
+  "185.220.100.255",
+  "45.84.107.198",
+  "171.25.193.38",
+  "185.220.101.98",
+]);
+
+function getClientIp(req: NextRequest): string | null {
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
+  }
+
+  const realIp = req.headers.get("x-real-ip");
+  if (realIp) return realIp.trim();
+
+  return req.ip || null;
+}
+
 export function middleware(req: NextRequest) {
+  const clientIp = getClientIp(req);
+  if (clientIp && BLOCKED_IPS.has(clientIp)) {
+    return new NextResponse("Access denied.", { status: 403 });
+  }
+
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
     return new NextResponse(null, {
@@ -31,7 +70,8 @@ export function middleware(req: NextRequest) {
   return response;
 }
 
-// Apply middleware only to a specific page (e.g., `/pricing`)
+// Run on all routes (pages + API) except static assets, so blocked IPs are
+// stopped everywhere, not just on a single page.
 export const config = {
-  matcher: "/pricing", // Change this to the actual page route
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
