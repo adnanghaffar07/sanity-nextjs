@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import PhoneInput from 'react-phone-input-2';
@@ -24,7 +24,6 @@ export default function HomePageForm() {
   const recaptchaRef = useRef<TurnstileInstance | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
-  const [isRecaptchaVisible, setIsRecaptchaVisible] = useState(false);
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bgColor, setBgColor] = useState("bg-[#1D92FB]");
@@ -198,25 +197,9 @@ export default function HomePageForm() {
       });
 
       if (!emailResponse.ok) {
-        throw new Error("Failed to send email.");
+        const errorData = await emailResponse.json().catch(() => null);
+        throw new Error(errorData?.error || "Failed to send form.");
       }
-
-      const sanityResponse = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: values.name,
-          email: values.email,
-          contact_number: values.contact_number,
-          looking: values.looking,
-          message: values.message,
-          recaptcha_value: recaptchaValue,
-        }),
-      });
-
-      const data = await sanityResponse.json();
 
       try {
         const ghlResponse = await fetch("/api/lead", {
@@ -244,7 +227,7 @@ export default function HomePageForm() {
         console.warn("GoHighLevel submission warning:", ghlError);
       }
 
-      if (sanityResponse.ok) {
+      if (emailResponse.ok) {
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
           event: "formSubmission",
@@ -278,29 +261,6 @@ export default function HomePageForm() {
       }, 8000);
     }
   };
-
-  useEffect(() => {
-    const formElement = document.getElementById("contact-box");
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsRecaptchaVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (formElement) {
-      observer.observe(formElement);
-    }
-
-    return () => {
-      if (formElement) {
-        observer.unobserve(formElement);
-      }
-    };
-  }, []);
 
   return (
     <div
@@ -384,13 +344,11 @@ export default function HomePageForm() {
             />
           </div>
 
-          {isRecaptchaVisible && (
-            <DynamicRecaptcha
-              recaptchaRef={recaptchaRef}
-              onChange={onRecaptchaChange}
-              onExpired={onRecaptchaExpired}
-            />
-          )}
+          <DynamicRecaptcha
+            recaptchaRef={recaptchaRef}
+            onChange={onRecaptchaChange}
+            onExpired={onRecaptchaExpired}
+          />
           {errorRecaptcha && <p className="form-error">{errorRecaptcha}</p>}
 
           <button

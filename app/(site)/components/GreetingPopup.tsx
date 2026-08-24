@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
+import dynamic from "next/dynamic";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import PhoneInput from 'react-phone-input-2';
 // @ts-ignore
 import 'react-phone-input-2/lib/style.css';
+
+const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
+  ssr: false,
+});
 
 async function getPopupData() {
   try {
@@ -42,6 +48,9 @@ const GreetingPopup: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [messageBgColor, setMessageBgColor] = useState("bg-[#1D92FB]");
   const [progressWidth, setProgressWidth] = useState("w-[0%]");
+  const recaptchaRef = useRef<TurnstileInstance | null>(null);
+  const [recaptchaValue, setRecaptchaValue] = useState("");
+  const [errorRecaptcha, setErrorRecaptcha] = useState("");
   
   // Form state
   const [values, setValues] = useState<FormValues>(initialValues);
@@ -132,6 +141,20 @@ const GreetingPopup: React.FC = () => {
     setErrors(prev => ({ ...prev, [name]: error }));
   };
 
+  const onRecaptchaChange = (value: string) => {
+    if (!value) {
+      setErrorRecaptcha("Please verify the checkbox above");
+    } else {
+      setRecaptchaValue(value);
+      setErrorRecaptcha("");
+    }
+  };
+
+  const onRecaptchaExpired = () => {
+    setRecaptchaValue("");
+    setErrorRecaptcha("Verification expired. Please verify again.");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("");
@@ -149,6 +172,11 @@ const GreetingPopup: React.FC = () => {
     
     if (!isValid) return;
 
+    if (!recaptchaValue) {
+      setErrorRecaptcha("Please verify the checkbox above");
+      return;
+    }
+
     const formattedPageName = pageName
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -159,8 +187,11 @@ const GreetingPopup: React.FC = () => {
     formData.append("email", values.email);
     formData.append("number", values.contact_number);
     formData.append("looking", values.looking);
+    formData.append("message", values.subscribe ? "Newsletter subscription via popup" : "Popup form submission");
     formData.append("subscribe", values.subscribe.toString());
     formData.append("pagename", formattedPageName);
+    formData.append("recaptcha_value", recaptchaValue);
+    formData.append("page_url", typeof window !== "undefined" ? window.location.href : "");
 
     setUploading(true);
     setMessage("Submitting your response...");
@@ -211,6 +242,9 @@ const GreetingPopup: React.FC = () => {
         setValues(initialValues);
         setTouched({});
         setErrors({});
+        recaptchaRef.current?.reset();
+        setRecaptchaValue("");
+        setErrorRecaptcha("");
 
         setTimeout(closePopup, 4000);
       } else {
@@ -408,6 +442,15 @@ const GreetingPopup: React.FC = () => {
                 />
                 Subscribe to our newsletter
               </label>
+
+              <DynamicRecaptcha
+                recaptchaRef={recaptchaRef}
+                onChange={onRecaptchaChange}
+                onExpired={onRecaptchaExpired}
+              />
+              {errorRecaptcha && (
+                <p className="text-red-500 text-xs">{errorRecaptcha}</p>
+              )}
 
               <button
                 type="submit"

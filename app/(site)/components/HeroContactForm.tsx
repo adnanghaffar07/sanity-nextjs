@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { TURNSTILE_SITE_KEY } from "./RecaptchaComponent";
 import { submitHeroLead } from "@/lib/submitHeroLead";
 import { usePathname } from "next/navigation";
 
@@ -254,10 +255,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
 
             <Turnstile
               ref={turnstileRef}
-              siteKey={
-                process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
-                "1x00000000000000000000AA"
-              }
+              siteKey={TURNSTILE_SITE_KEY}
               onSuccess={(token) => setTurnstileToken(token)}
               onExpire={() => setTurnstileToken("")}
             />

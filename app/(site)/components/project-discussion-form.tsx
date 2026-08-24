@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // Import Yup for validation
 import { usePathname } from "next/navigation";
@@ -40,7 +40,6 @@ export default function ProjectDiscussionContainer() {
   const recaptchaRef = useRef<TurnstileInstance | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
-  const [isRecaptchaVisible, setIsRecaptchaVisible] = useState(false);
 
   const currentPath = usePathname();
   const [message, setMessage] = useState("");
@@ -200,29 +199,6 @@ export default function ProjectDiscussionContainer() {
     }
   };
 
-  useEffect(() => {
-    const formElement = document.getElementById("contact-box");
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsRecaptchaVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (formElement) {
-      observer.observe(formElement);
-    }
-
-    return () => {
-      if (formElement) {
-        observer.unobserve(formElement);
-      }
-    };
-  }, []);
-
   return (
     <div
       className="flex justify-center items-center px-16 py-12 lg:text-2xl md:text-xl text-lg font-light text-black bg-white shadow-lg shadow-slate-500 rounded-[36px] max-md:px-5 border border-slate-300"
@@ -298,13 +274,11 @@ export default function ProjectDiscussionContainer() {
             />
           </div>
 
-          {isRecaptchaVisible && (
-            <DynamicRecaptcha
-              recaptchaRef={recaptchaRef}
-              onChange={onRecaptchaChange}
-              onExpired={onRecaptchaExpired}
-            />
-          )}
+          <DynamicRecaptcha
+            recaptchaRef={recaptchaRef}
+            onChange={onRecaptchaChange}
+            onExpired={onRecaptchaExpired}
+          />
           {errorRecaptcha && <p className="form-error">{errorRecaptcha}</p>}
 
           <button
