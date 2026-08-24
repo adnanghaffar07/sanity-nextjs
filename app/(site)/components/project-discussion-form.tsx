@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // Import Yup for validation
 import { usePathname } from "next/navigation";
-import ReCAPTCHA from "react-google-recaptcha";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import dynamic from "next/dynamic";
 
 const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
@@ -37,7 +37,7 @@ const initialValues = {
 };
 
 export default function ProjectDiscussionContainer() {
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [isRecaptchaVisible, setIsRecaptchaVisible] = useState(false);
@@ -133,6 +133,7 @@ export default function ProjectDiscussionContainer() {
       formData.append("looking", values.looking);
       formData.append("message", values.message);
       formData.append("pagename", actuallPageName || "Home");
+      formData.append("recaptcha_value", recaptchaValue);
       setUploading(true);
       setMessage("Submitting form...");
 

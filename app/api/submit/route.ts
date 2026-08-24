@@ -1,13 +1,15 @@
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { verifyTurnstileToken } from "@/lib/verifyTurnstile";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const { name, email, contact_number, looking, message, recaptcha_value } = await req.json();
 
-    // ✅ ReCAPTCHA check
-    if (!recaptcha_value) {
-      return NextResponse.json({ message: "ReCAPTCHA verification failed." }, { status: 400 });
+    // ✅ Turnstile verification
+    const isHuman = await verifyTurnstileToken(recaptcha_value, req.headers.get("x-forwarded-for"));
+    if (!isHuman) {
+      return NextResponse.json({ message: "Captcha verification failed." }, { status: 400 });
     }
 
     // ✅ Normalize contact number and block +92 / +91 / 92 / 91

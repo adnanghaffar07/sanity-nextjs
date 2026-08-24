@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { verifyTurnstileToken } from "@/lib/verifyTurnstile";
 
 // Define categories for "looking for" field
 const predefinedCategories: Record<string, string> = {
@@ -71,6 +72,7 @@ export async function POST(request: Request): Promise<Response> {
     const messageRaw = completeFormData.get("message") as string | null;
     const pageName = completeFormData.get("pagename") as string | null;
     const pageUrlRaw = completeFormData.get("page_url") as string | null;
+    const recaptchaValue = completeFormData.get("recaptcha_value") as string | null;
 
     const looking = (lookingRaw ?? "").trim() || "—";
     const message = (messageRaw ?? "").trim() || "—";
@@ -78,6 +80,11 @@ export async function POST(request: Request): Promise<Response> {
 
     if (!name || !email || !number || !pageName) {
       return new Response(JSON.stringify({ error: "Invalid form data" }), { status: 400 });
+    }
+
+    const isHuman = await verifyTurnstileToken(recaptchaValue, request.headers.get("x-forwarded-for"));
+    if (!isHuman) {
+      return new Response(JSON.stringify({ error: "Captcha verification failed" }), { status: 400 });
     }
 
     // Save lead to Sanity (non-blocking — a save failure shouldn't block the email notifications)

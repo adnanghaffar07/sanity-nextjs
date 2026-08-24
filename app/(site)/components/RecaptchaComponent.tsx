@@ -1,4 +1,4 @@
-import ReCAPTCHA from "react-google-recaptcha";
+import { Turnstile } from "@marsidev/react-turnstile";
 import React from "react";
 
 const RecaptchaComponent = ({
@@ -12,11 +12,14 @@ const RecaptchaComponent = ({
 }) => (
   <div className="overflow-x-hidden -mx-5 sm:-mx-0">
     <div className="w-full max-w-[200px] sm:max-w-[inherit] scale-75 sm:scale-100">
-      <ReCAPTCHA
-        sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
+      <Turnstile
         ref={recaptchaRef}
-        onChange={onChange}
-        onExpired={onExpired}
+        siteKey={
+          process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+          "1x00000000000000000000AA"
+        }
+        onSuccess={onChange}
+        onExpire={onExpired}
       />
     </div>
   </div>

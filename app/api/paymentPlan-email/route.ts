@@ -1,4 +1,5 @@
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { verifyTurnstileToken } from "@/lib/verifyTurnstile";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
@@ -38,7 +39,12 @@ async function sendEmail(formData: any) {
 
 export async function POST(req: Request) {
     try {
-        const formData = await req.json();
+        const { recaptcha, ...formData } = await req.json();
+
+        const isHuman = await verifyTurnstileToken(recaptcha, req.headers.get("x-forwarded-for"));
+        if (!isHuman) {
+            return NextResponse.json({ error: "Captcha verification failed" }, { status: 400 });
+        }
 
         // Store in Sanity
         await serverClient.create({

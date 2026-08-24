@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { submitHeroLead } from "@/lib/submitHeroLead";
 import { usePathname } from "next/navigation";
 
@@ -61,7 +62,8 @@ export default function HeroContactForm({ variant = "default", pageName, heading
 
   const [lookingFor, setLookingFor] = useState("");
   const [message, setMessage] = useState("");
-  const [captchaChecked, setCaptchaChecked] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
 
   const [errors, setErrors] = useState<Errors>({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -117,7 +119,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
 
     if (!lookingFor.trim()) nextErrors.lookingFor = "Please let us know what you're looking for.";
     if (!message.trim()) nextErrors.message = "Please enter your message.";
-    if (!captchaChecked) nextErrors.captcha = "Please verify the captcha.";
+    if (!turnstileToken) nextErrors.captcha = "Please complete the verification.";
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
@@ -138,6 +140,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
         pageName,
         pathname: pathname || undefined,
         pageUrl,
+        recaptchaValue: turnstileToken,
       });
 
       setShowModal(true);
@@ -149,7 +152,8 @@ export default function HeroContactForm({ variant = "default", pageName, heading
         setPhone("");
         setLookingFor("");
         setMessage("");
-        setCaptchaChecked(false);
+        setTurnstileToken("");
+        turnstileRef.current?.reset();
         setErrors({});
       }, 5000);
 
@@ -248,14 +252,15 @@ export default function HeroContactForm({ variant = "default", pageName, heading
               <p className={errorClass}>{errors.message}</p>
             )}
 
-            <label className={checkboxLabelClass}>
-              <input
-                type="checkbox"
-                checked={captchaChecked}
-                onChange={(e) => setCaptchaChecked(e.target.checked)}
-              />
-              I am not a robot
-            </label>
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={
+                process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+                "1x00000000000000000000AA"
+              }
+              onSuccess={(token) => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken("")}
+            />
 
             {errors.captcha && (
               <p className={errorClass}>{errors.captcha}</p>

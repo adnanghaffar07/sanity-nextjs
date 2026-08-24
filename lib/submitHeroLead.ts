@@ -18,6 +18,7 @@ export async function submitHeroLead(data: {
   pageName?: string;
   pageUrl?: string;
   pathname?: string;
+  recaptchaValue?: string;
 }) {
   const formData = new FormData();
   const resolvedPageName = formatPageName(data.pathname, data.pageName);
@@ -29,6 +30,7 @@ export async function submitHeroLead(data: {
   formData.append("message", data.message);
   formData.append("pagename", resolvedPageName);
   formData.append("page_url", data.pageUrl || "");
+  formData.append("recaptcha_value", data.recaptchaValue || "");
 
   const [emailResult, ghlResult] = await Promise.allSettled([
     fetch("/api/projectdiscussionform", {

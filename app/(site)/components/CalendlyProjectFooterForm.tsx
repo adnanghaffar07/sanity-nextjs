@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import ReCAPTCHA from "react-google-recaptcha";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import dynamic from "next/dynamic";
@@ -21,7 +21,7 @@ const initialValues = {
 
 export default function HomePageForm() {
   const router = useRouter();
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [isRecaptchaVisible, setIsRecaptchaVisible] = useState(false);
@@ -187,6 +187,7 @@ export default function HomePageForm() {
       formData.append("looking", values.looking);
       formData.append("message", values.message);
       formData.append("pagename", actuallPageName || "Home");
+      formData.append("recaptcha_value", recaptchaValue);
       setUploading(true);
       setMessage("Submitting form...");
       setMessageSuccess("w-[10%]");

@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { verifyTurnstileToken } from "@/lib/verifyTurnstile";
 
 export async function POST(request: any): Promise<any> {
   const completeFormData = await request.formData();
@@ -10,6 +11,12 @@ export async function POST(request: any): Promise<any> {
   const country = completeFormData.get("country");
   const city = completeFormData.get("city");
   const program = completeFormData.get("program");
+  const recaptchaValue = completeFormData.get("recaptcha_value");
+
+  const isHuman = await verifyTurnstileToken(recaptchaValue, request.headers.get("x-forwarded-for"));
+  if (!isHuman) {
+    return Response.json({ message: "Captcha verification failed" }, { status: 400 });
+  }
 
   const transporter = nodemailer.createTransport({
     name: "SMTP",

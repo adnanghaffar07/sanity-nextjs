@@ -74,6 +74,11 @@ function RegisterForm() {
       return;
     }
 
+    if (!formData.recaptcha) {
+      alert("Please complete the captcha verification.");
+      return;
+    }
+
     setLoading(true);
 
     try {

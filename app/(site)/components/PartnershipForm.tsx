@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { partnershipSchema } from "../../schemas/index";
 import Select from "react-select";
 import { City } from "country-state-city";
-import ReCAPTCHA from "react-google-recaptcha";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 const initialValues = {
   name: "",
@@ -37,7 +37,7 @@ const programOptions = [
 ];
 
 const PartnershipForm = () => {
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | null>(null);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
 
@@ -109,6 +109,7 @@ const PartnershipForm = () => {
       formData.append("country", values.country);
       formData.append("city", values.city);
       formData.append("program", values.program);
+      formData.append("recaptcha_value", recaptchaValue);
       setUploading(true);
       setMessage("Submitting form...");
 
@@ -435,11 +436,14 @@ const PartnershipForm = () => {
 
           <div className="overflow-x-hidden -mx-5 sm:-mx-0">
             <div className="w-full max-w-[200px] sm:max-w-[inherit] scale-75 sm:scale-100">
-              <ReCAPTCHA
-                sitekey="6LcEiOkpAAAAADLW7X7N2yvpY01uLPXb0GbeDD0Q"
+              <Turnstile
                 ref={recaptchaRef}
-                onChange={onRecaptchaChange}
-                onExpired={onRecaptchaExpired}
+                siteKey={
+                  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+                  "1x00000000000000000000AA"
+                }
+                onSuccess={onRecaptchaChange}
+                onExpire={onRecaptchaExpired}
               />
             </div>
           </div>
