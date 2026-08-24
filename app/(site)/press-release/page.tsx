@@ -125,7 +125,7 @@ const PressPage: React.FC = () => {
         </div>
 
         {/* ===== SECOND BLOCK (duplicate) ===== */}
-        <div className="pt-8 border-t-2 border-gray-200">
+        {/* <div className="pt-8 border-t-2 border-gray-200">
           <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               {data.heroTitle}
@@ -133,20 +133,20 @@ const PressPage: React.FC = () => {
             <span className="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
               archive
             </span>
-          </div>
+          </div> */}
 
           {/* Duplicate Intro Card */}
-          <div className="bg-gradient-to-r from-indigo-50 to-blue-50/50 rounded-2xl p-6 sm:p-8 mb-8 border-l-4 border-indigo-600 shadow-sm">
+          {/* <div className="bg-gradient-to-r from-indigo-50 to-blue-50/50 rounded-2xl p-6 sm:p-8 mb-8 border-l-4 border-indigo-600 shadow-sm">
             <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
               {data.heroSubtitle}
             </h3>
             <p className="text-base sm:text-lg text-gray-700">
               {data.heroDescription}
             </p>
-          </div>
+          </div> */}
 
           {/* Duplicate PR Placeholder */}
-          <div className="bg-white rounded-2xl border-2 border-dashed border-gray-300 p-8 sm:p-12 text-center hover:border-blue-400 hover:bg-blue-50/30 transition-all duration-300">
+          {/* <div className="bg-white rounded-2xl border-2 border-dashed border-gray-300 p-8 sm:p-12 text-center hover:border-blue-400 hover:bg-blue-50/30 transition-all duration-300">
             <div className="max-w-md mx-auto">
               <svg
                 className="w-14 h-14 mx-auto text-gray-400 mb-4"
@@ -172,8 +172,8 @@ const PressPage: React.FC = () => {
                 📌 New announcements
               </span>
             </div>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
 
         {/* ===== FOOTER ===== */}
         <footer className="mt-16 pt-6 border-t border-gray-200">
