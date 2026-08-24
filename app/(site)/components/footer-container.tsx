@@ -117,11 +117,12 @@ export default function FooterContainer() {
               <div className="mt-6 text-base font-light flex flex-col gap-5">
                 <Link href="/case-studies" className="hover:underline">Case Studies</Link>
                 <Link href="/blogs" className="hover:underline">Blogs</Link>
+                <Link href="/press-release" className="hover:underline">Press Release</Link>
                 <Link href="/career" className="hover:underline">Careers</Link>
                 <Link href="/lifeatca" className="hover:underline">Life at CA</Link>
                 <Link href="/partnership-program" className="hover:underline">Partner with Us</Link>
                 <Link href="mailto:hr@codeautomation.ai" className="hover:underline">hr@codeautomation.ai</Link>
-                <Link href="https://codeautomation.ai/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:underline">Sitemap</Link>
+                {/* <Link href="https://codeautomation.ai/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:underline">Sitemap</Link> */}
               </div>
             </div>
           </div>
