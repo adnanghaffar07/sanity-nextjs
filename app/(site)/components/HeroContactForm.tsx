@@ -17,7 +17,7 @@ type Errors = {
 };
 
 const validateEmail = (value: string) => /^\S+@\S+\.\S+$/.test(value.trim());
-const validatePhone = (value: string) => /^[0-9+\s()\-]{7,25}$/.test(value.trim());
+const validatePhone = (value: string) => /^[0-9+\s()\-]{7,20}$/.test(value.trim());
 
 type HeroContactFormProps = {
   variant?: "default" | "blue";
@@ -109,8 +109,6 @@ export default function HeroContactForm({ variant = "default", pageName, heading
     }
 
     setErrors({});
-    setTurnstileToken("");
-    turnstileRef.current?.reset();
     setStep(2);
   };
 
@@ -161,20 +159,9 @@ export default function HeroContactForm({ variant = "default", pageName, heading
       }, 5000);
 
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Something went wrong. Please try again later.";
-
-      if (errorMessage.toLowerCase().includes("captcha")) {
-        setTurnstileToken("");
-        turnstileRef.current?.reset();
-        setErrors({
-          captcha: "Verification expired or failed. Please complete it again.",
-        });
-      } else {
-        setErrors({
-          message: errorMessage,
-        });
-      }
+      setErrors({
+        message: "Something went wrong. Please try again later.",
+      });
     } finally {
       setLoading(false); // ✅ stop spinner
     }
@@ -269,25 +256,8 @@ export default function HeroContactForm({ variant = "default", pageName, heading
             <Turnstile
               ref={turnstileRef}
               siteKey={TURNSTILE_SITE_KEY}
-              options={{
-                appearance: "interaction-only",
-                refreshExpired: "auto",
-              }}
               onSuccess={(token) => setTurnstileToken(token)}
-              onExpire={() => {
-                setTurnstileToken("");
-                setErrors((prev) => ({
-                  ...prev,
-                  captcha: "Verification expired. Please complete it again.",
-                }));
-              }}
-              onError={() => {
-                setTurnstileToken("");
-                setErrors((prev) => ({
-                  ...prev,
-                  captcha: "Verification failed to load. Please refresh and try again.",
-                }));
-              }}
+              onExpire={() => setTurnstileToken("")}
             />
 
             {errors.captcha && (

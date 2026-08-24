@@ -230,11 +230,10 @@ export default async function service({
               </div>
 
               {/* RIGHT SIDE (FORM) */}
-              <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2 overflow-visible">
+              <div className="flex justify-center lg:justify-end lg:items-center lg:w-1/2">
                 <HeroContactForm
                   heading={data.heroFormText?.heading}
                   subheading={data.heroFormText?.subheading}
-                  pageName={data.serviceTitle || params.service}
                 />
               </div>
             </div>
