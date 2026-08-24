@@ -1,4 +1,4 @@
-import { Turnstile } from "@marsidev/react-turnstile";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import React from "react";
 
 export const TURNSTILE_SITE_KEY =
@@ -11,7 +11,7 @@ const RecaptchaComponent = ({
 }: {
   onChange: (token: string) => void;
   onExpired: () => void;
-  recaptchaRef: React.RefObject<unknown>;
+  recaptchaRef: React.Ref<TurnstileInstance | undefined>;
 }) => (
   <div className="overflow-x-hidden -mx-5 sm:mx-0">
     <div className="w-full max-w-[200px] sm:max-w-[inherit] scale-75 sm:scale-100">

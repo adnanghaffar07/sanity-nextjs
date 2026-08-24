@@ -37,7 +37,7 @@ const programOptions = [
 ];
 
 const PartnershipForm = () => {
-  const recaptchaRef = useRef<TurnstileInstance | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | undefined>(undefined);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
 

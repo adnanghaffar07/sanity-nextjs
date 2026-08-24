@@ -21,7 +21,7 @@ const initialValues = {
 
 export default function HomePageForm() {
   const router = useRouter();
-  const recaptchaRef = useRef<TurnstileInstance | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | undefined>(undefined);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [message, setMessage] = useState("");

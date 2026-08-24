@@ -37,7 +37,7 @@ const initialValues = {
 };
 
 export default function ProjectDiscussionContainer() {
-  const recaptchaRef = useRef<TurnstileInstance | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | undefined>(undefined);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   const [recaptchaValue, setRecaptchaValue] = useState("");
 

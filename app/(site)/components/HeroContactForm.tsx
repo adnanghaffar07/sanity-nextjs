@@ -64,7 +64,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
   const [lookingFor, setLookingFor] = useState("");
   const [message, setMessage] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
-  const turnstileRef = useRef<TurnstileInstance | null>(null);
+  const turnstileRef = useRef<TurnstileInstance | undefined>(undefined);
 
   const [errors, setErrors] = useState<Errors>({});
   const [successMessage, setSuccessMessage] = useState("");

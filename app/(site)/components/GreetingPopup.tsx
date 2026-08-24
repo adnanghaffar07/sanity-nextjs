@@ -48,7 +48,7 @@ const GreetingPopup: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [messageBgColor, setMessageBgColor] = useState("bg-[#1D92FB]");
   const [progressWidth, setProgressWidth] = useState("w-[0%]");
-  const recaptchaRef = useRef<TurnstileInstance | null>(null);
+  const recaptchaRef = useRef<TurnstileInstance | undefined>(undefined);
   const [recaptchaValue, setRecaptchaValue] = useState("");
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
   
