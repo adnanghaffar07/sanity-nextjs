@@ -7,6 +7,7 @@ import { Link as ScrollLink } from "react-scroll";
 
 const PINNED_SERVICE_ORDER = [
     "ai-agent",
+    "ai-chatbot-development-services",
     "ai-business-automation-solutions",
     "ai-software-development-services",
     "qa-testing-services",
@@ -165,9 +166,9 @@ const ServicesCard = ({ data }: any) => {
                             className="flex flex-col relative w-[276px] sm:w-[348px] h-[143px] sm:h-[185px]"
                         >
                             <div className="z-10 w-14 sm:w-20 h-14 sm:h-20 bg-white rounded-full absolute flex justify-center items-center right-2 sm:right-5 -top-4 sm:-top-12 drop-shadow-serviceCard">
-                                {service.cardIcon && (
+                                {(service.cardIcon || service.iconSrc) && (
                                     <img
-                                        src={urlForImage(service.cardIcon).toString()}
+                                        src={service.cardIcon ? urlForImage(service.cardIcon).toString() : service.iconSrc}
                                         loading="lazy"
                                         alt="service-icon"
                                         className="h-8 md:h-10 object-cover"

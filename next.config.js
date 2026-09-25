@@ -19,12 +19,18 @@ const nextConfig = {
 
   async headers() {
     return [
-      {
-        source: "/_next/static/:path*",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
+      // Production only: dev chunk names aren't content-hashed, so a 1-year
+      // immutable cache makes the browser keep serving stale JS after edits.
+      ...(process.env.NODE_ENV === "production"
+        ? [
+            {
+              source: "/_next/static/:path*",
+              headers: [
+                { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+              ],
+            },
+          ]
+        : []),
       {
         source: "/images/:path*",
         headers: [
@@ -50,12 +56,19 @@ const nextConfig = {
   async redirects() {
     return [
       // 🔒 Domain canonicalization (HTTP & www)
-      {
-        source: "/:path*",
-        has: [{ type: "header", key: "x-forwarded-proto", value: "http" }],
-        destination: "https://codeautomation.ai/:path*",
-        permanent: true,
-      },
+      // Production only: local dev is plain http, so this would redirect every
+      // request (including next/image's internal fetch of /public files) to the
+      // live site and break all optimized images locally.
+      ...(process.env.NODE_ENV === "production"
+        ? [
+            {
+              source: "/:path*",
+              has: [{ type: "header", key: "x-forwarded-proto", value: "http" }],
+              destination: "https://codeautomation.ai/:path*",
+              permanent: true,
+            },
+          ]
+        : []),
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.codeautomation.ai" }],

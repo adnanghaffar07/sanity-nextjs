@@ -5,6 +5,7 @@ import ServicesHeroSection from "./components/ServicesHeroSection";
 import { urlForImage } from "@/sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
 import ServicesCard from "../components/Services-Cards";
+import MANUAL_SERVICES from "./manual-services";
 
 export const metadata = {
   title: "Software Development, AI & Automation Services | CodeAutomation",
@@ -80,11 +81,15 @@ async function getData() {
     cardIcon
   }`;
   try {
-    const fetchData = await client.fetch(query);
-    return fetchData || [];
+    const fetchData = (await client.fetch(query)) || [];
+    const sanityPaths = new Set(fetchData.map((s) => s.urlPath));
+    return [
+      ...fetchData,
+      ...MANUAL_SERVICES.filter((s) => !sanityPaths.has(s.urlPath)),
+    ];
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    return MANUAL_SERVICES;
   }
 }
 
