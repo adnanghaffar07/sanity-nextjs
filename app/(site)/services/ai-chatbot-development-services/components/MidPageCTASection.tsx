@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import ImagePlaceholder from "./ImagePlaceholder";
+import Image from "next/image";
 import { CALENDLY_URL } from "./constants";
 
 export default function MidPageCTASection() {
@@ -43,11 +43,13 @@ export default function MidPageCTASection() {
             </div>
 
             <div className="lg:col-span-5">
-              <ImagePlaceholder
-                label="CTA image: team + chatbot dashboard"
-                size="880 × 660 px (4:3)"
-                onDark
-                className="aspect-[4/3] w-full max-w-md mx-auto"
+              <Image
+                src="/ai-chatbot-development-services/cta.png"
+                alt="Customer chatting with an AI chatbot that tracks her order, answers queries, books appointments and qualifies leads 24/7"
+                width={860}
+                height={660}
+                sizes="(min-width: 1024px) 448px, (min-width: 640px) 448px, 100vw"
+                className="w-full max-w-md h-auto mx-auto rounded-2xl shadow-2xl ring-4 ring-white/20"
               />
             </div>
           </div>

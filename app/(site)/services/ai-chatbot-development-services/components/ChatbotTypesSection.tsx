@@ -7,14 +7,15 @@ import {
   MessageCircle,
   PhoneCall,
 } from "lucide-react";
-import ImagePlaceholder from "./ImagePlaceholder";
+import Image from "next/image";
 
 const CHATBOT_TYPES: {
   icon: LucideIcon;
   title: string;
   description: string;
   bestFor: string[];
-  imageLabel: string;
+  image: string;
+  imageAlt: string;
 }[] = [
   {
     icon: LifeBuoy,
@@ -22,7 +23,8 @@ const CHATBOT_TYPES: {
     description:
       "An AI customer service chatbot that answers common questions, tracks orders, processes returns, and escalates complex issues with full context.",
     bestFor: ["eCommerce", "SaaS", "Service businesses"],
-    imageLabel: "Customer support chat illustration",
+    image: "/ai-chatbot-development-services/customer-support.png",
+    imageAlt: "AI customer support chatbot answering an order question",
   },
   {
     icon: Magnet,
@@ -30,7 +32,8 @@ const CHATBOT_TYPES: {
     description:
       "Qualify visitors and book sales calls into your calendar, even after hours.",
     bestFor: ["B2B companies", "Agencies", "Real estate teams"],
-    imageLabel: "Lead qualification chat illustration",
+    image: "/ai-chatbot-development-services/lead-generation.png",
+    imageAlt: "Sales chatbot qualifying a lead and booking a sales call",
   },
   {
     icon: CalendarClock,
@@ -38,7 +41,8 @@ const CHATBOT_TYPES: {
     description:
       "Let customers book, reschedule, and cancel through chat, synced with your calendar.",
     bestFor: ["Clinics", "Salons", "Service providers"],
-    imageLabel: "Booking chat + calendar illustration",
+    image: "/ai-chatbot-development-services/appointment-booking.png",
+    imageAlt: "Booking chatbot scheduling an appointment synced with a calendar",
   },
   {
     icon: Building2,
@@ -46,7 +50,8 @@ const CHATBOT_TYPES: {
     description:
       "Our enterprise chatbot solutions answer employee questions on HR, IT, and onboarding inside Slack or Teams.",
     bestFor: ["Growing teams", "Enterprise teams"],
-    imageLabel: "Slack / Teams help desk illustration",
+    image: "/ai-chatbot-development-services/internal-help-desk.png",
+    imageAlt: "Internal help desk chatbot answering employee HR and IT questions",
   },
   {
     icon: MessageCircle,
@@ -54,7 +59,8 @@ const CHATBOT_TYPES: {
     description:
       "Automated replies, lead capture, and order updates on the apps customers already use.",
     bestFor: ["Retail", "Hospitality"],
-    imageLabel: "WhatsApp / social chat illustration",
+    image: "/ai-chatbot-development-services/whatsapp-social-media.png",
+    imageAlt: "WhatsApp and social media chatbot sending automated replies and order updates",
   },
   {
     icon: PhoneCall,
@@ -62,7 +68,8 @@ const CHATBOT_TYPES: {
     description:
       "Answer calls, take bookings, and route callers with natural speech.",
     bestFor: ["Businesses with busy phone lines"],
-    imageLabel: "Voice assistant / phone call illustration",
+    image: "/ai-chatbot-development-services/voice-assistants.png",
+    imageAlt: "AI voice assistant booking an appointment over a phone call",
   },
 ];
 
@@ -85,17 +92,22 @@ export default function ChatbotTypesSection() {
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {CHATBOT_TYPES.map(
-            ({ icon: Icon, title, description, bestFor, imageLabel }) => (
+            ({ icon: Icon, title, description, bestFor, image, imageAlt }) => (
               <article
                 key={title}
                 className="group flex flex-col rounded-3xl bg-white shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden"
               >
                 <div className="relative p-3 pb-0">
-                  <ImagePlaceholder
-                    label={imageLabel}
-                    size="800 × 450 px (16:9)"
-                    className="aspect-video w-full rounded-2xl p-4"
-                  />
+                  <div className="overflow-hidden rounded-2xl">
+                    <Image
+                      src={image}
+                      alt={imageAlt}
+                      width={800}
+                      height={450}
+                      sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                      className="aspect-video w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                   <span className="absolute left-7 -bottom-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1D92FB] text-white shadow-lg ring-4 ring-white">
                     <Icon className="w-6 h-6" aria-hidden />
                   </span>

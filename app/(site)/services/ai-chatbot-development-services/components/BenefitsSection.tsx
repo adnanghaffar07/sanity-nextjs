@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { Clock, Feather, Magnet, Timer, BadgeCheck } from "lucide-react";
-import ImagePlaceholder from "./ImagePlaceholder";
+import Image from "next/image";
 
 const BENEFITS: { icon: LucideIcon; title: string; description: string }[] = [
   {
@@ -47,10 +47,13 @@ export default function BenefitsSection() {
               A well-built chatbot delivers more than customer support
               automation:
             </p>
-            <ImagePlaceholder
-              label="Benefits image: chatbot analytics / happy customer"
-              size="1040 × 780 px (4:3)"
-              className="mt-8 aspect-[4/3] w-full max-w-lg mx-auto lg:mx-0 shadow-lg"
+            <Image
+              src="/ai-chatbot-development-services/benefits.png"
+              alt="AI chatbot benefits: 24/7 availability, cost savings, consistent brand experience, higher customer satisfaction, increased sales and scalable support"
+              width={1040}
+              height={780}
+              sizes="(min-width: 1024px) 512px, (min-width: 640px) 512px, 100vw"
+              className="mt-8 w-full max-w-lg h-auto mx-auto lg:mx-0 rounded-3xl shadow-lg"
             />
           </div>
 

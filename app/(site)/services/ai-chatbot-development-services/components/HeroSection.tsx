@@ -1,13 +1,6 @@
 import Link from "next/link";
-import {
-  Bot,
-  CircleCheck,
-  CalendarCheck,
-  CirclePlay,
-  Clock,
-  Database,
-} from "lucide-react";
-import ImagePlaceholder from "./ImagePlaceholder";
+import Image from "next/image";
+import { Bot, CircleCheck, CalendarCheck, CirclePlay } from "lucide-react";
 import { CALENDLY_URL } from "./constants";
 
 const HIGHLIGHTS = [
@@ -107,25 +100,15 @@ export default function HeroSection() {
 
           {/* RIGHT: visual */}
           <div className="relative mx-auto w-full max-w-[560px]">
-            <ImagePlaceholder
-              label="Hero image: AI chatbot conversation mockup"
-              size="1120 × 960 px (displays at 560 × 480)"
-              className="aspect-[7/6] w-full shadow-xl"
+            <Image
+              src="/ai-chatbot-development-services/hero.png"
+              alt="AI chatbot assistant booking a demo in a chat window, connected to Salesforce, HubSpot, Google Calendar, WhatsApp and Instagram"
+              width={1120}
+              height={960}
+              priority
+              sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw"
+              className="w-full h-auto rounded-3xl shadow-xl"
             />
-
-            {/* Floating chips — derived from the hero promise, not stats */}
-            <div className="hidden sm:flex absolute -left-6 top-10 items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lg">
-              <Clock className="w-5 h-5 text-[#1D92FB]" aria-hidden />
-              <span className="text-sm font-semibold text-black">
-                Answers 24/7
-              </span>
-            </div>
-            <div className="hidden sm:flex absolute -right-4 bottom-10 items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lg">
-              <Database className="w-5 h-5 text-[#1D92FB]" aria-hidden />
-              <span className="text-sm font-semibold text-black">
-                Trained on your data
-              </span>
-            </div>
           </div>
         </div>
 
