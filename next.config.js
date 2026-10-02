@@ -81,6 +81,17 @@ const nextConfig = {
         destination: "/services/custom-cms-development-services",
         permanent: true,
       },
+      // Old AI chatbot page → new hand-built AI chatbot page
+      {
+        source: "/services/ai-software-development-services/AI-chatbot-services",
+        destination: "/services/ai-chatbot-development-services",
+        permanent: true,
+      },
+      {
+        source: "/services/ai-software-development-services/ai-chatbot-services",
+        destination: "/services/ai-chatbot-development-services",
+        permanent: true,
+      },
       {
         source: "/services/gohighlevel-crm-automation-customization.",
         destination: "/services/gohighlevel-crm-automation-customization",
