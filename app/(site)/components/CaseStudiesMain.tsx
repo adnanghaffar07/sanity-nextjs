@@ -1,35 +1,102 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useId } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Link as ScrollLink } from "react-scroll";
+import { motion } from "framer-motion";
+import {
+  Search,
+  X,
+  SearchX,
+  ArrowRight,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  LayoutGrid,
+  Smartphone,
+  Globe,
+  FlaskConical,
+  ShoppingBag,
+  Sparkles,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
 
+const ITEMS_PER_PAGE = 9;
+const MAX_SUGGESTIONS = 6;
+
+// Tabs on the page. `value` matches the card's `group` in Sanity.
+const FILTERS: { value: string; label: string; icon: LucideIcon }[] = [
+  { value: "all", label: "All Projects", icon: LayoutGrid },
+  { value: "app", label: "Mobile App Development", icon: Smartphone },
+  { value: "web", label: "Web App Development", icon: Globe },
+  { value: "qa", label: "QA Testing & Automation", icon: FlaskConical },
+  { value: "shopify", label: "Ecommerce", icon: ShoppingBag },
+  { value: "ai", label: "AI & Automation", icon: Sparkles },
+];
+
+// Short labels for the badges shown on each card.
+const GROUP_BADGES: Record<string, string> = {
+  app: "Mobile App",
+  web: "Web App",
+  qa: "QA & Testing",
+  shopify: "Ecommerce",
+  ai: "AI & Automation",
+};
+
+// `group` may hold several comma-separated values (e.g. "web,ai") so a case
+// study can appear under more than one tab.
+const groupsOf = (item: any): string[] =>
+  String(item?.group ?? "")
+    .split(",")
+    .map((g) => g.trim().toLowerCase())
+    .filter(Boolean);
+
+const Highlight = ({ text, query }: { text: string; query: string }) => {
+  const index = text.toLowerCase().indexOf(query.toLowerCase());
+  if (!query || index === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, index)}
+      <span className="font-semibold text-[#1D92FB]">
+        {text.slice(index, index + query.length)}
+      </span>
+      {text.slice(index + query.length)}
+    </>
+  );
+};
+
 const CaseStudy = () => {
   const [originalCards, setOriginalCards] = useState<any[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
 
-  const itemsPerPage = 9;
+  const listboxId = useId();
+  const gridTopRef = useRef<HTMLDivElement>(null);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
 
   const fetchData = async () => {
-    const query = `*[_type == 'portfolio'] | order(_updatedAt desc)`;
+    // Fetch only the card list. Pulling every portfolio document (case studies
+    // *and* full blog posts, 1.7MB+) just to find this one entry made the grid
+    // take minutes to appear.
+    const query = `*[_type == 'portfolio' && title == "CaseStudyInfo"] | order(_updatedAt desc)[0].cardItemsList`;
     try {
-      const data = await client.fetch(query);
-      const caseStudyData = data.find((item: any) => item.title === "CaseStudyInfo");
+      const cardItemsList = await client.fetch(query);
 
-      if (caseStudyData?.cardItemsList) {
-        setOriginalCards(caseStudyData.cardItemsList);
+      if (Array.isArray(cardItemsList)) {
+        setOriginalCards(cardItemsList);
       } else {
         console.error("No CaseStudyInfo found or cardItemsList is missing");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -37,74 +104,107 @@ const CaseStudy = () => {
     fetchData();
   }, []);
 
+  // Close the suggestion list when clicking outside the search box.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (!searchBoxRef.current?.contains(e.target as Node)) setShowSuggestions(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  const query = searchTerm.trim().toLowerCase();
+
+  // Number of case studies per tab, shown on each filter pill.
+  const filterCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: originalCards.length };
+    for (const item of originalCards) {
+      for (const g of new Set(groupsOf(item))) counts[g] = (counts[g] ?? 0) + 1;
+    }
+    return counts;
+  }, [originalCards]);
+
   const filteredItems = useMemo(() => {
     let items = originalCards;
 
-    if (selectedFilters.length > 0) {
-      // `group` may hold several comma-separated values (e.g. "web,ai") so a
-      // case study can appear under more than one tab.
-      items = items.filter((item) =>
-        String(item.group ?? "")
-          .split(",")
-          .map((g) => g.trim().toLowerCase())
-          .some((g) => selectedFilters.includes(g))
-      );
+    if (activeFilter !== "all") {
+      items = items.filter((item) => groupsOf(item).includes(activeFilter));
     }
 
-    if (searchTerm) {
-      items = items.filter((item) =>
-        item.cardTitle?.toLowerCase().includes(searchTerm.toLowerCase())
+    if (query) {
+      items = items.filter(
+        (item) =>
+          item.cardTitle?.toLowerCase().includes(query) ||
+          item.cardDescription?.toLowerCase().includes(query)
       );
     }
 
     return items;
-  }, [originalCards, selectedFilters, searchTerm]);
+  }, [originalCards, activeFilter, query]);
 
-  const paginatedItems = useMemo(() => {
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredItems.slice(startIndex, endIndex);
-  }, [filteredItems, currentPage]);
+  const suggestions = useMemo(() => {
+    if (!query) return [];
+    return originalCards
+      .filter((item) => item.cardTitle?.toLowerCase().includes(query))
+      .sort(
+        (a, b) =>
+          Number(!a.cardTitle.toLowerCase().startsWith(query)) -
+          Number(!b.cardTitle.toLowerCase().startsWith(query))
+      )
+      .slice(0, MAX_SUGGESTIONS);
+  }, [originalCards, query]);
 
-  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / ITEMS_PER_PAGE));
+  const paginatedItems = filteredItems.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
-    setSelectedFilters(filter === "all" ? [] : [filter]);
     setCurrentPage(0);
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
+  const updateSearch = (value: string) => {
     setSearchTerm(value);
-
-    const newSuggestions = value
-      ? originalCards
-        .filter((item) =>
-          item.cardTitle?.toLowerCase().startsWith(value)
-        )
-        .map((item) => item.cardTitle)
-      : [];
-    setSuggestions(newSuggestions);
-  };
-
-  const handleSuggestionClick = (suggestion: string) => {
-    setSearchTerm(suggestion);
-    setSuggestions([]);
     setCurrentPage(0);
+    setActiveSuggestion(-1);
+    setShowSuggestions(Boolean(value.trim()));
   };
 
-  const handlePrevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage((prev) => prev - 1);
+  const resetAll = () => {
+    updateSearch("");
+    handleFilterChange("all");
+  };
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    gridTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      setShowSuggestions(false);
+      return;
+    }
+    if (!showSuggestions || suggestions.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveSuggestion((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveSuggestion((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
+    } else if (e.key === "Enter" && activeSuggestion >= 0) {
+      e.preventDefault();
+      updateSearch(suggestions[activeSuggestion].cardTitle);
+      setShowSuggestions(false);
+    } else if (e.key === "Enter") {
+      setShowSuggestions(false);
     }
   };
 
-  const handleNextPage = () => {
-    if ((currentPage + 1) * itemsPerPage < filteredItems.length) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
+  const suggestionsOpen = showSuggestions && query.length > 0;
+  const activeFilterLabel = FILTERS.find((f) => f.value === activeFilter)?.label;
 
   return (
     <>
@@ -174,256 +274,309 @@ const CaseStudy = () => {
         </div>
       </section>
 
-      <div className="flex flex-col items-center justify-center mb-24 " id="gridSection">
-        {/* Filter Section */}
-        <section className="w-full max-w-[1340px] mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 mt-10 items-center w-full px-6">
-            {/* Heading and Search Bar */}
-            <h2 className="text-2xl md:text-4xl text-black font-bold">
+
+      <section
+        id="gridSection"
+        className="w-full max-w-[1340px] mx-auto px-5 md:px-10 pt-14 md:pt-20 pb-24"
+      >
+        {/* Header + search */}
+        <div ref={gridTopRef} className="scroll-mt-28 flex flex-col md:flex-row md:items-end gap-6">
+          <div className="text-center md:text-left">
+            <span className="text-sm font-semibold uppercase tracking-wider text-[#1D92FB]">
+              Our Portfolio
+            </span>
+            <h2 className="mt-2 text-3xl md:text-4xl text-black font-bold">
               Explore Our Work
             </h2>
-            <div className="relative flex items-center border border-gray-400 rounded px-2 bg-white md:ml-auto w-full md:w-auto">
-              <svg
-                className="w-6 h-6 text-black"
-                fill="white"
-                stroke="black"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+            <p className="mt-2 text-gray-600">
+              Real projects we&apos;ve designed, built, tested, and automated for our clients.
+            </p>
+          </div>
+
+          <div ref={searchBoxRef} className="relative w-full md:w-[340px] md:ml-auto">
+            <Search
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+              aria-hidden
+            />
+            <input
+              type="search"
+              role="combobox"
+              aria-label="Search case studies"
+              aria-expanded={suggestionsOpen}
+              aria-controls={listboxId}
+              aria-autocomplete="list"
+              aria-activedescendant={
+                activeSuggestion >= 0 ? `${listboxId}-${activeSuggestion}` : undefined
+              }
+              placeholder="Search case studies"
+              value={searchTerm}
+              onChange={(e) => updateSearch(e.target.value)}
+              onFocus={() => setShowSuggestions(Boolean(query))}
+              onKeyDown={handleKeyDown}
+              className="w-full rounded-full border border-gray-300 bg-white py-3 pl-12 pr-11 text-black shadow-sm placeholder:text-gray-400 focus:border-[#1D92FB] focus:outline-none focus:ring-4 focus:ring-[#1D92FB]/15 transition [&::-webkit-search-cancel-button]:hidden"
+            />
+            {searchTerm && (
+              <button
+                type="button"
+                onClick={() => updateSearch("")}
+                aria-label="Clear search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-black transition"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-4.35-4.35m1.35-4.65a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="ml-2 py-2 px-2 bg-white focus:outline-none text-black w-full"
-              />
-              {suggestions.length > 0 && (
-                <ul className="absolute top-full left-0 w-full bg-white border border-gray-200 mt-1 rounded shadow-lg z-10">
-                  {suggestions.map((suggestion, index) => (
+                <X className="w-4 h-4" aria-hidden />
+              </button>
+            )}
+
+            {suggestionsOpen && (
+              <ul
+                id={listboxId}
+                role="listbox"
+                className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-gray-100 bg-white py-2 shadow-xl"
+              >
+                {suggestions.length > 0 ? (
+                  suggestions.map((item, i) => (
                     <li
-                      key={index}
-                      onClick={() => handleSuggestionClick(suggestion)}
-                      className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                      key={item._key ?? item.url}
+                      id={`${listboxId}-${i}`}
+                      role="option"
+                      aria-selected={i === activeSuggestion}
                     >
-                      {suggestion}
+                      <Link
+                        href={`/case-studies/${item.url}`}
+                        onMouseEnter={() => setActiveSuggestion(i)}
+                        className={`flex items-center justify-between gap-3 px-4 py-2.5 text-sm text-gray-700 transition-colors ${
+                          i === activeSuggestion ? "bg-[#EAF4FF]" : ""
+                        }`}
+                      >
+                        <span className="truncate">
+                          <Highlight text={item.cardTitle} query={searchTerm.trim()} />
+                        </span>
+                        <ArrowUpRight className="w-4 h-4 shrink-0 text-gray-400" aria-hidden />
+                      </Link>
                     </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+                  ))
+                ) : (
+                  <li className="flex items-center gap-2 px-4 py-3 text-sm text-gray-500">
+                    <SearchX className="w-4 h-4 shrink-0 text-red-400" aria-hidden />
+                    No case study named &ldquo;{searchTerm.trim()}&rdquo;
+                  </li>
+                )}
+              </ul>
+            )}
           </div>
+        </div>
 
-          {/* Gray Line */}
-          <div className="p-6">
-            <hr className="border-t-1 border-gray-300 w-full" />
-          </div>
-
-          <ul className="flex flex-row flex-wrap md:justify-start mx-6 justify-center gap-4 mt-4">
-            <li>
-              <button
-                className={`px-4 py-2 rounded border ${activeFilter === "all"
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
-                  }`}
-                onClick={() => handleFilterChange("all")}
-              >
-                All Projects
-              </button>
-            </li>
-            <li>
-              <button
-                className={`px-4 py-2 rounded border ${activeFilter === "app"
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
-                  }`}
-                onClick={() => handleFilterChange("app")}
-              >
-                Mobile App Development
-              </button>
-            </li>
-            <li>
-              <button
-                className={`px-4 py-2 rounded border ${activeFilter === "web"
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
-                  }`}
-                onClick={() => handleFilterChange("web")}
-              >
-                Web App Development
-              </button>
-            </li>
-            <li>
-              <button
-                className={`px-4 py-2 rounded border ${activeFilter === "qa"
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
-                  }`}
-                onClick={() => handleFilterChange("qa")}
-              >
-                QA Testing & Automation
-              </button>
-            </li>
-            <li>
-              <button
-                className={`px-4 py-2 rounded border ${activeFilter === "shopify"
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
-                  }`}
-                onClick={() => handleFilterChange("shopify")}
-              >
-                Ecommerce
-              </button>
-            </li>
-            <li>
-              <button
-                className={`px-4 py-2 rounded border ${activeFilter === "ai"
-                  ? "bg-[#1D92FB] text-white"
-                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
-                  }`}
-                onClick={() => handleFilterChange("ai")}
-              >
-                AI &amp; Automation
-              </button>
-            </li>
-          </ul>
-        </section>
-
-        {/* Case Study Grid Section */}
-
-        <section
-          className="mx-auto relative max-w-[1740px] mt-10 px-5"
+        {/* Filter pills */}
+        <div
+          role="tablist"
+          aria-label="Filter case studies"
+          className="mt-8 flex flex-wrap justify-center md:justify-start gap-2.5"
         >
-          <div className="md:grid md:grid-cols-3 grid grid-cols-1 gap-7 sm:gap-10 md:gap-10">
-            {paginatedItems.map((item: any, index: any) => (
-              <div key={index} className="relative w-full cursor-pointer group overflow-hidden">
-                <Link href={`/case-studies/${item?.url}`}>
-                  {item?.cardImage && (
-                    <Image
-                      width={454}
-                      height={300}
-                      className="w-full aspect-[1.52] md:max-w-[410px] sm:max-w-[204px] sm:mb-2"
-                      src={urlForImage(item.cardImage).toString()}
-                      alt="card"
-                    />
-                  )}
-                  <div
-                    className={`absolute inset-0 flex items-center justify-center text-center p-4 transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 rounded-3xl`}
-                    style={{
-                      backgroundColor: item.buttonColor || '#4aa2f0', // Default or dynamic color
-                    }}
-                  >
-                    <p className="text-white">{item.cardDescription}</p>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-
-        {/* Pagination Section */}
-        <section className="w-full max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between mt-10 px-5">
-          <ScrollLink
-            to="gridSection"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-          >
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 0}
-              className={`flex items-center justify-center px-3 h-10 text-sm font-medium border rounded-xl transition-colors ${currentPage === 0
-                ? "bg-gray-100 text-gray-500"
-                : "bg-[#f7e022] text-black hover:bg-[#e8d21e]"
+          {FILTERS.map(({ value, label, icon: Icon }) => {
+            const active = activeFilter === value;
+            return (
+              <button
+                key={value}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => handleFilterChange(value)}
+                className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all ${
+                  active
+                    ? "border-[#1D92FB] bg-[#1D92FB] text-white shadow-md shadow-[#1D92FB]/25"
+                    : "border-gray-200 bg-white text-gray-700 hover:border-[#1D92FB]/50 hover:text-[#1D92FB]"
                 }`}
-            >
-              <svg
-                className="w-3.5 h-3.5 me-2 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 5H1m0 0 4 4M1 5l4-4"
-                />
-              </svg>
-              Prev
-            </button>
-          </ScrollLink>
+                <Icon className="w-4 h-4 shrink-0" aria-hidden />
+                {label}
+                {!isLoading && (
+                  <span
+                    className={`min-w-[1.5rem] rounded-full px-1.5 py-0.5 text-xs font-semibold ${
+                      active ? "bg-white/20 text-white" : "bg-gray-100 text-gray-500 group-hover:bg-[#EAF4FF] group-hover:text-[#1D92FB]"
+                    }`}
+                  >
+                    {filterCounts[value] ?? 0}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
 
-          <div className="flex gap-2 my-4 md:mt-0">
-            {Array.from({ length: totalPages }, (_, index) => (
-              <ScrollLink
-                key={index}
-                to="gridSection"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
+        {/* Result summary (announced to screen readers) */}
+        <p className="mt-6 min-h-[1.25rem] text-sm text-gray-500" aria-live="polite">
+          {!isLoading &&
+            filteredItems.length > 0 &&
+            (query || activeFilter !== "all") &&
+            `Showing ${filteredItems.length} ${filteredItems.length === 1 ? "case study" : "case studies"}${
+              activeFilter !== "all" ? ` in ${activeFilterLabel}` : ""
+            }${query ? ` matching “${searchTerm.trim()}”` : ""}`}
+        </p>
+
+        {isLoading ? (
+          /* Loading skeletons */
+          <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" aria-hidden>
+            {Array.from({ length: 6 }, (_, i) => (
+              <li key={i} className="rounded-3xl border border-gray-100 bg-white p-3 shadow-sm">
+                <div className="aspect-[1.52] w-full animate-pulse rounded-2xl bg-gray-100" />
+                <div className="px-3 pb-3 pt-5 space-y-3">
+                  <div className="h-5 w-2/3 animate-pulse rounded bg-gray-100" />
+                  <div className="h-4 w-full animate-pulse rounded bg-gray-100" />
+                  <div className="h-4 w-4/5 animate-pulse rounded bg-gray-100" />
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : filteredItems.length === 0 ? (
+          /* Empty state */
+          <div
+            role="alert"
+            className="mt-4 rounded-3xl border border-dashed border-gray-300 bg-[#F7F9FC] px-6 py-14 text-center"
+          >
+            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-500">
+              <SearchX className="w-8 h-8" aria-hidden />
+            </span>
+            <h3 className="mt-5 text-xl sm:text-2xl font-bold text-black">
+              {query
+                ? <>No case studies found for &ldquo;{searchTerm.trim()}&rdquo;</>
+                : <>No case studies in {activeFilterLabel} yet</>}
+            </h3>
+            <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+              Try a different keyword or category, or browse all of our projects.
+            </p>
+            <button
+              type="button"
+              onClick={resetAll}
+              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-[#1D92FB] px-6 py-3 font-semibold text-white shadow hover:bg-blue-600 transition-colors"
+            >
+              <LayoutGrid className="w-4 h-4" aria-hidden />
+              View all projects
+            </button>
+          </div>
+        ) : (
+          <>
+            {/* Case study grid */}
+            <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {paginatedItems.map((item: any, i: number) => {
+                const badges = groupsOf(item).filter((g) => GROUP_BADGES[g]);
+                return (
+                  <motion.li
+                    key={item._key ?? item.url ?? i}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, delay: Math.min(i, 8) * 0.04 }}
+                    className="h-full"
+                  >
+                    <Link
+                      href={`/case-studies/${item?.url}`}
+                      className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-white p-3 shadow-sm hover:-translate-y-1 hover:border-[#1D92FB]/30 hover:shadow-xl transition-all duration-300"
+                    >
+                      <div className="relative overflow-hidden rounded-2xl bg-gray-50">
+                        {item?.cardImage && (
+                          <Image
+                            width={454}
+                            height={300}
+                            sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+                            className="aspect-[1.52] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            src={urlForImage(item.cardImage).toString()}
+                            alt={item.cardTitle ? `${item.cardTitle} case study` : "Case study"}
+                          />
+                        )}
+                        <span
+                          aria-hidden
+                          className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-gray-700 opacity-0 shadow-md backdrop-blur transition-all duration-300 group-hover:opacity-100 group-hover:rotate-45"
+                        >
+                          <ArrowUpRight className="w-5 h-5" />
+                        </span>
+                      </div>
+
+                      <div className="flex grow flex-col px-3 pb-3 pt-5">
+                        {badges.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5">
+                            {badges.map((g) => (
+                              <span
+                                key={g}
+                                className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${
+                                  g === "ai"
+                                    ? "bg-[#f7e022]/30 text-[#7a6a00]"
+                                    : "bg-[#EAF4FF] text-[#1D92FB]"
+                                }`}
+                              >
+                                {GROUP_BADGES[g]}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                        <h3 className="mt-3 text-lg sm:text-xl font-semibold leading-snug text-black">
+                          {item.cardTitle}
+                        </h3>
+                        {item.cardDescription && (
+                          <p className="mt-2 grow text-[15px] leading-6 text-gray-600 line-clamp-2">
+                            {item.cardDescription}
+                          </p>
+                        )}
+                        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1D92FB]">
+                          View case study
+                          <ArrowRight
+                            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                            aria-hidden
+                          />
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.li>
+                );
+              })}
+            </ul>
+
+            {/* Pagination (hidden when everything fits on one page) */}
+            {totalPages > 1 && (
+              <nav
+                aria-label="Case study pages"
+                className="mt-12 flex flex-wrap items-center justify-center gap-2 sm:gap-3"
               >
                 <button
-                  key={index}
-                  onClick={() => setCurrentPage(index)}
-                  className={`w-10 h-10 flex items-center justify-center px-4 py-1 rounded-md border transition-colors ${currentPage === index
-                    ? "bg-[#1D92FB] text-white"
-                    : "bg-white text-[#1D92FB] border-[#1D92FB]"
-                    }`}
-                  style={{ minWidth: '40px', minHeight: '40px' }} // Optional: If you need exact pixel dimensions
+                  type="button"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 0}
+                  aria-label="Previous page"
+                  className="flex h-10 items-center gap-1 rounded-full border border-gray-200 bg-white px-3 sm:px-4 text-sm font-medium text-gray-700 hover:border-[#1D92FB] hover:text-[#1D92FB] disabled:pointer-events-none disabled:opacity-40 transition"
                 >
-                  {index + 1}
+                  <ChevronLeft className="w-4 h-4" aria-hidden />
+                  <span className="hidden sm:inline">Prev</span>
                 </button>
-              </ScrollLink>
-            ))}
-          </div>
 
-          <ScrollLink
-            to="gridSection"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-          >
-            <button
-              onClick={handleNextPage}
-              disabled={(currentPage + 1) * itemsPerPage >= filteredItems.length}
-              className={`flex items-center justify-center px-3 h-10 text-sm font-medium rounded-xl transition-colors ${(currentPage + 1) * itemsPerPage >= filteredItems.length
-                ? "bg-gray-100 text-gray-500"
-                : "bg-[#1d92fb] text-white hover:bg-blue-700"
-                }`}
-            >
-              Next
-              <svg
-                className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </button>
-          </ScrollLink>
-        </section>
-      </div>
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => goToPage(index)}
+                    aria-label={`Page ${index + 1}`}
+                    aria-current={currentPage === index ? "page" : undefined}
+                    className={`h-10 w-10 rounded-full text-sm font-semibold transition ${
+                      currentPage === index
+                        ? "bg-[#1D92FB] text-white shadow-md"
+                        : "border border-gray-200 bg-white text-gray-700 hover:border-[#1D92FB] hover:text-[#1D92FB]"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage >= totalPages - 1}
+                  aria-label="Next page"
+                  className="flex h-10 items-center gap-1 rounded-full border border-gray-200 bg-white px-3 sm:px-4 text-sm font-medium text-gray-700 hover:border-[#1D92FB] hover:text-[#1D92FB] disabled:pointer-events-none disabled:opacity-40 transition"
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-4 h-4" aria-hidden />
+                </button>
+              </nav>
+            )}
+          </>
+        )}
+      </section>
     </>
   );
 };
