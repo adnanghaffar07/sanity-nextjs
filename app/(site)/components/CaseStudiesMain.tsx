@@ -27,13 +27,15 @@ const ITEMS_PER_PAGE = 9;
 const MAX_SUGGESTIONS = 6;
 
 // Tabs on the page. `value` matches the card's `group` in Sanity.
-const FILTERS: { value: string; label: string; icon: LucideIcon }[] = [
-  { value: "all", label: "All Projects", icon: LayoutGrid },
-  { value: "app", label: "Mobile App Development", icon: Smartphone },
-  { value: "web", label: "Web App Development", icon: Globe },
-  { value: "qa", label: "QA Testing & Automation", icon: FlaskConical },
-  { value: "shopify", label: "Ecommerce", icon: ShoppingBag },
-  { value: "ai", label: "AI & Automation", icon: Sparkles },
+// `short` is shown on the pill; `label` is the full name (tooltip, screen
+// readers, result summary).
+const FILTERS: { value: string; label: string; short: string; icon: LucideIcon }[] = [
+  { value: "all", label: "All Projects", short: "All Projects", icon: LayoutGrid },
+  { value: "app", label: "Mobile App Development", short: "Mobile Apps", icon: Smartphone },
+  { value: "web", label: "Web App Development", short: "Web Apps", icon: Globe },
+  { value: "qa", label: "QA Testing & Automation", short: "QA & Testing", icon: FlaskConical },
+  { value: "shopify", label: "Ecommerce", short: "Ecommerce", icon: ShoppingBag },
+  { value: "ai", label: "AI & Automation", short: "AI & Automation", icon: Sparkles },
 ];
 
 // Short labels for the badges shown on each card.
@@ -369,9 +371,10 @@ const CaseStudy = () => {
         <div
           role="tablist"
           aria-label="Filter case studies"
-          className="mt-8 flex flex-wrap justify-center md:justify-start gap-2.5"
+          // Phones: one sideways-scrolling row. md+: wraps (fits on one row on desktop).
+          className="mt-8 -mx-5 px-5 md:mx-0 md:px-0 flex gap-2.5 overflow-x-auto md:flex-wrap md:overflow-visible pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {FILTERS.map(({ value, label, icon: Icon }) => {
+          {FILTERS.map(({ value, label, short, icon: Icon }) => {
             const active = activeFilter === value;
             return (
               <button
@@ -379,15 +382,19 @@ const CaseStudy = () => {
                 type="button"
                 role="tab"
                 aria-selected={active}
-                onClick={() => handleFilterChange(value)}
-                className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all ${
+                title={label}
+                onClick={(e) => {
+                  handleFilterChange(value);
+                  e.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+                }}
+                className={`group inline-flex shrink-0 whitespace-nowrap items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all ${
                   active
                     ? "border-[#1D92FB] bg-[#1D92FB] text-white shadow-md shadow-[#1D92FB]/25"
                     : "border-gray-200 bg-white text-gray-700 hover:border-[#1D92FB]/50 hover:text-[#1D92FB]"
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" aria-hidden />
-                {label}
+                {short}
                 {!isLoading && (
                   <span
                     className={`min-w-[1.5rem] rounded-full px-1.5 py-0.5 text-xs font-semibold ${
