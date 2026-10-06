@@ -41,7 +41,14 @@ const CaseStudy = () => {
     let items = originalCards;
 
     if (selectedFilters.length > 0) {
-      items = items.filter((item) => selectedFilters.includes(item.group));
+      // `group` may hold several comma-separated values (e.g. "web,ai") so a
+      // case study can appear under more than one tab.
+      items = items.filter((item) =>
+        String(item.group ?? "")
+          .split(",")
+          .map((g) => g.trim().toLowerCase())
+          .some((g) => selectedFilters.includes(g))
+      );
     }
 
     if (searchTerm) {
@@ -272,6 +279,17 @@ const CaseStudy = () => {
                 onClick={() => handleFilterChange("shopify")}
               >
                 Ecommerce
+              </button>
+            </li>
+            <li>
+              <button
+                className={`px-4 py-2 rounded border ${activeFilter === "ai"
+                  ? "bg-[#1D92FB] text-white"
+                  : "bg-[#454545] bg-opacity-10 border-gray-300 border-1 text-[#454545]"
+                  }`}
+                onClick={() => handleFilterChange("ai")}
+              >
+                AI &amp; Automation
               </button>
             </li>
           </ul>

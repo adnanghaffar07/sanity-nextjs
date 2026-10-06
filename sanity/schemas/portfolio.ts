@@ -860,6 +860,8 @@ const portfolioSchema = {
               name: "group",
               title: "Group",
               type: "string",
+              description:
+                "Case Studies page tab(s): app, web, qa, shopify, ai. Separate several with commas, e.g. \"web,ai\".",
             },
 
             {
