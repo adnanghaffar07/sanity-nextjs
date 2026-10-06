@@ -1,88 +1,103 @@
-"use client";
 import React from "react";
-import Marquee from "react-fast-marquee";
+import type { LucideIcon } from "lucide-react";
+import {
+  Lightbulb,
+  PenTool,
+  Code2,
+  Workflow,
+  Rocket,
+  FolderArchive,
+} from "lucide-react";
 
-interface Item {
+interface Step {
   title: string;
   text: string;
-  icon: string;
+  icon: LucideIcon;
 }
 
-const items: Item[] = [
+// The delivery process, in order.
+const steps: Step[] = [
   {
     title: "Project Initiation",
     text: "Our team of development, UX design, and analysis experts can assist in creating new product concepts or improving existing performance.",
-    icon: "/4.png",
+    icon: Lightbulb,
   },
   {
     title: "Design",
     text: "Our talented design team creates visually appealing digital user experiences to solve practical issues and enhance key business metrics.",
-    icon: "/3.png",
+    icon: PenTool,
   },
   {
     title: "Development",
     text: "We create efficient, secure apps for your company, by product strategy, assembling a skilled team, and starting coding to give your brand a competitive edge.",
-    icon: "/development-icon.svg",
+    icon: Code2,
   },
   {
     title: "Automate",
     text: "Product testing, also known as consumer or comparative testing, measures a product’s characteristics or capabilities to develop goods that meet specific technical criteria.",
-    icon: "/automate-icon.svg",
+    icon: Workflow,
   },
   {
     title: "Launch",
     text: "The final product is launched after client approval, fostering growth for both companies. Our industry continuously improves, and we ensure project safety.",
-    icon: "/6.png",
+    icon: Rocket,
   },
   {
     title: "Archives and Artifacts",
     text: "You are the project owner, entitled to our as-built documentation, specifications, test scripts, and release scripts for future analysis or development.",
-    icon: "/5.png",
+    icon: FolderArchive,
   },
 ];
 
-interface CardProps {
-  icon: string;
-  title: string;
-  text: string;
-}
-
-function Card({ icon, title, text }: CardProps) {
-  return (
-    <div className="flex flex-col p-6 min-w-[260px] max-w-[300px] h-72 border border-blue-400 bg-[#FAFAFA] rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300 mx-6">
-      <div className="flex flex-col flex-grow">
-        <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full border border-gray-300 shadow mb-4">
-          <img
-            src={icon}
-            alt={title}
-            width={32}
-            height={32}
-            className="max-h-8 w-auto max-w-8 object-contain"
-          />
-        </div>
-        <span className="text-lg font-semibold text-blue-500 mb-2">{title}</span>
-        <p className="text-sm text-gray-600 flex-grow">{text}</p>
-      </div>
-    </div>
-  );
-}
-
-
 export default function ProcessScroller() {
   return (
-    <div className="w-full md:py-16 py-6">
-      <div className="overflow-hidden select-none">
-        <Marquee
-          pauseOnHover={true}
-          gradient={false}
-          speed={40}
-          className="flex space-x-6"
-        >
-          {items.map((item, index) => (
-            <Card key={index} {...item} />
+    <section className="relative w-full overflow-hidden bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 md:py-20">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="text-sm font-semibold uppercase tracking-wider text-[#1D92FB]">
+            Our Process
+          </span>
+          <h2 className="mt-3 text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-black">
+            From Idea to Launch, Step by Step
+          </h2>
+        </div>
+
+        {/* Swipeable row on phones; 2 columns on tablets; 3×2 grid on desktop */}
+        <ol className="mt-10 md:mt-14 -mx-6 px-6 sm:mx-0 sm:px-0 flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-4 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {steps.map(({ title, text, icon: Icon }, i) => (
+            <li
+              key={title}
+              className="group relative w-[82%] sm:w-auto shrink-0 snap-start"
+            >
+              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-gray-100 bg-[#F7F9FC] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#1D92FB]/30 hover:bg-white hover:shadow-xl">
+                {/* Top accent that fills on hover */}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[#1D92FB] to-[#7cc0ff] transition-transform duration-500 group-hover:scale-x-100"
+                />
+
+                <div className="flex items-center justify-between">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#1D92FB] shadow-sm ring-1 ring-gray-100 transition-colors duration-300 group-hover:bg-[#1D92FB] group-hover:text-white group-hover:ring-[#1D92FB]">
+                    <Icon className="w-7 h-7" aria-hidden />
+                  </span>
+                  <span
+                    aria-hidden
+                    className="text-5xl font-extrabold leading-none text-gray-200/80 transition-colors duration-300 group-hover:text-[#EAF4FF]"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                  Step {i + 1}
+                </p>
+                <h3 className="mt-1 text-xl font-bold text-black">{title}</h3>
+                <p className="mt-3 text-[15px] leading-7 text-gray-600">{text}</p>
+              </div>
+            </li>
           ))}
-        </Marquee>
+        </ol>
       </div>
-    </div>
+    </section>
   );
 }
