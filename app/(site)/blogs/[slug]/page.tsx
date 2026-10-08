@@ -6,6 +6,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
 import AuthorBio from "../../components/AuthorBio";
+import PreferredSourceBadge from "../../components/PreferredSourceBadge";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -184,6 +185,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="bg-white">
+      {/* Tablet/desktop: floating bottom-left */}
+      <PreferredSourceBadge variant="floating" />
       {data?.jsonLd && (
         <Script
           id="blog-post-schema"
@@ -213,6 +216,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
       {/* Main Content Container */}
       <div className="max-w-5xl mx-auto px-6 py-12 md:py-20">
+        {/* Phones: first thing after the featured (hero) image, aligned with the text */}
+        <PreferredSourceBadge variant="inline" />
         
         {/* Introduction Section */}
         <div className="mb-16">
