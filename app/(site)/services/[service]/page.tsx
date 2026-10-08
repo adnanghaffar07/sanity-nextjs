@@ -17,6 +17,8 @@ import TestimonialsSection from "../../components/TestimonialsSection";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../components/PortableTextServices";
 import { notFound } from "next/navigation";
+import ServicePageRenderer from "../../components/service-sections/ServicePageRenderer";
+import { getServicePageWithLinks, servicePageMetadata } from "../../components/service-sections/data";
 
 async function getData(service: string) {
   if (!service) return null; // ✅ Prevents undefined errors
@@ -52,6 +54,10 @@ async function getLogoData() {
 
 // ✅ Fixed generateMetadata Function
 export async function generateMetadata({ params }: { params: { service: string } }) {
+  // New section-based Service Page takes precedence over the legacy one.
+  const newPage = await getServicePageWithLinks(params.service);
+  if (newPage) return servicePageMetadata(newPage.page);
+
   const data = await getData(params.service);
 
   const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
@@ -125,6 +131,12 @@ export default async function service({
 }: {
   params: { service: string };
 }) {
+  // New section-based Service Page takes precedence over the legacy one.
+  const newPage = await getServicePageWithLinks(params.service);
+  if (newPage) {
+    return <ServicePageRenderer sections={newPage.page.sections} links={newPage.links} pageTitle={newPage.page.title} />;
+  }
+
   const data = await getData(params.service);
   if (!data) {
     notFound();

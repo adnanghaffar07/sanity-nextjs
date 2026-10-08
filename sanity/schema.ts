@@ -33,6 +33,7 @@ import terms from "./schemas/terms";
 import mobileQuoteLead from "./schemas/mobile-quote-lead";
 import mobileServiceHeroForm from "./schemas/mobileServiceHeroForm";
 import visitor from "./schemas/visitor";
+import { servicePageTypes } from "./schemas/service-page";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -60,6 +61,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     paymentProposal,
     testing,
     paymentPlan, youtubeEmbed, blockContent, contactForm,
-    calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm, visitor
+    calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm, visitor,
+    // New section-based service pages (legacy services above are unchanged)
+    ...servicePageTypes,
   ],
 };

@@ -4,6 +4,8 @@ import { client } from "../../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import ServicePageRenderer from "../../../components/service-sections/ServicePageRenderer";
+import { getServicePageWithLinks, servicePageMetadata } from "../../../components/service-sections/data";
 
 async function getData(urlPathSub: string) {
   if (!urlPathSub) return null; // ✅ Prevents undefined errors
@@ -27,6 +29,10 @@ async function getLogoData() {
 }
 
 export async function generateMetadata({ params }: { params: { service: string; slug: string } }) {
+  // New section-based Service Page (with this parent) takes precedence.
+  const newPage = await getServicePageWithLinks(params.slug, params.service);
+  if (newPage) return servicePageMetadata(newPage.page);
+
   const data = await getData(params.slug);
 
   const defaultTitle = "CodeAutomation - Custom Software and Mobile Development Company in USA";
@@ -82,7 +88,13 @@ export async function generateMetadata({ params }: { params: { service: string; 
 }
 
 
-const Page = async ({ params }: { params: { slug: string } }) => {
+const Page = async ({ params }: { params: { service: string; slug: string } }) => {
+  // New section-based Service Page (with this parent) takes precedence.
+  const newPage = await getServicePageWithLinks(params.slug, params.service);
+  if (newPage) {
+    return <ServicePageRenderer sections={newPage.page.sections} links={newPage.links} pageTitle={newPage.page.title} />;
+  }
+
   const data = await getData(params.slug);
   if (!data) {
     notFound();

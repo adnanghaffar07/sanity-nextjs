@@ -80,8 +80,29 @@ async function getData() {
     serviceDesc,
     cardIcon
   }`;
+  // New section-based Service Pages (top-level only) shown on the listing.
+  // urlPath matches the legacy field so the cards and links work the same way.
+  const newPagesQuery = `*[_type == "servicePage" && defined(slug.current) && !defined(parent) && coalesce(listing.show, true)] | order(_createdAt asc){
+    _id,
+    "urlPath": slug.current,
+    "serviceCardTitle": coalesce(listing.cardTitle, title),
+    "serviceDesc": listing.cardDescription,
+    "cardIcon": listing.cardIcon
+  }`;
   try {
-    const fetchData = (await client.fetch(query)) || [];
+    const [legacy, newPages] = await Promise.all([
+      client.fetch(query).then((r) => r || []),
+      client.fetch(newPagesQuery).then((r) => r || []).catch(() => []),
+    ]);
+    // A new page replaces the legacy card with the same URL (it also replaces
+    // the legacy page itself on /services/<urlPath>).
+    // Swapped in place so a migrated service keeps its position in the list.
+    const newByPath = new Map(newPages.map((s) => [s.urlPath, s]));
+    const legacyPaths = new Set(legacy.map((s) => s.urlPath));
+    const fetchData = [
+      ...legacy.map((s) => newByPath.get(s.urlPath) || s),
+      ...newPages.filter((s) => !legacyPaths.has(s.urlPath)),
+    ];
     const sanityPaths = new Set(fetchData.map((s) => s.urlPath));
     return [
       ...fetchData,

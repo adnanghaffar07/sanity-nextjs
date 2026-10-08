@@ -1,0 +1,1837 @@
+{
+  "_id": "drafts.service-page-superintelligence",
+  "_type": "servicePage",
+  "title": "Superintelligence Readiness Services",
+  "slug": {
+    "_type": "slug",
+    "current": "superintelligence"
+  },
+  "sections": [
+    {
+      "_type": "spHero",
+      "_key": "321d2779691b",
+      "badge": "Advanced AI Readiness",
+      "badgeIcon": "BrainCircuit",
+      "heading": "Superintelligence Readiness Services for Forward-Thinking",
+      "headingHighlight": "Businesses",
+      "subheading": [
+        {
+          "_type": "block",
+          "_key": "2e56b06d2e8a",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "c6d13c9cb2f0",
+              "text": "Prepare your business for increasingly capable AI. We help you adopt advanced AI agents today, with the governance, data foundations, and safeguards you'll need as systems become more autonomous.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "_key": "6d6170d1b489",
+          "_type": "highlight",
+          "text": [
+            {
+              "_type": "block",
+              "_key": "12f73c9ccab8",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "971c48a81511",
+                  "text": "Practical AI roadmaps grounded in what works today",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "19fe24bd7d25",
+          "_type": "highlight",
+          "text": [
+            {
+              "_type": "block",
+              "_key": "ad16fc0ab204",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "d16dd2b1c7da",
+                  "text": "Governance and safety built in from day one",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "5ee3331b6951",
+          "_type": "highlight",
+          "text": [
+            {
+              "_type": "block",
+              "_key": "b6504c640afb",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "d55542924f1c",
+                  "text": "Agentic systems connected to your real workflows",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "primaryButton": {
+        "_type": "spButton",
+        "label": "Book a Free AI Strategy Call",
+        "link": {
+          "_type": "spLink",
+          "linkType": "external",
+          "url": "https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=superintelligence",
+          "openInNewTab": true
+        },
+        "style": "primary"
+      },
+      "secondaryButton": {
+        "_type": "spButton",
+        "label": "See Our Approach",
+        "link": {
+          "_type": "spLink",
+          "linkType": "internal",
+          "path": "#approach",
+          "openInNewTab": false
+        },
+        "style": "accent"
+      },
+      "image": {
+        "_type": "spImage",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-b9fb37237d3088ee324652137467ee42be2eeb33-1774x887-webp"
+        },
+        "alt": "Illustration of superintelligent AI concept"
+      },
+      "showTrustBar": true
+    },
+    {
+      "_type": "spIntro",
+      "_key": "ec96815f9249",
+      "eyebrow": "About This Service",
+      "heading": "Getting Ready for the Next Leap in AI",
+      "body": [
+        {
+          "_type": "block",
+          "_key": "e5ad4d8a6d4d",
+          "style": "normal",
+          "markDefs": [
+            {
+              "_type": "internalLink",
+              "_key": "9e982a3556d0",
+              "reference": {
+                "_type": "reference",
+                "_ref": "2eaf84f2-e80a-4755-83c0-22a261e12d01"
+              }
+            }
+          ],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "7ccabc9d854e",
+              "text": "Superintelligence describes AI that outperforms humans across most cognitive tasks. It isn't here yet, but AI capability is improving quickly, and businesses that build strong foundations now will adapt faster. We help you put those foundations in place: clean data, well-governed ",
+              "marks": []
+            },
+            {
+              "_type": "span",
+              "_key": "d7302f9dce7c",
+              "text": "AI agents",
+              "marks": [
+                "9e982a3556d0"
+              ]
+            },
+            {
+              "_type": "span",
+              "_key": "04971206031f",
+              "text": ", and processes designed for human oversight.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "panelTitle": "What we help with",
+      "panelItems": [
+        {
+          "_key": "2b8515fc8e67",
+          "_type": "panelItem",
+          "icon": "Compass",
+          "title": "Advanced AI strategy & roadmaps"
+        },
+        {
+          "_key": "c91507f3a45d",
+          "_type": "panelItem",
+          "icon": "Workflow",
+          "title": "Autonomous agent workflows",
+          "link": {
+            "_type": "spLink",
+            "linkType": "internal",
+            "reference": {
+              "_type": "reference",
+              "_ref": "2eaf84f2-e80a-4755-83c0-22a261e12d01"
+            },
+            "openInNewTab": false
+          }
+        },
+        {
+          "_key": "2c0228f10910",
+          "_type": "panelItem",
+          "icon": "ShieldCheck",
+          "title": "AI governance & safety"
+        },
+        {
+          "_key": "ddb051ae727a",
+          "_type": "panelItem",
+          "icon": "Database",
+          "title": "Data foundations for AI",
+          "link": {
+            "_type": "spLink",
+            "linkType": "internal",
+            "reference": {
+              "_type": "reference",
+              "_ref": "364271ad-fa76-4fb3-b44e-4fdd6c5b36f2"
+            },
+            "openInNewTab": false
+          }
+        }
+      ],
+      "notes": [
+        {
+          "_key": "5e2e82706fe2",
+          "_type": "note",
+          "icon": "Users",
+          "title": "Human oversight at every step"
+        },
+        {
+          "_key": "59d11a7b8c9f",
+          "_type": "note",
+          "icon": "Activity",
+          "title": "Reviewed as AI capabilities evolve"
+        }
+      ]
+    },
+    {
+      "_type": "spProblem",
+      "_key": "e66e026f1eed",
+      "eyebrow": "The Challenge",
+      "heading": "Why Most Businesses Aren't Ready for More Capable AI",
+      "intro": [
+        {
+          "_type": "block",
+          "_key": "06222e41b546",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "da6ce3394ed5",
+              "text": "Many teams are still experimenting with chatbots while AI systems are learning to plan, reason, and act on their own.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "chatExample": [
+        {
+          "_key": "c9350ca4464e",
+          "_type": "chatMessage",
+          "from": "user",
+          "text": "Can our AI approve refunds automatically?"
+        },
+        {
+          "_key": "b8adc3c87989",
+          "_type": "chatMessage",
+          "from": "bot",
+          "text": "Yes, all refunds approved.",
+          "warning": true
+        }
+      ],
+      "costTitle": "Unprepared adoption has real costs.",
+      "costs": [
+        {
+          "_key": "8aee5f84301e",
+          "_type": "cost",
+          "icon": "Bot",
+          "title": "Agents acting without clear limits"
+        },
+        {
+          "_key": "5dd788fcb57a",
+          "_type": "cost",
+          "icon": "Database",
+          "title": "Messy data leading to wrong decisions"
+        },
+        {
+          "_key": "45c6dacf1b9a",
+          "_type": "cost",
+          "icon": "Lock",
+          "title": "Compliance and security gaps"
+        }
+      ],
+      "body": [
+        {
+          "_type": "block",
+          "_key": "5fe3b31ac825",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "eb8758527884",
+              "text": "The problem is rarely the model. It's missing governance, unclear escalation paths, and data that was never prepared for autonomous systems.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "badTitle": "Ad-hoc AI adoption",
+      "badItems": [
+        "Tools chosen before goals",
+        "No human-in-the-loop checks",
+        "No plan for model upgrades"
+      ],
+      "goodTitle": "Superintelligence-ready adoption",
+      "goodItems": [
+        "Clear guardrails and permissions",
+        "Audit trails for every AI action",
+        "Architecture that swaps in better models"
+      ],
+      "closingLine": [
+        {
+          "_type": "block",
+          "_key": "ebb2d2e9e80a",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "7ee9afd34f26",
+              "text": "That's the foundation we build with every client.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spServicesGrid",
+      "_key": "900091070a55",
+      "eyebrow": "What We Do",
+      "heading": "Our Superintelligence Readiness Services",
+      "intro": [
+        {
+          "_type": "block",
+          "_key": "e2ef021355f8",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "a4f3dfff4bac",
+              "text": "From strategy to safe deployment, we cover the full journey toward more capable AI.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "_key": "268d2871ab87",
+          "_type": "serviceItem",
+          "icon": "Compass",
+          "title": "AI Readiness Assessment",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "3325eaa3dfe0",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "39c3e22ae2a9",
+                  "text": "We review your data, systems, and processes to find where advanced AI can add value safely.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "outcome": [
+            {
+              "_type": "block",
+              "_key": "508d09adcb97",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "364b8107a94d",
+                  "text": "A clear, prioritized roadmap.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "2ac9293da272",
+          "_type": "serviceItem",
+          "icon": "Bot",
+          "title": "Agentic System Design",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "d5fcb99fe2a7",
+              "style": "normal",
+              "markDefs": [
+                {
+                  "_type": "internalLink",
+                  "_key": "1198ec514458",
+                  "reference": {
+                    "_type": "reference",
+                    "_ref": "2eaf84f2-e80a-4755-83c0-22a261e12d01"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "3035b791bf39",
+                  "text": "We design multi-step ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "72101fee2770",
+                  "text": "AI agents",
+                  "marks": [
+                    "1198ec514458"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "848c32385e20",
+                  "text": " that plan and act inside your tools with defined limits.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "outcome": [
+            {
+              "_type": "block",
+              "_key": "f3b6994a516c",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "7a07546d4639",
+                  "text": "Automation you can trust.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "link": {
+            "_type": "spLink",
+            "linkType": "internal",
+            "reference": {
+              "_type": "reference",
+              "_ref": "2eaf84f2-e80a-4755-83c0-22a261e12d01"
+            },
+            "openInNewTab": false
+          }
+        },
+        {
+          "_key": "96e3b38e5d76",
+          "_type": "serviceItem",
+          "icon": "ShieldCheck",
+          "title": "AI Governance & Safety",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "0c1789cc26ea",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "0d95de33e813",
+                  "text": "Policies, permissions, and monitoring so every AI decision is traceable and reversible.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "outcome": [
+            {
+              "_type": "block",
+              "_key": "f8b1ccbaf4cb",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "cd289f7895d4",
+                  "text": "Confidence for leadership and regulators.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "265f9b237541",
+          "_type": "serviceItem",
+          "icon": "Database",
+          "title": "Data Foundations",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "171281d81b4c",
+              "style": "normal",
+              "markDefs": [
+                {
+                  "_type": "internalLink",
+                  "_key": "f07342a948d5",
+                  "reference": {
+                    "_type": "reference",
+                    "_ref": "364271ad-fa76-4fb3-b44e-4fdd6c5b36f2"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "41db310e01ed",
+                  "text": "We clean, structure, and connect your data so advanced models have reliable context. See our ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "1859b5b3f48f",
+                  "text": "data analytics services",
+                  "marks": [
+                    "f07342a948d5"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "57491c691394",
+                  "text": ".",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "outcome": [
+            {
+              "_type": "block",
+              "_key": "2c61257af0dd",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "3a114d8f14a1",
+                  "text": "Better answers from every model.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "5cb49fbbcd08",
+          "_type": "serviceItem",
+          "icon": "Cpu",
+          "title": "Model-Agnostic Architecture",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "81e868d71edc",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "09734c9b9a79",
+                  "text": "Systems built to swap in newer, more capable models without a rebuild.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "outcome": [
+            {
+              "_type": "block",
+              "_key": "554f7b5ceae8",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "c48d24f424c3",
+                  "text": "Future-proof AI investments.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "a9b4201a74d6",
+          "_type": "serviceItem",
+          "icon": "Activity",
+          "title": "Monitoring & Evaluation",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "fcc40639f89d",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "28aefe556dc5",
+                  "text": "Ongoing testing of accuracy, safety, and cost as models and regulations change.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "outcome": [
+            {
+              "_type": "block",
+              "_key": "640e9d1447b6",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "6c09de34a606",
+                  "text": "AI that stays reliable over time.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spImageCards",
+      "_key": "bbb41d59d7ba",
+      "eyebrow": "Focus Areas",
+      "heading": "Where Advanced AI Creates the Most Value",
+      "intro": [
+        {
+          "_type": "block",
+          "_key": "980283535fd6",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "90b73eac6c05",
+              "text": "These are the areas our clients prioritize when preparing for more capable AI.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "tagsLabel": "Best for",
+      "items": [
+        {
+          "_key": "0c24ad5e2497",
+          "_type": "imageCard",
+          "image": {
+            "_type": "spImage",
+            "asset": {
+              "_type": "reference",
+              "_ref": "image-3feb67bd53971d9154458f3de5f82ca5b5067eb8-1774x887-webp"
+            },
+            "alt": "Multi-agent AI system architecture"
+          },
+          "icon": "Workflow",
+          "title": "Multi-Agent Systems",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "11e33476f025",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "e15439ac7357",
+                  "text": "Teams of specialized AI agents that collaborate on complex, multi-step work.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "tags": [
+            "Operations",
+            "Enterprise"
+          ]
+        },
+        {
+          "_key": "24cc9a77c2d7",
+          "_type": "imageCard",
+          "image": {
+            "_type": "spImage",
+            "asset": {
+              "_type": "reference",
+              "_ref": "image-a6095f24d4121ca98eb83defdc0a401a469ca35f-1774x887-webp"
+            },
+            "alt": "Recursive AI self-improvement cycle"
+          },
+          "icon": "TrendingUp",
+          "title": "Self-Improving Workflows",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "a1c7c2e38a7f",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "021e685c83ce",
+                  "text": "Processes that learn from outcomes and get better with every cycle, under human review.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "tags": [
+            "SaaS",
+            "eCommerce"
+          ]
+        },
+        {
+          "_key": "19a821cf1961",
+          "_type": "imageCard",
+          "image": {
+            "_type": "spImage",
+            "asset": {
+              "_type": "reference",
+              "_ref": "image-1dbce56c649a1f8101f23be8a8bcc4139516078a-1774x887-webp"
+            },
+            "alt": "AI capability growth concept"
+          },
+          "icon": "LineChart",
+          "title": "Strategic Forecasting",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "f3f4fc063a57",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "3e2233c99aa3",
+                  "text": "Scenario planning for how rapidly improving AI will reshape your industry.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "tags": [
+            "Leadership",
+            "Strategy"
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spIconGrid",
+      "_key": "fd2eef971aa5",
+      "theme": "dark",
+      "eyebrow": "Capabilities",
+      "heading": "What Our Advanced AI Systems Can Do",
+      "items": [
+        {
+          "_key": "617f19c60e00",
+          "_type": "iconItem",
+          "icon": "BrainCircuit",
+          "title": "Reason over complex tasks",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "3269af73a422",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "d84dc44a18ae",
+                  "text": "Break goals into steps and plan the work.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "70649631b129",
+          "_type": "iconItem",
+          "icon": "DatabaseZap",
+          "title": "Use your knowledge",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "cd2ffde43e37",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "07fd09525e68",
+                  "text": "Ground every decision in your own data.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "2672d83e43b2",
+          "_type": "iconItem",
+          "icon": "Zap",
+          "title": "Act in your tools",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "7ff49390ab48",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "8b4b0bf12f4d",
+                  "text": "Update records, send messages, and trigger workflows.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "75e10c14fd72",
+          "_type": "iconItem",
+          "icon": "UserRoundCheck",
+          "title": "Escalate to humans",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "9eb2b7661b29",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "690545077120",
+                  "text": "Hand off anything high-risk with full context.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "9da589d8cc75",
+          "_type": "iconItem",
+          "icon": "Languages",
+          "title": "Work across languages",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "ed593050a19b",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "45aadc4f1833",
+                  "text": "Serve global teams and customers.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "9008c61881da",
+          "_type": "iconItem",
+          "icon": "ShieldCheck",
+          "title": "Stay within guardrails",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "2aca9bdd42a8",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "df40bb65e8ea",
+                  "text": "Role-based permissions and full audit logs.",
+                  "marks": []
+                }
+              ]
+            }
+          ],
+          "tagsLabel": "Aligned with",
+          "tags": [
+            "GDPR",
+            "CCPA",
+            "EU AI Act"
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spComparison",
+      "_key": "c3f1044e98c0",
+      "eyebrow": "AI vs. Superintelligence",
+      "heading": "Today's AI or Superintelligence: What's the Difference?",
+      "left": {
+        "icon": "Bot",
+        "title": "Today's Advanced AI",
+        "description": [
+          {
+            "_type": "block",
+            "_key": "bd3e87208d38",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "bca32eeb0b24",
+                "text": "Narrow and agentic systems that excel at specific tasks with human oversight.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "chooseWhen": [
+          {
+            "_type": "block",
+            "_key": "0981a89e0e11",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "4b923967177c",
+                "text": "you want measurable results from AI right now.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "link": {
+          "_type": "spLink",
+          "linkType": "internal",
+          "reference": {
+            "_type": "reference",
+            "_ref": "aa557ece-6c5d-4dab-9960-36b2d1825528"
+          },
+          "openInNewTab": false
+        }
+      },
+      "right": {
+        "icon": "Sparkles",
+        "title": "Superintelligence",
+        "description": [
+          {
+            "_type": "block",
+            "_key": "4027d21d28f8",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "ce2c2ef9ddb6",
+                "text": "Hypothetical AI that surpasses human ability across nearly every domain.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "chooseWhen": [
+          {
+            "_type": "block",
+            "_key": "57948370fc11",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "1cc36d4d2d24",
+                "text": "you're planning long-term strategy, governance, and risk.",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      "footer": [
+        {
+          "_type": "block",
+          "_key": "5e0ede84d969",
+          "style": "normal",
+          "markDefs": [
+            {
+              "_type": "internalLink",
+              "_key": "de24d2d655fe",
+              "reference": {
+                "_type": "reference",
+                "_ref": "aa557ece-6c5d-4dab-9960-36b2d1825528"
+              }
+            },
+            {
+              "_type": "internalLink",
+              "_key": "07edadb36ab0",
+              "path": "/blogs"
+            }
+          ],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "c4e01dd679fd",
+              "text": "Want to start with what's possible today? Explore our ",
+              "marks": []
+            },
+            {
+              "_type": "span",
+              "_key": "5709ce5e1131",
+              "text": "AI software development services",
+              "marks": [
+                "de24d2d655fe"
+              ]
+            },
+            {
+              "_type": "span",
+              "_key": "99b8fa0aaa61",
+              "text": " or read our guide on ",
+              "marks": []
+            },
+            {
+              "_type": "span",
+              "_key": "6194cbeb3ac6",
+              "text": "what superintelligence is",
+              "marks": [
+                "07edadb36ab0"
+              ]
+            },
+            {
+              "_type": "span",
+              "_key": "acdc90793eef",
+              "text": ".",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spCtaBanner",
+      "_key": "2869d98f39d0",
+      "heading": "Build an AI Foundation That's Ready for What's Next",
+      "text": [
+        {
+          "_type": "block",
+          "_key": "6d0c599eb77f",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "ee8b9fa54c74",
+              "text": "Tell us where AI could have the biggest impact in your business. We'll map out a practical, safe path to get there.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "button": {
+        "_type": "spButton",
+        "label": "Let's Talk Strategy",
+        "link": {
+          "_type": "spLink",
+          "linkType": "external",
+          "url": "https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=superintelligence",
+          "openInNewTab": true
+        },
+        "style": "accent"
+      },
+      "image": {
+        "_type": "spImage",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-fee1a9ac4f4d17f673e9f1d9fdfc4a51ed87a810-1536x1024-webp"
+        },
+        "alt": "How AI agents work"
+      }
+    },
+    {
+      "_type": "spIndustries",
+      "_key": "db2dbcd29a76",
+      "eyebrow": "Industries",
+      "heading": "Advanced AI Use Cases by Industry",
+      "items": [
+        {
+          "_key": "d0f701b23d6c",
+          "_type": "industry",
+          "icon": "HeartPulse",
+          "title": "Healthcare",
+          "points": [
+            "Clinical documentation",
+            "Research synthesis",
+            "Patient triage"
+          ]
+        },
+        {
+          "_key": "399b866013fa",
+          "_type": "industry",
+          "icon": "Landmark",
+          "title": "Finance",
+          "points": [
+            "Risk modeling",
+            "Fraud detection",
+            "Regulatory reporting"
+          ]
+        },
+        {
+          "_key": "4667067204c8",
+          "_type": "industry",
+          "icon": "ShoppingBag",
+          "title": "Retail & eCommerce",
+          "points": [
+            "Demand forecasting",
+            "Dynamic pricing",
+            "Personalization"
+          ]
+        },
+        {
+          "_key": "dba952b444f0",
+          "_type": "industry",
+          "icon": "Truck",
+          "title": "Logistics",
+          "points": [
+            "Route optimization",
+            "Supply planning",
+            "Exception handling"
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spProcess",
+      "_key": "467b621bd2f2",
+      "anchorId": "approach",
+      "eyebrow": "Our Approach",
+      "heading": "How We Prepare Your Business for Advanced AI",
+      "steps": [
+        {
+          "_key": "0a1cf77ec566",
+          "_type": "step",
+          "icon": "Search",
+          "title": "Assess",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "85a6889192d2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "f5e89132d9c4",
+                  "text": "Review data, systems, risks, and goals.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "ab0be6d68aba",
+          "_type": "step",
+          "icon": "PenTool",
+          "title": "Design",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "cc57df839fc2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "9683ff92f705",
+                  "text": "Define use cases, guardrails, and success metrics.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "95c81332b90e",
+          "_type": "step",
+          "icon": "Blocks",
+          "title": "Build",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "dfa0e8003e63",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "bb4552a644c6",
+                  "text": "Develop agents and integrations on a model-agnostic stack.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "69d61708c460",
+          "_type": "step",
+          "icon": "FlaskConical",
+          "title": "Validate",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "e3e2c258acbc",
+              "style": "normal",
+              "markDefs": [
+                {
+                  "_type": "internalLink",
+                  "_key": "fc8e61e158a2",
+                  "reference": {
+                    "_type": "reference",
+                    "_ref": "ee6c1a8c-d7e1-49ec-9db3-3cc10e0b7d79"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "6848d16d97ac",
+                  "text": "Stress-test for accuracy, safety, and edge cases with our ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "2a805e20c40e",
+                  "text": "QA team",
+                  "marks": [
+                    "fc8e61e158a2"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "5e981210deb9",
+                  "text": ".",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "54a1393fb986",
+          "_type": "step",
+          "icon": "Rocket",
+          "title": "Evolve",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "3af3253c31c4",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "e68a7c33ece8",
+                  "text": "Monitor and upgrade as models improve.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spInsteadOf",
+      "_key": "a24f6df62333",
+      "eyebrow": "Why Choose Us",
+      "heading": "Why Businesses Trust Us With Advanced AI",
+      "leftLabel": "Instead of",
+      "rightLabel": "You get",
+      "rows": [
+        {
+          "_key": "e662b4226c5d",
+          "_type": "row",
+          "insteadOf": "Chasing the latest AI hype",
+          "youGet": [
+            {
+              "_type": "block",
+              "_key": "2934e68a0cbf",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "eff63d4ece74",
+                  "text": "A roadmap tied to business outcomes",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "65157113ffd0",
+          "_type": "row",
+          "insteadOf": "Black-box AI decisions",
+          "youGet": [
+            {
+              "_type": "block",
+              "_key": "dd175ffb77de",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "3ae8832d6f09",
+                  "text": "Traceable, auditable actions",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "00e3c85389c5",
+          "_type": "row",
+          "insteadOf": "Locked-in to one vendor",
+          "youGet": [
+            {
+              "_type": "block",
+              "_key": "0caf50ab44ec",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "93e7efcba87e",
+                  "text": "Model-agnostic architecture",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "a7574bcd2b22",
+          "_type": "row",
+          "insteadOf": "Launch and forget",
+          "youGet": [
+            {
+              "_type": "block",
+              "_key": "56c4c35e66e4",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "6efc0e352956",
+                  "text": "Continuous evaluation and upgrades",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spBenefits",
+      "_key": "f6334ba38533",
+      "eyebrow": "Benefits",
+      "heading": "Benefits of Preparing for Superintelligence Now",
+      "intro": [
+        {
+          "_type": "block",
+          "_key": "2222bd5d499c",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "04f349c93c9f",
+              "text": "Early preparation pays off long before superintelligence arrives:",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "image": {
+        "_type": "spImage",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-65dacbdc06b545fdc9f5043a4fe8784462f5f735-1536x1024-webp"
+        },
+        "alt": "Applications of artificial intelligence"
+      },
+      "items": [
+        {
+          "_key": "58b371834b79",
+          "_type": "benefit",
+          "icon": "Rocket",
+          "title": "Faster adoption",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "c98ab192c138",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "38a0e99f6ae0",
+                  "text": "Roll out new AI capabilities in weeks, not months.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "8c3d2e13e459",
+          "_type": "benefit",
+          "icon": "ShieldCheck",
+          "title": "Lower risk",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "2a1c7255c5ae",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "8442734c9b72",
+                  "text": "Guardrails reduce costly AI mistakes.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "0477bd259290",
+          "_type": "benefit",
+          "icon": "TrendingUp",
+          "title": "Competitive edge",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "d96ad54c5137",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "0c8a4e7d3d26",
+                  "text": "Stay ahead as competitors scramble to catch up.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "f4849e80f859",
+          "_type": "benefit",
+          "icon": "BadgeCheck",
+          "title": "Regulatory confidence",
+          "description": [
+            {
+              "_type": "block",
+              "_key": "b05b1c3064f8",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "457b60c3910d",
+                  "text": "Be ready for emerging AI regulations.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spTechStack",
+      "_key": "7371bd058035",
+      "eyebrow": "Tech Stack",
+      "heading": "Technologies We Use",
+      "categories": [
+        {
+          "_key": "12309b03cb16",
+          "_type": "techCategory",
+          "icon": "BrainCircuit",
+          "title": "AI models",
+          "items": [
+            {
+              "_key": "7e65333da9dc",
+              "_type": "tech",
+              "brand": "openai",
+              "title": "GPT"
+            },
+            {
+              "_key": "ab6be3f006e3",
+              "_type": "tech",
+              "brand": "claude"
+            },
+            {
+              "_key": "ed24584f85be",
+              "_type": "tech",
+              "brand": "gemini"
+            },
+            {
+              "_key": "fb1129ca6e55",
+              "_type": "tech",
+              "brand": "llama",
+              "title": "Llama"
+            }
+          ]
+        },
+        {
+          "_key": "b39082906a91",
+          "_type": "techCategory",
+          "icon": "Layers",
+          "title": "Agent frameworks",
+          "items": [
+            {
+              "_key": "dcdece51d505",
+              "_type": "tech",
+              "brand": "langchain"
+            },
+            {
+              "_key": "0be4c409de1e",
+              "_type": "tech",
+              "brand": "llamaindex"
+            },
+            {
+              "_key": "5d99c71f78bb",
+              "_type": "tech",
+              "brand": "huggingface"
+            }
+          ]
+        },
+        {
+          "_key": "41440030e2fd",
+          "_type": "techCategory",
+          "icon": "Database",
+          "title": "Data & vectors",
+          "items": [
+            {
+              "_key": "279842adb95e",
+              "_type": "tech",
+              "brand": "pinecone"
+            },
+            {
+              "_key": "d858229fdca0",
+              "_type": "tech",
+              "brand": "postgresql"
+            },
+            {
+              "_key": "fb15fa5d34bf",
+              "_type": "tech",
+              "brand": "mongodb"
+            }
+          ]
+        },
+        {
+          "_key": "adc7d2d1222d",
+          "_type": "techCategory",
+          "icon": "CloudCog",
+          "title": "Cloud",
+          "items": [
+            {
+              "_key": "806adfd89f9a",
+              "_type": "tech",
+              "brand": "aws"
+            },
+            {
+              "_key": "0ecd2db71ada",
+              "_type": "tech",
+              "brand": "azure"
+            },
+            {
+              "_key": "804db9bdb6c7",
+              "_type": "tech",
+              "brand": "googlecloud"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spFaq",
+      "_key": "4981a2f8c6f0",
+      "addSchema": true,
+      "eyebrow": "FAQs",
+      "heading": "Frequently Asked Questions About Superintelligence",
+      "items": [
+        {
+          "_key": "6a752452fc90",
+          "_type": "faqItem",
+          "question": "What is superintelligence?",
+          "answer": [
+            {
+              "_type": "block",
+              "_key": "10b3adf993e6",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "2726c1cd84d2",
+                  "text": "Superintelligence refers to AI that would outperform humans across nearly all cognitive tasks. It does not exist yet, but AI capabilities are advancing quickly.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "2b73dee1c2a8",
+          "_type": "faqItem",
+          "question": "Can you build a superintelligent AI for my business?",
+          "answer": [
+            {
+              "_type": "block",
+              "_key": "af5310eb53fe",
+              "style": "normal",
+              "markDefs": [
+                {
+                  "_type": "internalLink",
+                  "_key": "2085a1c32c0c",
+                  "reference": {
+                    "_type": "reference",
+                    "_ref": "2eaf84f2-e80a-4755-83c0-22a261e12d01"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "90feee0e08df",
+                  "text": "No one can today. We help you adopt the most capable AI available now, such as ",
+                  "marks": []
+                },
+                {
+                  "_type": "span",
+                  "_key": "6dfc54eb4e5b",
+                  "text": "AI agents",
+                  "marks": [
+                    "2085a1c32c0c"
+                  ]
+                },
+                {
+                  "_type": "span",
+                  "_key": "f4ff32e3e748",
+                  "text": ", while building the foundations to adapt as AI advances.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "40e8e2ec8129",
+          "_type": "faqItem",
+          "question": "How do you keep advanced AI safe?",
+          "answer": [
+            {
+              "_type": "block",
+              "_key": "4b88c5b4ea0a",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "7a9e9429d162",
+                  "text": "We use permissions, human approval for high-risk actions, audit logs, and continuous testing.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "7fe2513e2525",
+          "_type": "faqItem",
+          "question": "Which AI models do you work with?",
+          "answer": [
+            {
+              "_type": "block",
+              "_key": "c45cd836f05a",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "b0ebed66cbd4",
+                  "text": "We are model-agnostic and work with GPT, Claude, Gemini, Llama, and others, choosing based on accuracy, cost, and privacy.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_key": "150b67707ac8",
+          "_type": "faqItem",
+          "question": "How long does an AI readiness assessment take?",
+          "answer": [
+            {
+              "_type": "block",
+              "_key": "c385b5a1733c",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                {
+                  "_type": "span",
+                  "_key": "2a6f322b31ac",
+                  "text": "Most assessments take two to four weeks, depending on the size of your organization.",
+                  "marks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "spFinalCta",
+      "_key": "099a57d1363c",
+      "heading": "Ready to Future-Proof Your Business With",
+      "headingHighlight": "Advanced AI?",
+      "text": [
+        {
+          "_type": "block",
+          "_key": "162f7b25d700",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "2468d36f4e6e",
+              "text": "Book a free strategy session to see where advanced AI fits in your business today, and how to prepare for tomorrow.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "listTitle": "You'll leave with",
+      "items": [
+        {
+          "_key": "79c06b909a13",
+          "_type": "takeaway",
+          "icon": "Target",
+          "title": "Your highest-value AI opportunities"
+        },
+        {
+          "_key": "8f1c3782126e",
+          "_type": "takeaway",
+          "icon": "ShieldCheck",
+          "title": "Key risks and guardrails to put in place"
+        },
+        {
+          "_key": "91e5809679bf",
+          "_type": "takeaway",
+          "icon": "Route",
+          "title": "A phased roadmap and next steps"
+        }
+      ],
+      "button": {
+        "_type": "spButton",
+        "label": "Book Your Free AI Strategy Session",
+        "link": {
+          "_type": "spLink",
+          "linkType": "external",
+          "url": "https://calendly.com/adnanghaffar/codeautomation?utm_source=website&utm_campaign=superintelligence",
+          "openInNewTab": true
+        },
+        "style": "accent"
+      }
+    }
+  ],
+  "seo": {
+    "metaTitle": "Superintelligence Readiness Services | CodeAutomation",
+    "metaDescription": "Prepare your business for advanced AI. Strategy, agentic systems, governance and data foundations built for the road to superintelligence.",
+    "keywords": [
+      "superintelligence",
+      "AI readiness",
+      "advanced AI strategy",
+      "AI governance",
+      "agentic AI"
+    ],
+    "ogImage": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-b9fb37237d3088ee324652137467ee42be2eeb33-1774x887-webp"
+      }
+    },
+    "noIndex": false
+  },
+  "listing": {
+    "show": true,
+    "cardTitle": "Superintelligence Readiness",
+    "cardDescription": "Prepare your business for increasingly capable AI with strategy, agentic systems, governance and data foundations.",
+    "cardIcon": {
+      "_type": "image",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-47e3584272bf80d18a4e76bb64c0f871b719ad21-120x112-png"
+      }
+    }
+  }
+}
