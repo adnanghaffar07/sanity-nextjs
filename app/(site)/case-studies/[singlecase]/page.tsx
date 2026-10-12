@@ -1,6 +1,6 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
-import { CASE_STUDY_FILTER, NEW_FIRST } from "@/sanity/lib/content";
+import { CASE_STUDY_FILTER, NEWEST_FIRST } from "@/sanity/lib/content";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 
 async function getData(urlService: string) {
-  const query = `*[${CASE_STUDY_FILTER} && slug == $slug] | order(${NEW_FIRST})[0]`;
+  const query = `*[${CASE_STUDY_FILTER} && slug == $slug] | order(${NEWEST_FIRST})[0]`;
   try {
     return await client.fetch(query, { slug: urlService });
   } catch (error) {
@@ -317,16 +317,7 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                 ))}
               </div>
             </div>
-          ) : (
-            <ul>
-              {data.technologiesused?.map((tech: any) => (
-                <li className="text-xs md:text-xl leading-4 md:leading-8 font-light" key={tech._key}>
-                  <span className="text-lg font-bold">{tech.heading}: </span>
-                  <span className="text-lg font-light">{tech.description}</span>
-                </li>
-              ))}
-            </ul>
-          )}
+          ) : null}
         </section>
       </ScrollAnimation>
       {/*  Application Features  */}
@@ -337,27 +328,8 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
               <div key={feature._key} className="flex flex-col items-center">
                 {/* Render heading */}
                 <div className="flex flex-row items-center justify-center space-x-4">
-                  {/* Render logos */}
-                  {feature.logo?.map((logoRef: any, logoIndex: any) => {
-                    const logoData = dataLogo.find(
-                      (logo: any) => logo._id === logoRef._ref
-                    );
-                    if (logoData && logoData.image) {
-                      return (
-                        <div key={logoIndex} className="flex-shrink-0">
-                          <img
-                            src={urlForImage(logoData.image).toString()}
-                            alt={logoData.heading}
-                            className="object-cover h-12 md:h-24"
-                          />
-                        </div>
-                      );
-                    } else {
-                      return null;
-                    }
-                  })}
-                  {/* Titles show when switched on (old documents: when a testing list exists). */}
-                  {(data.features?.showTitles || data.typeoftestinglist) &&
+                  {/* Titles only show when "Show block titles" is on. */}
+                  {data.features?.showTitles &&
                     <h3
                       className={`text-xl font-klein font-semibold leading-10 max-md:max-w-full md:text-xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"
                         }`}

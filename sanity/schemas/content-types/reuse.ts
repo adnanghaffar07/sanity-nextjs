@@ -1,26 +1,24 @@
-// Helpers for the new Blog Post / Case Study / Value Blueprint schemas.
+// Helpers for the Blog Post / Case Study / Value Blueprint schemas.
 //
-// They reuse the exact field definitions (name + data shape) from the legacy
-// `portfolio` schema, with new plain-language labels, tabs and help text. Same
-// shape = documents copy across exactly, and the existing page templates keep
-// rendering them without changes. Only fields the website actually displays
-// are included. The legacy schema itself is untouched.
+// They reuse the field definitions in shared-fields.ts (the field names and data
+// shape of the original combined "portfolio" type), with plain-language labels,
+// tabs and help text per type. Only fields the website displays are included.
 
-import portfolioSchema from "../portfolio";
+import sharedFields from "./shared-fields";
 
 type AnyField = Record<string, any> & { name: string };
 
-const LEGACY_FIELDS = new Map<string, AnyField>(
-  (portfolioSchema.fields as AnyField[]).map((f) => [f.name, f])
+const SHARED_FIELDS = new Map<string, AnyField>(
+  (sharedFields as AnyField[]).map((f) => [f.name, f])
 );
 
 /**
- * A legacy portfolio field with new label / tab / help text. (Untyped, like the
+ * A shared field with new label / tab / help text. (Untyped, like the
  * legacy schema.) For object fields, `only` keeps just the listed sub-fields.
  */
 export function reuse(name: string, overrides: Partial<AnyField> = {}, only?: string[]): any {
-  const field = LEGACY_FIELDS.get(name);
-  if (!field) throw new Error(`Unknown portfolio field "${name}"`);
+  const field = SHARED_FIELDS.get(name);
+  if (!field) throw new Error(`Unknown shared field "${name}"`);
   const fields = only ? field.fields.filter((f: AnyField) => only.includes(f.name)) : field.fields;
   if (only && fields.length !== only.length) throw new Error(`Unknown sub-field in "${name}": ${only.join(", ")}`);
   return { ...field, ...overrides, ...(fields ? { fields } : {}), name: field.name };

@@ -1,11 +1,11 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { NEW_FIRST, VALUE_BLUEPRINT_FILTER } from "@/sanity/lib/content";
+import { NEWEST_FIRST, VALUE_BLUEPRINT_FILTER } from "@/sanity/lib/content";
 
-// The address is the blueprint's own address, or (old links) its old document id.
+// The address is the blueprint's own address, or (old links) its original document id.
 async function getValueData(address: string) {
-  const queryValue = `*[${VALUE_BLUEPRINT_FILTER} && (slug == $address || legacyId == $address || (_type == "portfolio" && _id == $address))] | order(${NEW_FIRST})[0]`;
+  const queryValue = `*[${VALUE_BLUEPRINT_FILTER} && (slug == $address || legacyId == $address))] | order(${NEWEST_FIRST})[0]`;
   try {
     return await client.fetch(queryValue, { address });
   } catch (error) {

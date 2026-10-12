@@ -1,6 +1,5 @@
 import { type SchemaTypeDefinition } from "sanity";
 import careers from "./schemas/careers-job";
-import blog from "./schemas/blog-sub-page";
 import technologies from "./schemas/technologies";
 import {
   logicalServices,
@@ -8,7 +7,6 @@ import {
   techLogos,
 } from "./schemas/logical-services";
 import testimonial from "./schemas/testimonail-schema";
-import portfolioSchema from "./schemas/portfolio";
 import faq from "./schemas/faq";
 import partnershipSchema from "./schemas/partnership";
 import serviceSummary from "./schemas/service-summary";
@@ -40,15 +38,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     fbMetaLeads,
     terms,
-    blog,
     careers,
     technologies,
     logicalServices,
     subServiceSchema,
     testimonial,
-    // Old combined type, kept unchanged as the legacy source of the
-    // documents copied into Blog Post / Case Study / Value Blueprint.
-    { ...portfolioSchema, title: "Old: Blogs, Case Studies & Blueprints (legacy)" },
     news,
     faq,
     lifeAtCa,
@@ -67,7 +61,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm, visitor,
     // New section-based service pages (legacy services above are unchanged)
     ...servicePageTypes,
-    // Blog Post, Case Study, Value Blueprint (split out of the legacy portfolio type)
+    // Blog Post, Case Study, Value Blueprint and the Case Study Order
     ...contentTypes,
   ],
 };

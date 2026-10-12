@@ -10,6 +10,7 @@ import {codeInput} from '@sanity/code-input'
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schema'
+import {CASE_STUDIES_PAGE_ID} from './sanity/schemas/content-types'
 
 export default defineConfig({
   basePath: '/studio',
@@ -17,6 +18,14 @@ export default defineConfig({
   dataset,
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
+  document: {
+    // The Case Study Order is a single settings document: no create/duplicate/delete.
+    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== CASE_STUDIES_PAGE_ID),
+    actions: (prev, {schemaType}) =>
+      schemaType === CASE_STUDIES_PAGE_ID
+        ? prev.filter(({action}) => action && ['publish', 'discardChanges', 'restore'].includes(action))
+        : prev,
+  },
   plugins: [
     structureTool(),
     codeInput(),

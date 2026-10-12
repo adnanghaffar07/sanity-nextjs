@@ -1,7 +1,5 @@
-// Case Study: replaces `portfolio` documents without a pageType, and the card
-// list in the old "CaseStudyInfo" document (each case study now has its own
-// card in the "Card" tab). Field names match the legacy documents, so the case
-// study template renders both.
+// Case Study: /case-studies/<address>. Each case study has its own card (Card
+// tab); the card order is set in the Case Study Order document.
 
 import { defineField, defineType } from "sanity";
 import { CaseIcon } from "@sanity/icons";

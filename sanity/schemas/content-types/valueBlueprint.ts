@@ -1,8 +1,6 @@
-// Value Blueprint: replaces `portfolio` documents with pageType "valueBlueprint".
-// Field names match the legacy documents, so the blueprint template renders both.
-// Old blueprints were addressed by document id (/value-blueprints/<id>); copied
-// ones keep that id as their address, and `legacyId` keeps the old link working
-// if the address is changed later.
+// Value Blueprint: /value-blueprints/<address>. Blueprints first lived at
+// /value-blueprints/<document id>; those keep that id as their address, and
+// `legacyId` keeps the old link working if the address is changed later.
 
 import { defineField, defineType } from "sanity";
 import { BulbOutlineIcon } from "@sanity/icons";

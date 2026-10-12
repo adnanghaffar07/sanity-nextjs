@@ -8,32 +8,8 @@ export async function POST(req: Request) {
     const baseUrl = "https://codeautomation.ai";
     let url: string = "";
 
-    if (data._type === "portfolio") {
-      // Ensure portfolio documents have both slug and pageType.
-      if (!data.slug) {
-        return NextResponse.json({ error: "Missing slug for portfolio document" }, { status: 400 });
-      }
-      if (!data.pageType) {
-        return NextResponse.json({ error: "Missing pageType for portfolio document" }, { status: 400 });
-      }
-      // Build URL based on portfolio pageType
-      switch (data.pageType) {
-        case "caseStudy":
-          url = `${baseUrl}/case-studies/${data.slug}`;
-          break;
-        case "valueBlueprint":
-          url = `${baseUrl}/value-blueprints/${data.slug}`;
-          break;
-        case "blogs":
-          url = `${baseUrl}/blogs/${data.slug}`;
-          break;
-        default:
-          // Fallback if an unexpected pageType is provided.
-          url = `${baseUrl}/${data.slug}`;
-          break;
-      }
-    } else if (["blogPost", "caseStudy", "valueBlueprint"].includes(data._type)) {
-      // New content types (split out of portfolio): the type decides the path.
+    if (["blogPost", "caseStudy", "valueBlueprint"].includes(data._type)) {
+      // The document type decides the path.
       if (!data.slug) {
         return NextResponse.json({ error: `Missing slug for ${data._type} document` }, { status: 400 });
       }

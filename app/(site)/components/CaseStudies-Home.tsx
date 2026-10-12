@@ -4,12 +4,12 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { CASE_STUDY_CARDS_QUERY, mergeCaseStudyCards } from "@/sanity/lib/content";
+import { CASE_STUDY_CARDS_QUERY, sortCaseStudyCards } from "@/sanity/lib/content";
 
 async function getData() {
   try {
     const result = await client.fetch(CASE_STUDY_CARDS_QUERY, {}, { cache: "no-store" });
-    return mergeCaseStudyCards(result).map((card) => ({ ...card, alt: card.cardImage?.alt }));
+    return sortCaseStudyCards(result).map((card) => ({ ...card, alt: card.cardImage?.alt }));
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];

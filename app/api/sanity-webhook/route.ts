@@ -5,7 +5,6 @@ import { serverClient } from "@/sanity/lib/sanity/serverClient";
 
 interface SanityWebhookBody {
   _type?: string;
-  pageType: string;
   title: string;
   slug: string;
   introductionheading: string;
@@ -64,8 +63,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as SanityWebhookBody;
 
-    // Old blog documents (portfolio, pageType "blogs") and new Blog Posts.
-    if (body?.pageType === "blogs" || body?._type === "blogPost") {
+    if (body?._type === "blogPost") {
       const { title, slug, introductionheading, heroimage, audience } = body;
       const imageUrl = urlForImage(heroimage.asset);
 

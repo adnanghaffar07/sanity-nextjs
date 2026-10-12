@@ -1,5 +1,4 @@
-// Blog Post: replaces `portfolio` documents with pageType "blogs".
-// Field names match the legacy documents, so the blog template renders both.
+// Blog Post: /blogs/<address>.
 
 import { defineType } from "sanity";
 import { DocumentTextIcon } from "@sanity/icons";

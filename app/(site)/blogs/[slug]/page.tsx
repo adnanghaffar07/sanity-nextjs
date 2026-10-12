@@ -2,7 +2,7 @@ import { PortableText, PortableTextMarkComponentProps, PortableTextReactComponen
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { client } from "../../../../sanity/lib/client";
-import { BLOG_FILTER, NEW_FIRST } from "@/sanity/lib/content";
+import { BLOG_FILTER, NEWEST_FIRST } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import Script from "next/script";
 
 async function getValueData(slug: string) {
-  const queryValue = `*[${BLOG_FILTER} && slug == $slug] | order(${NEW_FIRST})[0]`;
+  const queryValue = `*[${BLOG_FILTER} && slug == $slug] | order(${NEWEST_FIRST})[0]`;
   try {
     return await client.fetch(queryValue, { slug });
   } catch (error) {

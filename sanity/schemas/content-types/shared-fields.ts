@@ -1,31 +1,35 @@
-const portfolioSchema = {
-  name: "portfolio",
-  title: "Case Studies",
-  type: "document",
-  fields: [
-    {
+// Field definitions shared by the Blog Post, Case Study and Value Blueprint
+// schemas. They keep the field names (and stored data shape) of the original
+// combined "portfolio" type the content was copied from, so the page templates
+// read the same data. Only fields still used by the new schemas are here.
+
+const sharedFields: any[] = [
+  {
       name: 'jsonLd',
       title: 'JSON-LD Schema',
       type: 'text',
       description: 'Add structured data (schema.org) for better SEO. Example: Article, CaseStudy, etc.'
     },
-    {
+
+  {
       name: "title",
       title: "Title",
       type: "string",
     },
-    {
+
+  {
       name: "subtitle",
       title: "Sub Title",
       type: "string",
     },
-    {
+
+  {
       name: "color",
       title: "Color",
       type: "string",
     },
-   
-    {
+
+  {
       name: "description",
       title: "Description",
       type: "array",
@@ -116,26 +120,14 @@ const portfolioSchema = {
           }
         },          
         { type: 'table' }, // ✅ Add table support here
-         // ✅ Add this for YouTube embed
     {
       type: 'youtubeEmbed'
     }
 
       ]
-    },     
-    {
-      name: "pageType", // New field for page type
-      title: "Page Type",
-      type: "string",
-      options: {
-        list: [
-          { title: "Case Study", value: "caseStudy" },
-          { title: "Value Blueprint", value: "valueBlueprint" },
-          { title: "Blogs", value: "blogs" },
-        ],
-      },
     },
-    {
+
+  {
       name: "audience",
       title: "Target Audience",
       type: "array",
@@ -156,24 +148,14 @@ const portfolioSchema = {
         layout: "checkbox"
       }
     },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "string",
-    },
-    
-    {
-      name: "group",
-      title: "Group",
-      type: "string",
-    },
-    {
+
+  {
       name: "blogheading",
       title: "Blog Heading",
       type: "string",
     },
-        // Button
-        {
+
+  {
           name: "button",
           title: "Button",
           type: "object",
@@ -190,18 +172,20 @@ const portfolioSchema = {
             },
           ]
         },
-    {
+
+  {
       name: "introductionheading",
       title: "Introduction Heading",
       type: "string",
     },
 
-    {
+  {
       name: "briefdescription",
       title: "Brief Description",
       type: "string",
     },
-    {
+
+  {
       name: "briefitemsarray",
       title: "Brief Items Array",
       type: "array",
@@ -224,108 +208,13 @@ const portfolioSchema = {
       ],
     },
 
-    {
-      name: "features",
-      title: "Features Section",
-      type: "object",
-      fields: [
-
-        {
-          name: "description",
-          title: "Description",
-          type: "string",
-        }, 
-        {
-          name: "featureslist",
-          title: "Features List",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "heading",
-                  title: "Heading",
-                  type: "string",
-                },
-
-                {
-                  name: "description",
-                  title: "Description",
-                  type: "string",
-                },
-
-                {
-                  name: "logoImage",
-                  title: "Logo",
-                  type: "image",
-                  options: {
-                    hotspot: true,
-                  },
-                  fields: [
-                    {
-                      name: "alt",
-                      title: "Alt",
-                      type: "string",
-                    },
-                  ],
-                },
-
-                {
-                  name: "images",
-                  title: "Image",
-                  type: "image",
-                  options: {
-                    hotspot: true,
-                  },
-                  fields: [
-                    {
-                      name: "alt",
-                      title: "Alt",
-                      type: "string",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          name: 'feature',
-          title: 'features',
-          type: 'array',
-          of: [
-            {
-              type: 'object',
-              fields: [
-                {
-                  name: 'text',
-                  title: 'Text',
-                  type: 'string',           
-                     },
-
-              ],
-            },
-          ],
-        }
-        
-      ],
-    },
-
-    {
-      name: "projectscopeheading",
-      title: "Project Scope Heading",
-      type: "string",
-    },
-
-    {
+  {
       name: "projectscopecontent",
       title: "Project Scope Content",
       type: "string",
     },
 
-{
+  {
       name: 'projectGoalsSection',
       title: 'Project Goals Section',
       type: 'object',
@@ -363,145 +252,21 @@ const portfolioSchema = {
           ],
         },
       ],
-    },    
-
-    {
-      name: "toolsandtechusedtitle",
-      title: "Tools & Technologies Title",
-      type: "string",
-    },
-    {
-      name: "toolsandtechdescription",
-      title: "Tools & Technologies Description",
-      type: "string",
     },
 
-    {
+  {
       name: "toolsandtechusedheading",
       title: "Tools & Technologies Used Heading",
       type: "string",
     },
-    {
-      name: "toolstechlist",
-      title: "Tools Tech List",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "categories",
-              title: "Categories",
-              type: "object",
-              fields: [
-                {
-                  name: "firstCat",
-                  title: "First Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "secondCat",
-                  title: "Second Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "thirdCat",
-                  title: "Third Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "forthCat",
-                  title: "Forth Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "fifthCat",
-                  title: "Fifth Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "SixthCat",
-                  title: "Sixth Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-                {
-                  name: "SevenCat",
-                  title: "Seven Category",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
 
-    {
-      name: "applicationtestingheading",
-      title: "Application Testing Heading",
-      type: "string",
-    },
-
-    {
-      name: "applicationtestingdescription",
-      title: "Application Testing Description",
-      type: "string",
-    },
-
-    {
-      name: "typeoftestingheading",
-      title: "Type of Testing Heading",
-      type: "string",
-    },
-
-    {
-      name: "testingimage",
-      title: "Testing Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          title: "Alt",
-          type: "string",
-        },
-      ],
-    },
-
-    {
-      name: "typeoftestinglist",
-      title: "Type of Testing List",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "value",
-              title: "Value",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-
-    {
+  {
       name: "challengesfacedheading",
       title: "Challenges Faced Heading",
       type: "string",
     },
 
-    {
+  {
       name: "chanllangesfaced",
       title: "Chanllanges Faced",
       type: "array",
@@ -524,13 +289,13 @@ const portfolioSchema = {
       ],
     },
 
-    {
+  {
       name: "ourapproachheading",
       title: "Our Approach Heading",
       type: "string",
     },
 
-    {
+  {
       name: "ourapproach",
       title: "Our Approach",
       type: "array",
@@ -552,70 +317,14 @@ const portfolioSchema = {
         },
       ],
     },
-    {
-      name: "criticalPrerequisitesSection",
-      title: "Critical Prerequisites Section",
-      type: "object",
-      fields: [
-        {
-          name: "heading",
-          title: "Heading",
-          type: "string",
-        },
-        {
-          name: "description",
-          title: "Description",
-          type: "text",
-        },
-        {
-          name: "prerequisites",
-          title: "Critical Prerequisites",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "heading",
-                  title: "Heading",
-                  type: "string",
-                },
-                {
-                  name: "details",
-                  title: "Details",
-                  type: "array",
-                  of: [
-                    {
-                      type: "object",
-                      fields: [
-                        {
-                          name: "subheading",
-                          title: "Subheading",
-                          type: "string",
-                        },
-                        {
-                          name: "content",
-                          title: "Content",
-                          type: "string",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },    
 
-    {
+  {
       name: "resultsheading",
       title: "Results Heading",
       type: "string",
     },
 
-    {
+  {
       name: "results",
       title: "Results",
       type: "array",
@@ -638,18 +347,19 @@ const portfolioSchema = {
       ],
     },
 
-    {
+  {
       name: "conclusionheading",
       title: "Conclusion Heading",
       type: "string",
     },
 
-    {
+  {
       name: "conclusion",
       title: "Conclusion",
       type: "string",
     },
-{
+
+  {
       name: "faqSection",
       title: "FAQ Section",
       type: "object",
@@ -682,8 +392,9 @@ const portfolioSchema = {
           ],
         },
       ],
-    },    
-    {
+    },
+
+  {
       name: "heroimage",
       title: "Hero Image",
       type: "image",
@@ -699,7 +410,7 @@ const portfolioSchema = {
       ],
     },
 
-    {
+  {
       name: "cardimage",
       title: "Card Image",
       type: "image",
@@ -715,13 +426,7 @@ const portfolioSchema = {
       ],
     },
 
-    {
-      name: "carddescription",
-      title: "Card Description",
-      type: "string",
-    },
-
-    {
+  {
       name: "primaryimage",
       title: "Primary Image",
       type: "image",
@@ -737,229 +442,7 @@ const portfolioSchema = {
       ],
     },
 
-    {
-      name: "secondaryimage",
-      title: "Secondary Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          title: "Alt",
-          type: "string",
-        },
-      ],
-    },
-
-    {
-      name: "operatingsystem",
-      title: "Operating System",
-      type: "string",
-    },
-
-    {
-      name: "projectoverviewtitle",
-      title: "Project Overview Title",
-      type: "string",
-    },
-
-    {
-      name: "technologiesused",
-      title: "Technologies Used",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "string",
-            },
-            {
-              name: "description",
-              title: "Description",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      name: "projectoverview",
-      title: "Project Overview Section",
-      type: "object",
-      fields: [
-
-        {
-          name: "heading",
-          title: "Heading",
-          type: "string",
-        },
-        {
-          name: "detail",
-          title: "Detail",
-          type: "string",
-        }, 
-        
-        {
-          name: "projectoverviewdetail",
-          title: "Project Overview Details",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "heading",
-                  title: "Card Heading",
-                  type: "string",
-                },
-
-                {
-                  name: "detail",
-                  title: "Card description",
-                  type: "string",
-                },
-                {
-                  name: "leftcolor",
-                  title: "Left Color",
-                  type: "string",
-                },
-
-                {
-                  name: "rightcolor",
-                  title: "Right Color",
-                  type: "string",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      name: "cardItemsList",
-      title: "Card Items List",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "cardTitle",
-              title: "Card Title",
-              type: "string",
-            },
-
-            {
-              name: "group",
-              title: "Group",
-              type: "string",
-              description:
-                "Case Studies page tab(s): app, web, qa, shopify, ai. Separate several with commas, e.g. \"web,ai\".",
-            },
-
-            {
-              name: "url",
-              title: "URL",
-              type: "string",
-            },
-
-            {
-              name: "cardImage",
-              title: "Card Image",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: "alt",
-                  title: "Alt",
-                  type: "string",
-                },
-              ],
-            },
-            {
-              name: "buttonColor",
-              title: "Button Color",
-              type: "string",
-            },
-            {
-              name: "buttonLogo",
-              title: "Button Logo",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: "alt",
-                  title: "Alt",
-                  type: "string",
-                },
-              ],
-            },
-            {
-              name: "cardDescription",
-              title: "Card Description",
-              type: "string",
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      name: "caseStudiesToolsSection",
-      title: "Tools and Technology  Section",
-      type: "object",
-      fields: [
-
-        {
-          name: "toolImage",
-          title: "Image",
-          type: "image",
-          options: { hotspot: true },
-        },
-
-        {
-          name: "toolsTech",
-          title: "Tools and Tech",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "heading",
-                  title: "Heading",
-                  type: "string",
-                },
-                {
-                  name: "detail",
-                  title: "Detail",
-                  type: "string",
-                },
-                {
-                  name: "images",
-                  title: "Images",
-                  type: "array",
-                  of: [{ type: "reference", to: [{ type: "techLogos" }] }], // Reference techLogos schema here
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-        // Web SEO Meta data
-        {
+  {
           name: "webSeoMetadataSub",
           title: "Web SEO Metadata",
           type: "object",
@@ -982,10 +465,8 @@ const portfolioSchema = {
             },
           ],
         },
- 
-    
-        // Twitter Cards
-        {
+
+  {
           name: "twitterCardsSub",
           title: "Twitter Cards",
           type: "object",
@@ -1020,10 +501,8 @@ const portfolioSchema = {
     
           ],
         },
-    
-    
-        // Facebook Cards
-        {
+
+  {
           name: "facebookCardsSub",
           title: "Facebook Cards",
           type: "object",
@@ -1056,10 +535,8 @@ const portfolioSchema = {
             },
           ],
         },
-    
-    
-        // LinkedIn Cards
-        {
+
+  {
           name: "linkedInCardsSub",
           title: "LinkedIn Cards",
           type: "object",
@@ -1097,11 +574,8 @@ const portfolioSchema = {
             },
           ],
         },
-    
-    
-    
-        // Pinterest Cards
-        {
+
+  {
           name: "pinterestCardsSub",
           title: "Pinterest Cards",
           type: "object",
@@ -1129,10 +603,8 @@ const portfolioSchema = {
             },
           ],
         },
-    
-    
-        // WhatsApp  Cards
-        {
+
+  {
           name: "whatsappCardsSub",
           title: "Whatsapp Cards",
           type: "object",
@@ -1160,10 +632,8 @@ const portfolioSchema = {
             },
           ],
         },
-    
-    
-        // Telegram  Cards
-        {
+
+  {
           name: "telegramCardsSub",
           title: "Telegram Cards",
           type: "object",
@@ -1191,11 +661,6 @@ const portfolioSchema = {
             },
           ],
         },
-    
-    
-    
+];
 
-  ],
-};
-
-export default portfolioSchema;
+export default sharedFields;
