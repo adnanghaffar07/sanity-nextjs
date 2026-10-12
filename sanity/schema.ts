@@ -34,6 +34,7 @@ import mobileQuoteLead from "./schemas/mobile-quote-lead";
 import mobileServiceHeroForm from "./schemas/mobileServiceHeroForm";
 import visitor from "./schemas/visitor";
 import { servicePageTypes } from "./schemas/service-page";
+import { contentTypes } from "./schemas/content-types";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -45,7 +46,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     logicalServices,
     subServiceSchema,
     testimonial,
-    portfolioSchema,
+    // Old combined type, kept unchanged as the legacy source of the
+    // documents copied into Blog Post / Case Study / Value Blueprint.
+    { ...portfolioSchema, title: "Old: Blogs, Case Studies & Blueprints (legacy)" },
     news,
     faq,
     lifeAtCa,
@@ -64,5 +67,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm, visitor,
     // New section-based service pages (legacy services above are unchanged)
     ...servicePageTypes,
+    // Blog Post, Case Study, Value Blueprint (split out of the legacy portfolio type)
+    ...contentTypes,
   ],
 };

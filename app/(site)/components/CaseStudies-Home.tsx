@@ -4,25 +4,15 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import { CASE_STUDY_CARDS_QUERY, mergeCaseStudyCards } from "@/sanity/lib/content";
 
 async function getData() {
-  const query = `*[_type == "portfolio" && title == "CaseStudyInfo"][0]{
-    cardItemsList[]{
-      _key,
-      cardTitle,
-      cardImage,
-      "alt": cardImage.alt,
-      url,
-      group,
-      cardDescription
-    }
-  }`;
   try {
-    const fetchData = await client.fetch(query, {}, { cache: "no-store" });
-    return fetchData || null;
+    const result = await client.fetch(CASE_STUDY_CARDS_QUERY, {}, { cache: "no-store" });
+    return mergeCaseStudyCards(result).map((card) => ({ ...card, alt: card.cardImage?.alt }));
   } catch (error) {
     console.error("Error fetching data:", error);
-    return null;
+    return [];
   }
 }
 
@@ -58,7 +48,7 @@ const badgesOf = (group: unknown) =>
 
 const CaseStudiesHome = async () => {
   const data = await getData();
-  const cards = (data?.cardItemsList || []).slice(0, 6);
+  const cards = data.slice(0, 6);
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-[#F7F9FC] to-white">

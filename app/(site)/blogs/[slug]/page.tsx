@@ -2,6 +2,7 @@ import { PortableText, PortableTextMarkComponentProps, PortableTextReactComponen
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { client } from "../../../../sanity/lib/client";
+import { BLOG_FILTER, NEW_FIRST } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 import SocialShare from "../../components/socialShare";
 import BlogsFaq from "../../components/BlogsFaq";
@@ -11,10 +12,9 @@ import Link from "next/link";
 import Script from "next/script";
 
 async function getValueData(slug: string) {
-  const safeSlug = slug.replace(/'/g, "\\'");
-  const queryValue = `*[_type == 'portfolio' && slug == '${safeSlug}' && pageType == 'blogs'][0]`;
+  const queryValue = `*[${BLOG_FILTER} && slug == $slug] | order(${NEW_FIRST})[0]`;
   try {
-    return await client.fetch(queryValue);
+    return await client.fetch(queryValue, { slug });
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
@@ -33,17 +33,14 @@ async function getLogoData() {
 
 async function getMoreArticlesData(currentSlug: string) {
   const query = `
-    *[
-      _type == "portfolio" &&
-      pageType == "blogs"
-    ] | order(_createdAt desc) {
+    *[${BLOG_FILTER}] | order(_createdAt desc) {
       _id,
       title,
       subtitle,
       introductionheading,
       heroimage,
       cardimage,
-      "slug": slug.current,
+      slug,
       "publishedAt": _createdAt
     }
   `;

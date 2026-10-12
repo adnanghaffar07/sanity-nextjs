@@ -1,5 +1,6 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
+import { CASE_STUDY_FILTER, NEW_FIRST } from "@/sanity/lib/content";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
@@ -7,9 +8,9 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 
 async function getData(urlService: string) {
-  const query = `*[_type == 'portfolio' && slug == '${urlService}'][0]`;
+  const query = `*[${CASE_STUDY_FILTER} && slug == $slug] | order(${NEW_FIRST})[0]`;
   try {
-    return await client.fetch(query);
+    return await client.fetch(query, { slug: urlService });
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
@@ -355,7 +356,8 @@ const page = async ({ params }: { params: { singlecase: string } }) => {
                       return null;
                     }
                   })}
-                  {data.typeoftestinglist &&
+                  {/* Titles show when switched on (old documents: when a testing list exists). */}
+                  {(data.features?.showTitles || data.typeoftestinglist) &&
                     <h3
                       className={`text-xl font-klein font-semibold leading-10 max-md:max-w-full md:text-xl max-md:leading-8 ${index === 0 ? "text-red-600" : "text-blue-600"
                         }`}

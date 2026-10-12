@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
+import { BLOG_FILTER } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 import BlogList from "../components/BlogList";
 
@@ -40,7 +41,7 @@ export const metadata = {
 };
 
 async function getValueData() {
-  const queryValue = `*[_type == "portfolio" && pageType == "blogs"] | order(_createdAt desc){
+  const queryValue = `*[${BLOG_FILTER}] | order(_createdAt desc){
     _id,
     slug,
     title,

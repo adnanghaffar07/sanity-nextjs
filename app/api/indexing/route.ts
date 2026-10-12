@@ -32,6 +32,13 @@ export async function POST(req: Request) {
           url = `${baseUrl}/${data.slug}`;
           break;
       }
+    } else if (["blogPost", "caseStudy", "valueBlueprint"].includes(data._type)) {
+      // New content types (split out of portfolio): the type decides the path.
+      if (!data.slug) {
+        return NextResponse.json({ error: `Missing slug for ${data._type} document` }, { status: 400 });
+      }
+      const section = { blogPost: "blogs", caseStudy: "case-studies", valueBlueprint: "value-blueprints" }[data._type as string];
+      url = `${baseUrl}/${section}/${data.slug}`;
     } else if (data._type === "logicalServices") {
       // For logicalServices, use the provided urlPath.
       if (!data.urlPath) {

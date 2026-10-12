@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { client } from "../../../sanity/lib/client";
+import { VALUE_BLUEPRINT_FILTER } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
@@ -26,7 +27,7 @@ async function getLogoData() {
   }
 }
 async function getValueData() {
-  const queryValue = `*[_type == 'portfolio' && pageType == 'valueBlueprint'] | order(_createdAt asc)`;
+  const queryValue = `*[${VALUE_BLUEPRINT_FILTER}] | order(_createdAt asc)`;
   try {
     const fetchData = await client.fetch(queryValue);
     return fetchData || [];
@@ -194,7 +195,7 @@ export default async function ValueBlueprints() {
               {portfolioData.map((item: any) => (
                 <Link
                   key={item._id}
-                  href={`/value-blueprints/${item._id}`}
+                  href={`/value-blueprints/${item.slug || item._id}`}
                   aria-label={`View details of ${item.title}`}
                 >
                   {/* Card Container */}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
+import { BLOG_FILTER } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 
 export const metadata = {
@@ -41,7 +42,7 @@ const schema = {
 };
 
 async function getBlogs() {
-  const query = `*[_type == "portfolio" && pageType == "blogs"] | order(_createdAt desc){_id, slug, title, subtitle, introductionheading, heroimage}`;
+  const query = `*[${BLOG_FILTER}] | order(_createdAt desc){_id, slug, title, subtitle, introductionheading, heroimage}`;
   try {
     const res = await client.fetch(query);
     return res || [];

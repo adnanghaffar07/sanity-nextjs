@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { client } from "@/sanity/lib/client";
+import { CASE_STUDY_CARDS_QUERY, mergeCaseStudyCards } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 import ButtonScrollToSection from "../components/ButtonScrollToSection";
 
@@ -83,18 +84,11 @@ const CaseStudy = () => {
   const searchBoxRef = useRef<HTMLDivElement>(null);
 
   const fetchData = async () => {
-    // Fetch only the card list. Pulling every portfolio document (case studies
-    // *and* full blog posts, 1.7MB+) just to find this one entry made the grid
-    // take minutes to appear.
-    const query = `*[_type == 'portfolio' && title == "CaseStudyInfo"] | order(_updatedAt desc)[0].cardItemsList`;
+    // Fetch only the card fields (never whole documents: full blog posts made
+    // this grid take minutes to appear). Each case study has its own card;
+    // the old CaseStudyInfo list fills in until every case study is copied.
     try {
-      const cardItemsList = await client.fetch(query);
-
-      if (Array.isArray(cardItemsList)) {
-        setOriginalCards(cardItemsList);
-      } else {
-        console.error("No CaseStudyInfo found or cardItemsList is missing");
-      }
+      setOriginalCards(mergeCaseStudyCards(await client.fetch(CASE_STUDY_CARDS_QUERY)));
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

@@ -1,11 +1,13 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import { NEW_FIRST, VALUE_BLUEPRINT_FILTER } from "@/sanity/lib/content";
 
-async function getValueData(_id: string) {
-  const queryValue = `*[_type == 'portfolio' && _id == '${_id}'][0]`;
+// The address is the blueprint's own address, or (old links) its old document id.
+async function getValueData(address: string) {
+  const queryValue = `*[${VALUE_BLUEPRINT_FILTER} && (slug == $address || legacyId == $address || (_type == "portfolio" && _id == $address))] | order(${NEW_FIRST})[0]`;
   try {
-    return await client.fetch(queryValue);
+    return await client.fetch(queryValue, { address });
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
   const defaultDescription = "Custom Software and Mobile Development Company in USA";
   const defaultKeywords = "CodeAutomation.ai";
-  const canonicalUrl = `https://codeautomation.ai/value-blueprints/${params.slug}`; // ✅ Dynamic Canonical URL
+  const canonicalUrl = `https://codeautomation.ai/value-blueprints/${data?.slug || params.slug}`; // ✅ Dynamic Canonical URL
 
   const title = data?.webSeoMetadataSub?.title || defaultTitle;
   const description = data?.webSeoMetadataSub?.description || defaultDescription;
