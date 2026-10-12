@@ -32,11 +32,11 @@ export async function getServicePage(slug: string, parentSlug?: string): Promise
   try {
     return await client.fetch(
       `*[_type == "servicePage" && slug.current == $slug &&
-         select($parent == "" => !defined(parent), parent->slug.current == $parent)
+         select($parent == "" => !defined(parent), coalesce(parent->slug.current, parent->urlPath) == $parent)
        ][0]{
         _id, title, sections, seo,
         "slug": slug.current,
-        "parentSlug": parent->slug.current
+        "parentSlug": coalesce(parent->slug.current, parent->urlPath)
       }`,
       { slug, parent: parentSlug ?? "" }
     );

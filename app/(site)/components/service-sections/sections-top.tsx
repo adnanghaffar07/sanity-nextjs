@@ -247,6 +247,8 @@ export type ProblemData = {
   eyebrow?: string;
   heading?: string;
   intro?: unknown;
+  image?: SpImageValue;
+  /** Legacy: pages made before the image field may still have a chat example. */
   chatExample?: { _key: string; from?: "user" | "bot"; text?: string; warning?: boolean }[];
   costTitle?: string;
   costs?: { _key: string; icon?: string; title?: string }[];
@@ -290,15 +292,28 @@ function ChatBubble({ from, warning, children }: { from?: string; warning?: bool
 }
 
 export function ProblemSection({ data, links, anchorId }: { data: ProblemData } & Base) {
-  const hasChat = Boolean(data.chatExample?.length);
+  const withImage = hasImage(data.image);
+  // The image replaced the old chat example; keep showing a chat only for
+  // older pages that have one and no image.
+  const hasChat = !withImage && Boolean(data.chatExample?.length);
+  const hasVisual = withImage || hasChat;
   const hasCosts = Boolean(data.costs?.length || data.costTitle || hasRichText(data.body));
   return (
     <SectionShell anchorId={anchorId} className="bg-[#F7F9FC]">
       <div className="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24">
         <SectionHeader eyebrow={data.eyebrow} heading={data.heading} intro={data.intro} links={links} />
 
-        {(hasChat || hasCosts) && (
-          <div className={`mt-12 grid gap-8 lg:gap-12 items-center ${hasChat && hasCosts ? "lg:grid-cols-2" : ""}`}>
+        {(hasVisual || hasCosts) && (
+          <div className={`mt-12 grid gap-8 lg:gap-12 items-center ${hasVisual && hasCosts ? "lg:grid-cols-2" : ""}`}>
+            {withImage && (
+              <SanityImage
+                image={data.image}
+                width={1200}
+                height={900}
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className={`w-full h-auto rounded-3xl shadow-lg border border-gray-100 ${hasCosts ? "" : "max-w-3xl mx-auto"}`}
+              />
+            )}
             {hasChat && (
               <div className="rounded-3xl bg-white p-5 sm:p-7 shadow-lg border border-gray-100">
                 <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
@@ -380,6 +395,7 @@ export function ProblemSection({ data, links, anchorId }: { data: ProblemData } 
 // ── Services grid ────────────────────────────────────────────────────────────
 
 export type ServicesGridData = {
+  outcomeLabel?: string;
   eyebrow?: string;
   heading?: string;
   intro?: unknown;
@@ -417,7 +433,7 @@ export function ServicesGridSection({ data, links, anchorId }: { data: ServicesG
                 <div className="flex items-start gap-3 bg-[#F7F9FC] border-t border-gray-100 px-6 sm:px-7 py-4">
                   <Target className="w-5 h-5 mt-0.5 shrink-0 text-[#1D92FB]" aria-hidden />
                   <p className="text-sm">
-                    <span className="font-semibold text-black">Outcome: </span>
+                    <span className="font-semibold text-black">{data.outcomeLabel?.trim() || "Outcome"}: </span>
                     <RichText value={item.outcome} links={links} inline className="text-gray-700" />
                   </p>
                 </div>

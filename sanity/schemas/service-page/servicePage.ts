@@ -15,29 +15,29 @@ export const servicePage = defineType({
   type: "document",
   icon: DocumentsIcon,
   groups: [
-    { name: "page", title: "Page Sections", default: true },
-    { name: "url", title: "URL" },
-    { name: "seo", title: "SEO" },
-    { name: "listing", title: "Services Listing" },
+    { name: "page", title: "Page Content", default: true },
+    { name: "url", title: "Page Address" },
+    { name: "seo", title: "Google & Sharing (SEO)" },
+    { name: "listing", title: "Card on Services Page" },
   ],
   fields: [
     defineField({
       name: "title",
-      title: "Internal title",
+      title: "Page name",
       type: "string",
       group: ["page", "url"],
-      description: "Used in Studio and as the default SEO title.",
+      description: "The name of this service, e.g. \"AI Chatbot Development\". Used in Studio, and as the Google title if you don't set one in the SEO tab.",
       validation: (r) => r.required(),
     }),
 
     // ── URL ──────────────────────────────────────────────────────────────────
     defineField({
       name: "slug",
-      title: "URL slug",
+      title: "Page address (URL)",
       type: "slug",
       group: "url",
       description:
-        "Last part of the URL. To replace a legacy service, use exactly the same slug (e.g. ai-agent).",
+        "The last part of the page address: codeautomation.ai/services/THIS-PART. Click \"Generate\" to create it from the page name. To replace an existing (old) service page, use exactly the same address, e.g. ai-agent.",
       options: {
         source: "title",
         maxLength: 96,
@@ -58,13 +58,16 @@ export const servicePage = defineType({
     }),
     defineField({
       name: "parent",
-      title: "Parent service page",
+      title: "Main service (only for sub-services)",
       type: "reference",
       group: "url",
-      to: [{ type: "servicePage" }],
+      // Old (legacy) services are allowed too, so a sub-service can move to this
+      // system before its main service does — its address stays the same.
+      to: [{ type: "servicePage" }, { type: "logicalServices" }],
       description:
-        "Optional. Set this for sub-services, e.g. parent \"AI Software Development\" + slug \"rag-chatbot\" → /services/ai-software-development-services/rag-chatbot.",
-      options: { filter: "!defined(parent)" },
+        "Leave empty for a main service. For a sub-service, pick its main service (new or old page) and the address becomes /services/main-service/this-page — the same address the old sub-service had.",
+      // Only main services can be parents (no sub-sub-services).
+      options: { filter: '_type == "logicalServices" || !defined(parent)' },
     }),
 
     // ── Page builder ─────────────────────────────────────────────────────────
@@ -74,16 +77,18 @@ export const servicePage = defineType({
       type: "array",
       group: "page",
       description:
-        "Click \"Add item\" and pick a section from the grid. Drag to reorder. Each preview shows how the section looks on the website.",
+        "Build the page from top to bottom. Click \"Add item\", then pick a section from the pictures (each shows how it looks on the website). Drag sections to change their order. Start with one Hero section.",
       of: SECTION_TYPES.map((t) => defineArrayMember({ type: t.name })),
       options: {
         insertMenu: {
           filter: true,
           showIcons: true,
           groups: [
-            { name: "top", title: "Top of page", of: ["spHero", "spHeroForm", "spHeroBanner", "spIntro", "spProblem"] },
-            { name: "content", title: "Content", of: ["spServicesGrid", "spImageCards", "spIconGrid", "spIndustries", "spBenefits", "spTechStack"] },
-            { name: "compare", title: "Comparisons & process", of: ["spComparison", "spInsteadOf", "spProcess"] },
+            { name: "top", title: "Top of page (pick one)", of: ["spHero", "spHeroForm", "spHeroBanner"] },
+            { name: "text", title: "Text & explanation", of: ["spIntro", "spProblem"] },
+            { name: "content", title: "Cards, lists & grids", of: ["spServicesGrid", "spImageCards", "spIconGrid", "spIndustries", "spBenefits", "spTechStack"] },
+            { name: "compare", title: "Comparisons & steps", of: ["spComparison", "spInsteadOf", "spProcess"] },
+            { name: "related", title: "Related pages", of: ["spSubServices"] },
             { name: "cta", title: "Calls to action & FAQ", of: ["spCtaBanner", "spFinalCta", "spFaq"] },
           ],
           views: [
@@ -97,38 +102,43 @@ export const servicePage = defineType({
     // ── SEO ──────────────────────────────────────────────────────────────────
     defineField({
       name: "seo",
-      title: "SEO",
+      title: "Google & sharing",
       type: "object",
       group: "seo",
       fields: [
-        defineField({ name: "metaTitle", title: "Meta title", type: "string", validation: (r) => r.max(65).warning("Keep under ~60 characters") }),
-        defineField({ name: "metaDescription", title: "Meta description", type: "text", rows: 3, validation: (r) => r.max(170).warning("Keep under ~160 characters") }),
-        defineField({ name: "keywords", title: "Keywords", type: "array", of: [{ type: "string" }], options: { layout: "tags" } }),
-        defineField({ name: "ogImage", title: "Share image", type: "image", description: "1200 × 630 px. Falls back to the hero image." }),
-        defineField({ name: "canonicalUrl", title: "Canonical URL override", type: "url", description: "Leave empty to use this page's own URL." }),
-        defineField({ name: "noIndex", title: "Hide from search engines (noindex)", type: "boolean", initialValue: false }),
+        defineField({ name: "metaTitle", title: "Title in Google results", type: "string", description: "The blue clickable title people see in Google. Aim for 50–60 characters.", validation: (r) => r.max(65).warning("Keep it under about 60 characters so Google doesn't cut it off") }),
+        defineField({ name: "metaDescription", title: "Description in Google results", type: "text", rows: 3, description: "The short text under the title in Google. Aim for 140–160 characters.", validation: (r) => r.max(170).warning("Keep it under about 160 characters so Google doesn't cut it off") }),
+        defineField({ name: "keywords", title: "Keywords", type: "array", of: [{ type: "string" }], options: { layout: "tags" }, description: "Optional. Main search terms for this page. Type one and press Enter." }),
+        defineField({ name: "ogImage", title: "Image when shared on social media", type: "image", description: "Shown when the page is shared on LinkedIn, Facebook, WhatsApp, etc. 1200 × 630 px. If empty, the hero image is used." }),
+        defineField({ name: "canonicalUrl", title: "Main version of this page (advanced)", type: "url", description: "Leave empty. Only fill this in if this page is a copy of another page and Google should treat the other one as the main version." }),
+        defineField({ name: "noIndex", title: "Hide this page from Google", type: "boolean", initialValue: false, description: "Turn on for test or private pages that shouldn't appear in search results." }),
       ],
     }),
 
     // ── /services listing card ───────────────────────────────────────────────
     defineField({
       name: "listing",
-      title: "Services listing card",
+      title: "Card on the Services page",
+      description: "How this service appears as a card. Main services get a card on codeautomation.ai/services; sub-services get a card in their main service's \"Sub-Services\" section.",
       type: "object",
       group: "listing",
       fields: [
-        defineField({ name: "show", title: "Show on /services page", type: "boolean", initialValue: true }),
-        defineField({ name: "cardTitle", title: "Card title", type: "string" }),
-        defineField({ name: "cardDescription", title: "Card description", type: "text", rows: 3 }),
-        defineField({ name: "cardIcon", title: "Card icon", type: "image" }),
+        defineField({ name: "show", title: "Show a card for this service", type: "boolean", initialValue: true }),
+        defineField({ name: "cardTitle", title: "Card title", type: "string", description: "Short service name. If empty, the page name is used." }),
+        defineField({ name: "cardDescription", title: "Card description", type: "text", rows: 3, description: "One or two sentences. Only the first 3 lines show on the card." }),
+        defineField({ name: "cardIcon", title: "Card icon", type: "image", description: "A small square icon, ideally on a transparent background." }),
       ],
     }),
   ],
   preview: {
-    select: { title: "title", slug: "slug.current", parentSlug: "parent.slug.current" },
-    prepare: ({ title, slug, parentSlug }: any) => ({
-      title,
-      subtitle: slug ? `/services/${parentSlug ? parentSlug + "/" : ""}${slug}` : "No URL yet",
-    }),
+    // Parent may be a new page (slug) or an old service (urlPath).
+    select: { title: "title", slug: "slug.current", parentSlug: "parent.slug.current", parentUrlPath: "parent.urlPath" },
+    prepare: ({ title, slug, parentSlug, parentUrlPath }: any) => {
+      const parent = parentSlug || parentUrlPath;
+      return {
+        title,
+        subtitle: slug ? `/services/${parent ? parent + "/" : ""}${slug}` : "No URL yet",
+      };
+    },
   },
 });

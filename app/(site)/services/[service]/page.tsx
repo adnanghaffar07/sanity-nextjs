@@ -134,7 +134,7 @@ export default async function service({
   // New section-based Service Page takes precedence over the legacy one.
   const newPage = await getServicePageWithLinks(params.service);
   if (newPage) {
-    return <ServicePageRenderer sections={newPage.page.sections} links={newPage.links} pageTitle={newPage.page.title} />;
+    return <ServicePageRenderer sections={newPage.page.sections} links={newPage.links} pageTitle={newPage.page.title} pageId={newPage.page._id} pageSlug={newPage.page.slug} />;
   }
 
   const data = await getData(params.service);

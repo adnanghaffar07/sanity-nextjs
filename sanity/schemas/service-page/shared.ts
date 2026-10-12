@@ -41,7 +41,7 @@ export const iconField = (name = "icon", title = "Icon", group?: string) =>
     options: { list: ICON_OPTIONS },
     // Visual picker (icon + name, searchable) instead of a text dropdown.
     components: { input: IconPickerInput },
-    description: "Icon shown on the website (brand blue).",
+    description: "Click \"Choose\" and pick an icon. It appears in brand blue on the website.",
     ...(group ? { group } : {}),
   });
 
@@ -49,12 +49,12 @@ export const iconField = (name = "icon", title = "Icon", group?: string) =>
 const linkFields = [
   defineField({
     name: "linkType",
-    title: "Link type",
+    title: "Where does it go?",
     type: "string",
     options: {
       list: [
-        { title: "Internal page", value: "internal" },
-        { title: "External URL", value: "external" },
+        { title: "A page on our website", value: "internal" },
+        { title: "Another website", value: "external" },
       ],
       layout: "radio",
       direction: "horizontal",
@@ -63,17 +63,17 @@ const linkFields = [
   }),
   defineField({
     name: "reference",
-    title: "Page",
+    title: "Choose a service page",
     type: "reference",
     to: LINKABLE_TYPES,
-    description: "Pick a service page (new or legacy). The URL updates automatically if the page moves.",
+    description: "Start typing the service name. If that page's address changes later, this link updates by itself.",
     hidden: ({ parent }: any) => parent?.linkType === "external",
   }),
   defineField({
     name: "path",
-    title: "…or site path",
+    title: "…or type the page address",
     type: "string",
-    description: "Any other page on this site, e.g. /case-studies/heyou or /contact-us. Used when no page is picked above.",
+    description: "For pages that aren't service pages, e.g. /contact-us or /case-studies/heyou. Use #section-id to jump to a section on this page. Leave empty if you chose a page above.",
     hidden: ({ parent }: any) => parent?.linkType === "external",
     validation: (rule) =>
       rule.custom((value) =>
@@ -84,14 +84,15 @@ const linkFields = [
   }),
   defineField({
     name: "url",
-    title: "URL",
+    title: "Website address",
     type: "url",
+    description: "The full address, starting with https://",
     hidden: ({ parent }: any) => parent?.linkType !== "external",
     validation: (rule) => rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
   }),
   defineField({
     name: "openInNewTab",
-    title: "Open in new tab",
+    title: "Open in a new browser tab",
     type: "boolean",
     initialValue: false,
   }),
@@ -111,17 +112,17 @@ export const spButton = defineType({
   title: "Button",
   type: "object",
   fields: [
-    defineField({ name: "label", title: "Label", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "link", title: "Link", type: "spLink" }),
+    defineField({ name: "label", title: "Button text", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "link", title: "Button link", type: "spLink" }),
     defineField({
       name: "style",
-      title: "Style",
+      title: "Button colour",
       type: "string",
       options: {
         list: [
-          { title: "Primary (blue)", value: "primary" },
-          { title: "Accent (yellow)", value: "accent" },
-          { title: "Outline", value: "outline" },
+          { title: "Blue", value: "primary" },
+          { title: "Yellow", value: "accent" },
+          { title: "Outline only", value: "outline" },
         ],
         layout: "radio",
         direction: "horizontal",
@@ -153,39 +154,41 @@ export const spRichText = defineType({
         annotations: [
           {
             name: "internalLink",
-            title: "Internal link",
+            title: "Link to a page on our website",
             type: "object",
             icon: LinkIcon,
             fields: [
               defineField({
                 name: "reference",
-                title: "Page",
+                title: "Choose a service page",
                 type: "reference",
                 to: LINKABLE_TYPES,
+                description: "Start typing the service name. The link updates by itself if that page moves.",
               }),
               defineField({
                 name: "path",
-                title: "…or site path",
+                title: "…or type the page address",
                 type: "string",
-                description: "e.g. /case-studies/heyou. Used when no page is picked above.",
+                description: "For other pages, e.g. /contact-us or /case-studies/heyou. Leave empty if you chose a page above.",
               }),
             ],
           },
           {
             name: "externalLink",
-            title: "External link",
+            title: "Link to another website",
             type: "object",
             icon: LaunchIcon,
             fields: [
               defineField({
                 name: "href",
-                title: "URL",
+                title: "Website address",
+                description: "The full address, starting with https://",
                 type: "url",
                 validation: (rule) => rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
               }),
               defineField({
                 name: "openInNewTab",
-                title: "Open in new tab",
+                title: "Open in a new browser tab",
                 type: "boolean",
                 initialValue: true,
               }),
@@ -206,9 +209,9 @@ export const spImage = defineType({
   fields: [
     defineField({
       name: "alt",
-      title: "Alt text",
+      title: "Image description (alt text)",
       type: "string",
-      description: "Describe the image for SEO and screen readers.",
+      description: "One short sentence describing what's in the image. Helps Google and people using screen readers.",
       validation: (r) => r.required(),
     }),
   ],
@@ -218,10 +221,10 @@ export const spImage = defineType({
 export const sectionBaseFields = [
   defineField({
     name: "anchorId",
-    title: "Anchor ID",
+    title: "Section ID (for \"jump to\" links)",
     type: "string",
     group: "settings",
-    description: "Optional. Lets buttons jump here with #anchor-id (e.g. how-it-works). Lowercase letters, numbers and dashes.",
+    description: "Optional. Give this section a short name like how-it-works; any button linking to #how-it-works will then scroll here. Lowercase letters, numbers and dashes only.",
     validation: (rule) =>
       rule.regex(/^[a-z0-9-]+$/, { name: "anchor", invert: false }).warning(),
   }),
@@ -231,7 +234,7 @@ export const sectionBaseFields = [
     type: "boolean",
     group: "settings",
     initialValue: false,
-    description: "Keep the content but don't show it on the website.",
+    description: "Turn on to hide this section from the website without deleting its content.",
   }),
 ];
 
@@ -242,9 +245,9 @@ export const sectionGroups = [
 
 // Common header fields: small label above the heading, the heading and an intro.
 export const headerFields = (opts: { intro?: boolean } = {}) => [
-  defineField({ name: "eyebrow", title: "Eyebrow label", type: "string", group: "content", description: "Small blue label above the heading, e.g. \"What We Do\"." }),
-  defineField({ name: "heading", title: "Heading", type: "string", group: "content", validation: (r) => r.required() }),
+  defineField({ name: "eyebrow", title: "Small label above the heading", type: "string", group: "content", description: "Optional. A few words shown in small blue capitals above the heading, e.g. \"Our Services\"." }),
+  defineField({ name: "heading", title: "Heading", type: "string", group: "content", description: "The main title of this section.", validation: (r) => r.required() }),
   ...(opts.intro === false
     ? []
-    : [defineField({ name: "intro", title: "Intro text", type: "spRichText", group: "content" })]),
+    : [defineField({ name: "intro", title: "Short intro (under the heading)", type: "spRichText", group: "content", description: "Optional. One or two sentences introducing this section." })]),
 ];

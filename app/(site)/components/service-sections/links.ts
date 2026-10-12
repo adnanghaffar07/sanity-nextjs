@@ -66,7 +66,7 @@ export async function buildLinkMap(value: unknown): Promise<LinkMap> {
       `*[_id in $ids]{
         _id, _type,
         "slug": slug.current,
-        "parentSlug": parent->slug.current,
+        "parentSlug": coalesce(parent->slug.current, parent->urlPath),
         urlPath, urlPathSub,
         "legacyParent": *[_type == "logicalServices" && references(^._id)][0].urlPath
       }`,

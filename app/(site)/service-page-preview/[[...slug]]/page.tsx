@@ -46,5 +46,5 @@ export default async function ServicePagePreview({ params }: Props) {
   const doc = await loadSeed(name);
   if (!doc) notFound();
   const links = await buildLinkMap(doc.sections);
-  return <ServicePageRenderer sections={doc.sections} links={links} pageTitle={doc.title} />;
+  return <ServicePageRenderer sections={doc.sections} links={links} pageTitle={doc.title} pageId={doc._id} pageSlug={doc.slug?.current} />;
 }

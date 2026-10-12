@@ -92,7 +92,7 @@ const Page = async ({ params }: { params: { service: string; slug: string } }) =
   // New section-based Service Page (with this parent) takes precedence.
   const newPage = await getServicePageWithLinks(params.slug, params.service);
   if (newPage) {
-    return <ServicePageRenderer sections={newPage.page.sections} links={newPage.links} pageTitle={newPage.page.title} />;
+    return <ServicePageRenderer sections={newPage.page.sections} links={newPage.links} pageTitle={newPage.page.title} pageId={newPage.page._id} pageSlug={newPage.page.slug} />;
   }
 
   const data = await getData(params.slug);

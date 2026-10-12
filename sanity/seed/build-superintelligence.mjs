@@ -113,10 +113,7 @@ const sections = [
     eyebrow: "The Challenge",
     heading: "Why Most Businesses Aren't Ready for More Capable AI",
     intro: pt("Many teams are still experimenting with chatbots while AI systems are learning to plan, reason, and act on their own."),
-    chatExample: [
-      item({ _type: "chatMessage", from: "user", text: "Can our AI approve refunds automatically?" }),
-      item({ _type: "chatMessage", from: "bot", text: "Yes, all refunds approved.", warning: true }),
-    ],
+    image: image(IMG.automationPlatforms, "Diagram of AI automation platforms connected to business workflows"),
     costTitle: "Unprepared adoption has real costs.",
     costs: [
       item({ _type: "cost", icon: "Bot", title: "Agents acting without clear limits" }),
@@ -131,7 +128,7 @@ const sections = [
     closingLine: pt("That's the foundation we build with every client."),
   },
   {
-    _type: "spServicesGrid", _key: key(),
+    _type: "spServicesGrid", _key: key(), outcomeLabel: "Outcome",
     eyebrow: "What We Do",
     heading: "Our Superintelligence Readiness Services",
     intro: pt("From strategy to safe deployment, we cover the full journey toward more capable AI."),
@@ -170,7 +167,7 @@ const sections = [
     ],
   },
   {
-    _type: "spComparison", _key: key(),
+    _type: "spComparison", _key: key(), noteLabel: "Best when",
     eyebrow: "AI vs. Superintelligence",
     heading: "Today's AI or Superintelligence: What's the Difference?",
     left: { icon: "Bot", title: "Today's Advanced AI", description: pt("Narrow and agentic systems that excel at specific tasks with human oversight."), chooseWhen: pt("you want measurable results from AI right now."), link: ref("aiSoftware") },

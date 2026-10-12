@@ -35,7 +35,7 @@ export default async function ServiceSectionsPreview({ params }: { params: { typ
     return (
       <>
         <SiteStyles />
-        <ServicePageRenderer sections={doc.sections} links={links} pageTitle={doc.title} />
+        <ServicePageRenderer sections={doc.sections} links={links} pageTitle={doc.title} pageId={doc._id} pageSlug={doc.slug?.current} />
       </>
     );
   }

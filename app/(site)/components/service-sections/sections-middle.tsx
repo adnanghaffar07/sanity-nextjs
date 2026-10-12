@@ -94,10 +94,18 @@ export function IconGridSection({ data, links, anchorId }: { data: IconGridData 
 // ── Comparison (VS) ──────────────────────────────────────────────────────────
 
 type ComparisonCard = { icon?: string; title?: string; description?: unknown; chooseWhen?: unknown; link?: any };
-export type ComparisonData = { eyebrow?: string; heading?: string; left?: ComparisonCard; right?: ComparisonCard; footer?: unknown };
+export type ComparisonData = {
+  eyebrow?: string;
+  heading?: string;
+  noteLabel?: string;
+  left?: ComparisonCard;
+  right?: ComparisonCard;
+  footer?: unknown;
+};
 
 export function ComparisonSection({ data, links, anchorId }: { data: ComparisonData } & Base) {
   const left = data.left || {};
+  const noteLabel = data.noteLabel?.trim() || "Choose it when";
   const right = data.right || {};
   return (
     <SectionShell anchorId={anchorId} className="bg-white">
@@ -116,7 +124,7 @@ export function ComparisonSection({ data, links, anchorId }: { data: ComparisonD
               <div className="mt-6 flex items-start gap-3 rounded-2xl bg-white px-4 sm:px-5 py-4 shadow-sm">
                 <CircleCheck className="w-5 h-5 mt-0.5 shrink-0 text-[#1D92FB]" aria-hidden />
                 <p className="text-[15px] leading-6 text-gray-800">
-                  <span className="font-semibold text-black">Choose it when</span>{" "}
+                  <span className="font-semibold text-black">{noteLabel}</span>{" "}
                   <RichText value={left.chooseWhen} links={links} inline />
                 </p>
               </div>
@@ -139,7 +147,7 @@ export function ComparisonSection({ data, links, anchorId }: { data: ComparisonD
               <div className="mt-6 flex items-start gap-3 rounded-2xl bg-white/10 px-4 sm:px-5 py-4">
                 <CircleCheck className="w-5 h-5 mt-0.5 shrink-0 text-[#7cc0ff]" aria-hidden />
                 <p className="text-[15px] leading-6 text-gray-200">
-                  <span className="font-semibold text-white">Choose it when</span>{" "}
+                  <span className="font-semibold text-white">{noteLabel}</span>{" "}
                   <RichText value={right.chooseWhen} links={links} inline linkClassName={DARK_LINK} />
                 </p>
               </div>

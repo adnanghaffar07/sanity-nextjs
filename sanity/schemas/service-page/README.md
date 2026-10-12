@@ -15,12 +15,34 @@ Unpublishing or deleting the new page falls back to the legacy page.
 
 ## Migrating a legacy service
 
+Services and sub-services can be moved **one at a time, in any order**.
+
+### Main service (`/services/<slug>`)
+
 1. Studio → **Service Page (New)** → Create.
-2. **URL** tab: use exactly the legacy slug (e.g. `ai-agent`). For a sub-service,
-   pick the parent Service Page and use the sub-service slug.
-3. **Page Sections** tab → *Add item* → pick sections from the preview grid.
-4. **SEO** and **Services Listing** tabs: fill in meta + listing card.
-5. Publish. The new page now replaces the legacy one at that URL and on /services.
+2. **Page Address** tab: use exactly the legacy address (e.g. `ai-agent`). Leave *Main service* empty.
+3. **Page Content** tab → *Add item* → pick sections from the preview grid.
+   If the legacy page had sub-services, add a **Sub-Services** section — it lists
+   them automatically (moved and not-yet-moved ones).
+4. **Google & Sharing** and **Card on Services Page** tabs: fill in.
+5. Publish. The new page replaces the legacy one at that address and on /services
+   (same position in the list).
+
+### Sub-service (`/services/<main>/<slug>`)
+
+1. Create a Service Page as above, using the legacy sub-service address (e.g. `manual-testing`).
+2. **Page Address** tab → *Main service*: pick its main service — **new or old**
+   (e.g. the legacy "QA Testing" service). The address stays `/services/qa-testing-services/manual-testing`.
+3. Fill in the **Card** tab: it's used for the card in the main service's Sub-Services section.
+4. Publish. It replaces the legacy sub-service at the same address, and its card
+   replaces the legacy card in the main page's Sub-Services section.
+
+Moving the main service later doesn't affect already-moved sub-services (the address
+is the same either way).
+
+### Rolling back
+
+Unpublish (or delete) the new page and the legacy page is shown again at the same address.
 
 ## Interlinking
 

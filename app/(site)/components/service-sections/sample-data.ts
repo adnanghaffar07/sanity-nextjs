@@ -95,12 +95,7 @@ export const SAMPLE_SECTIONS: ServiceSection[] = [
     _type: "spProblem", _key: k(),
     eyebrow: "The Problem", heading: "Why Most Business Chatbots Frustrate Customers",
     intro: pt("We've all met the chatbot that replies, \"Sorry, I didn't get that,\" or confidently gives a wrong price or policy."),
-    chatExample: [
-      { _key: k(), from: "user", text: "Can I change my order after checkout?" },
-      { _key: k(), from: "bot", text: "Sorry, I didn't get that." },
-      { _key: k(), from: "user", text: "What does the premium plan cost?" },
-      { _key: k(), from: "bot", text: "The premium plan is free for the first year!", warning: true },
-    ],
+    image: IMG("customer-support.png", "Customer waiting on a support chat"),
     costTitle: "Every bad answer has a cost.",
     costs: [
       { _key: k(), icon: "ShoppingCart", title: "Customers abandon carts" },
@@ -115,7 +110,7 @@ export const SAMPLE_SECTIONS: ServiceSection[] = [
     closingLine: pt("That's how we build every chatbot at CodeAutomation."),
   },
   {
-    _type: "spServicesGrid", _key: k(),
+    _type: "spServicesGrid", _key: k(), outcomeLabel: "Outcome",
     eyebrow: "What We Do", heading: "Our Chatbot Development Services",
     intro: pt("Our AI chatbot development services cover the full lifecycle, from strategy to ongoing optimization."),
     items: [
@@ -148,7 +143,7 @@ export const SAMPLE_SECTIONS: ServiceSection[] = [
     ],
   },
   {
-    _type: "spComparison", _key: k(),
+    _type: "spComparison", _key: k(), noteLabel: "Choose it when",
     eyebrow: "Chatbot vs. Agent", heading: "AI Chatbot or AI Agent: Which Do You Need?",
     left: { icon: "MessagesSquare", title: "AI Chatbot", description: pt("Built for conversations: answering questions, taking bookings, and capturing leads."), chooseWhen: pt("you want better, faster customer conversations.") },
     right: { icon: "Workflow", title: "AI Agent", description: pt("Built for multi-step workflows that run end-to-end across your systems."), chooseWhen: pt("you want to automate whole processes behind the scenes.") },
@@ -262,5 +257,17 @@ export const SAMPLE_SECTIONS: ServiceSection[] = [
       { _key: k(), icon: "ReceiptText", title: "A timeline and cost estimate" },
     ],
     button: { label: "Book Your Free Chatbot Strategy Session", style: "accent", link: CALL },
+  },
+  {
+    _type: "spSubServices", _key: k(),
+    eyebrow: "Sub-Services", heading: "Explore Our Chatbot Services",
+    intro: pt("Specialised services under this main service. This list fills itself in from your sub-service pages."),
+    linkLabel: "Learn more",
+    // Dev preview only — on real pages these cards come from Sanity automatically.
+    previewItems: [
+      { key: "p1", href: "#", title: "Customer Support Chatbots", description: "Answer common questions, track orders and escalate complex issues.", imageUrl: "/ai-chatbot-development-services/customer-support.png" },
+      { key: "p2", href: "#", title: "Lead Generation Chatbots", description: "Qualify visitors and book sales calls into your calendar.", imageUrl: "/ai-chatbot-development-services/lead-generation.png" },
+      { key: "p3", href: "#", title: "AI Voice Assistants", description: "Answer calls, take bookings and route callers with natural speech.", imageUrl: "/ai-chatbot-development-services/voice-assistants.png" },
+    ],
   },
 ];
