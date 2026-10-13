@@ -11,7 +11,6 @@ import faq from "./schemas/faq";
 import partnershipSchema from "./schemas/partnership";
 import serviceSummary from "./schemas/service-summary";
 import valueBlueprints from "./schemas/value-bueprints";
-import popup from "./schemas/popup";
 import valueDiscoveryProcessPage from "./schemas/value-process";
 import lifeAtCa from "./schemas/life-at-ca";
 import news from "./schemas/news";
@@ -50,7 +49,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     partnershipSchema,
     serviceSummary,
     valueBlueprints,
-    popup,
     valueDiscoveryProcessPage,
     table,
     user,

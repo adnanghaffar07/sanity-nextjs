@@ -1,6 +1,6 @@
 // Last step of moving away from the old "portfolio" (blogs / case studies /
-// blueprints) and "blogSub" (Blog Sub Page) types. Two separate steps, each a
-// dry run unless "--apply" is added:
+// blueprints), "blogSub" (Blog Sub Page) and "popup" (greeting popup) types.
+// Two separate steps, each a dry run unless "--apply" is added:
 //
 // 1. Before deploying the code that removes the old schemas:
 //    npx sanity exec scripts/retire-old-content-types.mjs --with-user-token -- --create-order --apply
@@ -10,8 +10,10 @@
 // 2. After that code is live and checked, and after a backup:
 //    npx sanity dataset export production backup-before-retiring-portfolio.tar.gz
 //    npx sanity exec scripts/retire-old-content-types.mjs --with-user-token -- --delete-old --apply
-//    Permanently deletes every "portfolio" and "blogSub" document (published and drafts).
-//    Nothing on the website reads them any more; their content lives in the new types.
+//    Permanently deletes every "portfolio", "blogSub" and "popup" (greeting popup)
+//    document (published and drafts).
+//    Nothing on the website reads them any more (their content now lives in the
+//    new types, and the popup content in the code).
 
 import sanityCli from "sanity/cli";
 
@@ -51,9 +53,9 @@ if (args.has("--create-order")) {
 }
 
 if (args.has("--delete-old")) {
-  const ids = await client.fetch(`*[_type in ["portfolio", "blogSub"]]._id`);
-  const referenced = await client.fetch(`count(*[!(_type in ["portfolio", "blogSub"]) && references($ids)])`, { ids });
-  console.log(`Old documents: ${ids.length} (portfolio + blogSub, including drafts).`);
+  const ids = await client.fetch(`*[_type in ["portfolio", "blogSub", "popup"]]._id`);
+  const referenced = await client.fetch(`count(*[!(_type in ["portfolio", "blogSub", "popup"]) && references($ids)])`, { ids });
+  console.log(`Old documents: ${ids.length} (portfolio + blogSub + popup, including drafts).`);
   if (referenced) {
     console.log(`⚠ ${referenced} other documents still reference them. Not deleting.`);
     process.exit(1);

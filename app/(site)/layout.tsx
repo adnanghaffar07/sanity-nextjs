@@ -43,7 +43,7 @@ const DeferredScrollToTop = dynamic(
 );
 
 const DelayedGreetingPopup = dynamic(
-  () => import("./components/DelayedGreetingPopup"),
+  () => import("./components/greeting-popup/DelayedGreetingPopup"),
   {
     ssr: false,
     loading: () => null,
