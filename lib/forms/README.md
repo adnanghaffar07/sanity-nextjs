@@ -15,14 +15,14 @@ Each step runs **once** per submission (the old forms created 2–3 records, con
 
 | File | What |
 |---|---|
-| `catalog.ts` | List of forms (id, title, newsletter audience) and the service-interest guess. Shared with Studio. |
+| `catalog.ts` | List of forms (id, title, audience) and the service-interest guess. Shared with Studio. |
 | `client/submitForm.ts` | What form components call. Adds page + attribution, pushes the GTM event for forms that did before. |
 | `client/attribution.ts` | Remembers UTM tags / referrer / first page from the visit (`AttributionCapture` in the site layout). |
 | `server/definitions.ts` | Per form: required fields, captcha, GoHighLevel tags, auto-reply, extra integrations. |
 | `server/process.ts` | The pipeline above. `recordSubmission()` is also used by the GoHighLevel Facebook-lead webhook. |
 | `server/ghl.ts` | GoHighLevel sync (v2 upsert; v1 fallback). |
 | `server/emails.ts` | Team notification + the auto-reply texts. |
-| `server/audience.ts` | Newsletter / blog-email recipients and unsubscribe. |
+| `server/audience.ts` | Blog-post email recipients and unsubscribe. |
 | `server/legacy.ts` | **Temporary** adapters behind the old endpoints (`/api/lead`, `/api/projectdiscussionform`, …) for pages loaded before the deploy. Delete them, and those route files, in the next release. |
 
 ## Adding a form
@@ -54,5 +54,3 @@ No new Sanity schema is needed.
 The old per-form types (`contactForm`, `fbMetaLead`, `lead`, `mobileServiceHero`, `paymentPropsal`) were
 removed from Studio. Their documents were copied into Form Submission by `scripts/copy-old-submissions.mjs`
 (duplicates merged), and `scripts/delete-old-submissions.mjs` deletes them once every one is copied.
-
-Meeting bookings are not form submissions: the Cal.com / Calendly webhooks still save `calendlyMeeting`.

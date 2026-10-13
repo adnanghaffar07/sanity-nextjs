@@ -1,6 +1,6 @@
 // Deletes the old per-form submission documents (contactForm, fbMetaLead, lead,
 // mobileServiceHero, paymentPropsal) once they have been copied into
-// "formSubmission". Meeting bookings (calendlyMeeting) are not touched.
+// "formSubmission".
 //
 // Run AFTER the code that writes to formSubmission is deployed:
 //   1. npx sanity exec scripts/copy-old-submissions.mjs --with-user-token -- --apply

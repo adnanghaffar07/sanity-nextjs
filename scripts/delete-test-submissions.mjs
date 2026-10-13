@@ -1,6 +1,5 @@
 // Deletes test form submissions: any submission whose name or email contains
-// "ayesha" or "codeautomation" (the team's own test entries). Meeting bookings
-// (calendlyMeeting) are not touched.
+// "ayesha" or "codeautomation" (the team's own test entries).
 //
 //   npx sanity exec scripts/delete-test-submissions.mjs --with-user-token            (dry run: lists them)
 //   npx sanity exec scripts/delete-test-submissions.mjs --with-user-token -- --apply

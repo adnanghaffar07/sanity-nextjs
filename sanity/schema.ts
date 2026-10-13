@@ -14,9 +14,6 @@ import valueBlueprints from "./schemas/value-bueprints";
 import valueDiscoveryProcessPage from "./schemas/value-process";
 import lifeAtCa from "./schemas/life-at-ca";
 import news from "./schemas/news";
-import calendlyMeeting from "./schemas/calendly-meeting";
-import testing from "./schemas/testing";
-import newsLetter from "./schemas/news-letter";
 import user from "./schemas/user";
 import paymentPlan from "./schemas/payment-plan";
 import table from "./schemas/table";
@@ -47,10 +44,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     valueDiscoveryProcessPage,
     table,
     user,
-    newsLetter,
-    testing,
     paymentPlan, youtubeEmbed, blockContent,
-    calendlyMeeting, resume, visitor,
+    resume, visitor,
     // New section-based service pages (legacy services above are unchanged)
     ...servicePageTypes,
     // Blog Post, Case Study, Value Blueprint and the Case Study Order

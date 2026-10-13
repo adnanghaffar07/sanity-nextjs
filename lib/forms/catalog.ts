@@ -29,16 +29,7 @@ export const FORM_IDS = Object.keys(FORMS) as FormId[];
 export const isFormId = (value: unknown): value is FormId =>
   typeof value === "string" && value in FORMS;
 
-/**
- * Newsletter audiences stored as form submissions. The keys are the group names
- * already used on newsletter documents (they used to be document types), so old
- * newsletters keep working. Meetings ("calendlyMeeting") stay their own type.
- */
-export const NEWSLETTER_AUDIENCES = {
-  contactForm: "website",
-  fbMetaLead: "facebook",
-} as const;
-
+/** Which group a form belongs to: website forms receive blog-post emails. */
 export const formsInAudience = (audience: string): FormId[] =>
   FORM_IDS.filter((id) => FORMS[id].audience === audience);
 

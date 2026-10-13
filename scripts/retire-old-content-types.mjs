@@ -1,5 +1,7 @@
 // Last step of moving away from the old "portfolio" (blogs / case studies /
-// blueprints), "blogSub" (Blog Sub Page) and "popup" (greeting popup) types.
+// blueprints), "blogSub" (Blog Sub Page), "popup" (greeting popup), "newsletter"
+// (sent newsletters), "testing" (newsletter test list) and "calendlyMeeting"
+// (meeting bookings) types.
 // Two separate steps, each a dry run unless "--apply" is added:
 //
 // 1. Before deploying the code that removes the old schemas:
@@ -10,10 +12,10 @@
 // 2. After that code is live and checked, and after a backup:
 //    npx sanity dataset export production backup-before-retiring-portfolio.tar.gz
 //    npx sanity exec scripts/retire-old-content-types.mjs --with-user-token -- --delete-old --apply
-//    Permanently deletes every "portfolio", "blogSub" and "popup" (greeting popup)
-//    document (published and drafts).
+//    Permanently deletes every document of the old types listed in OLD_TYPES
+//    (published and drafts).
 //    Nothing on the website reads them any more (their content now lives in the
-//    new types, and the popup content in the code).
+//    new types, the popup content in the code, and the newsletter tool was removed).
 
 import sanityCli from "sanity/cli";
 
@@ -22,6 +24,9 @@ const { getCliClient } = sanityCli;
 const args = new Set(process.argv.slice(2));
 const APPLY = args.has("--apply");
 const client = getCliClient({ apiVersion: "2024-03-14" });
+
+// Types whose schemas were removed from Studio.
+const OLD_TYPES = ["portfolio", "blogSub", "popup", "newsletter", "testing", "calendlyMeeting"];
 
 const slugFromUrl = (url = "") =>
   url.trim().replace(/^https?:\/\/[^/]+/, "").replace(/^\/?(case-studies\/)?/, "").replace(/\/+$/, "");
@@ -53,9 +58,9 @@ if (args.has("--create-order")) {
 }
 
 if (args.has("--delete-old")) {
-  const ids = await client.fetch(`*[_type in ["portfolio", "blogSub", "popup"]]._id`);
-  const referenced = await client.fetch(`count(*[!(_type in ["portfolio", "blogSub", "popup"]) && references($ids)])`, { ids });
-  console.log(`Old documents: ${ids.length} (portfolio + blogSub + popup, including drafts).`);
+  const ids = await client.fetch(`*[_type in $types]._id`, { types: OLD_TYPES });
+  const referenced = await client.fetch(`count(*[!(_type in $types) && references($ids)])`, { ids, types: OLD_TYPES });
+  console.log(`Old documents: ${ids.length} (${OLD_TYPES.join(", ")}; including drafts).`);
   if (referenced) {
     console.log(`⚠ ${referenced} other documents still reference them. Not deleting.`);
     process.exit(1);

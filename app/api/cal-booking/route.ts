@@ -1,23 +1,6 @@
-// app/api/webhook/route.ts
-import { serverClient } from '@/sanity/lib/sanity/serverClient';
+// Cal.com booking webhook: cancels bookings made with a Pakistani (+92) or
+// Indian (+91) phone number. Other bookings are left as they are.
 import { NextResponse } from 'next/server';
-
-const clientTypeMap: Record<string, string> = {
-  mobile: "app",
-  android: "app",
-  ios: "app",
-  software: "software",
-  web: "web",
-  ecommerce: "ecommerce",
-  shopify: "shopify",
-  ai: "ai",
-  ml: "ml",
-  marketing: "marketing",
-  seo: "seo",
-  design: "design",
-  logo: "design",
-  branding: "design",
-};
 
 export async function POST(req: Request) {
   try {
@@ -88,50 +71,7 @@ export async function POST(req: Request) {
       });
     }
 
-    // ✅ Extract info to save to Sanity
-    const name = payload.responses?.name?.value || payload.attendees?.[0]?.name || '';
-    const email = payload.responses?.email?.value || payload.attendees?.[0]?.email || '';
-    const notesRaw =
-      payload?.responses?.notes?.value ||
-      payload?.userFieldsResponses?.notes?.value ||
-      '';
-    const notesArray = notesRaw
-      .split('\n')
-      .map((n: string) => n.trim())
-      .filter(Boolean);
-
-    const notesText = notesArray.join(' ').toLowerCase();
-
-    // const meetingStart = payload?.startTime || null;
-    // const meetingEnd = payload?.endTime || null;
-    const eventName = payload?.eventType?.name || '';
-
-    // 🔍 Detect clientType from notes
-    let detectedType = 'other';
-    for (const keyword in clientTypeMap) {
-      if (notesText.includes(keyword)) {
-        detectedType = clientTypeMap[keyword];
-        break;
-      }
-    }
-
-    // 📝 Create in Sanity
-    const created = await serverClient.create({
-      _type: 'calendlyMeeting',
-      clientType: detectedType,
-      name,
-      phoneNumber, // ✅ Add this line
-      email,
-      notes: notesArray,
-      eventName,
-      isUnsubscribed: false,
-    });
-
-    return NextResponse.json({
-      status: 'Booking allowed and saved to Sanity',
-      phoneNumber,
-      created,
-    });
+    return NextResponse.json({ status: 'Booking allowed', phoneNumber });
   } catch (error) {
     console.error('❌ Webhook error:', error);
     return NextResponse.json(
