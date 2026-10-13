@@ -14,28 +14,23 @@ import valueBlueprints from "./schemas/value-bueprints";
 import valueDiscoveryProcessPage from "./schemas/value-process";
 import lifeAtCa from "./schemas/life-at-ca";
 import news from "./schemas/news";
-import contactForm from "./schemas/contactForm";
 import calendlyMeeting from "./schemas/calendly-meeting";
 import testing from "./schemas/testing";
 import newsLetter from "./schemas/news-letter";
 import user from "./schemas/user";
-import paymentProposal from "./schemas/payment-proposal";
 import paymentPlan from "./schemas/payment-plan";
 import table from "./schemas/table";
 import youtubeEmbed from "./schemas/youtubeEmbed";
 import blockContent from "./schemas/blockContent";
-import fbMetaLeads from "./schemas/fb-meta-leads";
 import resume from "./schemas/resume";
 import terms from "./schemas/terms";
-import mobileQuoteLead from "./schemas/mobile-quote-lead";
-import mobileServiceHeroForm from "./schemas/mobileServiceHeroForm";
 import visitor from "./schemas/visitor";
 import { servicePageTypes } from "./schemas/service-page";
 import { contentTypes } from "./schemas/content-types";
+import { formSubmission } from "./schemas/form-submission";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    fbMetaLeads,
     terms,
     careers,
     technologies,
@@ -53,13 +48,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     table,
     user,
     newsLetter,
-    paymentProposal,
     testing,
-    paymentPlan, youtubeEmbed, blockContent, contactForm,
-    calendlyMeeting, resume, mobileQuoteLead, mobileServiceHeroForm, visitor,
+    paymentPlan, youtubeEmbed, blockContent,
+    calendlyMeeting, resume, visitor,
     // New section-based service pages (legacy services above are unchanged)
     ...servicePageTypes,
     // Blog Post, Case Study, Value Blueprint and the Case Study Order
     ...contentTypes,
+    // Every website form submission (see lib/forms)
+    formSubmission,
   ],
 };

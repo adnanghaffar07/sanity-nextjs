@@ -4,6 +4,7 @@ import "../globals.css";
 
 import ConditionalNavigation from "./components/ConditionalNavigation";
 import ConditionalFooter from "./components/ConditionalFooter";
+import AttributionCapture from "./components/AttributionCapture";
 
 
 /* ----------------------------- */
@@ -158,6 +159,8 @@ export default function RootLayout({
 
         {/* Loads after hydration */}
         <VisitorTracker />
+        {/* Remembers UTM tags / referrer for the forms */}
+        <AttributionCapture />
 
         {/* User interaction / delayed */}
         <CookieConsent />

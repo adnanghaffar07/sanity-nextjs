@@ -4,9 +4,9 @@ import "../globals.css";
 
 // Pre-defined options to avoid re-renders
 const recipientOptions = [
-  { label: 'Contact Form', value: 'contactForm' },
+  { label: 'Website forms', value: 'contactForm' },
   { label: 'Calendly Meeting', value: 'calendlyMeeting' },
-  { label: 'FB Meta Leads', value: 'fbMetaLead' },
+  { label: 'Facebook / Meta leads', value: 'fbMetaLead' },
   { label: 'Testing', value: 'testing' },
 ] as const;
 

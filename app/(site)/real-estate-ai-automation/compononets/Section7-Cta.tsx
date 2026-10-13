@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { submitForm } from "@/lib/forms/client/submitForm";
 
 const FinalCTA = () => {
   const [formData, setFormData] = useState({
@@ -25,17 +26,9 @@ const handleSubmit = async (e: React.FormEvent) => {
   try {
     setIsSubmitting(true);
 
-    const response = await fetch("/api/real-estate-audit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+    await submitForm("real-estate-audit", {
+      fields: { ...formData, lookingFor: "Real estate automation audit" },
     });
-
-    if (!response.ok) {
-      throw new Error("Failed to submit form");
-    }
 
     setIsSubmitted(true);
 

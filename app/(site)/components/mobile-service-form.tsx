@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useRouter } from 'next/navigation';
+import { submitForm } from "@/lib/forms/client/submitForm";
 
 type MathOperator = '+' ;
 
@@ -68,40 +69,18 @@ export default function MobileForm() {
 
       setUploading(true);
       try {
-        const res = await fetch("/api/send-mobile-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...values }),
+        await submitForm("mobile-service-hero", {
+          fields: {
+            name: values.name,
+            email: values.email,
+            phone: values.contact_number,
+            lookingFor: values.looking,
+            message: values.message,
+          },
         });
-
-        if (res.ok) {
-          try {
-            const ghlResponse = await fetch("/api/lead", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                name: values.name,
-                email: values.email,
-                phone: values.contact_number,
-                what_are_you_looking_for: values.looking,
-                message: values.message,
-              }),
-            });
-            const ghlData = await ghlResponse.json();
-            if (ghlResponse.ok) {
-              console.log("Lead successfully sent to GoHighLevel:", ghlData);
-            } else {
-              console.warn("GoHighLevel API warning:", ghlData);
-            }
-          } catch (ghlError) {
-            console.warn("GoHighLevel submission warning:", ghlError);
-          }
-          router.push("/thank-you-mobile-app");
-        } else {
-          alert("Submission failed. Try again.");
-        }
         resetForm();
         generateCaptcha();
+        router.push("/thank-you-mobile-app");
       } catch (error) {
         console.error(error);
         alert("Submission failed.");

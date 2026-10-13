@@ -1,13 +1,10 @@
 import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
-import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { recipientsForGroups } from "@/lib/forms/server/audience";
 
 async function fetchRecipients(groups: string[]) {
-    const queries = groups.map(group => `*[_type == '${group}' && isUnsubscribed != true]{ name, email }`);
-
     try {
-        const results = await Promise.all(queries.map(query => serverClient.fetch(query)));
-        return Array.from(new Map(results.flat().map((r) => [r.email, r])).values()); // Deduplicate
+        return await recipientsForGroups(groups ?? []);
     } catch (error) {
         console.error("Error fetching recipients:", error);
         return [];

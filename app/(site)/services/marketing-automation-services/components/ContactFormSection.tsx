@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { submitForm } from "@/lib/forms/client/submitForm";
 import { 
   Send,
   CheckCircle,
@@ -50,65 +51,33 @@ const ContactFormSection = () => {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      await submitForm('marketing-audit', {
+        fields: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          lookingFor: formData.industry,
+          message: formData.challenge,
         },
-        body: JSON.stringify(formData),
+        details: { Industry: formData.industry, 'Current tools': formData.tools },
       });
 
-      try {
-        const fullName = `${formData.firstName} ${formData.lastName}`.trim();
-        const whatAreYouLookingFor = formData.industry || formData.company || 'Marketing audit';
-        const message = [
-          formData.challenge && `Challenge: ${formData.challenge}`,
-          formData.tools && `Current tools: ${formData.tools}`,
-          formData.company && `Company: ${formData.company}`,
-        ]
-          .filter(Boolean)
-          .join(' | ');
-
-        const ghlResponse = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: fullName,
-            email: formData.email,
-            phone: formData.phone,
-            what_are_you_looking_for: whatAreYouLookingFor,
-            message,
-          }),
-        });
-
-        const ghlData = await ghlResponse.json();
-        if (ghlResponse.ok) {
-          console.log('Lead successfully sent to GoHighLevel:', ghlData);
-        } else {
-          console.warn('GoHighLevel API warning:', ghlData);
-        }
-      } catch (ghlError) {
-        console.warn('GoHighLevel submission warning:', ghlError);
-      }
-
-      if (response.ok) {
-        setSubmitStatus({
-          type: 'success',
-          message: 'Thank you! We\'ll be in touch within one business day.'
-        });
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          company: '',
-          phone: '',
-          industry: '',
-          tools: '',
-          challenge: '',
-        });
-      } else {
-        throw new Error('Something went wrong');
-      }
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thank you! We\'ll be in touch within one business day.'
+      });
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        company: '',
+        phone: '',
+        industry: '',
+        tools: '',
+        challenge: '',
+      });
     } catch (error) {
       setSubmitStatus({
         type: 'error',

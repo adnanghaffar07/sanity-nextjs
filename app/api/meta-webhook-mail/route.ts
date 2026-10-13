@@ -35,7 +35,7 @@ export async function POST(req: Request) {
           <tr><td><strong>App Type:</strong></td><td>${body.appType || 'N/A'}</td></tr>
           <tr><td><strong>Estimated Budget:</strong></td><td>${body.estimatedBudget || 'N/A'}</td></tr>
           <tr><td colspan="2" style="padding-top: 20px; text-align: center;">
-            <a href="https://codeautomation.sanity.studio/studio/structure/fbMetaLead" style="padding: 10px 20px; background: #1d4ed8; color: #fff; border-radius: 6px; text-decoration: none;">View in Sanity</a>
+            <a href="https://codeautomation.ai/studio/structure/form-submissions;facebook-lead" style="padding: 10px 20px; background: #1d4ed8; color: #fff; border-radius: 6px; text-decoration: none;">View in Sanity</a>
           </td></tr>
         </table>
       </div>

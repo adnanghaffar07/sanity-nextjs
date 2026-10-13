@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { submitForm } from '@/lib/forms/client/submitForm';
 
 
 export default function FloatingConsultDrawer({
@@ -66,38 +67,9 @@ export default function FloatingConsultDrawer({
     setError('');
 
     try {
-      const res = await fetch('/api/mobile-submit-quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          source: 'Floating Consultation Drawer',
-        }),
+      await submitForm('mobile-consultation', {
+        fields: { name: form.name, email: form.email, phone: form.phone, lookingFor: 'Free consultation', message: form.message },
       });
-
-      if (!res.ok) throw new Error('Failed');
-
-      try {
-        const ghlResponse = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: form.name,
-            email: form.email,
-            phone: form.phone,
-            what_are_you_looking_for: 'Free consultation',
-            message: form.message,
-          }),
-        });
-        const ghlData = await ghlResponse.json();
-        if (ghlResponse.ok) {
-          console.log('Lead successfully sent to GoHighLevel:', ghlData);
-        } else {
-          console.warn('GoHighLevel API warning:', ghlData);
-        }
-      } catch (ghlError) {
-        console.warn('GoHighLevel submission warning:', ghlError);
-      }
 
       setSuccess(true);
       setForm({ name: '', email: '', phone: '', message: '' });

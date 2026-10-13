@@ -6,17 +6,14 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import type { ChangeEvent, FocusEvent, FormEvent, MouseEvent } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { POPUP_CONTENT, TIMINGS, markPopupSeen } from "./content";
+import { submitForm } from "@/lib/forms/client/submitForm";
 import {
   INITIAL_VALUES,
   REQUIRED_FIELDS,
-  pageNameFromPath,
-  submitPopupForm,
-  trackFormSubmission,
   validateField,
   validateForm,
   type FormErrors,
@@ -61,7 +58,6 @@ export default function GreetingPopup() {
 
   const captchaRef = useRef<TurnstileInstance | undefined>(undefined);
   const timers = useRef(new Set<number>());
-  const pathname = usePathname();
   const idPrefix = useId();
   const titleId = `${idPrefix}-title`;
   const errorId = (field: RequiredField) => `${idPrefix}-${field}-error`;
@@ -154,12 +150,21 @@ export default function GreetingPopup() {
     setSubmitting(true);
     setStatus({ text: "Submitting your response...", tone: "pending" });
     try {
-      const ok = await submitPopupForm(values, captchaToken, pageNameFromPath(pathname));
-      if (!ok) {
-        setStatus({ text: "Message not submitted!", tone: "error" });
-        return;
-      }
-      trackFormSubmission();
+      await submitForm(
+        "greeting-popup",
+        {
+          fields: {
+            name: values.name,
+            email: values.email,
+            phone: values.contact_number,
+            lookingFor: values.looking,
+            message: values.subscribe ? "Newsletter subscription via popup" : "Popup form submission",
+            newsletterOptIn: values.subscribe,
+          },
+          captchaToken,
+        },
+        { trackConversion: true }
+      );
       setStatus({ text: "Your response has been successfully submitted!", tone: "success" });
       setValues(INITIAL_VALUES);
       setTouched({});

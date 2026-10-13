@@ -1,11 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import dynamic from "next/dynamic";
+import { submitForm } from "@/lib/forms/client/submitForm";
 
 const DynamicRecaptcha = dynamic(() => import("./RecaptchaComponent"), {
   ssr: false,
@@ -117,9 +118,6 @@ export default function HomePageForm() {
     setErrorRecaptcha("Please verify again the above checkbox.");
   };
 
-  const currentPath = usePathname();
-  const pageName = currentPath ? currentPath.split("/").pop() || "home" : "home";
-
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     let isValid = true;
@@ -170,85 +168,36 @@ export default function HomePageForm() {
       return;
     }
 
-    const actuallPageName =
-      pageName === ""
-        ? "Home"
-        : pageName
-          ?.split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
-
     try {
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("number", values.contact_number);
-      formData.append("looking", values.looking);
-      formData.append("message", values.message);
-      formData.append("pagename", actuallPageName || "Home");
-      formData.append("recaptcha_value", recaptchaValue);
-      setUploading(true);
       setMessage("Submitting form...");
       setMessageSuccess("w-[10%]");
 
-      const emailResponse = await fetch("/api/projectdiscussionform", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!emailResponse.ok) {
-        const errorData = await emailResponse.json().catch(() => null);
-        throw new Error(errorData?.error || "Failed to send form.");
-      }
-
-      try {
-        const ghlResponse = await fetch("/api/lead", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+      await submitForm(
+        "contact-form",
+        {
+          details: { "Form position": "Footer (next to the calendar)" },
+          fields: {
             name: values.name,
             email: values.email,
             phone: values.contact_number,
-            what_are_you_looking_for: values.looking,
+            lookingFor: values.looking,
             message: values.message,
-          }),
-        });
+          },
+          captchaToken: recaptchaValue,
+        },
+        { trackConversion: true }
+      );
 
-        const ghlData = await ghlResponse.json();
+      window.open("https://calendly.com/adnanghaffar", "_blank");
 
-        if (ghlResponse.ok) {
-          console.log("Lead successfully sent to GoHighLevel:", ghlData);
-        } else {
-          console.warn("GoHighLevel API warning:", ghlData);
-        }
-      } catch (ghlError) {
-        console.warn("GoHighLevel submission warning:", ghlError);
-      }
-
-      if (emailResponse.ok) {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event: "formSubmission",
-          form: "contactForm",
-        });
-
-        window.open("https://calendly.com/adnanghaffar", "_blank");
-
-        setValues(initialValues);
-        setTouched({});
-        setErrors({});
-        recaptchaRef?.current?.reset();
-        setRecaptchaValue("");
-        setErrorRecaptcha("");
-        setMessage("Form submitted successfully!");
-        setMessageSuccess("w-[100%]");
-      } else {
-        setMessage("Message not submitted!");
-        setMessageSuccess("w-[100%]");
-        setBgColor("bg-red-500");
-      }
+      setValues(initialValues);
+      setTouched({});
+      setErrors({});
+      recaptchaRef?.current?.reset();
+      setRecaptchaValue("");
+      setErrorRecaptcha("");
+      setMessage("Form submitted successfully!");
+      setMessageSuccess("w-[100%]");
     } catch (error) {
       setBgColor("bg-red-500");
       setMessage("Message not submitted!");

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { submitForm } from "@/lib/forms/client/submitForm";
 import { X, Mail, User, Phone, ArrowRight, Shield, Clock, Sparkles, Headphones } from "lucide-react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -88,31 +89,19 @@ export default function AiRevenueLeadModal() {
     const phoneDigits = form.phone.replace(/\D/g, "");
     const phoneE164 = phoneDigits ? `+${phoneDigits}` : "";
 
-    const payload = {
-      ...form,
-      phone: phoneE164,
-      countryCode: form.countryCode || (phoneDigits ? `+${phoneDigits.slice(0, phoneDigits.length - 10)}` : ""),
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
-      source: "ai-revenue-engine",
-      pageUrl: window.location.href,
-      submittedAt: new Date().toISOString(),
-    };
+    const countryCode = form.countryCode || (phoneDigits ? `+${phoneDigits.slice(0, phoneDigits.length - 10)}` : "");
 
     try {
-      const response = await fetch("/api/ai-revenue-engine-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      await submitForm("ai-revenue-engine", {
+        fields: { firstName: form.firstName, email: form.email, phone: phoneE164 },
+        details: {
+          "Country code": countryCode,
+          "Time zone": Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+        },
       });
-
-      if (!response.ok) {
-        throw new Error("Unable to submit form");
-      }
-
-      console.log("AI Revenue lead sent to webhook:", payload);
       router.push("/ai-revenue-engine/wait-page");
     } catch (submissionError) {
-      console.error("AI Revenue lead webhook failed:", submissionError);
+      console.error("AI Revenue lead submission failed:", submissionError);
       setError("Submission failed. Please try again.");
       setIsSubmitting(false);
     }

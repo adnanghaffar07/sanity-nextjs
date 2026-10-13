@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { submitForm } from '@/lib/forms/client/submitForm';
 
 type FormState = {
   name: string;
@@ -24,15 +25,8 @@ const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormState>(initialState);
-  const [pageUrl, setPageUrl] = useState('https://codeautomation.ai/contact');
   const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setPageUrl(window.location.href);
-    }
-  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -56,21 +50,16 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact-page', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      await submitForm('contact-page', {
+        fields: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          lookingFor: formData.inquiryType,
+          message: formData.message,
         },
-        body: JSON.stringify({
-          ...formData,
-          page_url: pageUrl,
-        }),
       });
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result?.error || result?.message || 'Submission failed');
-      }
 
       setStatus({ type: 'success', message: 'Thank you! Your message is sent. We will reach out shortly.' });
       setFormData(initialState);

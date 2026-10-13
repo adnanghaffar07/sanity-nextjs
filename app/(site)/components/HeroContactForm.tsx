@@ -4,8 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { TURNSTILE_SITE_KEY } from "./RecaptchaComponent";
-import { submitHeroLead } from "@/lib/submitHeroLead";
-import { usePathname } from "next/navigation";
+import { submitForm } from "@/lib/forms/client/submitForm";
 
 type Errors = {
   name?: string;
@@ -71,7 +70,6 @@ export default function HeroContactForm({ variant = "default", pageName, heading
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     setIsMounted(true);
@@ -130,18 +128,10 @@ export default function HeroContactForm({ variant = "default", pageName, heading
     setLoading(true); // ✅ start spinner
 
     try {
-      const pageUrl = typeof window !== "undefined" ? window.location.href : pathname || "";
-
-      await submitHeroLead({
-        name,
-        email,
-        phone,
-        lookingFor,
-        message,
-        pageName,
-        pathname: pathname || undefined,
-        pageUrl,
-        recaptchaValue: turnstileToken,
+      await submitForm("hero-form", {
+        fields: { name, email, phone, lookingFor, message },
+        details: { Service: pageName },
+        captchaToken: turnstileToken,
       });
 
       setShowModal(true);

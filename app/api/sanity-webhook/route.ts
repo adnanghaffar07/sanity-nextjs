@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 import imageUrlBuilder from "@sanity/image-url";
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { recipientsForServices } from "@/lib/forms/server/audience";
 
 interface SanityWebhookBody {
   _type?: string;
@@ -32,20 +33,8 @@ function urlForImage(source: any) {
 }
 
 async function fetchRecipients(audience: string[]) {
-  const contactFormQuery = `*[_type == 'contactForm' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
-  const calendlyQuery = `*[_type == 'calendlyMeeting' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
-  const LeadsQuery = `*[_type == 'fbMetaLead' && isUnsubscribed != true && clientType in $audience]{ name, email }`;
-
   try {
-    const [formData, calendlyData, leadsData] = await Promise.all([
-      serverClient.fetch(contactFormQuery, { audience }),
-      serverClient.fetch(calendlyQuery, { audience }),
-      serverClient.fetch(LeadsQuery, { audience }),
-
-    ]);
-
-    const allRecipients = [...formData, ...calendlyData, ...leadsData];
-    return Array.from(new Map(allRecipients.map((r) => [r.email, r])).values()); // Deduplicate
+    return await recipientsForServices(audience ?? []);
   } catch (error) {
     console.error("Error fetching recipients:", error);
     return [];

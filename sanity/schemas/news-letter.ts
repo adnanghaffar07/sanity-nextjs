@@ -108,9 +108,9 @@ export default {
       of: [{ type: 'string' }],
       options: {
         list: [
-          { title: 'All Contacts', value: 'contactForm' },
+          { title: 'Website forms', value: 'contactForm' },
           { title: 'All Calendly Meetings', value: 'calendlyMeeting' },
-          { title: 'FB Meta Leads', value: 'fbMetaLead' },
+          { title: 'Facebook / Meta leads', value: 'fbMetaLead' },
           { title: 'All Testing', value: 'testing' },
         ],
         layout: 'checkbox',

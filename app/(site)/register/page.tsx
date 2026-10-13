@@ -3,6 +3,7 @@
 import { useState, useRef, Suspense, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import RecaptchaComponent from "../components/RecaptchaComponent";
+import { submitForm } from "@/lib/forms/client/submitForm";
 
 type FormData = {
   name: string;
@@ -140,45 +141,23 @@ function RegisterForm() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/paymentPlan-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      await submitForm("registration", {
+        fields: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          lookingFor: formData.package || "Registration inquiry",
+          message: formData.details,
+        },
+        details: { Package: formData.package },
+        captchaToken: formData.recaptcha,
       });
-
-      try {
-        const ghlResponse = await fetch("/api/lead", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            what_are_you_looking_for: formData.package || "Registration inquiry",
-            message: formData.details || "",
-          }),
-        });
-        const ghlData = await ghlResponse.json();
-        if (ghlResponse.ok) {
-          console.log("Lead successfully sent to GoHighLevel:", ghlData);
-        } else {
-          console.warn("GoHighLevel API warning:", ghlData);
-        }
-      } catch (ghlError) {
-        console.warn("GoHighLevel submission warning:", ghlError);
-      }
-
-      if (response.ok) {
-        setTimeout(() => {
-          handleReset();
-          setLoading(false);
-          setOtpModalOpen(false);
-          router.push("/thankyou");
-        }, 200);
-      } else {
-        alert("Submission failed. Try again.");
+      setTimeout(() => {
+        handleReset();
         setLoading(false);
-      }
+        setOtpModalOpen(false);
+        router.push("/thankyou");
+      }, 200);
     } catch (error) {
       console.error(error);
       alert("Something went wrong.");

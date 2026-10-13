@@ -2,23 +2,26 @@
 
 import { useState } from 'react';
 import "../globals.css";
+import { submitForm } from '@/lib/forms/client/submitForm';
+
+const EMPTY_LEAD = {
+    name: '',
+    email: '',
+    phoneNumber: '',
+    companyName: '',
+    work: '',
+    campaignName: '',
+    creationDate: '',
+    bookingTime: '',
+    appType: '',
+    appStage: '',
+    estimatedBudget: '',
+    projectStartTime: '',
+    preferredContactMethod: '',
+};
 
 export default function LeadForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phoneNumber: '',
-        companyName: '',
-        work: '',
-        campaignName: '',
-        creationDate: '',
-        bookingTime: '',
-        appType: '',
-        appStage: '',
-        estimatedBudget: '',
-        projectStartTime: '',
-        preferredContactMethod: '',
-    });
+    const [formData, setFormData] = useState(EMPTY_LEAD);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const target = e.target as HTMLInputElement;
@@ -28,57 +31,30 @@ export default function LeadForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        const res = await fetch('/api/meta-submit-lead', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-
-    try {
-        const ghlResponse = await fetch('/api/lead', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phoneNumber,
-                what_are_you_looking_for: formData.work || formData.appType || 'Meta lead',
-                message: `Company: ${formData.companyName || 'N/A'} | Campaign: ${formData.campaignName || 'N/A'} | Stage: ${formData.appStage || 'N/A'} | Budget: ${formData.estimatedBudget || 'N/A'} | Start: ${formData.projectStartTime || 'N/A'} | Preferred Contact: ${formData.preferredContactMethod || 'N/A'}`,
-            }),
-        });
-        const ghlData = await ghlResponse.json();
-        if (ghlResponse.ok) {
-            console.log('Lead successfully sent to GoHighLevel:', ghlData);
-        } else {
-            console.warn('GoHighLevel API warning:', ghlData);
-        }
-    } catch (ghlError) {
-        console.warn('GoHighLevel submission warning:', ghlError);
-    }
-
-        if (res.ok) {
-            alert('Lead submitted successfully!');
-            setFormData({
-                name: '',
-                email: '',
-                phoneNumber: '',
-                companyName: '',
-                work: '',
-                campaignName: '',
-                creationDate: '',
-                bookingTime: '',
-                appType: '',
-                appStage: '',
-                estimatedBudget: '',
-                projectStartTime: '',
-                preferredContactMethod: '',
+        try {
+            await submitForm('meta-lead-manual', {
+                fields: {
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phoneNumber,
+                    company: formData.companyName,
+                    lookingFor: formData.work || formData.appType || 'Meta lead',
+                },
+                details: {
+                    Work: formData.work,
+                    Campaign: formData.campaignName,
+                    'Lead created': formData.creationDate,
+                    'Booking time': formData.bookingTime,
+                    'App type': formData.appType,
+                    'App stage': formData.appStage,
+                    'Estimated budget': formData.estimatedBudget,
+                    'Project start': formData.projectStartTime,
+                    'Preferred contact method': formData.preferredContactMethod,
+                },
             });
-        } else {
+            alert('Lead submitted successfully!');
+            setFormData(EMPTY_LEAD);
+        } catch {
             alert('Something went wrong!');
         }
     };
