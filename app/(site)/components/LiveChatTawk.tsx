@@ -1,21 +1,17 @@
 'use client';
 
+// Tawk.to live chat widget. next/script injects it after the page has loaded,
+// so it can be rendered anywhere in the page (a <head> here broke hydration).
+
 import Script from 'next/script';
-import { useEffect } from 'react';
 
 export default function LiveChatTawk() {
-  useEffect(() => {
-    // Optional: ensure global reference is accessible
-    (window as any).Tawk_API = (window as any).Tawk_API || {};
-  }, []);
-
   return (
-    <head>
-      <Script
-        id="tawkto-widget"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
+    <Script
+      id="tawkto-widget"
+      strategy="lazyOnload"
+      dangerouslySetInnerHTML={{
+        __html: `
           var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
           (function () {
             var s1 = document.createElement("script"),
@@ -27,9 +23,7 @@ export default function LiveChatTawk() {
             s0.parentNode.insertBefore(s1, s0);
           })();
         `,
-        }}
-      />
-    </head>
-
+      }}
+    />
   );
 }

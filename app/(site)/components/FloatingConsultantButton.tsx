@@ -84,7 +84,8 @@ export default function FloatingConsultDrawer({
   };
 
 
-  if (!isVisible || isModalOpen) return null;
+  // Shown after scrolling a little; stays while the drawer is open.
+  if ((!isVisible && !openDrawer) || isModalOpen) return null;
 
 
   return (
@@ -92,7 +93,7 @@ export default function FloatingConsultDrawer({
       {/* Call Button */}
       <a
         href="tel:+18505584691"
-        className="hidden md:fixed top-[25%] sm:top-[21%] right-2 z-[999] bg-[#F7E022] text-black p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+        className="hidden md:block fixed top-[25%] sm:top-[21%] right-2 z-[999] bg-[#F7E022] text-black p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
         title="Call Now"
       >
         <img
@@ -104,7 +105,7 @@ export default function FloatingConsultDrawer({
       {/* Floating Tab */}
       <button
         onClick={() => setOpenDrawer(true)}
-        className="hidden md:fixed top-3/4 right-0 transform -translate-y-1/2 z-[999] rotate-90 origin-top-right bg-[#F7E022] text-black text-xl px-6 py-2 rounded-l-none rounded-r-full shadow-md"
+        className="hidden md:block fixed top-3/4 right-0 transform -translate-y-1/2 z-[999] rotate-90 origin-top-right bg-[#F7E022] text-black text-xl px-6 py-2 rounded-l-none rounded-r-full shadow-md"
       >
         Get Your Free Consultation
       </button>

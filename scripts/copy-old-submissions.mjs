@@ -190,8 +190,19 @@ function groupDuplicates(items) {
 }
 
 const types = Object.keys(MAPPERS);
-const old = await client.fetch(`*[_type in $types && !(_id in path("drafts.**"))]`, { types });
-const items = old.map((d) => ({ id: d._id, type: d._type, isUnsubscribed: d.isUnsubscribed === true, doc: MAPPERS[d._type](d) }));
+// Published documents, plus drafts that were never published (leads typed into
+// Studio without pressing Publish). A draft of a published document is skipped.
+const all = await client.fetch(`*[_type in $types]`, { types });
+const DRAFT = "drafts.";
+const publishedIds = new Set(all.filter((d) => !d._id.startsWith(DRAFT)).map((d) => d._id));
+const old = all.filter((d) => !d._id.startsWith(DRAFT) || !publishedIds.has(d._id.slice(DRAFT.length)));
+const items = old.map((d) => {
+  const draftOnly = d._id.startsWith(DRAFT);
+  const doc = MAPPERS[d._type](d);
+  // Typed into Studio by hand, so they belong with the manually entered leads.
+  if (draftOnly && d._type === "fbMetaLead") doc.form = "meta-lead-manual";
+  return { id: draftOnly ? d._id.slice(DRAFT.length) : d._id, type: d._type, isUnsubscribed: d.isUnsubscribed === true, doc };
+});
 const groups = groupDuplicates(items);
 
 const existingDocs = await client.fetch(`*[_type == "formSubmission" && defined(legacy.id)]{ _id, form, company, message }`);
