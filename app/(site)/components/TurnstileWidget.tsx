@@ -4,7 +4,8 @@ import React from "react";
 export const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
 
-const RecaptchaComponent = ({
+// Cloudflare Turnstile captcha widget used by the website forms.
+const TurnstileWidget = ({
   onChange,
   onExpired,
   recaptchaRef,
@@ -25,4 +26,4 @@ const RecaptchaComponent = ({
   </div>
 );
 
-export default RecaptchaComponent;
+export default TurnstileWidget;

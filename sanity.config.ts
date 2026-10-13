@@ -11,7 +11,7 @@ import {codeInput} from '@sanity/code-input'
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schema'
 import {structure} from './sanity/structure'
-import {CASE_STUDIES_PAGE_ID} from './sanity/schemas/content-types'
+import {CASE_STUDY_ORDER_ID} from './sanity/schemas/content-types'
 
 export default defineConfig({
   basePath: '/studio',
@@ -21,9 +21,9 @@ export default defineConfig({
   schema,
   document: {
     // The Case Study Order is a single settings document: no create/duplicate/delete.
-    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== CASE_STUDIES_PAGE_ID),
+    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== CASE_STUDY_ORDER_ID),
     actions: (prev, {schemaType}) =>
-      schemaType === CASE_STUDIES_PAGE_ID
+      schemaType === CASE_STUDY_ORDER_ID
         ? prev.filter(({action}) => action && ['publish', 'discardChanges', 'restore'].includes(action))
         : prev,
   },

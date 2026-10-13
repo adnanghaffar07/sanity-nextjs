@@ -23,7 +23,7 @@ Each step runs **once** per submission (the old forms created 2–3 records, con
 | `server/ghl.ts` | GoHighLevel sync (v2 upsert; v1 fallback). |
 | `server/emails.ts` | Team notification + the auto-reply texts. |
 | `server/audience.ts` | Blog-post email recipients and unsubscribe. |
-| `server/legacy.ts` | **Temporary** adapters behind the old endpoints (`/api/lead`, `/api/projectdiscussionform`, …) for pages loaded before the deploy. Delete them, and those route files, in the next release. |
+| `server/turnstile.ts`, `server/phone.ts` | Captcha check and phone formatting for GoHighLevel. |
 
 ## Adding a form
 
@@ -49,8 +49,9 @@ No new Sanity schema is needed.
 
 `FORMS_DRY_RUN=1` logs the Sanity document, GoHighLevel payload and email subjects instead of saving or sending.
 
-## Old submission types
+## History
 
-The old per-form types (`contactForm`, `fbMetaLead`, `lead`, `mobileServiceHero`, `paymentPropsal`) were
-removed from Studio. Their documents were copied into Form Submission by `scripts/copy-old-submissions.mjs`
-(duplicates merged), and `scripts/delete-old-submissions.mjs` deletes them once every one is copied.
+Submissions used to be spread over per-form types (`contactForm`, `fbMetaLead`, `lead`,
+`mobileServiceHero`, `paymentPropsal`), each form posting to its own route. They were copied into
+Form Submission (duplicates merged) and deleted; the one-off migration scripts are in git history.
+`scripts/delete-test-submissions.mjs` removes the team's own test entries after testing.

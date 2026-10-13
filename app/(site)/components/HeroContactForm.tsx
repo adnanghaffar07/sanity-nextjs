@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
-import { TURNSTILE_SITE_KEY } from "./RecaptchaComponent";
+import { TURNSTILE_SITE_KEY } from "./TurnstileWidget";
 import { submitForm } from "@/lib/forms/client/submitForm";
 
 type Errors = {

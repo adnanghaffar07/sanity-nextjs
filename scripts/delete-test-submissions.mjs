@@ -13,23 +13,20 @@ const { getCliClient } = sanityCli;
 const APPLY = process.argv.includes("--apply");
 const client = getCliClient({ apiVersion: "2024-03-14" });
 
-const TYPES = ["contactForm", "fbMetaLead", "lead", "mobileServiceHero", "paymentPropsal", "formSubmission"];
 const MATCH = ["ayesha", "codeautomation"];
 
 const docs = await client.fetch(
-  `*[_type in $types && (
+  `*[_type == "formSubmission" && (
     count($words[lower(^.name) match "*" + @ + "*"]) > 0 ||
     count($words[lower(^.email) match "*" + @ + "*"]) > 0
-  )]{ _id, _type, name, email, "at": coalesce(submittedAt, submitted_at, createdAt, _createdAt) } | order(_type asc, at desc)`,
-  { types: TYPES, words: MATCH }
+  )]{ _id, form, name, email, submittedAt } | order(submittedAt desc)`,
+  { words: MATCH }
 );
 
-const perType = {};
 for (const doc of docs) {
-  perType[doc._type] = (perType[doc._type] ?? 0) + 1;
-  console.log([doc._type, doc.name ?? "", doc.email ?? "", String(doc.at).slice(0, 10)].join(" | "));
+  console.log([doc.form, doc.name ?? "", doc.email ?? "", String(doc.submittedAt).slice(0, 10)].join(" | "));
 }
-console.log("\nPer type:", perType, `\nTotal: ${docs.length}`);
+console.log(`\nTotal: ${docs.length}`);
 
 if (!APPLY) {
   console.log('\nDry run. Add "-- --apply" to delete these permanently (export a backup first).');

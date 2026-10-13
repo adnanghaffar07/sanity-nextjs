@@ -5,10 +5,11 @@
 import { defineField, defineType } from "sanity";
 import { OlistIcon } from "@sanity/icons";
 
-export const CASE_STUDIES_PAGE_ID = "caseStudiesPage";
+// The type name and document id stay "caseStudiesPage" (that is what is stored).
+export const CASE_STUDY_ORDER_ID = "caseStudiesPage";
 
-export const caseStudiesPage = defineType({
-  name: "caseStudiesPage",
+export const caseStudyOrder = defineType({
+  name: CASE_STUDY_ORDER_ID,
   title: "Case Study Order",
   type: "document",
   icon: OlistIcon,

@@ -1,13 +1,10 @@
 'use client';
 
 import Image from "next/image";
-import { useState } from "react";
-import QuoteModal from "../../../components/MobileQuoteModal";
 import Link from "next/link";
 import ButtonScrollToSection from "@/app/(site)/components/ButtonScrollToSection";
 
 const MarketingAutomationHero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const features = [
     {

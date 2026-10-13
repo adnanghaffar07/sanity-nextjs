@@ -34,7 +34,7 @@ export async function sendEmail(options: { to: string | string[]; subject: strin
   });
 }
 
-export const escapeHtml = (value: unknown) =>
+const escapeHtml = (value: unknown) =>
   String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")

@@ -8,7 +8,7 @@ import { CLIENT_TYPES, FORMS, FORM_IDS } from "../../lib/forms/catalog";
 
 export const FORM_SUBMISSION_TYPE = "formSubmission";
 
-export const SUBMISSION_STATUSES = [
+const SUBMISSION_STATUSES = [
   { title: "New", value: "new" },
   { title: "Contacted", value: "contacted" },
   { title: "Qualified", value: "qualified" },

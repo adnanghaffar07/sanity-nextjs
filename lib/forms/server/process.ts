@@ -7,8 +7,8 @@
 
 import { randomUUID } from "crypto";
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
-import { verifyTurnstileToken } from "@/lib/verifyTurnstile";
-import { isLikelyValidGhlPhone, normalizePhoneForGhl } from "@/lib/normalizePhoneForGhl";
+import { verifyTurnstileToken } from "./turnstile";
+import { isLikelyValidGhlPhone, normalizePhoneForGhl } from "./phone";
 import { FORMS, detectClientType, isFormId, type ClientType, type FormId } from "../catalog";
 import type { FormSubmissionResponse, StandardFields, SubmissionContext } from "../types";
 import { FORM_DEFINITIONS } from "./definitions";
@@ -235,10 +235,9 @@ function crmLead(s: NormalizedSubmission, tags: string[]): CrmLead {
 export async function recordSubmission(
   form: FormId,
   input: { fields?: StandardFields; details?: Record<string, string | undefined>; context?: SubmissionContext },
-  options: { submittedAt?: string; extra?: Record<string, unknown> } = {}
+  options: { extra?: Record<string, unknown> } = {}
 ): Promise<{ id?: string; crm: CrmResult }> {
   const submission = normalize(form, input);
-  if (options.submittedAt) submission.submittedAt = options.submittedAt;
   const definition = FORM_DEFINITIONS[form];
   const doc = { ...sanityDocument(submission), ...options.extra };
   const dryRun = process.env.FORMS_DRY_RUN === "1";

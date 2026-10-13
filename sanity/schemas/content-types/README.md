@@ -25,6 +25,5 @@ Queries used by the website are in `sanity/lib/content.ts`.
 ## History
 
 These types replaced the old combined `portfolio` type (55 fields for three kinds of
-page) and the unused `blogSub` type. The content was copied across with a one-time
-script (see git history), and `scripts/retire-old-content-types.mjs` creates the
-Case Study Order and deletes the old documents.
+page) and the unused `blogSub` type. The content was copied across and the old
+documents deleted with one-time scripts (see git history).

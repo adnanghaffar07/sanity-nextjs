@@ -46,7 +46,7 @@ export default function FloatingConsultDrawer({
   }, [openDrawer]);
   useEffect(() => {
     setIsFloatingDrawerOpen(openDrawer);
-  }, [openDrawer]);
+  }, [openDrawer, setIsFloatingDrawerOpen]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });

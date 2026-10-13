@@ -10,11 +10,21 @@ import AuthorBio from "../../components/AuthorBio";
 import PreferredSourceBadge from "../../components/PreferredSourceBadge";
 import Link from "next/link";
 import Script from "next/script";
+import { notFound } from "next/navigation";
+
+// Route params arrive URL-encoded (e.g. a space as %20); addresses are stored decoded.
+const decodeSlug = (slug: string) => {
+  try {
+    return decodeURIComponent(slug);
+  } catch {
+    return slug;
+  }
+};
 
 async function getValueData(slug: string) {
   const queryValue = `*[${BLOG_FILTER} && slug == $slug] | order(${NEWEST_FIRST})[0]`;
   try {
-    return await client.fetch(queryValue, { slug });
+    return await client.fetch(queryValue, { slug: decodeSlug(slug) });
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
@@ -178,7 +188,8 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await getValueData(params.slug);
-  const moreArticles = await getMoreArticlesData(params.slug);
+  if (!data) notFound();
+  const moreArticles = await getMoreArticlesData(decodeSlug(params.slug));
 
   return (
     <div className="bg-white">

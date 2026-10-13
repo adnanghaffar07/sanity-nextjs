@@ -2,7 +2,7 @@
 
 import { useState, useRef, Suspense, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import RecaptchaComponent from "../components/RecaptchaComponent";
+import TurnstileWidget from "../components/TurnstileWidget";
 import { submitForm } from "@/lib/forms/client/submitForm";
 
 type FormData = {
@@ -258,7 +258,7 @@ function RegisterForm() {
 
             {/* Recaptcha */}
             <div className="mb-4">
-              <RecaptchaComponent
+              <TurnstileWidget
                 recaptchaRef={recaptchaRef}
                 onChange={(token: any) => setFormData((prev) => ({ ...prev, recaptcha: token }))}
                 onExpired={() => setFormData((prev) => ({ ...prev, recaptcha: "" }))}

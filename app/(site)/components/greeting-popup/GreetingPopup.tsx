@@ -19,9 +19,9 @@ import {
   type FormErrors,
   type FormValues,
   type RequiredField,
-} from "./form";
+} from "./validation";
 
-const Captcha = dynamic(() => import("../RecaptchaComponent"), { ssr: false });
+const Captcha = dynamic(() => import("../TurnstileWidget"), { ssr: false });
 
 type Status = { text: string; tone: "pending" | "success" | "error" };
 
