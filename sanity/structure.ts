@@ -1,10 +1,11 @@
-// Studio sidebar: "Form submissions" first (all, new, per form), then every
-// other document type as before.
+// Studio sidebar: "Home Page" and "Form submissions" first, then every other
+// document type.
 
 import type { StructureResolver } from "sanity/structure";
-import { EnvelopeIcon } from "@sanity/icons";
+import { EnvelopeIcon, HomeIcon } from "@sanity/icons";
 import { FORMS, FORM_IDS } from "../lib/forms/catalog";
 import { FORM_SUBMISSION_TYPE } from "./schemas/form-submission";
+import { HOME_PAGE_ID } from "./schemas/home-page";
 
 const NEWEST_FIRST = [{ field: "submittedAt", direction: "desc" as const }];
 
@@ -20,6 +21,12 @@ export const structure: StructureResolver = (S) => {
   return S.list()
     .title("Content")
     .items([
+      // A single document: opens straight into the editor.
+      S.listItem()
+        .id(HOME_PAGE_ID)
+        .title("Home Page")
+        .icon(HomeIcon)
+        .child(S.document().schemaType(HOME_PAGE_ID).documentId(HOME_PAGE_ID).title("Home Page")),
       S.listItem()
         .id("form-submissions")
         .title("Form submissions")
@@ -37,6 +44,6 @@ export const structure: StructureResolver = (S) => {
             ])
         ),
       S.divider(),
-      ...S.documentTypeListItems().filter((item) => item.getId() !== FORM_SUBMISSION_TYPE),
+      ...S.documentTypeListItems().filter((item) => ![FORM_SUBMISSION_TYPE, HOME_PAGE_ID].includes(item.getId() ?? "")),
     ]);
 };

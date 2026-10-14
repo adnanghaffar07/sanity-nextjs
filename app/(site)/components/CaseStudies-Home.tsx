@@ -8,7 +8,8 @@ import { CASE_STUDY_CARDS_QUERY, sortCaseStudyCards } from "@/sanity/lib/content
 
 async function getData() {
   try {
-    const result = await client.fetch(CASE_STUDY_CARDS_QUERY, {}, { cache: "no-store" });
+    // Cached; publishing a case study (or the order) refreshes it via /api/revalidate.
+    const result = await client.fetch(CASE_STUDY_CARDS_QUERY, {}, { next: { revalidate: 300, tags: ["caseStudy", "caseStudiesPage"] } });
     return sortCaseStudyCards(result).map((card) => ({ ...card, alt: card.cardImage?.alt }));
   } catch (error) {
     console.error("Error fetching data:", error);

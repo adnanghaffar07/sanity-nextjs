@@ -186,6 +186,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Full Name"
+              aria-label="Full Name"
               className={inputClass}
             />
             {errors.name && <p className={errorClass}>{errors.name}</p>}
@@ -195,6 +196,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
+              aria-label="Email"
               className={inputClass}
             />
             {errors.email && <p className={errorClass}>{errors.email}</p>}
@@ -204,6 +206,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Contact Number"
+              aria-label="Contact Number"
               className={inputClass}
             />
             {errors.phone && <p className={errorClass}>{errors.phone}</p>}
@@ -226,6 +229,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
               value={lookingFor}
               onChange={(e) => setLookingFor(e.target.value)}
               placeholder="What are you looking for?"
+              aria-label="What are you looking for?"
               className={inputClass}
             />
             {errors.lookingFor && (
@@ -236,6 +240,7 @@ export default function HeroContactForm({ variant = "default", pageName, heading
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
+              aria-label="Message"
               rows={3}
               className={inputClass}
             />

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -81,6 +82,8 @@ const TechnologiesSection = () => {
           {Object.keys(technologiesData).map((category) => (
             <button
               key={category}
+              type="button"
+              aria-pressed={selectedCategory === category}
               className={`px-4 py-2 text-sm rounded-lg ${selectedCategory === category
                   ? "bg-[#1D92FB] text-white"
                   : "bg-[#D9D9D9] text-black"
@@ -99,9 +102,11 @@ const TechnologiesSection = () => {
             >
               {tech.link ? (
                 <Link href={tech.link} className="group">
-                  <img
+                  <Image
                     src={tech.logo}
                     alt={tech.name}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 mb-2 group-hover:opacity-80"
                   />
                   <span className="text-sm md:text-md font-md group-hover:underline">
@@ -110,7 +115,7 @@ const TechnologiesSection = () => {
                 </Link>
               ) : (
                 <>
-                  <img src={tech.logo} alt={tech.name} className="w-16 h-16 mb-2" />
+                  <Image src={tech.logo} alt={tech.name} width={64} height={64} className="w-16 h-16 mb-2" />
                   <span className="text-sm md:text-md font-md">{tech.name}</span>
                 </>
               )}

@@ -6,8 +6,6 @@ import {
   subServiceSchema,
   techLogos,
 } from "./schemas/logical-services";
-import testimonial from "./schemas/testimonail-schema";
-import faq from "./schemas/faq";
 import partnershipSchema from "./schemas/partnership";
 import serviceSummary from "./schemas/service-summary";
 import valueBlueprints from "./schemas/value-bueprints";
@@ -25,6 +23,7 @@ import visitor from "./schemas/visitor";
 import { servicePageTypes } from "./schemas/service-page";
 import { contentTypes } from "./schemas/content-types";
 import { formSubmission } from "./schemas/form-submission";
+import { homePage } from "./schemas/home-page";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -33,9 +32,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     technologies,
     logicalServices,
     subServiceSchema,
-    testimonial,
     news,
-    faq,
     lifeAtCa,
     techLogos,
     partnershipSchema,
@@ -50,6 +47,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ...servicePageTypes,
     // Blog Post, Case Study, Value Blueprint and the Case Study Order
     ...contentTypes,
+    // Home page content (testimonials, FAQs)
+    homePage,
     // Every website form submission (see lib/forms)
     formSubmission,
   ],

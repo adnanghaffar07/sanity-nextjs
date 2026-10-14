@@ -12,6 +12,10 @@ import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schema'
 import {structure} from './sanity/structure'
 import {CASE_STUDY_ORDER_ID} from './sanity/schemas/content-types'
+import {HOME_PAGE_ID} from './sanity/schemas/home-page'
+
+// One-of-a-kind settings documents: editable, but never created, duplicated or deleted.
+const SINGLETON_TYPES = new Set<string>([HOME_PAGE_ID, CASE_STUDY_ORDER_ID])
 
 export default defineConfig({
   basePath: '/studio',
@@ -20,10 +24,9 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   document: {
-    // The Case Study Order is a single settings document: no create/duplicate/delete.
-    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== CASE_STUDY_ORDER_ID),
+    newDocumentOptions: (prev) => prev.filter((item) => !SINGLETON_TYPES.has(item.templateId)),
     actions: (prev, {schemaType}) =>
-      schemaType === CASE_STUDY_ORDER_ID
+      SINGLETON_TYPES.has(schemaType)
         ? prev.filter(({action}) => action && ['publish', 'discardChanges', 'restore'].includes(action))
         : prev,
   },

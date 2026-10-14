@@ -8,7 +8,7 @@ import { submitForm } from "@/lib/forms/client/submitForm";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-const DynamicRecaptcha = dynamic(() => import("./TurnstileWidget"), {
+const DynamicRecaptcha = dynamic(() => import("../TurnstileWidget"), {
   ssr: false,
 });
 
@@ -20,7 +20,7 @@ const initialValues = {
   message: "",
 };
 
-export default function HomePageForm() {
+export default function ConsultationForm() {
   const router = useRouter();
   const recaptchaRef = useRef<TurnstileInstance | undefined>(undefined);
   const [errorRecaptcha, setErrorRecaptcha] = useState("");
@@ -230,6 +230,7 @@ export default function HomePageForm() {
             <input
               className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm w-full text-black text-sm placeholder-black"
               placeholder={"Name"}
+              aria-label="Name"
               name="name"
               value={values.name}
               onChange={handleChange}
@@ -250,6 +251,7 @@ export default function HomePageForm() {
               buttonClass="!bg-white !border-gray-300"
               specialLabel=""
               placeholder="Enter your phone number"
+              inputProps={{ "aria-label": "Phone number" }}
             />
             {errors.phone && touched.phone ? (
               <p className="form-error">{errors.phone}</p>
@@ -259,6 +261,7 @@ export default function HomePageForm() {
             <input
               className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder={"Email"}
+              aria-label="Email"
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -272,6 +275,7 @@ export default function HomePageForm() {
             <input
               className="border-2 justify-center items-start px-4 py-3 whitespace-nowrap rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black"
               placeholder={"What are you looking for?"}
+              aria-label="What are you looking for?"
               name="what_are_you_looking_for"
               value={values.what_are_you_looking_for}
               onChange={handleChange}
@@ -285,6 +289,7 @@ export default function HomePageForm() {
             <textarea
               className="border-2 justify-center items-start px-4 py-3 rounded-lg shadow-sm max-md:px-5 w-full text-black text-sm placeholder-black resize-none break-words"
               placeholder={"Your Message"}
+              aria-label="Your Message"
               name="message"
               value={values.message}
               onChange={handleChange}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 interface AccordionItemProps {
   title: string;
@@ -10,14 +10,20 @@ interface AccordionItemProps {
 }
 
 function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps) {
+  const panelId = useId();
   return (
     <div className="border-b border-gray-300">
+      <h3>
       <button
+        type="button"
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={panelId}
         className="w-full flex justify-between items-center py-4 text-left text-gray-800 text-lg font-medium focus:outline-none"
       >
-        <h3>{title}</h3>
+        <span>{title}</span>
         <svg
+          aria-hidden
           className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -29,7 +35,8 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+      </h3>
+      <div id={panelId} className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
         <div className="py-2 text-gray-600">
           {content}
         </div>
@@ -38,7 +45,7 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
   );
 }
 
-export default function CoreExpertise() {
+export default function ExpertiseAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {

@@ -79,13 +79,11 @@ export const metadata: Metadata = {
     "custom software development",
   ],
 
-  alternates: {
-    canonical: "https://codeautomation.ai",
-  },
+  // No site-wide canonical/og:url: each page sets its own (a shared one told
+  // search engines that every page without its own was a copy of the home page).
 
   openGraph: {
     type: "website",
-    url: "https://codeautomation.ai",
     title: "Custom Software & AI Development Company | CodeAutomation.ai",
     description:
       "Naperville, IL-based AI agent and custom software development company.",

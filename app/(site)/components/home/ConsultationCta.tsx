@@ -1,19 +1,20 @@
 "use client";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function CtaWithStats() {
+export default function ConsultationCta() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3, // animate when 30% of section is visible
   });
 
   const stats = [
-    { icon: "/cta-1.png", number: 500, label: "Clients Served", suffix: "+" },
-    { icon: "/cta-2.png", number: 7, label: "Years in Business", suffix: "+" },
-    { icon: "/cta-3.png", number: 350, label: "Industries Served", suffix: "+" },
-    { icon: "/cta-4.png", number: 200, label: "Global Clients", suffix: "+" },
+    { icon: "/cta-1.png", iconHeight: 96, number: 500, label: "Clients Served", suffix: "+" },
+    { icon: "/cta-2.png", iconHeight: 96, number: 7, label: "Years in Business", suffix: "+" },
+    { icon: "/cta-3.png", iconHeight: 96, number: 350, label: "Industries Served", suffix: "+" },
+    { icon: "/cta-4.png", iconHeight: 100, number: 200, label: "Global Clients", suffix: "+" },
   ];
 
   return (
@@ -29,9 +30,9 @@ export default function CtaWithStats() {
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Left Content */}
         <div className="w-full md:w-1/2 text-left">
-          <h4 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
+          <h2 className="mb-6 text-2xl md:text-4xl font-bold max-w-2xl">
             Want To Develop A Custom Software Solution?
-          </h4>
+          </h2>
           <div className="flex items-start self-stretch pr-8 text-base xl:text-xl lg:text-lg font-medium whitespace-nowrap max-w-[450px] max-md:pr-5 mt-12">
             <Link
               href="https://calendly.com/adnanghaffar/30min"
@@ -50,11 +51,11 @@ export default function CtaWithStats() {
         <div className="w-full md:w-1/2 mt-10 md:mt-0 flex flex-wrap justify-center md:justify-end gap-8 text-center md:text-left">
           {stats.map((stat, index) => (
             <div key={index} className="w-[45%] flex items-center">
-              <img
+              <Image
                 src={stat.icon}
                 alt={stat.label}
                 width={96}
-                height={100}
+                height={stat.iconHeight}
                 className="h-10 w-auto max-w-10 object-contain md:h-14 md:max-w-14 mr-2 md:mr-4"
               />
               <div>

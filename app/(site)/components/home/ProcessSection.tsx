@@ -49,7 +49,7 @@ const steps: Step[] = [
   },
 ];
 
-export default function ProcessScroller() {
+export default function ProcessSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 md:py-20">

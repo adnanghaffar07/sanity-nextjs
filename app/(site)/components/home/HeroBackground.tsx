@@ -1,16 +1,15 @@
 import Image from "next/image";
 
-const HeroImage = () => {
+// Full-bleed hero background photo (the page's LCP image, so it loads first).
+export default function HeroBackground() {
   return (
     <Image
       src="/ca-banner.jpg"
-      alt="hero background"
+      alt=""
       fill
-      priority   // ✅ tells Next.js this is LCP image
+      priority
       sizes="100vw"
       className="absolute top-0 left-0 w-full h-full object-cover"
     />
   );
-};
-
-export default HeroImage;
+}

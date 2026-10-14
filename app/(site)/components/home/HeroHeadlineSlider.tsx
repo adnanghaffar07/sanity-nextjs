@@ -25,7 +25,7 @@ const slides = [
   },
 ];
 
-const HomePageSlider = () => {
+const HeroHeadlineSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -45,6 +45,8 @@ const HomePageSlider = () => {
     >
       {slides.map((slide, index) => {
         const isActive = index === activeIndex;
+        // The first headline is the page's <h1>; the rotating ones are plain text.
+        const Title = index === 0 ? "h1" : "p";
 
         return (
           <SwiperSlide key={index}>
@@ -58,7 +60,7 @@ const HomePageSlider = () => {
                   <div className="text-center lg:text-left">
 
                     {/* ✨ animated entry feel */}
-                    <h2
+                    <Title
                       className={`
                         text-[clamp(1.2rem,3vw,3.2rem)] font-bold text-white leading-[1.1] tracking-tight
                         transition-all duration-700
@@ -66,7 +68,7 @@ const HomePageSlider = () => {
                       `}
                     >
                       {slide.title}
-                    </h2>
+                    </Title>
 
                     <p
                       className={`
@@ -91,4 +93,4 @@ const HomePageSlider = () => {
   );
 };
 
-export default HomePageSlider;
+export default HeroHeadlineSlider;
