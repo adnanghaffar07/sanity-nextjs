@@ -1,12 +1,12 @@
-// Technologies page. The sections are in ./components/technologies; the
+// Technologies page. The sections are in @/components/technologies; the
 // categories and logos come from "Technologies" in Sanity, ordered by the
 // "Technology Order" document.
 
 import type { Metadata } from "next";
 import { getTechCategories } from "@/sanity/lib/technologies";
-import TechnologiesHero from "../components/technologies/TechnologiesHero";
-import TechStackIntro from "../components/technologies/TechStackIntro";
-import TechCategorySection from "../components/technologies/TechCategorySection";
+import TechnologiesHero from "@/components/technologies/TechnologiesHero";
+import TechStackIntro from "@/components/technologies/TechStackIntro";
+import TechCategorySection from "@/components/technologies/TechCategorySection";
 
 // Refreshed every 5 minutes, or right away via the /api/revalidate webhook.
 export const revalidate = 300;

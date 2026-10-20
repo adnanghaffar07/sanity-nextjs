@@ -8,10 +8,10 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { notFound } from "next/navigation";
-import ServicePageRenderer from "../../components/service-sections/ServicePageRenderer";
-import { SAMPLE_SECTIONS } from "../../components/service-sections/sample-data";
-import { buildLinkMap } from "../../components/service-sections/links";
-import { servicePageMetadata } from "../../components/service-sections/data";
+import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
+import { SAMPLE_SECTIONS } from "@/components/services/page-builder/sample-data";
+import { buildLinkMap } from "@/components/services/page-builder/links";
+import { servicePageMetadata } from "@/components/services/page-builder/data";
 
 type Props = { params: { slug?: string[] } };
 

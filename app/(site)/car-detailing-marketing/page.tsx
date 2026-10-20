@@ -1,12 +1,12 @@
 import React from 'react'
-import Section1_Hero from './components/Section1_Hero'
-import Section2_Problem from './components/Section2_Problem'
-import Section3_Services from './components/Section3_Services'
-import Section4_HowItWorks from './components/Section4_HowItWorks'
-import Section5_WhyUs from './components/Section5_WhyUs'
-import Section6_Pricing from './components/Section6_Pricing'
-import Section7_Testimonial from './components/Section7_Testimonials'
-import Section8_FAQ from './components/Section8_FAQ'
+import Section1_Hero from '@/components/landing/car-detailing/Hero'
+import Section2_Problem from '@/components/landing/car-detailing/Problem'
+import Section3_Services from '@/components/landing/car-detailing/Services'
+import Section4_HowItWorks from '@/components/landing/car-detailing/HowItWorks'
+import Section5_WhyUs from '@/components/landing/car-detailing/WhyUs'
+import Section6_Pricing from '@/components/landing/car-detailing/Pricing'
+import Section7_Testimonial from '@/components/landing/car-detailing/Testimonials'
+import Section8_FAQ from '@/components/landing/car-detailing/Faq'
 
 // Metadata for SEO
 export const metadata = {

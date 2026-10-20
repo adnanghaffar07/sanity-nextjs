@@ -1,5 +1,5 @@
 // Section templates for the new Service Page builder. Each has a matching
-// component in app/(site)/components/service-sections.
+// component in app/(site)/components/services/page-builder.
 //
 // Labels and help text are written in plain language for any service (not one
 // specific page). Only titles/descriptions are user-facing — field `name`s are

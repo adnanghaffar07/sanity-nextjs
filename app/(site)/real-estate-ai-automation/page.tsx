@@ -1,12 +1,12 @@
 
 import React from 'react'
-import RealEstateNavbar from './compononets/Section1-NavBar'
-import RealEstateHeroSection from './compononets/Section2-HeroSection'
-import SocialProofBar from './compononets/Section3-SocialProof'
-import HowItWorks from './compononets/Section4-HowitWorks'
-import RealEstateServices from './compononets/Section5-Services'
-import RealEstateResults from './compononets/Section6-Results'
-import FinalCTA from './compononets/Section7-Cta'
+import RealEstateNavbar from '@/components/landing/real-estate/NavBar'
+import RealEstateHeroSection from '@/components/landing/real-estate/Hero'
+import SocialProofBar from '@/components/landing/real-estate/SocialProof'
+import HowItWorks from '@/components/landing/real-estate/HowItWorks'
+import RealEstateServices from '@/components/landing/real-estate/Services'
+import RealEstateResults from '@/components/landing/real-estate/Results'
+import FinalCTA from '@/components/landing/real-estate/Cta'
 
 
 export const metadata = {

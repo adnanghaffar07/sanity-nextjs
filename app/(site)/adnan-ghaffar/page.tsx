@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { BLOG_FILTER } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 

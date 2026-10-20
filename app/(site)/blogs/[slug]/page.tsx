@@ -1,13 +1,13 @@
 import { PortableText, PortableTextMarkComponentProps, PortableTextReactComponents } from "@portabletext/react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { BLOG_FILTER, NEWEST_FIRST } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
-import SocialShare from "../../components/socialShare";
-import BlogsFaq from "../../components/BlogsFaq";
-import AuthorBio from "../../components/AuthorBio";
-import PreferredSourceBadge from "../../components/PreferredSourceBadge";
+import SocialShare from "@/components/blog/SocialShare";
+import BlogFaq from "@/components/blog/BlogFaq";
+import AuthorBio from "@/components/blog/AuthorBio";
+import PreferredSourceBadge from "@/components/blog/PreferredSourceBadge";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -352,7 +352,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         {/* FAQ Section */}
         {data.faqSection && (
           <div className="mb-16">
-            <BlogsFaq faq={data.faqSection} />
+            <BlogFaq faq={data.faqSection} />
           </div>
         )}
 

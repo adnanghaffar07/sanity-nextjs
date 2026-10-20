@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
-import ButtonScrollToSection from '../components/ButtonScrollToSection'
-import PricingPlan from '../components/PricingPlan';
-import CaseStudiesHome from '../components/CaseStudies-Home';
+import ScrollToSectionButton from '@/components/ui/ScrollToSectionButton'
+import PricingPlan from '@/components/pricing/PricingPlan';
+import CaseStudiesSection from '@/components/sections/CaseStudiesSection';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 
@@ -127,7 +127,7 @@ export default async function PricePlan() {
                 <div className='max-w-[1440px] mx-auto px-6 md:px-16 py-6 md:py-10'>
                     <h2 className="text-2xl md:text-3xl font-bold text-[#3C3C3C]">
                         Recent Projects              </h2>
-                    <CaseStudiesHome />
+                    <CaseStudiesSection />
                 </div>
             </section>
 
@@ -150,7 +150,7 @@ export default async function PricePlan() {
                                 I’d love to discuss how we can make your app a reality. Let’s set up a quick call, when would be a good time for you?                </p>
                             <h3 className="my-4 text-xl font-bold leading-7 max-md:max-w-full">
                                 Looking forward to working together.              </h3>
-                            <ButtonScrollToSection
+                            <ScrollToSectionButton
                                 classes="bg-white text-[#1d92fb] hover:bg-[#f7e022] cursor-pointer mt-4 hover:text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
                                 content="Get Your Free Consultation Today"
                                 key="first-button"

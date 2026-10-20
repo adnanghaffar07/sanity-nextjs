@@ -1,7 +1,7 @@
 // Remembers how a visitor arrived (first page, referrer, UTM tags, ad click ids)
 // so a form submitted later, on another page, can still report it.
 
-import type { SubmissionContext } from "../types";
+import type { SubmissionContext } from "@/lib/forms/types";
 
 const STORAGE_KEY = "ca_attribution";
 const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;

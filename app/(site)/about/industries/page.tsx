@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import IndustriesAccordion from '../../components/IndustriesAccordion';
+import IndustriesAccordion from '@/components/about/IndustriesAccordion';
 import { Metadata } from 'next'; // ✅ Important to type correctly
 
 // ✅ Generate Metadata with Canonical Tag

@@ -15,7 +15,7 @@ export const LINKABLE_TYPES = [
 ];
 
 // Icons editors can pick for cards, lists and badges. Values are lucide-react
-// component names; the website maps them in `service-sections/icons.tsx`.
+// component names; the website maps them in `components/services/page-builder/icons.tsx`.
 export const ICON_OPTIONS = [
   "Bot", "MessagesSquare", "MessageCircle", "Headset", "Mic", "PhoneCall",
   "BrainCircuit", "Sparkles", "Cpu", "Database", "DatabaseZap", "Library",

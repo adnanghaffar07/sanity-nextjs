@@ -1,8 +1,8 @@
 import React from "react";
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import ButtonScrollToSection from "../components/ButtonScrollToSection";
-import DownloadButton from "../components/BrochureDownload";
+import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
+import BrochureDownload from "@/components/brochure/BrochureDownload";
 
 async function getBrochures() {
     const query = `*[_type == "logicalServices" && brochure.asset != null] | order(_createdAt asc) {
@@ -210,7 +210,7 @@ const BrochuresPage = async () => {
 
                         {/* Download Button */}
                         {brochure.brochure?.asset && (
-                            <DownloadButton fileUrl={brochure.brochure.asset.url} serviceTitle={brochure.serviceCardTitle} />
+                            <BrochureDownload fileUrl={brochure.brochure.asset.url} serviceTitle={brochure.serviceCardTitle} />
                         )}
 
                     </div>
@@ -252,7 +252,7 @@ const BrochuresPage = async () => {
 
                                 {/* Download Button */}
                                 {brochure.brochure?.asset && (
-                                    <DownloadButton fileUrl={brochure.brochure.asset.url} serviceTitle={brochure.serviceCardTitle} />)}
+                                    <BrochureDownload fileUrl={brochure.brochure.asset.url} serviceTitle={brochure.serviceCardTitle} />)}
                             </div>
 
 
@@ -272,7 +272,7 @@ const BrochuresPage = async () => {
                         and deliver innovative solutions tailored to your business needs.
                     </p>
                     <div className="mt-8 flex justify-center md:justify-start">
-                        <ButtonScrollToSection
+                        <ScrollToSectionButton
                             content="Download Now"
                             classes="px-8 py-3 text-blue-900 cursor-pointer bg-white rounded-full shadow-md hover:text-black hover:bg-[#f7e022] transition duration-300"
                             destination="brochure"
@@ -309,7 +309,7 @@ const BrochuresPage = async () => {
 
                             {/* Download Button */}
                             {brochure.brochure?.asset && (
-                                <DownloadButton fileUrl={brochure.brochure.asset.url} serviceTitle={brochure.serviceCardTitle} />)}
+                                <BrochureDownload fileUrl={brochure.brochure.asset.url} serviceTitle={brochure.serviceCardTitle} />)}
 
                         </div>
                     ))}

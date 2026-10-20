@@ -2,8 +2,8 @@
 // same for every form (see process.ts): saved to Sanity, synced to GoHighLevel,
 // one notification email to the team.
 
-import type { FormId, ClientType } from "../catalog";
-import type { StandardFields } from "../types";
+import type { FormId, ClientType } from "@/lib/forms/catalog";
+import type { StandardFields } from "@/lib/forms/types";
 import type { AutoReplyKind } from "./emails";
 import type { NormalizedSubmission } from "./process";
 

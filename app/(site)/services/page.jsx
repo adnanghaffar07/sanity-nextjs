@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Script from "next/script";
-import ScrollAnimation from "../components/ScrollAnimation";
-import ServicesHeroSection from "./components/ServicesHeroSection";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
+import ServicesHero from "@/components/services/overview/ServicesHero";
 import { urlForImage } from "@/sanity/lib/image";
-import { client } from "../../../sanity/lib/client";
-import { SERVICE_FETCH_OPTIONS } from "../components/service-sections/data";
-import ServicesCard from "../components/Services-Cards";
+import { client } from "@/sanity/lib/client";
+import { SERVICE_FETCH_OPTIONS } from "@/components/services/page-builder/data";
+import ServiceCard from "@/components/services/overview/ServiceCard";
 import MANUAL_SERVICES from "./manual-services";
 
 export const metadata = {
@@ -154,8 +154,8 @@ const Services = async () => {
       >
         {JSON.stringify(SERVICES_JSON_LD)}
       </Script>
-      <ServicesHeroSection />
-      <ServicesCard data={data} />
+      <ServicesHero />
+      <ServiceCard data={data} />
       <ScrollAnimation>
         <section className="relative overflow-hidden px-6 md:px-16 max-w-7xl mx-auto">
           <div className="flex flex-col xl:flex-row items-center justify-center xl:gap-20 2xl:gap-22">

@@ -2,7 +2,7 @@
 // Recipients come from website form submissions ("formSubmission").
 
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
-import { formsInAudience } from "../catalog";
+import { formsInAudience } from "@/lib/forms/catalog";
 
 type Recipient = { name?: string; email: string };
 

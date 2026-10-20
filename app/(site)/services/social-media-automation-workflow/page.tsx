@@ -1,8 +1,8 @@
-import ProblemSection from './components/ProblemSection';
-import SolutionSection from './components/SolutionSection';
-import OutcomesToolsSection from './components/OutcomesToolsSection';
-import FinalCTASection from './components/FinalCTASection';
-import FAQSection from './components/FAQSection';
+import ProblemSection from '@/components/services/social-media-automation/ProblemSection';
+import SolutionSection from '@/components/services/social-media-automation/SolutionSection';
+import OutcomesToolsSection from '@/components/services/social-media-automation/OutcomesToolsSection';
+import FinalCTASection from '@/components/services/social-media-automation/FinalCTASection';
+import FAQSection from '@/components/services/social-media-automation/FAQSection';
 
 export const metadata = {
   title: "Social Media Automation for Facebook, Instagram & LinkedIn | CodeAutomation",

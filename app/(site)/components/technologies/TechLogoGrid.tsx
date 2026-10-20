@@ -1,5 +1,5 @@
 import type { TechLogo } from "@/sanity/lib/technologies";
-import SanityLogo from "../SanityLogo";
+import SanityLogo from "@/components/ui/SanityLogo";
 
 // The logos of one category, four per row, each with its name underneath.
 export default function TechLogoGrid({ logos, side }: { logos: TechLogo[]; side: "left" | "right" }) {

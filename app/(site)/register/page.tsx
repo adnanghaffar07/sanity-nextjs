@@ -2,7 +2,7 @@
 
 import { useState, useRef, Suspense, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import TurnstileWidget from "../components/TurnstileWidget";
+import TurnstileWidget from "@/components/forms/TurnstileWidget";
 import { submitForm } from "@/lib/forms/client/submitForm";
 
 type FormData = {

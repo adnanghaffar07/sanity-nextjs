@@ -1,11 +1,11 @@
 // pages/index.js
 
-import { client } from "../../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import ServicePageRenderer from "../../../components/service-sections/ServicePageRenderer";
-import { getServicePageWithLinks, servicePageMetadata, SERVICE_FETCH_OPTIONS } from "../../../components/service-sections/data";
+import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
+import { getServicePageWithLinks, servicePageMetadata, SERVICE_FETCH_OPTIONS } from "@/components/services/page-builder/data";
 
 async function getData(urlPathSub: string) {
   if (!urlPathSub) return null; // ✅ Prevents undefined errors

@@ -1,12 +1,12 @@
-// Careers page. The sections are in ./components/careers; the job cards come
+// Careers page. The sections are in @/components/careers; the job cards come
 // from "Job Openings" in Sanity.
 
 import type { Metadata } from "next";
 import { getJobOpenings } from "@/sanity/lib/careers";
-import CareersHero from "../components/careers/CareersHero";
-import CareersIntro from "../components/careers/CareersIntro";
-import OpenRoles from "../components/careers/OpenRoles";
-import PerksSection from "../components/careers/PerksSection";
+import CareersHero from "@/components/careers/CareersHero";
+import CareersIntro from "@/components/careers/CareersIntro";
+import OpenRoles from "@/components/careers/OpenRoles";
+import PerksSection from "@/components/careers/PerksSection";
 
 // Refreshed every 5 minutes, or right away via the /api/revalidate webhook.
 export const revalidate = 300;

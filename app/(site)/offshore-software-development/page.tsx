@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
-import OffshorewhyChoose from '../components/OffshorewhyChoose';
-import ButtonScrollToSection from '../components/ButtonScrollToSection';
-import CaseStudiesHome from '../components/CaseStudies-Home';
-import Offshoresoftware from '../components/Offshoresoftware';
-import ReviewsSection from '../components/GoogleReview';
-import FAQSection from '../components/OffshoreFaq';
+import OffshoreWhyChoose from '@/components/offshore/OffshoreWhyChoose';
+import ScrollToSectionButton from '@/components/ui/ScrollToSectionButton';
+import CaseStudiesSection from '@/components/sections/CaseStudiesSection';
+import OffshoreSoftware from '@/components/offshore/OffshoreSoftware';
+import ReviewsSection from '@/components/offshore/ReviewsSection';
+import OffshoreFaq from '@/components/offshore/OffshoreFaq';
 
 export const metadata = {
     title: "Top Offshore Software Development Company | Expert Services",
@@ -290,7 +290,7 @@ const OffshoreDevelopment = () => {
             </div>
 
             {/* Why Choose */}
-            <OffshorewhyChoose />
+            <OffshoreWhyChoose />
 
             {/* Boost your Business */}
             <section
@@ -312,7 +312,7 @@ const OffshoreDevelopment = () => {
                             <p className="text-lg font-light max-w-2xl">
                                 Access our talented offshore software development team to accelerate your project timelines.                   </p>
 
-                            <ButtonScrollToSection
+                            <ScrollToSectionButton
                                 classes="bg-white text-[#1d92fb] hover:bg-[#f7e022] cursor-pointer mt-4 hover:text-black font-semibold py-3 px-2 rounded-lg shadow-lg text-center w-full sm:max-w-72"
                                 content="Hire Expert Developers Now"
                                 key="first-button"
@@ -341,7 +341,7 @@ const OffshoreDevelopment = () => {
                 </h2>
                 <p className="mt-4 text-lg font-medium max-md:max-w-full">
                     Transforming Businesses Through Offshore Expertise                  </p>
-                <CaseStudiesHome />
+                <CaseStudiesSection />
             </div>
 
             {/* Comprehensive offshore */}
@@ -426,7 +426,7 @@ const OffshoreDevelopment = () => {
             </section>
 
             {/* Offshore Software */}
-            <Offshoresoftware />
+            <OffshoreSoftware />
 
             {/* Whats included */}
             <section className="px-6 md:px-16 py-10 md:py-16 relative text-[#3C3C3C] relative">
@@ -539,7 +539,7 @@ const OffshoreDevelopment = () => {
                                 At CodeAutomation, we enable our customers to meet their target by delivering an innovative solution through our software. With high expertise, we develop everything, from custom applications and mobile apps to enterprise systems.
                             </p>
 
-                            <ButtonScrollToSection
+                            <ScrollToSectionButton
                                 classes="bg-white text-[#1d92fb] hover:bg-[#f7e022] cursor-pointer mt-4 hover:text-black font-semibold py-3 px-3 rounded-lg shadow-lg text-center w-fit"
                                 content="Request Your Free Consultation Now"
                                 key="first-button"
@@ -662,7 +662,7 @@ const OffshoreDevelopment = () => {
                             <p className="text-lg lg:max-w-lg font-light">
                                 Obtain free information about our consultation process and jumpstart your development of a custom web application. Learn how customized web solutions can redefine your concept of business growth and effectiveness in any operation.                            </p>
 
-                            <ButtonScrollToSection
+                            <ScrollToSectionButton
                                 classes="bg-white text-[#1d92fb] hover:bg-[#f7e022] cursor-pointer mt-4 hover:text-black font-semibold py-3 px-3 rounded-lg shadow-lg text-center w-fit"
                                 content="Get Your Free Consultation Today"
                                 key="first-button"
@@ -685,7 +685,7 @@ const OffshoreDevelopment = () => {
             </section>
 
             {/* FAQ */}
-            <FAQSection />
+            <OffshoreFaq />
         </>
     )
 }

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { HomeTestimonial } from "@/sanity/lib/home";
-import ScrollAnimation from "../ScrollAnimation";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 import TestimonialsCarousel from "./TestimonialsCarousel";
 
 export default function TestimonialsSection({ testimonials }: { testimonials: HomeTestimonial[] }) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import CaseStudy from '../components/CaseStudiesMain'
+import CaseStudiesListing from '@/components/case-studies/CaseStudiesListing'
 export const metadata = {
   title: "AI Software Development Case Studies | Proven Client Success Stories",
   description:
@@ -38,7 +38,7 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-      <CaseStudy />
+      <CaseStudiesListing />
     </div>
   )
 }

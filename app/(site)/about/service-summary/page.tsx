@@ -1,16 +1,16 @@
 // Service Summary page (/about/service-summary): how clients can work with us.
-// The sections are in ./components/service-summary; the content comes from
+// The sections are in @/components/service-summary; the content comes from
 // "Service Summary" in Sanity.
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { urlForImage } from "@/sanity/lib/image";
 import { getServiceSummary } from "@/sanity/lib/service-summary";
-import SummaryHero from "../../components/service-summary/SummaryHero";
-import EngagementModels from "../../components/service-summary/EngagementModels";
-import ProjectTimeline from "../../components/service-summary/ProjectTimeline";
-import ToolsAndPayments from "../../components/service-summary/ToolsAndPayments";
-import ClosingSection from "../../components/service-summary/ClosingSection";
+import SummaryHero from "@/components/service-summary/SummaryHero";
+import EngagementModels from "@/components/service-summary/EngagementModels";
+import ProjectTimeline from "@/components/service-summary/ProjectTimeline";
+import ToolsAndPayments from "@/components/service-summary/ToolsAndPayments";
+import ClosingSection from "@/components/service-summary/ClosingSection";
 
 // Refreshed every 5 minutes, or right away via the /api/revalidate webhook.
 export const revalidate = 300;

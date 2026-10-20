@@ -1,15 +1,15 @@
-import AIEducationSection from "../../components/AI-EducationSection";
-import { FaqSection } from "../../components/AI-FaqSection";
-import { FeaturedToolsSection } from "../../components/AI-FeaturedTools";
-import { HeroSection } from "../../components/AI-HeroSection";
-import { ToolsGrid } from "../../components/AI-ToolsGrid";
+import EducationSection from "@/components/about/ai-tools/EducationSection";
+import { FaqSection } from "@/components/about/ai-tools/FaqSection";
+import { FeaturedToolsSection } from "@/components/about/ai-tools/FeaturedTools";
+import { HeroSection } from "@/components/about/ai-tools/HeroSection";
+import { ToolsGrid } from "@/components/about/ai-tools/ToolsGrid";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <HeroSection />
       <ToolsGrid />
-      <AIEducationSection />
+      <EducationSection />
       <FeaturedToolsSection />
       <FaqSection/>
     </div>

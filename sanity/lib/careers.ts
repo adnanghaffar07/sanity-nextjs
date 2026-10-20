@@ -3,7 +3,7 @@
 // otherwise after 5 minutes.
 
 import { client } from "./client";
-import { CAREERS_TYPE, DEFAULT_JOB_LOCATION } from "../schemas/careers-constants";
+import { CAREERS_TYPE, DEFAULT_JOB_LOCATION } from "@/sanity/schemas/careers-constants";
 
 export interface JobOpening {
   _id: string;

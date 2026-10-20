@@ -1,24 +1,24 @@
 // pages/index.js
 
 import Link from "next/link";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import ScrollButton from "../../components/valueBluePrint";
-import CustomSoftwareSection from "../../components/CustomSoftwareAcc";
-import MobileAppServiceSection from "../../components/mobileAppServiceAccordian";
-import SecondMobileServiceAcc from "../../components/SecondMobileServiceAccordian";
-import ButtonScrollToSection from "../../components/ButtonScrollToSection";
-import HeroContactForm from "../../components/HeroContactForm";
-import CaseStudiesHome from "../../components/CaseStudies-Home";
-import CustomSoftware2Section from "../../components/CustomSoftware2Acc";
+import CarouselScrollButtons from "@/components/ui/CarouselScrollButtons";
+import CustomSoftwareAccordion from "@/components/services/legacy/CustomSoftwareAccordion";
+import MobileAppServiceAccordion from "@/components/services/legacy/MobileAppServiceAccordion";
+import MobileAppServiceAccordion2 from "@/components/services/legacy/MobileAppServiceAccordion2";
+import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
+import HeroContactForm from "@/components/forms/HeroContactForm";
+import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
+import CustomSoftwareAccordion2 from "@/components/services/legacy/CustomSoftwareAccordion2";
 import Script from "next/script";
-import FAQServicePage from "../../components/FaqService";
-import TestimonialsSection from "../../components/TestimonialsSection";
+import ServiceFaq from "@/components/services/legacy/ServiceFaq";
+import TestimonialsSection from "@/components/services/legacy/TestimonialsSection";
 import { PortableText } from "@portabletext/react";
-import { portableTextComponents } from "../../components/PortableTextServices";
+import { portableTextComponents } from "@/components/services/legacy/portableTextComponents";
 import { notFound } from "next/navigation";
-import ServicePageRenderer from "../../components/service-sections/ServicePageRenderer";
-import { getServicePageWithLinks, servicePageMetadata, SERVICE_FETCH_OPTIONS } from "../../components/service-sections/data";
+import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
+import { getServicePageWithLinks, servicePageMetadata, SERVICE_FETCH_OPTIONS } from "@/components/services/page-builder/data";
 
 async function getData(service: string) {
   if (!service) return null; // ✅ Prevents undefined errors
@@ -175,7 +175,7 @@ export default async function service({
                 {(data.firstButton || data.secondButton || params.service === "mobile-app-development-services") && (
                   <div className="flex flex-col sm:flex-row pt-2 space-y-6 sm:space-y-0 sm:space-x-5 items-center justify-center lg:justify-start">
                     {data.firstButton && (
-                      <ButtonScrollToSection
+                      <ScrollToSectionButton
                         classes="bg-[#1d92fb] text-white cursor-pointer py-3 px-2 font-semibold rounded-lg shadow-lg text-center w-full sm:min-w-48 sm:max-w-72"
                         content={data.firstButton.firstButtonText}
                         key="first-button"
@@ -477,7 +477,7 @@ export default async function service({
         </section>
       )}
       {/* Why Prefer Code Automation? Custom Software */}
-      {data.customSoftwareSection && <CustomSoftwareSection data={data} />}
+      {data.customSoftwareSection && <CustomSoftwareAccordion data={data} />}
 
       {/*  Our Custom Software Development Services Custom Software*/}
       {data.customSoftwareDev && (
@@ -597,12 +597,12 @@ export default async function service({
           <h2 className="text-3xl text-center font-bold text-[#3C3C3C]">
             Showcasing Our Success Stories
           </h2>
-          <CaseStudiesHome />
+          <CaseStudiesSection />
         </div>
       )}
 
       {/* Why Prefer Code Automation? Custom Software */}
-      {data.provenProcessSection && <CustomSoftware2Section data={data} />}
+      {data.provenProcessSection && <CustomSoftwareAccordion2 data={data} />}
 
       {/* Development section */}
       {data.developmentSection && (
@@ -1039,7 +1039,7 @@ export default async function service({
                   )
                 )}
               </div>
-              <ScrollButton
+              <CarouselScrollButtons
                 scrollContainerId="scrollContainer"
                 totalItems={data.industriesServe?.bulletPoints.length} // Pass total items dynamically
                 itemsPerPage={3} // Adjust items per page based on your design
@@ -1238,8 +1238,8 @@ export default async function service({
           </div>
         </section>
       )}
-      {data.mobileAppServiceSection && <MobileAppServiceSection data={data} />}
-      {data.secondMobileAppAcc && <SecondMobileServiceAcc data={data} />}
+      {data.mobileAppServiceSection && <MobileAppServiceAccordion data={data} />}
+      {data.secondMobileAppAcc && <MobileAppServiceAccordion2 data={data} />}
       {/* Turn Vision Into Reality Custom Software */}
       {data.transBusiness && (
         <section
@@ -1261,7 +1261,7 @@ export default async function service({
                   {data.transBusiness.description}
                 </div>
 
-                <ButtonScrollToSection
+                <ScrollToSectionButton
                   classes="button2"
                   content={data.transBusiness.buttonText}
                   key="first-button"
@@ -1786,7 +1786,7 @@ export default async function service({
       )}
 
       {data.faqSection && (
-        <FAQServicePage faqSection={data.faqSection} />
+        <ServiceFaq faqSection={data.faqSection} />
       )}
       {data?.seoContent && (
         <div

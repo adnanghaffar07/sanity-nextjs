@@ -1,7 +1,7 @@
 import React from "react";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { CASE_STUDY_FILTER, NEWEST_FIRST } from "@/sanity/lib/content";
-import ScrollAnimation from "../../components/ScrollAnimation";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import Script from "next/script";

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import "../globals.css";
+import "@/app/globals.css";
 import { submitForm } from '@/lib/forms/client/submitForm';
 
 const EMPTY_LEAD = {

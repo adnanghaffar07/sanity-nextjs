@@ -4,7 +4,7 @@
 
 import { defineField, defineType } from "sanity";
 import { EnvelopeIcon } from "@sanity/icons";
-import { CLIENT_TYPES, FORMS, FORM_IDS } from "../../lib/forms/catalog";
+import { CLIENT_TYPES, FORMS, FORM_IDS } from "@/lib/forms/catalog";
 
 export const FORM_SUBMISSION_TYPE = "formSubmission";
 

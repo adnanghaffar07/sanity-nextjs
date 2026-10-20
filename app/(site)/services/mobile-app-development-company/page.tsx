@@ -1,5 +1,5 @@
 import React from 'react'
-import MobileApp from '../components/MobileApp';
+import MobileApp from '@/components/services/mobile-app/MobileAppPage';
 
 export const metadata = {
   title: "Custom Mobile App Development Services - Codeautomation",

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { VALUE_BLUEPRINT_FILTER } from "@/sanity/lib/content";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
-import ButtonScrollToSection from "../components/ButtonScrollToSection";
-import ScrollButton from "../components/valueBluePrint";
+import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
+import CarouselScrollButtons from "@/components/ui/CarouselScrollButtons";
 
 async function getData() {
   const query = `*[_type == 'valueBlueprints'][0]`;
@@ -237,7 +237,7 @@ export default async function ValueBlueprints() {
                 </Link>
               ))}
             </div>
-            <ScrollButton
+            <CarouselScrollButtons
               scrollContainerId="scrollContainer"
               totalItems={portfolioData.length}
               itemsPerPage={3}
@@ -516,7 +516,7 @@ export default async function ValueBlueprints() {
                       height={120}
                     />
                   )}
-                  <ButtonScrollToSection
+                  <ScrollToSectionButton
                     content="Get Started Now"
                     classes="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
                     destination="contact-box"
@@ -547,7 +547,7 @@ export default async function ValueBlueprints() {
                       height={120}
                     />
                   )}
-                  <ButtonScrollToSection
+                  <ScrollToSectionButton
                     classes="bg-[#F7E022] cursor-pointer text-black font-semibold py-2 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-500"
                     content="Claim Offer"
                     destination="contact-box"

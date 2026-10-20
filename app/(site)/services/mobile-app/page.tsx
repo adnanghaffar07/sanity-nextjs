@@ -1,22 +1,22 @@
 'use client';
 import React from "react";
 import Image from "next/image";
-import MobileForm from "../../components/mobile-service-form";
-import FloatingConsultButton from "../../components/FloatingConsultantButton";
-import PortfolioSection from "../../components/MobilePortfolioSection";
-import WhyChoose from "../../components/MobileServiceWhyChoose";
-import CategoryTabs from "../../components/MobileServiceApps";
-import FaqSection from "../../components/MobileServiceFaq";
+import MobileAppForm from "@/components/services/mobile-app/MobileAppForm";
+import FloatingConsultDrawer from "@/components/services/mobile-app/FloatingConsultDrawer";
+import PortfolioSection from "@/components/services/mobile-app/PortfolioSection";
+import WhyChoose from "@/components/services/mobile-app/WhyChoose";
+import AppCategoryTabs from "@/components/services/mobile-app/AppCategoryTabs";
+import FaqSection from "@/components/services/mobile-app/FaqSection";
 import { useState, useEffect } from 'react';
-import QuoteModal from "../../components/MobileQuoteModal";
-import LiveChatTawk from "../../components/LiveChatTawk";
-import MobileIndustries from "../../components/Mobile-App-Industries";
-import TechStackSection from "../../components/MobileServiceTechStackSection";
-import StatsSection from "../../components/StatsSection";
-import Testimonials from "../../components/MobileTestimonials";
-import FreeTrial from "../../components/MobileFreeTrial";
-import MobileAppHeader from "../../components/MobileAppHeader";
-import CtaSection from "../../components/CTASection";
+import QuoteModal from "@/components/services/mobile-app/QuoteModal";
+import LiveChatTawk from "@/components/layout/LiveChatTawk";
+import MobileIndustries from "@/components/services/mobile-app/Industries";
+import TechStackSection from "@/components/services/mobile-app/TechStackSection";
+import StatsSection from "@/components/sections/StatsSection";
+import Testimonials from "@/components/services/mobile-app/Testimonials";
+import FreeTrial from "@/components/services/mobile-app/FreeTrial";
+import MobileAppHeader from "@/components/services/mobile-app/MobileAppHeader";
+import CtaSection from "@/components/services/mobile-app/CtaSection";
 
 const categories = {
   "On Demand": [
@@ -342,7 +342,7 @@ export default function HeroSection() {
 
           {/* Right - Contact Form */}
           <section id="form" className="w-full">
-            <MobileForm />
+            <MobileAppForm />
           </section>
         </div>
       </div>
@@ -471,7 +471,7 @@ export default function HeroSection() {
 `}</style>
 
       {/* Sticky Floating Button */}
-      <FloatingConsultButton
+      <FloatingConsultDrawer
         isModalOpen={isModalOpen}
         setIsFloatingDrawerOpen={setIsFloatingDrawerOpen}
       />
@@ -662,7 +662,7 @@ export default function HeroSection() {
       </div>
       <WhyChoose />
       <TechStackSection />
-      <CategoryTabs />
+      <AppCategoryTabs />
       <FreeTrial />
      <CtaSection/>
       <Testimonials />

@@ -21,7 +21,7 @@ import {
     FaCheckCircle, FaBolt, FaLock, FaTools,
     FaBookOpen
 } from 'react-icons/fa'
-import FAQComponent from '../components/Ceo-FAQ'
+import CeoFaq from '@/components/press/CeoFaq'
 
 export const metadata = {
   title: "Adnan Ghaffar CEO of CodeAutomation AI Software Company USA",
@@ -1563,7 +1563,7 @@ const Page = () => {
                     </div>
                 </div>
 
-                <FAQComponent/>
+                <CeoFaq/>
             </section>
         </div>
     )

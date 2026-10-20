@@ -1,4 +1,4 @@
-import WaitCallCountdown from "./WaitCallCountdown";
+import WaitCallCountdown from "@/components/landing/ai-revenue-engine/WaitCallCountdown";
 import { Phone, Bell, Smile, Calendar, Volume2, Shield, Clock, CheckCircle, Headphones, Sparkles, ArrowRight, User, Loader2 } from "lucide-react";
 
 export const metadata = {

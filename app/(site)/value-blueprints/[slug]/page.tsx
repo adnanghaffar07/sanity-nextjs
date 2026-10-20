@@ -1,5 +1,5 @@
 import React from "react";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import { urlForImage } from "@/sanity/lib/image";
 import { NEWEST_FIRST, VALUE_BLUEPRINT_FILTER } from "@/sanity/lib/content";

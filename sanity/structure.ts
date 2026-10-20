@@ -3,7 +3,7 @@
 
 import type { StructureResolver } from "sanity/structure";
 import { EnvelopeIcon, HomeIcon } from "@sanity/icons";
-import { FORMS, FORM_IDS } from "../lib/forms/catalog";
+import { FORMS, FORM_IDS } from "@/lib/forms/catalog";
 import { FORM_SUBMISSION_TYPE } from "./schemas/form-submission";
 import { HOME_PAGE_ID } from "./schemas/home-page";
 

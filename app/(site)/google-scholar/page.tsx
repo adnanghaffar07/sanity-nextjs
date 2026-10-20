@@ -1,6 +1,6 @@
 // app/google-scholar/page.tsx
 
-import GoogleScholarArticleCard from "../components/GoogleScholarArticleCard";
+import GoogleScholarArticleCard from "@/components/press/GoogleScholarArticleCard";
 
 export const metadata = {
   title: "Adnan Ghaffar on Google Scholar | AI & Automation Research | CodeAutomation",

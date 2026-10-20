@@ -1,6 +1,6 @@
 // app/forbes/page.tsx
 
-import ForbesArticleCard from "../components/ForbesArticleCard";
+import ForbesArticleCard from "@/components/press/ForbesArticleCard";
 
 export const metadata = {
   title: "Adnan Ghaffar in Forbes | AI & Tech Insights | CodeAutomation",

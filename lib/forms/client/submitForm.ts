@@ -1,8 +1,8 @@
 // Sends a form to POST /api/forms with the page URL and attribution attached.
 // Every website form uses this; the server decides where the data goes.
 
-import type { FormId } from "../catalog";
-import type { FormSubmissionRequest, FormSubmissionResponse } from "../types";
+import type { FormId } from "@/lib/forms/catalog";
+import type { FormSubmissionRequest, FormSubmissionResponse } from "@/lib/forms/types";
 import { submissionContext } from "./attribution";
 
 export class FormSubmitError extends Error {

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import ScrollAnimation from "../components/ScrollAnimation";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 import Link from "next/link";
 
 async function getData() {

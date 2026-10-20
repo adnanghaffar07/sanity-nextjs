@@ -1,6 +1,6 @@
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import ButtonScrollToSection from "../../components/ButtonScrollToSection";
+import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
 async function getData() {
     const query = `*[_type == 'valueDiscoveryProcessPage'][0]`;
     try {
@@ -309,7 +309,7 @@ export default async function DiscoveryProcess() {
                         {data.ctaSection?.ctaText}
                     </p>
                     <div className="mt-8 flex justify-center md:justify-start">
-                        <ButtonScrollToSection
+                        <ScrollToSectionButton
                             content="Get Started Now"
                             classes="px-8 py-3 text-blue-900 cursor-pointer bg-white rounded-full shadow-md hover:bg-gray-100 transition duration-300"
                             destination="contact-box"
@@ -331,7 +331,7 @@ export default async function DiscoveryProcess() {
                         {data.conclusionSection?.inquiryHeading}
                     </h3>
                     <div className="mt-8 flex justify-start">
-                        <ButtonScrollToSection
+                        <ScrollToSectionButton
                             content="Contact Us"
                             classes="px-8 py-3 text-white bg-blue-900 cursor-pointer rounded-full shadow-md hover:bg-blue-700 transition duration-300"
                             destination="contact-box"

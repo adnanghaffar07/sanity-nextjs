@@ -8,7 +8,7 @@ import { submitForm } from "@/lib/forms/client/submitForm";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-const DynamicRecaptcha = dynamic(() => import("../TurnstileWidget"), {
+const DynamicRecaptcha = dynamic(() => import("@/components/forms/TurnstileWidget"), {
   ssr: false,
 });
 

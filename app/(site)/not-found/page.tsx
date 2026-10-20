@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import HomeNavigationContainer from '../components/home-navigation-container';
-import FooterContainer from '../components/footer-container';
+import SiteHeader from '@/components/layout/SiteHeader';
+import SiteFooter from '@/components/layout/SiteFooter';
 
 
 export const metadata = {
@@ -22,7 +22,7 @@ const NotFoundPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Navigation */}
-      <HomeNavigationContainer />
+      <SiteHeader />
 
       {/* 404 Content */}
       <main className="flex flex-grow items-center justify-center px-4 mt-32 pb-12">
@@ -57,7 +57,7 @@ const NotFoundPage = () => {
       </main>
 
       {/* Footer */}
-      <FooterContainer />
+      <SiteFooter />
     </div>
   );
 };

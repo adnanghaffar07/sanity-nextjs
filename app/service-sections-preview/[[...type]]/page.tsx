@@ -8,9 +8,9 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { notFound } from "next/navigation";
-import ServicePageRenderer from "../../(site)/components/service-sections/ServicePageRenderer";
-import { SAMPLE_SECTIONS } from "../../(site)/components/service-sections/sample-data";
-import { buildLinkMap } from "../../(site)/components/service-sections/links";
+import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
+import { SAMPLE_SECTIONS } from "@/components/services/page-builder/sample-data";
+import { buildLinkMap } from "@/components/services/page-builder/links";
 
 export const metadata = { robots: { index: false, follow: false } };
 

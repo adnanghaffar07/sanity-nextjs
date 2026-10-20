@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import "../globals.css";
+import "@/app/globals.css";
 
-import ConditionalNavigation from "./components/ConditionalNavigation";
-import ConditionalFooter from "./components/ConditionalFooter";
-import AttributionCapture from "./components/AttributionCapture";
+import ConditionalNavigation from "@/components/layout/ConditionalNavigation";
+import ConditionalFooter from "@/components/layout/ConditionalFooter";
+import AttributionCapture from "@/components/layout/AttributionCapture";
 
 
 /* ----------------------------- */
@@ -12,7 +12,7 @@ import AttributionCapture from "./components/AttributionCapture";
 /* ----------------------------- */
 
 const CookieConsent = dynamic(
-  () => import("./components/CookieConsent"),
+  () => import("@/components/layout/CookieConsent"),
   {
     ssr: false,
     loading: () => null,
@@ -20,7 +20,7 @@ const CookieConsent = dynamic(
 );
 
 const VisitorTracker = dynamic(
-  () => import("./components/VisitorTracker"),
+  () => import("@/components/layout/VisitorTracker"),
   {
     ssr: false,
     loading: () => null,
@@ -28,7 +28,7 @@ const VisitorTracker = dynamic(
 );
 
 const DeferredFormDisplay = dynamic(
-  () => import("./components/DeferredFormDisplay"),
+  () => import("@/components/forms/DeferredFormDisplay"),
   {
     ssr: false,
     loading: () => null,
@@ -36,7 +36,7 @@ const DeferredFormDisplay = dynamic(
 );
 
 const DeferredScrollToTop = dynamic(
-  () => import("./components/DeferredScrollToTop"),
+  () => import("@/components/layout/DeferredScrollToTop"),
   {
     ssr: false,
     loading: () => null,
@@ -44,7 +44,7 @@ const DeferredScrollToTop = dynamic(
 );
 
 const DelayedGreetingPopup = dynamic(
-  () => import("./components/greeting-popup/DelayedGreetingPopup"),
+  () => import("@/components/layout/greeting-popup/DelayedGreetingPopup"),
   {
     ssr: false,
     loading: () => null,
@@ -52,7 +52,7 @@ const DelayedGreetingPopup = dynamic(
 );
 
 const MarketingScripts = dynamic(
-  () => import("./components/MarketingScripts"),
+  () => import("@/components/layout/MarketingScripts"),
   {
     ssr: false,
     loading: () => null,

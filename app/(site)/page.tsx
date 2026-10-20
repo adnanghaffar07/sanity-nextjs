@@ -1,27 +1,27 @@
-// Home page. Each section is its own component in ./components/home; the
+// Home page. Each section is its own component in @/components/home; the
 // testimonials and FAQs come from the "Home Page" document in Sanity.
 
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getHomePageContent } from "@/sanity/lib/home";
 import ellipse from "@/public/ellipse-1.png";
-import ScrollAnimation from "./components/ScrollAnimation";
-import StatsSection from "./components/StatsSection";
-import CaseStudiesHome from "./components/CaseStudies-Home";
-import HomeHero from "./components/home/HomeHero";
-import TrustBadges from "./components/home/TrustBadges";
-import WhyTrustedSection from "./components/home/WhyTrustedSection";
-import ExpertiseSection from "./components/home/ExpertiseSection";
-import ServicesOverview from "./components/home/ServicesOverview";
-import WhoWeAre from "./components/home/WhoWeAre";
-import WhyChooseUs from "./components/home/WhyChooseUs";
-import DevelopmentApproach from "./components/home/DevelopmentApproach";
-import ConsultationCta from "./components/home/ConsultationCta";
-import ProcessSection from "./components/home/ProcessSection";
-import TechnologiesSection from "./components/home/TechnologiesSection";
-import TestimonialsSection from "./components/home/TestimonialsSection";
-import FaqSection from "./components/home/FaqSection";
-import HomeStructuredData from "./components/home/HomeStructuredData";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
+import StatsSection from "@/components/sections/StatsSection";
+import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
+import HomeHero from "@/components/home/HomeHero";
+import TrustBadges from "@/components/home/TrustBadges";
+import WhyTrustedSection from "@/components/home/WhyTrustedSection";
+import ExpertiseSection from "@/components/home/ExpertiseSection";
+import ServicesOverview from "@/components/home/ServicesOverview";
+import WhoWeAre from "@/components/home/WhoWeAre";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import DevelopmentApproach from "@/components/home/DevelopmentApproach";
+import ConsultationCta from "@/components/home/ConsultationCta";
+import ProcessSection from "@/components/home/ProcessSection";
+import TechnologiesSection from "@/components/home/TechnologiesSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
+import FaqSection from "@/components/home/FaqSection";
+import HomeStructuredData from "@/components/home/HomeStructuredData";
 
 // Static page, refreshed every 5 minutes or right away via the /api/revalidate webhook.
 export const revalidate = 300;
@@ -79,7 +79,7 @@ export default async function Home() {
         <ScrollAnimation>
           {/* Same spacing the section had before its duplicate heading was removed. */}
           <div className="flex flex-col self-center w-full mx-auto py-6 md:py-16 px-6 lg:px-10">
-            <CaseStudiesHome />
+            <CaseStudiesSection />
           </div>
         </ScrollAnimation>
         <ScrollAnimation>

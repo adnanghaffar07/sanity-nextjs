@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HeroHeadlineSlider from "./HeroHeadlineSlider";
-import HeroContactForm from "../HeroContactForm";
+import HeroContactForm from "@/components/forms/HeroContactForm";
 import HeroBackground from "./HeroBackground";
 
 const BOOK_A_CALL_URL = "https://calendly.com/adnanghaffar";

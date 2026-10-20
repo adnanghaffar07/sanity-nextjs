@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonScrollToSection from "../components/ButtonScrollToSection";
+import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
 
 const CookiePolicyPage = () => {
   return (
@@ -36,7 +36,7 @@ const CookiePolicyPage = () => {
       <div className="max-w-6xl mx-auto px-6 mt-5 bg-white rounded-md">
         <h2 className="text-md leading-7 mb-6">Click on these links to go directly to these topics:</h2>
         <ul className="list-disc list-inside text-[#14aecf] font-light  cursor-pointer text-md mb-8">
-          <ButtonScrollToSection
+          <ScrollToSectionButton
             classes="my-10"
             content="What Are Cookies and How Do We Use Them?"
             destination="what-are-cookies"
@@ -44,7 +44,7 @@ const CookiePolicyPage = () => {
           />
           <br />
           <br />
-          <ButtonScrollToSection
+          <ScrollToSectionButton
             classes="mb-10"
             content="Your Consent to the Use of Cookies"
             destination="consent-to-use-cookies"
@@ -52,7 +52,7 @@ const CookiePolicyPage = () => {
           />
           <br />
           <br />
-          <ButtonScrollToSection
+          <ScrollToSectionButton
             classes="mb-10"
             content="Blocking Cookies"
             destination="blocking-cookies"
@@ -60,7 +60,7 @@ const CookiePolicyPage = () => {
           />
           <br />
           <br />
-          <ButtonScrollToSection
+          <ScrollToSectionButton
             classes="mb-10"
             content="Types of Cookies We Use"
             destination="types-of-cookies"
@@ -68,7 +68,7 @@ const CookiePolicyPage = () => {
           />
           <br />
           <br />
-          <ButtonScrollToSection
+          <ScrollToSectionButton
             classes=""
             content="Details of Specific Cookies"
             destination="specific-cookies"

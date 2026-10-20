@@ -1,20 +1,20 @@
 'use client';
 
 import React from 'react';
-import MarketingAutomationHero from './components/MarketingAutomationHero';
-import PainPointsSection from './components/PainPointsSection';
-import ServicesSection from './components/ServicesSection';
-import ChannelCoverageSection from './components/ChannelCoverageSection';
-import TechStackSection from './components/TechStackSection';
-import ProcessSection from './components/ProcessSection';
-import ResultsSection from './components/ResultsSection';
-import WhyChooseUsSection from './components/WhyChooseUsSection';
-import IndustriesSection from './components/IndustriesSection';
-import CTABannerSection from './components/CTABannerSection';
-import LiveChatTawk from '../../components/LiveChatTawk';
-import MarketingHeader from './components/Header';
-import ContactFormSection from './components/ContactFormSection';
-import StatsSection from '../../components/StatsSection';
+import MarketingAutomationHero from '@/components/services/marketing-automation/MarketingAutomationHero';
+import PainPointsSection from '@/components/services/marketing-automation/PainPointsSection';
+import ServicesSection from '@/components/services/marketing-automation/ServicesSection';
+import ChannelCoverageSection from '@/components/services/marketing-automation/ChannelCoverageSection';
+import TechStackSection from '@/components/services/marketing-automation/TechStackSection';
+import ProcessSection from '@/components/services/marketing-automation/ProcessSection';
+import ResultsSection from '@/components/services/marketing-automation/ResultsSection';
+import WhyChooseUsSection from '@/components/services/marketing-automation/WhyChooseUsSection';
+import IndustriesSection from '@/components/services/marketing-automation/IndustriesSection';
+import CTABannerSection from '@/components/services/marketing-automation/CTABannerSection';
+import LiveChatTawk from '@/components/layout/LiveChatTawk';
+import MarketingHeader from '@/components/services/marketing-automation/Header';
+import ContactFormSection from '@/components/services/marketing-automation/ContactFormSection';
+import StatsSection from '@/components/sections/StatsSection';
 
 export default function MarketingAutomationPage() {
   return (

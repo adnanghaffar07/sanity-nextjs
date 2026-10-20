@@ -1,5 +1,5 @@
 import type { ServiceSummaryContent } from "@/sanity/lib/service-summary";
-import SanityLogo from "../SanityLogo";
+import SanityLogo from "@/components/ui/SanityLogo";
 
 // How projects are tracked and how invoices are paid, side by side.
 export default function ToolsAndPayments({

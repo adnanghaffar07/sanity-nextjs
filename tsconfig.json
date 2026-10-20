@@ -18,6 +18,7 @@
       }
     ],
     "paths": {
+      "@/components/*": ["./app/(site)/components/*"],
       "@/*": ["./*"]
     },
     "target": "ES2022"   // ✅ modern target
