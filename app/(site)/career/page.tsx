@@ -1,258 +1,38 @@
-import CareerPost from "../components/CareerPost";
-import { client } from "../../../sanity/lib/client";
+// Careers page. The sections are in ./components/careers; the job cards come
+// from "Job Openings" in Sanity.
 
-export const metadata = {
-  title: "Careers at CodeAutomation | Join Our Team",
-  description:
-    "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
-  keywords: [
-    "CodeAutomation",
-    "software development company",
-    "software development services",
-  ],
-  alternates: {
-    canonical: "https://codeautomation.ai/career", // ✅ Fixes the canonical error
-  },
-  openGraph: {
-    type: "website",
-    url: "https://codeautomation.ai/career",
-    title: "Careers at CodeAutomation | Join Our Team",
-    description:
-      "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
-    images: [
-      {
-        url: "https://codeautomation.ai/thankyou.jpg",
-        width: 1200,
-        height: 630,
-        alt: "CodeAutomation Logo",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Careers at CodeAutomation | Join Our Team",
-    description:
-      "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.",
-    images: ["https://codeautomation.ai/thankyou.jpg"],
-  },
+import type { Metadata } from "next";
+import { getJobOpenings } from "@/sanity/lib/careers";
+import CareersHero from "../components/careers/CareersHero";
+import CareersIntro from "../components/careers/CareersIntro";
+import OpenRoles from "../components/careers/OpenRoles";
+import PerksSection from "../components/careers/PerksSection";
+
+// Refreshed every 5 minutes, or right away via the /api/revalidate webhook.
+export const revalidate = 300;
+
+const TITLE = "Careers at CodeAutomation | Join Our Team";
+const DESCRIPTION =
+  "Join Code Automation to work with world-class developers, explore open roles, and grow in AI and software with flexible benefits and career advancement.";
+const SHARE_IMAGE = { url: "/thankyou.jpg", width: 1200, height: 630, alt: "CodeAutomation" };
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/career" },
+  openGraph: { type: "website", url: "/career", title: TITLE, description: DESCRIPTION, images: [SHARE_IMAGE] },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, images: [SHARE_IMAGE.url] },
 };
-async function getData() {
-  const query = `*[_type == 'careers']`;
-  try {
-    const fetchData = await client.fetch(query);
-    return fetchData || [];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-}
 
-const Career: React.FC = async () => {
-  const data = await getData();
-
-  type BenefitItemProps = {
-    imageSrc: string;
-    imageAlt: string;
-    title: string;
-  };
-
-  const BenefitItem: React.FC<BenefitItemProps> = ({
-    imageSrc,
-    imageAlt,
-    title,
-  }) => (
-    <div className="flex flex-col">
-      <img
-        src={imageSrc}
-        alt={imageAlt}
-        className="self-center aspect-[1] w-[100px]"
-      />
-      <div className="mt-2">{title}</div>
-    </div>
-  );
-  const benefits = [
-    { imageSrc: "/time.png", imageAlt: "time", title: "Flexible Timings" },
-    {
-      imageSrc: "/fuel-allowance.png",
-      imageAlt: "fuel",
-      title: "Fuel Allowance",
-    },
-    {
-      imageSrc: "/paid-leaves.png",
-      imageAlt: "Paid Leaves",
-      title: "Paid Leaves",
-    },
-    {
-      imageSrc: "/annual-trip.png",
-      imageAlt: "Annual Trip",
-      title: "Annual Trip",
-    },
-    {
-      imageSrc: "/medical.png",
-      imageAlt: "Medical Coverage",
-      title: "Medical Coverage",
-    },
-    {
-      imageSrc: "/annual-ic.png",
-      imageAlt: "Annual Increment",
-      title: "Annual Increment",
-    },
-    { imageSrc: "/bonuses.png", imageAlt: "Bonuses", title: "Bonuses" },
-  ];
+export default async function CareersPage() {
+  const jobs = await getJobOpenings();
 
   return (
     <div>
-      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <img
-          className="top-0 left-0 object-cover absolute inset-0 size-full"
-          src="/career.jpg"
-          alt="lifeatca"
-        />
-        <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
-        <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
-          <div className="lg:absolute lg:top-[300px]">
-            <h1 className="lg:text-4xl title text-2xl font-bold text-center max-lg:mt-0 lg:w-8/12 mx-auto">
-              Be a part of our next story
-            </h1>
-            <h2 className="lg:text-2xl text-base text-center mt-4 max-md:max-w-full lg:px-32">
-              Join our team and be part of the next success story in
-              CodeAutomation careers. Unlock your potential today!
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center items-center lg:px-10 md:px-5 lg:py-16 py-8 w-full text-black bg-blue-50 leading-[100%] max-md:px-5 max-md:max-w-full">
-        <div className="flex flex-col w-full max-w-[1582px] max-md:my-10 max-md:max-w-full">
-          <h2 className="self-center xl:text-5xl lg:text-4xl text-3xl xl:w-9/12 mx-auto text-center max-md:max-w-full lg:mb-5 mb-2.5">
-            Grow and Collaborate with the Top Professionals in the Field
-          </h2>
-          <div className="xl:w-9/12 mx-auto text-center">
-            <p className="lg:text-xl text-base">
-              We pick applicants based on their skill set, mentality, and
-              enthusiasm when hiring. You&rsquo;ll share knowledge, grow
-              together, and use your inventions to produce extraordinary
-              outcomes.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="max-w-full mx-auto relative">
-        <img
-          loading="lazy"
-          src="/intersect-left.png"
-          alt="rounded-icon"
-          className="absolute left-0 top-48 lg:block hidden"
-        />
-        <div className="flex flex-col self-center max-w-[1440px] mx-auto relative z-10 mx-auto">
-          <div className="lg:px-10 px-6 w-full">
-            <div className="grid lg:grid-cols-2 gap-5">
-              <div className="xl:pr-10 lg:order-1 order-1 relative self-center">
-                <img
-                  loading="lazy"
-                  src="/intersect-left.png"
-                  alt="rounded-icon"
-                  className="w-20 absolute -left-5 top-0 lg:hidden block -z-10"
-                />
-                <h3 className="text-3xl lg:text-5xl pt-10  md:pt-0 mb-3 text-black">
-                  Make Your Own Trajectory with Your Own Assistance
-                </h3>
-                <div className="mb-10">
-                  <p className="lg:text-lg text-base text-black">
-                    We support and encourage our team members as they pursue
-                    their goals. Whether it&rsquo;s a move up or a step sideways
-                    into a career you&rsquo;ve always desired, our senior
-                    leadership team will regularly work with you to establish
-                    your next steps.
-                  </p>
-                </div>
-              </div>
-              <div className="text-center lg:order-2 order-2">
-                <img
-                  loading="lazy"
-                  src="/career1.svg"
-                  alt="career logo"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  width={532}
-                  height={532}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex gap-5 max-md:flex-wrap lg:px-10 lg:pt-0 lg:pb-0 px-6 py-8 md:px-5 w-full mx-auto relative">
-        <img
-          loading="lazy"
-          src="/ellipse-2.png"
-          alt="career logo"
-          className="absolute right-0 -top-36"
-        />
-        <div className="flex flex-col w-full max-w-[1582px] mx-auto">
-          {/* <div className="text-center mt-6">
-            <h3 className="xl:text-5xl lg:text-4xl text-3xl mb-6 text-black">
-              Open Vacancies
-            </h3>
-            <div className="mb-14">
-              <p className="text-lg lg:text-xl text-base text-black">
-                Are you passionate about building your career with opportunities
-                to learn and lead?
-              </p>
-            </div>
-          </div> */}
-          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[80px] sm:gap-y-[50px] sm:gap-[30px] xl:gap-[70px] max-w-[1440px] sm:my-20">
-            {data.map((jobpost: any) => (
-              <div key={jobpost._id}>
-                <CareerPost jobpost={jobpost} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="max-w-full mx-auto relative">
-        <div className="flex flex-col mx-auto self-center w-full max-w-[1440px] max-md:max-w-full relative z-10 mx-auto">
-          <div className="lg:px-10 px-6 w-full">
-            <div className="grid lg:grid-cols-2 gap-5 lg:py-16 py-8">
-              <div className="text-center">
-                <img
-                  loading="lazy"
-                  src="/career2.svg"
-                  alt="benefits"
-                  className="lg:w-3/4 md:w-1/2 w-3/4 inline-block"
-                  width={532}
-                  height={532}
-                />
-              </div>
-              <div className="xl:pr-10 relative text-left md:text-right">
-                <h3 className="xl:text-5xl lg:text-4xl text-3xl mb-3 text-black">
-                  Perks & Benefits
-                </h3>
-                <div className="mb-10">
-                  <p className="lg:text-lg text-base text-black text-left md:text-right">
-                    Get special perks and benefits such as flexible schedules
-                    and career advancement chances. Join us and advance your
-                    career in CodeAutomation today.
-                  </p>
-                </div>
-
-                <section className="flex flex-wrap gap-5 justify-start md:justify-end px-4.5 mt-7 text-xs text-center text-black text-md text-black">
-                  <div className="grid grid-cols-3 gap-4 sm:gap-5 sm:justify-center">
-                    {benefits.slice(0, 3).map((benefit, index) => (
-                      <BenefitItem key={index} {...benefit} />
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-4 gap-4 sm:gap-5 sm:justify-center">
-                    {benefits.slice(3, 8).map((benefit, index) => (
-                      <BenefitItem key={index + 3} {...benefit} />
-                    ))}
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CareersHero />
+      <CareersIntro />
+      <OpenRoles jobs={jobs} />
+      <PerksSection />
     </div>
   );
-};
-
-export default Career;
+}

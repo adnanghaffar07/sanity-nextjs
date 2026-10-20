@@ -297,8 +297,9 @@ const nextConfig = {
         permanent: true,
       },
 
+      // Job detail pages were removed; old job links go to the careers page.
       {
-        source: "/career/drafts.:path*",
+        source: "/career/:path+",
         destination: "/career",
         permanent: true,
       },

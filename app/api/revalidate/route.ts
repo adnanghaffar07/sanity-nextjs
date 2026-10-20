@@ -3,7 +3,7 @@
 // Set up in sanity.io/manage → API → Webhooks:
 //   URL:        https://codeautomation.ai/api/revalidate
 //   Trigger on: create, update, delete
-//   Filter:     _type in ["homePage", "caseStudy", "caseStudiesPage"]
+//   Filter:     _type in ["homePage", "caseStudy", "caseStudiesPage", "servicePage", "logicalServices", "subService", "techLogos", "careers", "technologies", "technologiesPage"]
 //   Projection: { _type }
 //   Secret:     same value as SANITY_REVALIDATE_SECRET in the site's environment
 // Each published type refreshes the pages that use its cache tag.

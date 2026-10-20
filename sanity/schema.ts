@@ -1,11 +1,11 @@
 import { type SchemaTypeDefinition } from "sanity";
-import careers from "./schemas/careers-job";
-import technologies from "./schemas/technologies";
+import { careers } from "./schemas/careers";
+import { technology, technologyOrder } from "./schemas/technologies";
 import {
   logicalServices,
   subServiceSchema,
-  techLogos,
 } from "./schemas/logical-services";
+import { techLogo } from "./schemas/tech-logo";
 import partnershipSchema from "./schemas/partnership";
 import serviceSummary from "./schemas/service-summary";
 import valueBlueprints from "./schemas/value-bueprints";
@@ -17,7 +17,7 @@ import paymentPlan from "./schemas/payment-plan";
 import table from "./schemas/table";
 import youtubeEmbed from "./schemas/youtubeEmbed";
 import blockContent from "./schemas/blockContent";
-import resume from "./schemas/resume";
+import { resumeSubmission } from "./schemas/resume-submission";
 import terms from "./schemas/terms";
 import visitor from "./schemas/visitor";
 import { servicePageTypes } from "./schemas/service-page";
@@ -29,12 +29,13 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     terms,
     careers,
-    technologies,
+    technology,
+    technologyOrder,
     logicalServices,
     subServiceSchema,
     news,
     lifeAtCa,
-    techLogos,
+    techLogo,
     partnershipSchema,
     serviceSummary,
     valueBlueprints,
@@ -42,7 +43,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     table,
     user,
     paymentPlan, youtubeEmbed, blockContent,
-    resume, visitor,
+    resumeSubmission, visitor,
     // New section-based service pages (legacy services above are unchanged)
     ...servicePageTypes,
     // Blog Post, Case Study, Value Blueprint and the Case Study Order

@@ -20,7 +20,7 @@ import {
 import { TbBrandTeams, TbBrandAzure, TbBrandOffice, TbBrandOnedrive } from "react-icons/tb";
 import {
   MessageSquare, MessageSquareText, Mail, PhoneCall, Plug, Database, Library,
-  Rocket, Workflow, Globe, Code2, Smartphone,
+  Rocket, Workflow, Globe, Code2, Smartphone, Network, Users, Bot, BookOpenText,
 } from "lucide-react";
 
 export type BrandIcon = ComponentType<{ className?: string; style?: CSSProperties; size?: number | string }>;
@@ -42,6 +42,12 @@ export const BRANDS: Brand[] = [
   b("langchain", "LangChain", SiLangchain, "#1C3C3C", "AI"),
   b("llamaindex", "LlamaIndex", Library, "#6B46C1", "AI"),
   b("pinecone", "Pinecone", Database, "#111111", "AI"),
+  // No official icons available; generic icons with the brand colour.
+  b("langgraph", "LangGraph", Network, "#1C3C3C", "AI"),
+  b("crewai", "CrewAI", Users, "#FF5A50", "AI"),
+  b("autogen", "AutoGen", Bot, "#0078D4", "AI"),
+  b("vectordb", "Vector databases", Database, "#1D92FB", "AI"),
+  b("rag", "RAG", BookOpenText, "#1D92FB", "AI"),
 
   // Channels
   b("webchat", "Web chat", MessageSquare, "#1D92FB", "Channels"),

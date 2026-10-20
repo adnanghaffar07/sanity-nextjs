@@ -464,21 +464,28 @@ export function ImageCardsSection({ data, links, anchorId }: { data: ImageCardsD
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {(data.items || []).map((item) => (
             <article key={item._key} className="group flex flex-col rounded-3xl bg-white shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <div className="relative p-3 pb-0">
-                <div className="overflow-hidden rounded-2xl bg-gray-50 aspect-video">
-                  <SanityImage
-                    image={item.image}
-                    width={800}
-                    height={450}
-                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                    className="aspect-video w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+              {item.image?.asset ? (
+                <div className="relative p-3 pb-0">
+                  <div className="overflow-hidden rounded-2xl bg-gray-50 aspect-video">
+                    <SanityImage
+                      image={item.image}
+                      width={800}
+                      height={450}
+                      sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                      className="aspect-video w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="absolute left-7 -bottom-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1D92FB] text-white shadow-lg ring-4 ring-white">
+                    <Icon name={item.icon} className="w-6 h-6" />
+                  </span>
                 </div>
-                <span className="absolute left-7 -bottom-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1D92FB] text-white shadow-lg ring-4 ring-white">
+              ) : (
+                // No image yet: just the icon, so the card has no empty grey box.
+                <span className="mx-6 mt-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1D92FB] text-white shadow-lg">
                   <Icon name={item.icon} className="w-6 h-6" />
                 </span>
-              </div>
-              <div className="flex flex-col grow px-6 pt-10 pb-6">
+              )}
+              <div className={`flex flex-col grow px-6 pb-6 ${item.image?.asset ? "pt-10" : "pt-5"}`}>
                 <h3 className="text-lg sm:text-xl font-bold text-black">
                   <SmartLink link={item.link} links={links} fallbackAs="span" className="hover:text-[#1D92FB] transition-colors">
                     {item.title}

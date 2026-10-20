@@ -5,6 +5,13 @@
 
 import { client } from "@/sanity/lib/client";
 
+// Service page content refreshes every 5 minutes, or right away via the
+// /api/revalidate webhook (tagged by document type). Without this, Next caches
+// the Sanity response until the next deploy.
+export const SERVICE_FETCH_OPTIONS = {
+  next: { revalidate: 300, tags: ["servicePage", "logicalServices", "subService", "techLogos"] },
+};
+
 export type LinkTarget = {
   _id: string;
   _type: "servicePage" | "logicalServices" | "subService" | string;
@@ -70,7 +77,8 @@ export async function buildLinkMap(value: unknown): Promise<LinkMap> {
         urlPath, urlPathSub,
         "legacyParent": *[_type == "logicalServices" && references(^._id)][0].urlPath
       }`,
-      { ids }
+      { ids },
+      SERVICE_FETCH_OPTIONS
     );
     const map: LinkMap = {};
     for (const t of targets) {

@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Layers } from "lucide-react";
 import { client } from "@/sanity/lib/client";
+import { SERVICE_FETCH_OPTIONS } from "./links";
 import { urlForImage } from "@/sanity/lib/image";
 import type { LinkMap } from "./links";
 import { SectionHeader, SectionShell } from "./primitives";
@@ -46,7 +47,8 @@ async function loadCards(pageId?: string, pageSlug?: string): Promise<SubService
           _id, urlPathSub, serviceCardSub, serviceDescSub, heroImageSub
         }
       }`,
-      { id, slug: pageSlug }
+      { id, slug: pageSlug },
+      SERVICE_FETCH_OPTIONS
     );
 
     const toNewCard = (p: any): SubServiceCard => ({

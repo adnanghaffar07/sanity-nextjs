@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { urlForImage } from "@/sanity/lib/image";
+import { isSvgImage, urlForImage } from "@/sanity/lib/image";
 import { resolveLink, type LinkMap, type SpLink } from "./links";
 import { Icon } from "./icons";
 
@@ -244,6 +244,7 @@ export function SanityImage({
       height={height}
       sizes={sizes}
       priority={priority}
+      unoptimized={isSvgImage(image as any)}
       className={className}
     />
   );

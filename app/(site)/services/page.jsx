@@ -4,6 +4,7 @@ import ScrollAnimation from "../components/ScrollAnimation";
 import ServicesHeroSection from "./components/ServicesHeroSection";
 import { urlForImage } from "@/sanity/lib/image";
 import { client } from "../../../sanity/lib/client";
+import { SERVICE_FETCH_OPTIONS } from "../components/service-sections/data";
 import ServicesCard from "../components/Services-Cards";
 import MANUAL_SERVICES from "./manual-services";
 
@@ -91,8 +92,8 @@ async function getData() {
   }`;
   try {
     const [legacy, newPages] = await Promise.all([
-      client.fetch(query).then((r) => r || []),
-      client.fetch(newPagesQuery).then((r) => r || []).catch(() => []),
+      client.fetch(query, {}, SERVICE_FETCH_OPTIONS).then((r) => r || []),
+      client.fetch(newPagesQuery, {}, SERVICE_FETCH_OPTIONS).then((r) => r || []).catch(() => []),
     ]);
     // A new page replaces the legacy card with the same URL (it also replaces
     // the legacy page itself on /services/<urlPath>).

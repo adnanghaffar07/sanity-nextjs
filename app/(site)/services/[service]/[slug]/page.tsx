@@ -5,13 +5,13 @@ import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ServicePageRenderer from "../../../components/service-sections/ServicePageRenderer";
-import { getServicePageWithLinks, servicePageMetadata } from "../../../components/service-sections/data";
+import { getServicePageWithLinks, servicePageMetadata, SERVICE_FETCH_OPTIONS } from "../../../components/service-sections/data";
 
 async function getData(urlPathSub: string) {
   if (!urlPathSub) return null; // ✅ Prevents undefined errors
   const query = `*[_type == 'subService' && urlPathSub == '${urlPathSub}'][0]`;
   try {
-    return await client.fetch(query);
+    return await client.fetch(query, {}, SERVICE_FETCH_OPTIONS);
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
@@ -21,7 +21,7 @@ async function getData(urlPathSub: string) {
 async function getLogoData() {
   const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
   try {
-    return await client.fetch(queryLogo);
+    return await client.fetch(queryLogo, {}, SERVICE_FETCH_OPTIONS);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];

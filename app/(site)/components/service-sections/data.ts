@@ -3,7 +3,9 @@
 import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
-import { buildLinkMap, servicePagePath, type LinkMap } from "./links";
+import { buildLinkMap, servicePagePath, SERVICE_FETCH_OPTIONS, type LinkMap } from "./links";
+
+export { SERVICE_FETCH_OPTIONS };
 import type { ServiceSection } from "./ServicePageRenderer";
 
 export type ServicePageDoc = {
@@ -38,7 +40,8 @@ export async function getServicePage(slug: string, parentSlug?: string): Promise
         "slug": slug.current,
         "parentSlug": coalesce(parent->slug.current, parent->urlPath)
       }`,
-      { slug, parent: parentSlug ?? "" }
+      { slug, parent: parentSlug ?? "" },
+      SERVICE_FETCH_OPTIONS
     );
   } catch (error) {
     console.error("Error fetching service page:", error);

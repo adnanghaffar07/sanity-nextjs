@@ -18,13 +18,13 @@ import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../components/PortableTextServices";
 import { notFound } from "next/navigation";
 import ServicePageRenderer from "../../components/service-sections/ServicePageRenderer";
-import { getServicePageWithLinks, servicePageMetadata } from "../../components/service-sections/data";
+import { getServicePageWithLinks, servicePageMetadata, SERVICE_FETCH_OPTIONS } from "../../components/service-sections/data";
 
 async function getData(service: string) {
   if (!service) return null; // ✅ Prevents undefined errors
   const query = `*[_type == 'logicalServices' && urlPath == '${service}'][0]`;
   try {
-    return await client.fetch(query);
+    return await client.fetch(query, {}, SERVICE_FETCH_OPTIONS);
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
@@ -34,7 +34,7 @@ async function getData(service: string) {
 async function getSubData() {
   const querySub = `*[_type == 'subService'] | order(_createdAt asc)`;
   try {
-    return await client.fetch(querySub);
+    return await client.fetch(querySub, {}, SERVICE_FETCH_OPTIONS);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
@@ -44,7 +44,7 @@ async function getSubData() {
 async function getLogoData() {
   const queryLogo = `*[_type == 'techLogos'] | order(_createdAt asc)`;
   try {
-    return await client.fetch(queryLogo);
+    return await client.fetch(queryLogo, {}, SERVICE_FETCH_OPTIONS);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
