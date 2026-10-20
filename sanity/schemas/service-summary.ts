@@ -1,581 +1,186 @@
-const serviceSummary = {
-    name: "serviceSummary",
-    title: "Service Summary",
-    type: "document",
-    fields: [
-        // General Page Fields
+// "Service Summary": the content of /about/service-summary. One document only
+// (see sanity.config.ts). Only fields the page shows are listed; field names are
+// the stored keys (including "projectCycleHaeding"), so they must not change.
+// Old unused fields are removed from the data by scripts/cleanup-service-summary.mjs.
 
-        {
-            name: "heroImage",
-            title: "Hero Image",
-            type: "image",
-            options: { hotspot: true },
-            fields: [
-                {
-                    name: "alt",
-                    title: "Alt",
-                    type: "string",
-                },
-            ],
-        },
-        {
-            name: "pageTitle",
-            title: "Page Title",
-            type: "string",
-        },
-        {
-            name: "pageDesc",
-            title: "Description",
-            type: "string",
-        },
+import { defineField, defineType } from "sanity";
+import { DocumentTextIcon } from "@sanity/icons";
+import { TECH_LOGO_TYPE } from "./tech-logo";
 
+export const SERVICE_SUMMARY_TYPE = "serviceSummary";
 
-        // Introduction Section
-        {
-            name: "introductionSection",
-            title: "Introduction Section",
-            type: "object",
-            fields: [
-                {
-                    name: "introHeading",
-                    title: "Intro Heading",
-                    type: "string",
-                },
-                {
-                    name: "introDesc",
-                    title: "Intro Description",
-                    type: "text",
-                },
-                {
-                    name: "introImage",
-                    title: "Intro Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
+const imageWithAlt = (name: string, title: string, description?: string) =>
+  defineField({
+    name,
+    title,
+    type: "image",
+    description,
+    options: { hotspot: true },
+    fields: [defineField({ name: "alt", title: "Alt text", type: "string", description: "Leave empty if decorative." })],
+  });
 
-        // Detail Section
+const heading = (name: string, title = "Heading") => defineField({ name, title, type: "string" });
+const text = (name: string, title: string) => defineField({ name, title, type: "text", rows: 3 });
 
-        {
-            name: 'detailSection',
-            title: 'Detail Section',
-            type: 'object',
-            fields: [
-                {
-                    name: "heading",
-                    title: "Heading",
-                    type: "string",
-                },
-                {
-                    name: 'detailInd',
-                    title: 'Individual Detail',
-                    type: 'array',
-                    of: [
-                        {
-                            type: 'object',
-                            fields: [
-                                {
-                                    name: 'title',
-                                    title: 'Title',
-                                    type: 'string',
-                                },
-                                {
-                                    name: 'smDescription',
-                                    title: 'Small Description',
-                                    type: 'string',
-                                },
-                                {
-                                    name: 'description',
-                                    title: 'Description',
-                                    type: 'text',
-                                },
-                                {
-                                    name: 'benefits',
-                                    title: 'Key Benefits Heading',
-                                    type: 'string',
-                                },
-                                {
-                                    name: 'keyBenefits',
-                                    title: 'Key Benefits',
-                                    type: 'array',
-                                    of: [
-                                        {
-                                            type: 'string',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        },
+// A card with a heading, a short line and logos picked from Technology Logos.
+const logoCard = {
+  type: "object" as const,
+  fields: [
+    defineField({ name: "heading", title: "Name", type: "string" }),
+    defineField({ name: "detail", title: "Short description", type: "string" }),
+    defineField({
+      name: "images",
+      title: "Logos",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: TECH_LOGO_TYPE }] }],
+    }),
+  ],
+  preview: { select: { title: "heading", subtitle: "detail", media: "images.0.image" } },
+};
 
+export const serviceSummary = defineType({
+  name: SERVICE_SUMMARY_TYPE,
+  title: "Service Summary",
+  type: "document",
+  icon: DocumentTextIcon,
+  groups: [
+    { name: "top", title: "Top & intro", default: true },
+    { name: "options", title: "Service options" },
+    { name: "process", title: "Tools & process" },
+    { name: "closing", title: "Summary & offers" },
+    { name: "payments", title: "Payments" },
+    { name: "seo", title: "SEO" },
+  ],
+  fields: [
+    { ...imageWithAlt("heroImage", "Hero image", "Background of the top section. Also used when the page is shared."), group: "top" },
+    defineField({ name: "pageTitle", title: "Page title", type: "string", group: "top" }),
+    defineField({ name: "pageDesc", title: "Subtitle", type: "string", group: "top" }),
+    defineField({
+      name: "introductionSection",
+      title: "Introduction",
+      type: "object",
+      group: "top",
+      fields: [heading("introHeading"), text("introDesc", "Text")],
+    }),
 
-        // Project Mangement Section
-        {
-            name: "projectManagement",
-            title: "Project Mangement",
-            type: "object",
-            fields: [
-                {
-                    name: 'projectHeading',
-                    title: 'Heading',
-                    type: 'string',
-                },
+    defineField({
+      name: "detailSection",
+      title: "Service delivery options",
+      type: "object",
+      group: "options",
+      fields: [
+        heading("heading"),
+        defineField({
+          name: "detailInd",
+          title: "Options",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({ name: "title", title: "Name", type: "string" }),
+                defineField({ name: "smDescription", title: "Tagline", type: "string" }),
+                defineField({ name: "description", title: "Description", type: "text", rows: 4 }),
+                defineField({ name: "keyBenefits", title: "Key benefits", type: "array", of: [{ type: "string" }] }),
+              ],
+              preview: { select: { title: "title", subtitle: "smDescription" } },
+            },
+          ],
+        }),
+      ],
+    }),
 
-                {
-                    "name": "toolsTech",
-                    "title": "Tools and Tech",
-                    "type": "array",
-                    "of": [
-                        {
-                            "type": "object",
-                            "fields": [
-                                {
-                                    "name": "heading",
-                                    "title": "Heading",
-                                    "type": "string"
-                                },
-                                {
-                                    "name": "detail",
-                                    "title": "Detail",
-                                    "type": "string"
-                                },
-                                {
-                                    name: "images",
-                                    title: "Images",
-                                    type: "array",
-                                    of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
-                                }
-                            ]
-                        }
-                    ]
-                }
-                ,
-                {
-                    name: "techImage",
-                    title: "Tech Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
+    defineField({
+      name: "projectManagement",
+      title: "Project management tools",
+      type: "object",
+      group: "process",
+      fields: [heading("projectHeading"), defineField({ name: "toolsTech", title: "Tools", type: "array", of: [logoCard] })],
+    }),
+    defineField({
+      name: "projectCycleSection",
+      title: "Project cycle",
+      type: "object",
+      group: "process",
+      fields: [
+        heading("projectCycleHaeding"),
+        defineField({
+          name: "projectLifeCycle",
+          title: "Steps",
+          type: "array",
+          description: "Numbered automatically in this order.",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({ name: "heading", title: "Step", type: "string" }),
+                defineField({ name: "detail", title: "Description", type: "text", rows: 3 }),
+              ],
+              preview: { select: { title: "heading" } },
+            },
+          ],
+        }),
+      ],
+    }),
 
-        // Project cycle
-        {
-            name: "projectCycleSection",
-            title: "Project Cycle Section",
-            type: "object",
-            fields: [
-                {
-                    name: "projectCycleHaeding",
-                    title: "Project Cycle Heading",
-                    type: "string",
-                },
+    defineField({
+      name: "summarySection",
+      title: "Summary",
+      type: "object",
+      group: "closing",
+      fields: [heading("summaryHeading"), text("summaryMessage", "Text"), imageWithAlt("summaryImg", "Image")],
+    }),
+    defineField({
+      name: "callToActionSection",
+      title: "Call to action",
+      type: "object",
+      group: "closing",
+      description: "The \"Get Started Now\" button scrolls to the contact form.",
+      fields: [heading("callToActionHeading"), text("callToAction", "Text")],
+    }),
+    defineField({
+      name: "specialOffersSection",
+      title: "Special offer",
+      type: "object",
+      group: "closing",
+      description: "The \"Claim Offer\" button scrolls to the contact form.",
+      fields: [heading("offerHeading"), text("specialOffer", "Text")],
+    }),
 
-                {
-                    name: 'projectLifeCycle',
-                    title: 'Project LifeCycle',
-                    type: 'array',
-                    of: [
-                        {
-                            "type": "object",
-                            "fields": [
-                                {
-                                    "name": "heading",
-                                    "title": "Heading",
-                                    "type": "string"
-                                },
-                                {
-                                    "name": "detail",
-                                    "title": "Detail",
-                                    "type": "string"
-                                },
-                            ]
-                        }
-                    ],
-                },
-                {
-                    name: "projectCycleImg",
-                    title: "Project Cycle Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
+    defineField({
+      name: "paymentOption",
+      title: "Payment options",
+      type: "object",
+      group: "payments",
+      fields: [
+        heading("paymentHeading"),
+        defineField({ name: "paymentDetail", title: "Text", type: "string" }),
+        defineField({ name: "paymentTools", title: "Payment methods", type: "array", of: [logoCard] }),
+      ],
+    }),
 
-        // Summary Section
-        {
-            name: "summarySection",
-            title: "Summary Section",
-            type: "object",
-            fields: [
-                {
-                    name: "summaryHeading",
-                    title: "Summary Heading",
-                    type: "string",
-                },
-                {
-                    name: "summaryMessage",
-                    title: "Summary Message",
-                    type: "text",
-                },
-                {
-                    name: "summaryImg",
-                    title: "Summary Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // Call to Action Section
-        {
-            name: "callToActionSection",
-            title: "Call To Action Section",
-            type: "object",
-            fields: [
-                {
-                    name: "callToActionHeading",
-                    title: "Heading",
-                    type: "string",
-                },
-                {
-                    name: "callToAction",
-                    title: "Call To Action",
-                    type: "text",
-                },
-                {
-                    name: "callToActionImg",
-                    title: "Call to Action Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
-        // Special Offers Section
-        {
-            name: "specialOffersSection",
-            title: "Special Offers Section",
-            type: "object",
-            fields: [
-                {
-                    name: "offerHeading",
-                    title: "Offer Heading",
-                    type: "string",
-                },
-                {
-                    name: "specialOffer",
-                    title: "Special Offer",
-                    type: "text",
-                },
-                {
-                    name: "offerImg",
-                    title: "Offer Image",
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // Payment Options
-        {
-            name: "paymentOption",
-            title: "Payment Option",
-            type: "object",
-            fields: [
-                {
-                    name: 'paymentHeading',
-                    title: 'Heading',
-                    type: 'string',
-                },
-                {
-                    name: 'paymentDetail',
-                    title: 'Detail',
-                    type: 'string',
-                },
-
-                {
-                    "name": "paymentTools",
-                    "title": "Tools and Tech",
-                    "type": "array",
-                    "of": [
-                        {
-                            "type": "object",
-                            "fields": [
-                                {
-                                    "name": "heading",
-                                    "title": "Heading",
-                                    "type": "string"
-                                },
-                                {
-                                    "name": "detail",
-                                    "title": "Detail",
-                                    "type": "string"
-                                },
-                                {
-                                    name: "images",
-                                    title: "Images",
-                                    type: "array",
-                                    of: [{ type: "reference", to: [{ type: "techLogos" }] }] // Reference techLogos schema here
-                                }
-                            ]
-                        }
-                    ]
-                }
-                ,
-
-            ],
-        },
-
-
-        // Web SEO Metadata
-        {
-            name: "webSeoMetadata",
-            title: "Web SEO Metadata",
-            type: "object",
-            fields: [
-                {
-                    name: "title",
-                    title: "Title",
-                    type: "string",
-                },
-                {
-                    name: "description",
-                    title: "Description",
-                    type: "text",
-                },
-                {
-                    name: "keywords",
-                    title: "Keywords",
-                    type: "array",
-                    of: [{ type: "string" }],
-                },
-            ],
-        },
-
-        // Open Graph Protocol (OGP)
-
-        {
-            name: 'facebool',
-            title: 'Facebook Meta',
-            type: 'object',
-            fields: [
-                {
-                    name: 'title',
-                    title: 'Title',
-                    type: 'string',
-                },
-                {
-                    name: 'description',
-                    title: 'Description',
-                    type: 'text',
-                },
-                {
-                    name: 'url',
-                    title: 'URL',
-                    type: 'url',
-                },
-                {
-                    name: 'image',
-                    title: 'Image',
-                    type: 'image',
-                    options: {
-                        hotspot: true,
-                    },
-                },
-                {
-                    name: 'type',
-                    title: 'Type',
-                    type: 'string',
-                },
-            ],
-        },
-
-        // Twitter Cards
-        {
-            name: 'twitterhMeta',
-            title: 'Twitter Meta',
-            type: 'object',
-            fields: [
-                {
-                    name: 'title',
-                    title: 'Twitter Title',
-                    type: 'string',
-                },
-                {
-                    name: 'description',
-                    title: 'Description',
-                    type: 'text',
-                },
-                {
-                    name: 'url',
-                    title: 'URL',
-                    type: 'url',
-                },
-                {
-                    name: 'image',
-                    title: 'Image',
-                    type: 'image',
-                    options: {
-                        hotspot: true,
-                    },
-                },
-            ],
-        },
-
-        // LinkedIn Cards
-        {
-            name: "linkedInCards",
-            title: "LinkedIn Cards",
-            type: "object",
-            fields: [
-                {
-                    name: "linkedInTitle",
-                    title: "Title",
-                    type: "string",
-                },
-                {
-                    name: "linkedInDescription",
-                    title: "Description",
-                    type: "text",
-                },
-                {
-                    name: "linkedInImage",
-                    title: "Image",
-                    type: "image",
-                    options: { hotspot: true },
-                },
-                {
-                    name: "linkedInUrl",
-                    title: "Url",
-                    type: "string",
-                },
-            ],
-        },
-
-
-        // Pinterest Cards
-        {
-            name: "pinterestCards",
-            title: "Pinterest Cards",
-            type: "object",
-            fields: [
-                {
-                    name: "pinterestTitle",
-                    title: "Title",
-                    type: "string",
-                },
-                {
-                    name: "pinterestDescription",
-                    title: "Description",
-                    type: "text",
-                },
-
-                {
-                    name: "pinterestUrl",
-                    title: "Url",
-                    type: "string",
-                },
-            ],
-        },
-
-
-        // WhatsApp  Cards
-        {
-            name: "whatsappCards",
-            title: "Whatsapp Cards",
-            type: "object",
-            fields: [
-                {
-                    name: "whatsappTitle",
-                    title: "Title",
-                    type: "string",
-                },
-                {
-                    name: "whatsappDescription",
-                    title: "Description",
-                    type: "text",
-                },
-
-                {
-                    name: "whatsappUrl",
-                    title: "Url",
-                    type: "string",
-                },
-            ],
-        },
-
-
-        // Telegram  Cards
-        {
-            name: "telegramCards",
-            title: "Telegram Cards",
-            type: "object",
-            fields: [
-                {
-                    name: "telegramTitle",
-                    title: "Title",
-                    type: "string",
-                },
-                {
-                    name: "telegramDescription",
-                    title: "Description",
-                    type: "text",
-                },
-
-                {
-                    name: "telegramUrl",
-                    title: "Url",
-                    type: "string",
-                },
-            ],
-        },
-    ],
-}
-
-export default serviceSummary;
+    defineField({
+      name: "webSeoMetadata",
+      title: "Google & sharing",
+      type: "object",
+      group: "seo",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Title in Google",
+          type: "string",
+          validation: (rule) => rule.max(65).warning("Keep it under about 60 characters."),
+        }),
+        defineField({
+          name: "description",
+          title: "Description in Google",
+          type: "text",
+          rows: 3,
+          validation: (rule) => rule.max(170).warning("Keep it under about 160 characters."),
+        }),
+        defineField({ name: "keywords", title: "Keywords", type: "array", of: [{ type: "string" }], options: { layout: "tags" } }),
+      ],
+    }),
+  ],
+  preview: { prepare: () => ({ title: "Service Summary", subtitle: "/about/service-summary" }) },
+});

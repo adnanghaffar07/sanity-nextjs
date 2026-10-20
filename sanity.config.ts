@@ -15,9 +15,10 @@ import {CASE_STUDY_ORDER_ID} from './sanity/schemas/content-types'
 import {HOME_PAGE_ID} from './sanity/schemas/home-page'
 import {RESUME_SUBMISSION_TYPE} from './sanity/schemas/resume-submission'
 import {TECHNOLOGY_ORDER_ID} from './sanity/schemas/technologies'
+import {SERVICE_SUMMARY_TYPE} from './sanity/schemas/service-summary'
 
 // One-of-a-kind settings documents: editable, but never created, duplicated or deleted.
-const SINGLETON_TYPES = new Set<string>([HOME_PAGE_ID, CASE_STUDY_ORDER_ID, TECHNOLOGY_ORDER_ID])
+const SINGLETON_TYPES = new Set<string>([HOME_PAGE_ID, CASE_STUDY_ORDER_ID, TECHNOLOGY_ORDER_ID, SERVICE_SUMMARY_TYPE])
 // Read-only archives: can be viewed and deleted, never created.
 const ARCHIVE_TYPES = new Set<string>([RESUME_SUBMISSION_TYPE])
 

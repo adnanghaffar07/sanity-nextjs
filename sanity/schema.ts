@@ -7,7 +7,7 @@ import {
 } from "./schemas/logical-services";
 import { techLogo } from "./schemas/tech-logo";
 import partnershipSchema from "./schemas/partnership";
-import serviceSummary from "./schemas/service-summary";
+import { serviceSummary } from "./schemas/service-summary";
 import valueBlueprints from "./schemas/value-bueprints";
 import valueDiscoveryProcessPage from "./schemas/value-process";
 import lifeAtCa from "./schemas/life-at-ca";
