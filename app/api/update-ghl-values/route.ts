@@ -1,4 +1,7 @@
+// Updates the custom fields of the GoHighLevel template contact used in email
+// campaigns. Callers must send "Authorization: Bearer <GHL_SECRET_TOKEN>".
 import { NextRequest, NextResponse } from 'next/server';
+import { hasBearerSecret } from '@/lib/security/request';
 
 const GHL_API_KEY = process.env.GHL_API_KEY!;
 const GHL_BASE_URL = 'https://rest.gohighlevel.com/v1';
@@ -19,6 +22,9 @@ const CUSTOM_FIELDS_MAP: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
+    if (!hasBearerSecret(req, 'GHL_SECRET_TOKEN')) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
   const formValues = await req.json();
     const email = formValues.email;

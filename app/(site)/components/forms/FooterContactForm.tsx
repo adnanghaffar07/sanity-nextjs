@@ -199,6 +199,9 @@ export default function FooterContactForm() {
       setMessage("Form submitted successfully!");
       setMessageSuccess("w-[100%]");
     } catch (error) {
+      // Turnstile tokens are single-use: get a fresh one for the next attempt.
+      recaptchaRef?.current?.reset();
+      setRecaptchaValue("");
       setBgColor("bg-red-500");
       setMessage("Message not submitted!");
       setMessageSuccess("w-[100%]");

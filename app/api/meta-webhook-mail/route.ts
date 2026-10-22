@@ -1,52 +1,18 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+// GoHighLevel → website webhook for Facebook (Meta) lead-ad leads: emails the
+// team and sends the lead a welcome email. GoHighLevel must send
+// "Authorization: Bearer <GHL_SECRET_TOKEN>" (the same token as /api/ghl-fbmeta).
+// Mail goes through the site's sender (EMAIL_USER / EMAIL_PASS env variables).
 
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
+import { NextResponse } from "next/server";
+import { sendEmail, teamEmailHtml } from "@/lib/forms/server/emails";
+import { hasBearerSecret } from "@/lib/security/request";
 
-    const transporter = nodemailer.createTransport({
-      name: "SMTP",
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: "ayesha@codeautomation.dev",
-        pass: "brja ybzn vmbb qbzg",
-      },
-    });
+const TEAM = ["roia@codeautomation.dev", "adnan@codeautomation.dev", "katrina@codeautomation.dev"];
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const teamEmail = ['roia@codeautomation.dev', 'adnan@codeautomation.dev', 'katrina@codeautomation.dev'];
-    // const clientEmail = body.email;
-    const clientEmail = body.email;
-    // Send to internal team
-    await transporter.sendMail({
-      from: `"Meta Lead Bot" <ayesha@codeautomation.dev>`,
-      to: teamEmail,
-      subject: '🚨 New Lead Submitted',
-      html: `
-      <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 40px;">
-        <table style="max-width: 700px; margin: auto; background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
-          <tr><td colspan="2" style="text-align: center; font-size: 20px; font-weight: bold;">🚀 New Meta Lead Details</td></tr>
-          <tr><td><strong>Name:</strong></td><td>${body.name || 'N/A'}</td></tr>
-          <tr><td><strong>Email:</strong></td><td>${body.email || 'N/A'}</td></tr>
-          <tr><td><strong>Phone Number:</strong></td><td>${body.phoneNumber || 'N/A'}</td></tr>
-          <tr><td><strong>Company Name:</strong></td><td>${body.companyName || 'N/A'}</td></tr>
-          <tr><td><strong>App Type:</strong></td><td>${body.appType || 'N/A'}</td></tr>
-          <tr><td><strong>Estimated Budget:</strong></td><td>${body.estimatedBudget || 'N/A'}</td></tr>
-          <tr><td colspan="2" style="padding-top: 20px; text-align: center;">
-            <a href="https://codeautomation.ai/studio/structure/form-submissions;facebook-lead" style="padding: 10px 20px; background: #1d4ed8; color: #fff; border-radius: 6px; text-decoration: none;">View in Sanity</a>
-          </td></tr>
-        </table>
-      </div>
-      `,
-    });
+const CLIENT_SUBJECT = "Tired of Searching Right Development Team? Guaranteed Quality, Delivered as Promised!";
 
-    await transporter.sendMail({
-      from: `"CodeAutomation" <${process.env.EMAIL_USER}>`,
-      to: clientEmail,
-      subject: 'Tired of Searching Right Development Team? Guaranteed Quality, Delivered as Promised!',
-      html: `
+const clientHtml = () => `
   <div style="font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f4f4; padding: 40px 0;">
     <table width="100%" style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden;">
       <!-- Header -->
@@ -60,10 +26,10 @@ export async function POST(req: Request) {
       <tr>
         <td style="padding: 32px 40px; color: #333;">
           <p style="font-size: 16px; line-height: 1.6;">
-            We’re excited to learn more about your goals and how our team at <strong>CodeAutomation.ai</strong> can support your vision. 
+            We’re excited to learn more about your goals and how our team at <strong>CodeAutomation.ai</strong> can support your vision.
           </p>
           <p style="font-size: 16px; line-height: 1.6;">
-            Our mission is to help businesses like yours build reliable, scalable, and innovative digital solutions that drive growth and success. 
+            Our mission is to help businesses like yours build reliable, scalable, and innovative digital solutions that drive growth and success.
           </p>
           <p style="font-size: 16px; line-height: 1.6;">
             Let’s schedule a quick chat to discuss your needs and how we can work together to bring your ideas to life.
@@ -111,13 +77,51 @@ export async function POST(req: Request) {
       </tr>
     </table>
   </div>
-`
+`;
 
+export async function POST(req: Request) {
+  if (!hasBearerSecret(req, "GHL_SECRET_TOKEN")) {
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const body = await req.json();
+    const text = (value: unknown) => (typeof value === "string" ? value.trim().slice(0, 300) : "");
+    const lead = {
+      name: text(body.name),
+      email: text(body.email),
+      phone: text(body.phoneNumber),
+      company: text(body.companyName),
+      appType: text(body.appType),
+      budget: text(body.estimatedBudget),
+    };
+    const validEmail = EMAIL_PATTERN.test(lead.email);
+
+    // teamEmailHtml escapes every value, so lead data can't inject HTML.
+    await sendEmail({
+      to: TEAM,
+      replyTo: validEmail ? lead.email : undefined,
+      subject: `New Meta lead${lead.name ? ` — ${lead.name}` : ""}`,
+      fromName: "Meta Lead Bot",
+      html: teamEmailHtml({
+        formTitle: "Meta lead",
+        rows: [
+          { label: "Name", value: lead.name },
+          { label: "Email", value: lead.email },
+          { label: "Phone", value: lead.phone },
+          { label: "Company", value: lead.company },
+          { label: "App type", value: lead.appType },
+          { label: "Estimated budget", value: lead.budget },
+        ],
+        studioUrl: "https://codeautomation.ai/studio/structure/form-submissions;facebook-lead",
+      }),
     });
+
+    if (validEmail) await sendEmail({ to: lead.email, subject: CLIENT_SUBJECT, html: clientHtml() });
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Webhook handler error:', error);
-    return NextResponse.json({ success: false, error: 'Webhook handling failed' }, { status: 500 });
+    console.error("Meta lead webhook failed:", error);
+    return NextResponse.json({ success: false, error: "Webhook handling failed" }, { status: 500 });
   }
 }

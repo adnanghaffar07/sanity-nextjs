@@ -175,6 +175,9 @@ export default function GreetingPopup() {
       later(closePopup, TIMINGS.closeAfterSuccessMs);
     } catch (error) {
       console.error("Greeting popup submission failed:", error);
+      // Turnstile tokens are single-use: get a fresh one for the next attempt.
+      captchaRef.current?.reset();
+      setCaptchaToken("");
       setStatus({ text: "Message not submitted!", tone: "error" });
     } finally {
       setSubmitting(false);

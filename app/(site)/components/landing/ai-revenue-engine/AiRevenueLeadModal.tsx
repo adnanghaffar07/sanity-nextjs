@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { submitForm } from "@/lib/forms/client/submitForm";
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 import { X, Mail, User, Phone, ArrowRight, Shield, Clock, Sparkles, Headphones } from "lucide-react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -26,6 +27,7 @@ export default function AiRevenueLeadModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const captcha = useTurnstile();
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -82,6 +84,10 @@ export default function AiRevenueLeadModal() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!canSubmit || isSubmitting) return;
+    if (!captcha.token) {
+      setError(CAPTCHA_MISSING_MESSAGE);
+      return;
+    }
 
     setError("");
     setIsSubmitting(true);
@@ -98,11 +104,13 @@ export default function AiRevenueLeadModal() {
           "Country code": countryCode,
           "Time zone": Intl.DateTimeFormat().resolvedOptions().timeZone || "",
         },
+        captchaToken: captcha.token,
       });
       router.push("/ai-revenue-engine/wait-page");
     } catch (submissionError) {
       console.error("AI Revenue lead submission failed:", submissionError);
-      setError("Submission failed. Please try again.");
+      captcha.reset();
+      setError("Submission failed. Please complete the verification again and resubmit.");
       setIsSubmitting(false);
     }
   };
@@ -290,6 +298,8 @@ export default function AiRevenueLeadModal() {
                 <p className="text-[10px] sm:text-xs text-red-500 mt-1">{getFieldError('phone', form.phone)}</p>
               )}
             </div>
+
+            {captcha.widget}
 
             {/* Error Message */}
             {error && (

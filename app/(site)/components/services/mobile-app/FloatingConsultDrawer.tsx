@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '@/lib/forms/client/submitForm';
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 
 
 export default function FloatingConsultDrawer({
@@ -24,6 +25,7 @@ export default function FloatingConsultDrawer({
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const captcha = useTurnstile();
   const router = useRouter();
 
   useEffect(() => {
@@ -62,6 +64,10 @@ export default function FloatingConsultDrawer({
       setError('All fields are required');
       return;
     }
+    if (!captcha.token) {
+      setError(CAPTCHA_MISSING_MESSAGE);
+      return;
+    }
 
     setSubmitting(true);
     setError('');
@@ -69,6 +75,7 @@ export default function FloatingConsultDrawer({
     try {
       await submitForm('mobile-consultation', {
         fields: { name: form.name, email: form.email, phone: form.phone, lookingFor: 'Free consultation', message: form.message },
+        captchaToken: captcha.token,
       });
 
       setSuccess(true);
@@ -79,6 +86,7 @@ export default function FloatingConsultDrawer({
     } catch (err) {
       setError('Submission failed');
     } finally {
+      captcha.reset();
       setSubmitting(false);
     }
   };
@@ -187,6 +195,8 @@ export default function FloatingConsultDrawer({
               rows={4}
               className="w-full px-3 py-2 rounded-md text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
             ></textarea>
+
+            {captcha.widget}
 
             {error && <p className="text-red-400 text-sm">{error}</p>}
             {success && <p className="text-green-400 text-sm">Thanks! We&apos;ll be in touch soon.</p>}

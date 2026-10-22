@@ -1,10 +1,28 @@
 // Cal.com booking webhook: cancels bookings made with a Pakistani (+92) or
 // Indian (+91) phone number. Other bookings are left as they are.
+// Cal.com must have a webhook secret set; it is checked against CAL_WEBHOOK_SECRET.
 import { NextResponse } from 'next/server';
+import { createHmac, timingSafeEqual } from 'node:crypto';
+
+function validCalSignature(rawBody: string, signature: string | null): boolean {
+  const secret = process.env.CAL_WEBHOOK_SECRET?.trim();
+  if (!secret) {
+    console.error('CAL_WEBHOOK_SECRET is not set: rejecting the Cal.com webhook.');
+    return false;
+  }
+  if (!signature) return false;
+  const expected = Buffer.from(createHmac('sha256', secret).update(rawBody).digest('hex'));
+  const sent = Buffer.from(signature.trim());
+  return sent.length === expected.length && timingSafeEqual(sent, expected);
+}
 
 export async function POST(req: Request) {
+  const rawBody = await req.text();
+  if (!validCalSignature(rawBody, req.headers.get('x-cal-signature-256'))) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
-    const body = await req.json();
+    const body = JSON.parse(rawBody);
     const payload = body.payload;
 
     const phoneNumber =

@@ -1,27 +1,35 @@
+// Pricing-page log-in. Checks the hashed password; one generic error for a
+// wrong email or password, so the form can't be used to find accounts.
+
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { verifyPassword } from "@/lib/security/password";
+import { clientIp, rateLimit, sameSiteRequest } from "@/lib/security/request";
+
+const INVALID = "Incorrect email or password.";
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
-  
-  // Fetch the user by email
-  const user = await serverClient.fetch(`*[_type == "user" && email == $email][0]`, { email });
-
-  // If user is not found, return an error
-  if (!user) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  if (!sameSiteRequest(req)) return NextResponse.json({ error: "Forbidden." }, { status: 403 });
+  const ip = clientIp(req);
+  if (ip && !rateLimit(`login:${ip}`, 10, 15 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many attempts. Please try again later." }, { status: 429 });
   }
 
-  // Generate a JWT token
+  const { email: rawEmail, password } = (await req.json().catch(() => ({}))) as { email?: string; password?: string };
+  const email = rawEmail?.trim().toLowerCase() ?? "";
+  if (!email || typeof password !== "string") return NextResponse.json({ error: INVALID }, { status: 401 });
+
+  const user = await serverClient.fetch<{ passwordHash?: string } | null>(
+    `*[_type == "user" && email == $email][0]{ passwordHash }`,
+    { email }
+  );
+  if (!user || !(await verifyPassword(password, user.passwordHash))) {
+    return NextResponse.json({ error: INVALID }, { status: 401 });
+  }
+
   const token = jwt.sign({ email }, process.env.JWT_SECRET!, { expiresIn: "30d" });
-
-  // Optionally, update user data with the token
-  await serverClient.patch(user._id).set({ token }).commit();
-
-  // Prepare the response and set the token as a cookie
-  const response = NextResponse.json({ success: true });
-  response.cookies.set("authToken", token, { httpOnly: true, secure: true, maxAge: 30 * 24 * 60 * 60 });
-
+  const response = NextResponse.json({ success: true, token });
+  response.cookies.set("authToken", token, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 30 * 24 * 60 * 60 });
   return response;
 }

@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import { submitForm } from '@/lib/forms/client/submitForm';
+import TurnstileWidget from './TurnstileWidget';
 
 type FormState = {
   name: string;
@@ -27,6 +29,8 @@ export default function ContactForm() {
   const [formData, setFormData] = useState<FormState>(initialState);
   const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<TurnstileInstance | undefined>();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -47,6 +51,11 @@ export default function ContactForm() {
       return;
     }
 
+    if (!captchaToken) {
+      setStatus({ type: 'error', message: 'Please complete the verification above the button.' });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -59,6 +68,7 @@ export default function ContactForm() {
           lookingFor: formData.inquiryType,
           message: formData.message,
         },
+        captchaToken,
       });
 
       setStatus({ type: 'success', message: 'Thank you! Your message is sent. We will reach out shortly.' });
@@ -67,6 +77,9 @@ export default function ContactForm() {
       console.error('Contact form error:', error);
       setStatus({ type: 'error', message: 'Submission failed. Please try again later.' });
     } finally {
+      // Turnstile tokens are single-use: get a fresh one for the next submission.
+      captchaRef.current?.reset();
+      setCaptchaToken('');
       setIsSubmitting(false);
     }
   };
@@ -164,6 +177,12 @@ export default function ContactForm() {
             placeholder="Tell us how we can help"
           />
         </label>
+
+        <TurnstileWidget
+          recaptchaRef={captchaRef}
+          onChange={(token) => setCaptchaToken(token)}
+          onExpired={() => setCaptchaToken('')}
+        />
 
         <div className="flex sm:items-center justify-center">
           <button

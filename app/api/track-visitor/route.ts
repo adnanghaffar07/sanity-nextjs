@@ -1,5 +1,6 @@
 import { serverClient } from '@/sanity/lib/sanity/serverClient';
 import { NextRequest, NextResponse } from 'next/server';
+import { clientIp, rateLimit, sameSiteRequest } from '@/lib/security/request';
 
 function isLocalAddress(hostname: string): boolean {
   const host = hostname.toLowerCase();
@@ -18,6 +19,12 @@ function isLocalSource(value: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  // Only our own pages may record visits, and not faster than a real visitor browses.
+  if (!sameSiteRequest(req)) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  const visitorIp = clientIp(req);
+  if (visitorIp && !rateLimit(`visit:${visitorIp}`, 30, 60 * 1000)) {
+    return NextResponse.json({ success: true, skipped: 'rate-limited' });
+  }
   try {
     const body = await req.json();
     const rawPageUrl = typeof body?.pageUrl === 'string' ? body.pageUrl : '';

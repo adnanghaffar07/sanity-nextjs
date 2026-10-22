@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '@/lib/forms/client/submitForm';
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 
 
 type QuoteModalProps = {
@@ -21,6 +22,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const captcha = useTurnstile();
   const router = useRouter();
 
 
@@ -51,6 +53,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     setError('Please fill in all fields.');
     return;
   }
+  if (!captcha.token) {
+    setError(CAPTCHA_MISSING_MESSAGE);
+    return;
+  }
 
   setSubmitting(true);
   setError('');
@@ -59,6 +65,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   try {
     await submitForm('mobile-quote', {
       fields: { name: form.name, email: form.email, phone: form.phone, lookingFor: 'Quote request', message: form.message },
+      captchaToken: captcha.token,
     });
 
     setSuccess(true);
@@ -69,6 +76,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   } catch (err) {
     setError('Something went wrong. Please try again.');
   } finally {
+    captcha.reset();
     setSubmitting(false);
   }
 };
@@ -132,6 +140,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             rows={4}
             className="w-full border  text-black border-gray-300 px-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1d92fb]"
           ></textarea>
+
+          {captcha.widget}
 
           {error && <p className="text-red-600 text-sm">{error}</p>}
           {success && <p className="text-green-600 text-sm">Thank you! We’ll contact you shortly.</p>}

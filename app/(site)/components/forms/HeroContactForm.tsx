@@ -149,6 +149,9 @@ export default function HeroContactForm({ variant = "default", pageName, heading
       }, 5000);
 
     } catch (error) {
+      // Turnstile tokens are single-use: get a fresh one for the next attempt.
+      setTurnstileToken("");
+      turnstileRef.current?.reset();
       setErrors({
         message: "Something went wrong. Please try again later.",
       });

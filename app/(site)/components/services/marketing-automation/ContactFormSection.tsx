@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { submitForm } from "@/lib/forms/client/submitForm";
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 import { 
   Send,
   CheckCircle,
@@ -32,6 +33,7 @@ const ContactFormSection = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const captcha = useTurnstile();
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -47,6 +49,10 @@ const ContactFormSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captcha.token) {
+      setSubmitStatus({ type: 'error', message: CAPTCHA_MISSING_MESSAGE });
+      return;
+    }
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -62,6 +68,7 @@ const ContactFormSection = () => {
           message: formData.challenge,
         },
         details: { Industry: formData.industry, 'Current tools': formData.tools },
+        captchaToken: captcha.token,
       });
 
       setSubmitStatus({
@@ -84,6 +91,7 @@ const ContactFormSection = () => {
         message: 'Failed to send. Please try again or email us directly.'
       });
     } finally {
+      captcha.reset();
       setIsSubmitting(false);
     }
   };
@@ -296,6 +304,8 @@ const ContactFormSection = () => {
                 ))}
               </div>
             </div>
+
+            {captcha.widget}
 
             {/* Submit Button */}
             <button

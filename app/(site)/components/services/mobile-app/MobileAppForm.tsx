@@ -1,48 +1,20 @@
 'use client';
 
 import { useFormik } from "formik";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useRouter } from 'next/navigation';
 import { submitForm } from "@/lib/forms/client/submitForm";
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 
-type MathOperator = '+' ;
 
 export default function MobileAppForm() {
   const [uploading, setUploading] = useState(false);
   const router = useRouter();
 
-  // CAPTCHA state
-  const [num1, setNum1] = useState(0);
-  const [num2, setNum2] = useState(0);
-  const [operator, setOperator] = useState<MathOperator>('+');
-  const [userAnswer, setUserAnswer] = useState("");
+  const captcha = useTurnstile();
   const [errorCaptcha, setErrorCaptcha] = useState("");
-  const [shake, setShake] = useState(false);
-
-  const generateCaptcha = () => {
-    const n1 = Math.floor(Math.random() * 20) + 1;
-    const n2 = Math.floor(Math.random() * 20) + 1;
-    const operators: MathOperator[] = ['+'];
-    const op = operators[Math.floor(Math.random() * operators.length)];
-    setNum1(n1);
-    setNum2(n2);
-    setOperator(op);
-    setUserAnswer("");
-    setErrorCaptcha("");
-  };
-
-  useEffect(() => {
-    generateCaptcha();
-  }, []);
-
-  const calculateAnswer = () => {
-    switch (operator) {
-      case '+': return num1 + num2;
-      default: return num1 + num2;
-    }
-  };
 
   const formik = useFormik({
     initialValues: {
@@ -58,14 +30,11 @@ export default function MobileAppForm() {
       return errors;
     },
     onSubmit: async (values, { resetForm }) => {
-      const correctAnswer = calculateAnswer();
-      if (parseInt(userAnswer) !== correctAnswer) {
-        setErrorCaptcha("Incorrect answer. Try again.");
-        setShake(true);
-        setTimeout(() => setShake(false), 500);
-        generateCaptcha();
+      if (!captcha.token) {
+        setErrorCaptcha(CAPTCHA_MISSING_MESSAGE);
         return;
       }
+      setErrorCaptcha("");
 
       setUploading(true);
       try {
@@ -77,14 +46,15 @@ export default function MobileAppForm() {
             lookingFor: values.looking,
             message: values.message,
           },
+          captchaToken: captcha.token,
         });
         resetForm();
-        generateCaptcha();
         router.push("/thank-you-mobile-app");
       } catch (error) {
         console.error(error);
-        alert("Submission failed.");
+        setErrorCaptcha("Submission failed. Please complete the verification again and resubmit.");
       } finally {
+        captcha.reset();
         setUploading(false);
       }
     },
@@ -147,20 +117,9 @@ export default function MobileAppForm() {
             rows={4}
           />
 
-          {/* Sleek Modern CAPTCHA */}
-          <div className={`flex flex-col items-center w-full shadow-sm ${shake ? "animate-shake" : ""}`}>
-            <p className="text-gray-200 font-medium mb-2">Human Verification</p>
-            <div className="flex items-center gap-3">
-              <span className="text-white font-bold text-lg">{num1} {operator} {num2} =</span>
-              <input
-                type="number"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-                className="w-20 px-2 py-1 rounded-lg text-center font-semibold text-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                required
-              />
-            </div>
-            {errorCaptcha && <p className="text-red-500 mt-2 text-sm">{errorCaptcha}</p>}
+          <div className="flex flex-col items-center w-full">
+            {captcha.widget}
+            {errorCaptcha && <p className="text-red-400 mt-2 text-sm text-center">{errorCaptcha}</p>}
           </div>
 
           <button
@@ -175,18 +134,6 @@ export default function MobileAppForm() {
         </form>
       </div>
 
-      {/* Shake animation */}
-      <style jsx>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          50% { transform: translateX(5px); }
-          75% { transform: translateX(-5px); }
-        }
-        .animate-shake {
-          animation: shake 0.5s ease;
-        }
-      `}</style>
     </div>
   );
 }

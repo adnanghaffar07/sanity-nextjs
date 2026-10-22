@@ -1,46 +1,29 @@
-export default {
+// Accounts from the pricing-page log-in (email + password, or Google). The
+// dataset is public, so only a password hash is stored, never the password or
+// a session token. See app/api/auth/*.
+
+import { defineField, defineType } from "sanity";
+import { UserIcon } from "@sanity/icons";
+
+const user = defineType({
   name: "user",
   title: "User",
   type: "document",
+  icon: UserIcon,
+  readOnly: true,
   fields: [
-    { 
-      name: "email", 
-      title: "Email", 
-      type: "string", 
-    },
-    { 
-      name: "name", 
-      title: "Name", 
-      type: "string" 
-    },
-    { 
-      name: "password", 
-      title: "Password", 
-      type: "string",
-      hidden: ({ document }: any) => !!document?.googleId // Hide password if Google ID exists
-    },
-    { 
-      name: "googleId", 
-      title: "Google ID", 
-      type: "string" 
-    },
-    { 
-      name: "token", 
-      title: "Token", 
-      type: "string", 
-      hidden: true // Hide token field from Sanity Studio UI
-    },
-    { 
-      name: "otp", 
-      title: "OTP", 
-      type: "string", 
-      hidden: true // Hide OTP field from Sanity Studio UI
-    },
-    { 
-      name: "otpExpiration", 
-      title: "OTP Expiration Time", 
-      type: "datetime", 
-      hidden: true // Hide OTP expiration field from Sanity Studio UI
-    }
-  ]
-};
+    defineField({ name: "email", title: "Email", type: "string" }),
+    defineField({ name: "name", title: "Name", type: "string" }),
+    defineField({ name: "googleId", title: "Google ID", type: "string", description: "Set when the account signed up with Google." }),
+    defineField({ name: "passwordHash", title: "Password hash", type: "string", hidden: true }),
+  ],
+  preview: {
+    select: { title: "email", subtitle: "name", googleId: "googleId" },
+    prepare: ({ title, subtitle, googleId }) => ({
+      title: title || "No email",
+      subtitle: [subtitle, googleId ? "Google" : "Email + password"].filter(Boolean).join(" · "),
+    }),
+  },
+});
+
+export default user;

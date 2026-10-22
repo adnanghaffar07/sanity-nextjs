@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import imageUrlBuilder from "@sanity/image-url";
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
 import { recipientsForServices } from "@/lib/forms/server/audience";
+import { hasBearerSecret } from "@/lib/security/request";
 
 interface SanityWebhookBody {
   _type?: string;
@@ -42,10 +43,9 @@ async function fetchRecipients(audience: string[]) {
 }
 
 export async function POST(req: NextRequest) {
-  const secret = process.env.SANITY_WEBHOOK_SECRET;
-  // Verify authorization
-  const authHeader = req.headers.get("authorization");
-  if (authHeader !== `Bearer ${secret}`) {
+  // Sanity must send "Authorization: Bearer <SANITY_WEBHOOK_SECRET>". Fails closed when the
+  // variable is missing (before, "Bearer undefined" was accepted and could email the whole audience).
+  if (!hasBearerSecret(req, "SANITY_WEBHOOK_SECRET")) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 

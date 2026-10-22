@@ -228,6 +228,22 @@ function crmLead(s: NormalizedSubmission, tags: string[]): CrmLead {
 
 // ── Saving & sending ──────────────────────────────────────────────────────────
 
+// ── Spam flagging ────────────────────────────────────────────────────────────
+// Turnstile stops most bots. Anything that still looks like link spam is saved
+// with status "spam" (so nothing is lost) but not sent to GoHighLevel or emailed.
+
+const URL_PATTERN = /(https?:\/\/|www\.)\S+/gi;
+const SPAM_PHRASES = /\b(backlinks?|guest posts?|seo services|link building|casino|crypto ?(currency|trading)|viagra|forex)\b/i;
+
+export function spamSignal(s: NormalizedSubmission): string | null {
+  const linksIn = (value?: string) => (value?.match(URL_PATTERN) ?? []).length;
+  if (linksIn(s.name) || linksIn(s.company)) return "link in name or company";
+  const messageLinks = linksIn(s.message);
+  if (messageLinks >= 2) return `${messageLinks} links in message`;
+  if (messageLinks >= 1 && SPAM_PHRASES.test(s.message ?? "")) return "spam phrase with a link";
+  return null;
+}
+
 /**
  * Saves a submission and runs its integrations. Also used by the GoHighLevel
  * Facebook-lead webhook to store its leads in the same place.
@@ -239,7 +255,9 @@ export async function recordSubmission(
 ): Promise<{ id?: string; crm: CrmResult }> {
   const submission = normalize(form, input);
   const definition = FORM_DEFINITIONS[form];
-  const doc = { ...sanityDocument(submission), ...options.extra };
+  const spam = spamSignal(submission);
+  const doc = { ...sanityDocument(submission), ...options.extra, ...(spam ? { status: "spam" } : {}) };
+  if (spam) console.warn(`Form ${form}: flagged as spam (${spam}); not sent to GoHighLevel or emailed.`);
   const dryRun = process.env.FORMS_DRY_RUN === "1";
 
   let id: string | undefined;
@@ -253,6 +271,9 @@ export async function recordSubmission(
       console.error(`Saving ${form} submission to Sanity failed:`, error);
     }
   }
+
+  // Flagged spam is kept in Sanity for review, but nothing else happens.
+  if (spam) return { id, crm: { status: "skipped", error: "flagged as spam" } };
 
   const rows = summary(submission);
   const tasks: Record<string, () => Promise<unknown>> = {};

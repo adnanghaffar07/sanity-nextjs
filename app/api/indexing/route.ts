@@ -1,10 +1,15 @@
 import { submitToGoogle } from "@/lib/googleIndexing";
+// Sanity webhook → Google Indexing API. Sanity must send
+// "Authorization: Bearer <SANITY_WEBHOOK_SECRET>" (same as /api/sanity-webhook).
 import { NextResponse } from "next/server";
+import { hasBearerSecret } from "@/lib/security/request";
 
 export async function POST(req: Request) {
+  if (!hasBearerSecret(req, "SANITY_WEBHOOK_SECRET")) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
     const data = await req.json();
-    console.log("Received webhook payload:", data);
     const baseUrl = "https://codeautomation.ai";
     let url: string = "";
 

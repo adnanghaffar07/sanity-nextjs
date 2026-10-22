@@ -1,6 +1,20 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import { serverClient } from '@/sanity/lib/sanity/serverClient';
+import { timingSafeEqual } from 'node:crypto';
+
+// The dashboard sends the typed password; it is compared here with the
+// server-only VISITOR_DASHBOARD_PASSWORD. Locked if that variable is missing.
+function authorized(req: NextRequest): boolean {
+  const expected = process.env.VISITOR_DASHBOARD_PASSWORD?.trim();
+  if (!expected) {
+    console.error('VISITOR_DASHBOARD_PASSWORD is not set: the visitors dashboard is locked.');
+    return false;
+  }
+  const sent = Buffer.from(req.headers.get('x-dashboard-password') ?? '');
+  const want = Buffer.from(expected);
+  return sent.length === want.length && timingSafeEqual(sent, want);
+}
 
 type TimeFilter = 'today' | 'last7days' | 'lastmonth';
 
@@ -24,17 +38,20 @@ function getStartDateFromFilter(filter: TimeFilter): string {
 }
 
 export async function GET(req: NextRequest) {
+  if (!authorized(req)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
     const filterParam = req.nextUrl.searchParams.get('filter');
     const filter: TimeFilter =
       filterParam === 'today' || filterParam === 'lastmonth' || filterParam === 'last7days'
         ? filterParam
         : 'today';
-    
+
     const page = parseInt(req.nextUrl.searchParams.get('page') || '1');
     const limit = parseInt(req.nextUrl.searchParams.get('limit') || '50');
     const start = (page - 1) * limit;
-    
+
     const startDate = getStartDateFromFilter(filter);
 
     // Get total count
@@ -65,9 +82,9 @@ export async function GET(req: NextRequest) {
 
     console.log(`Filter: ${filter}, Page: ${page}, Showing ${visitors.length} of ${totalCount} visitors`);
 
-    return NextResponse.json({ 
-      success: true, 
-      filter, 
+    return NextResponse.json({
+      success: true,
+      filter,
       visitors,
       pagination: {
         currentPage: page,

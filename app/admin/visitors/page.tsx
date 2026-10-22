@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { 
-  BarChart3, 
-  Users, 
-  Calendar, 
-  MapPin, 
-  Globe, 
+import {
+  BarChart3,
+  Users,
+  Calendar,
+  MapPin,
+  Globe,
   LogOut,
   Eye,
   MousePointer,
@@ -63,34 +63,39 @@ export default function VisitorsDashboard() {
   const [showAllCountries, setShowAllCountries] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  const correctPassword = process.env.NEXT_PUBLIC_VISITOR_DASHBOARD_PASSWORD || 'admin123';
-
-  // Login handler
-  const handleLogin = () => {
-    if (password === correctPassword) {
+  // Log in: the password is checked by the server (/api/admin/visitors), never in the browser.
+  const handleLogin = async () => {
+    const ok = await fetchVisitors('today', true, password);
+    if (ok) {
       setIsAuthenticated(true);
-      fetchVisitors('today');
     } else {
       setError('Incorrect password. Please try again.');
       setPassword('');
     }
   };
 
-  // Fetch visitor data
-  const fetchVisitors = async (timeFilter: TimeFilter, showLoading = true) => {
+  // Fetch visitor data. Returns false when the password is rejected.
+  const fetchVisitors = async (timeFilter: TimeFilter, showLoading = true, pass = password): Promise<boolean> => {
     if (showLoading) setLoading(true);
     setError('');
-    
+
     try {
-      const res = await fetch(`/api/admin/visitors?filter=${timeFilter}&limit=1000`);
+      const res = await fetch(`/api/admin/visitors?filter=${timeFilter}&limit=1000`, {
+        headers: { 'x-dashboard-password': pass },
+        cache: 'no-store',
+      });
+      if (res.status === 401) {
+        if (showLoading) setLoading(false);
+        return false;
+      }
       const data = await res.json();
 
       if (!res.ok) {
         throw new Error(data?.error || 'Failed to fetch data');
       }
-      
+
       const visitors = Array.isArray(data?.visitors) ? data.visitors : [];
-      const totalCount = typeof data?.pagination?.totalCount === 'number' ? data.pagination.totalCount : visitors.length;     
+      const totalCount = typeof data?.pagination?.totalCount === 'number' ? data.pagination.totalCount : visitors.length;
       setVisitorRecords(visitors);
       setTotalVisitCount(totalCount);
       setFilter(timeFilter);
@@ -98,7 +103,7 @@ export default function VisitorsDashboard() {
       setCurrentPage(1);
       setSelectedCountries(new Set()); // Reset country filter when changing time period
       setSearchTerm(''); // Reset search when changing time period
-      
+
     } catch (err) {
       console.error(err);
       setError(err instanceof Error ? err.message : 'Network error while fetching visitors');
@@ -106,6 +111,7 @@ export default function VisitorsDashboard() {
     }
 
     if (showLoading) setLoading(false);
+    return true;
   };
 
   const changeFilter = (f: TimeFilter) => {
@@ -126,11 +132,11 @@ export default function VisitorsDashboard() {
         countryMap.set(country, (countryMap.get(country) || 0) + 1);
       }
     });
-    
+
     const countries = Array.from(countryMap.entries())
       .map(([country, count]) => ({ country, count }))
       .sort((a, b) => b.count - a.count);
-    
+
     return countries;
   }, [visitorRecords]);
 
@@ -149,18 +155,18 @@ export default function VisitorsDashboard() {
   // Filter and search visitor records
   const filteredVisitors = useMemo((): VisitorRecord[] => {
     let filtered = visitorRecords;
-    
+
     // Apply country filter
     if (selectedCountries.size > 0) {
-      filtered = filtered.filter((v) => 
+      filtered = filtered.filter((v) =>
         v.location?.country && selectedCountries.has(v.location.country)
       );
     }
-    
+
     // Apply search filter
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
-      filtered = filtered.filter((v) => 
+      filtered = filtered.filter((v) =>
         v.ip?.toLowerCase().includes(term) ||
         v.location?.city?.toLowerCase().includes(term) ||
         v.location?.country?.toLowerCase().includes(term) ||
@@ -168,7 +174,7 @@ export default function VisitorsDashboard() {
         v.referrer?.toLowerCase().includes(term)
       );
     }
-    
+
     return filtered;
   }, [visitorRecords, selectedCountries, searchTerm]);
 
@@ -176,24 +182,24 @@ export default function VisitorsDashboard() {
   const analyticsSummary = useMemo((): AnalyticsSummary => {
     const filtered = filteredVisitors;
     const uniqueIPs = new Set(filtered.map(v => v.ip)).size;
-    
+
     const countryCounts = new Map<string, number>();
     filtered.forEach(v => {
       if (v.location?.country) {
         countryCounts.set(v.location.country, (countryCounts.get(v.location.country) || 0) + 1);
       }
     });
-    
+
     const allCountries = Array.from(countryCounts.entries())
       .map(([country, count]) => ({ country, count }))
       .sort((a, b) => b.count - a.count);
-    
+
     const topCountries = allCountries.slice(0, 5);
-    
+
     // Calculate average visits per day
     const daysInPeriod = filter === 'today' ? 1 : filter === 'last7days' ? 7 : 30;
     const avgVisitsPerDay = daysInPeriod > 0 ? filtered.length / daysInPeriod : 0;
-    
+
     return {
       totalVisitors: filtered.length,
       uniqueIPs,
@@ -239,7 +245,7 @@ export default function VisitorsDashboard() {
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
     const diffMins = Math.floor(diffMs / 60000);
-    
+
     if (diffMins < 1) return 'Just now';
     if (diffMins < 60) return `${diffMins} minute${diffMins === 1 ? '' : 's'} ago`;
     const diffHours = Math.floor(diffMins / 60);
@@ -257,7 +263,7 @@ export default function VisitorsDashboard() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4">
         <div className="relative">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-xl opacity-20 animate-pulse"></div>
-          
+
           <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
             <div className="text-center mb-8">
               <div className="inline-flex p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-4 shadow-lg">
@@ -324,7 +330,7 @@ export default function VisitorsDashboard() {
                   Updated {formatRelativeTime(lastUpdated)}
                 </span>
               </div>
-              
+
               <button
                 onClick={refreshData}
                 disabled={loading}
@@ -332,7 +338,7 @@ export default function VisitorsDashboard() {
               >
                 <RefreshCw className={`w-5 h-5 text-slate-600 ${loading ? 'animate-spin' : ''}`} />
               </button>
-              
+
               <button
                 onClick={() => setIsAuthenticated(false)}
                 className="flex items-center gap-2 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 rounded-lg transition-colors font-medium"
@@ -346,7 +352,7 @@ export default function VisitorsDashboard() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6 md:px-6">
-        
+
         {/* Analytics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition-shadow">
@@ -395,7 +401,7 @@ export default function VisitorsDashboard() {
               </h3>
               <span className="text-xs text-slate-500">{analyticsSummary.allCountries.length} countries total</span>
             </div>
-            
+
             {/* Show top 5 or all based on toggle */}
             <div className="space-y-2">
               {(showAllCountries ? analyticsSummary.allCountries : analyticsSummary.topCountries).map(({ country, count }) => {
@@ -406,7 +412,7 @@ export default function VisitorsDashboard() {
                     <div className="flex-1">
                       <div className="relative">
                         <div className="w-full bg-slate-100 rounded-full h-6 overflow-hidden">
-                          <div 
+                          <div
                             className="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full flex items-center justify-end pr-2 text-xs text-white font-medium"
                             style={{ width: `${percentage}%` }}
                           >
@@ -423,7 +429,7 @@ export default function VisitorsDashboard() {
                 );
               })}
             </div>
-            
+
             {analyticsSummary.allCountries.length > 5 && (
               <button
                 onClick={() => setShowAllCountries(!showAllCountries)}
@@ -458,7 +464,7 @@ export default function VisitorsDashboard() {
             </div>
             <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
           </button>
-          
+
           {showFilters && (
             <div className="border-t border-slate-200 p-5 space-y-4">
               {/* Time Filter */}
@@ -599,9 +605,9 @@ export default function VisitorsDashboard() {
                       </div>
                     </td>
                     <td className="px-4 py-3 text-sm break-words min-w-[240px]">
-                      <a 
-                        href={v.pageUrl} 
-                        target="_blank" 
+                      <a
+                        href={v.pageUrl}
+                        target="_blank"
                         rel="noreferrer"
                         className="text-blue-600 hover:text-blue-800 hover:underline break-words"
                       >
@@ -631,8 +637,8 @@ export default function VisitorsDashboard() {
               </div>
               <p className="text-slate-500 font-medium">No visitor data found</p>
               <p className="text-sm text-slate-400 mt-1">
-                {searchTerm || selectedCountries.size > 0 
-                  ? 'Try adjusting your filters or search criteria' 
+                {searchTerm || selectedCountries.size > 0
+                  ? 'Try adjusting your filters or search criteria'
                   : `No visitors recorded for ${formatFilter(filter)}`}
               </p>
             </div>
@@ -664,7 +670,7 @@ export default function VisitorsDashboard() {
                     } else {
                       pageNum = currentPage - 2 + i;
                     }
-                    
+
                     return (
                       <button
                         key={pageNum}

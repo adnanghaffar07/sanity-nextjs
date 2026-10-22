@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { submitForm } from "@/lib/forms/client/submitForm";
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 
 const FinalCTA = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const FinalCTA = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const captcha = useTurnstile();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -22,12 +25,18 @@ const FinalCTA = () => {
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  if (!captcha.token) {
+    setError(CAPTCHA_MISSING_MESSAGE);
+    return;
+  }
+  setError("");
 
   try {
     setIsSubmitting(true);
 
     await submitForm("real-estate-audit", {
       fields: { ...formData, lookingFor: "Real estate automation audit" },
+      captchaToken: captcha.token,
     });
 
     setIsSubmitted(true);
@@ -41,8 +50,9 @@ const handleSubmit = async (e: React.FormEvent) => {
     });
   } catch (error) {
     console.error("Form submission error:", error);
-    alert("Something went wrong. Please try again.");
+    setError("Something went wrong. Please complete the verification again and resubmit.");
   } finally {
+    captcha.reset();
     setIsSubmitting(false);
   }
 };
@@ -204,7 +214,10 @@ const handleSubmit = async (e: React.FormEvent) => {
                         placeholder="(555) 123-4567"
                       />
                     </div>
-                    
+
+                    {captcha.widget}
+                    {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
+
                     <button
                       type="submit"
                       disabled={isSubmitting}

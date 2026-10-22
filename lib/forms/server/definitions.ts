@@ -31,36 +31,41 @@ export const FORM_DEFINITIONS: Record<FormId, FormDefinition> = {
   "greeting-popup": { required: ["name", "email", "phone"], captcha: true, crmTags: [WEBSITE_LEAD, "greeting popup"], autoReply: "inquiry" },
   "contact-page": {
     required: ["name", "email", "phone", "company", "lookingFor", "message"],
+    captcha: true,
     crmTags: [WEBSITE_LEAD, "contact page"],
   },
   "marketing-audit": {
     required: ["name", "email", "company", "lookingFor", "message"],
+    captcha: true,
     crmTags: [WEBSITE_LEAD, "marketing audit"],
     autoReply: "marketing-audit",
     clientType: "marketing",
   },
-  "mobile-quote": { required: ["name", "email", "phone", "message"], crmTags: [WEBSITE_LEAD, "mobile quote"], clientType: "app" },
+  "mobile-quote": { required: ["name", "email", "phone", "message"], captcha: true, crmTags: [WEBSITE_LEAD, "mobile quote"], clientType: "app" },
   "mobile-consultation": {
     required: ["name", "email", "phone", "message"],
+    captcha: true,
     crmTags: [WEBSITE_LEAD, "mobile consultation"],
     clientType: "app",
   },
-  "mobile-service-hero": { required: ["phone"], crmTags: [WEBSITE_LEAD, "mobile service form"], clientType: "app" },
+  "mobile-service-hero": { required: ["phone"], captcha: true, crmTags: [WEBSITE_LEAD, "mobile service form"], clientType: "app" },
   "ai-revenue-engine": {
     required: ["name", "email", "phone"],
+    captcha: true,
     crmTags: ["ai revenue engine lead"],
     clientType: "ai",
     afterSubmit: notifyAiRevenueWorkflow,
   },
   "real-estate-audit": {
     required: ["name", "email", "company"],
+    captcha: true,
     crmTags: [WEBSITE_LEAD, "real estate audit"],
     autoReply: "real-estate-audit",
     clientType: "ai",
   },
   registration: { required: ["name", "email", "phone"], captcha: true, crmTags: [WEBSITE_LEAD, "plan registration"] },
   // Internal /meta-leads page, where the team types in a Meta lead by hand.
-  "meta-lead-manual": { required: ["name"], crmTags: [WEBSITE_LEAD, "meta lead"], autoReply: "thank-you" },
+  "meta-lead-manual": { required: ["name"], captcha: true, crmTags: [WEBSITE_LEAD, "meta lead"], autoReply: "thank-you" },
   // Arrives from GoHighLevel, so no CRM sync or emails.
   "facebook-lead": { required: [], crmTags: false, teamEmail: false },
 };

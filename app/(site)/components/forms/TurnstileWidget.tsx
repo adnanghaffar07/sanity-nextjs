@@ -1,8 +1,13 @@
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import React from "react";
 
+// The real site key in production; Cloudflare's always-pass test key only in
+// local development. The server checks every token (lib/forms/server/turnstile.ts).
 export const TURNSTILE_SITE_KEY =
-  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+  (process.env.NODE_ENV === "production" ? "" : "1x00000000000000000000AA");
+
+if (!TURNSTILE_SITE_KEY) console.error("NEXT_PUBLIC_TURNSTILE_SITE_KEY is not set: the captcha cannot load.");
 
 // Cloudflare Turnstile captcha widget used by the website forms.
 const TurnstileWidget = ({

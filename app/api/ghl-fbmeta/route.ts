@@ -3,10 +3,11 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { recordSubmission } from "@/lib/forms/server/process";
+import { hasBearerSecret } from "@/lib/security/request";
 
 export async function POST(req: NextRequest) {
-  const token = req.headers.get("authorization")?.split(" ")[1];
-  if (token !== process.env.GHL_SECRET_TOKEN) {
+  // GoHighLevel sends "Authorization: Bearer <GHL_SECRET_TOKEN>".
+  if (!hasBearerSecret(req, "GHL_SECRET_TOKEN")) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

@@ -1,27 +1,35 @@
+// Pricing-page sign-up (unlocks the full plan details). Passwords are stored
+// hashed (lib/security/password.ts); the dataset is public, so nothing secret
+// is ever saved in plain text.
+
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken"; // Import JWT
+import jwt from "jsonwebtoken";
 import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { hashPassword } from "@/lib/security/password";
+import { clientIp, rateLimit, sameSiteRequest } from "@/lib/security/request";
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_PASSWORD_LENGTH = 8;
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
-
-  // Check if user already exists
-  const existingUser = await serverClient.fetch(`*[_type == "user" && email == $email][0]`, { email });
-
-  if (existingUser) {
-    return NextResponse.json({ error: "User already exists" }, { status: 400 });
+  if (!sameSiteRequest(req)) return NextResponse.json({ error: "Forbidden." }, { status: 403 });
+  const ip = clientIp(req);
+  if (ip && !rateLimit(`register:${ip}`, 5, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many attempts. Please try again later." }, { status: 429 });
   }
 
-  // Create a new user with the provided email and password
-  const newUser = await serverClient.create({
-    _type: "user",
-    email,
-    password, // Store plain password
-  });
+  const { email: rawEmail, password } = (await req.json().catch(() => ({}))) as { email?: string; password?: string };
+  const email = rawEmail?.trim().toLowerCase() ?? "";
+  if (!EMAIL_PATTERN.test(email)) return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+  if (typeof password !== "string" || password.length < MIN_PASSWORD_LENGTH) {
+    return NextResponse.json({ error: `Use a password of at least ${MIN_PASSWORD_LENGTH} characters.` }, { status: 400 });
+  }
 
-  // Generate a JWT token after user creation
+  const existing = await serverClient.fetch(`count(*[_type == "user" && email == $email])`, { email });
+  if (existing > 0) return NextResponse.json({ error: "An account with this email already exists. Please log in." }, { status: 400 });
+
+  await serverClient.create({ _type: "user", email, passwordHash: await hashPassword(password) });
+
   const token = jwt.sign({ email }, process.env.JWT_SECRET!, { expiresIn: "30d" });
-
-  // Return the success response with token
-  return NextResponse.json({ success: true, user: newUser, token });
+  return NextResponse.json({ success: true, token });
 }

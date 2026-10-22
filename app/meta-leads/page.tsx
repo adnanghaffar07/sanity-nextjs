@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import "@/app/globals.css";
 import { submitForm } from '@/lib/forms/client/submitForm';
+import { useTurnstile, CAPTCHA_MISSING_MESSAGE } from "@/components/forms/useTurnstile";
 
 const EMPTY_LEAD = {
     name: '',
@@ -22,6 +23,7 @@ const EMPTY_LEAD = {
 
 export default function LeadForm() {
     const [formData, setFormData] = useState(EMPTY_LEAD);
+    const captcha = useTurnstile();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const target = e.target as HTMLInputElement;
@@ -31,6 +33,10 @@ export default function LeadForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!captcha.token) {
+            alert(CAPTCHA_MISSING_MESSAGE);
+            return;
+        }
         try {
             await submitForm('meta-lead-manual', {
                 fields: {
@@ -51,11 +57,14 @@ export default function LeadForm() {
                     'Project start': formData.projectStartTime,
                     'Preferred contact method': formData.preferredContactMethod,
                 },
+                captchaToken: captcha.token,
             });
             alert('Lead submitted successfully!');
             setFormData(EMPTY_LEAD);
         } catch {
             alert('Something went wrong!');
+        } finally {
+            captcha.reset();
         }
     };
 
@@ -82,6 +91,8 @@ export default function LeadForm() {
                     <input name="projectStartTime" onChange={handleChange} value={formData.projectStartTime} placeholder="Project Start Time" className="input" />
                     <input name="preferredContactMethod" onChange={handleChange} value={formData.preferredContactMethod} placeholder="Preferred Contact Method" className="input" />
                 </div>
+
+                {captcha.widget}
 
                 <button
                     type="submit"
