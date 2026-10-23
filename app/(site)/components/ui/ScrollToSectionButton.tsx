@@ -1,28 +1,21 @@
 "use client";
-import React from "react";
+
+import type { ReactNode } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
-const ScrollToSectionButton = ({
+// Smooth-scrolls to the element with id `destination`.
+export default function ScrollToSectionButton({
   content,
   classes,
   destination,
 }: {
-  content: any;
-  classes: any;
-  destination: any;
-}) => {
+  content: ReactNode;
+  classes?: string;
+  destination: string;
+}) {
   return (
-    <ScrollLink
-      to={destination}
-      spy={true}
-      smooth={true}
-      offset={-10}
-      duration={500}
-      className={classes}
-    >
+    <ScrollLink to={destination} spy smooth offset={-10} duration={500} className={classes}>
       {content}
     </ScrollLink>
   );
-};
-
-export default ScrollToSectionButton;
+}

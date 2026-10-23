@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import { toggleLiveChat } from '@/components/layout/live-chat';
 import { MessageSquare, Calendar, ArrowRight, Sparkles, Clock, Users, Star } from 'lucide-react';
 
 export default function CtaSection() {
@@ -38,12 +38,8 @@ export default function CtaSection() {
           {/* Buttons - Clean and compact */}
           <div className="flex flex-col sm:flex-row gap-2 mb-4">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                if (typeof window !== 'undefined' && (window as any).Tawk_API?.toggle) {
-                  (window as any).Tawk_API.toggle();
-                }
-              }}
+              type="button"
+              onClick={() => toggleLiveChat()}
               className="group inline-flex items-center justify-center gap-1.5 bg-[#020C16] text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-[#1D92FB] transition-all duration-300"
             >
               <MessageSquare className="w-3.5 h-3.5" />

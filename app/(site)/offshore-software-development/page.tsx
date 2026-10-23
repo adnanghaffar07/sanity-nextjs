@@ -1,3 +1,9 @@
+import Image from "next/image";
+import offshoreImg from "@/public/offshore.jpeg";
+import whatisoffshoreImg from "@/public/whatisoffshore.jpeg";
+import boostbusinessImg from "@/public/boostbusiness.png";
+import scalableoffshoreImg from "@/public/scalableoffshore.jpeg";
+import offshorespeakerImg from "@/public/offshorespeaker.png";
 import Link from 'next/link'
 import React from 'react'
 import OffshoreWhyChoose from '@/components/offshore/OffshoreWhyChoose';
@@ -174,11 +180,10 @@ const OffshoreDevelopment = () => {
         <>  
             {/* Hero Section */}
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-                <img
+                <Image
                     className="top-0 left-0 object-cover absolute inset-0 size-full"
-                    src="/offshore.jpeg"
-                    alt="offshore software development company"
-                />
+                    src={offshoreImg}
+                    alt="offshore software development company" />
 
                 <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
                 <div className="flex relative flex-col items-center lg:px-20 px-5 lg:pt-12 lg:pb-0 pt-48 pb-36 w-full max-md:px-5 max-md:max-w-full flex-grow">
@@ -223,7 +228,7 @@ const OffshoreDevelopment = () => {
 
                     {/* Client Logos */}
                     <div className="flex flex-wrap gap-10 xl:gap-20  justify-center items-center mt-12 max-md:mt-10">
-                        {clientLogos.map((logo: any, index: any) => (
+                        {clientLogos.map((logo, index) => (
                             <img
                                 key={index}
                                 src={logo.image}
@@ -280,11 +285,10 @@ const OffshoreDevelopment = () => {
 
                     {/* Right Side: Image */}
                     <div className="flex-1">
-                        <img
-                            src="/whatisoffshore.jpeg"
+                        <Image
+                            src={whatisoffshoreImg}
                             alt="offshore software development"
-                            className="w-full lg:h-[620px] rounded-lg shadow-lg object-cover"
-                        />
+                            className="w-full lg:h-[620px] rounded-lg shadow-lg object-cover" />
                     </div>
                 </div>
             </div>
@@ -324,11 +328,10 @@ const OffshoreDevelopment = () => {
                     {/* Right side (Image) */}
                     <div className="col-span-1 md:col-span-1 flex justify-center">
                         <div className="max-w-full rounded-lg overflow-hidden">
-                            <img
-                                src="/boostbusiness.png"
+                            <Image
+                                src={boostbusinessImg}
                                 alt="offshore development services"
-                                className="object-cover h-[250px] rounded-lg"
-                            />
+                                className="object-cover h-[250px] rounded-lg w-auto" />
                         </div>
                     </div>
                 </div>
@@ -416,11 +419,10 @@ const OffshoreDevelopment = () => {
 
                     {/* Right Side: Image */}
                     <div className="flex-1">
-                        <img
-                            src="/scalableoffshore.jpeg"
+                        <Image
+                            src={scalableoffshoreImg}
                             alt="offshore it development"
-                            className="w-full lg:h-[640px] rounded-lg shadow-md object-cover"
-                        />
+                            className="w-full lg:h-[640px] rounded-lg shadow-md object-cover" />
                     </div>
                 </div>
             </section>
@@ -551,11 +553,10 @@ const OffshoreDevelopment = () => {
                     {/* Right side (Image) */}
                     <div className="col-span-1 flex justify-center lg:justify-end">
                         <div className="max-w-full md:h-full rounded-lg overflow-hidden">
-                            <img
-                                src="/offshorespeaker.png"
+                            <Image
+                                src={offshorespeakerImg}
                                 alt="offshore software development team"
-                                className="object-cover  h-[250px]  rounded-lg"
-                            />
+                                className="object-cover  h-[250px]  rounded-lg w-auto" />
                         </div>
                     </div>
                 </div>
@@ -577,10 +578,10 @@ const OffshoreDevelopment = () => {
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-[20px] lg:gap-[30px]">
-                        {toolsTechSection.map((tool: any, toolIndex: any) => (
+                        {toolsTechSection.map((tool, toolIndex) => (
                             <div key={toolIndex} className="bg-white shadow-md p-6 w-auto sm:w-[400px] rounded-lg flex flex-col h-full">
                                 <div className="flex flex-row justify-center mb-3">
-                                    {tool.images.map((logo: any) => (
+                                    {tool.images.map((logo) => (
                                         <img
                                             key={logo._id}
                                             src={logo.image.src}
@@ -674,11 +675,10 @@ const OffshoreDevelopment = () => {
                     {/* Right side (Image) */}
                     <div className="col-span-1 flex justify-center lg:justify-end">
                         <div className="max-w-full md:h-full rounded-lg overflow-hidden">
-                            <img
-                                src="/offshorespeaker.png"
+                            <Image
+                                src={offshorespeakerImg}
                                 alt="offshore it development"
-                                className="object-cover  h-[250px]  rounded-lg"
-                            />
+                                className="object-cover  h-[250px]  rounded-lg w-auto" />
                         </div>
                     </div>
                 </div>

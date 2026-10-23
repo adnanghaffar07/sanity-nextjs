@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider, type CredentialResponse } from "@react-oauth/google";
 
 const GOOGLE_CLIENT_ID =
   "566184810144-kldie9c4qej5rh17tvedlf4g053pcdd0.apps.googleusercontent.com";
@@ -107,8 +106,7 @@ const LoginModal = ({
     }
   };
 
-  const handleGoogleLoginSuccess = async (response: any) => {
-    console.log("Google Response:", response);
+  const handleGoogleLoginSuccess = async (response: CredentialResponse) => {
     setIsLoading(true);
 
     try {
@@ -116,10 +114,6 @@ const LoginModal = ({
       if (!credential) {
         throw new Error("Google credential missing");
       }
-
-      // Decode the Google JWT token to extract user details
-      const decodedToken: any = jwtDecode(credential);
-      console.log("Decoded Google User:", decodedToken);
 
       // Send the token to the backend
       const res = await fetch("/api/auth/google-login", {
@@ -142,10 +136,9 @@ const LoginModal = ({
       } else {
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
-    } catch (error: any) {
+    } catch (error) {
       setIsLoading(false);
-      console.error("Login Error:", error);
-      setErrorMessage(error.message);
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     }
   };
 

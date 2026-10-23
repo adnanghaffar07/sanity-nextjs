@@ -1,7 +1,6 @@
-// components/AuthorBio.tsx
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
+import { FaXTwitter, FaInstagram, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
 
 const AuthorBio = () => {
   return (
@@ -10,7 +9,7 @@ const AuthorBio = () => {
         {/* Profile Photo and Socials */}
         <div className="flex flex-col items-center md:items-start gap-4">
           <Image
-            src="/ceo-adnan.png" // Replace with your image path
+            src="/ceo-adnan.png"
             alt="Adnan Ghaffar"
             width={140}
             height={140}
@@ -21,7 +20,8 @@ const AuthorBio = () => {
               <h2 className="text-xl font-bold text-sky-800 cursor-pointer hover:text-sky-600">
                 Adnan Ghaffar
               </h2>
-            </Link>            <p className="text-gray-800 dark:text-gray-800">CEO, CodeAutomation.ai</p>
+            </Link>
+            <p className="text-gray-800 dark:text-gray-800">CEO, CodeAutomation.ai</p>
           </div>
           <div className="flex gap-3 text-white">
             <a

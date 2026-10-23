@@ -1,31 +1,21 @@
-import React from 'react'
+import type { PortableTextComponents } from "@portabletext/react";
 
-export const portableTextComponents = {
+// Rich text styles for the legacy service and sub-service pages.
+export const portableTextComponents: PortableTextComponents = {
   marks: {
-    link: ({ children, value }: any) => {
-      const target = value?.openInNewTab ? '_blank' : '_self';
+    link: ({ children, value }) => {
+      const newTab = Boolean(value?.openInNewTab);
       return (
-        <a
-          href={value?.href}
-          target={target}
-          rel={value?.openInNewTab ? "noopener noreferrer" : undefined}
-          className="text-blue-600 underline"
-        >
+        <a href={value?.href} target={newTab ? "_blank" : "_self"} rel={newTab ? "noopener noreferrer" : undefined} className="text-blue-600 underline">
           {children}
         </a>
       );
     },
   },
   list: {
-    bullet: ({ children }: any) => (
-      <ul className="list-disc pl-5 text-black">
-        {children}
-      </ul>
-    ),
+    bullet: ({ children }) => <ul className="list-disc pl-5 text-black">{children}</ul>,
   },
   listItem: {
-    bullet: ({ children }: any) => (
-      <li className="mb-2">{children}</li>
-    ),
+    bullet: ({ children }) => <li className="mb-2">{children}</li>,
   },
 };

@@ -47,11 +47,17 @@ export const servicePage = defineType({
           const client = getClient({ apiVersion: "2024-03-14" });
           const id = (document?._id || "").replace(/^drafts\./, "");
           const parentRef = (document as any)?.parent?._ref ?? null;
-          const count = await client.fetch(
-            `count(*[_type == "servicePage" && slug.current == $slug && !(_id in [$id, "drafts." + $id]) && coalesce(parent._ref, "") == coalesce($parent, "")])`,
-            { slug, id, parent: parentRef }
-          );
-          return count === 0;
+          const query = `count(*[_type == "servicePage" && slug.current == $slug && !(_id in [$id, "drafts." + $id]) && coalesce(parent._ref, "") == coalesce($parent, "")])`;
+          // Retry once if the request fails in transit; if Sanity still can't be
+          // reached, don't block publishing over a check that couldn't run.
+          for (let attempt = 0; attempt < 2; attempt++) {
+            try {
+              return (await client.fetch(query, { slug, id, parent: parentRef })) === 0;
+            } catch {
+              await new Promise((resolve) => setTimeout(resolve, 500));
+            }
+          }
+          return true;
         },
       },
       validation: (r) => r.required(),

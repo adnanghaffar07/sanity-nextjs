@@ -209,7 +209,6 @@ export const caseStudy = defineType({
     ...seoFields({
       google: ["title", "description", "keywords"],
       jsonLd: true,
-      social: { facebookCardsSub: ["facebookType"], twitterCardsSub: ["twitterType"] },
     }),
 
     legacyIdField,

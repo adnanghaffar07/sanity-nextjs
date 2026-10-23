@@ -1,6 +1,8 @@
  
  // app/help/page.tsx
 
+import Image from "next/image";
+import blogPublishImg from "@/public/blog-publish.png";
 export default function HelpPage() {
     return (
       <main className="max-w-5xl mx-auto px-4 py-10 mt-32 text-gray-800">
@@ -35,11 +37,10 @@ export default function HelpPage() {
           <h2 className="text-xl font-semibold mb-2">Step 3: See What It Looks Like</h2>
           <p className="mb-2">Here’s what the Audience Checkboxes look like inside Sanity:</p>
           <div className="rounded-md border p-4 bg-gray-50">
-            <img
-              src="/blog-publish.png"
+            <Image
+              src={blogPublishImg}
               alt="Screenshot of Audience Checkboxes in Sanity"
-              className="rounded-md shadow"
-            />
+              className="rounded-md shadow" />
           </div>
           <p className="text-sm mt-2 text-gray-500">
             If you don’t see this field, please contact the developer team.

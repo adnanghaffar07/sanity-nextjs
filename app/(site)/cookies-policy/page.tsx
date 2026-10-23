@@ -1,3 +1,5 @@
+import Image from "next/image";
+import cookiesPolicyImg from "@/public/cookies-policy.jpg";
 import React from "react";
 import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
 
@@ -6,11 +8,10 @@ const CookiePolicyPage = () => {
     <section>
       {/* Header Section */}
       <div className="flex overflow-hidden relative flex-col w-full font-light text-white h-[450px] lg:min-h-[700px]">
-        <img
+        <Image
           className="top-0 left-0 object-cover absolute inset-0 size-full"
-          src="/cookies-policy.jpg"
-          alt="cookies policy"
-        />
+          src={cookiesPolicyImg}
+          alt="cookies policy" />
         <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-75"></div>
         <div className="flex relative flex-col items-center justify-center max-w-7xl mx-auto lg:px-20 px-5 lg:pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow mt-20 lg:mt-0">
           <div className="flex flex-col items-center justify-center text-center">

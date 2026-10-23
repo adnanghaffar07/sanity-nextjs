@@ -1,3 +1,4 @@
+import ScrollToContactButton from "@/components/ui/ScrollToContactButton";
 import React from "react";
 import { 
   Code2, 
@@ -242,18 +243,12 @@ const TechStackSection = () => {
                 We connect your entire marketing stack, ensuring all your tools work together perfectly.
                 No data silos, no manual exports — just unified automation.
               </p>
-              <button 
-                onClick={() => {
-                  const contactSection = document.getElementById('contact-box');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+              <ScrollToContactButton
                 className="group inline-flex items-center gap-2 bg-[#020C16] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1d92fb] transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 <span>Discuss your stack</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </ScrollToContactButton>
             </div>
             
             <div className="lg:w-2/3">

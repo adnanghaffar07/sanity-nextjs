@@ -1,4 +1,3 @@
-// components/Testimonials.tsx
 'use client';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
@@ -108,7 +107,7 @@ function VideoModal({ isOpen, onClose, videoUrl }: { isOpen: boolean; onClose: (
 }
 
 // Testimonial Card Component
-function TestimonialCard({ testimonial, onPlayVideo }: { testimonial: any; onPlayVideo: (url: string) => void }) {
+function TestimonialCard({ testimonial, onPlayVideo }: { testimonial: (typeof testimonials)[number]; onPlayVideo: (url: string) => void }) {
   const renderStars = (rating: number) => {
     return [...Array(5)].map((_, index) => (
       <svg

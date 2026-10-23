@@ -46,7 +46,7 @@ const CarouselScrollButtons: React.FC<ScrollButtonProps> = ({
         scrollContainer.removeEventListener("scroll", updateScrollButtons);
       }
     };
-  }, [scrollContainerId, totalItems, itemsPerPage]);
+  }, [scrollContainerId, totalRounds]);
 
   const handleRoundClick = (newRound: number) => {
     if (newRound < 0 || newRound >= totalRounds) return;

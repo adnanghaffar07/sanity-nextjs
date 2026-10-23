@@ -1,3 +1,6 @@
+import Image from "next/image";
+import clutchImg from "@/public/Clutch.png";
+import trustpilotImg from "@/public/Trustpilot.png";
 import Link from 'next/link';
 import React from 'react';
 
@@ -145,12 +148,11 @@ const HappyClients = () => {
                                 rel="noopener noreferrer"
                                 className="text-center"
                             >
-                                <img
-                                    src="/Clutch.png"
+                                <Image
+                                    src={clutchImg}
                                     alt="clutch-icon"
                                     width={130}
-                                    height={40}
-                                />
+                                    height={40} />
                             </a>
                             <a
                                 href="https://www.trustpilot.com/review/codeautomation.ai"
@@ -158,13 +160,12 @@ const HappyClients = () => {
                                 rel="noopener noreferrer"
                                 className="text-center"
                             >
-                                <img
-                                    src="/Trustpilot.png"
+                                <Image
+                                    src={trustpilotImg}
                                     alt="Trustpilot-icon"
                                     width={130}
                                     height={40}
-                                    className="mb-3"
-                                />
+                                    className="mb-3" />
                             </a>
                         </div>
                     </div>

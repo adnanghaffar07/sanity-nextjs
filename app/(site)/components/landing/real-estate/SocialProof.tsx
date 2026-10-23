@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 const SocialProofBar = () => {
@@ -33,7 +31,7 @@ const SocialProofBar = () => {
       
       {/* Animated subtle shimmer - premium touch */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -inset-[100%] animate-[shimmer_8s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent rotate-12" />
+        <div className="absolute -inset-[100%] animate-shimmer bg-gradient-to-r from-transparent via-white/5 to-transparent rotate-12" />
       </div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 md:py-16">
@@ -64,16 +62,6 @@ const SocialProofBar = () => {
       </div>
 
       {/* Add custom animation for shimmer effect */}
-      <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%) rotate(12deg);
-          }
-          100% {
-            transform: translateX(200%) rotate(12deg);
-          }
-        }
-      `}</style>
     </div>
   );
 };

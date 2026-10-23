@@ -1,344 +1,159 @@
-import { client } from "@/sanity/lib/client";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import { getDiscoveryPage, type SanityImage as SanityImageData, type TitledPoint } from "@/sanity/lib/site-pages";
 import { urlForImage } from "@/sanity/lib/image";
+import SanityImage from "@/components/ui/SanityImage";
 import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
-async function getData() {
-    const query = `*[_type == 'valueDiscoveryProcessPage'][0]`;
-    try {
-        const fetchData = await client.fetch(query);
-        return fetchData || [];
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-    }
+
+export const revalidate = 300;
+
+const PAGE_URL = "https://codeautomation.ai/about/discovery-process";
+const DEFAULT_TITLE = "Code Automation - Custom Software and Mobile Development Company in USA";
+const DEFAULT_DESCRIPTION = "Custom Software and Mobile Development Company in USA";
+const SHARE_IMAGE = "https://codeautomation.ai/thankyou.jpg";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getDiscoveryPage();
+  const title = page?.seo?.title || DEFAULT_TITLE;
+  const description = page?.seo?.description || DEFAULT_DESCRIPTION;
+  const shareImage = (image?: SanityImageData) => [{ url: image?.asset ? urlForImage(image) : SHARE_IMAGE, width: 1200, height: 630, alt: title }];
+
+  return {
+    title,
+    description,
+    keywords: page?.seo?.keywords?.join(", ") || "CodeAutomation.ai",
+    alternates: { canonical: PAGE_URL },
+    openGraph: { type: "website", url: PAGE_URL, title: page?.facebook?.title || title, description: page?.facebook?.description || description, images: shareImage(page?.facebook?.image) },
+    twitter: { card: "summary_large_image", title: page?.twitter?.title || title, description: page?.twitter?.description || description, images: shareImage(page?.twitter?.image) },
+  };
 }
 
-export async function generateMetadata() {
-    const data = await getData();
-
-    const defaultTitle = "Code Automation - Custom Software and Mobile Development Company in USA";
-    const defaultDescription = "Custom Software and Mobile Development Company in USA";
-    const defaultKeywords = "CodeAutomation.ai";
-
-    const title = data.webSeoMetadata?.title || defaultTitle;
-    const description = data.webSeoMetadata?.description || defaultDescription;
-    const keywords = data.webSeoMetadata?.keywords?.join(", ") || defaultKeywords;
-
-    // Extract Open Graph metadata
-    const facebookMeta = data.facebook || {};
-    const twitterMeta = data.twitterhMeta || {};
-    const linkedInMeta = data.linkedInCards || {};
-    const pinterestMeta = data.pinterestCards || {};
-    const whatsappMeta = data.whatsappCards || {};
-    const telegramMeta = data.telegramCards || {};
-
-    return {
-        title,
-        description,
-        keywords,
-        alternates: {
-            canonical: "https://codeautomation.ai/about/discovery-process   ", // Update this URL based on your page
-        },
-        openGraph: {
-            type: facebookMeta.type || "website",
-            url: facebookMeta.url || "https://codeautomation.ai",
-            title: facebookMeta.title || title,
-            description: facebookMeta.description || description,
-            images: [
-                {
-                    url: urlForImage(facebookMeta.image).toString(),
-                    width: 1200,
-                    height: 630,
-                    alt: title,
-                }
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: twitterMeta.title || title,
-            description: twitterMeta.description || description,
-            images: [
-                {
-                    url: urlForImage(twitterMeta.image).toString(),
-                    alt: title,
-                }
-            ],
-        },
-        linkedIn: {
-            title: linkedInMeta.linkedInTitle || title,
-            description: linkedInMeta.linkedInDescription || description,
-            image: urlForImage(linkedInMeta.linkedInImage).toString(),
-            url: linkedInMeta.linkedInUrl || "https://codeautomation.ai",
-        },
-        pinterest: {
-            title: pinterestMeta.pinterestTitle || title,
-            description: pinterestMeta.pinterestDescription || description,
-            url: pinterestMeta.pinterestUrl || "https://codeautomation.ai",
-        },
-        whatsapp: {
-            title: whatsappMeta.whatsappTitle || title,
-            description: whatsappMeta.whatsappDescription || description,
-            url: whatsappMeta.whatsappUrl || "https://codeautomation.ai",
-        },
-        telegram: {
-            title: telegramMeta.telegramTitle || title,
-            description: telegramMeta.telegramDescription || description,
-            url: telegramMeta.telegramUrl || "https://codeautomation.ai",
-        }
-    };
+// A full-width band; every other band is light blue.
+function Band({ tinted, children }: { tinted?: boolean; children: ReactNode }) {
+  return (
+    <div className={`w-full px-6 py-10 md:px-16 md:py-16 ${tinted ? "bg-blue-50" : "bg-white"}`}>
+      <div className="max-w-7xl mx-auto">{children}</div>
+    </div>
+  );
 }
-export default async function DiscoveryProcess() {
-    const data = await getData();
-    return (
-        <div className="w-full flex flex-col items-center">
-            {/* Hero Section */}
-            <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-                {data.heroImage && (
-                    <img
-                        className="top-0 left-0 object-cover absolute inset-0 size-full"
-                        src={urlForImage(data.heroImage).toString()}
-                        alt="Hero Image Discovery"
-                    />
-                )}
-                <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
-                <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
-                <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">
-                    <h1 className="text-2xl font-bold capitalize lg:text-4xl">{data.pageTitle}</h1>
-                    <h2 className="mt-4 text-base lg:text-2xl lg:px-32">{data.pageDesc}</h2>
-                </div>
-            </div>
-            </div>
 
-            {/* Introduction Section */}
-            <div className="relative w-full px-6 py-10 bg-white md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-8 text-2xl text-blue-900 font-bold text-left">
-                        {data.introductionSection?.introHeading}
-                    </h2>
-                    <p className="text-lg leading-relaxed text-gray-800 text-left">
-                        {data.introductionSection?.introDesc}
-                    </p>
-                </div>
-            </div>
-            {/* Value Discovery Section */}
-            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-8 text-2xl font-bold text-blue-900 text-left">
-                        {data.discoverynSection?.heading}
-                    </h2>
-                    <p className="text-lg leading-relaxed text-gray-700 text-left">
-                        {data.discoverynSection?.description}
-                    </p>
-                </div>
-            </div>
+function Intro({ heading, description }: { heading?: string; description?: string }) {
+  return (
+    <>
+      <h2 className="mb-6 text-2xl font-bold text-blue-900">{heading}</h2>
+      <p className="mb-6 text-lg leading-relaxed text-gray-700">{description}</p>
+    </>
+  );
+}
 
-            {/* Efficient Knowledge Acquisition Section */}
-            <div className="w-full px-6 py-10 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold text-blue-900 text-left">
-                        {data.knowledgeAcquisitionSection?.heading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed text-gray-700 text-left">
-                        {data.knowledgeAcquisitionSection?.description}
-                    </p>
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        Sources
-                    </h3>
-                    <ul className="mb-8 list-disc list-inside text-gray-700">
-                        {data.knowledgeAcquisitionSection?.sources?.map((source: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{source.sourceTitle} </strong>{source.sourceDetail}
-                            </li>
-                        ))}
-                    </ul>
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        {data.knowledgeAcquisitionSection?.stepsHeading}
-                    </h3>
-                    <ul className="list-decimal list-inside text-gray-700">
-                        {data.knowledgeAcquisitionSection?.steps?.map((step: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{step.stepTitle} </strong>{step.stepDetail}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="p-4 mt-8 bg-white rounded-lg shadow-lg">
-                        <h4 className="text-xl font-bold text-gray-800">
-                            {data.knowledgeAcquisitionSection?.example?.exampleTitle}
-                        </h4>
-                        <p className="text-lg leading-relaxed text-gray-700">
-                            {data.knowledgeAcquisitionSection?.example?.exampleDetail}
-                        </p>
-                    </div>
-                </div>
-            </div>
+// "Title detail" list with the title in bold.
+function PointList({ heading, points, numbered }: { heading?: string; points?: TitledPoint[] | null; numbered?: boolean }) {
+  return (
+    <>
+      {heading && <h3 className="mb-4 text-2xl font-semibold text-blue-800">{heading}</h3>}
+      <ul className={`mb-8 list-inside text-gray-700 ${numbered ? "list-decimal" : "list-disc"}`}>
+        {points?.map((point, index) => (
+          <li key={index} className="mb-2">
+            <strong>{point.title} </strong>
+            {point.detail}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
 
-            {/* Voice of the Customer Section */}
-            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold text-blue-900 text-left">
-                        {data.vocSection?.heading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed text-gray-700 text-left">
-                        {data.vocSection?.description}
-                    </p>
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        Methods
-                    </h3>
-                    <ul className="mb-8 list-disc list-inside text-gray-700">
-                        {data.vocSection?.methods?.map((method: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{method.methodTitle} </strong>{method.methodDetail}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="p-4 mt-8 bg-white rounded-lg shadow-lg">
-                        <h4 className="text-xl font-bold text-gray-800">
-                            {data.vocSection?.example?.exampleTitle}
-                        </h4>
-                        <p className="text-lg leading-relaxed text-gray-700">
-                            {data.vocSection?.example?.exampleDetail}
-                        </p>
-                    </div>
-                </div>
-            </div>
+function Example({ example }: { example?: { title?: string; detail?: string } | null }) {
+  if (!example?.title && !example?.detail) return null;
+  return (
+    <div className="p-4 mt-8 bg-white rounded-lg shadow-lg">
+      <h4 className="text-xl font-bold text-gray-800">{example.title}</h4>
+      <p className="text-lg leading-relaxed text-gray-700">{example.detail}</p>
+    </div>
+  );
+}
 
-            {/* DMAIC Section */}
-            <div className="w-full px-6 py-10 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold text-blue-900 text-left">
-                        {data.dmaicDmadSection?.heading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed text-gray-700 text-left">
-                        {data.dmaicDmadSection?.description}
-                    </p>
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        {data.dmaicDmadSection?.dmaic?.dmaicHeading}
-                    </h3>
-                    <ul className="mb-8 list-decimal list-inside text-gray-700">
-                        {data.dmaicDmadSection?.dmaic?.dmaicSteps?.map((step: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{step.step} </strong>{step.detail}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="p-4 mt-8 bg-white rounded-lg shadow-md">
-                        <h4 className="text-xl font-bold text-gray-800">
-                            {data.dmaicDmadSection?.dmaic?.exampleTitle}
-                        </h4>
-                        <p className="text-lg leading-relaxed text-gray-700">
-                            {data.dmaicDmadSection?.dmaic?.exampleDetail}
-                        </p>
-                    </div>
-                </div>
-            </div>
+export default async function DiscoveryProcessPage() {
+  const page = await getDiscoveryPage();
+  const { knowledge, voc, dmaic, opportunities, imagery } = page ?? {};
 
-            {/* DMADV Section */}
-            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        {data.dmaicDmadSection?.dmadv?.dmadvHeading}
-                    </h3>
-                    <ul className="mb-8 list-decimal list-inside text-gray-700">
-                        {data.dmaicDmadSection?.dmadv?.dmadvSteps?.map((step: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{step.step} </strong>{step.detail}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="p-4 mt-8 bg-white rounded-lg shadow-md">
-                        <h4 className="text-xl font-bold text-gray-800">
-                            {data.dmaicDmadSection?.dmadv?.exampleTitle}
-                        </h4>
-                        <p className="text-lg leading-relaxed text-gray-700">
-                            {data.dmaicDmadSection?.dmadv?.exampleDetail}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Identifying Value Opportunities Section */}
-            <div className="w-full px-6 py-10 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold  text-blue-900 text-left">
-                        {data.valueOpportunitiesSection?.heading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed text-gray-700 text-left">
-                        {data.valueOpportunitiesSection?.description}
-                    </p>
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        Opportunities
-                    </h3>
-                    <ul className="mb-8 list-disc list-inside text-gray-700">
-                        {data.valueOpportunitiesSection?.opportunities?.map((opportunity: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{opportunity.opportunityTitle} </strong>{opportunity.opportunityDetail}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-
-            {/* Guidance for Web Development and Imagery Section */}
-            <div className="w-full px-6 py-10 bg-blue-50 md:px-16 md:py-16">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold text-blue-900 text-left">
-                        {data.webDevelopmentImagerySection?.heading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed text-gray-700 text-left">
-                        {data.webDevelopmentImagerySection?.description}
-                    </p>
-                    <h3 className="mb-4 text-2xl font-semibold text-blue-800">
-                        Guidance Points
-                    </h3>
-                    <ul className="mb-8 list-disc list-inside text-gray-700">
-                        {data.webDevelopmentImagerySection?.guidancePoints?.map((point: any, index: any) => (
-                            <li key={index} className="mb-2">
-                                <strong>{point.pointTitle} </strong>{point.pointDetail}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-
-            {/* Call to Action (CTA) Section */}
-            <div className="w-full px-6 py-10 text-white bg-blue-900 md:px-16 md:py-16 rounded-lg shadow-lg text-center md:text-left">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold">
-                        {data.ctaSection?.ctaHeading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed">
-                        {data.ctaSection?.ctaText}
-                    </p>
-                    <div className="mt-8 flex justify-center md:justify-start">
-                        <ScrollToSectionButton
-                            content="Get Started Now"
-                            classes="px-8 py-3 text-blue-900 cursor-pointer bg-white rounded-full shadow-md hover:bg-gray-100 transition duration-300"
-                            destination="contact-box"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* Conclusion Section */}
-            <div className="w-full  bg-white px-6 py-10 md:px-16 md:py-16 rounded-lg">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="mb-6 text-2xl font-bold  text-blue-900 text-left">
-                        {data.conclusionSection?.conclusionHeading}
-                    </h2>
-                    <p className="mb-6 text-lg leading-relaxed text-gray-700 text-left">
-                        {data.conclusionSection?.conclusionText}
-                    </p>
-                    <h3 className="mb-4 text-xl font-semibold text-blue-800">
-                        {data.conclusionSection?.inquiryHeading}
-                    </h3>
-                    <div className="mt-8 flex justify-start">
-                        <ScrollToSectionButton
-                            content="Contact Us"
-                            classes="px-8 py-3 text-white bg-blue-900 cursor-pointer rounded-full shadow-md hover:bg-blue-700 transition duration-300"
-                            destination="contact-box"
-                        />
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="w-full flex flex-col items-center">
+      <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
+        <SanityImage image={page?.heroImage} alt="Hero Image Discovery" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-[#020C16] opacity-65" />
+        <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
+          <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">
+            <h1 className="text-2xl font-bold capitalize lg:text-4xl">{page?.pageTitle}</h1>
+            <h2 className="mt-4 text-base lg:text-2xl lg:px-32">{page?.pageDesc}</h2>
+          </div>
         </div>
-    );
+      </div>
+
+      <Band>
+        <h2 className="mb-8 text-2xl text-blue-900 font-bold">{page?.intro?.heading}</h2>
+        <p className="text-lg leading-relaxed text-gray-800">{page?.intro?.description}</p>
+      </Band>
+      <Band tinted>
+        <h2 className="mb-8 text-2xl font-bold text-blue-900">{page?.discovery?.heading}</h2>
+        <p className="text-lg leading-relaxed text-gray-700">{page?.discovery?.description}</p>
+      </Band>
+      <Band>
+        <Intro heading={knowledge?.heading} description={knowledge?.description} />
+        <PointList heading="Sources" points={knowledge?.sources} />
+        <PointList heading={knowledge?.stepsHeading} points={knowledge?.steps} numbered />
+        <Example example={knowledge?.example} />
+      </Band>
+      <Band tinted>
+        <Intro heading={voc?.heading} description={voc?.description} />
+        <PointList heading="Methods" points={voc?.methods} />
+        <Example example={voc?.example} />
+      </Band>
+      <Band>
+        <Intro heading={dmaic?.heading} description={dmaic?.description} />
+        <PointList heading={dmaic?.dmaicHeading} points={dmaic?.dmaicSteps} numbered />
+        <Example example={dmaic?.dmaicExample} />
+      </Band>
+      <Band tinted>
+        <PointList heading={dmaic?.dmadvHeading} points={dmaic?.dmadvSteps} numbered />
+        <Example example={dmaic?.dmadvExample} />
+      </Band>
+      <Band>
+        <Intro heading={opportunities?.heading} description={opportunities?.description} />
+        <PointList heading="Opportunities" points={opportunities?.points} />
+      </Band>
+      <Band tinted>
+        <Intro heading={imagery?.heading} description={imagery?.description} />
+        <PointList heading="Guidance Points" points={imagery?.points} />
+      </Band>
+
+      <div className="w-full px-6 py-10 text-white bg-blue-900 md:px-16 md:py-16 rounded-lg shadow-lg text-center md:text-left">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="mb-6 text-2xl font-bold">{page?.cta?.heading}</h2>
+          <p className="mb-6 text-lg leading-relaxed">{page?.cta?.text}</p>
+          <div className="mt-8 flex justify-center md:justify-start">
+            <ScrollToSectionButton
+              content="Get Started Now"
+              classes="px-8 py-3 text-blue-900 cursor-pointer bg-white rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+              destination="contact-box"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full bg-white px-6 py-10 md:px-16 md:py-16 rounded-lg">
+        <div className="max-w-7xl mx-auto">
+          <Intro heading={page?.conclusion?.heading} description={page?.conclusion?.text} />
+          <h3 className="mb-4 text-xl font-semibold text-blue-800">{page?.conclusion?.inquiryHeading}</h3>
+          <div className="mt-8 flex justify-start">
+            <ScrollToSectionButton
+              content="Contact Us"
+              classes="px-8 py-3 text-white bg-blue-900 cursor-pointer rounded-full shadow-md hover:bg-blue-700 transition duration-300"
+              destination="contact-box"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

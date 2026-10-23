@@ -2,7 +2,7 @@
 // in Studio refreshes it through the /api/revalidate webhook (tag "careers"),
 // otherwise after 5 minutes.
 
-import { client } from "./client";
+import { client, reportSanityError } from "./client";
 import { CAREERS_TYPE, DEFAULT_JOB_LOCATION } from "@/sanity/schemas/careers-constants";
 
 export interface JobOpening {
@@ -28,7 +28,7 @@ export async function getJobOpenings(): Promise<JobOpening[]> {
     );
     return jobs ?? [];
   } catch (error) {
-    console.error("Loading job openings failed:", error);
+    reportSanityError("Loading job openings", error);
     return [];
   }
 }

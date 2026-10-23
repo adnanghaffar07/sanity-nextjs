@@ -9,17 +9,14 @@ const images = [
   '/portfolio-3.png',
 ];
 
+// The last slide is cloned at the start and the first at the end, so the
+// slider can loop without a visible jump.
+const sliderImages = [images[images.length - 1], ...images, images[0]];
+
 export default function PortfolioSection() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [transition, setTransition] = useState(true);
   const sliderRef = useRef(null);
-
-  // Clone slides
-  const sliderImages = [
-    images[images.length - 1], // last clone at beginning
-    ...images,
-    images[0], // first clone at end
-  ];
 
   // Auto slide
   useEffect(() => {

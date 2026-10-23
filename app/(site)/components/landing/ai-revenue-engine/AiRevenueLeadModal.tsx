@@ -265,11 +265,11 @@ export default function AiRevenueLeadModal() {
                     setFocusedField(null);
                     setTouched(prev => ({ ...prev, phone: true }));
                   }}
-                  onChange={(value, data: any) =>
+                  onChange={(value, data) =>
                     setForm((prev) => ({
                       ...prev,
                       phone: value,
-                      countryCode: data?.dialCode ? `+${data.dialCode}` : prev.countryCode,
+                      countryCode: "dialCode" in data ? `+${data.dialCode}` : prev.countryCode,
                     }))
                   }
                   inputProps={{

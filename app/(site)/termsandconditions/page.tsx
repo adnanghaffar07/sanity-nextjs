@@ -1,11 +1,13 @@
-import { PortableText, PortableTextComponents } from '@portabletext/react'
-import Image from 'next/image'
+import type { Metadata } from 'next'
+import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { format } from 'date-fns'
-import { serverClient } from '@/sanity/lib/sanity/serverClient'
-import { urlForImage } from '@/sanity/lib/image'
 import { notFound } from 'next/navigation'
+import { getTermsPage } from '@/sanity/lib/site-pages'
+import SanityImage from '@/components/ui/SanityImage'
 
-export const metadata = {
+export const revalidate = 300
+
+export const metadata: Metadata = {
   title: "Terms & Conditions | CodeAutomation",
   description: "CodeAutomation.ai is a leading software development company specialized in custom software development services.",
   alternates: {
@@ -31,16 +33,6 @@ export const metadata = {
     description: "CodeAutomation.ai is a leading software development company specialized in custom software development services.",
     images: ["https://codeautomation.ai/thankyou.jpg"],
   },
-}
-
-const getData = async () => {
-  return await serverClient.fetch(`*[_type == "terms"][0]{
-    title,
-    heroImage,
-    heroText,
-    content,
-    lastUpdated
-  }`)
 }
 
 const components: PortableTextComponents = {
@@ -70,24 +62,15 @@ const components: PortableTextComponents = {
   },
 }
 
-const TermsPage = async () => {
-  const data = await getData()
-  if (!data) {
-    notFound()
-  }
+export default async function TermsPage() {
+  const data = await getTermsPage()
+  if (!data) notFound()
+
   return (
     <section>
       {/* Hero Section */}
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        {data.heroImage && (
-          <Image
-            src={urlForImage(data.heroImage).toString()}
-            alt="terms and conditions"
-            fill
-            className="object-cover absolute inset-0"
-
-          />
-        )}
+        <SanityImage image={data.heroImage} alt="terms and conditions" fill priority sizes="100vw" className="object-cover" />
         <div className="flex relative flex-col items-center lg:px-20 px-5 pt-12 w-full max-md:px-5 max-md:max-w-full flex-grow">
           <div className="lg:absolute lg:top-[350px]">
             <h1 className="lg:text-4xl text-2xl font-bold text-center capitalize max-lg:mt-36 max-md:max-w-full">
@@ -102,18 +85,15 @@ const TermsPage = async () => {
 
       {/* Content Section */}
       <div className="mt-10 max-w-4xl mx-auto px-6 py-10 bg-white shadow-md rounded-lg mb-10">
-        {/* <h1 className="text-center text-4xl font-bold mb-6">{data.title}</h1> */}
         {data.lastUpdated && (
           <p className="text-gray-600 mb-4">
             Last updated: {format(new Date(data.lastUpdated), 'MMMM dd, yyyy')}
           </p>
         )}
         <div className="prose max-w-none prose-blue prose-lg text-gray-700">
-          <PortableText value={data.content} components={components} />
+          {data.content && <PortableText value={data.content} components={components} />}
         </div>
       </div>
     </section>
   )
 }
-
-export default TermsPage

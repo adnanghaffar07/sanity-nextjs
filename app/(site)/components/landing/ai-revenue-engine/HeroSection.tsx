@@ -1,3 +1,4 @@
+import headphoneImg from "@/public/headphone.png";
 import Image from "next/image";
 
 export default function HeroSection() {
@@ -47,7 +48,7 @@ export default function HeroSection() {
                                 data-open-ai-form="true"
                                 className="group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#3498db] to-[#4b2d85] px-6 py-3 text-sm text-white shadow-md hover:shadow-lg transition-all duration-300 hover:brightness-105"
                             >
-                                <img src="/headphone.png" alt="headphone" className="h-4 w-4 filter brightness-0 invert" />
+                                <Image src={headphoneImg} alt="headphone" className="h-4 w-4 filter brightness-0 invert" />
                                 <span>Talk to AI Recipient</span>
                                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

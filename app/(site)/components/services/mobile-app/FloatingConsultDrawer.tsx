@@ -1,5 +1,8 @@
 'use client';
 
+import Image from 'next/image';
+import phoneIcon from '@/public/phone-call.png';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '@/lib/forms/client/submitForm';
@@ -104,11 +107,7 @@ export default function FloatingConsultDrawer({
         className="hidden md:block fixed top-[25%] sm:top-[21%] right-2 z-[999] bg-[#F7E022] text-black p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
         title="Call Now"
       >
-        <img
-          src="/phone-call.png"
-          alt="Call Icon"
-          className="w-6 h-6"
-        />
+        <Image src={phoneIcon} alt="Call Icon" sizes="24px" className="w-6 h-6" />
       </a>
       {/* Floating Tab */}
       <button

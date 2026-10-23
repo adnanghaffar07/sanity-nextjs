@@ -61,8 +61,6 @@ export async function POST(req: NextRequest) {
       if (recipients.length === 0) {
         return NextResponse.json({ message: "No recipients found" }, { status: 200 });
       }
-      console.log('Received audience:', body.audience);
-      console.log('Fetched recipients:', recipients);
 
       // Configure email transporter
       const transporter = nodemailer.createTransport({
@@ -339,9 +337,8 @@ export async function POST(req: NextRequest) {
       );
 
       const emailResults = await Promise.all(emailPromises);
-      const failedEmails = emailResults.filter((result: any) => result?.error);
-
-      console.log(`Failed emails: ${failedEmails.map((e: any) => e.email)}`);
+      const failedEmails = emailResults.filter((result) => result && "error" in result);
+      if (failedEmails.length) console.error(`Blog post email failed for ${failedEmails.length} of ${recipients.length} recipients`);
 
       return NextResponse.json(
         { message: "Emails processed", failedEmails },

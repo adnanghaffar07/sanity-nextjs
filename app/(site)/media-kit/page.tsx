@@ -1,4 +1,5 @@
 "use client";
+import techAiImg from "@/public/tech-ai.jpg";
 import { Lightbulb, Eye } from "lucide-react"; // icons for mission & vision
 import { Cpu, Smartphone, CheckCircle, Database } from "lucide-react"; // example icons
 import { Linkedin, Instagram, Briefcase } from "lucide-react";
@@ -236,11 +237,10 @@ export default function HeroSection() {
 
         {/* Right Image */}
         <div className="lg:w-1/2 flex justify-center">
-          <img
-            src="/tech-ai.jpg"
+          <Image
+            src={techAiImg}
             alt="AI & Automation Illustration"
-            className="w-full lg:max-w-md rounded-xl shadow-2xl"
-          />
+            className="w-full lg:max-w-md rounded-xl shadow-2xl" />
         </div>
       </div>
 

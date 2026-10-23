@@ -1,12 +1,12 @@
 import React from 'react'
-import Section1_Hero from '@/components/landing/car-detailing/Hero'
-import Section2_Problem from '@/components/landing/car-detailing/Problem'
-import Section3_Services from '@/components/landing/car-detailing/Services'
-import Section4_HowItWorks from '@/components/landing/car-detailing/HowItWorks'
-import Section5_WhyUs from '@/components/landing/car-detailing/WhyUs'
-import Section6_Pricing from '@/components/landing/car-detailing/Pricing'
-import Section7_Testimonial from '@/components/landing/car-detailing/Testimonials'
-import Section8_FAQ from '@/components/landing/car-detailing/Faq'
+import Hero from '@/components/landing/car-detailing/Hero'
+import Problem from '@/components/landing/car-detailing/Problem'
+import Services from '@/components/landing/car-detailing/Services'
+import HowItWorks from '@/components/landing/car-detailing/HowItWorks'
+import WhyUs from '@/components/landing/car-detailing/WhyUs'
+import Pricing from '@/components/landing/car-detailing/Pricing'
+import Testimonials from '@/components/landing/car-detailing/Testimonials'
+import Faq from '@/components/landing/car-detailing/Faq'
 
 // Metadata for SEO
 export const metadata = {
@@ -55,14 +55,14 @@ export const metadata = {
 const Page = () => {
   return (
     <div>
-      <Section1_Hero />
-      <Section2_Problem />
-      <Section3_Services />
-      <Section4_HowItWorks />
-      <Section5_WhyUs />
-      <Section6_Pricing />
-      <Section7_Testimonial />
-      <Section8_FAQ />
+      <Hero />
+      <Problem />
+      <Services />
+      <HowItWorks />
+      <WhyUs />
+      <Pricing />
+      <Testimonials />
+      <Faq />
     </div>
   )
 }

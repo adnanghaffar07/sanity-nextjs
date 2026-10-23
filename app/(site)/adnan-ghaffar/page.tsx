@@ -1,7 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
-import { BLOG_FILTER } from "@/sanity/lib/content";
-import { urlForImage } from "@/sanity/lib/image";
+import ceoPhoto from "@/public/ceo-adnan.png";
+import { getBlogCards } from "@/sanity/lib/blog";
+import SanityImage from "@/components/ui/SanityImage";
+
+export const revalidate = 300;
 
 export const metadata = {
   title: "Adnan Ghaffar | AI Consultant & CEO of CodeAutomation",
@@ -41,19 +44,8 @@ const schema = {
   },
 };
 
-async function getBlogs() {
-  const query = `*[${BLOG_FILTER}] | order(_createdAt desc){_id, slug, title, subtitle, introductionheading, heroimage}`;
-  try {
-    const res = await client.fetch(query);
-    return res || [];
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
-}
-
 export default async function AuthorPage() {
-  const blogs = await getBlogs().then(blogs => blogs.slice(0, 6));
+  const blogs = (await getBlogCards()).slice(0, 6);
 
   return (
     <>
@@ -63,9 +55,11 @@ export default async function AuthorPage() {
           <div className="flex flex-col md:flex-row gap-8 mt-20 md:gap-12 items-center md:items-start">
             {/* Profile Image */}
             <div className="flex-shrink-0">
-              <img
-                src="/ceo-adnan.png"
+              <Image
+                src={ceoPhoto}
                 alt="Adnan Ghaffar"
+                priority
+                sizes="192px"
                 className="w-48 h-48 rounded-2xl object-cover shadow-2xl border-4 border-blue-500/20"
               />
             </div>
@@ -128,7 +122,7 @@ export default async function AuthorPage() {
 
       {/* Blog Grid */}
 <div className="grid md:grid-cols-2 gap-8 mb-10">
-  {blogs.map((blog: any) => (
+  {blogs.map((blog) => (
     <Link
       key={blog._id}
       href={`/blogs/${blog.slug}`}
@@ -136,11 +130,13 @@ export default async function AuthorPage() {
       rel="noopener noreferrer"
     >
       <div className="group cursor-pointer h-full">
-        <div className="overflow-hidden rounded-xl mb-4 h-64 bg-gray-200">
-          <img
-            src={urlForImage(blog.heroimage).toString()}
+        <div className="relative overflow-hidden rounded-xl mb-4 h-64 bg-gray-200">
+          <SanityImage
+            image={blog.heroimage}
             alt={blog.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
 

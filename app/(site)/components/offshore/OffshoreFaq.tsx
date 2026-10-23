@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import ellipse1Img from "@/public/ellipse-1.png";
 import React, { useState } from "react";
 
 const OffshoreFaq = () => {
@@ -19,12 +21,11 @@ const OffshoreFaq = () => {
     return (
         <section className="relative text-black">
             {/* Illustration */}
-            <img
-                loading="lazy"
-                src="/ellipse-1.png"
+            <Image
+               
+                src={ellipse1Img}
                 className="absolute left-0 w-[92px] lg:block hidden"
-                alt="ellipse"
-            />
+                alt="ellipse" />
             <div className="max-w-5xl md:py-12 py-6 px-6 md:px-16 mx-auto gap-8">
                 {/* Heading */}
                 <div className="text-center mb-8">

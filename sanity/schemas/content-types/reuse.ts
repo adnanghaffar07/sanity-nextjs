@@ -48,11 +48,19 @@ export const addressField = (type: string, example: string, basePath: string) =>
         if (!value) return true;
         const client = context.getClient({ apiVersion: "2024-03-14" });
         const id = (context.document?._id || "").replace(/^drafts\./, "");
-        const count = await client.fetch(
-          `count(*[_type == $type && slug == $slug && !(_id in [$id, "drafts." + $id])])`,
-          { type, slug: value, id }
-        );
-        return count === 0 ? true : "Another page already uses this address.";
+        const query = `count(*[_type == $type && slug == $slug && !(_id in [$id, "drafts." + $id])])`;
+        // The check can fail in transit (Studio cancels it when you switch
+        // documents, or the connection drops). Retry once; if Sanity still
+        // can't be reached, skip the duplicate check instead of blocking publish.
+        for (let attempt = 0; attempt < 2; attempt++) {
+          try {
+            const count = await client.fetch(query, { type, slug: value, id });
+            return count === 0 ? true : "Another page already uses this address.";
+          } catch {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+          }
+        }
+        return true;
       }),
 });
 

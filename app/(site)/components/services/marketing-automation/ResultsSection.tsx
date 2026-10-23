@@ -1,3 +1,4 @@
+import ScrollToContactButton from "@/components/ui/ScrollToContactButton";
 import React from "react";
 import { 
   TrendingUp,
@@ -197,19 +198,13 @@ const ResultsSection = () => {
 
         {/* CTA - Matching exactly */}
         <div className="text-center">
-          <button 
-            onClick={() => {
-              const contactSection = document.getElementById('contact-box');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+          <ScrollToContactButton
             className="group inline-flex items-center gap-2 bg-[#020C16] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#1d92fb] transition-all duration-300 shadow-md hover:shadow-lg"
           >
             <Zap className="w-5 h-5" />
             <span>Get Your Custom ROI Projection</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </ScrollToContactButton>
           <p className="text-sm text-gray-500 mt-4">
             Free consultation • No commitment • 24h response
           </p>

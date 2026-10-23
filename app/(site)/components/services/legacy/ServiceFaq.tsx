@@ -1,33 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
-import { portableTextComponents } from "./portableTextComponents";
+import { useState } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa";
+import type { PortableTextBlock } from "sanity";
+import { RichOrPlain } from "./primitives";
 
-interface FAQ {
-  question: string;
-  answer: string;
-  open?: boolean;
-  descriptionBlock?: PortableTextBlock[];
+export interface ServiceFaqSection {
+  title?: string;
+  faqs?: { question?: string; answer?: string; descriptionBlock?: PortableTextBlock[] }[];
 }
 
-export default function ServiceFaq({ faqSection }: { faqSection: any }) {
-  const [faqs, setFaqs] = useState<FAQ[]>(
-    faqSection?.faqs?.map((faq: any) => ({ ...faq, open: false })) || [] // Fallback to an empty array
-  );
+// FAQ list; each answer opens and closes on its own.
+export default function ServiceFaq({ faqSection }: { faqSection: ServiceFaqSection }) {
+  const [open, setOpen] = useState<Set<number>>(new Set());
+  const toggle = (index: number) =>
+    setOpen((current) => {
+      const next = new Set(current);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
 
-  const toggleFAQ = (index: number): void => {
-    setFaqs((prevFaqs) =>
-      prevFaqs.map((faq, i) =>
-        i === index ? { ...faq, open: !faq.open } : faq
-      )
-    );
-  };
-
-  if (!faqSection || !faqSection.faqs) {
-    return <div>No FAQs available.</div>; // Display a fallback UI when data is missing
-  }
+  if (!faqSection.faqs) return null;
 
   return (
     <div className="container mx-auto px-6 py-6 md:py-16">
@@ -35,31 +29,19 @@ export default function ServiceFaq({ faqSection }: { faqSection: any }) {
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-2xl font-bold mb-6">{faqSection.title}</h2>
           <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="border border-blue-200 rounded-lg overflow-hidden"
-              >
+            {faqSection.faqs.map((faq, index) => (
+              <div key={index} className="border border-blue-200 rounded-lg overflow-hidden">
                 <button
+                  type="button"
+                  aria-expanded={open.has(index)}
                   className="w-full px-3 py-4 flex justify-between items-center text-lg font-semibold bg-blue-50 hover:bg-blue-100 focus:outline-none"
-                  onClick={() => toggleFAQ(index)}
+                  onClick={() => toggle(index)}
                 >
                   <span>{faq.question}</span>
-                  {faq.open ? (
-                    <FaMinus className="text-blue-600" />
-                  ) : (
-                    <FaPlus className="text-blue-600" />
-                  )}
+                  {open.has(index) ? <FaMinus className="text-blue-600" /> : <FaPlus className="text-blue-600" />}
                 </button>
-                <div
-                  className={`px-6 py-4 text-gray-700 ${faq.open ? "block" : "hidden"
-                    }`}
-                >
-                  {faq.descriptionBlock ? (
-                    <PortableText value={faq.descriptionBlock} components={portableTextComponents} />
-                  ) : (
-                    <p>{faq.answer}</p>
-                  )}
+                <div className={`px-6 py-4 text-gray-700 ${open.has(index) ? "block" : "hidden"}`}>
+                  {faq.descriptionBlock ? <RichOrPlain blocks={faq.descriptionBlock} /> : <p>{faq.answer}</p>}
                 </div>
               </div>
             ))}

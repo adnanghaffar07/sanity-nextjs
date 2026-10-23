@@ -8,7 +8,7 @@ import {
 import { techLogo } from "./schemas/tech-logo";
 import partnershipSchema from "./schemas/partnership";
 import { serviceSummary } from "./schemas/service-summary";
-import valueBlueprints from "./schemas/value-bueprints";
+import { valueBlueprintsPage } from "./schemas/value-blueprints-page";
 import valueDiscoveryProcessPage from "./schemas/value-process";
 import lifeAtCa from "./schemas/life-at-ca";
 import news from "./schemas/news";
@@ -38,7 +38,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     techLogo,
     partnershipSchema,
     serviceSummary,
-    valueBlueprints,
+    valueBlueprintsPage,
     valueDiscoveryProcessPage,
     table,
     user,

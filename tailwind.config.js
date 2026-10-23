@@ -26,6 +26,9 @@ module.exports = {
       animation: {
         "slide-down": "slideDown 0.5s ease forwards",
         "slide-up": "slideUp 0.5s ease forwards",
+        "fade-in": "fadeIn 0.3s ease-out forwards",
+        blob: "blob 7s infinite",
+        shimmer: "shimmer 8s infinite",
       },
       keyframes: {
         slideDown: {
@@ -35,6 +38,22 @@ module.exports = {
         slideUp: {
           "0%": { transform: "translateY(0)", opacity: "1" },
           "100%": { transform: "translateY(-30%)", opacity: "0" },
+        },
+        // Opacity only, so it can't fight an element's own translate classes.
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        // Diagonal light sweep across a banner.
+        shimmer: {
+          "0%": { transform: "translateX(-100%) rotate(12deg)" },
+          "100%": { transform: "translateX(200%) rotate(12deg)" },
+        },
+        // Slow drifting background shapes.
+        blob: {
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
         },
       },
     },

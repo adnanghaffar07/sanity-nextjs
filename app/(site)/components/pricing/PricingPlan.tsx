@@ -1,379 +1,218 @@
-"use client"
-import React, { useEffect, useState } from "react";
-import LoginModal from "./LoginModal";
+"use client";
+
+// Plan comparison table. Visitors see the first few features; after logging in
+// (LoginModal) they see every feature, the prices and the "Submit proposal"
+// buttons. Phones get one table per plan, larger screens one combined table;
+// both are rendered and CSS picks one, so server and browser HTML match.
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-import { useMediaQuery } from "react-responsive";
+import type { PlanFeature, PricingPage } from "@/sanity/lib/site-pages";
+import LoginModal from "./LoginModal";
+import illusTopRight from "@/public/illus1.png";
+import illusTopRightMember from "@/public/illus-1.png";
+import illusTopCenter from "@/public/illus2.png";
+import illusBottomLeftSmall from "@/public/illus3.png";
+import illusBottomLeft from "@/public/illus4.png";
+import illusBottomCenter from "@/public/illus5.png";
 
-const CustomTick = () => (
-    <svg
-        className="inline-block w-5 h-5 text-black"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+const PREVIEW_ROWS = { phone: 4, desktop: 6 };
+
+const PLANS = [
+  { key: "basic", label: "BASIC", name: "Basic", heading: "text-[#1D92FB]", price: "basicPrice", button: "bg-[#1D92FB] text-white", phoneButton: "bg-[#F7E022] text-black" },
+  { key: "standard", label: "STANDARD", name: "Standard", heading: "text-[#F7E022]", price: "standardPrice", button: "bg-[#F7E022] text-black", phoneButton: "bg-[#F7E022] text-black" },
+  { key: "enterprise", label: "ENTERPRISE", name: "Enterprise", heading: "text-black", price: "enterprisePrice", button: "bg-black text-white", phoneButton: "bg-black text-white" },
+] as const;
+
+type Plan = (typeof PLANS)[number];
+type Features = NonNullable<PricingPage["features"]>;
+
+const proposalHref = (plan: Plan) => `/register?package=${encodeURIComponent(plan.name)}`;
+
+function Tick() {
+  return (
+    <svg className="inline-block w-5 h-5 text-black" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-label="Included">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
-);
+  );
+}
 
-const PricingPlan = ({ data }: any) => {
-    const [showModal, setShowModal] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const isMobile = useMediaQuery({ maxWidth: 768 });
+function Cell({ feature, plan }: { feature: PlanFeature; plan: Plan }) {
+  const cell = feature[plan.key];
+  return (
+    <>
+      {cell?.included ? <Tick /> : "❌"} {cell?.description}
+    </>
+  );
+}
 
-    useEffect(() => {
-        const token = Cookies.get("authToken") || localStorage.getItem("authToken");
-        if (token) {
-            setIsAuthenticated(true);
-        }
-    }, []);
+function Illustration({ src, className }: { src: typeof illusTopRight; className: string }) {
+  return <Image src={src} alt="" className={`absolute h-auto pointer-events-none ${className}`} />;
+}
 
-    const router = useRouter();
-    const handlePackageSelect = (packageName: string) => {
-        router.push(`/register?package=${encodeURIComponent(packageName)}`);
-    };
+// One plan per table, stacked (phones).
+function PhoneTable({ plan, features, member }: { plan: Plan; features: Features; member: boolean }) {
+  const rows = member ? features.featuresList ?? [] : (features.featuresList ?? []).slice(0, PREVIEW_ROWS.phone);
+  const isEnterprise = plan.key === "enterprise";
 
-    return (
-        <div className="px-6 md:px-16 py-6 md:py-10 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url(/pricingplan.jpeg)", backgroundSize: "cover", backgroundPosition: "center" }}>
+  return (
+    <div className="relative max-w-full mx-auto bg-white border border-black shadow-lg mb-6">
+      {isEnterprise && <Illustration src={illusTopRight} className="top-0 right-0 w-[150px]" />}
+      {member && isEnterprise && <Illustration src={illusTopRightMember} className="top-6 right-0 w-[130px]" />}
+      {member && <Illustration src={illusBottomLeft} className="bottom-0 left-0 w-[170px]" />}
+      {member && <Illustration src={illusBottomLeftSmall} className="bottom-0 left-0 w-[80px]" />}
+      <table className="relative w-full">
+        <thead>
+          <tr>
+            <th className="px-3 py-8 text-xl font-extrabold text-left border-r border-gray-300 text-black">PACKAGES</th>
+            <th className={`px-3 text-xl font-extrabold text-left border-r border-gray-300 ${plan.heading}`}>{plan.label}</th>
+          </tr>
+          <tr className="font-bold text-lg">
+            <td className="px-3 py-3 border-r bg-[#F3F9FF] border-gray-300">FEATURES</td>
+            <td className="px-3 py-3 border-r border-gray-300">INCLUDED</td>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((feature) => (
+            <tr key={feature._key} className="border-b border-gray-300 text-sm">
+              <td className="px-3 py-2 font-semibold border-r border-gray-300 w-[45%]">{feature.name}</td>
+              <td className="px-3 py-2 text-left border-r border-gray-300 w-[55%]">
+                <Cell feature={feature} plan={plan} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+        {member && (
+          <tfoot>
+            <tr className="bg-gray-100 text-3xl text-black">
+              <td className="px-3 py-4 font-semibold border-r border-gray-300">Price</td>
+              <td className="px-3 py-4 text-center font-bold border-r border-gray-300">${features.pricing?.[plan.price]}</td>
+            </tr>
+            <tr>
+              <td />
+              <td className="p-3 text-center font-bold border-r border-gray-300">
+                <Link href={proposalHref(plan)} className={`inline-block px-3 py-4 rounded-xl ${plan.phoneButton}`}>
+                  SUBMIT PROPOSAL
+                </Link>
+              </td>
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    </div>
+  );
+}
 
-            <div className="max-w-7xl mx-auto text-center text-white">
-                <h2 className="text-2xl mb-4 lg:text-4xl font-bold leading-[36px]">{data.title}</h2>
-                <p className="text-lg mb-4 lg:text-4xl font-bold">{data.description}</p>
-            </div>
+// All three plans side by side (tablets and desktops).
+function DesktopTable({ features, member }: { features: Features; member: boolean }) {
+  const rows = member ? features.featuresList ?? [] : (features.featuresList ?? []).slice(0, PREVIEW_ROWS.desktop);
 
-            {isMobile ? (
-                // Mobile Layout Basic
-                <div>
-                    <div className="relative max-w-full mx-auto bg-white border border-black shadow-lg mb-6">
-                        <table className="relative w-full">
-                            {/* Bottom Left Illustration */}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus4.png"
-                                    alt="Illustration"
-                                    className="absolute bottom-0 left-0 w-[170px]"
-                                />
-                            )}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus3.png"
-                                    alt="Illustration"
-                                    className="absolute bottom-0 left-0 w-[80px]"
-                                />)}
-                            <thead>
-                                <tr className="">
-                                    <th className="px-3 py-8 text-xl font-extrabold text-left border-r border-gray-300 text-black">PACKAGES</th>
-                                    <th className="px-3 text-xl font-extrabold  text-left border-r border-gray-300 text-[#1D92FB]">BASIC</th>
-                                </tr>
-                                <tr className="font-bold text-lg">
-                                    <td className="px-3 py-3 border-r bg-[#F3F9FF] border-gray-300">FEATURES</td>
-                                    <td className="px-3 py-3 border-r border-gray-300">INCLUDED</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {(isAuthenticated ? data.featuresList : data.featuresList.slice(0, 4)).map((feature: any, index: any) => (
-                                   <tr key={index} className="border-b border-gray-300 text-sm">
-                                   <td className="px-3 py-2 font-semibold border-r border-gray-300 w-[45%]">{feature.name}</td>
-                                   <td className="px-3 py-2 text-left border-r border-gray-300 w-[55%]">
-                                       {feature?.basic?.included ? <CustomTick /> : "❌"}{" "}
-                                       <span className="inline-block">{feature?.basic?.description}</span>
-                                   </td>
-                               </tr>
-                               
-                                ))}
-                            </tbody>
-                            {/* Hide prices and buttons if not authenticated */}
-                            {isAuthenticated && (
-                                <tfoot>
-                                    <tr className="bg-gray-100 text-3xl text-black">
-                                        <td className="px-6 py-4 font-semibold border-r border-gray-300">Price</td>
-                                        <td className="px-6 py-4 text-center font-bold border-r border-gray-300">${data?.pricing?.basicPrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td className="p-3 text-center border-r font-bold border-gray-300">
-                                            <button
-                                                onClick={() => handlePackageSelect("Basic")}
-                                                className="bg-[#F7E022]  text-black px-2 py-4 rounded-xl"
-                                            >
-                                                SUBMIT PROPOSAL
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            )}
-                        </table>
-                    </div>
+  return (
+    <div className="relative max-w-7xl mx-auto bg-white border border-black shadow-lg overflow-x-auto">
+      <Illustration src={illusTopRight} className="top-0 right-0 w-[200px]" />
+      <Illustration src={illusTopCenter} className="top-0 left-[40%] -translate-x-1/2 w-[300px]" />
+      {member && (
+        <>
+          <Illustration src={illusTopRightMember} className="top-6 right-0 w-[200px]" />
+          <Illustration src={illusBottomLeft} className="bottom-0 left-0 w-[280px]" />
+          <Illustration src={illusBottomLeftSmall} className="bottom-0 left-0 w-[140px]" />
+          <Illustration src={illusBottomCenter} className="bottom-[160px] left-1/2 -translate-x-1/2 w-[250px]" />
+        </>
+      )}
+      <table className="relative w-full border-collapse border border-gray-300">
+        <thead>
+          <tr>
+            <th className="px-6 py-8 text-2xl font-extrabold text-left border-r border-gray-300 text-black">PACKAGES</th>
+            {PLANS.map((plan) => (
+              <th key={plan.key} className={`px-6 text-2xl font-extrabold text-left border-r border-gray-300 ${plan.heading}`}>
+                {plan.label}
+              </th>
+            ))}
+          </tr>
+          <tr className="font-bold text-xl">
+            <td className="px-6 py-3 border-r bg-[#F3F9FF] border-gray-300">FEATURES</td>
+            {PLANS.map((plan) => (
+              <td key={plan.key} className="px-6 py-3 border-r border-gray-300">
+                INCLUDED
+              </td>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((feature) => (
+            <tr key={feature._key} className="border-b border-gray-300 text-sm">
+              <td className="px-6 py-2 font-semibold border-r border-gray-300">{feature.name}</td>
+              {PLANS.map((plan) => (
+                <td key={plan.key} className="px-4 py-2 text-left border-r border-gray-300">
+                  <Cell feature={feature} plan={plan} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+        {member && (
+          <tfoot>
+            <tr className="bg-gray-100 text-3xl text-black">
+              <td className="px-6 py-4 font-semibold border-r border-gray-300">Price</td>
+              {PLANS.map((plan) => (
+                <td key={plan.key} className="px-6 py-4 text-center font-bold border-r border-gray-300">
+                  ${features.pricing?.[plan.price]}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td />
+              {PLANS.map((plan) => (
+                <td key={plan.key} className="p-4 text-center font-bold border-r border-gray-300">
+                  <Link href={proposalHref(plan)} className={`inline-block px-4 py-4 rounded-xl ${plan.button}`}>
+                    SUBMIT PROPOSAL
+                  </Link>
+                </td>
+              ))}
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    </div>
+  );
+}
 
-                    {/* Mobile Standard */}
-                    <div className="relative max-w-7xl mx-auto bg-white border border-black shadow-lg mb-6">
-                        <table className="relative w-full">
-                            {/* Bottom Left Illustration */}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus4.png"
-                                    alt="Illustration"
-                                    className="absolute bottom-0 left-0 w-[170px]"
-                                />
-                            )}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus3.png"
-                                    alt="Illustration"
-                                    className="absolute bottom-0 left-0 w-[80px]"
-                                />)}
-                            <thead>
-                                <tr className="">
-                                    <th className="px-3 py-8 text-xl font-extrabold text-left border-r border-gray-300 text-black">PACKAGES</th>
-                                    <th className="px-3 text-xl font-extrabold  text-left text-[#F7E022] border-r border-gray-300">STANDARD</th>
-                                </tr>
-                                <tr className="font-bold text-lg">
-                                    <td className="px-3 py-3 border-r bg-[#F3F9FF] border-gray-300">FEATURES</td>
-                                    <td className="px-3 py-3 border-r border-gray-300">INCLUDED</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {(isAuthenticated ? data.featuresList : data.featuresList.slice(0, 4)).map((feature: any, index: any) => (
-                                    <tr key={index} className="border-b border-gray-300 text-sm">
-                                        <td className="px-3 py-2 font-semibold border-r border-gray-300">{feature.name}</td>
-                                        <td className="px-3 py-2 text-left border-r border-gray-300">
-                                            {feature?.standard?.included ? <CustomTick /> : "❌"} {feature?.standard?.description}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                            {/* Hide prices and buttons if not authenticated */}
-                            {isAuthenticated && (
-                                <tfoot>
-                                    <tr className="bg-gray-100 text-3xl text-black">
-                                        <td className="px-3 py-4 font-semibold border-r border-gray-300">Price</td>
-                                        <td className="px-3 py-4 text-center font-bold border-r border-gray-300">${data?.pricing?.standardPrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
+export default function PricingPlan({ features }: { features: Features }) {
+  const [showLogin, setShowLogin] = useState(false);
+  const [member, setMember] = useState(false);
 
-                                        <td className="p-3 text-center border-r font-bold border-gray-300">
-                                            <button
-                                                onClick={() => handlePackageSelect("Standard")}
-                                                className="bg-[#F7E022] text-black px-3 py-4 rounded-xl"
-                                            >
-                                                SUBMIT PROPOSAL
-                                            </button>
-                                        </td>
+  // A visitor who logged in before keeps seeing the full plan.
+  useEffect(() => {
+    if (Cookies.get("authToken") || localStorage.getItem("authToken")) setMember(true);
+  }, []);
 
-                                    </tr>
-                                </tfoot>
-                            )}
-                        </table>
-                    </div>
+  return (
+    <div className="px-6 md:px-16 py-6 md:py-10 bg-[url('/pricingplan.jpeg')] bg-cover bg-center bg-no-repeat">
+      <div className="max-w-7xl mx-auto text-center text-white">
+        <h2 className="text-2xl mb-4 lg:text-4xl font-bold leading-[36px]">{features.title}</h2>
+        <p className="text-lg mb-4 lg:text-4xl font-bold">{features.description}</p>
+      </div>
 
-                    {/* Mobile Enterprise */}
-                    <div className="relative max-w-7xl mx-auto bg-white border border-black shadow-lg">
-                        <table className="relative w-full">
-                            {/* Top Right Illustration */}
-                            <img
-                                src="/illus1.png"
-                                alt="Illustration"
-                                className="absolute top-0 right-0 w-[150px]"
-                            />
+      <div className="md:hidden">
+        {PLANS.map((plan) => (
+          <PhoneTable key={plan.key} plan={plan} features={features} member={member} />
+        ))}
+      </div>
+      <div className="hidden md:block">
+        <DesktopTable features={features} member={member} />
+      </div>
 
-                            {/* Top Right Illustration */}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus-1.png"
-                                    alt="Illustration"
-                                    className="absolute top-6 right-0 w-[130px]"
-                                />)}
-                            {/* Bottom Left Illustration */}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus4.png"
-                                    alt="Illustration"
-                                    className="absolute bottom-0 left-0 w-[170px]"
-                                />
-                            )}
-                            {isAuthenticated && (
-                                <img
-                                    src="/illus3.png"
-                                    alt="Illustration"
-                                    className="absolute bottom-0 left-0 w-[80px]"
-                                />)}
-
-                            <thead>
-                                <tr className="">
-                                    <th className="px-3 py-8 text-xl font-extrabold text-left border-r border-gray-300 text-black">PACKAGES</th>
-                                    <th className="px-3 text-xl font-extrabold  text-left border-r border-gray-300 text-black">ENTERPRISE</th>
-                                </tr>
-                                <tr className="font-bold text-lg">
-                                    <td className="px-3 py-3 border-r bg-[#F3F9FF] border-gray-300">FEATURES</td>
-                                    <td className="px-3 py-3">INCLUDED</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {(isAuthenticated ? data.featuresList : data.featuresList.slice(0, 4)).map((feature: any, index: any) => (
-                                    <tr key={index} className="border-b border-gray-300 text-sm">
-                                        <td className="px-3 py-2 font-semibold border-r border-gray-300">{feature.name}</td>
-                                        <td className="px-3 py-2 text-left">
-                                            {feature?.enterprise?.included ? <CustomTick /> : "❌"} {feature?.enterprise?.description}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                            {/* Hide prices and buttons if not authenticated */}
-                            {isAuthenticated && (
-                                <tfoot>
-                                    <tr className="bg-gray-100 text-3xl text-black">
-                                        <td className="px-6 py-3 font-semibold border-r border-gray-300">Price</td>
-                                        <td className="px-6 py-3 text-center text-black font-bold">${data?.pricing?.enterprisePrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td className="p-3 text-center font-bold">
-                                            <button
-                                                onClick={() => handlePackageSelect("Enterprise")}
-                                                className="bg-black text-white px-3 py-4 rounded-xl"
-                                            >
-                                                SUBMIT PROPOSAL
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            )}
-                        </table>
-                    </div>
-                </div>
-
-            ) : (
-                <div className="relative max-w-7xl mx-auto bg-white border border-black shadow-lg overflow-x-auto">
-                    <table className="relative w-full border-collapse border border-gray-300">
-                        {/* Top Right Illustration */}
-                        <img
-                            src="/illus1.png"
-                            alt="Illustration"
-                            className="absolute top-0 right-0 w-[200px]"
-                        />
-
-                        {/* Top Right Illustration */}
-                        {isAuthenticated && (
-                            <img
-                                src="/illus-1.png"
-                                alt="Illustration"
-                                className="absolute top-6 right-0 w-[200px]"
-                            />)}
-                        {/* Bottom Left Illustration */}
-                        {isAuthenticated && (
-                            <img
-                                src="/illus4.png"
-                                alt="Illustration"
-                                className="absolute bottom-0 left-0 w-[280px]"
-                            />
-                        )}
-                        {isAuthenticated && (
-                            <img
-                                src="/illus3.png"
-                                alt="Illustration"
-                                className="absolute bottom-0 left-0 w-[140px]"
-                            />)}
-
-                        {/* Top Center Illustration */}
-                        <img
-                            src="/illus2.png"
-                            alt="Illustration"
-                            className="absolute top-0 left-[40%] transform -translate-x-1/2 w-[300px]"
-                        />
-
-
-                        {/* Bottom Center Illustration (Slightly Overlapping the Bottom Line) */}
-                        {isAuthenticated && (
-                            <img
-                                src="/illus5.png"
-                                alt="Illustration"
-                                className="absolute -bottom-[-160px] left-1/2 transform -translate-x-1/2 w-[250px]"
-                            />)}
-                        <thead>
-                            <tr className="">
-                                <th className="px-6 py-8 text-2xl font-extrabold text-left border-r border-gray-300 text-black">PACKAGES</th>
-                                <th className="px-6 text-2xl font-extrabold  text-left border-r border-gray-300 text-[#1D92FB]">BASIC</th>
-                                <th className="px-6 text-2xl font-extrabold  text-left text-[#F7E022] border-r border-gray-300">STANDARD</th>
-                                <th className="px-6 text-2xl font-extrabold  text-left border-r border-gray-300 text-black">ENTERPRISE</th>
-                            </tr>
-                            <tr className="font-bold text-xl">
-                                <td className="px-6 py-3 border-r bg-[#F3F9FF] border-gray-300">FEATURES</td>
-                                <td className="px-6 py-3 border-r border-gray-300">INCLUDED</td>
-                                <td className="px-6 py-3 border-r border-gray-300">INCLUDED</td>
-                                <td className="px-6 py-3">INCLUDED</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {(isAuthenticated ? data.featuresList : data.featuresList.slice(0, 6)).map((feature: any, index: any) => (
-                                <tr key={index} className="border-b border-gray-300 text-sm">
-                                    <td className="px-6 py-2 font-semibold border-r border-gray-300">{feature.name}</td>
-                                    <td className="px-4 py-2 text-left border-r border-gray-300">
-                                        {feature?.basic?.included ? <CustomTick /> : "❌"} {feature?.basic?.description}
-                                    </td>
-                                    <td className="px-4 py-2 text-left border-r border-gray-300">
-                                        {feature?.standard?.included ? <CustomTick /> : "❌"} {feature?.standard?.description}
-                                    </td>
-                                    <td className="px-4 py-2 text-left">
-                                        {feature?.enterprise?.included ? <CustomTick /> : "❌"} {feature?.enterprise?.description}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                        {/* Hide prices and buttons if not authenticated */}
-                        {isAuthenticated && (
-                            <tfoot>
-                                <tr className="bg-gray-100 text-3xl text-black">
-                                    <td className="px-6 py-4 font-semibold border-r border-gray-300">Price</td>
-                                    <td className="px-6 py-4 text-center font-bold border-r border-gray-300">${data?.pricing?.basicPrice}</td>
-                                    <td className="px-6 py-4 text-center font-bold border-r border-gray-300">${data?.pricing?.standardPrice}</td>
-                                    <td className="px-6 py-4 text-center text-black font-bold">${data?.pricing?.enterprisePrice}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td className="p-4 text-center font-bold border-r border-gray-300">
-                                        <button
-                                            onClick={() => handlePackageSelect("Basic")}
-                                            className="bg-[#1D92FB] text-white px-4 py-4 rounded-xl"
-                                        >
-                                            SUBMIT PROPOSAL
-                                        </button>
-                                    </td>
-                                    <td className="p-4 text-center border-r font-bold border-gray-300">
-                                        <button
-                                            onClick={() => handlePackageSelect("Standard")}
-                                            className="bg-[#F7E022] text-black px-4 py-4 rounded-xl"
-                                        >
-                                            SUBMIT PROPOSAL
-                                        </button>
-                                    </td>
-                                    <td className="p-4 text-center font-bold">
-                                        <button
-                                            onClick={() => handlePackageSelect("Enterprise")}
-                                            className="bg-black text-white px-4 py-4 rounded-xl"
-                                        >
-                                            SUBMIT PROPOSAL
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        )}
-                    </table>
-                </div>
-            )}
-
-            {!isAuthenticated && (
-                <div className="text-center mt-10">
-                    <button onClick={() => setShowModal(true)} className="bg-[#0081FE] text-white px-6 w-48 py-3 rounded-xl text-lg">View Full Plan</button>
-                </div>
-            )}
-
-            <LoginModal  isOpen={showModal} onClose={() => setShowModal(false)} onLoginSuccess={() => setIsAuthenticated(true)} />
+      {!member && (
+        <div className="text-center mt-10">
+          <button type="button" onClick={() => setShowLogin(true)} className="bg-[#0081FE] text-white px-6 w-48 py-3 rounded-xl text-lg">
+            View Full Plan
+          </button>
         </div>
-    );
-};
+      )}
 
-export default PricingPlan;
+      <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} onLoginSuccess={() => setMember(true)} />
+    </div>
+  );
+}

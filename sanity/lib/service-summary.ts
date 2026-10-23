@@ -2,7 +2,7 @@
 // Fetched on the server and cached; publishing in Studio refreshes it through
 // the /api/revalidate webhook, otherwise after 5 minutes.
 
-import { client } from "./client";
+import { client, reportSanityError } from "./client";
 import type { SanityImageWithAlt, TechLogo } from "./technologies";
 
 interface Section {
@@ -68,7 +68,7 @@ export async function getServiceSummary(): Promise<ServiceSummaryContent | null>
       { next: { revalidate: 300, tags: ["serviceSummary", "techLogos"] } }
     );
   } catch (error) {
-    console.error("Loading the Service Summary failed:", error);
+    reportSanityError("Loading the Service Summary", error);
     return null;
   }
 }

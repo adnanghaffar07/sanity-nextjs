@@ -1,3 +1,5 @@
+import industriesImg from "@/public/industries.jpg";
+import offerImg from "@/public/offer.png";
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
@@ -268,11 +270,10 @@ const Industries = () => {
         <div className="w-full flex flex-col items-center">
             {/* Hero Section */}
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-                <img
+                <Image
                     className="top-0 left-0 object-cover absolute inset-0 size-full"
-                    src="/industries.jpg"
-                    alt="Hero Image Industries Page"
-                />
+                    src={industriesImg}
+                    alt="Hero Image Industries Page" />
                 <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
                 <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
                     <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">
@@ -482,11 +483,10 @@ const Industries = () => {
                     {/* Right side (Image) */}
                     <div className="col-span-1 md:col-span-1 flex justify-center">
                         <div className="max-w-full h-[300px] md:h-full rounded-lg overflow-hidden">
-                            <img
-                                src="/offer.png"
+                            <Image
+                                src={offerImg}
                                 alt="Transform Your Industry with Precision"
-                                className="object-cover rounded-lg h-[300px]"
-                            />
+                                className="object-cover rounded-lg h-[300px] w-auto" />
                         </div>
                     </div>
                 </div>

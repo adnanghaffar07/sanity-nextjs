@@ -1,4 +1,7 @@
 "use client"
+import Image from "next/image";
+import img5starImg from "@/public/5star.png";
+import googleLogoImg from "@/public/google-logo.png";
 import React, { useState } from "react";
 
 const ReviewsSection = () => {
@@ -108,17 +111,15 @@ const ReviewsSection = () => {
                     {/* Left Section */}
                     <div className="flex flex-col justify-center items-center ">
                         <h2 className="text-2xl lg:text-3xl text-black poppins font-bold">Excellent</h2>
-                        <img
-                            src="/5star.png"
+                        <Image
+                            src={img5starImg}
                             alt="5 stars"
-                            className="w-32 my-1"
-                        />
+                            className="w-32 my-1" />
                         <p className="text-md">Based on <span className="underline font-bold text-black">83 reviews</span></p>
-                        <img
-                            src="/google-logo.png"
+                        <Image
+                            src={googleLogoImg}
                             alt="Google"
-                            className="w-32 mt-1"
-                        />
+                            className="w-32 mt-1" />
                         {/* Review Card */}
                         <div
                             className="block lg:hidden bg-[#F3F3F3] mt-8 flex items-start p-4 rounded-lg w-full"
@@ -131,11 +132,10 @@ const ReviewsSection = () => {
                             <div className="ml-4 max-w-[270px]">
                                 <h3 className="font-semibold text-black">{currentReview.name}</h3>
                                 <p className="text-sm text-[#9D9D9D]">{currentReview.time}</p>
-                                <img
-                                    src="/5star.png"
+                                <Image
+                                    src={img5starImg}
                                     alt="5 stars"
-                                    className="w-24 mb-4"
-                                />
+                                    className="w-24 mb-4" />
                                 <p className="text-black text-lg">
                                     {showFullComment
                                         ? currentReview.comment
@@ -179,11 +179,10 @@ const ReviewsSection = () => {
                                 <div className="ml-4 max-w-[350px]">
                                     <h3 className="font-semibold text-black">{currentReview.name}</h3>
                                     <p className="text-md text-[#9D9D9D]">{currentReview.time}</p>
-                                    <img
-                                        src="/5star.png"
+                                    <Image
+                                        src={img5starImg}
                                         alt="5 stars"
-                                        className="w-24 mb-4"
-                                    />
+                                        className="w-24 mb-4" />
                                     <p className="text-black text-lg">
                                         {showFullComment
                                             ? currentReview.comment

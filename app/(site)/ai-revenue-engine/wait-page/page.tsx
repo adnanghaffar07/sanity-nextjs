@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import WaitCallCountdown from "@/components/landing/ai-revenue-engine/WaitCallCountdown";
 import { Phone, Bell, Smile, Calendar, Volume2, Shield, Clock, CheckCircle, Headphones, Sparkles, ArrowRight, User, Loader2 } from "lucide-react";
 
-export const metadata = {
-  robots: "noindex, nofollow",
+export const metadata: Metadata = {
+  title: "Eva Is Calling You | CodeAutomation",
+  robots: { index: false, follow: false },
 };
 
 export default function WaitPage() {

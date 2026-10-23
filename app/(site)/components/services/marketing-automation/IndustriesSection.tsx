@@ -1,3 +1,4 @@
+import ScrollToContactButton from "@/components/ui/ScrollToContactButton";
 import React from "react";
 import {
   HeartPulse,
@@ -98,7 +99,7 @@ const IndustriesSection = () => {
   ];
 
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-white">
+    <section id="industries" className="relative py-24 px-4 overflow-hidden bg-white">
       {/* Background with subtle pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1d92fb]/5 via-transparent to-[#f7e022]/5"></div>
       
@@ -245,18 +246,12 @@ const IndustriesSection = () => {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <button 
-            onClick={() => {
-              const contactSection = document.getElementById('contact-box');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+          <ScrollToContactButton
             className="group inline-flex items-center gap-3 bg-[#020C16] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1d92fb] transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             <span>Discuss Your Industry Needs</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </ScrollToContactButton>
           <p className="text-sm text-gray-500 mt-4">
             No matter your industry, we have the expertise to help.
           </p>

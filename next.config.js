@@ -123,6 +123,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/services/mobile-app-development-company",
+        destination: "/services/mobile-app",
+        permanent: true,
+      },
+      {
         source: "/services/web-app-development",
         destination: "/services/custom-software-development-services",
         permanent: true,

@@ -1,5 +1,7 @@
 // app/google-scholar/page.tsx
 
+import Image from "next/image";
+import googleScholarImg from "@/public/google-scholar.jpg";
 import GoogleScholarArticleCard from "@/components/press/GoogleScholarArticleCard";
 
 export const metadata = {
@@ -100,11 +102,10 @@ export default function GoogleScholarPage() {
     <div className="w-full flex flex-col items-center">
       {/* Hero Section */}
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <img
+        <Image
           className="top-0 left-0 object-cover absolute inset-0 size-full"
-          src="/google-scholar.jpg" // Replace with an actual image path
-          alt="Google Scholar Hero"
-        />
+          src={googleScholarImg} // Replace with an actual image path
+          alt="Google Scholar Hero" />
         <div className="absolute top-0 left-0 w-full h-full bg-[#000000] opacity-60"></div>
         <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
           <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">

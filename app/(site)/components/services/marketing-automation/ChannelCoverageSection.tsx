@@ -1,3 +1,4 @@
+import ScrollToContactButton from "@/components/ui/ScrollToContactButton";
 import React from "react";
 import { 
   Mail, 
@@ -211,18 +212,12 @@ const ChannelCoverageSection = () => {
 
           {/* Bottom CTA */}
           <div className="text-center mt-16">
-            <button 
-              onClick={() => {
-                const contactSection = document.getElementById('contact-box');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+            <ScrollToContactButton
               className="group inline-flex items-center gap-3 bg-[#020C16] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1d92fb] transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <span>Start Automating Your Customer Journey</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </ScrollToContactButton>
           </div>
         </div>
 

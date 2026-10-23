@@ -1,78 +1,41 @@
-import Link from "next/link";
-import { client } from "@/sanity/lib/client";
-import { BLOG_FILTER } from "@/sanity/lib/content";
-import { urlForImage } from "@/sanity/lib/image";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { getBlogCards } from "@/sanity/lib/blog";
 import BlogList from "@/components/blog/BlogList";
+import intersectLeft from "@/public/intersect-left.png";
+import ellipse from "@/public/ellipse-2.png";
 
-export const metadata = {
-  title: "Expert Insights on AI & Business Automation",
-  description:
-    "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
-  keywords: [
-    "CodeAutomation",
-    "software development company",
-    "software development services",
-  ],
-  alternates: {
-    canonical: "https://codeautomation.ai/blogs", // ✅ Fixes the canonical error
-  },
+export const revalidate = 300;
+
+const TITLE = "Expert Insights on AI & Business Automation";
+const DESCRIPTION =
+  "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.";
+const PAGE_URL = "https://codeautomation.ai/blogs";
+const SHARE_IMAGE = "https://codeautomation.ai/thankyou.jpg";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: ["CodeAutomation", "software development company", "software development services"],
+  alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "website",
-    url: "https://codeautomation.ai/blogs",
-    title: "Expert Insights on AI & Business Automation",
-    description:
-      "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
-    images: [
-      {
-        url: "https://codeautomation.ai/thankyou.jpg",
-        width: 1200,
-        height: 630,
-        alt: "CodeAutomation Logo",
-      },
-    ],
+    url: PAGE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: SHARE_IMAGE, width: 1200, height: 630, alt: "CodeAutomation Logo" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Expert Insights on AI & Business Automation",
-    description:
-      "Read Code Automation blogs, our expert insights on AI development, automation, QA, and software trends that help you scale your businesses.",
-    images: ["https://codeautomation.ai/thankyou.jpg"],
-  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, images: [SHARE_IMAGE] },
 };
 
-async function getValueData() {
-  const queryValue = `*[${BLOG_FILTER}] | order(_createdAt desc){
-    _id,
-    slug,
-    title,
-    subtitle,
-    introductionheading,
-    heroimage
-  }`;
-  try {
-    const fetchData = await client.fetch(queryValue);
-    return fetchData || [];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-}
-export default async function Blogs() {
-  const data = await getValueData();
+export default async function BlogsPage() {
+  const posts = await getBlogCards();
+
   return (
     <>
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white h-[380px] sm:h-[600px] md:h-[620px] lg:h-[704px] max-md:max-w-full">
-        <div className="absolute top-0 left-0 w-full h-full inset-0 bg-[#020C16] opacity-75 z-[2]"></div>
-        <video
-          className="top-0 left-0 object-cover absolute inset-0 size-full z-[1]"
-          width="100%"
-          height="100%"
-          muted
-          autoPlay
-          loop
-          playsInline
-          preload="auto"
-        >
+        <div className="absolute inset-0 bg-[#020C16] opacity-75 z-[2]" />
+        <video className="absolute inset-0 object-cover size-full z-[1]" muted autoPlay loop playsInline preload="auto">
           <source src="/hero-sec-video.webm" type="video/webm" />
           <source src="/hero-sec-video.mp4" type="video/mp4" />
         </video>
@@ -82,26 +45,15 @@ export default async function Blogs() {
             Our Blogs
           </h1>
           <h2 className="mt-1 sm:mt-2 mb-2 sm:mb-44 text-xs sm:text-xl font-light tracking-wide leading-4 sm:leading-7 text-center text-white max-w-[280px] sm:max-w-[1080px] px-3 xl:px-0">
-            Your gateway to thought-provoking articles that spark curiosity and
-            ignite your passions.
+            Your gateway to thought-provoking articles that spark curiosity and ignite your passions.
           </h2>
         </div>
       </div>
 
-      <div className="max-w-full  relative">
-        <img
-          loading="lazy"
-          src="/intersect-left.png"
-          alt="icon"
-          className=" absolute left-0 top-20 lg:block hidden"
-        />
-        <BlogList data={data} pageSize={6} />
-        <img
-          loading="lazy"
-          src="/ellipse-2.png"
-          className=" absolute -bottom-1 right-0 lg:block hidden"
-          alt="eclipse-icon"
-        />
+      <div className="max-w-full relative">
+        <Image src={intersectLeft} alt="" className="absolute left-0 top-20 lg:block hidden" />
+        <BlogList posts={posts} pageSize={6} />
+        <Image src={ellipse} alt="" className="absolute -bottom-1 right-0 lg:block hidden" />
       </div>
     </>
   );

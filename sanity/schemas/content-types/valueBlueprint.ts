@@ -136,12 +136,8 @@ export const valueBlueprint = defineType({
     ...seoFields({
       google: ["title", "description", "keywords"],
       social: {
-        facebookCardsSub: ["facebookTitle", "facebookDescription", "facebookUrl", "facebookType"],
-        linkedInCardsSub: ["linkedInTitle", "linkedInDescription", "linkedInUrl"],
-        twitterCardsSub: ["twitterTitle", "twitterDescription", "twitterUrl", "twitterType"],
-        whatsappCardsSub: ["whatsappTitle", "whatsappDescription", "whatsappUrl"],
-        telegramCardsSub: ["telegramTitle", "telegramDescription", "telegramUrl"],
-        pinterestCardsSub: ["pinterestTitle", "pinterestDescription", "pinterestUrl"],
+        facebookCardsSub: ["facebookTitle", "facebookDescription"],
+        twitterCardsSub: ["twitterTitle", "twitterDescription"],
       },
     }),
 

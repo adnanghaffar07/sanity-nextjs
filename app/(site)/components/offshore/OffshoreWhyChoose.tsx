@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import offshorewhyImg from "@/public/offshorewhy.jpeg";
 import { useState } from "react";
 
 interface AccordionItemProps {
@@ -87,11 +89,10 @@ export default function OffshoreWhyChoose() {
                 <div className="flex flex-col md:flex-row items-start justify-between">
                     {/* Image on the left */}
                     <div className="flex-1 md:mr-8">
-                        <img
-                            src="/offshorewhy.jpeg"
+                        <Image
+                            src={offshorewhyImg}
                             alt="offshore software development services"
-                            className="w-full lg:h-[384px] rounded-lg shadow-md"
-                        />
+                            className="w-full lg:h-[384px] rounded-lg shadow-md" />
                     </div>
 
                     {/* Accordion on the right */}

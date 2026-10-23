@@ -1,5 +1,7 @@
 // app/forbes/page.tsx
 
+import Image from "next/image";
+import forbesHeroImg from "@/public/forbes-hero.jpg";
 import ForbesArticleCard from "@/components/press/ForbesArticleCard";
 
 export const metadata = {
@@ -42,11 +44,10 @@ export default function ForbesPage() {
     <div className="w-full flex flex-col items-center">
       {/* Hero Section */}
       <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-        <img
+        <Image
           className="top-0 left-0 object-cover absolute inset-0 size-full"
-          src="/forbes-hero.jpg" // 👈 Replace with a Forbes-themed hero image
-          alt="Forbes Hero"
-        />
+          src={forbesHeroImg} // 👈 Replace with a Forbes-themed hero image
+          alt="Forbes Hero" />
         <div className="absolute top-0 left-0 w-full h-full bg-[#000000] opacity-60"></div>
         <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
           <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">

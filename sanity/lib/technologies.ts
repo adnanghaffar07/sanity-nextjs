@@ -3,7 +3,7 @@
 // Studio refreshes it through the /api/revalidate webhook, otherwise after 5 minutes.
 
 import type { Image } from "sanity";
-import { client } from "./client";
+import { client, reportSanityError } from "./client";
 
 export type SanityImageWithAlt = Image & { alt?: string };
 
@@ -54,7 +54,7 @@ export async function getTechCategories(): Promise<TechCategory[]> {
       .sort((a, b) => position.get(a._id)! - position.get(b._id)!);
     return [...unlisted, ...listed];
   } catch (error) {
-    console.error("Loading technologies failed:", error);
+    reportSanityError("Loading technologies", error);
     return [];
   }
 }

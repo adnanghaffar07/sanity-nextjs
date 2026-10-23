@@ -1,3 +1,5 @@
+import Image from "next/image";
+import img404Img from "@/public/404.png";
 import Link from 'next/link';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
@@ -28,11 +30,10 @@ const NotFoundPage = () => {
       <main className="flex flex-grow items-center justify-center px-4 mt-32 pb-12">
         <div className="max-w-lg bg-white rounded-2xl px-4 py-6 shadow-lg text-center">
           {/* Animated Image */}
-          <img
-            src="/404.png" // Ensure this file exists in the public directory
+          <Image
+            src={img404Img} // Ensure this file exists in the public directory
             alt="404 Animation"
-            className="w-64 mx-auto mb-6 animate-pulse"
-          />
+            className="w-64 mx-auto mb-6 animate-pulse" />
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">Oops! Page Not Found</h1>
           <p className="text-lg text-gray-600 mb-8">
             It seems the page you&apos;re looking for doesn&apos;t exist. Please check the URL or go back to the home page.

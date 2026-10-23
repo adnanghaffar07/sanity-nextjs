@@ -1,3 +1,5 @@
+import googleImg from "@/public/google.png";
+import designrushLogoImg from "@/public/designrush-logo.png";
 import Link from "next/link";
 import Image from "next/image";
 import { Bot, CircleCheck, CalendarCheck, CirclePlay } from "lucide-react";
@@ -148,7 +150,7 @@ export default function HeroSection() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 rounded-full border border-gray-200 bg-white px-4 py-2 shadow-sm hover:border-[#1D92FB]/40 hover:shadow-md transition"
                 >
-                  <img src="/google.png" alt="" className="h-5 w-5" />
+                  <Image src={googleImg} alt="" className="h-5 w-5" />
                   <span className="flex flex-col">
                     <span className="text-sm font-semibold leading-tight text-gray-800">
                       Google Reviews
@@ -178,11 +180,10 @@ export default function HeroSection() {
                 >
                   {/* Show only the purple mark from the (white-text) DesignRush logo */}
                   <span className="block h-6 w-[15px] overflow-hidden">
-                    <img
-                      src="/designrush-logo.png"
+                    <Image
+                      src={designrushLogoImg}
                       alt=""
-                      className="h-6 w-auto max-w-none"
-                    />
+                      className="h-6 w-auto max-w-none" />
                   </span>
                   <span className="flex flex-col">
                     <span className="text-sm font-semibold leading-tight text-gray-800">

@@ -3,7 +3,7 @@
 // the /api/revalidate webhook (tag "homePage"), otherwise after 5 minutes.
 
 import type { Image } from "sanity";
-import { client } from "./client";
+import { client, reportSanityError } from "./client";
 
 export interface HomeTestimonial {
   _key: string;
@@ -40,7 +40,7 @@ export async function getHomePageContent(): Promise<HomePageContent> {
     );
     return { testimonials: data?.testimonials ?? [], faqs: data?.faqs ?? [] };
   } catch (error) {
-    console.error("Loading the Home Page content failed:", error);
+    reportSanityError("Loading the Home Page content", error);
     return { testimonials: [], faqs: [] };
   }
 }

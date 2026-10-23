@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const RealEstateFooter = () => {
@@ -25,12 +24,8 @@ const RealEstateFooter = () => {
         
         {/* Logo */}
         <div className="text-center mb-6 sm:mb-8">
-          <Link href="/real-estate-tech" className="inline-block group">
-            <img
-              src="/logo.svg"
-              alt="CodeAutomation.ai Logo"
-              className="w-auto h-10 sm:h-12 mx-auto transition-transform duration-300 group-hover:scale-105"
-            />
+          <Link href="/real-estate-ai-automation" className="inline-block group">
+            <Image src="/logo.svg" alt="CodeAutomation.ai Logo" width={240} height={48} className="w-auto h-10 sm:h-12 mx-auto transition-transform duration-300 group-hover:scale-105" />
           </Link>
         </div>
 

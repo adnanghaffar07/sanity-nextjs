@@ -1,109 +1,49 @@
-"use client";
+import Image, { type StaticImageData } from "next/image";
+import whatsappIcon from "@/public/whatsapp.jpeg";
+import facebookIcon from "@/public/facebook.jpeg";
+import linkedinIcon from "@/public/linkedin.jpeg";
+import twitterIcon from "@/public/twitter.jpg";
 
-import React, { useEffect, useState } from "react";
+const LINKEDIN_SUMMARY =
+  "Check out this blog on CodeAutomation.ai! A leading platform for custom software and mobile development solutions.";
 
-const SocialShare = ({ title }: { title: string }) => {
-  const [currentUrl, setCurrentUrl] = useState("");
+function shareLinks(title: string, url: string): { name: string; icon: StaticImageData; href: string }[] {
+  const u = encodeURIComponent(url);
+  const t = encodeURIComponent(title);
+  return [
+    { name: "WhatsApp", icon: whatsappIcon, href: `https://api.whatsapp.com/send?text=${encodeURIComponent(`${title}\n\n${url}`)}` },
+    {
+      name: "Facebook",
+      icon: facebookIcon,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${u}&quote=${encodeURIComponent(`Check this out: ${title}. Visit here for more details!`)}`,
+    },
+    {
+      name: "LinkedIn",
+      icon: linkedinIcon,
+      href: `https://www.linkedin.com/shareArticle?mini=true&url=${u}&title=${t}&summary=${encodeURIComponent(LINKEDIN_SUMMARY)}&source=CodeAutomation.ai`,
+    },
+    {
+      name: "Twitter",
+      icon: twitterIcon,
+      href: `https://twitter.com/share?url=${u}&text=${encodeURIComponent(`Check out this blog: "${title}"! Read more at `)}`,
+    },
+  ];
+}
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentUrl(window.location.href); // Set the current URL on the client side
-    }
-  }, []);
-
+// "Share this article" buttons on a blog post.
+export default function SocialShare({ title, url }: { title: string; url: string }) {
   return (
     <div className="flex flex-row items-center justify-end space-x-4">
-      {/* WhatsApp */}
-      <img
-        src="/whatsapp.jpeg"
-        alt="WhatsApp"
-        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-        onClick={() =>
-          window.open(
-            `https://api.whatsapp.com/send?text=${encodeURIComponent(
-              `${title}\n\n${currentUrl}`
-            )}`,
-            "_blank",
-            "noopener noreferrer"
-          )
-        }
-      />
-      {/* Facebook */}
-      <img
-        src="/facebook.jpeg"
-        alt="Facebook"
-        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-        onClick={() =>
-          window.open(
-            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-              currentUrl
-            )}&quote=${encodeURIComponent(
-              `Check this out: ${title}. Visit here for more details!`
-            )}`,
-            "_blank",
-            "noopener noreferrer"
-          )
-        }
-      />
-      {/* LinkedIn */}
-      <img
-        src="/linkedin.jpeg"
-        alt="LinkedIn"
-        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-        onClick={() =>
-          window.open(
-            `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-              currentUrl
-            )}&title=${encodeURIComponent(
-              title
-            )}&summary=${encodeURIComponent(
-              "Check out this blog on CodeAutomation.ai! A leading platform for custom software and mobile development solutions."
-            )}&source=CodeAutomation.ai`,
-            "_blank",
-            "noopener noreferrer"
-          )
-        }
-      />
-
-
-      {/* Instagram */}
-      {/* <img
-  src="/instagram.jpeg"
-  alt="Instagram"
-  className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-  onClick={() =>
-    window.open(
-      `https://www.instagram.com/direct/inbox/?text=${encodeURIComponent(
-        `${title}\n${currentUrl}`
-      )}`,
-      "_blank"
-    )
-  }
-/> */}
-
-
-      {/* Twitter */}
-      <img
-        src="/twitter.jpg"
-        alt="Twitter"
-        className="h-6 md:h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-        onClick={() =>
-          window.open(
-            `https://twitter.com/share?url=${encodeURIComponent(
-              currentUrl
-            )}&text=${encodeURIComponent(
-              `Check out this blog: "${title}"! Read more at `
-            )}`,
-            "_blank",
-            "noopener noreferrer"
-          )
-        }
-      />
-
-
-
+      {shareLinks(title, url).map(({ name, icon, href }) => (
+        <a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Share on ${name}`}>
+          <Image
+            src={icon}
+            alt={name}
+            sizes="32px"
+            className="h-6 md:h-8 w-auto hover:scale-110 transition-transform duration-200"
+          />
+        </a>
+      ))}
     </div>
   );
-};
-
-export default SocialShare;
+}

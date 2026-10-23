@@ -1,5 +1,8 @@
 // Hero, Intro, Problem, Services Grid and Image Cards sections.
 
+import Image from "next/image";
+import googleImg from "@/public/google.png";
+import designrushLogoImg from "@/public/designrush-logo.png";
 import type { ReactNode } from "react";
 import { Bot, User, TriangleAlert, CircleX, CircleCheck, ArrowRight, Target } from "lucide-react";
 import type { LinkMap } from "./links";
@@ -64,7 +67,7 @@ function TrustBar() {
         <ul className="flex flex-wrap items-center justify-center gap-3">
           <li>
             <a href={REVIEW_LINKS.google} target="_blank" rel="noopener noreferrer" className={chip}>
-              <img src="/google.png" alt="" className="h-5 w-5" />
+              <Image src={googleImg} alt="" className="h-5 w-5" />
               <span className="flex flex-col">
                 <span className="text-sm font-semibold leading-tight text-gray-800">Google Reviews</span>
                 <Stars />
@@ -80,7 +83,7 @@ function TrustBar() {
           <li>
             <a href={REVIEW_LINKS.designrush} target="_blank" rel="noopener noreferrer" className={chip}>
               <span className="block h-6 w-[15px] overflow-hidden">
-                <img src="/designrush-logo.png" alt="" className="h-6 w-auto max-w-none" />
+                <Image src={designrushLogoImg} alt="" className="h-6 w-auto max-w-none" />
               </span>
               <span className="flex flex-col">
                 <span className="text-sm font-semibold leading-tight text-gray-800">DesignRush</span>

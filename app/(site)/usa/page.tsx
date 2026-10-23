@@ -1,4 +1,6 @@
 // Example for Next.js App Router (`/app/usa/page.tsx`)
+import Image from "next/image";
+import usaEmpireImg from "@/public/usa-empire.jpg";
 import {
     MapPinIcon,
     UserGroupIcon,
@@ -30,11 +32,10 @@ export default function USALocationPage() {
     return (
         <main className="w-full flex flex-col items-center">
             <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
-                <img
+                <Image
                     className="top-0 left-0 object-cover absolute inset-0 size-full"
-                    src="/usa-empire.jpg"
-                    alt="Hero Image usa  Page"
-                />
+                    src={usaEmpireImg}
+                    alt="Hero Image usa  Page" />
                 <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
                 <div className="relative flex flex-col items-center px-5 pt-48 pb-36 w-full lg:px-20 lg:pt-12 flex-grow">
                     <div className="lg:absolute lg:top-[300px] text-center lg:w-8/12 mx-auto">

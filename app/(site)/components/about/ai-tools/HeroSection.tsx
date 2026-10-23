@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import aiPageImg from "@/public/ai-page.jpeg";
 import { ArrowDown } from "lucide-react";
 
 export const HeroSection = () => {
@@ -11,11 +13,10 @@ export const HeroSection = () => {
     return (
         <div className="flex overflow-hidden relative flex-col pb-12 w-full font-light text-white lg:min-h-[700px] max-md:max-w-full">
             {/* Background Image */}
-            <img
-                src="/ai-page.jpeg" // Replace with your actual image
+            <Image
+                src={aiPageImg} // Replace with your actual image
                 alt="AI Hero Background"
-                className="absolute inset-0 w-full h-full object-cover z-0"
-            />
+                className="absolute inset-0 w-full h-full object-cover z-0" />
             {/* Overlay */}
             <div className="absolute top-0 left-0 w-full h-full bg-[#020C16] opacity-65"></div>
 

@@ -52,38 +52,12 @@ export default function MarketingHeader() {
           />
         </button>
 
-        {/* Desktop Navigation
-        <nav className="hidden md:flex items-center space-x-8">
-          <button
-            onClick={() => scrollToSection('services')}
-            className="text-white hover:text-yellow-400 transition-colors text-sm font-medium"
-          >
-            Services
-          </button>
-          <button
-            onClick={() => scrollToSection('industries')}
-            className="text-white hover:text-yellow-400 transition-colors text-sm font-medium"
-          >
-            Industries We Serve
-          </button>
-          <button
-            onClick={() => scrollToSection('portfolio')}
-            className="text-white hover:text-yellow-400 transition-colors text-sm font-medium"
-          >
-            Our Portfolio
-          </button>
-        </nav> */}
-
         {/* Action Buttons - Desktop */}
         <div className="hidden md:flex items-center space-x-4">
           {/* Get a Free Audit Button */}
           <button
-            onClick={() => {
-              const contactSection = document.getElementById('contact-box');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }} className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#001E6B] font-bold px-6 py-2 rounded-md transition-all duration-300 text-sm"
+            onClick={() => scrollToSection('contact-box')}
+            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#001E6B] font-bold px-6 py-2 rounded-md transition-all duration-300 text-sm"
           >
             Get a Free Audit
           </button>
@@ -204,31 +178,6 @@ export default function MarketingHeader() {
               <span>Industries We Serve</span>
             </button>
 
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-blue-400/20 via-blue-400/10 to-transparent my-2" />
-
-            {/* Portfolio Item */}
-            <button
-              onClick={() => scrollToSection('portfolio')}
-              className="flex items-center space-x-3 text-white hover:text-yellow-400 transition-all duration-200 text-left font-medium py-4 px-3 rounded-lg hover:bg-blue-800/50 group"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-5 h-5 group-hover:text-yellow-400 transition-colors"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>Our Portfolio</span>
-            </button>
-
             {/* Mobile Action Buttons */}
             <div className="mt-6 space-y-3">
               {/* Divider */}
@@ -236,7 +185,7 @@ export default function MarketingHeader() {
 
               {/* Get a Free Audit Button - Mobile */}
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('contact-box')}
                 className="w-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#001E6B] font-bold py-3 px-4 rounded-md transition-all duration-300 text-center"
               >
                 Get a Free Audit
