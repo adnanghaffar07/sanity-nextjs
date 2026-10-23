@@ -78,9 +78,9 @@ const components: PortableTextComponents = {
   },
 };
 
-// About 400px of article text at the body font size and width. Articles
+// About 800px of article text at the body font size and width. Articles
 // without a heading by twice that get the banner between two paragraphs.
-const CTA_MIN_CHARACTERS = 1800;
+const CTA_MIN_CHARACTERS = 3600;
 const CTA_MAX_CHARACTERS = CTA_MIN_CHARACTERS * 2;
 const HEADINGS = new Set(["h1", "h2", "h3", "h4"]);
 
