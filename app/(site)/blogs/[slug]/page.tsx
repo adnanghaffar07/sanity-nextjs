@@ -4,7 +4,7 @@ import { getBlogPost, getMoreArticles } from "@/sanity/lib/blog";
 import { urlForImage } from "@/sanity/lib/image";
 import SanityImage from "@/components/ui/SanityImage";
 import AuthorBio from "@/components/blog/AuthorBio";
-import BlogBody from "@/components/blog/BlogBody";
+import BlogBody, { splitForCta } from "@/components/blog/BlogBody";
 import BlogCtaBanner from "@/components/blog/BlogCtaBanner";
 import BlogFaq from "@/components/blog/BlogFaq";
 import MoreArticles from "@/components/blog/MoreArticles";
@@ -51,6 +51,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getBlogPost(slug);
   if (!post) notFound();
   const moreArticles = await getMoreArticles(slug);
+  const [bodyBeforeCta, bodyAfterCta] = splitForCta(post.description ?? [], post.introductionheading ?? "");
 
   return (
     <div className="bg-white">
@@ -88,9 +89,13 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="text-lg text-gray-700 leading-relaxed mb-6">{post.introductionheading}</p>
           )}
 
-          <BlogCtaBanner />
-
-          {post.description && <BlogBody value={post.description} />}
+          {bodyBeforeCta.length > 0 && <BlogBody value={bodyBeforeCta} />}
+          {bodyAfterCta.length > 0 && (
+            <>
+              <BlogCtaBanner />
+              <BlogBody value={bodyAfterCta} />
+            </>
+          )}
 
           {post.cardimage && (
             <div className="my-8">
@@ -113,6 +118,9 @@ export default async function BlogPostPage({ params }: Props) {
               <SanityImage image={post.primaryimage} alt="blog post" sizes={ARTICLE_IMAGE_SIZES} className="w-full h-auto rounded-2xl object-cover" />
             </div>
           )}
+
+          {/* Body too short to hold the banner: show it after the article text instead */}
+          {bodyAfterCta.length === 0 && <BlogCtaBanner />}
         </div>
 
         {post.challengesfacedheading && (
