@@ -10,6 +10,17 @@ import "swiper/css/autoplay";
 import { urlForImage } from "@/sanity/lib/image";
 import type { HomeTestimonial } from "@/sanity/lib/home";
 
+// Swiper's loop mode needs slidesPerView plus the looped slides on each side
+// (5 for 3 centred slides); with fewer it switches looping off and warns.
+const MIN_LOOP_SLIDES = 6;
+
+// Repeats the list until there are enough slides to loop.
+function loopable(testimonials: HomeTestimonial[]) {
+  if (testimonials.length === 0) return [];
+  const copies = Math.ceil(MIN_LOOP_SLIDES / testimonials.length);
+  return Array.from({ length: copies }, (_, copy) => testimonials.map((t) => ({ ...t, slideKey: `${t._key}-${copy}` }))).flat();
+}
+
 export default function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[] }) {
   return (
     <div className="relative max-w-7xl mx-auto">
@@ -29,8 +40,8 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: H
           1024: { slidesPerView: 3 },
         }}
       >
-        {testimonials.map((testimonial) => (
-          <SwiperSlide key={testimonial._key} className="flex justify-center items-center pt-20 md:pt-36">
+        {loopable(testimonials).map((testimonial) => (
+          <SwiperSlide key={testimonial.slideKey} className="flex justify-center items-center pt-20 md:pt-36">
             <figure className="flex flex-col relative w-full max-w-[530px] shadow-md backdrop-blur-[36px]">
               <div className="flex justify-center items-center px-1 xl:px-4 ml-5 w-16 xl:w-28 2xl:w-28 h-16 xl:h-28 2xl:h-28 bg-white rounded-full max-md:ml-2.5 absolute -top-8 md:-top-8 lg:-top-10 xl:-top-16 2xl:-top-20 left-2 lg:left-6 border border-gray-300">
                 {testimonial.photo?.asset && (
