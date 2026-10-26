@@ -1,47 +1,31 @@
+# One rule group for every crawler. Search and AI crawlers are named so it is
+# explicit that they are welcome; they follow the same rules as everyone else.
+#
+# /_next/ (the site's JavaScript and CSS) is deliberately NOT blocked: Google
+# needs those files to render the pages, and blocking them can hurt rankings.
+# They are never shown in search results.
 User-agent: *
-Disallow: /_next/
-
-
-
-# --- Allow AI + Search Crawlers Explicitly ---
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: Googlebot
-Allow: /
-
 User-agent: Google-Extended
-Allow: /
-
+User-agent: Bingbot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Perplexity-User
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: Claude-Web
-Allow: /
-
-# --- Default rules for all other crawlers ---
-User-agent: *
-Allow: /*.js$
-Allow: /*.css$
-Disallow: /studio/
+# Internal tools and endpoints
+Disallow: /studio
 Disallow: /api/
+Disallow: /admin/
+Disallow: /meta-leads
+# Old WordPress-era addresses and tracking parameters
 Disallow: /drafts/
+Disallow: /wp-content/
+Disallow: /*/feed/
 Disallow: /*?attachment_id=
 Disallow: /*?trk=
 Disallow: /*?ts=
-Disallow: /*/feed/
-Disallow: /wp-content/
 Allow: /
 
-
-# --- Sitemap ---
 Sitemap: https://codeautomation.ai/sitemap.xml
