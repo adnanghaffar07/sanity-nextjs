@@ -2,7 +2,7 @@
 // /value-blueprints/<document id>; those keep that id as their address, and
 // `legacyId` keeps the old link working if the address is changed later.
 
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, type PreviewValue } from "sanity";
 import { BulbOutlineIcon } from "@sanity/icons";
 import { SEO_GROUP, addressField, legacyIdField, reuse, seoFields } from "./reuse";
 
@@ -37,7 +37,7 @@ export const valueBlueprint = defineType({
       title: "Blueprint name",
       group: "content",
       description: "Main heading on the page and title on the card.",
-      validation: (r: any) => r.required(),
+      validation: (r) => r.required(),
     }),
     addressField("valueBlueprint", "lead-gen-classification", "/value-blueprints"),
     reuse("heroimage", { title: "Top image", group: "content", description: "Background image behind the name at the top of the page." }),
@@ -124,7 +124,7 @@ export const valueBlueprint = defineType({
               fields: [logoList("images", "Logos")],
               preview: {
                 select: { logos: "images" },
-                prepare: ({ logos }: any) => ({ title: `${logos?.length || 0} logo${logos?.length === 1 ? "" : "s"}` }),
+                prepare: ({ logos }: { logos?: unknown[] }) => ({ title: `${logos?.length || 0} logo${logos?.length === 1 ? "" : "s"}` }),
               },
             },
           ],
@@ -146,6 +146,6 @@ export const valueBlueprint = defineType({
   ],
   preview: {
     select: { title: "title", slug: "slug", media: "cardimage" },
-    prepare: ({ title, slug, media }: any) => ({ title, subtitle: slug ? `/value-blueprints/${slug}` : "No address yet", media }),
+    prepare: ({ title, slug, media }: { title?: string; slug?: string; media?: PreviewValue["media"] }) => ({ title, subtitle: slug ? `/value-blueprints/${slug}` : "No address yet", media }),
   },
 });

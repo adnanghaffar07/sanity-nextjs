@@ -11,15 +11,18 @@ import { notFound } from "next/navigation";
 import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
 import { SAMPLE_SECTIONS } from "@/components/services/page-builder/sample-data";
 import { buildLinkMap } from "@/components/services/page-builder/links";
-import { servicePageMetadata } from "@/components/services/page-builder/data";
+import { servicePageMetadata, type ServicePageDoc } from "@/components/services/page-builder/data";
+
+// A seed file in sanity/seed/ (a servicePage document as JSON, so the address is { current }).
+type SeedDocument = Omit<ServicePageDoc, "slug"> & { slug?: { current?: string } };
 
 type Props = { params: { slug?: string[] } };
 
-async function loadSeed(name?: string) {
+async function loadSeed(name?: string): Promise<SeedDocument | null> {
   if (!name || !/^[a-z0-9-]+$/.test(name)) return null;
   try {
     const file = path.join(process.cwd(), "sanity", "seed", `${name}.servicePage.json`);
-    return JSON.parse(await readFile(file, "utf8"));
+    return JSON.parse(await readFile(file, "utf8")) as SeedDocument;
   } catch {
     return null;
   }

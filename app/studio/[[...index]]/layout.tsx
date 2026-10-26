@@ -1,21 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import { metadata as studioMetadata } from "next-sanity/studio";
 
-import { StudioProvider, defineConfig } from "sanity"; // ✅ Use defineConfig
-import { deskTool } from "sanity/desk";
+// Sanity's recommended Studio page settings (no indexing, mobile viewport),
+// with our own browser tab title.
+export { viewport } from "next-sanity/studio";
 
-const sanityConfig = defineConfig({
-  projectId: "ld8m6d0z",
-  dataset: "production",
-  apiVersion: "2024-03-14",
-  basePath: "/studio",
-  plugins: [deskTool()], // Add any required plugins
-});
+export const metadata: Metadata = { ...studioMetadata, title: "CodeAutomation Studio" };
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <StudioProvider config={sanityConfig}> {/* ✅ Use the correct config */}
-      {/* <PreventCopy /> */}
-      {children}
-    </StudioProvider>
-  );
+  return children;
 }

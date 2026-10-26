@@ -5,6 +5,7 @@ import { getPricingPage } from "@/sanity/lib/site-pages";
 import SanityImage from "@/components/ui/SanityImage";
 import ScrollToSectionButton from "@/components/ui/ScrollToSectionButton";
 import PricingPlan from "@/components/pricing/PricingPlan";
+import { planPreview } from "@/components/pricing/preview";
 import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
 import heroImage from "@/public/price-plan.jpeg";
 import ctaImage from "@/public/boostbusiness.png";
@@ -92,7 +93,7 @@ export default async function PricingPage() {
         </div>
       </section>
 
-      {page?.features && <PricingPlan features={page.features} />}
+      {page?.features && <PricingPlan preview={planPreview(page.features)} />}
 
       <section className="text-center">
         <div className="max-w-[1440px] mx-auto px-6 md:px-16 py-6 md:py-10">

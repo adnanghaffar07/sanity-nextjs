@@ -3,7 +3,9 @@ const nextConfig = {
   swcMinify: true,
 
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
+    // Drop debug logging from production bundles, but keep errors and
+    // warnings so failures still show up in the server logs.
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
   },
 
   images: {

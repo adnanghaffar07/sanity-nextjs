@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import { serverClient } from '@/sanity/lib/sanity/serverClient';
+import { serverClient } from '@/sanity/lib/server-client';
 import { timingSafeEqual } from 'node:crypto';
 
 // The dashboard sends the typed password; it is compared here with the
@@ -17,6 +17,8 @@ function authorized(req: NextRequest): boolean {
 }
 
 type TimeFilter = 'today' | 'last7days' | 'lastmonth';
+
+const MAX_LIMIT = 1000;
 
 function getStartDateFromFilter(filter: TimeFilter): string {
   const now = new Date();
@@ -48,8 +50,9 @@ export async function GET(req: NextRequest) {
         ? filterParam
         : 'today';
 
-    const page = parseInt(req.nextUrl.searchParams.get('page') || '1');
-    const limit = parseInt(req.nextUrl.searchParams.get('limit') || '50');
+    // At most MAX_LIMIT records per request, so one call can't pull the whole history.
+    const page = Math.max(1, parseInt(req.nextUrl.searchParams.get('page') || '1') || 1);
+    const limit = Math.min(MAX_LIMIT, Math.max(1, parseInt(req.nextUrl.searchParams.get('limit') || '50') || 50));
     const start = (page - 1) * limit;
 
     const startDate = getStartDateFromFilter(filter);
@@ -79,8 +82,6 @@ export async function GET(req: NextRequest) {
       }`,
       { startDate, start, end: start + limit }
     );
-
-    console.log(`Filter: ${filter}, Page: ${page}, Showing ${visitors.length} of ${totalCount} visitors`);
 
     return NextResponse.json({
       success: true,

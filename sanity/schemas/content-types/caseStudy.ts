@@ -1,7 +1,7 @@
 // Case Study: /case-studies/<address>. Each case study has its own card (Card
 // tab); the card order is set in the Case Study Order document.
 
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, type PreviewValue } from "sanity";
 import { CaseIcon } from "@sanity/icons";
 import { SEO_GROUP, addressField, legacyIdField, reuse, seoFields } from "./reuse";
 
@@ -34,7 +34,7 @@ export const caseStudy = defineType({
       title: "Client / project name",
       group: "content",
       description: "Used in Studio and on cards, e.g. \"Heyou\".",
-      validation: (r: any) => r.required(),
+      validation: (r) => r.required(),
     }),
     addressField("caseStudy", "heyou", "/case-studies"),
     reuse("subtitle", { title: "Main heading", group: "content", description: "Large heading over the top image." }),
@@ -96,7 +96,7 @@ export const caseStudy = defineType({
               ],
               preview: {
                 select: { title: "heading", subtitle: "detail", logos: "images" },
-                prepare: ({ title, subtitle, logos }: any) => ({
+                prepare: ({ title, subtitle, logos }: { title?: string; subtitle?: string; logos?: unknown[] }) => ({
                   title: title || "Untitled group",
                   subtitle: [subtitle, logos?.length ? `${logos.length} logo${logos.length === 1 ? "" : "s"}` : null]
                     .filter(Boolean)
@@ -151,7 +151,7 @@ export const caseStudy = defineType({
               ],
               preview: {
                 select: { heading: "heading", text: "description", media: "images", logo: "logoImage" },
-                prepare: ({ heading, text, media, logo }: any) => ({
+                prepare: ({ heading, text, media, logo }: { heading?: string; text?: string; media?: PreviewValue["media"]; logo?: PreviewValue["media"] }) => ({
                   title: heading || text || "Feature block",
                   subtitle: heading ? text : undefined,
                   media: media || logo,
@@ -215,7 +215,7 @@ export const caseStudy = defineType({
   ],
   preview: {
     select: { title: "title", slug: "slug", media: "cardimage", show: "listing.show" },
-    prepare: ({ title, slug, media, show }: any) => ({
+    prepare: ({ title, slug, media, show }: { title?: string; slug?: string; media?: PreviewValue["media"]; show?: boolean }) => ({
       title,
       subtitle: `${slug ? `/case-studies/${slug}` : "No address yet"}${show === false ? " · no card" : ""}`,
       media,

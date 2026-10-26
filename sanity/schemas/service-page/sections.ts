@@ -1,11 +1,11 @@
 // Section templates for the new Service Page builder. Each has a matching
-// component in app/(site)/components/services/page-builder.
+// component in components/services/page-builder.
 //
 // Labels and help text are written in plain language for any service (not one
 // specific page). Only titles/descriptions are user-facing — field `name`s are
 // the stored keys, so they must not be renamed once pages use them.
 
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType, type FieldDefinition, type PreviewValue } from "sanity";
 import {
   RocketIcon,
   DocumentTextIcon,
@@ -37,16 +37,16 @@ const preview = (fallback: string) => ({
 });
 
 // Plain text from a rich-text value, for Studio list labels.
+type TextBlock = { children?: { text?: string }[] } | null | undefined;
+
 const toPlainText = (value: unknown): string =>
   Array.isArray(value)
-    ? value
-        .map((block: any) => (block?.children || []).map((c: any) => c?.text || "").join(""))
-        .join(" ")
+    ? (value as TextBlock[]).map((block) => (block?.children ?? []).map((span) => span?.text ?? "").join("")).join(" ")
     : typeof value === "string"
       ? value
       : "";
 
-const simpleItem = (name: string, title: string, fields: any[], previewTitle = "title") =>
+const simpleItem = (name: string, title: string, fields: FieldDefinition[], previewTitle = "title") =>
   defineArrayMember({
     name,
     title,
@@ -617,14 +617,14 @@ export const spTechStack = defineType({
                   optionalLink(),
                 ],
                 validation: (rule) =>
-                  rule.custom((value: any) =>
+                  rule.custom((value: { brand?: string; title?: string; logo?: { asset?: unknown } } | undefined) =>
                     value?.brand || (value?.logo?.asset && value?.title)
                       ? true
                       : "Pick a brand, or upload a logo and enter a name."
                   ),
                 preview: {
                   select: { title: "title", brand: "brand", logo: "logo" },
-                  prepare: ({ title, brand, logo }: any) => {
+                  prepare: ({ title, brand, logo }: { title?: string; brand?: string; logo?: { asset?: unknown } & PreviewValue["media"] }) => {
                     const known = getBrand(brand);
                     return {
                       title: title || known?.name || "Technology",

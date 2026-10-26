@@ -1,88 +1,74 @@
-import { serverClient } from '@/sanity/lib/sanity/serverClient';
-import { NextRequest, NextResponse } from 'next/server';
-import { clientIp, rateLimit, sameSiteRequest } from '@/lib/security/request';
+// Records one page visit for the /admin/visitors dashboard. Location comes
+// from Vercel's geo headers (free, no third-party lookup); it is "Unknown"
+// when running locally.
 
-function isLocalAddress(hostname: string): boolean {
-  const host = hostname.toLowerCase();
-  return host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.local');
-}
+import { NextResponse, type NextRequest } from "next/server";
+import { clientIp, rateLimit, sameSiteRequest } from "@/lib/security/request";
+import { privateId, serverClient } from "@/sanity/lib/server-client";
+
+const UNKNOWN = "Unknown";
+const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
 
 function isLocalSource(value: string): boolean {
-  if (!value || value === 'Unknown' || value === 'Direct') return false;
-
+  if (!value || value === UNKNOWN || value === "Direct") return false;
   try {
-    const parsed = new URL(value);
-    return isLocalAddress(parsed.hostname);
+    const host = new URL(value).hostname.toLowerCase();
+    return host === "localhost" || host === "127.0.0.1" || host === "::1" || host.endsWith(".local");
   } catch {
-    return value.toLowerCase().includes('localhost') || value.includes('127.0.0.1');
+    return value.toLowerCase().includes("localhost") || value.includes("127.0.0.1");
   }
 }
+
+// Vercel sets these on every request it routes; the city is URL-encoded.
+function location(req: NextRequest) {
+  const header = (name: string) => req.headers.get(`x-vercel-ip-${name}`) ?? "";
+  const countryCode = header("country");
+  let city = UNKNOWN;
+  try {
+    city = decodeURIComponent(header("city")) || UNKNOWN;
+  } catch {}
+  let country = countryCode || UNKNOWN;
+  try {
+    if (countryCode) country = countryNames.of(countryCode) ?? countryCode;
+  } catch {}
+  return {
+    location: { city, region: header("country-region") || UNKNOWN, country },
+    latitude: Number(header("latitude")) || 0,
+    longitude: Number(header("longitude")) || 0,
+  };
+}
+
+const text = (value: unknown, fallback: string) => (typeof value === "string" && value ? value.slice(0, 2000) : fallback);
 
 export async function POST(req: NextRequest) {
   // Only our own pages may record visits, and not faster than a real visitor browses.
-  if (!sameSiteRequest(req)) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  const visitorIp = clientIp(req);
-  if (visitorIp && !rateLimit(`visit:${visitorIp}`, 30, 60 * 1000)) {
-    return NextResponse.json({ success: true, skipped: 'rate-limited' });
+  if (!sameSiteRequest(req)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const ip = clientIp(req);
+  if (ip && !rateLimit(`visit:${ip}`, 30, 60 * 1000)) {
+    return NextResponse.json({ success: true, skipped: "rate-limited" });
   }
+
   try {
-    const body = await req.json();
-    const rawPageUrl = typeof body?.pageUrl === 'string' ? body.pageUrl : '';
-    const rawUserAgent = typeof body?.userAgent === 'string' ? body.userAgent : '';
-    const rawReferrer = typeof body?.referrer === 'string' ? body.referrer : '';
-    const pageUrl = rawPageUrl || req.headers.get('referer') || 'Unknown';
-    const userAgent = rawUserAgent || req.headers.get('user-agent') || 'Unknown';
-    const referrer = rawReferrer || 'Direct';
-
+    const body = await req.json().catch(() => ({}));
+    const pageUrl = text(body?.pageUrl, req.headers.get("referer") || UNKNOWN);
+    const referrer = text(body?.referrer, "Direct");
     if (isLocalSource(pageUrl) || isLocalSource(referrer)) {
-      return NextResponse.json({ success: true, skipped: 'localhost-traffic' });
+      return NextResponse.json({ success: true, skipped: "localhost-traffic" });
     }
 
-    // Get IP from headers
-    const forwarded = req.headers.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0].trim() : req.ip || 'Unknown';
-
-    // Get location data from IP using a free API
-    let locationData = { city: 'Unknown', region: 'Unknown', country: 'Unknown', lat: 0, lon: 0 };
-    if (ip !== 'Unknown') {
-      try {
-        const response = await fetch(`http://ip-api.com/json/${ip}`);
-        if (response.ok) {
-          const data = await response.json();
-          locationData = {
-            city: data.city || 'Unknown',
-            region: data.regionName || 'Unknown',
-            country: data.country || 'Unknown',
-            lat: data.lat || 0,
-            lon: data.lon || 0,
-          };
-        }
-      } catch (error) {
-        console.error('Error fetching location:', error);
-      }
-    }
-
-    const visitor = {
-      _type: 'visitor',
-      ip,
-      location: {
-        city: locationData.city,
-        region: locationData.region,
-        country: locationData.country,
-      },
-      latitude: locationData.lat,
-      longitude: locationData.lon,
+    await serverClient.create({
+      _id: privateId(),
+      _type: "visitor",
+      ip: ip ?? UNKNOWN,
+      ...location(req),
       timestamp: new Date().toISOString(),
       pageUrl,
-      userAgent,
+      userAgent: text(body?.userAgent, req.headers.get("user-agent") || UNKNOWN),
       referrer,
-    };
-
-    await serverClient.create(visitor);
-
+    });
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error saving visitor:', error);
-    return NextResponse.json({ error: 'Failed to save visitor data' }, { status: 500 });
+    console.error("Saving visitor failed:", error);
+    return NextResponse.json({ error: "Failed to save visitor data" }, { status: 500 });
   }
 }

@@ -1929,29 +1929,11 @@ const logicalServices = {
           name: "contactPhone",
           title: "Phone Number",
           type: "string",
-          // validation: (Rule:any) =>
-          //   Rule.custom((value:any) => {
-          //     // Regular expression to match a phone number with optional country code
-          //     const phoneRegex = /^\+?\d{1,3}[- ]?\d{3,}$/;
-          //     if (!phoneRegex.test(value)) {
-          //       return 'Please enter a valid phone number.';
-          //     }
-          //     return true;
-          //   }),
         },
         {
           name: "contactLink",
           title: "Link",
           type: "string",
-          // validation: (Rule:any) =>
-          //   Rule.custom((value:any) => {
-          //     // Regular expression to match a URL
-          //     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-          //     if (!urlRegex.test(value)) {
-          //       return 'Please enter a valid URL.';
-          //     }
-          //     return true;
-          //   }),
         },
 
         {
@@ -2723,29 +2705,11 @@ const subServiceSchema = {
           name: "contactPhone",
           title: "Phone Number",
           type: "string",
-          // validation: (Rule:any) =>
-          //   Rule.custom((value:any) => {
-          //     // Regular expression to match a phone number with optional country code
-          //     const phoneRegex = /^\+?\d{1,3}[- ]?\d{3,}$/;
-          //     if (!phoneRegex.test(value)) {
-          //       return 'Please enter a valid phone number.';
-          //     }
-          //     return true;
-          //   }),
         },
         {
           name: "contactLink",
           title: "Link",
           type: "string",
-          // validation: (Rule:any) =>
-          //   Rule.custom((value:any) => {
-          //     // Regular expression to match a URL
-          //     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-          //     if (!urlRegex.test(value)) {
-          //       return 'Please enter a valid URL.';
-          //     }
-          //     return true;
-          //   }),
         },
 
         {

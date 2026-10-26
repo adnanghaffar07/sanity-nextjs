@@ -6,7 +6,7 @@
 // Each step runs once. Set FORMS_DRY_RUN=1 to log instead of saving/sending.
 
 import { randomUUID } from "crypto";
-import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { privateId, serverClient } from "@/sanity/lib/server-client";
 import { verifyTurnstileToken } from "./turnstile";
 import { isLikelyValidGhlPhone, normalizePhoneForGhl } from "./phone";
 import { FORMS, detectClientType, isFormId, type ClientType, type FormId } from "@/lib/forms/catalog";
@@ -64,7 +64,16 @@ function splitName(full: string) {
   return { firstName: parts[0] ?? "", lastName: parts.slice(1).join(" ") };
 }
 
-function normalize(form: FormId, body: Record<string, any>): NormalizedSubmission {
+/** The JSON a form posts to /api/forms. Every value is checked again before use. */
+type FormRequestBody = {
+  form?: unknown;
+  captchaToken?: unknown;
+  fields?: StandardFields;
+  details?: Record<string, string | undefined>;
+  context?: SubmissionContext;
+};
+
+function normalize(form: FormId, body: FormRequestBody): NormalizedSubmission {
   const fields: StandardFields = body.fields ?? {};
   const context: SubmissionContext = body.context ?? {};
   const definition = FORM_DEFINITIONS[form];
@@ -129,6 +138,7 @@ function validate(form: FormId, submission: NormalizedSubmission): Record<string
 function sanityDocument(s: NormalizedSubmission) {
   const { context: c } = s;
   return {
+    _id: privateId(),
     _type: "formSubmission",
     status: "new",
     form: s.form,
@@ -330,7 +340,7 @@ export async function recordSubmission(
 /** Entry point for POST /api/forms. */
 export async function handleFormRequest(body: unknown, ip: string | null): Promise<Result> {
   if (!body || typeof body !== "object") return { status: 400, body: { ok: false, error: "Invalid request." } };
-  const input = body as Record<string, any>;
+  const input = body as FormRequestBody;
   if (!isFormId(input.form)) return { status: 400, body: { ok: false, error: "Unknown form." } };
   const form = input.form;
 
@@ -339,7 +349,7 @@ export async function handleFormRequest(body: unknown, ip: string | null): Promi
     return { status: 400, body: { ok: false, error: "Please fill in the required fields.", fieldErrors } };
   }
 
-  if (FORM_DEFINITIONS[form].captcha && !(await verifyTurnstileToken(input.captchaToken, ip))) {
+  if (FORM_DEFINITIONS[form].captcha && !(await verifyTurnstileToken(typeof input.captchaToken === "string" ? input.captchaToken : undefined, ip))) {
     return { status: 400, body: { ok: false, error: "Captcha verification failed. Please try again." } };
   }
 

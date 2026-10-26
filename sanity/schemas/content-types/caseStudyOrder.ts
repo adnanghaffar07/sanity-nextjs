@@ -26,6 +26,6 @@ export const caseStudyOrder = defineType({
   ],
   preview: {
     select: { cards: "cardOrder" },
-    prepare: ({ cards }: any) => ({ title: "Case Study Order", subtitle: `${cards?.length || 0} cards in order` }),
+    prepare: ({ cards }: { cards?: unknown[] }) => ({ title: "Case Study Order", subtitle: `${cards?.length || 0} cards in order` }),
   },
 });

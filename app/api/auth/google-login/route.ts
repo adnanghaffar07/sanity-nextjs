@@ -1,60 +1,41 @@
-import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import { OAuth2Client } from "google-auth-library"; // Correct import
-import { serverClient } from "@/sanity/lib/sanity/serverClient";
+// Pricing-page "Sign in with Google". Verifies Google's ID token, creates the
+// account on first sign-in, and starts the same session as a password log-in.
 
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
-const JWT_SECRET = process.env.JWT_SECRET!;
+import { NextResponse } from "next/server";
+import { OAuth2Client } from "google-auth-library";
+import { GOOGLE_CLIENT_ID } from "@/lib/auth/google";
+import { startSession } from "@/lib/auth/session";
+import { clientIp, rateLimit, sameSiteRequest } from "@/lib/security/request";
+import { privateId, serverClient } from "@/sanity/lib/server-client";
+
+const google = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 export async function POST(req: Request) {
+  if (!sameSiteRequest(req)) return NextResponse.json({ error: "Forbidden." }, { status: 403 });
+  const ip = clientIp(req);
+  if (ip && !rateLimit(`google-login:${ip}`, 10, 15 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many attempts. Please try again later." }, { status: 429 });
+  }
+
+  const { tokenId } = (await req.json().catch(() => ({}))) as { tokenId?: string };
+  if (!tokenId) return NextResponse.json({ error: "Google sign-in failed. Please try again." }, { status: 400 });
+
   try {
-    const { tokenId } = await req.json();
-
-    if (!tokenId) {
-      return NextResponse.json({ success: false, error: "No token provided" }, { status: 400 });
-    }
-
-    // Verify Google token
-    const authClient = new OAuth2Client(GOOGLE_CLIENT_ID);
-    const ticket = await authClient.verifyIdToken({
-      idToken: tokenId,
-      audience: GOOGLE_CLIENT_ID,
-    });
-
+    const ticket = await google.verifyIdToken({ idToken: tokenId, audience: GOOGLE_CLIENT_ID });
     const payload = ticket.getPayload();
-    if (!payload) {
-      return NextResponse.json({ success: false, error: "Google verification failed" }, { status: 401 });
+    const email = payload?.email?.trim().toLowerCase();
+    if (!payload || !email || !payload.email_verified) {
+      return NextResponse.json({ error: "Your Google account has no verified email address." }, { status: 401 });
     }
 
-    const { email, name, picture, sub } = payload;
-
-    // Check if the user exists in Sanity
-    const query = `*[_type == "user" && email == $email][0]`;
-    const existingUser = await serverClient.fetch(query, { email });
-
-    let userId = existingUser?._id;
-
-
-    if (!existingUser) {
-      // Create new user in Sanity
-      const newUser = {
-        _type: "user",
-        email,
-        name,
-        googleId: sub,
-      };
-
-      const createdUser = await serverClient.create(newUser);
-      userId = createdUser._id;
+    const existing = await serverClient.fetch<number>(`count(*[_type == "user" && lower(email) == $email])`, { email });
+    if (existing === 0) {
+      await serverClient.create({ _id: privateId(), _type: "user", email, name: payload.name, googleId: payload.sub });
     }
 
-    // Generate JWT Token
-    const authToken = jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: "30d" });
-
-    return NextResponse.json({ success: true, token: authToken });
-
+    return startSession(NextResponse.json({ success: true }), email);
   } catch (error) {
-    console.error("Google Login Error:", error);
-    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
+    console.error("Google sign-in failed:", error);
+    return NextResponse.json({ error: "Google sign-in failed. Please try again." }, { status: 401 });
   }
 }

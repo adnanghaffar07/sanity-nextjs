@@ -1,7 +1,8 @@
 import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 import imageUrlBuilder from "@sanity/image-url";
-import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { serverClient } from "@/sanity/lib/server-client";
 import { recipientsForServices } from "@/lib/forms/server/audience";
 import { hasBearerSecret } from "@/lib/security/request";
 
@@ -29,7 +30,7 @@ type Recipient = {
 // Initialize Sanity image builder
 const builder = imageUrlBuilder(serverClient);
 
-function urlForImage(source: any) {
+function urlForImage(source: SanityImageSource | undefined) {
   return source ? builder.image(source).url() : "";
 }
 

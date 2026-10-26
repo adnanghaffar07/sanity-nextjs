@@ -5,6 +5,7 @@
 
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { DocumentsIcon } from "@sanity/icons";
+import { apiVersion } from "../../env";
 import { SECTION_TYPES } from "./sections";
 
 const SECTION_PREVIEW_DIR = "/section-previews";
@@ -44,9 +45,10 @@ export const servicePage = defineType({
         // Unique within the same parent, so /services/a/x and /services/b/x can coexist.
         isUnique: async (slug, context) => {
           const { document, getClient } = context;
-          const client = getClient({ apiVersion: "2024-03-14" });
+          // "raw" so unpublished drafts of other pages also count as taken.
+          const client = getClient({ apiVersion }).withConfig({ perspective: "raw" });
           const id = (document?._id || "").replace(/^drafts\./, "");
-          const parentRef = (document as any)?.parent?._ref ?? null;
+          const parentRef = (document?.parent as { _ref?: string } | undefined)?._ref ?? null;
           const query = `count(*[_type == "servicePage" && slug.current == $slug && !(_id in [$id, "drafts." + $id]) && coalesce(parent._ref, "") == coalesce($parent, "")])`;
           // Retry once if the request fails in transit; if Sanity still can't be
           // reached, don't block publishing over a check that couldn't run.
@@ -139,7 +141,7 @@ export const servicePage = defineType({
   preview: {
     // Parent may be a new page (slug) or an old service (urlPath).
     select: { title: "title", slug: "slug.current", parentSlug: "parent.slug.current", parentUrlPath: "parent.urlPath" },
-    prepare: ({ title, slug, parentSlug, parentUrlPath }: any) => {
+    prepare: ({ title, slug, parentSlug, parentUrlPath }: { title?: string; slug?: string; parentSlug?: string; parentUrlPath?: string }) => {
       const parent = parentSlug || parentUrlPath;
       return {
         title,

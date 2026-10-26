@@ -1,45 +1,36 @@
-import { submitToGoogle } from "@/lib/googleIndexing";
-// Sanity webhook → Google Indexing API. Sanity must send
-// "Authorization: Bearer <SANITY_WEBHOOK_SECRET>" (same as /api/sanity-webhook).
+// Sanity webhook → Google Indexing API: asks Google to recrawl a page after it
+// is published. Sanity must send "Authorization: Bearer <SANITY_WEBHOOK_SECRET>"
+// (same as /api/sanity-webhook).
+
 import { NextResponse } from "next/server";
+import { submitToGoogle } from "@/lib/googleIndexing";
 import { hasBearerSecret } from "@/lib/security/request";
+
+const BASE_URL = "https://codeautomation.ai";
+const SECTIONS: Record<string, string> = { blogPost: "blogs", caseStudy: "case-studies", valueBlueprint: "value-blueprints" };
+
+type Body = { _type?: string; slug?: string; urlPath?: string; url?: string };
+
+// The published page's address, from the document type (or a URL sent directly).
+function pageUrl({ _type, slug, urlPath, url }: Body): string | { error: string } {
+  if (_type && SECTIONS[_type]) return slug ? `${BASE_URL}/${SECTIONS[_type]}/${slug}` : { error: `Missing slug for ${_type} document` };
+  if (_type === "logicalServices") {
+    return urlPath ? `${BASE_URL}/services/${urlPath.replace(/^\//, "")}` : { error: "Missing urlPath for logicalServices document" };
+  }
+  return url ?? { error: "Unsupported document type or missing URL data" };
+}
 
 export async function POST(req: Request) {
   if (!hasBearerSecret(req, "SANITY_WEBHOOK_SECRET")) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
-    const data = await req.json();
-    const baseUrl = "https://codeautomation.ai";
-    let url: string = "";
-
-    if (["blogPost", "caseStudy", "valueBlueprint"].includes(data._type)) {
-      // The document type decides the path.
-      if (!data.slug) {
-        return NextResponse.json({ error: `Missing slug for ${data._type} document` }, { status: 400 });
-      }
-      const section = { blogPost: "blogs", caseStudy: "case-studies", valueBlueprint: "value-blueprints" }[data._type as string];
-      url = `${baseUrl}/${section}/${data.slug}`;
-    } else if (data._type === "logicalServices") {
-      // For logicalServices, use the provided urlPath.
-      if (!data.urlPath) {
-        return NextResponse.json({ error: "Missing urlPath for logicalServices document" }, { status: 400 });
-      }
-      // If the urlPath does not start with a slash, add it.
-      url = `${baseUrl}/services${data.urlPath.startsWith("/") ? data.urlPath : `/${data.urlPath}`}`;
-    } else if (data.url) {
-      // Allow direct URL submissions.
-      url = data.url;
-    } else {
-      return NextResponse.json({ error: "Unsupported document type or missing URL data" }, { status: 400 });
-    }
-
-    console.log("Submitting URL for indexing:", url);
+    const url = pageUrl((await req.json()) as Body);
+    if (typeof url !== "string") return NextResponse.json(url, { status: 400 });
     const result = await submitToGoogle(url);
-    return NextResponse.json({ success: true, result }, { status: 200 });
-    
+    return NextResponse.json({ success: true, result });
   } catch (error) {
-    console.error("Error submitting URL:", error);
+    console.error("Submitting URL for indexing failed:", error);
     return NextResponse.json({ error: "Failed to submit URL for indexing" }, { status: 500 });
   }
 }

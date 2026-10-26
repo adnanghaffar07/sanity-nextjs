@@ -35,14 +35,17 @@ const FIELD_CACHE_MS = 10 * 60 * 1000;
 const clean = (fields: Record<string, string | undefined>) =>
   Object.fromEntries(Object.entries(fields).filter(([, v]) => v != null && v !== "")) as Record<string, string>;
 
-async function request(url: string, init: RequestInit & { headers: Record<string, string> }) {
+// The parts of GoHighLevel responses this file reads.
+type GhlResponse = { id?: string; contact?: { id?: string }; customFields?: { id?: string; fieldKey?: string }[] };
+
+async function request(url: string, init: RequestInit & { headers: Record<string, string> }): Promise<GhlResponse> {
   const response = await fetch(url, { ...init, cache: "no-store" });
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
     const detail = (body as { message?: unknown })?.message ?? response.statusText;
     throw new Error(`GHL ${response.status}: ${typeof detail === "string" ? detail : JSON.stringify(detail)}`);
   }
-  return body as Record<string, any>;
+  return body as GhlResponse;
 }
 
 // ── v2 ────────────────────────────────────────────────────────────────────────

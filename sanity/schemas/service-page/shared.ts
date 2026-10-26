@@ -67,14 +67,14 @@ const linkFields = [
     type: "reference",
     to: LINKABLE_TYPES,
     description: "Start typing the service name. If that page's address changes later, this link updates by itself.",
-    hidden: ({ parent }: any) => parent?.linkType === "external",
+    hidden: ({ parent }: { parent?: { linkType?: string } }) => parent?.linkType === "external",
   }),
   defineField({
     name: "path",
     title: "…or type the page address",
     type: "string",
     description: "For pages that aren't service pages, e.g. /contact-us or /case-studies/heyou. Use #section-id to jump to a section on this page. Leave empty if you chose a page above.",
-    hidden: ({ parent }: any) => parent?.linkType === "external",
+    hidden: ({ parent }: { parent?: { linkType?: string } }) => parent?.linkType === "external",
     validation: (rule) =>
       rule.custom((value) =>
         !value || value.startsWith("/") || value.startsWith("#")
@@ -87,7 +87,7 @@ const linkFields = [
     title: "Website address",
     type: "url",
     description: "The full address, starting with https://",
-    hidden: ({ parent }: any) => parent?.linkType !== "external",
+    hidden: ({ parent }: { parent?: { linkType?: string } }) => parent?.linkType !== "external",
     validation: (rule) => rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
   }),
   defineField({

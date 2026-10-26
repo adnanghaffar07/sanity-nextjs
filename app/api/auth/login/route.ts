@@ -2,8 +2,8 @@
 // wrong email or password, so the form can't be used to find accounts.
 
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { startSession } from "@/lib/auth/session";
+import { serverClient } from "@/sanity/lib/server-client";
 import { verifyPassword } from "@/lib/security/password";
 import { clientIp, rateLimit, sameSiteRequest } from "@/lib/security/request";
 
@@ -28,8 +28,5 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: INVALID }, { status: 401 });
   }
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET!, { expiresIn: "30d" });
-  const response = NextResponse.json({ success: true, token });
-  response.cookies.set("authToken", token, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 30 * 24 * 60 * 60 });
-  return response;
+  return startSession(NextResponse.json({ success: true }), email);
 }

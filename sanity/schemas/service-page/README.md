@@ -57,7 +57,7 @@ Unpublish (or delete) the new page and the legacy page is shown again at the sam
 | Where | What |
 |---|---|
 | `sanity/schemas/service-page/` | Schema: `servicePage`, shared types, 17 section types |
-| `app/(site)/components/services/page-builder/` | Renderer + one component per section |
+| `components/services/page-builder/` | Renderer + one component per section |
 | `app/(site)/services/[service]/…/page.tsx` | Routing: new page first, legacy fallback |
 | `public/section-previews/*.png` | Thumbnails shown in the Studio insert menu |
 | `app/(site)/service-page-preview/` | **Dev-only** full-page preview WITH header/footer: `/service-page-preview` (all sample sections) or `/service-page-preview/<seed-name>` |

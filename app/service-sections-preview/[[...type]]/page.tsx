@@ -8,7 +8,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { notFound } from "next/navigation";
-import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
+import ServicePageRenderer, { type ServiceSection } from "@/components/services/page-builder/ServicePageRenderer";
 import { SAMPLE_SECTIONS } from "@/components/services/page-builder/sample-data";
 import { buildLinkMap } from "@/components/services/page-builder/links";
 
@@ -16,6 +16,9 @@ export const metadata = { robots: { index: false, follow: false } };
 
 // Tailwind is bundled with the (site) layout, which this standalone dev page
 // (no site header/footer/popups) doesn't use, so link it directly.
+// A seed file in sanity/seed/ (a servicePage document as JSON).
+type SeedDocument = { _id?: string; title?: string; slug?: { current?: string }; sections?: ServiceSection[] };
+
 const SiteStyles = () => <link rel="stylesheet" href="/_next/static/css/app/(site)/layout.css" />;
 
 export default async function ServiceSectionsPreview({ params }: { params: { type?: string[] } }) {
@@ -24,7 +27,7 @@ export default async function ServiceSectionsPreview({ params }: { params: { typ
   const [first, second] = params.type || [];
 
   if (first === "seed" && second && /^[a-z0-9-]+$/.test(second)) {
-    let doc: any;
+    let doc: SeedDocument;
     try {
       const file = path.join(process.cwd(), "sanity", "seed", `${second}.servicePage.json`);
       doc = JSON.parse(await readFile(file, "utf8"));

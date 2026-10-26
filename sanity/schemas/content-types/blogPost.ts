@@ -1,6 +1,6 @@
 // Blog Post: /blogs/<address>.
 
-import { defineType } from "sanity";
+import { defineType, type PreviewValue } from "sanity";
 import { DocumentTextIcon } from "@sanity/icons";
 import { SEO_GROUP, addressField, legacyIdField, reuse, seoFields } from "./reuse";
 
@@ -20,7 +20,7 @@ export const blogPost = defineType({
       title: "Blog title",
       group: "content",
       description: "Shown on the blog cards and used as the Google title if none is set in the SEO tab.",
-      validation: (r: any) => r.required(),
+      validation: (r) => r.required(),
     }),
     addressField("blogPost", "how-to-choose-ai-automation-agency", "/blogs"),
     reuse("blogheading", {
@@ -76,6 +76,6 @@ export const blogPost = defineType({
   ],
   preview: {
     select: { title: "title", slug: "slug", media: "heroimage" },
-    prepare: ({ title, slug, media }: any) => ({ title, subtitle: slug ? `/blogs/${slug}` : "No address yet", media }),
+    prepare: ({ title, slug, media }: { title?: string; slug?: string; media?: PreviewValue["media"] }) => ({ title, subtitle: slug ? `/blogs/${slug}` : "No address yet", media }),
   },
 });

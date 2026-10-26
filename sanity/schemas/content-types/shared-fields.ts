@@ -3,7 +3,9 @@
 // combined "portfolio" type the content was copied from, so the page templates
 // read the same data. Only fields still used by the new schemas are here.
 
-const sharedFields: any[] = [
+import type { SharedField } from "./reuse";
+
+const sharedFields: SharedField[] = [
   {
       name: 'jsonLd',
       title: 'JSON-LD Schema',

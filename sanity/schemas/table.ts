@@ -1,3 +1,5 @@
+import type { ArrayRule } from "sanity";
+
 export default {
   name: "table",
   title: "Table",
@@ -7,7 +9,7 @@ export default {
       name: "rows",
       title: "Rows",
       type: "array",
-      validation: (Rule: any) => Rule.required().min(1), // Ensure at least 1 row
+      validation: (Rule: ArrayRule<unknown[]>) => Rule.required().min(1), // Ensure at least 1 row
       of: [
         {
           type: "object",
@@ -16,7 +18,7 @@ export default {
               name: "cells",
               title: "Cells",
               type: "array",
-              validation: (Rule: any) => Rule.required().min(1), // Ensure at least 1 cell (column)
+              validation: (Rule: ArrayRule<unknown[]>) => Rule.required().min(1), // Ensure at least 1 cell (column)
               of: [
                 {
                   type: "object",

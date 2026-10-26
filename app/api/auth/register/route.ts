@@ -3,8 +3,8 @@
 // is ever saved in plain text.
 
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import { serverClient } from "@/sanity/lib/sanity/serverClient";
+import { startSession } from "@/lib/auth/session";
+import { privateId, serverClient } from "@/sanity/lib/server-client";
 import { hashPassword } from "@/lib/security/password";
 import { clientIp, rateLimit, sameSiteRequest } from "@/lib/security/request";
 
@@ -28,8 +28,7 @@ export async function POST(req: Request) {
   const existing = await serverClient.fetch(`count(*[_type == "user" && email == $email])`, { email });
   if (existing > 0) return NextResponse.json({ error: "An account with this email already exists. Please log in." }, { status: 400 });
 
-  await serverClient.create({ _type: "user", email, passwordHash: await hashPassword(password) });
+  await serverClient.create({ _id: privateId(), _type: "user", email, passwordHash: await hashPassword(password) });
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET!, { expiresIn: "30d" });
-  return NextResponse.json({ success: true, token });
+  return startSession(NextResponse.json({ success: true }), email);
 }
