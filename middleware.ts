@@ -33,6 +33,7 @@ const GONE_PATHS = new Set([
   "/services/automation-integration/corezoid-automation",
   "/services/automation-integration/ifttt-automation",
   "/services/automation-integration/zapier-automation",
+  "/services/headless-cms-development-services/sanity-headless",
   "/services/automation-integration/make-automation",
   "/services/website-analytics/gtml-google-tag-manager",
   "/services/website-analytics/hotjar-analytics",
@@ -45,6 +46,90 @@ const GONE_PATHS = new Set([
   "/services/ecommerce-development/opencart",
   "/services/payment-platforms/gocardless",
   "/services/email-marketing/sendpulse",
+
+  "/services/headless-cms-development-services/hygraph-headless",
+  "/services/headless-cms-development-services/storyblock-headless",
+  "/services/headless-cms-development-services/contentful-headless",
+  "/services/headless-cms-development-services/strapi-headless-services",
+  "/services/headless-cms-development-services/wordpress-headless",
+
+  "/services/qa-testing-services/web-qa-testing",
+  "/services/qa-testing-services/mobile-app-testing",
+  "/services/qa-testing-services/automation-testing",
+  "/services/qa-testing-services/web-app-testing-services",
+  "/services/qa-testing-services/apm-sanitry",
+  "/services/qa-testing-services/google-lighthouse-vitals",
+  "/services/qa-testing-services/sonar-code-review",
+  "/services/qa-testing-services/wcag-accessibility",
+
+  "/services/mobile-app-development-services/flutter-mobile-development-services",
+  "/services/mobile-app-development-services/mobile-app-audit-rescue-service",
+  "/services/mobile-app-development-services/swift",
+
+  "/services/rpa-services/robomotion",
+  "/services/rpa-services/uipath",
+  "/services/rpa-services/automation-anywhere",
+  "/services/rpa-services/ant-works",
+
+  "/services/ml-services/predictive-analytical-service",
+  "/services/ml-services/document-recognition",
+  "/services/ml-services/image-video-service",
+  "/services/ml-services/instabase",
+
+  "/services/ai-devops/cicd",
+  "/services/ai-devops/terraform",
+  "/services/ai-devops/jenkins",
+  "/services/ai-devops/docker",
+
+  "/services/headless-ecommerce/sanity-headless-ecommerce",
+  "/services/headless-ecommerce/bigcommerce-headless",
+  "/services/headless-ecommerce/shopify-headless",
+
+  "/services/ecommerce-development/magento",
+  "/services/ecommerce-development/shopify",
+  "/services/ecommerce-development/prestashop",
+  "/services/ecommerce-development/bigcommerce",
+
+  "/services/payment-platforms/stripe-payment-services",
+  "/services/payment-platforms/paypal-payment-services",
+  "/services/payment-platforms/rapyd",
+  "/services/payment-platforms/online-payment-platform",
+  "/services/payment-platforms/escrow",
+
+  "/services/page-auth-verification/kinde-authentication-services",
+  "/services/page-auth-verification/twilio-authentication-services",
+  "/services/page-auth-verification/twilio-verification-services",
+  "/services/page-auth-verification/docuSign-services",
+  "/services/page-auth-verification/twilio-number-verification-services",
+  "/services/page-auth-verification/kyc-process",
+
+  "/services/web-scraping/apify-web-data-scraping-services",
+  "/services/web-scraping/scrapy-cloud-services",
+  "/services/web-scraping/selenium",
+  "/services/web-scraping/puppeter",
+  "/services/web-scraping/texau",
+
+  "/services/low-code-no-code/bubble.io",
+  "/services/low-code-no-code/airtable",
+  "/services/low-code-no-code/tabidoo",
+  "/services/low-code-no-code/retool",
+
+  "/services/crm-setup-integration/salesforce",
+
+  "/services/managed-services/joomla-managed-service",
+  "/services/managed-services/sanity-headles-managed-services",
+  "/services/managed-services/digital-transformation-managed-services",
+  "/services/managed-services/wordpress-woocomerce-managed-service",
+  "/services/managed-services/digital-all-in",
+
+  "/services/website-analytics/ga4-google-analytics",
+  "/services/email-marketing/sendgrid",
+  "/services/website-analytics/amplitude-analytics",
+  "/services/email-marketing/mailchimp",
+  "/services/email-marketing/brevo",
+  "/services/data-warehouse/data-quality",
+  "/services/email-marketing/klaviyo",
+  "/services/data-warehouse/etl",
 ]);
 
 const GONE_HTML = `<!DOCTYPE html>
