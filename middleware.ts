@@ -37,7 +37,7 @@ const GONE_PATHS = new Set([
   "/services/automation-integration/make-automation",
   "/services/website-analytics/gtml-google-tag-manager",
   "/services/website-analytics/hotjar-analytics",
-  "https://codeautomation.ai/services/page-auth-verification/docuSign-services",
+  "/services/page-auth-verification/docuSign-services",
   "/services/data-warehouse/keboola",
   "/services/data-warehouse/bigquery-datawarehouse",
   "/services/data-warehouse/airbyte",
