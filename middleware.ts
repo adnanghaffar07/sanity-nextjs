@@ -101,7 +101,6 @@ const GONE_PATHS = new Set([
   "/services/page-auth-verification/kinde-authentication-services",
   "/services/page-auth-verification/twilio-authentication-services",
   "/services/page-auth-verification/twilio-verification-services",
-  "/services/page-auth-verification/docuSign-services",
   "/services/page-auth-verification/twilio-number-verification-services",
   "/services/page-auth-verification/kyc-process",
 
