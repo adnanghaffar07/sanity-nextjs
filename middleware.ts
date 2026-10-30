@@ -24,7 +24,8 @@ const BLOCKED_IPS = new Set([
 ]);
 
 // Service pages that were permanently removed. Served as 410 Gone so search
-// engines drop them from the index faster than a 404.
+// engines drop them from the index faster than a 404. Matched without regard to
+// case: the list is lowercased below, and so is the requested path.
 const GONE_PATHS = new Set([
   "/services/crm-setup-integration/sugar-crm",
   "/services/cloud-accounting-services/xero-cloud-accounting-services",
@@ -131,7 +132,7 @@ const GONE_PATHS = new Set([
   "/services/data-warehouse/data-quality",
   "/services/email-marketing/klaviyo",
   "/services/data-warehouse/etl",
-]);
+].map((path) => path.toLowerCase()));
 
 const GONE_HTML = `<!DOCTYPE html>
 <html lang="en">

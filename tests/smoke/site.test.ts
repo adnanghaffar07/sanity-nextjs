@@ -36,6 +36,9 @@ describe(`smoke test: ${BASE}`, () => {
   it("unknown pages are 404, removed service pages 410", async () => {
     expect((await get("/no-such-page-smoke-test")).status).toBe(404);
     expect((await get("/services/automation-integration/n8n-automation")).status).toBe(410);
+    // Listed with a capital letter; matched without regard to case.
+    expect((await get("/services/page-auth-verification/docuSign-services")).status).toBe(410);
+    expect((await get("/services/page-auth-verification/docusign-services")).status).toBe(410);
   }, TIMEOUT);
 
   it("the old mobile app address redirects permanently", async () => {
