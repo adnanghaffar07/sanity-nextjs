@@ -1,11 +1,12 @@
-// Studio sidebar: "Home Page" and "Form submissions" first, then every other
+// Studio sidebar: "Home Page", "Adnan Ghaffar Page" and "Form submissions" first, then every other
 // document type.
 
 import type { StructureResolver } from "sanity/structure";
-import { EnvelopeIcon, HomeIcon } from "@sanity/icons";
+import { EnvelopeIcon, HomeIcon, UserIcon } from "@sanity/icons";
 import { FORMS, FORM_IDS } from "@/lib/forms/catalog";
 import { FORM_SUBMISSION_TYPE } from "./schemas/form-submission";
 import { HOME_PAGE_ID } from "./schemas/home-page";
+import { ADNAN_GHAFFAR_PAGE_ID } from "./schemas/adnan-ghaffar-page";
 
 const NEWEST_FIRST = [{ field: "submittedAt", direction: "desc" as const }];
 
@@ -28,6 +29,11 @@ export const structure: StructureResolver = (S) => {
         .icon(HomeIcon)
         .child(S.document().schemaType(HOME_PAGE_ID).documentId(HOME_PAGE_ID).title("Home Page")),
       S.listItem()
+        .id(ADNAN_GHAFFAR_PAGE_ID)
+        .title("Adnan Ghaffar Page")
+        .icon(UserIcon)
+        .child(S.document().schemaType(ADNAN_GHAFFAR_PAGE_ID).documentId(ADNAN_GHAFFAR_PAGE_ID).title("Adnan Ghaffar Page")),
+      S.listItem()
         .id("form-submissions")
         .title("Form submissions")
         .icon(EnvelopeIcon)
@@ -44,6 +50,6 @@ export const structure: StructureResolver = (S) => {
             ])
         ),
       S.divider(),
-      ...S.documentTypeListItems().filter((item) => ![FORM_SUBMISSION_TYPE, HOME_PAGE_ID].includes(item.getId() ?? "")),
+      ...S.documentTypeListItems().filter((item) => ![FORM_SUBMISSION_TYPE, HOME_PAGE_ID, ADNAN_GHAFFAR_PAGE_ID].includes(item.getId() ?? "")),
     ]);
 };

@@ -24,6 +24,7 @@ import { servicePageTypes } from "./schemas/service-page";
 import { contentTypes } from "./schemas/content-types";
 import { formSubmission } from "./schemas/form-submission";
 import { homePage } from "./schemas/home-page";
+import { adnanGhaffarPage } from "./schemas/adnan-ghaffar-page";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -50,6 +51,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ...contentTypes,
     // Home page content (testimonials, FAQs)
     homePage,
+    // /adnan-ghaffar profile page text and SEO
+    adnanGhaffarPage,
     // Every website form submission (see lib/forms)
     formSubmission,
   ],
