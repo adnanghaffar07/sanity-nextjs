@@ -51,9 +51,13 @@ const HAND_BUILT: ServiceListingCard[] = [
   },
 ];
 
+// Legacy cards for pages that now redirect elsewhere (see next.config.js).
+// Hidden so /services doesn't link through a redirect; the new page has its own card.
+const RETIRED_LEGACY_PATHS = new Set(["ai-agent"]);
+
 // These come first, in this order; the rest keep their Studio order.
 const PINNED = [
-  "ai-agent",
+  "ai-agent-development-services",
   "ai-chatbot-development-services",
   "ai-business-automation-solutions",
   "ai-software-development-services",
@@ -101,7 +105,8 @@ function pinnedFirst(cards: ServiceListingCard[]) {
 /** Every service card, pinned services first. */
 export async function getServiceListingCards(): Promise<ServiceListingCard[]> {
   try {
-    const { legacy, pages } = await client.fetch<{ legacy: CardRow[]; pages: CardRow[] }>(CARDS_QUERY, {}, SERVICE_FETCH_OPTIONS);
+    const { legacy: allLegacy, pages } = await client.fetch<{ legacy: CardRow[]; pages: CardRow[] }>(CARDS_QUERY, {}, SERVICE_FETCH_OPTIONS);
+    const legacy = allLegacy.filter((row) => !RETIRED_LEGACY_PATHS.has(row.urlPath.toLowerCase().trim()));
     // A Service Page replaces the legacy card with the same address, in place,
     // so a migrated service keeps its position.
     const pageByPath = new Map(pages.map((page) => [page.urlPath, page]));

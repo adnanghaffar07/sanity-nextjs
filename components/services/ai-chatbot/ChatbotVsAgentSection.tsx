@@ -72,7 +72,7 @@ export default function ChatbotVsAgentSection() {
         <p className="mt-10 text-center text-base sm:text-lg text-gray-700">
           Not sure which fits? Learn more about our{" "}
           <Link
-            href="/services/ai-agent"
+            href="/services/ai-agent-development-services"
             className="font-semibold text-[#1D92FB] underline underline-offset-4 hover:text-blue-700"
           >
             AI agent development

@@ -41,6 +41,12 @@ describe(`smoke test: ${BASE}`, () => {
     expect((await get("/services/page-auth-verification/docusign-services")).status).toBe(410);
   }, TIMEOUT);
 
+  it("the old AI agent address redirects permanently", async () => {
+    const res = await get("/services/ai-agent");
+    expect(res.status).toBe(308);
+    expect(new URL(res.headers.get("location") ?? "", ORIGIN).pathname).toBe("/services/ai-agent-development-services");
+  }, TIMEOUT);
+
   it("the old mobile app address redirects permanently", async () => {
     const res = await get("/services/mobile-app-development-company");
     expect(res.status).toBe(308);

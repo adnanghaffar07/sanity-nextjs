@@ -147,7 +147,7 @@ export const SAMPLE_SECTIONS: ServiceSection[] = [
     eyebrow: "Chatbot vs. Agent", heading: "AI Chatbot or AI Agent: Which Do You Need?",
     left: { icon: "MessagesSquare", title: "AI Chatbot", description: pt("Built for conversations: answering questions, taking bookings, and capturing leads."), chooseWhen: pt("you want better, faster customer conversations.") },
     right: { icon: "Workflow", title: "AI Agent", description: pt("Built for multi-step workflows that run end-to-end across your systems."), chooseWhen: pt("you want to automate whole processes behind the scenes.") },
-    footer: pt("Not sure which fits? Learn more about our [[AI agent development|/services/ai-agent]]."),
+    footer: pt("Not sure which fits? Learn more about our [[AI agent development|/services/ai-agent-development-services]]."),
   },
   {
     _type: "spCtaBanner", _key: k(),

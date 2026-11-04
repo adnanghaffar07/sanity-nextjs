@@ -75,7 +75,7 @@ export const adnanGhaffarPage = defineType({
               name: "link",
               title: "Link (optional)",
               type: "string",
-              description: 'A page on this site, starting with "/", e.g. "/services/ai-agent". The name becomes the link.',
+              description: 'A page on this site, starting with "/", e.g. "/services/ai-agent-development-services". The name becomes the link.',
               validation: (rule) =>
                 rule.custom((value) => !value || value.startsWith("/") || 'Use a site path that starts with "/".'),
             }),

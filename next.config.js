@@ -78,6 +78,12 @@ const nextConfig = {
         permanent: true,
       },
 
+      // Old AI agent page → new AI agent development page (Service Page builder)
+      {
+        source: "/services/ai-agent",
+        destination: "/services/ai-agent-development-services",
+        permanent: true,
+      },
       {
         source: "/services/custom-web-cms",
         destination: "/services/custom-cms-development-services",

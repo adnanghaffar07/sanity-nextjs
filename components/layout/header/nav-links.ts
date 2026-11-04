@@ -18,7 +18,7 @@ const service = (slug: string) => `/services/${slug}`;
 // Services mega menu: two columns of cards.
 export const SERVICE_COLUMNS: NavCard[][] = [
   [
-    { href: service("ai-agent"), title: "AI Agent Development", description: "Informed Decision Making Process", icon: "/logo-web-component.svg" },
+    { href: service("ai-agent-development-services"), title: "AI Agent Development", description: "Informed Decision Making Process", icon: "/logo-web-component.svg" },
     { href: service("custom-software-development-services"), title: "Software Development", description: "Desktop and Web Development Solutions", icon: "/logo-javascript.svg" },
     { href: service("ai-business-automation-solutions"), title: "AI Automation", description: "Increase Efficiency with AI Workflows", icon: "/logo-buffer.svg" },
     { href: service("custom-cms-development-services"), title: "CMS", description: "Manage Digital Content", icon: "/logo-codepen.svg" },
@@ -66,7 +66,7 @@ export const ABOUT_COLUMNS: NavCard[][] = [
 ];
 
 export const MOBILE_SERVICE_LINKS: NavLink[] = [
-  { href: service("ai-agent"), label: "AI Agent Development" },
+  { href: service("ai-agent-development-services"), label: "AI Agent Development" },
   { href: service("custom-software-development-services"), label: "Software Development" },
   { href: service("custom-cms-development-services"), label: "CMS" },
   { href: service("ai-business-automation-solutions"), label: "AI Automation" },

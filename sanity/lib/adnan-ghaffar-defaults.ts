@@ -44,7 +44,7 @@ export const ADNAN_GHAFFAR_DEFAULTS: AdnanGhaffarPageContent = {
     {
       title: "Custom AI agents",
       text: "Developing applications that use AI to support tasks and connected workflows.",
-      link: "/services/ai-agent",
+      link: "/services/ai-agent-development-services",
     },
     {
       title: "Business automation",
