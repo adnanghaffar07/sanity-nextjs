@@ -58,7 +58,7 @@ export default function LegacyServicePage({ service: s }: { service: LegacyServi
       {s.developmentSection && <PlainTextSection heading={s.developmentSection.heading} text={s.developmentSection.description} />}
       {s.implementationSection && <PlainTextSection heading={s.implementationSection.heading} text={s.implementationSection.description} />}
       {s.contentItems && <ContentItemsSection service={s} />}
-      {s.subServiceCards && <SubServiceCards service={s} />}
+      {s.subServiceCards?.length ? <SubServiceCards service={s} /> : null}
       {s.ctaAfterSubServices && <CtaBanner banner={s.ctaAfterSubServices} showImage action="consultation" narrowButton />}
       {s.industriesWeQA && <IndustriesWeQA section={s.industriesWeQA} />}
       {s.industriesServe && <IndustriesServe section={s.industriesServe} />}

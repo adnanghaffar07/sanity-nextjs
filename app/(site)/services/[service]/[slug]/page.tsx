@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getLegacySubService } from "@/sanity/lib/legacy-services";
+import { notFound, permanentRedirect } from "next/navigation";
+import { canonicalParentPath, getLegacySubService, primaryParentPath } from "@/sanity/lib/legacy-services";
 import { urlForImage } from "@/sanity/lib/image";
 import ServicePageRenderer from "@/components/services/page-builder/ServicePageRenderer";
 import { getServicePageWithLinks, servicePageMetadata } from "@/components/services/page-builder/data";
@@ -22,7 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const seo = sub?.webSeoMetadataSub;
   const title = seo?.title || DEFAULT_TITLE;
   const description = seo?.description || DEFAULT_DESCRIPTION;
-  const url = `https://codeautomation.ai/services/${params.service}/${params.slug}`;
+  // A sub-service listed under several services gets one address for Google:
+  // the oldest service that lists it.
+  const parent = (sub && primaryParentPath(sub)) ?? params.service;
+  const url = `https://codeautomation.ai/services/${parent}/${params.slug}`;
   const image = sub?.heroImageSub ? urlForImage(sub.heroImageSub) : "/thankyou.jpg";
   const twitter = sub?.twitterCardsSub;
 
@@ -50,5 +53,8 @@ export default async function SubServicePage({ params }: Props) {
 
   const sub = await getLegacySubService(params.slug);
   if (!sub) notFound();
+  // Only under a service that lists it; any other service address moves to one that does.
+  const parent = canonicalParentPath(sub, params.service);
+  if (parent && parent !== params.service) permanentRedirect(`/services/${parent}/${params.slug}`);
   return <LegacySubServicePage sub={sub} />;
 }

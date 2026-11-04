@@ -206,12 +206,31 @@ export interface LegacySubService {
   callToActionSubSection: { callToActionHeading?: string; callToAction?: string } | null;
   webSeoMetadataSub: { title?: string; description?: string; keywords?: string[] } | null;
   twitterCardsSub: { twitterTitle?: string; twitterDescription?: string; twitterImage?: SanityImage } | null;
+  /** Addresses of the services that list this sub-service, oldest first. */
+  parentPaths: string[];
 }
 
 const SUB_SERVICE_QUERY = `*[_type == "subService" && urlPathSub == $urlPathSub][0]{
   ...,
+  "parentPaths": coalesce(*[_type == "logicalServices" && defined(urlPath) && references(^._id)] | order(_createdAt asc).urlPath, []),
   "toolsTech": ${toolCards("toolsTechSubSection")}
 }`;
+
+/**
+ * The service a sub-service page belongs under: the requested one if that
+ * service lists it, otherwise the oldest service that does. Null when no
+ * service lists it (then any service address is accepted, as before).
+ */
+export function canonicalParentPath(sub: Pick<LegacySubService, "parentPaths">, requested: string): string | null {
+  const parents = sub.parentPaths ?? [];
+  if (parents.length === 0) return null;
+  return parents.find((p) => p.toLowerCase() === requested.toLowerCase()) ?? parents[0];
+}
+
+/** The service whose address Google should treat as the original: the oldest one listing it. */
+export function primaryParentPath(sub: Pick<LegacySubService, "parentPaths">): string | null {
+  return sub.parentPaths?.[0] ?? null;
+}
 
 /** One sub-service page by its address, or null if there is none. */
 export async function getLegacySubService(urlPathSub: string): Promise<LegacySubService | null> {
