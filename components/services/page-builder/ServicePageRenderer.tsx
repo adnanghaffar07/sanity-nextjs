@@ -83,7 +83,9 @@ export default function ServicePageRenderer({
   pageSlug?: string;
 }) {
   return (
-    <main className="w-full bg-white">
+    // data-hide-footer-form: these pages end with their own call to action, so
+    // the site-wide footer contact form is skipped (see DeferredFormDisplay).
+    <main className="w-full bg-white" data-hide-footer-form="">
       {(sections || [])
         .filter((section) => !section.hidden)
         .map((section) => {
