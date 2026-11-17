@@ -15,7 +15,8 @@ import {
   SiSupabase, SiMongodb, SiPostgresql, SiMysql, SiRedis, SiSanity, SiWordpress,
   SiReact, SiNextdotjs, SiNodedotjs, SiTypescript, SiJavascript, SiPython, SiDjango,
   SiLaravel, SiPhp, SiVuedotjs, SiAngular, SiFlutter, SiSwift, SiKotlin, SiDotnet,
-  SiGoogleanalytics,
+  SiGoogleanalytics, SiScikitlearn, SiTensorflow, SiPytorch, SiKeras, SiApachespark, SiApachehadoop,
+  SiJenkins, SiPrometheus, SiGrafana,
 } from "react-icons/si";
 import { TbBrandTeams, TbBrandAzure, TbBrandOffice, TbBrandOnedrive } from "react-icons/tb";
 import {
@@ -48,6 +49,11 @@ export const BRANDS: Brand[] = [
   b("autogen", "AutoGen", Bot, "#0078D4", "AI"),
   b("vectordb", "Vector databases", Database, "#1D92FB", "AI"),
   b("rag", "RAG", BookOpenText, "#1D92FB", "AI"),
+  // Machine learning frameworks
+  b("scikitlearn", "scikit-learn", SiScikitlearn, "#F7931E", "AI"),
+  b("tensorflow", "TensorFlow", SiTensorflow, "#FF6F00", "AI"),
+  b("pytorch", "PyTorch", SiPytorch, "#EE4C2C", "AI"),
+  b("keras", "Keras", SiKeras, "#D00000", "AI"),
 
   // Channels
   b("webchat", "Web chat", MessageSquare, "#1D92FB", "Channels"),
@@ -106,6 +112,11 @@ export const BRANDS: Brand[] = [
   b("vercel", "Vercel", SiVercel, "#111111", "Cloud & dev"),
   b("docker", "Docker", SiDocker, "#2496ED", "Cloud & dev"),
   b("kubernetes", "Kubernetes", SiKubernetes, "#326CE5", "Cloud & dev"),
+  b("spark", "Apache Spark", SiApachespark, "#E25A1C", "Cloud & dev"),
+  b("hadoop", "Hadoop", SiApachehadoop, "#66CCFF", "Cloud & dev"),
+  b("jenkins", "Jenkins", SiJenkins, "#D24939", "Cloud & dev"),
+  b("prometheus", "Prometheus", SiPrometheus, "#E6522C", "Cloud & dev"),
+  b("grafana", "Grafana", SiGrafana, "#F46800", "Cloud & dev"),
   b("firebase", "Firebase", SiFirebase, "#FFCA28", "Cloud & dev"),
   b("supabase", "Supabase", SiSupabase, "#3FCF8E", "Cloud & dev"),
   b("mongodb", "MongoDB", SiMongodb, "#47A248", "Cloud & dev"),
